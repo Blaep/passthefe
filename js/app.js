@@ -355,7 +355,7 @@
     x.font = "700 44px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
     x.fillText("Practice free at", W / 2, 1180);
     x.fillStyle = "#ffffff";
-    x.fillText("passthefe.netlify.app", W / 2, 1245);
+    x.fillText("passthefe.pages.dev", W / 2, 1245);
     return c;
   }
 
@@ -392,7 +392,7 @@
     var frac = quiz.correct + " of " + quiz.list.length + " correct";
     var text = "I scored " + pct + "% (" + frac + ") on an FE Civil practice quiz" +
       (scope !== "All 15 topics" ? " — " + scope : "") +
-      ". Think you can beat it? Practice free: https://passthefe.netlify.app";
+      ". Think you can beat it? Practice free: https://passthefe.pages.dev";
     var card = drawShareCard(pct, scope, frac);
     card.toBlob(function (blob) {
       if (!blob) { copyText(text, function () { toast("Score copied — paste it anywhere!"); }); return; }

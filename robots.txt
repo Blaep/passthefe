@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://passthefe.netlify.app/sitemap.xml
+Sitemap: https://passthefe.pages.dev/sitemap.xml
