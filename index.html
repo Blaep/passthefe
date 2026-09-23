@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PassTheFE — FE Civil Exam Practice Questions & Simulator</title>
+  <meta name="description" content="PassTheFE: free FE Civil exam practice questions, realistic exam simulations, and study analytics across all 15 NCEES FE Civil topics.">
+  <meta property="og:title" content="PassTheFE — FE Civil Exam Prep">
+  <meta property="og:description" content="Practice questions, exam simulations, and study analytics for the NCEES FE Civil exam.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Google Analytics 4 - PassTheFE -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYPWH137WM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PYPWH137WM');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#/">PassThe<span>FE</span></a>
+      <nav>
+        <a href="#/practice">Practice</a>
+        <a href="#/exam">Exam Sim</a>
+        <a href="#/formulas">Formulas</a>
+        <a href="#/analytics">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <section id="view-home" class="view">
+      <h1>Pass the FE Civil exam with real practice.</h1>
+      <p class="lede">A growing bank of practice questions across all 15 FE Civil topics, full exam simulations with realistic timing, and analytics that show exactly where you stand.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#/practice">Start practicing</a>
+        <a class="btn" href="#/exam">Try an exam sim</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="stat-questions">–</strong><span>questions in the bank</span></div>
+        <div class="stat"><strong>15</strong><span>topics covered</span></div>
+        <div class="stat"><strong>110</strong><span>exam questions</span></div>
+        <div class="stat"><strong>5h 20m</strong><span>exam timer</span></div>
+      </div>
+      <p class="disclaimer">Independent study tool. Not endorsed by or affiliated with NCEES. New questions are added regularly — the bank grows every week.</p>
+    </section>
+
+    <section id="view-practice" class="view hidden">
+      <h2>Practice</h2>
+      <p class="lede">Pick a topic and a quiz length. Answers are checked instantly, with full solutions.</p>
+      <div id="quiz-setup" class="card">
+        <div class="form-row">
+          <label for="quiz-topic">Topic</label>
+          <select id="quiz-topic"></select>
+        </div>
+        <div class="form-row">
+          <label>Questions</label>
+          <div class="length-row" id="quiz-lengths">
+            <button data-n="5" class="length-btn selected">5</button>
+            <button data-n="10" class="length-btn">10</button>
+            <button data-n="20" class="length-btn">20</button>
+            <button data-n="50" class="length-btn">50</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <button id="quiz-start" class="btn primary">Start quiz</button>
+          <span id="quiz-streak" class="streak"></span>
+        </div>
+      </div>
+      <div id="quiz-run" class="card hidden"></div>
+      <div id="quiz-result" class="card hidden"></div>
+    </section>
+
+    <section id="view-exam" class="view hidden">
+      <h2>Exam Simulator</h2>
+      <p class="lede">110 questions · 5 hour 20 minute timer · mark for review · pause/resume.</p>
+      <div class="card">
+        <p>The full exam simulator unlocks as the question bank grows. A realistic 110-question simulation needs a deep bank — we're building toward it, one verified question at a time.</p>
+        <p style="margin-top:12px"><a class="btn primary" href="#/practice">Practice meanwhile</a></p>
+      </div>
+    </section>
+
+    <section id="view-formulas" class="view hidden">
+      <h2>Formula Library</h2>
+      <p class="lede">Key FE Reference Handbook formulas, searchable and filterable by topic.</p>
+      <div class="form-row">
+        <label for="formula-search">Search</label>
+        <input id="formula-search" type="search" placeholder="e.g. manning, bernoulli, stress">
+      </div>
+      <div id="formula-filters" class="chip-row"></div>
+      <div id="formula-list"></div>
+      <p class="disclaimer">Reference only — confirm against the current NCEES FE Reference Handbook before exam day.</p>
+    </section>
+
+    <section id="view-analytics" class="view hidden">
+      <h2>Analytics</h2>
+      <p class="lede">Your accuracy and topic mastery, stored locally in your browser. Answer practice questions to fill this in.</p>
+      <div id="analytics-body"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>PassTheFE</strong> — independent study tool for the NCEES FE Civil exam. Not endorsed by or affiliated with NCEES.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
