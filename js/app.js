@@ -213,6 +213,7 @@
     });
     showOnly("quiz-result");
     renderStreak();
+    recordSession();
   }
 
   // ---- streaks -----------------------------------------------------------
@@ -240,31 +241,167 @@
   }
 
   // ---- analytics ---------------------------------------------------------
-  function renderAnalytics() {
-    var body = document.getElementById("analytics-body");
+  function scoreClass(p) { return p >= 70 ? "good" : (p >= 50 ? "mid" : "bad"); }
+
+  function topicStats(minN) {
     var attempts = store.get("attempts", []);
-    if (!attempts.length) {
-      body.innerHTML = '<div class="card"><p>No answers logged yet. Take a practice quiz and your stats will appear here.</p></div>';
-      return;
-    }
-    var total = attempts.length;
-    var right = attempts.filter(function (a) { return a.correct; }).length;
-    var pct = Math.round(100 * right / total);
-    var html = '<div class="card"><h3>Overall</h3>' +
-      '<p class="result-score">' + pct + '% <span>(' + right + "/" + total + " correct)</span></p></div>";
-    html += '<div class="card"><h3>By topic</h3>';
+    var out = [];
     TOPICS.forEach(function (t) {
       var ts = attempts.filter(function (a) { return a.topic === t; });
-      if (!ts.length) return;
+      if (ts.length < minN) return;
       var r = ts.filter(function (a) { return a.correct; }).length;
-      var p = Math.round(100 * r / ts.length);
-      html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(t) +
-        ' <small>(' + ts.length + ")</small></span>" +
-        '<span class="bar"><span class="fill" style="width:' + p + '%"></span></span>' +
-        '<span class="topic-pct">' + p + "%</span></div>";
+      out.push({ topic: t, n: ts.length, pct: Math.round(100 * r / ts.length) });
     });
-    html += "</div>";
-    body.innerHTML = html;
+    return out;
+  }
+
+  function findQuestion(id) {
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      if (QUESTIONS[i].id === id) return QUESTIONS[i];
+    }
+    return null;
+  }
+
+  // One completed quiz = one logged session (score, scope, missed question ids).
+  function recordSession() {
+    if (!quiz || !quiz.answers.length) return;
+    var missed = [];
+    quiz.answers.forEach(function (a) {
+      if (!a.correct) missed.push(a.qid);
+    });
+    var sessions = store.get("sessions", []);
+    sessions.push({
+      ts: Date.now(),
+      correct: quiz.correct,
+      total: quiz.list.length,
+      pct: Math.round(100 * quiz.correct / quiz.list.length),
+      scope: quiz.topic,
+      missed: missed
+    });
+    store.set("sessions", sessions.slice(-100));
+  }
+
+  function statCard(label, pct) {
+    var c = scoreClass(pct);
+    return '<div class="stat-card ' + c + '"><div class="k">' + label + "</div>" +
+      '<div class="v ' + c + '">' + pct + "%</div></div>";
+  }
+
+  function catRows(list) {
+    return list.map(function (s) {
+      return '<div class="cat-row"><span>' + escapeHtml(s.topic) + "</span>" +
+        '<span class="pct ' + scoreClass(s.pct) + '">' + s.pct + "%</span></div>";
+    }).join("");
+  }
+
+  function renderStudyList(ids) {
+    var known = ids.map(findQuestion).filter(Boolean);
+    if (!known.length) {
+      return '<div class="card"><p class="muted">Nothing to review — no missed questions on record.</p></div>';
+    }
+    return known.map(function (q) {
+      return '<div class="card study-item"><div class="formula-topic">' +
+        escapeHtml(q.topic) + '</div><p class="question-text">' +
+        escapeHtml(q.question) + '</p><p class="answer-line"><strong>Correct answer:</strong> ' +
+        escapeHtml(q.choices[q.answerIndex]) + '</p><p class="solution-text">' +
+        escapeHtml(q.solution) + "</p></div>";
+    }).join("");
+  }
+
+  function renderAnalytics() {
+    var body = document.getElementById("analytics-body");
+    loadQuestions(function () {
+      var sessions = store.get("sessions", []);
+      var attempts = store.get("attempts", []);
+      if (!sessions.length && !attempts.length) {
+        body.innerHTML = '<div class="card"><p>No answers logged yet. Take a practice quiz and your stats will appear here.</p></div>';
+        return;
+      }
+      var html = "";
+
+      // 1. Quiz results bar chart
+      html += '<div class="card"><h3>Quiz Results</h3>';
+      if (sessions.length) {
+        html += '<div class="chart">';
+        sessions.forEach(function (s, i) {
+          html += '<div class="cbar-wrap"><span class="cbar-val">' + s.pct + "</span>" +
+            '<div class="cbar ' + scoreClass(s.pct) + '" style="height:' +
+            Math.max(s.pct, 3) + '%"></div>' +
+            '<span class="cbar-x">' + (i + 1) + "</span></div>";
+        });
+        html += '</div><p class="disclaimer" style="margin-top:10px">Oldest on the left · ' +
+          sessions.length + (sessions.length === 1 ? " quiz" : " quizzes") + " logged</p>";
+      } else {
+        html += '<p class="muted">Finish a full practice quiz to log your first result.</p>';
+      }
+      html += "</div>";
+
+      // 2. Best / average / latest
+      if (sessions.length) {
+        var pcts = sessions.map(function (s) { return s.pct; });
+        var best = Math.max.apply(null, pcts);
+        var avg = Math.round(pcts.reduce(function (a, b) { return a + b; }, 0) / pcts.length);
+        html += '<div class="stat-cards">' +
+          statCard("Best", best) +
+          statCard("Average", avg) +
+          statCard("Latest", pcts[pcts.length - 1]) +
+          "</div>";
+      }
+
+      // 3. Study list — missed questions, tap to review with solutions
+      var seen = {};
+      var missedIds = [];
+      sessions.slice(-20).forEach(function (s) {
+        (s.missed || []).forEach(function (id) {
+          if (!seen[id]) { seen[id] = 1; missedIds.push(id); }
+        });
+      });
+      html += '<button class="list-btn" id="study-toggle">Study List: ' + missedIds.length +
+        " Question" + (missedIds.length === 1 ? "" : "s") + "</button>";
+      html += '<div id="study-list" class="hidden"></div>';
+
+      // 4. All category scores (expandable)
+      var all = topicStats(1).sort(function (a, b) { return b.pct - a.pct; });
+      html += '<details class="card"><summary>All Category Scores</summary><div>';
+      if (!all.length) {
+        html += '<p class="muted">No topic data yet.</p>';
+      } else {
+        all.forEach(function (s) {
+          html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(s.topic) +
+            " <small>(" + s.n + ")</small></span>" +
+            '<span class="bar"><span class="fill ' + scoreClass(s.pct) +
+            '" style="width:' + s.pct + '%"></span></span>' +
+            '<span class="topic-pct">' + s.pct + "%</span></div>";
+        });
+      }
+      html += "</div></details>";
+
+      // 5. Best categories / categories to focus on
+      var ranked = topicStats(3);
+      if (ranked.length) {
+        var best3 = ranked.slice().sort(function (a, b) { return b.pct - a.pct; }).slice(0, 3);
+        var worst3 = ranked.slice().sort(function (a, b) { return a.pct - b.pct; }).slice(0, 3);
+        html += '<div class="card"><h3>Best Categories</h3>' + catRows(best3) + "</div>";
+        html += '<div class="card"><h3>Categories to Focus On</h3>' + catRows(worst3) + "</div>";
+      }
+
+      body.innerHTML = html;
+
+      var toggle = document.getElementById("study-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var list = document.getElementById("study-list");
+          if (!list.dataset.done) {
+            list.dataset.done = "1";
+            list.innerHTML = renderStudyList(missedIds);
+          }
+          list.classList.toggle("hidden");
+          var label = list.classList.contains("hidden") ? "Study List: " : "Hide Study List: ";
+          toggle.textContent = label + missedIds.length +
+            " Question" + (missedIds.length === 1 ? "" : "s");
+        });
+      }
+    });
   }
 
   // ---- formula library ---------------------------------------------------

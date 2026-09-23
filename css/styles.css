@@ -138,3 +138,71 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 }
 .formula-symbols { font-size: 0.88rem; color: var(--text-2); margin-bottom: 6px; }
 .formula-notes { font-size: 0.92rem; color: var(--text); }
+
+/* ---- results dashboard ---- */
+.chart {
+  display: flex; align-items: flex-end; gap: 8px;
+  height: 210px; overflow-x: auto; padding: 30px 4px 0;
+  border-bottom: 1px solid #e8eaf0;
+}
+.cbar-wrap {
+  flex: 0 0 36px; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+}
+.cbar-val { font-size: 0.72rem; font-weight: 700; margin-bottom: 4px; }
+.cbar { width: 24px; border-radius: 5px 5px 0 0; min-height: 4px; }
+.cbar.good { background: var(--success); }
+.cbar.mid { background: var(--warning); }
+.cbar.bad { background: var(--error); }
+.cbar-x { font-size: 0.7rem; color: var(--text-2); margin-top: 6px; }
+
+.stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+.stat-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 18px; border-left: 5px solid var(--success);
+}
+.stat-card.mid { border-left-color: var(--warning); }
+.stat-card.bad { border-left-color: var(--error); }
+.stat-card .k { font-weight: 700; margin-bottom: 2px; }
+.stat-card .v { font-size: 1.9rem; font-weight: 800; }
+.stat-card .v.good { color: var(--success); }
+.stat-card .v.mid { color: var(--warning); }
+.stat-card .v.bad { color: var(--error); }
+
+.list-btn {
+  display: block; width: 100%; margin-top: 20px; padding: 18px;
+  background: var(--card); border: none; border-radius: var(--radius);
+  box-shadow: var(--shadow); font-size: 1.05rem; font-weight: 600;
+  cursor: pointer; color: var(--text); text-align: center;
+}
+.list-btn:hover { background: var(--bg-soft); }
+
+details.card summary {
+  font-size: 1.05rem; font-weight: 600; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+}
+details.card summary::-webkit-details-marker { display: none; }
+details.card summary::after { content: "\203A"; font-size: 1.4rem; color: var(--text-2); }
+details.card[open] summary::after { content: "\2304"; }
+details.card summary + div { margin-top: 16px; }
+
+.bar .fill.good { background: var(--success); }
+.bar .fill.mid { background: var(--warning); }
+.bar .fill.bad { background: var(--error); }
+
+.cat-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; }
+.cat-row .pct { font-weight: 700; white-space: nowrap; }
+.cat-row .pct.good { color: var(--success); }
+.cat-row .pct.mid { color: var(--warning); }
+.cat-row .pct.bad { color: var(--error); }
+
+.study-item { margin-top: 12px; }
+.study-item .answer-line { margin: 8px 0; }
+.study-item .solution-text { color: var(--text-2); font-size: 0.92rem; }
+
+.muted { color: var(--text-2); }
+
+@media (max-width: 640px) {
+  .stat-card { padding: 14px; }
+  .stat-card .v { font-size: 1.4rem; }
+}
