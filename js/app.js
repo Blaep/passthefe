@@ -294,6 +294,7 @@
     html += '<p class="result-score">' + quiz.correct + "/" + quiz.list.length +
       " <span>(" + pct + "%)</span></p>";
     html += '<div class="quiz-nav"><button id="quiz-again" class="btn primary">New quiz</button> ' +
+      '<button id="quiz-share" class="btn">Share my score</button> ' +
       '<a class="btn" href="#/analytics">View analytics</a></div>';
     box.innerHTML = html;
     document.getElementById("quiz-again").addEventListener("click", function () {
@@ -303,11 +304,113 @@
       showOnly("quiz-setup");
       initPractice();
     });
+    document.getElementById("quiz-share").addEventListener("click", shareScore);
     showOnly("quiz-result");
     renderStreak();
     clearResume(); // finished quizzes have nothing left to resume
     renderResumeBanner(); // refresh the setup card so it never shows a stale banner
     recordSession();
+  }
+
+  // ---- score sharing ---------------------------------------------------
+  function drawShareCard(pct, scopeLine, fracLine) {
+    var W = 1080, H = 1350;
+    var c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    var x = c.getContext("2d");
+    // background
+    var g = x.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, "#22345c"); g.addColorStop(1, "#141f3a");
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.textAlign = "center";
+    // brand
+    x.fillStyle = "#e8b64c";
+    x.font = "700 52px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText("P A S S T H E F E", W / 2, 150);
+    // checkmark badge
+    x.beginPath(); x.arc(W / 2, 330, 92, 0, Math.PI * 2);
+    x.fillStyle = "#2f9e63"; x.fill();
+    x.strokeStyle = "#ffffff"; x.lineWidth = 26; x.lineCap = "round"; x.lineJoin = "round";
+    x.beginPath();
+    x.moveTo(W / 2 - 48, 332); x.lineTo(W / 2 - 12, 368); x.lineTo(W / 2 + 52, 292);
+    x.stroke();
+    // score
+    x.fillStyle = "#ffffff";
+    x.font = "800 300px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText(pct + "%", W / 2, 720);
+    x.fillStyle = "#e8b64c";
+    x.font = "700 46px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText("FE CIVIL PRACTICE QUIZ", W / 2, 810);
+    x.fillStyle = "#cdd6ea";
+    x.font = "400 44px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText(scopeLine, W / 2, 880);
+    x.fillText(fracLine, W / 2, 945);
+    // divider
+    x.fillStyle = "#e8b64c"; x.fillRect(W / 2 - 120, 1010, 240, 6);
+    // call to action
+    x.fillStyle = "#ffffff";
+    x.font = "600 48px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText("Can you beat it?", W / 2, 1110);
+    x.fillStyle = "#e8b64c";
+    x.font = "700 44px -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif";
+    x.fillText("Practice free at", W / 2, 1180);
+    x.fillStyle = "#ffffff";
+    x.fillText("passthefe.netlify.app", W / 2, 1245);
+    return c;
+  }
+
+  function copyText(t, done) {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, fallback);
+    } else { fallback(); }
+  }
+
+  function toast(msg) {
+    var el = document.getElementById("share-toast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "share-toast";
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.className = "show";
+    setTimeout(function () { el.className = ""; }, 2600);
+  }
+
+  function shareScore() {
+    if (!quiz) return;
+    var pct = Math.round(100 * quiz.correct / quiz.list.length);
+    var scope = quiz.topic && quiz.topic !== "All topics" ? quiz.topic : "All 15 topics";
+    var frac = quiz.correct + " of " + quiz.list.length + " correct";
+    var text = "I scored " + pct + "% (" + frac + ") on an FE Civil practice quiz" +
+      (scope !== "All 15 topics" ? " — " + scope : "") +
+      ". Think you can beat it? Practice free: https://passthefe.netlify.app";
+    var card = drawShareCard(pct, scope, frac);
+    card.toBlob(function (blob) {
+      if (!blob) { copyText(text, function () { toast("Score copied — paste it anywhere!"); }); return; }
+      var file = new File([blob], "passthefe-score.png", { type: "image/png" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: "My PassTheFE score", text: text })
+          .catch(function () {});
+      } else {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "passthefe-score.png";
+        document.body.appendChild(a); a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+        copyText(text, function () {
+          toast("Score card downloaded + caption copied — post it anywhere!");
+        });
+      }
+    }, "image/png");
   }
 
   // ---- streaks -----------------------------------------------------------
