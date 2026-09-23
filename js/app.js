@@ -497,7 +497,12 @@
     return String(text).split(/\n\s*\n/).map(function (para) {
       if (/^\s*$/.test(para)) return "";
       var dm = para.match(/^\s*\$\$([\s\S]+?)\$\$\s*$/);
-      if (dm) return '<div class="math-display">' + texHtml(dm[1], true) + "</div>";
+      if (dm) {
+        // Aligned equation blocks (parameter lists) sit left, like the handbook;
+        // standalone equations stay centered.
+        var left = dm[1].indexOf("\\begin{aligned}") !== -1 ? " left" : "";
+        return '<div class="math-display' + left + '">' + texHtml(dm[1], true) + "</div>";
+      }
       var inner = para.split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
         var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
         return m ? texHtml(m[1], false) : escapeHtml(part).replace(/\n/g, "<br>");

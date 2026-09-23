@@ -93,6 +93,7 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .explain-body p { margin: 0 0 10px; }
 .explain-body p:last-child { margin-bottom: 0; }
 .math-display { margin: 16px 0; overflow-x: auto; overflow-y: hidden; }
+.math-display.left > .katex-display { text-align: left; }
 .solution code, .study-item code {
   font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.9em;
   background: #f5f7fc; padding: 1px 5px; border-radius: 4px;
