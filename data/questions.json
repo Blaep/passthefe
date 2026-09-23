@@ -64,7 +64,7 @@
       "explanation": "Hydrostatic pressure depends only on depth and fluid unit weight: p = gamma*h. Roughly 10 m of water ≈ 1 atm.",
       "id": "fluid-001",
       "question": "What is the gage pressure at a depth of 10 m in water? (unit weight of water = 9.81 kN/m^3)",
-      "solution": "Gage pressure varies hydrostatically with depth:\n\n$$p = \\gamma h$$\n\n$$p = (9.81\\ \\text{kN/m}^3)(10\\ \\text{m}) = 98.1\\ \\text{kPa (gage)}$$",
+      "solution": "Refer to the Hydrostatic Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p\\). Gage pressure varies hydrostatically with depth according to:\n\n$$p = \\gamma h$$\n\nList the known and unknown parameters in order to solve for \\(p\\):\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nh &= 10\\ \\text{m} \\\\\np &= ?\n\\end{aligned}$$\n\n$$(p) = (\\gamma)(h) \\rightarrow (p) = (9.81)(10)$$\n\n$$(p) = 98.1\\ \\text{kPa (gage)}$$",
       "subtopic": "Hydrostatic pressure",
       "topic": "Fluid Mechanics"
     },
@@ -915,7 +915,7 @@
         "3.13 m/s"
       ],
       "answerIndex": 1,
-      "solution": "Work–energy principle: \\(T_1 + \\sum U_{1-2} = T_2\\). The block drops a vertical height \\(h = 5\\sin 30^\\circ = 2.5\\ \\text{m}\\).\n\n$$\\frac{1}{2}mv^2 = mgh \\quad\\Rightarrow\\quad v = \\sqrt{2gh} = \\sqrt{2(9.81)(2.5)} = \\sqrt{49.05} = 7.00\\ \\text{m/s}$$\n\nMass cancels out.",
+      "solution": "Refer to the Work–Energy Principle section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(v\\). With only speeds and distances involved, work–energy is the fastest route:\n\n$$T_1 + \\sum U_{1-2} = T_2$$\n\nThe block starts from rest and drops a vertical height \\(h = 5\\sin 30^\\circ = 2.5\\ \\text{m}\\), so:\n\n$$\\frac{1}{2}mv^2 = mgh \\quad\\Rightarrow\\quad v = \\sqrt{2gh}$$\n\nList the known and unknown parameters in order to solve for \\(v\\):\n\n$$\\begin{aligned}\ng &= 9.81\\ \\text{m/s}^2 \\\\\nh &= 2.5\\ \\text{m} \\\\\nv &= ?\n\\end{aligned}$$\n\n$$(v) = \\sqrt{2gh} \\rightarrow (v) = \\sqrt{2(9.81)(2.5)}$$\n\n$$(v) = \\sqrt{49.05} = 7.00\\ \\text{m/s}$$\n\nMass cancels out of the solution.",
       "explanation": "Work-energy is the fastest route when only speeds and distances matter. The 9.90 m/s trap uses the 5 m incline length as if it were the vertical drop."
     },
     {
@@ -1629,7 +1629,7 @@
         "37.5 kN/m"
       ],
       "answerIndex": 1,
-      "solution": "Rankine active earth pressure coefficient:\n\n$$K_a = \\frac{1 - \\sin\\phi}{1 + \\sin\\phi} = \\frac{1-0.5}{1+0.5} = \\frac{1}{3} = 0.333$$\n\nTotal active thrust per meter of wall:\n\n$$P_a = \\frac{1}{2}K_a\\gamma H^2 = 0.5(0.333)(18)(25) = 75\\ \\text{kN/m}$$\n\nThe thrust acts at \\(H/3\\) above the base.",
+      "solution": "Refer to the Lateral Earth Pressure section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_a\\). First determine the Rankine active earth pressure coefficient:\n\n$$K_a = \\frac{1 - \\sin\\phi}{1 + \\sin\\phi}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\phi &= 30^\\circ \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nH &= 5\\ \\text{m} \\\\\nK_a &= ? \\\\\nP_a &= ?\n\\end{aligned}$$\n\n$$(K_a) = \\frac{1 - \\sin 30^\\circ}{1 + \\sin 30^\\circ} = \\frac{0.5}{1.5} = \\frac{1}{3} = 0.333$$\n\nTotal active thrust per meter of wall:\n\n$$P_a = \\frac{1}{2}K_a\\gamma H^2$$\n\n$$(P_a) = \\frac{1}{2}(0.333)(18)(5)^2 = 75\\ \\text{kN/m}$$\n\nThe thrust acts at \\(H/3\\) above the base.",
       "explanation": "Active pressure grows with the square of wall height, so the 1/2 factor in the triangular distribution is essential (dropping it gives 150 kN/m). Using Ka = 1 or the passive coefficient are the other common slips."
     },
     {
