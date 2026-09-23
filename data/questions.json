@@ -2005,7 +2005,8 @@
       "question": "A small project has these activities: A (3 days) precedes B (4 days) and C (5 days); both B and C precede D (2 days). What is the early finish time of activity D?",
       "solution": "Refer to the Critical Path Method section in the Construction Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the early finish of activity D. Run the forward pass along each path:\n\n$$\\begin{aligned}\n\\text{Path A-B-D} &= 3 + 4 + 2 = 9\\ \\text{days} \\\\\n\\text{Path A-C-D} &= 3 + 5 + 2 = 10\\ \\text{days}\n\\end{aligned}$$\n\nThe early finish is governed by the longest (critical) path:\n\n$$EF_D = \\max(9, 10) = \\text{Day } 10$$",
       "subtopic": "CPM scheduling",
-      "topic": "Construction Engineering"
+      "topic": "Construction Engineering",
+      "diagram": "diagrams/construction-002.svg"
     },
     {
       "answerIndex": 2,
@@ -3468,7 +3469,8 @@
       ],
       "answerIndex": 0,
       "solution": "Refer to the Scheduling section in the Construction Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(TF\\). We can determine \\(TF\\) from the following equation:\n\n$$TF = LF - EF = LF - (ES + \\text{duration})$$\n\nList the known and unknown parameters in order to solve for \\(TF\\):\n\n$$\\begin{aligned}\nES &= 5 \\\\\n\\text{Duration} &= 4\\ \\text{days} \\\\\nEF &= 5 + 4 = 9 \\\\\nLF &= 12 \\\\\nTF &= ?\n\\end{aligned}$$\n\n$$(TF) = 12 - 9$$\n\n$$(TF) = 3\\ \\text{days}$$",
-      "explanation": "Total float is late finish minus EARLY finish — using early start instead (12 − 5) gives 7 days. Only critical-path activities have zero float."
+      "explanation": "Total float is late finish minus EARLY finish — using early start instead (12 − 5) gives 7 days. Only critical-path activities have zero float.",
+      "diagram": "diagrams/construction-011.svg"
     },
     {
       "id": "construction-012",
