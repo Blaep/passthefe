@@ -82,6 +82,11 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
   font-family: Georgia, "Times New Roman", "Nimbus Roman", serif;
 }
 .question-text { font-size: 1.12rem; }
+.q-diagram {
+  display: block; max-width: 100%; width: min(560px, 100%); height: auto;
+  margin: 4px auto 18px; border: 1px solid #e0e3ec; border-radius: 10px;
+  background: #ffffff; padding: 6px;
+}
 .choices { list-style: none; }
 .choices li {
   padding: 10px 14px; border: 1px solid #e0e3ec; border-radius: 8px;

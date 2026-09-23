@@ -139,6 +139,15 @@
     });
   }
 
+  // ---- diagrams --------------------------------------------------------
+  // Optional textbook-style SVG figure shown between the stem and choices.
+  function diagramHtml(q) {
+    if (!q || !q.diagram) return "";
+    return '<img class="q-diagram" src="' + escapeHtml(q.diagram) + '" alt="' +
+      escapeHtml("Figure for " + (q.subtopic || q.topic || "this question")) +
+      '" loading="lazy">';
+  }
+
   function renderQuestion() {
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
@@ -148,6 +157,7 @@
     html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
       escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
     html += '<p class="question-text">' + escapeHtml(q.question) + "</p>";
+    html += diagramHtml(q);
     html += '<ul class="choices" id="quiz-choices">';
     shuffle(q.choices.map(function (c, i) { return i; })).forEach(function (i) {
       html += '<li data-i="' + i + '">' + escapeHtml(q.choices[i]) + "</li>";
@@ -303,7 +313,8 @@
     return known.map(function (q) {
       return '<div class="card study-item"><div class="formula-topic">' +
         escapeHtml(q.topic) + '</div><p class="question-text">' +
-        escapeHtml(q.question) + '</p><p class="answer-line"><strong>Correct answer:</strong> ' +
+        escapeHtml(q.question) + '</p>' + diagramHtml(q) +
+        '<p class="answer-line"><strong>Correct answer:</strong> ' +
         escapeHtml(q.choices[q.answerIndex]) + '</p><div class="explain-body">' +
         renderRich(q.solution) + "</div></div>";
     }).join("");
