@@ -74,6 +74,7 @@
       }
       renderStreak();
     });
+    renderResumeBanner();
     var lens = document.getElementById("quiz-lengths");
     if (lens && !lens.dataset.bound) {
       lens.dataset.bound = "1";
@@ -128,8 +129,70 @@
         list: shuffle(pool).slice(0, n),
         idx: 0, correct: 0, topic: topic || "All topics", answers: []
       };
+      saveProgress();
       renderQuestion();
       showOnly("quiz-run");
+    });
+  }
+
+  // ---- quiz resume -------------------------------------------------------
+  // An in-progress quiz is saved to localStorage after every answer and
+  // every question advance, so closing the tab mid-quiz loses nothing.
+  function saveProgress() {
+    if (!quiz || !quiz.list.length) { store.set("resume", null); return; }
+    store.set("resume", {
+      v: 1,
+      qids: quiz.list.map(function (q) { return q.id; }),
+      idx: quiz.idx,
+      correct: quiz.correct,
+      topic: quiz.topic,
+      answers: quiz.answers,
+      savedAt: Date.now()
+    });
+  }
+
+  function clearResume() { store.set("resume", null); }
+
+  function resumeQuiz(saved) {
+    loadQuestions(function () {
+      var list = (saved.qids || []).map(findQuestion).filter(Boolean);
+      if (!list.length || list.length !== saved.qids.length) {
+        clearResume();
+        renderResumeBanner();
+        return;
+      }
+      quiz = {
+        list: list,
+        idx: Math.min(saved.idx || 0, list.length - 1),
+        correct: saved.correct || 0,
+        topic: saved.topic || "Saved quiz",
+        answers: saved.answers || []
+      };
+      renderQuestion();
+      showOnly("quiz-run");
+    });
+  }
+
+  function renderResumeBanner() {
+    var el = document.getElementById("quiz-resume");
+    if (!el) return;
+    var saved = store.get("resume", null);
+    var valid = saved && saved.v === 1 && saved.qids && saved.qids.length &&
+      (saved.idx || 0) < saved.qids.length;
+    if (!valid) { el.classList.add("hidden"); el.innerHTML = ""; return; }
+    el.innerHTML = '<div class="resume-banner"><div><strong>Unfinished quiz</strong><br>' +
+      '<span class="muted">' + escapeHtml(saved.topic || "") + " · question " +
+      ((saved.idx || 0) + 1) + " of " + saved.qids.length + " · " +
+      (saved.correct || 0) + " correct so far</span></div>" +
+      '<div class="resume-actions"><button id="quiz-resume-btn" class="btn primary">Resume</button>' +
+      '<button id="quiz-discard-btn" class="btn text">Discard</button></div></div>';
+    el.classList.remove("hidden");
+    document.getElementById("quiz-resume-btn").addEventListener("click", function () {
+      resumeQuiz(store.get("resume", null));
+    });
+    document.getElementById("quiz-discard-btn").addEventListener("click", function () {
+      clearResume();
+      renderResumeBanner();
     });
   }
 
@@ -171,24 +234,40 @@
       li.addEventListener("click", function () { answerCurrent(parseInt(li.dataset.i, 10)); });
     });
     document.getElementById("quiz-next").addEventListener("click", function () {
-      if (quiz.idx + 1 < quiz.list.length) { quiz.idx++; renderQuestion(); }
+      if (quiz.idx + 1 < quiz.list.length) {
+        quiz.idx++;
+        saveProgress();
+        renderQuestion();
+      }
       else showResult();
     });
+    // Restoring a saved quiz where the current question was already answered:
+    // show it in its answered state without re-logging anything.
+    var prev = quiz.answers.length ? quiz.answers[quiz.answers.length - 1] : null;
+    if (prev && prev.qid === q.id && typeof prev.chosen === "number") {
+      revealAnswer(q, prev.chosen, prev.correct);
+    }
   }
 
   function answerCurrent(i) {
     var box = document.getElementById("quiz-run");
     if (box.dataset.answered) return;
-    box.dataset.answered = "1";
     var q = quiz.list[quiz.idx];
     var ok = i === q.answerIndex;
     if (ok) quiz.correct++;
-    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok });
+    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: i });
     logAttempt(q, ok);
+    revealAnswer(q, i, ok);
+    saveProgress();
+  }
+
+  function revealAnswer(q, chosenI, ok) {
+    var box = document.getElementById("quiz-run");
+    box.dataset.answered = "1";
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       var liI = parseInt(li.dataset.i, 10);
       if (liI === q.answerIndex) { li.style.borderColor = "#34C759"; li.style.background = "#e9f9ee"; }
-      else if (liI === i) { li.style.borderColor = "#FF3B30"; li.style.background = "#fdeceb"; }
+      else if (liI === chosenI) { li.style.borderColor = "#FF3B30"; li.style.background = "#fdeceb"; }
       li.style.cursor = "default";
     });
     var sol = document.getElementById("quiz-solution");
@@ -218,12 +297,14 @@
     box.innerHTML = html;
     document.getElementById("quiz-again").addEventListener("click", function () {
       quiz = null;
+      clearResume();
       document.getElementById("quiz-run").dataset.answered = "";
       showOnly("quiz-setup");
       initPractice();
     });
     showOnly("quiz-result");
     renderStreak();
+    clearResume(); // finished quizzes have nothing left to resume
     recordSession();
   }
 
