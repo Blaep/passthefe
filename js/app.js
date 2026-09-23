@@ -182,9 +182,10 @@
       li.style.cursor = "default";
     });
     var sol = document.getElementById("quiz-solution");
-    sol.innerHTML = "<strong>" + (ok ? "Correct." : "Not quite.") + "</strong> " +
-      escapeHtml(q.solution) +
-      (q.explanation ? "<br><em>" + escapeHtml(q.explanation) + "</em>" : "");
+    sol.innerHTML = "<strong>" + (ok ? "Correct." : "Not quite.") + "</strong>" +
+      '<p class="explain-head">Explanation</p>' +
+      '<div class="explain-body">' + renderRich(q.solution) + "</div>" +
+      (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "");
     sol.style.display = "block";
     document.getElementById("quiz-next").style.display = "inline-block";
   }
@@ -303,8 +304,8 @@
       return '<div class="card study-item"><div class="formula-topic">' +
         escapeHtml(q.topic) + '</div><p class="question-text">' +
         escapeHtml(q.question) + '</p><p class="answer-line"><strong>Correct answer:</strong> ' +
-        escapeHtml(q.choices[q.answerIndex]) + '</p><p class="solution-text">' +
-        escapeHtml(q.solution) + "</p></div>";
+        escapeHtml(q.choices[q.answerIndex]) + '</p><div class="explain-body">' +
+        renderRich(q.solution) + "</div></div>";
     }).join("");
   }
 
@@ -477,6 +478,32 @@
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
+  }
+
+  // Rich text for solutions/explanations.
+  // Convention: \(...\) = inline math, $$...$$ on its own line(s) = display math.
+  // Rendered with KaTeX when available; falls back to monospace otherwise.
+  // Plain $ is never math (engineering economics has dollar amounts).
+  function texHtml(tex, display) {
+    try {
+      if (window.katex) {
+        return katex.renderToString(tex, { displayMode: display, throwOnError: false });
+      }
+    } catch (e) { /* fall through to fallback */ }
+    return "<code>" + escapeHtml(tex) + "</code>";
+  }
+
+  function renderRich(text) {
+    return String(text).split(/\n\s*\n/).map(function (para) {
+      if (/^\s*$/.test(para)) return "";
+      var dm = para.match(/^\s*\$\$([\s\S]+?)\$\$\s*$/);
+      if (dm) return '<div class="math-display">' + texHtml(dm[1], true) + "</div>";
+      var inner = para.split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
+        var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
+        return m ? texHtml(m[1], false) : escapeHtml(part).replace(/\n/g, "<br>");
+      }).join("");
+      return "<p>" + inner + "</p>";
+    }).join("");
   }
 
   window.addEventListener("hashchange", route);

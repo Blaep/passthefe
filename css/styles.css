@@ -78,13 +78,25 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .site-footer { border-top: 1px solid #e8eaf0; padding: 24px 0; color: var(--text-2); font-size: 0.9rem; }
 
 .question-text { font-weight: 600; margin-bottom: 16px; }
+.question-text, .solution, .solution-text, .study-item .answer-line {
+  font-family: Georgia, "Times New Roman", "Nimbus Roman", serif;
+}
+.question-text { font-size: 1.12rem; }
 .choices { list-style: none; }
 .choices li {
   padding: 10px 14px; border: 1px solid #e0e3ec; border-radius: 8px;
   margin-bottom: 8px; cursor: pointer;
 }
 .choices li:hover { border-color: var(--primary); background: #f5f8ff; }
-.solution { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #dfe2ec; color: var(--text-2); }
+.solution { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #dfe2ec; color: var(--text); }
+.explain-head { font-weight: 800; font-size: 1.05rem; margin: 14px 0 4px; }
+.explain-body p { margin: 0 0 10px; }
+.explain-body p:last-child { margin-bottom: 0; }
+.math-display { margin: 16px 0; overflow-x: auto; overflow-y: hidden; }
+.solution code, .study-item code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.9em;
+  background: #f5f7fc; padding: 1px 5px; border-radius: 4px;
+}
 
 .form-row { margin-bottom: 18px; }
 .form-row label { display: block; font-weight: 700; margin-bottom: 8px; }
