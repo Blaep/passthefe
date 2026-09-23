@@ -305,6 +305,7 @@
     showOnly("quiz-result");
     renderStreak();
     clearResume(); // finished quizzes have nothing left to resume
+    renderResumeBanner(); // refresh the setup card so it never shows a stale banner
     recordSession();
   }
 
