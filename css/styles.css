@@ -239,3 +239,24 @@ details.card summary + div { margin-top: 16px; }
   .stat-card { padding: 14px; }
   .stat-card .v { font-size: 1.4rem; }
 }
+
+/* ---------- Flashcards ---------- */
+.fc-controls { display: flex; gap: 10px; align-items: center; margin: 14px 0 6px; flex-wrap: wrap; }
+.fc-controls select { font-size: 1rem; padding: 8px 10px; border: 1px solid #d8d2c4; border-radius: 8px; background: #fff; max-width: 100%; }
+.fc-progress { color: #6b6455; font-size: .95rem; margin: 6px 0 12px; }
+.fc-scene { perspective: 1200px; margin: 0 auto; max-width: 640px; }
+.fc-card { position: relative; min-height: 320px; transform-style: preserve-3d; transition: transform .45s ease; cursor: pointer; }
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #fffdf8; border: 1px solid #e4ddcc; border-radius: 14px; padding: 26px 24px; box-shadow: 0 4px 14px rgba(60,50,30,.08); overflow-y: auto; max-height: 60vh; }
+.fc-front { position: relative; }
+.fc-back { position: absolute; inset: 0; transform: rotateY(180deg); }
+.fc-q { font-size: 1.15rem; line-height: 1.55; margin-top: 12px; }
+.fc-hint { color: #8a8272; font-size: .9rem; margin-top: 18px; font-style: italic; }
+.fc-answer-label { text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; color: #8a8272; margin: 0 0 6px; }
+.fc-a { font-size: 1.15rem; font-weight: 700; color: #1d6b3c; line-height: 1.5; }
+.fc-sol { margin-top: 14px; font-size: 1rem; line-height: 1.6; border-top: 1px solid #e4ddcc; padding-top: 12px; }
+.fc-nav { display: flex; gap: 10px; justify-content: center; margin: 18px 0 8px; }
+@media (max-width: 560px) {
+  .fc-face { padding: 20px 18px; }
+  .fc-q { font-size: 1.05rem; }
+}

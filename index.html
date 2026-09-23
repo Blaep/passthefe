@@ -37,6 +37,7 @@
         <a href="#/practice">Practice</a>
         <a href="#/exam">Exam Sim</a>
         <a href="#/formulas">Formulas</a>
+        <a href="#/flashcards">Flashcards</a>
         <a href="#/analytics">Analytics</a>
       </nav>
     </div>
@@ -105,6 +106,36 @@
       <div id="formula-filters" class="chip-row"></div>
       <div id="formula-list"></div>
       <p class="disclaimer">Reference only — confirm against the current NCEES FE Reference Handbook before exam day.</p>
+    </section>
+
+    <section id="view-flashcards" class="view hidden">
+      <h2>Flashcards</h2>
+      <p class="lede">Conceptual questions from the bank, distilled to front-and-back cards. Tap a card to flip it.</p>
+      <div class="fc-controls">
+        <select id="fc-topic" aria-label="Filter by topic"></select>
+        <button class="btn" id="fc-shuffle">Shuffle</button>
+      </div>
+      <div class="fc-progress"><span id="fc-count">–</span></div>
+      <div class="fc-scene">
+        <div class="fc-card" id="fc-card" role="button" tabindex="0" aria-label="Flashcard: tap to flip">
+          <div class="fc-face fc-front">
+            <span class="chip" id="fc-topic-chip"></span>
+            <div class="fc-q" id="fc-question"></div>
+            <div id="fc-diagram"></div>
+            <p class="fc-hint">Tap to reveal the answer</p>
+          </div>
+          <div class="fc-face fc-back">
+            <p class="fc-answer-label">Answer</p>
+            <div class="fc-a" id="fc-answer"></div>
+            <div class="fc-sol" id="fc-solution"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav">
+        <button class="btn" id="fc-prev">← Prev</button>
+        <button class="btn primary" id="fc-flip">Flip</button>
+        <button class="btn" id="fc-next">Next →</button>
+      </div>
     </section>
 
     <section id="view-analytics" class="view hidden">

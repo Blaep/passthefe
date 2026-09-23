@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["home", "practice", "exam", "formulas", "analytics"];
+  var VIEWS = ["home", "practice", "exam", "formulas", "flashcards", "analytics"];
   var TOPICS = [
     "Mathematics", "Statistics and Probability", "Engineering Economics",
     "Ethics and Professional Practice", "Statics", "Dynamics",
@@ -48,6 +48,7 @@
     if (name === "home") renderStats();
     if (name === "practice") initPractice();
     if (name === "formulas") initFormulas();
+    if (name === "flashcards") initFlashcards();
     if (name === "analytics") renderAnalytics();
     window.scrollTo(0, 0);
   }
@@ -584,6 +585,102 @@
       }
     } catch (e) { /* fall through to fallback */ }
     return "<code>" + escapeHtml(tex) + "</code>";
+  }
+
+  // ---- flashcards ----------------------------------------------------------
+  var fcDeck = [], fcIndex = 0, fcTopic = "";
+
+  function initFlashcards() {
+    loadQuestions(function (qs) {
+      var deck = qs.filter(function (q) { return q.conceptual; });
+      if (!deck.length) {
+        document.getElementById("fc-count").textContent = "No flashcards yet.";
+        document.getElementById("fc-question").textContent = "";
+        return;
+      }
+      var sel = document.getElementById("fc-topic");
+      if (sel && !sel.dataset.bound) {
+        sel.dataset.bound = "1";
+        var opt0 = document.createElement("option");
+        opt0.value = ""; opt0.textContent = "All topics";
+        sel.appendChild(opt0);
+        TOPICS.forEach(function (t) {
+          if (!deck.some(function (q) { return q.topic === t; })) return;
+          var o = document.createElement("option");
+          o.value = t; o.textContent = t + " (" + deck.filter(function (q) { return q.topic === t; }).length + ")";
+          sel.appendChild(o);
+        });
+        sel.addEventListener("change", function () { fcTopic = sel.value; resetFcDeck(deck); });
+        document.getElementById("fc-shuffle").addEventListener("click", function () {
+          shuffleFc(deck); fcIndex = 0; renderFcCard();
+        });
+        var card = document.getElementById("fc-card");
+        card.addEventListener("click", function () { card.classList.toggle("flipped"); });
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); card.classList.toggle("flipped"); }
+        });
+        document.getElementById("fc-flip").addEventListener("click", function (e) {
+          e.stopPropagation(); card.classList.toggle("flipped");
+        });
+        document.getElementById("fc-prev").addEventListener("click", function () { fcStep(-1); });
+        document.getElementById("fc-next").addEventListener("click", function () { fcStep(1); });
+        document.addEventListener("keydown", function (e) {
+          if (document.getElementById("view-flashcards").classList.contains("hidden")) return;
+          if (e.key === "ArrowRight") fcStep(1);
+          else if (e.key === "ArrowLeft") fcStep(-1);
+          else if (e.key === " " && e.target === document.body) {
+            e.preventDefault(); card.classList.toggle("flipped");
+          }
+        });
+      }
+      // rebuild deck if the bank changed size (new flags deployed)
+      if (fcDeck.length !== deck.filter(function (q) { return !fcTopic || q.topic === fcTopic; }).length) {
+        resetFcDeck(deck);
+      }
+    });
+  }
+
+  function resetFcDeck(deck) {
+    fcDeck = deck.filter(function (q) { return !fcTopic || q.topic === fcTopic; });
+    fcIndex = 0;
+    renderFcCard();
+  }
+
+  function shuffleFc(deck) {
+    var pool = deck.filter(function (q) { return !fcTopic || q.topic === fcTopic; });
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    fcDeck = pool;
+  }
+
+  function fcStep(d) {
+    if (!fcDeck.length) return;
+    fcIndex = (fcIndex + d + fcDeck.length) % fcDeck.length;
+    renderFcCard();
+  }
+
+  function renderFcCard() {
+    var card = document.getElementById("fc-card");
+    card.classList.remove("flipped");
+    if (!fcDeck.length) {
+      document.getElementById("fc-count").textContent = "No cards in this topic.";
+      document.getElementById("fc-question").textContent = "";
+      document.getElementById("fc-diagram").innerHTML = "";
+      document.getElementById("fc-topic-chip").textContent = "";
+      document.getElementById("fc-answer").textContent = "";
+      document.getElementById("fc-solution").innerHTML = "";
+      return;
+    }
+    var q = fcDeck[fcIndex];
+    document.getElementById("fc-count").textContent =
+      "Card " + (fcIndex + 1) + " of " + fcDeck.length + (fcTopic ? " · " + fcTopic : "");
+    document.getElementById("fc-topic-chip").textContent = q.topic;
+    document.getElementById("fc-question").innerHTML = renderRich(q.question);
+    document.getElementById("fc-diagram").innerHTML = diagramHtml(q);
+    document.getElementById("fc-answer").textContent = q.choices[q.answerIndex];
+    document.getElementById("fc-solution").innerHTML = renderRich(q.solution);
   }
 
   function renderRich(text) {
