@@ -30,7 +30,7 @@
       "explanation": "Power rule: integral of x^n dx = x^(n+1)/(n+1). Always evaluate upper minus lower bound.",
       "id": "math-001",
       "question": "Evaluate the definite integral from 0 to 3 of 2x dx.",
-      "solution": "The antiderivative of 2x is x^2. Evaluating from 0 to 3: 3^2 - 0^2 = 9.",
+      "solution": "Refer to the Definite Integrals section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^3 2x\\,dx\\). The power rule gives the antiderivative:\n\n$$\\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to evaluate the definite integral:\n\n$$\\begin{aligned}\nF(x) &= x^2 \\\\\na &= 0 \\\\\nb &= 3\n\\end{aligned}$$\n\n$$\\left(\\int_0^3 2x\\,dx\\right) = F(3) - F(0) \\rightarrow (3)^2 - (0)^2 = 9 - 0$$\n\n$$\\int_0^3 2x\\,dx = 9$$",
       "subtopic": "Definite integrals",
       "topic": "Mathematics"
     },
@@ -47,7 +47,7 @@
       "explanation": "The classic 3-4-5 triangle appears constantly in statics. Recognizing Pythagorean triples saves time.",
       "id": "statics-001",
       "question": "Two perpendicular forces of 3 N and 4 N act at a point. What is the magnitude of their resultant?",
-      "solution": "For perpendicular forces, R = sqrt(3^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5 N.",
+      "solution": "Refer to the Force Resultants section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(R\\). For perpendicular concurrent forces, the resultant follows the Pythagorean relationship:\n\n$$R = \\sqrt{F_1^2 + F_2^2}$$\n\nList the known and unknown parameters in order to solve for \\(R\\):\n\n$$\\begin{aligned}\nF_1 &= 3\\ \\text{N} \\\\\nF_2 &= 4\\ \\text{N} \\\\\nR &= ?\n\\end{aligned}$$\n\n$$(R) = \\sqrt{(3)^2 + (4)^2} \\rightarrow (R) = \\sqrt{9 + 16}$$\n\n$$(R) = \\sqrt{25} = 5\\ \\text{N}$$",
       "subtopic": "Resultant of concurrent forces",
       "topic": "Statics"
     },
@@ -81,7 +81,7 @@
       "explanation": "Single-payment compound amount factor: (F/P, i%, n) = (1+i)^n. Don't confuse with simple interest ($1,100).",
       "id": "econ-001",
       "question": "$1,000 is invested at 5% annual interest, compounded annually. What is the future worth after 2 years?",
-      "solution": "F = P(1+i)^n = 1000(1.05)^2 = 1000(1.1025) = $1,102.50.",
+      "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). We can determine \\(F\\) from the single-payment compound amount factor:\n\n$$F = P(1+i)^n$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\nP &= \\$1{,}000 \\\\\ni &= 5\\% = 0.05 \\\\\nn &= 2\\ \\text{years} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (P)(1+i)^n \\rightarrow (F) = (1{,}000)(1.05)^2$$\n\n$$(F) = (1{,}000)(1.1025) = \\$1{,}102.50$$",
       "subtopic": "Compound interest",
       "topic": "Engineering Economics"
     },
@@ -98,7 +98,7 @@
       "explanation": "1 N/mm^2 = 1 MPa. Unit consistency is the most common error — convert kN to N before dividing by mm^2.",
       "id": "mechmat-001",
       "question": "An axial tensile load of 10 kN acts on a bar with cross-sectional area 100 mm^2. What is the axial stress?",
-      "solution": "sigma = P/A = 10,000 N / 100 mm^2 = 100 N/mm^2 = 100 MPa.",
+      "solution": "Refer to the Axial Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\), the axial stress:\n\n$$\\sigma = \\frac{P}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} = 10000\\ \\text{N} \\\\\nA &= 100\\ \\text{mm}^2 \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = \\frac{P}{A} \\rightarrow (\\sigma) = \\frac{10000}{100}$$\n\n$$(\\sigma) = 100\\ \\text{N/mm}^2 = 100\\ \\text{MPa}$$",
       "subtopic": "Axial stress",
       "topic": "Mechanics of Materials"
     },
@@ -115,7 +115,7 @@
       "explanation": "Ethics questions on the FE almost always test this hierarchy: public safety first, then client, then profession.",
       "id": "ethics-001",
       "question": "According to standard engineering codes of ethics, an engineer's foremost obligation is to:",
-      "solution": "Every major engineering code of ethics (including NSPE) holds public health, safety, and welfare as the paramount duty, above obligations to clients or employers.",
+      "solution": "The NSPE Code of Ethics states that engineers shall hold paramount the safety, health, and welfare of the public.\n\nThis duty outranks every other obligation: responsibilities to clients, employers, and the profession itself all come second. Maximizing client profit, minimizing project cost, and guarding confidentiality are real duties, but none of them may override public safety.\n\nTherefore the engineer's foremost obligation is to protect the public health, safety, and welfare.",
       "subtopic": "Code of ethics",
       "topic": "Ethics and Professional Practice"
     },
@@ -133,7 +133,7 @@
         "0.67 N"
       ],
       "answerIndex": 1,
-      "solution": "F = ma = (2 kg)(3 m/s²) = 6 N.",
+      "solution": "Refer to Newton's Laws of Motion in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). Newton's second law relates net force to mass and acceleration:\n\n$$F = ma$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\nm &= 2\\ \\text{kg} \\\\\na &= 3\\ \\text{m/s}^2 \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (2)(3)$$\n\n$$(F) = 6\\ \\text{N}$$",
       "explanation": "F = ma is the single most-used equation in dynamics. Keep mass in kg and acceleration in m/s² to get newtons directly."
     },
     {
@@ -150,7 +150,7 @@
         "Hardness"
       ],
       "answerIndex": 1,
-      "solution": "The modulus of elasticity (Young's modulus, E) is the slope of the stress-strain curve in the elastic region — higher E means stiffer material.",
+      "solution": "Refer to the Mechanical Properties section in the Materials chapter of the FE Reference Handbook.\n\nStiffness is resistance to elastic deformation, governed by Hooke's law in the elastic region, \\(\\sigma = E\\epsilon\\). The constant of proportionality \\(E\\) — the modulus of elasticity (Young's modulus), the slope of the stress–strain curve in the elastic region — is therefore the property that measures stiffness: a higher \\(E\\) means a stiffer material.\n\nYield strength marks the onset of permanent deformation, ductility measures the capacity for plastic deformation, and hardness measures resistance to surface indentation — none of them measures elastic stiffness.\n\nThe modulus of elasticity is the correct choice.",
       "explanation": "Don't confuse stiffness (E, elastic) with strength (stress at yield or fracture). Steel's E ≈ 200 GPa regardless of its grade."
     },
     {
@@ -167,7 +167,7 @@
         "100.85 m"
       ],
       "answerIndex": 0,
-      "solution": "Height of instrument = 100.00 + 1.25 = 101.25 m. Turning point elevation = 101.25 − 0.85 = 100.40 m.",
+      "solution": "Refer to the Differential Leveling section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the turning point elevation. First find the height of instrument:\n\n$$HI = Elev_{BM} + BS$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nElev_{BM} &= 100.00\\ \\text{m} \\\\\nBS &= 1.25\\ \\text{m} \\\\\nFS &= 0.85\\ \\text{m} \\\\\nElev_{TP} &= ?\n\\end{aligned}$$\n\n$$(HI) = 100.00 + 1.25 = 101.25\\ \\text{m}$$\n\nThe turning point elevation is the height of instrument minus the foresight:\n\n$$Elev_{TP} = HI - FS$$\n\n$$(Elev_{TP}) = 101.25 - 0.85$$\n\n$$(Elev_{TP}) = 100.40\\ \\text{m}$$",
       "explanation": "HI = BM + backsight; new elevation = HI − foresight. Backsights go up, foresights come down — the classic leveling mantra."
     },
     {
@@ -184,7 +184,7 @@
         "18 kN·m"
       ],
       "answerIndex": 2,
-      "solution": "For a simply supported beam with uniform load, M_max = wL²/8 = (2)(6)²/8 = 72/8 = 9 kN·m, at midspan.",
+      "solution": "Refer to the Beam Shear and Moment section in the Structural Analysis chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(M_{\\max}\\). For a simply supported beam carrying a uniform load over its full length:\n\n$$M_{\\max} = \\frac{wL^2}{8}$$\n\nList the known and unknown parameters in order to solve for \\(M_{\\max}\\):\n\n$$\\begin{aligned}\nw &= 2\\ \\text{kN/m} \\\\\nL &= 6\\ \\text{m} \\\\\nM_{\\max} &= ?\n\\end{aligned}$$\n\n$$(M_{\\max}) = \\frac{wL^2}{8} \\rightarrow (M_{\\max}) = \\frac{(2)(6)^2}{8}$$\n\n$$(M_{\\max}) = \\frac{72}{8} = 9\\ \\text{kN}\\cdot\\text{m}$$\n\nThe maximum occurs at midspan.",
       "explanation": "wL²/8 (uniform load) and PL/4 (center point load) on a simply supported beam are the two moment formulas to memorize cold."
     },
     {
@@ -201,7 +201,7 @@
         "80 kPa"
       ],
       "answerIndex": 1,
-      "solution": "Effective stress σ' = σ − u = 200 − 80 = 120 kPa.",
+      "solution": "Refer to the Effective Stress section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma'\\). Terzaghi's effective stress principle:\n\n$$\\sigma' = \\sigma - u$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma'\\):\n\n$$\\begin{aligned}\n\\sigma &= 200\\ \\text{kPa} \\\\\nu &= 80\\ \\text{kPa} \\\\\n\\sigma' &= ?\n\\end{aligned}$$\n\n$$(\\sigma') = (200) - (80)$$\n\n$$(\\sigma') = 120\\ \\text{kPa}$$",
       "explanation": "Terzaghi's effective stress principle: soil strength and settlement depend on effective stress, not total stress. Pore pressure carries none of the grain-to-grain load."
     },
     {
@@ -218,7 +218,7 @@
         "Pavement color"
       ],
       "answerIndex": 3,
-      "solution": "Stopping sight distance depends on speed, reaction time, deceleration (friction), and grade. Pavement color has no effect on the physics of stopping.",
+      "solution": "Refer to the Stopping Sight Distance section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nThe governing relationship is the AASHTO stopping sight distance equation:\n\n$$SSD = 1.47Vt + \\frac{V^2}{30(f \\pm G)}$$\n\nDesign speed \\(V\\), perception–reaction time \\(t\\), the friction coefficient \\(f\\), and grade \\(G\\) all appear in it. Pavement color appears nowhere in the physics of stopping — it affects neither the distance traveled during perception–reaction time nor the braking distance.\n\nPavement color is the correct choice.",
       "explanation": "SSD = reaction distance + braking distance. Uphill grades shorten it, downhill grades lengthen it — grade matters, color doesn't."
     },
     {
@@ -235,7 +235,7 @@
         "1.571 m³/s"
       ],
       "answerIndex": 1,
-      "solution": "A = πD²/4 = π(0.5)²/4 = 0.1963 m². Q = AV = (0.1963)(2) = 0.393 m³/s.",
+      "solution": "Refer to the Continuity Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\), the discharge:\n\n$$Q = AV \\quad\\text{with}\\quad A = \\frac{\\pi D^2}{4}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nD &= 0.5\\ \\text{m} \\\\\nV &= 2\\ \\text{m/s} \\\\\nA &= ? \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(A) = \\frac{\\pi (0.5)^2}{4} = 0.1963\\ \\text{m}^2$$\n\n$$(Q) = (A)(V) \\rightarrow (Q) = (0.1963)(2)$$\n\n$$(Q) = 0.393\\ \\text{m}^3\\text{/s}$$",
       "explanation": "Q = AV is the continuity equation — the starting point of nearly every water resources problem. Watch the diameter-vs-radius trap."
     },
     {
@@ -252,7 +252,7 @@
         "Cannot be determined"
       ],
       "answerIndex": 1,
-      "solution": "Activities on the critical path have zero total float — any delay to them delays the project.",
+      "solution": "The critical path is the longest-duration path through the project network, and it defines the minimum possible project duration.\n\nTotal float is the amount an activity can be delayed without delaying the project. By definition, no activity on the longest path has any scheduling slack — any delay to a critical-path activity delays project completion by the same amount.\n\nTherefore the total float of any activity on the critical path is zero.",
       "explanation": "The critical path is the longest path through the network and defines the minimum project duration. Zero float is its defining feature."
     },
     {
@@ -269,7 +269,7 @@
         "0.45"
       ],
       "answerIndex": 2,
-      "solution": "For independent events, P(A and B) = P(A)·P(B) = 0.4 × 0.5 = 0.2.",
+      "solution": "Refer to the Probability section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\nList the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n$$\\begin{aligned}\nP(A) &= 0.4 \\\\\nP(B) &= 0.5 \\\\\nP(A \\cap B) &= ?\n\\end{aligned}$$\n\n$$(P) = (0.4)(0.5)$$\n\n$$(P) = 0.2$$",
       "explanation": "'And' means multiply (for independent events); 'or' means add (minus the overlap). Confirming independence is the step most people skip."
     },
     {
@@ -286,7 +286,7 @@
         "x³"
       ],
       "answerIndex": 2,
-      "solution": "Using the power rule: d/dx(3x²) = 3·2x = 6x.",
+      "solution": "Refer to the Differential Calculus section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(f'(x)\\). The governing rule is the power rule:\n\n$$\\frac{d}{dx}(x^n) = nx^{n-1}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nf(x) &= 3x^2 \\\\\nn &= 2 \\\\\nf'(x) &= ?\n\\end{aligned}$$\n\n$$(f'(x)) = (3)(2)x^{2-1} = 6x^{1}$$\n\n$$(f'(x)) = 6x$$",
       "explanation": "Power rule: bring the exponent down, subtract one. It's the inverse of the power rule for integration — know both directions."
     },
     {
@@ -303,7 +303,7 @@
         "$1,102.50"
       ],
       "answerIndex": 0,
-      "solution": "P = F/(1+i)ⁿ = 1102.50/(1.05)² = 1102.50/1.1025 = $1,000.00.",
+      "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth of $1,102.50 received 2 years from now at 5% annual interest:\n\n$$P = \\frac{F}{(1+i)^n}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned}\nF &= 1102.50\\ \\text{(future amount)} \\\\\ni &= 0.05\\ \\text{/yr} \\\\\nn &= 2\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{1102.50}{(1+0.05)^2} \\rightarrow (P) = \\frac{1102.50}{1.1025}$$\n\n$$(P) = \\$1000.00$$",
       "explanation": "Present worth discounts the future back to today — the mirror image of the compound amount factor (F/P, i%, n)."
     },
     {
@@ -320,7 +320,7 @@
         "0.5 mm"
       ],
       "answerIndex": 2,
-      "solution": "δ = PL/AE = (10,000 N)(2,000 mm) / (100 mm²)(200,000 N/mm²) = 20,000,000/20,000,000 = 1.0 mm.",
+      "solution": "Refer to the Axial Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\delta\\). Axial elongation under a tensile load is:\n\n$$\\delta = \\frac{PL}{AE}$$\n\nList the known and unknown parameters in order to solve for \\(\\delta\\):\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} = 10{,}000\\ \\text{N} \\\\\nL &= 2\\ \\text{m} = 2{,}000\\ \\text{mm} \\\\\nA &= 100\\ \\text{mm}^2 \\\\\nE &= 200\\ \\text{GPa} = 200{,}000\\ \\text{N/mm}^2 \\\\\n\\delta &= ?\n\\end{aligned}$$\n\n$$(\\delta) = \\frac{PL}{AE} \\rightarrow (\\delta) = \\frac{(10{,}000)(2{,}000)}{(100)(200{,}000)}$$\n\n$$(\\delta) = \\frac{20{,}000{,}000}{20{,}000{,}000} = 1.0\\ \\text{mm}$$",
       "explanation": "δ = PL/AE: keep P in N, L and A in consistent mm units, and E in N/mm² (= MPa × 1000). Unit consistency is where these problems are won or lost."
     },
     {
@@ -336,7 +336,7 @@
       "explanation": "Systems of two equations appear across statics, fluids, and circuits. The common pitfall is solving for only one variable and forgetting to back-substitute for the other.",
       "id": "math-003",
       "question": "Solve the system of equations: 2x + y = 7 and x - y = -1. What is the solution?",
-      "solution": "Add the two equations to eliminate y: (2x + y) + (x - y) = 7 + (-1) => 3x = 6 => x = 2. Substitute x = 2 into 2x + y = 7: 4 + y = 7 => y = 3. Check: x - y = 2 - 3 = -1. Correct.",
+      "solution": "Refer to the Systems of Linear Equations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(x\\) and \\(y\\):\n\n$$\\begin{aligned}\n2x + y &= 7 \\\\\nx - y &= -1\n\\end{aligned}$$\n\nAdding the equations eliminates \\(y\\):\n\n$$(2x + y) + (x - y) = 7 + (-1) \\rightarrow 3x = 6 \\rightarrow x = 2$$\n\nBack-substitute \\(x = 2\\) into \\(2x + y = 7\\):\n\n$$(y) = 7 - 2(2) = 3$$\n\nCheck in the second equation: \\(x - y = 2 - 3 = -1\\). Correct.\n\n$$x = 2, \\quad y = 3$$",
       "subtopic": "Systems of linear equations",
       "topic": "Mathematics"
     },
@@ -353,7 +353,7 @@
       "explanation": "Recognizing special matrix forms saves time on the FE. The determinant of any triangular matrix is just the product of its diagonal - a full cofactor expansion is wasted work here.",
       "id": "math-004",
       "question": "What is the determinant of the matrix [[2, 1, 3], [0, 4, 1], [0, 0, 5]]?",
-      "solution": "The matrix is upper triangular (all entries below the main diagonal are zero), so its determinant equals the product of the diagonal entries: 2 * 4 * 5 = 40.",
+      "solution": "Refer to the Linear Algebra section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\det(A)\\). The matrix is upper triangular — every entry below the main diagonal is zero — so its determinant is the product of the diagonal entries:\n\n$$\\det(A) = a_{11}a_{22}a_{33}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_{11} &= 2 \\\\\na_{22} &= 4 \\\\\na_{33} &= 5 \\\\\n\\det(A) &= ?\n\\end{aligned}$$\n\n$$(\\det A) = (2)(4)(5)$$\n\n$$(\\det A) = 40$$",
       "subtopic": "Determinants",
       "topic": "Mathematics"
     },
@@ -370,7 +370,7 @@
       "explanation": "Partial derivatives underpin multivariable optimization and sensitivity analysis. The typical slip is accidentally differentiating with respect to the wrong variable or forgetting to treat the other variable as a constant.",
       "id": "math-005",
       "question": "For the function f(x, y) = x^2*y + 3*x*y^2, what is the partial derivative of f with respect to x, evaluated at the point (2, 1)?",
-      "solution": "Differentiate term by term, treating y as a constant: df/dx = 2*x*y + 3*y^2. Evaluate at x = 2, y = 1: df/dx = 2(2)(1) + 3(1)^2 = 4 + 3 = 7.",
+      "solution": "Refer to the Partial Differentiation section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\frac{\\partial f}{\\partial x}\\) at the point \\((2, 1)\\). Differentiate term by term, treating \\(y\\) as a constant:\n\n$$\\frac{\\partial f}{\\partial x} = 2xy + 3y^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nx &= 2 \\\\\ny &= 1 \\\\\n\\frac{\\partial f}{\\partial x} &= ?\n\\end{aligned}$$\n\n$$\\left(\\frac{\\partial f}{\\partial x}\\right) = 2(2)(1) + 3(1)^2 \\rightarrow \\left(\\frac{\\partial f}{\\partial x}\\right) = 4 + 3$$\n\n$$\\frac{\\partial f}{\\partial x} = 7$$",
       "subtopic": "Partial derivatives",
       "topic": "Mathematics"
     },
@@ -387,7 +387,7 @@
       "explanation": "Separable ODEs model simple rate processes (e.g., a velocity that grows linearly with time). The common mistake is dropping the constant of integration or failing to use the initial condition to find it.",
       "id": "math-006",
       "question": "Solve the differential equation dy/dx = 2x with the initial condition y(0) = 1. What is y(2)?",
-      "solution": "Separate and integrate: y = integral of 2x dx = x^2 + C. Apply y(0) = 1: 0 + C = 1 => C = 1, so y = x^2 + 1. At x = 2: y = 4 + 1 = 5.",
+      "solution": "Refer to the Differential Equations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y(2)\\). This is a separable first-order equation:\n\n$$\\frac{dy}{dx} = 2x \\quad\\Rightarrow\\quad dy = 2x\\,dx$$\n\nIntegrating both sides:\n\n$$y = \\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to solve for \\(y(2)\\):\n\n$$\\begin{aligned}\ny(0) &= 1 \\\\\nC &= ? \\\\\ny(2) &= ?\n\\end{aligned}$$\n\nApply the initial condition: \\(y(0) = 0^2 + C = 1\\), so \\(C = 1\\) and \\(y = x^2 + 1\\).\n\n$$(y(2)) = (2)^2 + 1 = 5$$",
       "subtopic": "First-order differential equations",
       "topic": "Mathematics"
     },
@@ -404,7 +404,7 @@
       "explanation": "Dot products test orthogonality and compute work (force dot displacement) in statics and dynamics. Watch the signs - a single missed negative flips the answer, which is why -2 and 10 are tempting traps.",
       "id": "math-007",
       "question": "What is the dot product of vectors a = (3, -1, 2) and b = (2, 4, 1)?",
-      "solution": "The dot product sums the products of corresponding components: a . b = (3)(2) + (-1)(4) + (2)(1) = 6 - 4 + 2 = 4.",
+      "solution": "Refer to the Vector Operations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\cdot \\mathbf{b}\\). The dot product sums the products of corresponding components:\n\n$$\\mathbf{a} \\cdot \\mathbf{b} = a_x b_x + a_y b_y + a_z b_z$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (3, -1, 2) \\\\\n\\mathbf{b} &= (2, 4, 1)\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = (3)(2) + (-1)(4) + (2)(1) \\rightarrow 6 - 4 + 2$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = 4$$",
       "subtopic": "Vectors and dot product",
       "topic": "Mathematics"
     },
@@ -421,7 +421,7 @@
       "explanation": "Eigenvalues show up in vibration analysis, stability, and principal stresses. A frequent error is forgetting to subtract the off-diagonal product (ad - bc term), which changes the characteristic equation entirely.",
       "id": "math-008",
       "question": "What is the largest eigenvalue of the matrix [[5, 2], [2, 2]]?",
-      "solution": "Solve det(A - lambda*I) = 0: (5 - lambda)(2 - lambda) - (2)(2) = 0 => lambda^2 - 7*lambda + 10 - 4 = 0 => lambda^2 - 7*lambda + 6 = 0. Factoring: (lambda - 6)(lambda - 1) = 0, so lambda = 6 or lambda = 1. The largest eigenvalue is 6.",
+      "solution": "Refer to the Linear Algebra section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the eigenvalues \\(\\lambda\\) of \\(A = \\begin{bmatrix} 5 & 2 \\\\ 2 & 2 \\end{bmatrix}\\). They are the roots of the characteristic equation:\n\n$$\\det(A - \\lambda I) = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\lambda &= ?\n\\end{aligned}$$\n\n$$((5-\\lambda)(2-\\lambda) - (2)(2)) = 0 \\rightarrow (\\lambda^2 - 7\\lambda + 6) = 0$$\n\nFactoring gives \\((\\lambda - 6)(\\lambda - 1) = 0\\), so \\(\\lambda = 6\\) or \\(\\lambda = 1\\):\n\n$$(\\lambda_{\\max}) = 6$$",
       "subtopic": "Eigenvalues",
       "topic": "Mathematics"
     },
@@ -438,7 +438,7 @@
       "explanation": "Concrete strength acceptance is judged on statistics, not single tests. Students often grab the mean (8.8) or the mode (7) instead of the median - for even-n datasets, the median is the average of the two middle values.",
       "id": "stats-002",
       "question": "The measured strengths (in MPa) of six concrete test cylinders are: 4, 7, 7, 9, 12, 14. What is the median of this dataset?",
-      "solution": "Sort the data (already sorted): 4, 7, 7, 9, 12, 14. With an even number of observations (n = 6), the median is the average of the 3rd and 4th values: (7 + 9) / 2 = 8.",
+      "solution": "Refer to the Measures of Central Tendency section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the median. With an even number of observations, the median is the average of the two middle values:\n\n$$\\text{median} = \\frac{x_{(n/2)} + x_{(n/2+1)}}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nn &= 6 \\\\\nx_{(3)} &= 7\\ \\text{MPa} \\\\\nx_{(4)} &= 9\\ \\text{MPa} \\\\\n\\text{median} &= ?\n\\end{aligned}$$\n\n$$(\\text{median}) = \\frac{7 + 9}{2}$$\n\n$$(\\text{median}) = 8\\ \\text{MPa}$$",
       "subtopic": "Mean, median, and mode",
       "topic": "Statistics and Probability"
     },
@@ -455,7 +455,7 @@
       "explanation": "Binomial models count successes in fixed trials - bids won, welds passing inspection, etc. The most common error is forgetting the combinatorial coefficient C(n,k); without it you get 0.002, which badly underestimates the probability.",
       "id": "stats-003",
       "question": "A construction firm estimates each bid it submits has a 30% chance of being accepted, independently of other bids. If it submits 10 bids, what is the probability that exactly 3 are accepted?",
-      "solution": "This is binomial with n = 10, p = 0.3, k = 3. P(X = 3) = C(10,3) * (0.3)^3 * (0.7)^7 = 120 * 0.027 * 0.0823543 = 0.2668, approximately 0.267.",
+      "solution": "Refer to the Binomial Distribution section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X = 3)\\). Each bid is an independent trial with the same success probability, so the count of acceptances is binomial:\n\n$$P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}$$\n\nList the known and unknown parameters in order to solve for \\(P(X = 3)\\):\n\n$$\\begin{aligned}\nn &= 10 \\\\\np &= 0.30 \\\\\nk &= 3 \\\\\nP(X = 3) &= ?\n\\end{aligned}$$\n\n$$(P) = \\binom{10}{3}(0.3)^3(0.7)^7 \\rightarrow (P) = (120)(0.027)(0.0823543)$$\n\n$$(P) = 0.2668 \\approx 0.267$$",
       "subtopic": "Binomial probability",
       "topic": "Statistics and Probability"
     },
@@ -472,7 +472,7 @@
       "explanation": "The normal distribution is the workhorse for quality control and reliability. Mixing up the tail area (15.9%) with the area between the mean and z = 1 (34.1%) is the classic mistake.",
       "id": "stats-004",
       "question": "Compressive test results for a concrete mix are normally distributed with a mean of 100 MPa and a standard deviation of 15 MPa. Approximately what percentage of samples exceed 115 MPa?",
-      "solution": "Compute the z-score: z = (115 - 100) / 15 = 1. The area beyond z = 1 (one standard deviation above the mean) is approximately 0.1587, or about 15.9%. (This follows from the empirical rule: ~68% within 1 sigma, leaving ~32% outside, half of that, ~16%, above +1 sigma.)",
+      "solution": "Refer to the Normal Distribution section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must find the percentage of samples exceeding 115 MPa. Standardize with the z-score:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned}\n\\mu &= 100\\ \\text{MPa} \\\\\n\\sigma &= 15\\ \\text{MPa} \\\\\nx &= 115\\ \\text{MPa} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{115 - 100}{15} = 1$$\n\nThe area beyond \\(z = 1\\) (one standard deviation above the mean) is \\(1 - \\Phi(1) = 1 - 0.8413 = 0.1587\\):\n\n$$P(x > 115) \\approx 15.9\\%$$",
       "subtopic": "Normal distribution and z-scores",
       "topic": "Statistics and Probability"
     },
@@ -489,7 +489,7 @@
       "explanation": "This is the base-rate fallacy in action: even an excellent test yields mostly false positives when the condition is rare. Engineers making inspection decisions must account for the prior - a positive result here still means only about 1 in 6 members is truly cracked.",
       "id": "stats-005",
       "question": "A bridge inspection test detects cracks with 99% sensitivity (P(positive | crack) = 0.99) and 95% specificity (P(negative | no crack) = 0.95). If 1% of inspected members actually have cracks, what is the probability a member has a crack given a positive test result?",
-      "solution": "By Bayes' theorem: P(crack | positive) = P(positive | crack)*P(crack) / P(positive). P(positive) = 0.99*0.01 + 0.05*0.99 = 0.0099 + 0.0495 = 0.0594. So P(crack | positive) = 0.0099 / 0.0594 = 0.1667, about 16.7%.",
+      "solution": "Refer to Bayes' Theorem in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{crack} \\mid \\text{positive})\\):\n\n$$P(A \\mid B) = \\frac{P(B \\mid A)P(A)}{P(B)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP(\\text{positive} \\mid \\text{crack}) &= 0.99 \\\\\nP(\\text{positive} \\mid \\text{no crack}) &= 1 - 0.95 = 0.05 \\\\\nP(\\text{crack}) &= 0.01 \\\\\nP(\\text{crack} \\mid \\text{positive}) &= ?\n\\end{aligned}$$\n\nExpand the denominator by the law of total probability:\n\n$$(P(\\text{positive})) = (0.99)(0.01) + (0.05)(0.99) \\rightarrow (P(\\text{positive})) = 0.0099 + 0.0495 = 0.0594$$\n\n$$(P(\\text{crack} \\mid \\text{positive})) = \\frac{0.0099}{0.0594} = 0.1667 \\approx 16.7\\%$$",
       "subtopic": "Bayes' theorem",
       "topic": "Statistics and Probability"
     },
@@ -506,7 +506,7 @@
       "explanation": "Know whether a problem wants population (divide by n) or sample (divide by n - 1) statistics - here 2.14 is the sample standard deviation, a designed distractor. Also, 4 is the variance, not the standard deviation.",
       "id": "stats-006",
       "question": "The daily rainfall totals (in cm) recorded over 8 days are: 2, 4, 4, 4, 5, 5, 7, 9. What is the population standard deviation of this dataset?",
-      "solution": "Mean = (2 + 4 + 4 + 4 + 5 + 5 + 7 + 9) / 8 = 40 / 8 = 5. Population variance = [(2-5)^2 + 3*(4-5)^2 + 2*(5-5)^2 + (7-5)^2 + (9-5)^2] / 8 = (9 + 3 + 0 + 4 + 16) / 8 = 32 / 8 = 4. Population standard deviation = sqrt(4) = 2.",
+      "solution": "Refer to the Measures of Dispersion section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the population standard deviation (divide by \\(n\\), not \\(n - 1\\)):\n\n$$\\sigma = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\mu)^2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nn &= 8 \\\\\n\\mu &= \\frac{40}{8} = 5\\ \\text{cm} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = \\sqrt{\\frac{9 + 1 + 1 + 1 + 0 + 0 + 4 + 16}{8}} = \\sqrt{\\frac{32}{8}} = \\sqrt{4}$$\n\n$$(\\sigma) = 2\\ \\text{cm}$$",
       "subtopic": "Standard deviation",
       "topic": "Statistics and Probability"
     },
@@ -523,7 +523,7 @@
       "explanation": "Confidence intervals quantify uncertainty in field measurements like compaction. The two classic slips are using n instead of sqrt(n) in the standard error, or rounding z to 2 and then mismatching the stated precision.",
       "id": "stats-007",
       "question": "A sample of 25 soil compaction tests has a mean dry density of 50 pcf and a standard deviation of 10 pcf. What is the lower bound of the 95% confidence interval for the true mean dry density? (Use z = 1.96.)",
-      "solution": "The 95% confidence interval is mean +/- z * (s / sqrt(n)). Standard error = 10 / sqrt(25) = 10 / 5 = 2. Margin = 1.96 * 2 = 3.92. Lower bound = 50 - 3.92 = 46.08, approximately 46.1.",
+      "solution": "Refer to the Confidence Intervals section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the lower bound of the 95% confidence interval for the true mean:\n\n$$\\bar{x} \\pm z\\frac{s}{\\sqrt{n}}$$\n\nList the known and unknown parameters in order to solve for the lower bound:\n\n$$\\begin{aligned}\n\\bar{x} &= 50\\ \\text{pcf} \\\\\ns &= 10\\ \\text{pcf} \\\\\nn &= 25 \\\\\nz &= 1.96\\ \\text{(95\\% confidence)} \\\\\n\\text{lower bound} &= ?\n\\end{aligned}$$\n\nStandard error: \\(s/\\sqrt{n} = 10/5 = 2\\). Margin: \\(1.96 \\times 2 = 3.92\\).\n\n$$(\\text{lower bound}) = 50 - 3.92 = 46.08 \\approx 46.1\\ \\text{pcf}$$",
       "subtopic": "Confidence intervals",
       "topic": "Statistics and Probability"
     },
@@ -540,7 +540,7 @@
       "explanation": "Sampling without replacement (grab samples, inspection lots) changes the denominator on each draw. The distractor 0.391 comes from treating the draws as independent, i.e., (5/8)^2 - with replacement, which is the wrong model here.",
       "id": "stats-008",
       "question": "A grab bag contains 5 red and 3 blue soil sample tags. Two tags are drawn at random without replacement. What is the probability that both are red?",
-      "solution": "P(first red) = 5/8. After drawing one red, 4 red and 3 blue remain, so P(second red | first red) = 4/7. Multiply: (5/8) * (4/7) = 20/56 = 0.3571, approximately 0.357.",
+      "solution": "Refer to the Probability section in the Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
       "subtopic": "Conditional probability without replacement",
       "topic": "Statistics and Probability"
     },
@@ -557,7 +557,7 @@
       "explanation": "Nominal rates understate the true cost whenever compounding is more frequent than annual. On the FE, always convert a nominal rate to the effective rate for the payment period before using any interest factor - forgetting this step is a guaranteed point lost.",
       "id": "econ-003",
       "question": "A credit card charges a nominal annual interest rate of 12%, compounded monthly. What is the effective annual interest rate?",
-      "solution": "Effective rate = (1 + r/m)^m - 1, where r = 0.12 and m = 12. (1 + 0.12/12)^12 - 1 = (1.01)^12 - 1 = 1.126825 - 1 = 0.126825, or 12.68%.",
+      "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the effective annual rate \\(i_{\\text{eff}}\\). A nominal rate compounded \\(m\\) times per year converts by:\n\n$$i_{\\text{eff}} = \\left(1 + \\frac{r}{m}\\right)^m - 1$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nr &= 12\\% = 0.12 \\\\\nm &= 12\\ \\text{(monthly)} \\\\\ni_{\\text{eff}} &= ?\n\\end{aligned}$$\n\n$$(i_{\\text{eff}}) = \\left(1 + \\frac{0.12}{12}\\right)^{12} - 1 \\rightarrow (i_{\\text{eff}}) = (1.01)^{12} - 1$$\n\n$$(i_{\\text{eff}}) = 1.126825 - 1 = 0.126825 = 12.68\\%$$",
       "subtopic": "Effective annual interest rate",
       "topic": "Engineering Economics"
     },
@@ -574,7 +574,7 @@
       "explanation": "The P/A factor converts recurring annual costs (maintenance, operations) to a single present value for comparison. Common errors: using the future worth factor instead, or confusing this with a gradient series.",
       "id": "econ-004",
       "question": "What is the present worth of a uniform series of $100 per year for 10 years at an interest rate of 8% per year?",
-      "solution": "Use the uniform series present worth factor (P/A, i, n) = [(1+i)^n - 1] / [i(1+i)^n]. (P/A, 8%, 10) = [(1.08)^10 - 1] / [0.08 * (1.08)^10] = (2.158925 - 1) / (0.08 * 2.158925) = 1.158925 / 0.172714 = 6.7101. Present worth = 100 * 6.7101 = $671.01, approximately $671.",
+      "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth, using the uniform series present worth factor:\n\n$$P = A(P/A, i, n) = A\\frac{(1+i)^n - 1}{i(1+i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= 100\\ \\text{/yr} \\\\\ni &= 0.08\\ \\text{/yr} \\\\\nn &= 10\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P/A, 8\\%, 10) = \\frac{(1.08)^{10} - 1}{0.08(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\n$$(P) = (100)(6.7101) = \\$671.01 \\approx \\$671$$",
       "subtopic": "Uniform series present worth",
       "topic": "Engineering Economics"
     },
@@ -591,7 +591,7 @@
       "explanation": "Depreciation affects after-tax cash flows and equipment replacement decisions. The trap answer $27,778 comes from depreciating the full $50,000 without subtracting salvage value - salvage is never depreciated.",
       "id": "econ-005",
       "question": "A piece of construction equipment costs $50,000, has a salvage value of $5,000, and a useful life of 9 years. Using straight-line depreciation, what is the book value of the equipment at the end of year 4?",
-      "solution": "Annual depreciation = (cost - salvage) / life = (50,000 - 5,000) / 9 = 45,000 / 9 = $5,000 per year. Accumulated depreciation after 4 years = 4 * 5,000 = $20,000. Book value = 50,000 - 20,000 = $30,000.",
+      "solution": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the book value at the end of year 4. Straight-line depreciation charges the same amount each year:\n\n$$D = \\frac{\\text{Cost} - \\text{Salvage}}{\\text{Life}}$$\n\nList the known and unknown parameters in order to solve for the book value:\n\n$$\\begin{aligned}\n\\text{Cost} &= \\$50{,}000 \\\\\n\\text{Salvage} &= \\$5{,}000 \\\\\n\\text{Life} &= 9\\ \\text{years} \\\\\nBV_4 &= ?\n\\end{aligned}$$\n\nAnnual depreciation: \\((D) = (50{,}000 - 5{,}000)/9 = \\$5{,}000\\text{/year}\\).\n\nAccumulated depreciation after 4 years: \\(4 \\times 5{,}000 = \\$20{,}000\\).\n\n$$(BV_4) = 50{,}000 - 20{,}000 = \\$30{,}000$$",
       "subtopic": "Straight-line depreciation",
       "topic": "Engineering Economics"
     },
@@ -608,7 +608,7 @@
       "explanation": "Public works projects are ranked by benefit-cost ratio, and the hurdle is exactly 1.0. Flipping the ratio (costs over benefits, giving 0.67) is the standard mistake - always put benefits in the numerator.",
       "id": "econ-006",
       "question": "A proposed flood-control project has a present worth of benefits of $450,000 and a present worth of costs of $300,000. What is the benefit-cost ratio, and is the project economically justified?",
-      "solution": "Benefit-cost ratio = PW of benefits / PW of costs = 450,000 / 300,000 = 1.50. Since the ratio exceeds 1.0, benefits outweigh costs and the project is economically justified.",
+      "solution": "Refer to the Benefit-Cost Analysis section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the benefit-cost ratio of the flood-control project:\n\n$$B/C = \\frac{\\text{PW of benefits}}{\\text{PW of costs}}$$\n\nList the known and unknown parameters in order to solve for \\(B/C\\):\n\n$$\\begin{aligned}\n\\text{PW of benefits} &= \\text{\\$450,000} \\\\\n\\text{PW of costs} &= \\text{\\$300,000} \\\\\nB/C &= ?\n\\end{aligned}$$\n\n$$(B/C) = \\frac{450{,}000}{300{,}000} = 1.50$$\n\nSince \\(B/C = 1.50\\) exceeds 1.0, benefits outweigh costs and the project is economically justified.",
       "subtopic": "Benefit-cost ratio",
       "topic": "Engineering Economics"
     },
@@ -625,7 +625,7 @@
       "explanation": "Break-even analysis sets minimum production for profitability. The distractor 1,111 comes from dividing fixed cost by price alone, ignoring variable costs - the contribution margin (price minus variable cost) is what actually pays down fixed costs.",
       "id": "econ-007",
       "question": "A precast concrete plant has fixed costs of $10,000 per month, variable costs of $4 per unit, and sells each unit for $9. What is the monthly break-even production quantity?",
-      "solution": "Break-even occurs when revenue equals total cost: 9*Q = 10,000 + 4*Q. Rearranging: 5*Q = 10,000 => Q = 2,000 units. Equivalently, Q = fixed cost / (price - variable cost) = 10,000 / (9 - 4) = 2,000.",
+      "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the break-even quantity \\(Q\\), where total revenue equals total cost:\n\n$$PQ = FC + (VC)Q \\quad\\Rightarrow\\quad Q = \\frac{FC}{P - VC}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nFC &= \\$10{,}000\\ \\text{per month} \\\\\nVC &= \\$4\\ \\text{per unit} \\\\\nP &= \\$9\\ \\text{per unit} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{10{,}000}{9 - 4} \\rightarrow (Q) = \\frac{10{,}000}{5}$$\n\n$$(Q) = 2{,}000\\ \\text{units per month}$$",
       "subtopic": "Break-even analysis",
       "topic": "Engineering Economics"
     },
@@ -642,7 +642,7 @@
       "explanation": "IRR is the discount rate that zeroes the net present worth - the project's own earned rate. On the FE, bracket the unknown factor between two tabulated interest rates and interpolate; guessing from the cash flows alone without setting PW = 0 leads to the wrong neighborhood entirely.",
       "id": "econ-008",
       "question": "A project requires an initial investment of $5,000 and returns $2,000 per year for 3 years. Approximately what is the internal rate of return (IRR) of this project?",
-      "solution": "At the IRR, present worth equals zero: 5,000 = 2,000 * (P/A, i, 3), so (P/A, i, 3) = 2.5. Check tabulated values: (P/A, 9%, 3) = 2.5313 and (P/A, 10%, 3) = 2.4869. Since 2.5 lies between them, closer to the 10% end, the IRR is approximately 9.7%. (Interpolating: 9% + (2.5313 - 2.5)/(2.5313 - 2.4869) * 1% = 9% + 0.705% = 9.7%.)",
+      "solution": "Refer to the Rate of Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
       "subtopic": "Rate of return (IRR)",
       "topic": "Engineering Economics"
     },
@@ -660,7 +660,7 @@
         "Accept the second client and resign from the first client immediately without explanation"
       ],
       "answerIndex": 2,
-      "solution": "The engineer faces a conflict of interest. The NSPE Code of Ethics requires engineers to disclose all known or potential conflicts of interest to their employers or clients by promptly informing them of any business association, interest, or other circumstance that could influence judgment or the quality of services. Confidential information of a client must never be used for another's benefit. Proceeding is only ethical after full disclosure to both parties and their informed consent.",
+      "solution": "Under the NSPE Code of Ethics, engineers must disclose all known or potential conflicts of interest to their clients and employers, and must never use one client's confidential information for another party's benefit.\n\nHere the engineer faces a textbook conflict: a second, directly competing client plus confidential design information that could advantage them. Silent dual service violates the disclosure duty, and exploiting the first client's information violates confidentiality.\n\nTherefore the engineer must decline the second engagement, or disclose the conflict to both clients and proceed only with their informed consent.",
       "explanation": "Conflict of interest is a high-yield FE ethics topic. The correct move is always prompt disclosure, never silent dual service or misuse of confidential information."
     },
     {
@@ -677,7 +677,7 @@
         "Resign quietly and seek employment elsewhere to avoid personal liability"
       ],
       "answerIndex": 0,
-      "solution": "NSPE Code II.1: if the engineer's judgment is overruled under circumstances where the safety, health, property, or welfare of the public are endangered, the engineer shall notify the employer or client and such other authority as may be appropriate. This is the formal whistleblowing obligation: raise internally first, then escalate to appropriate authorities when overruled.",
+      "solution": "Under the NSPE Code of Ethics, public safety is paramount: engineers shall hold paramount the safety, health, and welfare of the public. When an engineer's judgment is overruled under circumstances where the public could be endangered, the code requires the engineer to notify the employer or client and, if needed, such other authority as may be appropriate.\n\nApplied here, the engineer already reported the undersized pressure vessel internally and was overruled while reasonably believing a rupture could endanger the public. Waiting for an incident, deferring to the supervisor, or resigning quietly all abandon the paramount duty to public safety.\n\nThe engineer must notify her employer or client and, if needed, such other authority as may be appropriate.",
       "explanation": "Whistleblowing questions test the escalation ladder: internal report first, then notify employer/client and appropriate authorities. Doing nothing or waiting for harm to occur violates the paramount duty to public safety."
     },
     {
@@ -694,7 +694,7 @@
         "Seal the drawings and add a note stating the engineer is not liable for errors"
       ],
       "answerIndex": 2,
-      "solution": "Engineers may only affix their seal to documents prepared by them or under their direct supervisory control and responsible charge. Plan stamping (sealing work one did not prepare or supervise) is a violation of licensing law in virtually every state and of the NSPE Code. A liability disclaimer does not cure the violation.",
+      "solution": "The governing rule is responsible charge: a licensed engineer may seal only documents the engineer prepared or that were prepared under the engineer's direct supervisory control. Sealing work prepared by others without that supervision — plan stamping — violates state licensing laws and the NSPE Code of Ethics, and adding a liability disclaimer does not cure the violation.\n\nHere the engineer neither prepared the drawings nor supervised their preparation, and the former employer's vouching for their accuracy changes nothing. A quick visual review of the title block is not responsible charge.\n\nThe engineer must refuse to seal the drawings.",
       "explanation": "Responsible charge is a classic FE licensure question: your seal means you prepared or directly supervised the work. Plan stamping is one of the most common licensure violations."
     },
     {
@@ -711,7 +711,7 @@
         "Charging a higher fee for a complex project than for a simple one"
       ],
       "answerIndex": 1,
-      "solution": "Bid rigging (agreeing in advance who will win) is collusion and a per se antitrust violation, as well as unethical. By contrast, competitive bidding on price is lawful and permissible for engineers (the NSPE's historic ban on competitive bidding was struck down in 1972), truthful advertising is allowed, and fees may vary with project complexity.",
+      "solution": "Bid rigging \\u2014 agreeing in advance which firm will submit the lowest bid \\u2014 is collusion: a per se violation of antitrust law and of professional ethics.\n\nThe governing principle is honest competition. Submitting individual competitive bids based on each firm's own cost estimate is lawful price competition (the old NSPE ban on competitive bidding was struck down in 1972), truthful advertising is permitted, and fees may vary with project complexity.\n\nTherefore, the practice that violates both ethics and the law is agreeing among the firms in advance which firm will submit the lowest bid.",
       "explanation": "FE exams love the twist that competitive bidding itself is NOT unethical; what is prohibited is collusion among bidders. Distinguish lawful price competition from bid rigging."
     },
     {
@@ -728,7 +728,7 @@
         "Accept the tickets only if every engineer on the project also receives tickets"
       ],
       "answerIndex": 2,
-      "solution": "Engineers shall not accept financial or other valuable consideration from outside parties in connection with work for which they are responsible if it could compromise their judgment. Valuable gifts from contractors create the appearance and risk of impaired objectivity; the ethical response is to decline. De minimis courtesies aside, substantial gifts must be refused or disclosed and rejected.",
+      "solution": "The NSPE Code of Ethics prohibits engineers from accepting valuable consideration from outside parties in connection with work for which they are responsible, where it could compromise their professional judgment.\n\nTwo expensive event tickets from a bidding contractor are a substantial gift from a party with a direct financial interest in the engineer's decisions — accepting them creates both the appearance and the risk of impaired objectivity. Disclosing them after the fact does not cure the conflict.\n\nTherefore the engineer should decline the tickets.",
       "explanation": "Gifts from anyone with a financial stake in your engineering decisions are a textbook conflict-of-interest trap. When in doubt on the FE: decline."
     },
     {
@@ -745,7 +745,7 @@
         "Compliance with the minimum requirements of the applicable building code"
       ],
       "answerIndex": 1,
-      "solution": "Negligence is judged against what a reasonably prudent practitioner in the same field, locality, and circumstances would have done - the professional standard of care. It is not perfection, not a guarantee of results, and exceeding the code minimum may be required where the standard of care demands it (code compliance alone is not always a defense).",
+      "solution": "The professional standard of care is the ordinary skill and care that a reasonably prudent practitioner — similarly situated in field, locality, and time — would exercise under the same circumstances. It is a comparative measure, not perfection: it does not demand the highest theoretically achievable care, guarantee defect-free performance, or reduce to mere code compliance (codes are minimums; the standard of care can exceed them).\n\nTherefore the standard of care is the ordinary skill and care exercised by similarly situated practitioners in the same locality and time.",
       "explanation": "Standard of care is a favorite liability question: it is comparative (what peers would do), not absolute. Remember: codes are minimums, not the full measure of the standard of care."
     },
     {
@@ -762,7 +762,7 @@
         "The engineer should disclose the information to the news media first to maximize public awareness"
       ],
       "answerIndex": 2,
-      "solution": "The NSPE Code establishes a hierarchy: the engineer's foremost obligation is to safeguard the life, health, property, and welfare of the public. Confidentiality is a real duty but it is subordinate to public safety. When a client will not correct a hazard, the engineer must disclose to appropriate authorities - not the media first, and not contingent on client permission.",
+      "solution": "The NSPE Code of Ethics establishes a hierarchy of duties, headed by the paramount obligation to safeguard the life, health, property, and welfare of the public. Confidentiality to a client is a genuine duty, but it is subordinate to public safety.\n\nHere a toxic emission poses a serious health risk to the surrounding community and the client refuses to act. The duty to protect the public therefore overrides confidentiality, and the obligation is to disclose the hazard to appropriate authorities — not to remain silent, not to wait for the client's written permission, and not to go to the news media first.\n\nThe engineer must disclose the hazard to appropriate authorities.",
       "explanation": "This tests the hierarchy of duties: public safety > confidentiality. On the FE, when two duties collide, the answer is almost always the one that protects public health and safety."
     },
     {
@@ -779,7 +779,7 @@
         "450 N-m clockwise"
       ],
       "answerIndex": 0,
-      "solution": "Moment = force x perpendicular distance = (200 N)(1.5 m) = 300 N-m. A downward force to the right of O tends to rotate the beam clockwise about O. Therefore the moment is 300 N-m clockwise.",
+      "solution": "Refer to the Moment of a Force section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(M_O\\), the moment about point O, where \\(d\\) is the perpendicular distance from O to the line of action:\n\n$$M_O = F \\cdot d$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF &= 200\\ \\text{N (downward)} \\\\\nd &= 1.5\\ \\text{m} \\\\\nM_O &= ?\n\\end{aligned}$$\n\n$$(M_O) = (200)(1.5) = 300\\ \\text{N-m}$$\n\nA downward force to the right of O rotates the beam clockwise, so:\n\n$$(M_O) = 300\\ \\text{N-m clockwise}$$",
       "explanation": "Moment problems are gimmes if you use the perpendicular distance and check the rotation direction. Common slips: dividing instead of multiplying, or flipping clockwise/counterclockwise."
     },
     {
@@ -796,7 +796,7 @@
         "10.0 kN (C)"
       ],
       "answerIndex": 2,
-      "solution": "Reactions: by symmetry Ay = By = 10/2 = 5 kN upward. At joint A, forces are Ay = 5 kN up, horizontal member AB, and member AC at angle theta = arctan(3/2) = 56.31 deg. Sum Fy = 0: 5 + FAC*sin(56.31 deg) = 0, so FAC = -5/sin(56.31 deg) = -5/0.8321 = -6.01 kN. Negative means compression. Answer: 6.01 kN (C).",
+      "solution": "Refer to the Trusses (Method of Joints) section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{AC}\\). By symmetry, the vertical reactions are:\n\n$$A_y = B_y = \\frac{10}{2} = 5\\ \\text{kN (up)}$$\n\nAt joint A, member AC rises at an angle of:\n\n$$\\theta = \\tan^{-1}\\!\\left(\\frac{3}{2}\\right) = 56.31^\\circ$$\n\nList the known and unknown parameters for joint A equilibrium:\n\n$$\\begin{aligned}\nA_y &= 5\\ \\text{kN (up)} \\\\\n\\theta &= 56.31^\\circ \\\\\nF_{AC} &= ?\n\\end{aligned}$$\n\n$$\\sum F_y = 0: \\quad 5 + F_{AC}\\sin 56.31^\\circ = 0$$\n\n$$(F_{AC}) = \\frac{-5}{\\sin 56.31^\\circ} = \\frac{-5}{0.8321} = -6.01\\ \\text{kN}$$\n\nA negative member force means compression, so the force in AC is \\(6.01\\ \\text{kN (C)}\\).",
       "explanation": "Method of joints always starts at a joint with at most two unknowns. The sign convention trap: a negative member force means compression, not tension."
     },
     {
@@ -813,7 +813,7 @@
         "2.50 m"
       ],
       "answerIndex": 0,
-      "solution": "Rectangle: A1 = 12 m^2, y1 = 1.5 m. Triangle: A2 = (1/2)(4)(2) = 4 m^2, centroid of triangle is 1/3 of its height above its base: y2 = 3 + 2/3 = 3.667 m. y-bar = (A1*y1 + A2*y2)/(A1 + A2) = (12*1.5 + 4*3.667)/16 = (18 + 14.667)/16 = 32.667/16 = 2.04 m above the bottom.",
+      "solution": "Refer to the Centroids of Composite Areas section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\bar{y}\\), the area-weighted average of the component centroids:\n\n$$\\bar{y} = \\frac{A_1 y_1 + A_2 y_2}{A_1 + A_2}$$\n\nList the known and unknown parameters in order to solve for \\(\\bar{y}\\):\n\n$$\\begin{aligned}\nA_1 &= (4)(3) = 12\\ \\text{m}^2, \\quad y_1 = 1.5\\ \\text{m} \\\\\nA_2 &= \\frac{1}{2}(4)(2) = 4\\ \\text{m}^2, \\quad y_2 = 3 + \\frac{2}{3} = 3.667\\ \\text{m} \\\\\n\\bar{y} &= ?\n\\end{aligned}$$\n\nThe triangle's centroid sits one-third of its height above its base, which coincides with the top of the rectangle.\n\n$$(\\bar{y}) = \\frac{(12)(1.5) + (4)(3.667)}{12 + 4} \\rightarrow (\\bar{y}) = \\frac{18 + 14.667}{16}$$\n\n$$(\\bar{y}) = 2.04\\ \\text{m above the bottom}$$",
       "explanation": "Composite centroids use area-weighted averages. The classic triangle trap: its centroid is 1/3 of the height from the base, not 1/2."
     },
     {
@@ -830,7 +830,7 @@
         "433 N"
       ],
       "answerIndex": 0,
-      "solution": "Impending motion is down the plane, so friction acts up the plane, assisting P. Equilibrium along the plane: P + F = W*sin(30 deg). Normal force N = W*cos(30 deg) = 500*0.8660 = 433.0 N. Maximum static friction F = mu*N = 0.25*433.0 = 108.3 N. Therefore P = W*sin(30 deg) - F = 250 - 108.3 = 141.7 N, approximately 142 N up the plane to keep the block from sliding down.",
+      "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\). Impending motion is down the plane, so friction acts up the plane, assisting \\(P\\). Equilibrium along the plane gives:\n\n$$\\sum F_{\\parallel} = 0 \\;\\Rightarrow\\; P + F = W\\sin\\theta$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 500\\ \\text{N} \\\\\n\\theta &= 30^\\circ \\\\\n\\mu_s &= 0.25 \\\\\nN &= W\\cos\\theta = (500)(0.8660) = 433.0\\ \\text{N} \\\\\nF &= \\mu_s N = (0.25)(433.0) = 108.3\\ \\text{N} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = W\\sin\\theta - F \\rightarrow (P) = (500)(0.5) - 108.3 = 250 - 108.3$$\n\n$$(P) = 141.7\\ \\text{N} \\approx 142\\ \\text{N up the plane}$$",
       "explanation": "Friction always opposes impending motion: with impending slip downward, friction acts upward and assists the holding force P. The 358 N trap is the force needed to push the block UP the plane (impending motion upward)."
     },
     {
@@ -847,7 +847,7 @@
         "3.00 m"
       ],
       "answerIndex": 1,
-      "solution": "Resultant magnitude = area of load diagram = (1/2)(6 kN/m)(4 m) = 12 kN. For a triangular distribution, the resultant acts through the centroid of the triangle, which is 1/3 of the base length from the maximum-intensity end: 4/3 = 1.33 m from the right end, i.e., 4 - 1.33 = 2.67 m from the left (zero-intensity) end.",
+      "solution": "Refer to the Distributed Loads section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the location of the equivalent concentrated resultant. Its magnitude is the area of the load diagram:\n\n$$R = \\frac{1}{2}wL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nw &= 6\\ \\text{kN/m (max intensity)} \\\\\nL &= 4\\ \\text{m} \\\\\nR &= ? \\\\\n\\bar{x} &= ?\\ \\text{(from left end)}\n\\end{aligned}$$\n\n$$(R) = \\frac{1}{2}(6)(4) = 12\\ \\text{kN}$$\n\nFor a triangular distribution the resultant acts through the centroid, one-third of the length from the maximum-intensity end:\n\n$$(\\bar{x}) = L - \\frac{L}{3} = 4 - \\frac{4}{3} = 4 - 1.33$$\n\n$$(\\bar{x}) = 2.67\\ \\text{m from the left end}$$",
       "explanation": "The resultant of a triangular load acts 1/3 of the length from the max-intensity side. The common mistake is measuring 1/3 from the wrong end."
     },
     {
@@ -864,7 +864,7 @@
         "33 kN-m"
       ],
       "answerIndex": 2,
-      "solution": "Fixed-end moment = moment of all loads about the wall. Uniform load resultant = (2 kN/m)(3 m) = 6 kN acting at midspan, 1.5 m from the wall: 6*1.5 = 9 kN-m. Point load: 5 kN at 3 m from the wall: 5*3 = 15 kN-m. Total = 9 + 15 = 24 kN-m (counterclockwise to resist the clockwise load moment).",
+      "solution": "Refer to the Beams section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the fixed-end moment \\(M_{\\text{wall}}\\), the moment of all loads about the fixed support.\n\nList the known and unknown parameters in order to solve for \\(M_{\\text{wall}}\\):\n\n$$\\begin{aligned}\nL &= 3\\ \\text{m} \\\\\nw &= 2\\ \\text{kN/m} \\\\\nP &= 5\\ \\text{kN (at the free end)} \\\\\nM_{\\text{wall}} &= ?\n\\end{aligned}$$\n\nThe uniform load acts as a resultant \\(wL = 6\\ \\text{kN}\\) at midspan, 1.5 m from the wall:\n\n$$(M_{\\text{UDL}}) = (6)(1.5) = 9\\ \\text{kN}\\cdot\\text{m}$$\n\nThe point load acts 3 m from the wall:\n\n$$(M_P) = (5)(3) = 15\\ \\text{kN}\\cdot\\text{m}$$\n\n$$(M_{\\text{wall}}) = 9 + 15 = 24\\ \\text{kN}\\cdot\\text{m}$$",
       "explanation": "Break the loading into the uniform resultant (acts at midspan) and the point load, then sum moments about the fixed end. The 33 kN-m trap comes from placing the uniform resultant at the free end."
     },
     {
@@ -881,7 +881,7 @@
         "8.00 kN upward"
       ],
       "answerIndex": 0,
-      "solution": "Sum of moments about A = 0: By*(6 m) - (8 kN)(8 m) = 0, so By = 64/6 = 10.67 kN upward. Check with sum Fy = 0: Ay + 10.67 - 8 = 0, so Ay = -2.67 kN (i.e., 2.67 kN downward). The overhang load levers the far support up and pulls the near support down.",
+      "solution": "Refer to the Equilibrium of Rigid Bodies section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(B_y\\). Summing moments about A eliminates \\(A_y\\):\n\n$$\\sum M_A = 0: \\quad B_y(6) - (8)(8) = 0$$\n\nList the known and unknown parameters in order to solve for \\(B_y\\):\n\n$$\\begin{aligned}\n\\text{Load} &= 8\\ \\text{kN downward at } 8\\ \\text{m from A} \\\\\n\\text{Span AB} &= 6\\ \\text{m} \\\\\nB_y &= ?\n\\end{aligned}$$\n\n$$(B_y) = \\frac{(8)(8)}{6} = \\frac{64}{6}$$\n\n$$(B_y) = 10.67\\ \\text{kN upward}$$\n\nCheck with \\(\\sum F_y = 0\\): \\(A_y = 8 - 10.67 = -2.67\\ \\text{kN}\\), i.e., 2.67 kN downward — the overhang load levers the far support up and pulls the near support down.",
       "explanation": "Overhang loads create uplift at the near support - a negative reaction is physically meaningful (it must be held down). Always verify with both equilibrium equations."
     },
     {
@@ -898,7 +898,7 @@
         "20.4 m"
       ],
       "answerIndex": 0,
-      "solution": "Range R = (v0^2 * sin(2*theta))/g = (20^2 * sin(60 deg))/9.81 = (400 * 0.8660)/9.81 = 346.4/9.81 = 35.3 m.",
+      "solution": "Refer to the Particle Kinematics section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the horizontal range \\(R\\):\n\n$$R = \\frac{v_0^2 \\sin 2\\theta}{g}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nv_0 &= 20\\ \\text{m/s} \\\\\n\\theta &= 30^\\circ \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nR &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{(20)^2 \\sin 60^\\circ}{9.81} \\rightarrow (R) = \\frac{(400)(0.8660)}{9.81}$$\n\n$$(R) = \\frac{346.4}{9.81} = 35.3\\ \\text{m}$$",
       "explanation": "The range formula uses sin(2*theta), not sin(theta) - using sin(30 deg) gives the 20.4 m trap answer. Maximum range occurs at 45 degrees."
     },
     {
@@ -932,7 +932,7 @@
         "500 N"
       ],
       "answerIndex": 3,
-      "solution": "Impulse-momentum: m*v1 + sum(impulses) = m*v2. Taking the incoming direction as positive: (0.5)(12) + F_avg*(0.02) = (0.5)(-8). F_avg*(0.02) = -4 - 6 = -10, so F_avg = -500 N. Magnitude = 500 N.",
+      "solution": "Refer to the Impulse and Momentum section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{avg}\\), the average impact force:\n\n$$mv_1 + F_{avg}\\Delta t = mv_2$$\n\nTake the incoming direction as positive, so the rebound velocity is negative.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nm &= 0.5\\ \\text{kg} \\\\\nv_1 &= 12\\ \\text{m/s} \\\\\nv_2 &= -8\\ \\text{m/s} \\\\\n\\Delta t &= 0.02\\ \\text{s} \\\\\nF_{avg} &= ?\n\\end{aligned}$$\n\n$$(0.5)(12) + (F_{avg})(0.02) = (0.5)(-8) \\rightarrow 6 + 0.02F_{avg} = -4$$\n\n$$(F_{avg}) = \\frac{-10}{0.02} = -500\\ \\text{N}$$\n\nThe magnitude of the average force is:\n\n$$|F_{avg}| = 500\\ \\text{N}$$",
       "explanation": "Rebound problems require a sign change on the final velocity. Forgetting the reversal (using 12 - 8 instead of 12 + 8) is the classic error."
     },
     {
@@ -949,7 +949,7 @@
         "4.17 m/s^2"
       ],
       "answerIndex": 3,
-      "solution": "Normal acceleration a_n = v^2 / rho = (25^2)/150 = 625/150 = 4.17 m/s^2, directed toward the center of curvature. Tangential acceleration is zero because speed is constant.",
+      "solution": "Refer to the Curvilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the normal acceleration \\(a_n\\). For motion along a curved path:\n\n$$a_n = \\frac{v^2}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(a_n\\):\n\n$$\\begin{aligned}\nv &= 25\\ \\text{m/s} \\\\\n\\rho &= 150\\ \\text{m} \\\\\na_n &= ?\n\\end{aligned}$$\n\n$$(a_n) = \\frac{v^2}{\\rho} \\rightarrow (a_n) = \\frac{(25)^2}{150} = \\frac{625}{150}$$\n\n$$(a_n) = 4.17\\ \\text{m/s}^2$$\n\nSpeed is constant, so the tangential acceleration is zero; the full acceleration is the normal component, directed toward the center of curvature.",
       "explanation": "a_n = v^2/rho, directed toward the center. The v/rho trap (0.167) forgets to square the velocity."
     },
     {
@@ -966,7 +966,7 @@
         "5.00 rad/s^2"
       ],
       "answerIndex": 3,
-      "solution": "Equation of rotational motion: sum(M) = I*alpha. alpha = 20/4 = 5.00 rad/s^2.",
+      "solution": "Refer to the Equation of Rotational Motion in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\alpha\\). Rotational motion mirrors \\(F = ma\\):\n\n$$\\sum M = I\\alpha$$\n\nList the known and unknown parameters in order to solve for \\(\\alpha\\):\n\n$$\\begin{aligned}\n\\sum M &= 20\\ \\text{N}\\cdot\\text{m} \\\\\nI &= 4\\ \\text{kg}\\cdot\\text{m}^2 \\\\\n\\alpha &= ?\n\\end{aligned}$$\n\n$$(\\alpha) = \\frac{20}{4}$$\n\n$$(\\alpha) = 5.00\\ \\text{rad/s}^2$$",
       "explanation": "Rotational dynamics mirrors F = ma as M = I*alpha. The 80 rad/s^2 trap comes from multiplying torque by inertia instead of dividing."
     },
     {
@@ -983,7 +983,7 @@
         "0.796 Hz"
       ],
       "answerIndex": 3,
-      "solution": "Circular natural frequency omega_n = sqrt(k/m) = sqrt(100/4) = sqrt(25) = 5.00 rad/s. Cyclic frequency f_n = omega_n/(2*pi) = 5.00/6.2832 = 0.796 Hz.",
+      "solution": "Refer to the Mechanical Vibrations section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the cyclic natural frequency \\(f_n\\). The undamped circular natural frequency is:\n\n$$\\omega_n = \\sqrt{\\frac{k}{m}} \\qquad f_n = \\frac{\\omega_n}{2\\pi}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nm &= 4\\ \\text{kg} \\\\\nk &= 100\\ \\text{N/m} \\\\\n\\omega_n &= ? \\\\\nf_n &= ?\n\\end{aligned}$$\n\n$$(\\omega_n) = \\sqrt{\\frac{100}{4}} = \\sqrt{25} = 5.00\\ \\text{rad/s}$$\n\n$$(f_n) = \\frac{5.00}{2\\pi} = 0.796\\ \\text{Hz}$$",
       "explanation": "omega_n is in rad/s; the FE frequently asks for Hz, requiring division by 2*pi. The 5.00 Hz trap skips that conversion."
     },
     {
@@ -1000,7 +1000,7 @@
         "20 m/s east"
       ],
       "answerIndex": 1,
-      "solution": "v_B/A = v_B - v_A. Taking east as positive: v_A = +20 m/s, v_B = -30 m/s. v_B/A = -30 - 20 = -50 m/s, i.e., 50 m/s west (toward car A).",
+      "solution": "Refer to the Relative Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{v}_{B/A}\\), the velocity of B relative to A:\n\n$$\\mathbf{v}_{B/A} = \\mathbf{v}_B - \\mathbf{v}_A$$\n\nTake east as positive.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nv_A &= +20\\ \\text{m/s} \\\\\nv_B &= -30\\ \\text{m/s} \\\\\nv_{B/A} &= ?\n\\end{aligned}$$\n\n$$(v_{B/A}) = (-30) - (20) = -50\\ \\text{m/s}$$\n\nThe negative sign means west, so:\n\n$$(v_{B/A}) = 50\\ \\text{m/s west}$$",
       "explanation": "Relative velocity is vector subtraction: v_B/A = v_B - v_A. When two objects approach head-on, their relative speed is the sum of the speeds."
     },
     {
@@ -1016,7 +1016,7 @@
       "explanation": "Bending stress uses the section modulus S = I/c. A common pitfall is computing I (mm^4) but forgetting to divide by c (half the depth) to get S (mm^3), which doubles the answer. Always convert kN-m to N-mm before dividing by mm^3.",
       "id": "mechmat-003",
       "question": "A rectangular beam cross-section is 100 mm wide and 200 mm deep. If the beam is subjected to a bending moment of 20 kN-m, what is the maximum bending stress?",
-      "solution": "For a rectangular section, the section modulus is S = b*h^2/6 = (100 mm)(200 mm)^2/6 = 666,667 mm^3. Convert the moment to consistent units: M = 20 kN-m = 20 x 10^6 N-mm. Maximum bending stress sigma_max = M/S = (20 x 10^6 N-mm)/(666,667 mm^3) = 30 N/mm^2 = 30 MPa.",
+      "solution": "Refer to the Bending Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{\\max}\\). Bending stress is maximum at the outer fiber:\n\n$$\\sigma_{\\max} = \\frac{M}{S}, \\qquad S = \\frac{bh^2}{6}\\ \\text{(rectangle)}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\max}\\):\n\n$$\\begin{aligned}\nb &= 100\\ \\text{mm} \\\\\nh &= 200\\ \\text{mm} \\\\\nM &= 20\\ \\text{kN}\\cdot\\text{m} = 20 \\times 10^6\\ \\text{N}\\cdot\\text{mm} \\\\\n\\sigma_{\\max} &= ?\n\\end{aligned}$$\n\nSection modulus: \\((S) = (100)(200)^2/6 = 666{,}667\\ \\text{mm}^3\\).\n\n$$(\\sigma_{\\max}) = \\frac{M}{S} \\rightarrow (\\sigma_{\\max}) = \\frac{20 \\times 10^6}{666{,}667}$$\n\n$$(\\sigma_{\\max}) = 30\\ \\text{N/mm}^2 = 30\\ \\text{MPa}$$",
       "subtopic": "Bending stress",
       "topic": "Mechanics of Materials"
     },
@@ -1033,7 +1033,7 @@
       "explanation": "Shear stress in beams follows tau = VQ/(It); for rectangles this simplifies to a parabolic distribution with max = 1.5 x average at the neutral axis. The classic mistake is reporting the average shear stress V/A and forgetting the 1.5 factor.",
       "id": "mechmat-004",
       "question": "A rectangular beam 80 mm wide and 150 mm deep carries a transverse shear force of 24 kN. What is the maximum shear stress in the beam?",
-      "solution": "For a rectangular cross-section the maximum shear stress occurs at the neutral axis and equals 1.5 times the average shear stress: tau_max = 1.5*(V/A). A = (80 mm)(150 mm) = 12,000 mm^2. V/A = 24,000 N / 12,000 mm^2 = 2.0 N/mm^2 = 2.0 MPa. tau_max = 1.5 x 2.0 MPa = 3.0 MPa.",
+      "solution": "Refer to the Transverse Shear Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{\\max}\\). For a rectangular cross-section the maximum shear stress occurs at the neutral axis and equals 1.5 times the average:\n\n$$\\tau_{\\max} = 1.5\\frac{V}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\tau_{\\max}\\):\n\n$$\\begin{aligned}\nV &= 24\\ \\text{kN} = 24{,}000\\ \\text{N} \\\\\nA &= (80)(150) = 12{,}000\\ \\text{mm}^2 \\\\\n\\tau_{\\max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{\\max}) = 1.5\\frac{24{,}000}{12{,}000} \\rightarrow (\\tau_{\\max}) = 1.5(2.0)$$\n\n$$(\\tau_{\\max}) = 3.0\\ \\text{MPa}$$",
       "subtopic": "Shear stress in beams",
       "topic": "Mechanics of Materials"
     },
@@ -1050,7 +1050,7 @@
       "explanation": "Torsional shear stress varies linearly from zero at the center to maximum at the outer surface. Pitfalls: mixing N-m with mm (must convert to N-mm), or using the radius where the diameter belongs in 16T/(pi*d^3).",
       "id": "mechmat-005",
       "question": "A solid circular steel shaft with diameter 40 mm is subjected to a torque of 500 N-m. What is the maximum torsional shear stress in the shaft?",
-      "solution": "Maximum shear stress in a solid shaft: tau_max = T*c/J = 16T/(pi*d^3). Convert torque: T = 500 N-m = 500,000 N-mm. tau_max = 16 x 500,000 / (pi x 40^3) = 8,000,000 / (pi x 64,000) = 8,000,000 / 201,062 = 39.8 N/mm^2 = 39.8 MPa.",
+      "solution": "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{\\max}\\). For a solid circular shaft:\n\n$$\\tau_{\\max} = \\frac{Tc}{J} = \\frac{16T}{\\pi d^3}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nT &= 500\\ \\text{N}\\cdot\\text{m} = 500{,}000\\ \\text{N}\\cdot\\text{mm} \\\\\nd &= 40\\ \\text{mm} \\\\\n\\tau_{\\max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{\\max}) = \\frac{16(500{,}000)}{\\pi (40)^3} \\rightarrow (\\tau_{\\max}) = \\frac{8{,}000{,}000}{201{,}062}$$\n\n$$(\\tau_{\\max}) = 39.8\\ \\text{N/mm}^2 = 39.8\\ \\text{MPa}$$",
       "subtopic": "Torsion",
       "topic": "Mechanics of Materials"
     },
@@ -1067,7 +1067,7 @@
       "explanation": "Columns always buckle about the axis with the smallest radius of gyration (weak axis), so use I_min. Using the strong-axis I gives 4x the load here (913 kN) - a dangerous overestimate. Pinned-pinned means effective length factor K = 1.0.",
       "id": "mechmat-006",
       "question": "A 3 m long steel column (E = 200 GPa) with a 50 mm x 100 mm rectangular cross-section is pinned at both ends. What is the Euler critical buckling load?",
-      "solution": "Euler load P_cr = pi^2*E*I/L^2, using the smallest moment of inertia since the column buckles about its weak axis. I_min = (100 mm)(50 mm)^3/12 = 1,041,667 mm^4 = 1.0417 x 10^-6 m^4. P_cr = pi^2 x (200 x 10^9 Pa) x (1.0417 x 10^-6 m^4) / (3 m)^2 = (9.8696 x 208,333) / 9 = 228,463 N = 228 kN.",
+      "solution": "Refer to the Column Buckling section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_{cr}\\), the Euler critical buckling load. The column buckles about its weak axis, so use \\(I_{min}\\):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2}$$\n\nPinned at both ends gives \\(K = 1.0\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nL &= 3\\ \\text{m} \\\\\nI_{min} &= \\frac{(0.1)(0.05)^3}{12} = 1.0417 \\times 10^{-6}\\ \\text{m}^4 \\\\\nP_{cr} &= ?\n\\end{aligned}$$\n\n$$(P_{cr}) = \\frac{\\pi^2 (200 \\times 10^9)(1.0417 \\times 10^{-6})}{(1.0 \\times 3)^2} = \\frac{2056167}{9}$$\n\n$$(P_{cr}) = 228463\\ \\text{N} \\approx 228\\ \\text{kN}$$",
       "subtopic": "Column buckling",
       "topic": "Mechanics of Materials"
     },
@@ -1084,7 +1084,7 @@
       "explanation": "Hoop stress is twice the longitudinal stress (p*r/(2t)) in a cylindrical vessel, which is why vessels typically split along their length. Common errors: using diameter instead of radius, or reporting the longitudinal stress (45 MPa) instead of the hoop stress.",
       "id": "mechmat-007",
       "question": "A thin-walled cylindrical pressure vessel has an internal diameter of 1.2 m and a wall thickness of 10 mm. If the internal pressure is 1.5 MPa, what is the hoop (circumferential) stress in the wall?",
-      "solution": "Thin-wall hoop stress: sigma_hoop = p*r/t. Internal radius r = 1.2 m / 2 = 0.6 m = 600 mm. sigma_hoop = (1.5 MPa)(600 mm)/(10 mm) = 90 MPa.",
+      "solution": "Refer to the Pressure Vessels section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the hoop stress \\(\\sigma_{\\text{hoop}}\\). For a thin-walled cylindrical vessel:\n\n$$\\sigma_{\\text{hoop}} = \\frac{pr}{t}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\text{hoop}}\\):\n\n$$\\begin{aligned}\np &= 1.5\\ \\text{MPa} \\\\\nd &= 1.2\\ \\text{m} \\;\\Rightarrow\\; r = 0.6\\ \\text{m} = 600\\ \\text{mm} \\\\\nt &= 10\\ \\text{mm} \\\\\n\\sigma_{\\text{hoop}} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{\\text{hoop}}) = \\frac{pr}{t} \\rightarrow (\\sigma_{\\text{hoop}}) = \\frac{(1.5)(600)}{10}$$\n\n$$(\\sigma_{\\text{hoop}}) = 90\\ \\text{MPa}$$",
       "subtopic": "Pressure vessels",
       "topic": "Mechanics of Materials"
     },
@@ -1101,7 +1101,7 @@
       "explanation": "Restrained heating produces compressive stress; restrained cooling produces tensile stress. The sign is the classic trap. Note thermal stress is independent of bar length and area - it depends only on E, alpha, and deltaT.",
       "id": "mechmat-008",
       "question": "A 25-mm-diameter steel rod is snugly fitted between two rigid walls at 20 C with no initial stress. The temperature then rises to 70 C. For steel, E = 200 GPa and alpha = 12 x 10^-6 /C. What stress develops in the rod?",
-      "solution": "The rod wants to expand by delta_T = alpha*deltaT*L but the rigid walls prevent it, so a compressive stress develops: sigma = E*alpha*deltaT. deltaT = 70 - 20 = 50 C. sigma = (200 x 10^9 Pa)(12 x 10^-6 /C)(50 C) = 120 x 10^6 Pa = 120 MPa. Because heating is restrained, the stress is compressive. (The 25 mm diameter is not needed for stress, only for force.)",
+      "solution": "Refer to the Thermal Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\). Fully restrained thermal expansion produces:\n\n$$\\sigma = E\\alpha\\Delta T$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} \\\\\n\\alpha &= 12 \\times 10^{-6}/^\\circ\\text{C} \\\\\n\\Delta T &= 70 - 20 = 50^\\circ\\text{C} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = (200 \\times 10^9)(12 \\times 10^{-6})(50)$$\n\n$$(\\sigma) = 120 \\times 10^6\\ \\text{Pa} = 120\\ \\text{MPa compressive}$$\n\nBecause the heated rod is restrained, the stress is compressive. (The 25 mm diameter is not needed for stress.)",
       "subtopic": "Thermal stress",
       "topic": "Mechanics of Materials"
     },
@@ -1118,7 +1118,7 @@
       "explanation": "The water-cement ratio is the single most important factor controlling concrete strength (Abrams' law). Extra water improves workability but always costs strength - this trade-off drives admixture use in modern mix design.",
       "id": "materials-002",
       "question": "For a concrete mix with all other factors held constant, what happens to the 28-day compressive strength as the water-cement ratio increases?",
-      "solution": "Abrams' law states that concrete strength is inversely related to the water-cement ratio: more water than needed for hydration leaves capillary pores in the hardened paste, reducing strength. Therefore increasing the water-cement ratio decreases compressive strength.",
+      "solution": "Refer to the Materials chapter of the FE Reference Handbook.\n\nAbrams' law governs concrete strength: with all other factors held constant, the 28-day compressive strength is inversely related to the water–cement ratio. Water beyond what hydration requires leaves capillary pores in the hardened cement paste, and those pores weaken the concrete.\n\nTherefore increasing the water–cement ratio decreases the 28-day compressive strength. (Extra water improves workability, but always at the cost of strength.)",
       "subtopic": "Concrete mix properties",
       "topic": "Materials"
     },
@@ -1135,7 +1135,7 @@
       "explanation": "Students often confuse yield strength with ultimate strength. Yield governs serviceability and the start of permanent set; ultimate is the peak of the curve. Design of steel members is typically based on yield, not ultimate.",
       "id": "materials-003",
       "question": "On a typical engineering stress-strain curve for structural steel, the yield strength is best described as:",
-      "solution": "Yield strength marks the onset of plastic deformation - beyond this point the steel will not return to its original shape when unloaded. The maximum stress is the ultimate (tensile) strength, fracture occurs at the breaking stress, and the initial slope is the modulus of elasticity.",
+      "solution": "On a typical engineering stress-strain curve for structural steel, the governing definitions are:\n\n- Yield strength: the stress at which plastic (permanent) deformation begins \\u2014 beyond this point the steel will not return to its original shape when unloaded.\n- Ultimate (tensile) strength: the maximum stress on the curve.\n- Fracture stress: the stress at which the specimen breaks.\n- Modulus of elasticity: the slope of the initial linear portion.\n\nTherefore, yield strength is best described as the stress at which plastic (permanent) deformation begins. Steel member design is typically based on yield, not ultimate.",
       "subtopic": "Steel stress-strain behavior",
       "topic": "Materials"
     },
@@ -1152,7 +1152,7 @@
       "explanation": "This strength-versus-ductility trade-off is fundamental to material selection. Structural steels (e.g., A36) keep carbon low (~0.25%) precisely to preserve ductility and weldability, while tool steels push carbon high for hardness.",
       "id": "materials-004",
       "question": "Increasing the carbon content of plain carbon steel generally:",
-      "solution": "Carbon is the primary strengthening element in steel: higher carbon content raises yield strength, ultimate strength, and hardness, but it reduces ductility, toughness, and weldability (high-carbon steels are prone to cracking in the heat-affected zone during welding).",
+      "solution": "Carbon is the primary strengthening element in plain carbon steel.\n\nIncreasing carbon content raises yield strength, ultimate tensile strength, and hardness — but it does so at the expense of ductility, toughness, and weldability. High-carbon steels are notably prone to cracking in the heat-affected zone during welding.\n\nTherefore increasing carbon content increases strength and hardness but decreases ductility and weldability.",
       "subtopic": "Steel composition effects",
       "topic": "Materials"
     },
@@ -1169,7 +1169,7 @@
       "explanation": "Absorption is referenced to the oven-dry mass, not the SSD mass - dividing by 5000 g gives 1.00%, the classic error. Absorption matters because aggregates soak up mix water, changing the effective water-cement ratio if not corrected.",
       "id": "materials-005",
       "question": "A coarse aggregate sample has an oven-dry mass of 4950 g and a saturated-surface-dry (SSD) mass of 5000 g. What is the absorption capacity of the aggregate?",
-      "solution": "Absorption = (SSD mass - oven-dry mass) / (oven-dry mass) x 100%. Absorption = (5000 g - 4950 g) / 4950 g x 100% = 50/4950 x 100% = 1.01%.",
+      "solution": "Refer to the Aggregate Properties section in the Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the absorption capacity, referenced to the oven-dry mass:\n\n$$\\text{Absorption} = \\frac{M_{SSD} - M_{OD}}{M_{OD}} \\times 100\\%$$\n\nList the known and unknown parameters in order to solve for the absorption:\n\n$$\\begin{aligned}\nM_{OD} &= 4950\\ \\text{g} \\\\\nM_{SSD} &= 5000\\ \\text{g} \\\\\n\\text{Absorption} &= ?\n\\end{aligned}$$\n\n$$(\\text{Absorption}) = \\frac{5000 - 4950}{4950} \\times 100\\% = \\frac{50}{4950} \\times 100\\%$$\n\n$$(\\text{Absorption}) = 1.01\\%$$",
       "subtopic": "Aggregate properties",
       "topic": "Materials"
     },
@@ -1186,7 +1186,7 @@
       "explanation": "Creep versus fatigue is a favorite exam distractor pair: creep = constant load over time, fatigue = repeated load cycles. Concrete creep causes prestress loss and long-term beam sag, so it appears in both materials and structural questions.",
       "id": "materials-006",
       "question": "Creep in a structural material is best defined as:",
-      "solution": "Creep is the slow, time-dependent deformation that occurs when a material carries a sustained load below its yield strength - important in concrete (long-term deflections) and in metals at elevated temperature. Cyclic cracking is fatigue; chemical attack is corrosion or degradation.",
+      "solution": "Refer to the Materials chapter of the FE Reference Handbook.\n\nCreep is time-dependent deformation under a sustained constant load — the slow straining of a material carrying a load below its yield strength. It drives long-term deflections in concrete and matters in metals at elevated temperature.\n\nThe distractors name different phenomena: progressive cracking under repeated cyclic loading is fatigue, sudden fracture under a single overload is brittle fracture, and loss of strength from chemical attack is corrosion or degradation.\n\nTime-dependent deformation under a sustained constant load is the correct definition.",
       "subtopic": "Creep and fatigue",
       "topic": "Materials"
     },
@@ -1203,7 +1203,7 @@
       "explanation": "NDT methods estimate properties indirectly: rebound hammer estimates compressive strength via surface hardness, while ultrasonic pulse velocity detects internal voids and cracking. Neither replaces a direct compression test for acceptance.",
       "id": "materials-007",
       "question": "The rebound hammer (Schmidt hammer) test performed on hardened concrete in the field is used to estimate the concrete's:",
-      "solution": "The rebound hammer measures surface hardness (rebound number), which is empirically correlated with the in-place compressive strength of concrete. It is an index test, not a direct strength measurement, and is typically calibrated against core or cylinder tests.",
+      "solution": "The rebound (Schmidt) hammer measures the surface hardness of hardened concrete as a rebound number.\n\nThe governing principle is correlation, not direct measurement: the rebound number is empirically correlated with the in-place compressive strength of the concrete, typically calibrated against core or cylinder tests.\n\nTherefore, the test is used to estimate the concrete's compressive strength. It remains an index test \\u2014 like ultrasonic pulse velocity for detecting voids \\u2014 and does not replace a direct compression test for acceptance.",
       "subtopic": "Non-destructive testing",
       "topic": "Materials"
     },
@@ -1220,7 +1220,7 @@
       "explanation": "Chloride-induced corrosion is the leading cause of bridge deck deterioration. The exam tests whether you know protection is about isolation (barrier), not strengthening - and the honest caveat that damaged coating at holidays can actually concentrate corrosion.",
       "id": "materials-008",
       "question": "Epoxy-coated reinforcing bars are commonly specified for bridge decks exposed to deicing salts primarily because the coating:",
-      "solution": "Chlorides from deicing salts penetrate concrete and break down steel's passive oxide film, initiating corrosion. The epoxy coating is a physical barrier that prevents chlorides and moisture from reaching the steel surface, delaying corrosion initiation. It does not increase strength, and it slightly reduces bond rather than increasing it.",
+      "solution": "Chlorides from deicing salts penetrate concrete and destroy the passive oxide film that protects embedded steel, initiating corrosion.\n\nThe epoxy coating is a physical barrier: it keeps chlorides and moisture away from the steel surface, delaying corrosion initiation. It adds no strength, and it slightly reduces bond rather than improving it.\n\nTherefore epoxy-coated bars are specified because the coating acts as a barrier that keeps chlorides away from the steel surface.",
       "subtopic": "Corrosion protection",
       "topic": "Materials"
     },
@@ -1237,7 +1237,7 @@
       "explanation": "In a constriction the velocity rises and the pressure drops - the Venturi effect behind flow meters. The sign error (adding the velocity-head difference instead of subtracting) gives 219 kPa, the most common mistake.",
       "id": "fluid-002",
       "question": "Water flows through a horizontal pipe that tapers from 200 mm diameter at section 1 to 100 mm diameter at section 2. The flow rate is 0.05 m^3/s and the pressure at section 1 is 200 kPa. Neglecting head loss, what is the pressure at section 2?",
-      "solution": "Continuity: A1 = pi(0.2)^2/4 = 0.03142 m^2, V1 = 0.05/0.03142 = 1.592 m/s. A2 = pi(0.1)^2/4 = 0.007854 m^2, V2 = 0.05/0.007854 = 6.366 m/s. Bernoulli between 1 and 2 (same elevation): p1/gamma + V1^2/(2g) = p2/gamma + V2^2/(2g). V1^2/(2g) = 0.129 m, V2^2/(2g) = 2.066 m. p2/gamma = 200/9.81 + 0.129 - 2.066 = 18.45 m. p2 = 18.45 x 9.81 = 181 kPa.",
+      "solution": "Refer to the Bernoulli Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p_2\\). Between sections 1 and 2 at the same elevation, neglecting head loss:\n\n$$\\frac{p_1}{\\gamma} + \\frac{V_1^2}{2g} = \\frac{p_2}{\\gamma} + \\frac{V_2^2}{2g}$$\n\nContinuity gives the velocities: \\(V_1 = Q/A_1 = 0.05/0.03142 = 1.592\\ \\text{m/s}\\) and \\(V_2 = Q/A_2 = 0.05/0.007854 = 6.366\\ \\text{m/s}\\).\n\nList the known and unknown parameters in order to solve for \\(p_2\\):\n\n$$\\begin{aligned}\np_1 &= 200\\ \\text{kPa} \\\\\n\\frac{V_1^2}{2g} &= \\frac{(1.592)^2}{2(9.81)} = 0.129\\ \\text{m} \\\\\n\\frac{V_2^2}{2g} &= \\frac{(6.366)^2}{2(9.81)} = 2.066\\ \\text{m} \\\\\np_2 &= ?\n\\end{aligned}$$\n\n$$\\frac{(p_2)}{\\gamma} = \\frac{200}{9.81} + 0.129 - 2.066 \\rightarrow \\frac{(p_2)}{\\gamma} = 18.45\\ \\text{m}$$\n\n$$(p_2) = (18.45)(9.81) = 181\\ \\text{kPa}$$",
       "subtopic": "Bernoulli equation",
       "topic": "Fluid Mechanics"
     },
@@ -1254,7 +1254,7 @@
       "explanation": "Reynolds number is dimensionless - verify units cancel. The 50 mm must become 0.050 m; forgetting the conversion gives Re ~ 100 (laminar), a factor-of-1000 trap. For pipe flow: Re < 2300 laminar, Re > 4000 turbulent.",
       "id": "fluid-003",
       "question": "Water at 20 C (kinematic viscosity = 1.004 x 10^-6 m^2/s) flows at 2.0 m/s through a pipe with 50 mm inside diameter. The Reynolds number is approximately ______, and the flow is ______.",
-      "solution": "Re = V*D/nu = (2.0 m/s)(0.050 m)/(1.004 x 10^-6 m^2/s) = 0.10/1.004 x 10^-6 = 99,600, approximately 1.0 x 10^5. Since Re > 4000 for pipe flow, the flow is turbulent.",
+      "solution": "Refer to the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the Reynolds number \\(Re\\) and classify the flow:\n\n$$Re = \\frac{VD}{\\nu}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 2.0\\ \\text{m/s} \\\\\nD &= 50\\ \\text{mm} = 0.050\\ \\text{m} \\\\\n\\nu &= 1.004 \\times 10^{-6}\\ \\text{m}^2/\\text{s} \\\\\nRe &= ?\n\\end{aligned}$$\n\n$$(Re) = \\frac{(2.0)(0.050)}{1.004 \\times 10^{-6}} \\rightarrow (Re) = \\frac{0.10}{1.004 \\times 10^{-6}}$$\n\n$$(Re) = 99{,}600 \\approx 1.0 \\times 10^5$$\n\nSince \\(Re > 4{,}000\\) for pipe flow, the flow is turbulent.",
       "subtopic": "Reynolds number",
       "topic": "Fluid Mechanics"
     },
@@ -1288,7 +1288,7 @@
       "explanation": "Buoyancy depends only on displaced volume, not on the block's own weight or material. A frequent error is multiplying by the full 1 m^3 unit weight (9.81 kN) instead of the actual 0.5 m^3 displaced.",
       "id": "fluid-005",
       "question": "A 0.5 m^3 solid block is fully submerged in water (unit weight 9.81 kN/m^3). What is the buoyant force acting on the block?",
-      "solution": "Archimedes' principle: buoyant force equals the weight of displaced fluid. F_b = gamma x V_displaced = (9.81 kN/m^3)(0.5 m^3) = 4.905 kN = 4.91 kN.",
+      "solution": "Refer to the Buoyancy section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_b\\), the buoyant force. By Archimedes' principle it equals the weight of the displaced fluid:\n\n$$F_b = \\gamma V_{displaced}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nV_{displaced} &= 0.5\\ \\text{m}^3 \\\\\nF_b &= ?\n\\end{aligned}$$\n\n$$(F_b) = (9.81)(0.5)$$\n\n$$(F_b) = 4.905\\ \\text{kN} \\approx 4.91\\ \\text{kN}$$",
       "subtopic": "Buoyancy",
       "topic": "Fluid Mechanics"
     },
@@ -1305,7 +1305,7 @@
       "explanation": "The water columns above the mercury partially offset it, so subtract SG = 1 for the water side - ignoring this gives 13.3 kPa. Mercury manometers give large readings for small deflections, which is why a 10 cm deflection reads over 12 kPa.",
       "id": "fluid-006",
       "question": "A U-tube manometer containing mercury (specific gravity 13.6) is connected to a water pipe. The difference in mercury levels between the two legs is 0.10 m. What is the pressure difference being measured?",
-      "solution": "For a U-tube with the same fluid (water) above the mercury on both sides, delta_p = (SG_Hg - SG_water) x gamma_water x h = (13.6 - 1.0)(9.81 kN/m^3)(0.10 m) = 12.6 x 0.981 = 12.36 kPa = 12.4 kPa.",
+      "solution": "Refer to the Manometers section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta p\\). For a U-tube manometer with the same fluid above the manometer fluid on both legs, the water columns partially offset the mercury:\n\n$$\\Delta p = (SG_{\\text{Hg}} - SG_{\\text{water}})\\,\\gamma_{\\text{water}}\\,h$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\nSG_{\\text{Hg}} &= 13.6 \\\\\nSG_{\\text{water}} &= 1.0 \\\\\n\\gamma_{\\text{water}} &= 9.81\\ \\text{kN/m}^3 \\\\\nh &= 0.10\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = (13.6 - 1.0)(9.81)(0.10) \\rightarrow (\\Delta p) = (12.6)(0.981)$$\n\n$$(\\Delta p) = 12.36 \\approx 12.4\\ \\text{kPa}$$",
       "subtopic": "Manometers",
       "topic": "Fluid Mechanics"
     },
@@ -1322,7 +1322,7 @@
       "explanation": "Force equals the rate of momentum destroyed: rho*Q*V = rho*A*V^2. If the plate were moving, use the relative velocity (V - U). Halving errors come from inserting a spurious 1/2 (98 N) - the momentum equation has no 1/2, unlike kinetic energy.",
       "id": "fluid-007",
       "question": "A horizontal water jet with diameter 50 mm and velocity 10 m/s strikes a stationary flat plate perpendicular to the jet. Neglecting friction and splash losses, what is the force exerted on the plate?",
-      "solution": "Momentum equation in the jet direction: F = rho*A*V^2 (jet brought to zero x-velocity). A = pi(0.05 m)^2/4 = 0.0019635 m^2. F = (1000 kg/m^3)(0.0019635 m^2)(10 m/s)^2 = 1000 x 0.0019635 x 100 = 196.35 N = 196 N.",
+      "solution": "Refer to the Momentum Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). The jet is brought to zero x-velocity against the stationary plate:\n\n$$F = \\rho A V^2$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\n\\rho &= 1000\\ \\text{kg/m}^3 \\\\\nA &= \\frac{\\pi(0.05)^2}{4} = 0.0019635\\ \\text{m}^2 \\\\\nV &= 10\\ \\text{m/s} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (1000)(0.0019635)(10)^2$$\n\n$$(F) = 196.35 = 196\\ \\text{N}$$",
       "subtopic": "Momentum equation",
       "topic": "Fluid Mechanics"
     },
@@ -1339,7 +1339,7 @@
       "explanation": "Specific gravity is dimensionless; multiply by 1000 kg/m^3 for mass density or 9.81 kN/m^3 for unit weight. The 9,810 kg/m^3 distractor confuses unit weight (kN/m^3) with mass density (kg/m^3) - a unit-consistency trap.",
       "id": "fluid-008",
       "question": "An oil has a specific gravity of 0.85. What is its mass density?",
-      "solution": "Specific gravity is the ratio of the fluid's density to water's density at 4 C (1000 kg/m^3). rho_oil = SG x rho_water = 0.85 x 1000 kg/m^3 = 850 kg/m^3.",
+      "solution": "Refer to the Fluid Properties section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\rho_{\\text{oil}}\\). Specific gravity is the ratio of the fluid's density to the density of water at \\(4^\\circ\\text{C}\\) \\((1{,}000\\ \\text{kg/m}^3)\\):\n\n$$\\rho = (SG)\\rho_{\\text{water}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nSG &= 0.85 \\\\\n\\rho_{\\text{water}} &= 1{,}000\\ \\text{kg/m}^3 \\\\\n\\rho_{\\text{oil}} &= ?\n\\end{aligned}$$\n\n$$(\\rho_{\\text{oil}}) = (0.85)(1{,}000)$$\n\n$$(\\rho_{\\text{oil}}) = 850\\ \\text{kg/m}^3$$",
       "subtopic": "Fluid properties",
       "topic": "Fluid Mechanics"
     },
@@ -1357,7 +1357,7 @@
         "85.3 m"
       ],
       "answerIndex": 1,
-      "solution": "For an inclined stadia sight, the horizontal distance is H = K * s * cos^2(theta), where s is the rod intercept and theta is the vertical angle. theta = 4.5 degrees. cos(4.5 deg) = 0.99692, so cos^2(4.5 deg) = 0.99385. H = 100 * 0.845 * 0.99385 = 83.98 m, approximately 84.0 m. (C = 0, so no additive constant is needed.)",
+      "solution": "Refer to the Stadia section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(H\\), the horizontal distance. For an inclined stadia sight:\n\n$$H = Ks\\cos^2\\theta + C\\cos\\theta$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nK &= 100 \\\\\ns &= 0.845\\ \\text{m} \\\\\n\\theta &= 4.5^\\circ \\\\\nC &= 0 \\\\\nH &= ?\n\\end{aligned}$$\n\nWith \\(C = 0\\) the additive term drops out:\n\n$$(H) = (100)(0.845)\\cos^2(4.5^\\circ) = (84.5)(0.99385)$$\n\n$$(H) = 83.98\\ \\text{m} \\approx 84.0\\ \\text{m}$$",
       "explanation": "Stadia tacheometry converts a rod intercept into distance, but on a slope the intercept must be reduced by cos^2 of the vertical angle to get the horizontal component. A common pitfall is using the slope distance K*s (84.5 m) directly as the horizontal distance."
     },
     {
@@ -1374,7 +1374,7 @@
         "N 55 deg 30' W"
       ],
       "answerIndex": 2,
-      "solution": "An azimuth of 235 deg 30' lies in the third quadrant (between 180 and 270 degrees), so the bearing is referenced to south and west. Bearing angle = azimuth - 180 deg = 235 deg 30' - 180 deg = 55 deg 30'. Therefore the bearing is S 55 deg 30' W.",
+      "solution": "Refer to the Bearings and Azimuths section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the bearing of line AB. An azimuth of \\(235^\\circ 30'\\) falls in the third quadrant (between \\(180^\\circ\\) and \\(270^\\circ\\)), so the bearing is referenced to south and west:\n\n$$\\text{third quadrant: bearing angle} = \\text{azimuth} - 180^\\circ$$\n\nList the known and unknown parameters in order to solve for the bearing:\n\n$$\\begin{aligned}\nAz_{AB} &= 235^\\circ 30' \\\\\n\\text{quadrant} &= \\text{III} \\\\\n\\text{bearing angle} &= 235^\\circ 30' - 180^\\circ = 55^\\circ 30' \\\\\n\\text{bearing} &= ?\n\\end{aligned}$$\n\nThe bearing of line AB is \\(\\text{S } 55^\\circ 30'\\text{ W}\\).",
       "explanation": "Azimuth-to-bearing conversion depends on which quadrant the azimuth falls in. The classic mistake is subtracting from 360 or using the wrong cardinal directions; always sketch the quadrant first."
     },
     {
@@ -1391,7 +1391,7 @@
         "1:2,760"
       ],
       "answerIndex": 0,
-      "solution": "Linear misclosure e = sqrt((sum lat)^2 + (sum dep)^2) = sqrt(0.42^2 + 0.31^2) = sqrt(0.1764 + 0.0961) = sqrt(0.2725) = 0.522 m. Relative precision = e / total length = 0.522 / 856 = 1 / 1640 (since 856 / 0.522 = 1640). So the precision is 1:1,640.",
+      "solution": "Refer to the Traverse Closure section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the relative precision. The linear misclosure combines the latitude and departure misclosures as a vector:\n\n$$e = \\sqrt{(\\sum \\text{lat})^2 + (\\sum \\text{dep})^2}$$\n\nList the known and unknown parameters in order to solve for \\(e\\):\n\n$$\\begin{aligned}\n\\sum \\text{lat} &= +0.42\\ \\text{m} \\\\\n\\sum \\text{dep} &= -0.31\\ \\text{m} \\\\\n\\text{Traverse length} &= 856\\ \\text{m} \\\\\ne &= ?\n\\end{aligned}$$\n\n$$(e) = \\sqrt{(0.42)^2 + (0.31)^2} = \\sqrt{0.2725} = 0.522\\ \\text{m}$$\n\n$$\\text{Relative precision} = \\frac{0.522}{856} = \\frac{1}{1640} = 1{:}1{,}640$$",
       "explanation": "Closure error combines latitude and departure misclosures as a vector (root-sum-square), not a simple sum. Precision is expressed as 1 part in N; a frequent error is adding the two misclosures directly (0.73 m), which understates the precision."
     },
     {
@@ -1408,7 +1408,7 @@
         "16,400 m^2"
       ],
       "answerIndex": 3,
-      "solution": "Area = |sum(x_i * y_{i+1}) - sum(y_i * x_{i+1})| / 2, closing back to A. sum(x_i*y_{i+1}) = 0*0 + 200*120 + 200*80 + 60*0 = 0 + 24,000 + 16,000 + 0 = 40,000. sum(y_i*x_{i+1}) = 0*200 + 0*200 + 120*60 + 80*0 = 0 + 0 + 7,200 + 0 = 7,200. Area = |40,000 - 7,200| / 2 = 32,800 / 2 = 16,400 m^2.",
+      "solution": "Refer to the Area by Coordinates section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the parcel area \\(A\\) with the coordinate (shoelace) method, listing vertices in order around the boundary and closing back to the start:\n\n$$A = \\frac{|\\sum x_i y_{i+1} - \\sum y_i x_{i+1}|}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA(0, 0),\\; B(200, 0),\\; C(200, 120),\\; D(60, 80) \\\\\n\\sum x_i y_{i+1} &= (0)(0) + (200)(120) + (200)(80) + (60)(0) = 40{,}000 \\\\\n\\sum y_i x_{i+1} &= (0)(200) + (0)(200) + (120)(60) + (80)(0) = 7{,}200 \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = \\frac{|40{,}000 - 7{,}200|}{2} \\rightarrow (A) = \\frac{32{,}800}{2}$$\n\n$$(A) = 16{,}400\\ \\text{m}^2$$",
       "explanation": "The coordinate (shoelace) method requires listing vertices consistently around the polygon and closing back to the start. The most common errors are forgetting to divide by 2 and mixing up the cross-multiplication order, which flips the sign."
     },
     {
@@ -1425,7 +1425,7 @@
         "1,040 m^3"
       ],
       "answerIndex": 1,
-      "solution": "Average end area method: V = L * (A1 + A2) / 2 = 25 * (42.5 + 61.5) / 2 = 25 * 104.0 / 2 = 25 * 52.0 = 1,300 m^3.",
+      "solution": "Refer to the Earthwork Volumes section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\), the volume of cut, by the average end area method:\n\n$$V = L\\frac{A_1 + A_2}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nL &= 25\\ \\text{m} \\\\\nA_1 &= 42.5\\ \\text{m}^2 \\\\\nA_2 &= 61.5\\ \\text{m}^2 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = 25\\frac{42.5 + 61.5}{2} = 25\\frac{104.0}{2} = 25(52.0)$$\n\n$$(V) = 1300\\ \\text{m}^3$$",
       "explanation": "The average end area method is the workhorse of earthwork quantity takeoffs. The typical slip is forgetting the division by 2 (giving 2,600 m^3) or using the difference of the areas instead of the sum."
     },
     {
@@ -1442,7 +1442,7 @@
         "63.8 m"
       ],
       "answerIndex": 3,
-      "solution": "Tangent length T = R * tan(delta / 2) = 300 * tan(24 deg / 2) = 300 * tan(12 deg) = 300 * 0.21256 = 63.8 m. Note that the half-angle must be used.",
+      "solution": "Refer to the Horizontal Curves section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the tangent length \\(T\\), the distance from the PI to the PC (or PT):\n\n$$T = R\\tan\\!\\left(\\frac{\\Delta}{2}\\right)$$\n\nList the known and unknown parameters in order to solve for \\(T\\):\n\n$$\\begin{aligned}\nR &= 300\\ \\text{m} \\\\\n\\Delta &= 24^\\circ \\\\\nT &= ?\n\\end{aligned}$$\n\nNote the half-angle: \\((T) = 300\\tan(24^\\circ/2) = 300\\tan 12^\\circ\\).\n\n$$(T) = (300)(0.21256) = 63.77 \\approx 63.8\\ \\text{m}$$",
       "explanation": "Curve geometry formulas use half the intersection angle for the tangent (and the full angle in radians for arc length, 125.7 m here). Plugging the full 24 degrees into tan gives 133.6 m, the most common distractor."
     },
     {
@@ -1459,7 +1459,7 @@
         "152.80 m"
       ],
       "answerIndex": 2,
-      "solution": "The high point is where the grade is zero. Distance from PVC: x = L * g1 / (g1 - g2) = 240 * 0.030 / (0.030 - (-0.025)) = 7.2 / 0.055 = 130.91 m (within the 240 m curve, as expected for a crest). Elevation on the curve: y = y_PVC + g1*x + (r/2)*x^2, where r = (g2 - g1)/L = (-0.025 - 0.030)/240 = -0.00022917 per m. y = 150.00 + 0.030*130.91 + 0.5*(-0.00022917)*(130.91)^2 = 150.00 + 3.927 - 1.964 = 151.96 m.",
+      "solution": "Refer to the Vertical Curves section in the Surveying chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the elevation of the high point, which occurs where the grade is zero:\n\n$$x = \\frac{L g_1}{g_1 - g_2}$$\n\nList the known and unknown parameters in order to solve for \\(x\\):\n\n$$\\begin{aligned}\ng_1 &= +3.0\\% = 0.030 \\\\\ng_2 &= -2.5\\% = -0.025 \\\\\nL &= 240\\ \\text{m} \\\\\n\\text{PVC elevation} &= 150.00\\ \\text{m} \\\\\nx &= ?\n\\end{aligned}$$\n\n$$(x) = \\frac{(240)(0.030)}{0.030 - (-0.025)} = \\frac{7.2}{0.055} = 130.91\\ \\text{m}$$\n\nElevation on the curve, with \\(r = (g_2 - g_1)/L = -0.00022917\\ \\text{per m}\\):\n\n$$y = y_{PVC} + g_1 x + \\frac{r}{2}x^2$$\n\n$$(y) = 150.00 + (0.030)(130.91) + \\frac{(-0.00022917)}{2}(130.91)^2$$\n\n$$(y) = 150.00 + 3.927 - 1.964 = 151.96\\ \\text{m}$$",
       "explanation": "On a vertical curve the high/low point is found by setting the tangent grade to zero, not by averaging grades. A frequent mistake is reporting the PVI elevation (153.60 m) instead of locating the true turning point along the curve."
     },
     {
@@ -1476,7 +1476,7 @@
         "12 kN-m at the free end"
       ],
       "answerIndex": 2,
-      "solution": "For a cantilever with a point load P at the free end, the shear is constant at V = P = 4 kN and the moment varies linearly from 0 at the free end to a maximum at the fixed support: M_max = P * L = 4 kN * 3 m = 12 kN-m at the fixed support.",
+      "solution": "Refer to the Structural Analysis chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(M_{\\max}\\). For a cantilever carrying a concentrated load \\(P\\) at its free end, the shear is constant (\\(V = P\\)) and the moment varies linearly from zero at the free end to its maximum at the fixed support:\n\n$$M_{\\max} = PL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= 4\\ \\text{kN} \\\\\nL &= 3\\ \\text{m} \\\\\nM_{\\max} &= ?\n\\end{aligned}$$\n\n$$(M_{\\max}) = (4)(3)$$\n\n$$(M_{\\max}) = 12\\ \\text{kN}\\cdot\\text{m}$$\n\nThe maximum moment occurs at the fixed support.",
       "explanation": "In a cantilever the fixed support resists both the shear and the full overturning moment. Students often place the maximum moment at the load point; for a cantilever it is always at the wall."
     },
     {
@@ -1493,7 +1493,7 @@
         "Externally indeterminate to the first degree"
       ],
       "answerIndex": 1,
-      "solution": "m + r = 13 + 3 = 16 and 2j = 2 * 8 = 16. Since m + r = 2j, the truss is externally determinate (r = 3 for a planar structure) and internally determinate. (The count alone does not prove stability, but the classification by this check is determinate.)",
+      "solution": "The determinacy check for a planar truss compares \\(m + r\\) against \\(2j\\):\n\n- \\(m + r < 2j\\): mechanism (unstable)\n- \\(m + r = 2j\\): externally and internally determinate\n- \\(m + r > 2j\\): indeterminate\n\nHere \\(m + r = 13 + 3 = 16\\) and \\(2j = 2(8) = 16\\). Since \\(m + r = 2j\\), with \\(r = 3\\) reactions for a planar structure, the truss is externally determinate and internally determinate. (The count is necessary but not sufficient for stability.)",
       "explanation": "The m + r vs 2j test is the first screen for truss analysis: less than 2j suggests a mechanism, equal suggests determinate, greater suggests indeterminate. Remember it is necessary but not sufficient for stability."
     },
     {
@@ -1510,7 +1510,7 @@
         "9.8 mm downward"
       ],
       "answerIndex": 0,
-      "solution": "Free-end deflection of a cantilever with end load: delta = P*L^3 / (3*E*I). Convert I to m^4: 8.0 x 10^6 mm^4 = 8.0 x 10^-6 m^4. E*I = 200 x 10^9 * 8.0 x 10^-6 = 1.60 x 10^6 N-m^2. delta = 6000 * (2.5)^3 / (3 * 1.60 x 10^6) = 93,750 / 4.80 x 10^6 = 0.01953 m = 19.5 mm downward.",
+      "solution": "Refer to the Beam Deflection section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the free-end deflection \\(\\delta\\). For a cantilever with a concentrated load at the free end:\n\n$$\\delta = \\frac{PL^3}{3EI}$$\n\nList the known and unknown parameters in order to solve for \\(\\delta\\):\n\n$$\\begin{aligned}\nP &= 6\\ \\text{kN} = 6{,}000\\ \\text{N} \\\\\nL &= 2.5\\ \\text{m} \\\\\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= 8.0 \\times 10^6\\ \\text{mm}^4 = 8.0 \\times 10^{-6}\\ \\text{m}^4 \\\\\n\\delta &= ?\n\\end{aligned}$$\n\nFlexural rigidity: \\((EI) = (200 \\times 10^9)(8.0 \\times 10^{-6}) = 1.60 \\times 10^6\\ \\text{N}\\cdot\\text{m}^2\\).\n\n$$(\\delta) = \\frac{PL^3}{3EI} \\rightarrow (\\delta) = \\frac{(6{,}000)(2.5)^3}{3(1.60 \\times 10^6)}$$\n\n$$(\\delta) = \\frac{93{,}750}{4.80 \\times 10^6} = 0.01953\\ \\text{m} = 19.5\\ \\text{mm (downward)}$$",
       "explanation": "Deflection formulas punish unit mistakes: mm^4 must become m^4 (x10^-12). The classic errors are dropping the factor of 3 or mixing kN with N while E is in Pa."
     },
     {
@@ -1527,7 +1527,7 @@
         "2.8 m"
       ],
       "answerIndex": 2,
-      "solution": "The theoretical effective length factor for a fixed-free (cantilever) column is K = 2.0. Effective length KL = 2.0 * 4.0 m = 8.0 m.",
+      "solution": "Refer to the Column Buckling section in the Structural Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(KL\\). The theoretical effective length factor for a fixed-free (cantilever) column is \\(K = 2.0\\):\n\n$$KL = K \\cdot L$$\n\nList the known and unknown parameters in order to solve for \\(KL\\):\n\n$$\\begin{aligned}\nK &= 2.0\\ \\text{(fixed-free)} \\\\\nL &= 4.0\\ \\text{m} \\\\\nKL &= ?\n\\end{aligned}$$\n\n$$(KL) = (2.0)(4.0)$$\n\n$$(KL) = 8.0\\ \\text{m}$$",
       "explanation": "End restraint controls buckling: a flagpole-type column buckles with an effective length twice its real length, making it the worst common case. Memorizing K = 2.0 (fixed-free), 1.0 (pinned-pinned), 0.7 (fixed-pinned), 0.5 (fixed-fixed) covers most FE questions."
     },
     {
@@ -1544,7 +1544,7 @@
         "0.85"
       ],
       "answerIndex": 1,
-      "solution": "ACI 318 assigns phi = 0.90 for tension-controlled sections (steel yields well before concrete crushes, giving ductile warning). Compression-controlled tied sections use 0.65 and shear uses 0.75; 0.85 is not an ACI 318 phi value.",
+      "solution": "Refer to the Reinforced Concrete section in the Structural Engineering chapter of the FE Reference Handbook.\n\nACI 318 ties the strength reduction factor \\(\\phi\\) to ductility: sections that give warning before failure earn a higher \\(\\phi\\). A tension-controlled section — where the steel yields well before the concrete crushes — is the most ductile flexural case and receives \\(\\phi = 0.90\\), the highest flexural factor.\n\nCompression-controlled (tied) sections use 0.65 and shear uses 0.75; 0.85 is not an ACI 318 \\(\\phi\\) value.\n\n\\(\\phi = 0.90\\) is the correct choice.",
       "explanation": "Phi rewards ductility: tension-controlled flexure gets the highest factor (0.90) because yielding steel gives visible warning before failure. Confusing flexure phi with shear phi (0.75) is the standard trap."
     },
     {
@@ -1561,7 +1561,7 @@
         "V_max = 5 kN, M_max = 20 kN-m"
       ],
       "answerIndex": 3,
-      "solution": "Each reaction = P/2 = 5 kN. The shear diagram is constant at +5 kN then -5 kN, so V_max = 5 kN (magnitude). The moment peaks under the load: M_max = P*L/4 = 10*8/4 = 20 kN-m.",
+      "solution": "Refer to the Beams section in the Structural Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V_{max}\\) and \\(M_{max}\\). By symmetry each reaction carries half the load:\n\n$$R = \\frac{P}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} \\\\\nL &= 8\\ \\text{m} \\\\\nR &= ? \\\\\nV_{max} &= ? \\\\\nM_{max} &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{10}{2} = 5\\ \\text{kN}$$\n\nThe shear is constant at \\(\\pm 5\\) kN, so \\(V_{max} = 5\\) kN. The moment peaks under the load:\n\n$$M_{max} = \\frac{PL}{4}$$\n\n$$(M_{max}) = \\frac{(10)(8)}{4} = 20\\ \\text{kN-m}$$",
       "explanation": "For midspan point loads, reactions split the load in half and the peak moment is PL/4, not PL/2. Mixing up shear (a force) with the reaction value, or using the cantilever formula PL, are the usual errors."
     },
     {
@@ -1578,7 +1578,7 @@
         "1.2D + 1.0L gives 14.8 kN/m"
       ],
       "answerIndex": 1,
-      "solution": "Relevant ASCE 7 combos with only D and L: 1.4D = 1.4*4 = 5.6 kN/m; 1.2D + 1.6L = 1.2*4 + 1.6*10 = 4.8 + 16.0 = 20.8 kN/m; 0.9D = 3.6 kN/m. The largest is 1.2D + 1.6L = 20.8 kN/m, so it controls.",
+      "solution": "Refer to the ASCE 7 Load Combinations in the Structural Design chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the controlling factored load. Every applicable combination is checked, and the largest governs.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD &= 4\\ \\text{kN/m} \\\\\nL_r &= 10\\ \\text{kN/m (roof live)} \\\\\nw_u &= ?\n\\end{aligned}$$\n\nEvaluate each relevant combination:\n\n$$\\begin{aligned}\n1.4D &= 1.4(4) = 5.6\\ \\text{kN/m} \\\\\n1.2D + 1.6L_r &= 1.2(4) + 1.6(10) = 4.8 + 16.0 = 20.8\\ \\text{kN/m} \\\\\n0.9D &= 0.9(4) = 3.6\\ \\text{kN/m}\n\\end{aligned}$$\n\nThe largest value controls:\n\n$$(w_u) = 1.2D + 1.6L_r = 20.8\\ \\text{kN/m}$$",
       "explanation": "Load combinations must all be checked and the maximum governs; with heavy live load, 1.2D + 1.6L almost always controls over 1.4D. A common mistake is designing to 1.4D alone or forgetting that the 1.6 factor applies to the live load."
     },
     {
@@ -1595,7 +1595,7 @@
         "0.65"
       ],
       "answerIndex": 2,
-      "solution": "Volume of voids Vv = Vt - Vs = 0.0012 - 0.00078 = 0.00042 m^3. Void ratio e = Vv / Vs = 0.00042 / 0.00078 = 0.538, approximately 0.54.",
+      "solution": "Refer to the Phase Relationships section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the void ratio \\(e = V_v/V_s\\). First find the volume of voids:\n\n$$V_v = V_t - V_s$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV_t &= 0.0012\\ \\text{m}^3 \\\\\nV_s &= 0.00078\\ \\text{m}^3 \\\\\nV_v &= ? \\\\\ne &= ?\n\\end{aligned}$$\n\n$$(V_v) = 0.0012 - 0.00078 = 0.00042\\ \\text{m}^3$$\n\n$$(e) = \\frac{0.00042}{0.00078} = 0.54$$",
       "explanation": "Void ratio uses the volume of solids in the denominator (e = Vv/Vs), while porosity uses total volume (n = Vv/Vt = 0.35 here). Swapping them is the classic phase-relationship error."
     },
     {
@@ -1612,7 +1612,7 @@
         "6.0 x 10^-5 m^3/s"
       ],
       "answerIndex": 0,
-      "solution": "Hydraulic gradient i = head loss / length = 0.45 / 0.15 = 3.0. Darcy's law: q = k * i * A = 2.5 x 10^-5 * 3.0 * 0.008 = 6.0 x 10^-7 m^3/s.",
+      "solution": "Refer to the Permeability section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the volumetric flow rate \\(q\\), from Darcy's law with the hydraulic gradient:\n\n$$q = kiA \\qquad i = \\frac{\\Delta h}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\Delta h &= 0.45\\ \\text{m} \\\\\nL &= 0.15\\ \\text{m} \\\\\ni &= \\frac{0.45}{0.15} = 3.0 \\\\\nk &= 2.5 \\times 10^{-5}\\ \\text{m/s} \\\\\nA &= 0.008\\ \\text{m}^2 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (2.5 \\times 10^{-5})(3.0)(0.008)$$\n\n$$(q) = 6.0 \\times 10^{-7}\\ \\text{m}^3/\\text{s}$$",
       "explanation": "Darcy's law needs the gradient, not just the head loss: forgetting to divide by the specimen length (using i = 0.45) gives 2.0 x 10^-7 m^3/s, the standard trap."
     },
     {
@@ -1646,7 +1646,7 @@
         "CH"
       ],
       "answerIndex": 3,
-      "solution": "Plasticity index PI = LL - PL = 55 - 28 = 27. Since LL = 55 > 50, the soil is high plasticity (H). A-line: PI_A = 0.73*(LL - 20) = 0.73*35 = 25.6. PI = 27 plots above the A-line, indicating clay rather than silt. High-plasticity clay = CH (fat clay).",
+      "solution": "Refer to the Soil Classification (USCS) section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must classify the soil. Compute the plasticity index:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nLL &= 55 \\\\\nPL &= 28 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = 55 - 28 = 27$$\n\nSince \\(LL = 55 > 50\\), the soil is high plasticity (H). Check the A-line:\n\n$$PI_A = 0.73(LL - 20) = 0.73(35) = 25.55$$\n\n\\(PI = 27\\) plots above the A-line, so the fines are clay (C) rather than silt (M).\n\nTherefore the classification is CH (fat clay).",
       "explanation": "USCS fine-grained classification is a two-step test: LL above/below 50 gives H/L, and position relative to the A-line gives C/M. Skipping the A-line check is how CH gets mislabeled MH."
     },
     {
@@ -1663,7 +1663,7 @@
         "33%"
       ],
       "answerIndex": 2,
-      "solution": "S * e = w * Gs, so S = w * Gs / e = 0.18 * 2.70 / 0.55 = 0.486 / 0.55 = 0.884, or approximately 88%. (A result above 100% would signal inconsistent data.)",
+      "solution": "Refer to the Phase Relationships section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the degree of saturation \\(S\\). The four phase quantities are tied together by:\n\n$$Se = wG_s$$\n\nList the known and unknown parameters in order to solve for \\(S\\):\n\n$$\\begin{aligned}\nw &= 18\\% = 0.18 \\\\\nG_s &= 2.70 \\\\\ne &= 0.55 \\\\\nS &= ?\n\\end{aligned}$$\n\n$$(S) = \\frac{wG_s}{e} \\rightarrow (S) = \\frac{(0.18)(2.70)}{0.55} = \\frac{0.486}{0.55}$$\n\n$$(S) = 0.884 \\approx 88\\%$$",
       "explanation": "The identity S*e = w*Gs ties all four phase quantities together. Inverting it (e/(w*Gs) = 113%) is the typical algebra slip, and any saturation above 100% should immediately raise a flag."
     },
     {
@@ -1680,7 +1680,7 @@
         "127 kPa"
       ],
       "answerIndex": 2,
-      "solution": "Mohr-Coulomb: tau = c + sigma * tan(phi) = 0 + 150 * tan(32 deg) = 150 * 0.6249 = 93.7 kPa, approximately 94 kPa.",
+      "solution": "Refer to the Shear Strength section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau\\). The Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma \\tan\\phi$$\n\nList the known and unknown parameters in order to solve for \\(\\tau\\):\n\n$$\\begin{aligned}\nc &= 0\\ \\text{(clean sand)} \\\\\n\\sigma &= 150\\ \\text{kPa} \\\\\n\\phi &= 32^\\circ \\\\\n\\tau &= ?\n\\end{aligned}$$\n\n$$(\\tau) = 0 + (150)\\tan 32^\\circ = (150)(0.6249)$$\n\n$$(\\tau) = 93.7 = 94\\ \\text{kPa}$$",
       "explanation": "For cohesionless soil the strength envelope passes through the origin, so strength is purely frictional: sigma*tan(phi). Using phi in radians mode or confusing tan with sin are the calculator errors to watch for."
     },
     {
@@ -1697,7 +1697,7 @@
         "The liquid limit"
       ],
       "answerIndex": 1,
-      "solution": "The peak of the compaction curve occurs at the optimum moisture content (OMC), the water content at which the maximum dry unit weight is achieved for the given compactive effort. Compacting dry of optimum leaves excess air voids; wet of optimum, water displaces solids.",
+      "solution": "Refer to the Compaction section in the Geotechnical Engineering chapter of the FE Reference Handbook.\n\nThe compaction curve plots dry unit weight against water content: dry unit weight rises with water content to a peak — the maximum dry unit weight — then falls as added water displaces soil solids. The water content at that peak is the optimum moisture content (OMC) for the given compactive effort.\n\nCompacting dry of optimum leaves excess air voids; wet of optimum, water takes the place of solids. The plastic limit, shrinkage limit, and liquid limit are Atterberg consistency limits describing plasticity, not compaction.\n\nThe optimum moisture content is the correct choice.",
       "explanation": "OMC is the target for field compaction control. The distractors are all Atterberg consistency limits, which describe plasticity behavior, not compaction — a frequent vocabulary mix-up."
     },
     {
@@ -1713,7 +1713,7 @@
       "explanation": "Stopping sight distance has two parts: the distance traveled during perception-reaction time and the braking distance. The most common pitfall is omitting the perception-reaction term (which gives 288 ft), or using a reaction time other than the AASHTO standard 2.5 s.",
       "id": "transportation-002",
       "question": "A rural highway segment has a design speed of 55 mph on level grade. Using a perception-reaction time of 2.5 s and a coefficient of friction of 0.35, what is the required stopping sight distance (SSD)?",
-      "solution": "SSD = 1.47*V*t + V^2/(30*(f +/- G)). Perception-reaction distance = 1.47 * 55 * 2.5 = 202.1 ft. Braking distance = 55^2 / (30 * 0.35) = 3025 / 10.5 = 288.1 ft. Total SSD = 202.1 + 288.1 = 490.2 ft, approximately 490 ft.",
+      "solution": "Refer to the Stopping Sight Distance section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the SSD, the sum of perception-reaction distance and braking distance:\n\n$$SSD = 1.47Vt + \\frac{V^2}{30(f \\pm G)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 55\\ \\text{mph} \\\\\nt &= 2.5\\ \\text{s} \\\\\nf &= 0.35 \\\\\nG &= 0\\ \\text{(level grade)} \\\\\nSSD &= ?\n\\end{aligned}$$\n\n$$(d_{PR}) = 1.47(55)(2.5) = 202.1\\ \\text{ft}$$\n\n$$(d_{braking}) = \\frac{55^2}{30(0.35)} = \\frac{3025}{10.5} = 288.1\\ \\text{ft}$$\n\n$$(SSD) = 202.1 + 288.1 = 490.2\\ \\text{ft} \\approx 490\\ \\text{ft}$$",
       "subtopic": "Stopping sight distance",
       "topic": "Transportation Engineering"
     },
@@ -1730,7 +1730,7 @@
       "explanation": "The minimum radius balances centrifugal force with the combined effect of superelevation (e) and side friction (f_s). A common mistake is using only e or only f_s in the denominator, which overestimates the allowable radius and would be unsafe.",
       "id": "transportation-003",
       "question": "A horizontal curve is designed for 60 mph with a maximum superelevation rate of 8%. If the side friction factor is 0.12, what is the minimum radius of curvature (AASHTO)?",
-      "solution": "R_min = V^2 / (15*(e + f_s)) = 60^2 / (15*(0.08 + 0.12)) = 3600 / (15*0.20) = 3600 / 3 = 1,200 ft.",
+      "solution": "Refer to the Horizontal Curve Design (AASHTO) section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the minimum radius of curvature \\(R_{\\min}\\). The point-mass equation balances centrifugal force against superelevation plus side friction:\n\n$$R_{\\min} = \\frac{V^2}{15(e + f_s)}$$\n\nList the known and unknown parameters in order to solve for \\(R_{\\min}\\):\n\n$$\\begin{aligned}\nV &= 60\\ \\text{mph} \\\\\ne &= 8\\% = 0.08 \\\\\nf_s &= 0.12 \\\\\nR_{\\min} &= ?\n\\end{aligned}$$\n\n$$(R_{\\min}) = \\frac{V^2}{15(e + f_s)} \\rightarrow (R_{\\min}) = \\frac{(60)^2}{15(0.08 + 0.12)}$$\n\n$$(R_{\\min}) = \\frac{3{,}600}{15(0.20)} = \\frac{3{,}600}{3} = 1{,}200\\ \\text{ft}$$",
       "subtopic": "Horizontal curves",
       "topic": "Transportation Engineering"
     },
@@ -1747,7 +1747,7 @@
       "explanation": "Density = flow / speed is the fundamental identity of traffic flow theory. Density is the key service measure for freeway level of service, so this relationship appears constantly on the FE exam.",
       "id": "transportation-004",
       "question": "A traffic stream has a measured flow rate of 1,800 vehicles per hour and an average space mean speed of 30 mph. What is the traffic density?",
-      "solution": "The fundamental traffic flow relationship is q = k*v, so density k = q / v = 1800 veh/hr / 30 mph = 60 veh/mi.",
+      "solution": "Refer to the Traffic Flow Theory section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the traffic density \\(k\\). The fundamental relationship:\n\n$$q = kv$$\n\nList the known and unknown parameters in order to solve for \\(k\\):\n\n$$\\begin{aligned}\nq &= 1800\\ \\text{veh/hr} \\\\\nv &= 30\\ \\text{mph} \\\\\nk &= ?\n\\end{aligned}$$\n\n$$(k) = \\frac{1800}{30}$$\n\n$$(k) = 60\\ \\text{veh/mi}$$",
       "subtopic": "Traffic flow theory",
       "topic": "Transportation Engineering"
     },
@@ -1764,7 +1764,7 @@
       "explanation": "Each facility type has its own LOS measure: density for freeways, control delay for signalized intersections, and percent time spent following for two-lane highways. Mixing these up is a classic conceptual trap.",
       "id": "transportation-005",
       "question": "According to the Highway Capacity Manual, which measure of effectiveness defines the level of service (LOS) for a basic freeway segment?",
-      "solution": "Freeway LOS is defined by density (pc/mi/ln). LOS A corresponds to densities at or below 11 pc/mi/ln, and LOS F begins at densities above 45 pc/mi/ln.",
+      "solution": "Refer to the Level of Service section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nThe Highway Capacity Manual assigns each facility type its own measure of effectiveness for level of service. For a basic freeway segment that measure is density in passenger cars per mile per lane (pc/mi/ln) — LOS A at densities of 11 pc/mi/ln or less, LOS F above 45 pc/mi/ln.\n\nAverage travel speed, volume-to-capacity ratio, and percent time spent following govern other facility types (percent time spent following, for example, defines LOS on two-lane highways), not basic freeway segments.\n\nDensity in passenger cars per mile per lane is the correct choice.",
       "subtopic": "Level of service",
       "topic": "Transportation Engineering"
     },
@@ -1781,7 +1781,7 @@
       "explanation": "Crest and sag curves use different sight-distance constants (2158 for crest SSD, 1320 for sag SSD). Using the sag constant by mistake gives 1,136 ft. Always verify the S < L or S > L assumption after computing.",
       "id": "transportation-006",
       "question": "A crest vertical curve connects a +3% grade to a -3% grade on a highway with a required stopping sight distance of 500 ft. What is the minimum curve length L? (Assume S < L.)",
-      "solution": "A = |3 - (-3)| = 6%. For a crest curve with S < L: L = A*S^2 / 2158 = 6 * 500^2 / 2158 = 1,500,000 / 2158 = 695.1 ft, approximately 695 ft. Check: S = 500 ft < L = 695 ft, so the assumption holds.",
+      "solution": "Refer to the Vertical Curves section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(L\\), the minimum crest curve length. For \\(S < L\\):\n\n$$L = \\frac{AS^2}{2158}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ng_1 &= +3\\% \\\\\ng_2 &= -3\\% \\\\\nA &= |3 - (-3)| = 6\\% \\\\\nS &= 500\\ \\text{ft} \\\\\nL &= ?\n\\end{aligned}$$\n\n$$(L) = \\frac{6(500)^2}{2158} = \\frac{1500000}{2158}$$\n\n$$(L) = 695.1\\ \\text{ft} \\approx 695\\ \\text{ft}$$\n\nCheck: \\(S = 500\\) ft \\(< L = 695\\) ft, so the assumption holds.",
       "subtopic": "Vertical curves",
       "topic": "Transportation Engineering"
     },
@@ -1798,7 +1798,7 @@
       "explanation": "Adequacy is checked by comparing the required sum (e + f_s) from the point-mass equation against what the design provides. The common error is checking e alone against f_s, which has no physical meaning.",
       "id": "transportation-007",
       "question": "A horizontal curve with radius 1,000 ft is designed for 60 mph with a superelevation rate of 6%. If the available side friction factor is 0.12, is the superelevation design adequate?",
-      "solution": "Required e + f_s = V^2 / (15*R) = 60^2 / (15*1000) = 3600 / 15000 = 0.24. Available e + f_s = 0.06 + 0.12 = 0.18. Since 0.24 > 0.18, the curve cannot safely carry 60 mph with these values; either the radius must increase or the superelevation must increase.",
+      "solution": "Refer to the Superelevation section in the Transportation Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must determine whether the design is adequate by comparing the required \\((e + f_s)\\) from the point-mass equation against what the design provides:\n\n$$e + f_s = \\frac{V^2}{15R}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 60\\ \\text{mph} \\\\\nR &= 1{,}000\\ \\text{ft} \\\\\ne_{\\text{provided}} &= 6\\% = 0.06 \\\\\nf_{s,\\text{available}} &= 0.12\n\\end{aligned}$$\n\nRequired: \\((e + f_s)_{\\text{req}} = (60)^2/[15(1{,}000)] = 3{,}600/15{,}000 = 0.24\\).\n\nProvided: \\((e + f_s)_{\\text{prov}} = 0.06 + 0.12 = 0.18\\).\n\nSince \\(0.24 > 0.18\\), the required superelevation-plus-friction exceeds what is available — the design is not adequate for 60 mph.",
       "subtopic": "Superelevation",
       "topic": "Transportation Engineering"
     },
@@ -1815,7 +1815,7 @@
       "explanation": "The fourth-power law is why overloaded trucks dominate pavement damage and why ESAL counts, not vehicle counts, drive pavement thickness design. Assuming damage is linear with weight drastically underestimates heavy-axle effects.",
       "id": "transportation-008",
       "question": "In flexible pavement design, the mixed traffic stream is converted to 18-kip equivalent single axle loads (ESALs) using load equivalency factors. These factors are based on which relationship between axle load and pavement damage?",
-      "solution": "The AASHTO load equivalency factors derive from the fourth-power law: the damage caused by an axle is proportional to (axle load / 18 kips)^4. Thus doubling an axle load causes roughly 16 times the pavement damage.",
+      "solution": "The AASHTO load equivalency factors convert mixed traffic to 18-kip equivalent single axle loads (ESALs) using the fourth-power law: the pavement damage caused by an axle is proportional to the fourth power of the ratio of its load to the 18-kip reference load, \\((\\text{axle load}/18\\ \\text{kips})^4\\).\n\nConsequences: doubling an axle load causes roughly \\(2^4 = 16\\) times the damage — which is why overloaded trucks dominate pavement deterioration and why ESAL counts, not vehicle counts, drive pavement thickness design. A linear damage assumption would drastically underestimate heavy-axle effects.\n\nThe factors are based on the fourth-power law relating axle load to pavement damage.",
       "subtopic": "Pavement design",
       "topic": "Transportation Engineering"
     },
@@ -1832,7 +1832,7 @@
       "explanation": "In a constant-diameter pipe the velocity heads cancel, so the pressure head rises by exactly the elevation drop (6 m). The classic sign error is subtracting the elevation difference instead of adding it, giving 91 kPa.",
       "id": "water-002",
       "question": "Water flows through a constant-diameter pipe. At point A the pressure is 150 kPa and the elevation is 20 m; at point B the elevation is 14 m. Neglecting head loss, what is the pressure at point B? (gamma = 9.81 kN/m^3)",
-      "solution": "Bernoulli: pA/gamma + VA^2/2g + zA = pB/gamma + VB^2/2g + zB. Same diameter means VA = VB, so velocity heads cancel. pA/gamma = 150/9.81 = 15.29 m. pB/gamma = 15.29 + 20 - 14 = 21.29 m. pB = 21.29 * 9.81 = 208.9 kPa, approximately 209 kPa.",
+      "solution": "Refer to the Bernoulli Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p_B\\). With head loss neglected:\n\n$$\\frac{p_A}{\\gamma} + \\frac{V_A^2}{2g} + z_A = \\frac{p_B}{\\gamma} + \\frac{V_B^2}{2g} + z_B$$\n\nThe constant diameter makes \\(V_A = V_B\\), so the velocity heads cancel. List the known and unknown parameters:\n\n$$\\begin{aligned}\np_A &= 150\\ \\text{kPa} \\\\\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nz_A &= 20\\ \\text{m} \\\\\nz_B &= 14\\ \\text{m} \\\\\np_B &= ?\n\\end{aligned}$$\n\n$$\\left(\\frac{p_B}{\\gamma}\\right) = \\frac{150}{9.81} + 20 - 14 \\rightarrow \\left(\\frac{p_B}{\\gamma}\\right) = 15.29 + 6 = 21.29\\ \\text{m}$$\n\n$$(p_B) = (21.29)(9.81) = 208.9\\ \\text{kPa} \\approx 209\\ \\text{kPa}$$",
       "subtopic": "Bernoulli equation",
       "topic": "Water Resources"
     },
@@ -1849,7 +1849,7 @@
       "explanation": "The wetted perimeter of a rectangular channel includes both side walls (P = b + 2y), not just one. Omitting a side wall inflates R and gives 2.69 m/s, and misreading n or the slope is another common slip.",
       "id": "water-003",
       "question": "A rectangular concrete channel is 3 m wide and carries water 1.2 m deep. The channel slope is 0.002 and Manning's n is 0.015. What is the flow velocity?",
-      "solution": "A = 3 * 1.2 = 3.6 m^2. P = 3 + 2*1.2 = 5.4 m. R = A/P = 0.6667 m. Manning's: V = (1/n) * R^(2/3) * S^(1/2) = (1/0.015) * (0.6667)^(2/3) * (0.002)^(1/2) = 66.667 * 0.7631 * 0.04472 = 2.275 m/s, approximately 2.28 m/s.",
+      "solution": "Refer to Manning's Equation in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\), the flow velocity:\n\n$$V = \\frac{1}{n}R^{2/3}S^{1/2} \\quad\\text{with}\\quad R = \\frac{A}{P}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nb &= 3\\ \\text{m} \\\\\ny &= 1.2\\ \\text{m} \\\\\nA &= (3)(1.2) = 3.6\\ \\text{m}^2 \\\\\nP &= 3 + 2(1.2) = 5.4\\ \\text{m} \\\\\nR &= \\frac{3.6}{5.4} = 0.6667\\ \\text{m} \\\\\nn &= 0.015 \\\\\nS &= 0.002 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = \\frac{1}{0.015}(0.6667)^{2/3}(0.002)^{1/2} = (66.667)(0.7631)(0.04472)$$\n\n$$(V) = 2.275\\ \\text{m/s} \\approx 2.28\\ \\text{m/s}$$",
       "subtopic": "Open channel flow",
       "topic": "Water Resources"
     },
@@ -1866,7 +1866,7 @@
       "explanation": "The rational method is trivial in formula but treacherous in units: intensity must be converted to m/s and area to m^2. Plugging in 75 and 2.5 directly gives the absurd 112.5 m^3/s.",
       "id": "water-004",
       "question": "A 2.5-hectare parking lot has a runoff coefficient of 0.6. If the design rainfall intensity is 75 mm/hr, what is the peak runoff rate by the rational method?",
-      "solution": "Q = C*i*A. Convert: i = 75 mm/hr = 0.075 m / 3600 s; A = 2.5 ha = 25,000 m^2. Q = 0.6 * (0.075/3600) * 25000 = 1125 / 3600 = 0.3125 m^3/s, approximately 0.313 m^3/s.",
+      "solution": "Refer to the Rational Method section in the Water Resources chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the peak runoff rate \\(Q\\):\n\n$$Q = CiA$$\n\nList the known and unknown parameters, converting to consistent SI units:\n\n$$\\begin{aligned}\nC &= 0.6 \\\\\ni &= 75\\ \\text{mm/hr} = \\frac{0.075}{3{,}600}\\ \\text{m/s} \\\\\nA &= 2.5\\ \\text{ha} = 25{,}000\\ \\text{m}^2 \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = CiA \\rightarrow (Q) = (0.6)\\left(\\frac{0.075}{3{,}600}\\right)(25{,}000)$$\n\n$$(Q) = \\frac{1{,}125}{3{,}600} = 0.3125 \\approx 0.313\\ \\text{m}^3/\\text{s}$$",
       "subtopic": "Rational method",
       "topic": "Water Resources"
     },
@@ -1883,7 +1883,7 @@
       "explanation": "Efficiency divides the water power because the motor must supply more than the water receives. Multiplying by efficiency instead (11.0 kW) or omitting it entirely (14.7 kW) are the standard traps.",
       "id": "water-005",
       "question": "A pump delivers 0.05 m^3/s of water against a total dynamic head of 30 m. If the pump efficiency is 75%, what input power is required? (gamma = 9.81 kN/m^3)",
-      "solution": "Water power = gamma*Q*H = 9.81 * 0.05 * 30 = 14.715 kW. Input (brake) power = water power / efficiency = 14.715 / 0.75 = 19.62 kW, approximately 19.6 kW.",
+      "solution": "Refer to the Pumps section in the Water Resources chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the input (brake) power. First compute the water power:\n\n$$P_{water} = \\gamma Q H$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nQ &= 0.05\\ \\text{m}^3\\text{/s} \\\\\nH &= 30\\ \\text{m} \\\\\n\\eta &= 0.75 \\\\\nP_{input} &= ?\n\\end{aligned}$$\n\n$$(P_{water}) = (9.81)(0.05)(30) = 14.715\\ \\text{kW}$$\n\nThe motor must supply more than the water receives, so efficiency divides:\n\n$$(P_{input}) = \\frac{14.715}{0.75}$$\n\n$$(P_{input}) = 19.62 = 19.6\\ \\text{kW}$$",
       "subtopic": "Pump power",
       "topic": "Water Resources"
     },
@@ -1900,7 +1900,7 @@
       "explanation": "Memorize the head exponents: rectangular weir 3/2, triangular weir 5/2, orifice 1/2. The exam loves swapping these among the answer choices.",
       "id": "water-006",
       "question": "For a sharp-crested rectangular weir, how does the discharge Q vary with the head H measured above the weir crest?",
-      "solution": "The rectangular weir equation is Q = C*L*H^(3/2); discharge scales with head to the 3/2 power. A triangular (V-notch) weir instead gives H^(5/2), and an orifice gives H^(1/2).",
+      "solution": "Refer to the Open-Channel Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nThe sharp-crested rectangular weir equation is \\(Q = CLH^{3/2}\\): discharge scales with head to the 3/2 power. The other exponents belong to other devices — a triangular (V-notch) weir gives \\(H^{5/2}\\) and an orifice gives \\(H^{1/2}\\) — which is exactly how the exam builds its distractors.\n\n\\(Q\\) is proportional to \\(H^{3/2}\\) is the correct choice.",
       "subtopic": "Weir flow",
       "topic": "Water Resources"
     },
@@ -1917,7 +1917,7 @@
       "explanation": "The velocity head term is V^2/(2g); forgetting the 2 in the denominator doubles the answer to 9.94 ft, and forgetting the friction factor entirely gives the absurd 248 ft.",
       "id": "water-007",
       "question": "Water flows at 4 ft/s through a 1,000-ft-long pipe with a diameter of 1 ft. If the Darcy friction factor is 0.02, what is the head loss due to friction? (g = 32.2 ft/s^2)",
-      "solution": "Darcy-Weisbach: hL = f*(L/D)*(V^2/2g) = 0.02 * (1000/1) * (4^2/(2*32.2)) = 20 * (16/64.4) = 20 * 0.24845 = 4.969 ft, approximately 4.97 ft.",
+      "solution": "Refer to the Consequences of Fluid Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the Darcy\\u2013Weisbach equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 1000\\ \\text{ft} \\\\\nD &= 1\\ \\text{ft} \\\\\nV &= 4\\ \\text{ft/s} \\\\\ng &= 32.2\\ \\text{ft/s}^2 \\\\\nf &= 0.02 \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.02)\\frac{1000}{1}\\frac{(4)^2}{2(32.2)}$$\n\n$$(h_f) = (20)(0.24845) = 4.97\\ \\text{ft}$$",
       "subtopic": "Head loss",
       "topic": "Water Resources"
     },
@@ -1934,7 +1934,7 @@
       "explanation": "Linearity (proportionality) is the core assumption of the unit hydrograph. It only applies when the storm duration equals the unit hydrograph duration; otherwise an S-hydrograph conversion is needed first.",
       "id": "water-008",
       "question": "The 1-hour unit hydrograph for a watershed has a peak discharge of 50 m^3/s for 1 cm of excess rainfall. Assuming linear watershed response, what is the peak discharge of the direct runoff hydrograph produced by 2 cm of excess rainfall in 1 hour?",
-      "solution": "Unit hydrograph theory assumes linearity: doubling the excess rainfall depth doubles every ordinate of the hydrograph. Peak = 2 * 50 = 100 m^3/s. (The duration must also match: both are 1-hour storms.)",
+      "solution": "Refer to the Unit Hydrograph section in the Water Resources chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the peak of the direct runoff hydrograph. Unit hydrograph theory assumes a linear watershed response: scaling the excess rainfall depth scales every hydrograph ordinate by the same factor.\n\n$$\\frac{Q_{\\text{peak, new}}}{Q_{\\text{peak, unit}}} = \\frac{P_{\\text{new}}}{P_{\\text{unit}}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ_{\\text{peak, unit}} &= 50\\ \\text{m}^3/\\text{s (1 cm excess)} \\\\\nP_{\\text{new}} &= 2\\ \\text{cm (same 1-hour duration)} \\\\\nQ_{\\text{peak, new}} &= ?\n\\end{aligned}$$\n\n$$(Q_{\\text{peak, new}}) = 2 \\times 50 = 100\\ \\text{m}^3/\\text{s}$$",
       "subtopic": "Unit hydrograph",
       "topic": "Water Resources"
     },
@@ -1951,7 +1951,7 @@
       "explanation": "The forward pass takes the maximum of predecessor early finishes, which identifies the critical path. Taking the shorter path (day 9) is the classic error; the critical path is always the longest-duration path.",
       "id": "construction-002",
       "question": "A small project has these activities: A (3 days) precedes B (4 days) and C (5 days); both B and C precede D (2 days). What is the early finish time of activity D?",
-      "solution": "Forward pass: Path A-B-D = 3 + 4 + 2 = 9 days. Path A-C-D = 3 + 5 + 2 = 10 days. The early finish is governed by the longest path: EF of D = day 10.",
+      "solution": "Refer to the Critical Path Method section in the Construction Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the early finish of activity D. Run the forward pass along each path:\n\n$$\\begin{aligned}\n\\text{Path A-B-D} &= 3 + 4 + 2 = 9\\ \\text{days} \\\\\n\\text{Path A-C-D} &= 3 + 5 + 2 = 10\\ \\text{days}\n\\end{aligned}$$\n\nThe early finish is governed by the longest (critical) path:\n\n$$EF_D = \\max(9, 10) = \\text{Day } 10$$",
       "subtopic": "CPM scheduling",
       "topic": "Construction Engineering"
     },
@@ -1968,7 +1968,7 @@
       "explanation": "Swell applies to bank-to-loose (trucking) conversions; shrinkage applies to bank-to-compacted (fill) conversions. Applying the swell factor to a fill question gives 1,125 CCY, a very common mistake.",
       "id": "construction-003",
       "question": "An excavation measures 1,000 bank cubic yards (BCY). The soil has a swell factor of 25% and a shrinkage factor of 10%. How many compacted cubic yards (CCY) of fill will this excavation produce?",
-      "solution": "Bank to compacted uses only the shrinkage factor: CCY = BCY * (1 - shrinkage) = 1000 * (1 - 0.10) = 900 CCY. (The 25% swell gives loose yards: 1000 * 1.25 = 1,250 LCY, which governs hauling, not the compacted fill.)",
+      "solution": "Refer to the Earthwork section in the Construction Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the compacted volume. A bank-to-compacted conversion uses only the shrinkage factor — swell governs the loose (trucking) volume, not the fill:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nBCY &= 1{,}000 \\\\\n\\text{shrinkage} &= 10\\% = 0.10 \\\\\nCCY &= ?\n\\end{aligned}$$\n\n$$(CCY) = (1{,}000)(1 - 0.10) \\rightarrow (CCY) = (1{,}000)(0.90)$$\n\n$$(CCY) = 900\\ \\text{CCY}$$\n\n(The 25% swell gives \\(1{,}000 \\times 1.25 = 1{,}250\\) LCY — the loose volume that governs hauling, not the compacted fill.)",
       "subtopic": "Earthwork",
       "topic": "Construction Engineering"
     },
@@ -1985,7 +1985,7 @@
       "explanation": "Production problems chain three adjustments: cycle rate, efficiency factor (50-min hour), and swell. Omitting swell gives 200 BCY/hr; omitting the efficiency factor gives 240 BCY/hr.",
       "id": "construction-004",
       "question": "An excavator has a 2-CY bucket, a 30-second cycle time, and works a 50-minute hour. The soil swells 20%. What is the hourly production rate in bank cubic yards per hour?",
-      "solution": "Cycles per hour = 3600/30 = 120. Loose production = 120 * 2 CY * (50/60) = 200 LCY/hr. Convert to bank: BCY/hr = 200 / 1.20 = 166.7, approximately 167 BCY/hr.",
+      "solution": "Refer to the Equipment Production section in the Construction Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the hourly production in bank cubic yards. Chain the three adjustments \\u2014 cycle rate, efficiency, swell:\n\n$$\\text{Production} = \\frac{3600}{\\text{cycle time}} \\times \\text{bucket} \\times \\text{efficiency} \\div (1 + \\text{swell})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{bucket} &= 2\\ \\text{CY} \\\\\n\\text{cycle time} &= 30\\ \\text{s} \\\\\n\\text{efficiency} &= \\frac{50}{60} \\\\\n\\text{swell} &= 20\\% = 0.20 \\\\\n\\text{production} &= ?\\ \\text{BCY/hr}\n\\end{aligned}$$\n\n$$(\\text{cycles/hr}) = \\frac{3600}{30} = 120$$\n\n$$(\\text{loose}) = (120)(2)\\left(\\frac{50}{60}\\right) = 200\\ \\text{LCY/hr}$$\n\n$$(\\text{bank}) = \\frac{200}{1.20} = 166.7\\ \\text{BCY/hr} \\approx 167\\ \\text{BCY/hr}$$",
       "subtopic": "Equipment production",
       "topic": "Construction Engineering"
     },
@@ -2002,7 +2002,7 @@
       "explanation": "Two conversion steps trip people up: inches to feet for thickness, and cubic feet to cubic yards (divide by 27). Forgetting the waste factor gives 18.5 CY; forgetting the ft^3-to-CY conversion gives 500.",
       "id": "construction-005",
       "question": "How many cubic yards of concrete should be ordered for a 40 ft by 25 ft slab that is 6 in. thick, allowing 5% for waste?",
-      "solution": "Volume = 40 * 25 * 0.5 ft = 500 ft^3. Convert: 500 / 27 = 18.52 CY. Add 5% waste: 18.52 * 1.05 = 19.44 CY, approximately 19.4 CY to order.",
+      "solution": "Refer to the Quantity Takeoff section in the Construction chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the cubic yards of concrete to order, including the waste allowance.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{length} &= 40\\ \\text{ft} \\\\\n\\text{width} &= 25\\ \\text{ft} \\\\\n\\text{thickness} &= 6\\ \\text{in} = 0.5\\ \\text{ft} \\\\\n\\text{waste} &= 5\\% \\\\\nV_{\\text{order}} &= ?\n\\end{aligned}$$\n\nTheoretical volume: \\((V) = (40)(25)(0.5) = 500\\ \\text{ft}^3\\). Convert to cubic yards (\\(27\\ \\text{ft}^3 = 1\\ \\text{CY}\\)):\n\n$$(V) = \\frac{500}{27} = 18.52\\ \\text{CY}$$\n\nAdd the 5% waste allowance:\n\n$$(V_{\\text{order}}) = (18.52)(1.05) = 19.44 \\approx 19.4\\ \\text{CY}$$",
       "subtopic": "Quantity takeoff",
       "topic": "Construction Engineering"
     },
@@ -2019,7 +2019,7 @@
       "explanation": "Estimate classes form a sequence of increasing accuracy: order-of-magnitude, budget, definitive, and bid/control. The exam tests whether you know that the earliest estimate is the least accurate.",
       "id": "construction-006",
       "question": "Which type of construction cost estimate is prepared earliest in a project, uses the least project definition, and has the lowest expected accuracy?",
-      "solution": "The order-of-magnitude (conceptual) estimate is made at project inception with minimal definition, typically accurate to only about +/-30 to 50%. Accuracy improves through the budget, definitive, and bid estimate stages.",
+      "solution": "The order-of-magnitude (conceptual) estimate is prepared earliest in a project, when project definition is minimal — typically at inception or feasibility. With the least definition comes the lowest expected accuracy, roughly ±30 to 50\\%.\n\nAccuracy improves through the later estimate classes in sequence: budget, definitive, and finally bid (control) estimates. Because the question asks for the earliest estimate with the least definition and lowest accuracy, the answer is the order-of-magnitude (conceptual) estimate.",
       "subtopic": "Cost estimation",
       "topic": "Construction Engineering"
     },
@@ -2036,7 +2036,7 @@
       "explanation": "Weaker soil needs a flatter slope: the H:V ratio increases as soil quality decreases (A < B < C). Reversing this ordering is the standard trap.",
       "id": "construction-007",
       "question": "For an excavation less than 20 ft deep in Type C soil, what is the maximum allowable slope under OSHA standards?",
-      "solution": "OSHA maximum allowable slopes: Type A soil 3/4H:1V, Type B soil 1H:1V, Type C soil 1-1/2H:1V. Type C is the weakest soil, so it requires the flattest slope.",
+      "solution": "OSHA's maximum allowable excavation slopes get flatter as soil weakens: Type A soil 3/4H:1V, Type B soil 1H:1V, and Type C soil — the weakest — 1-1/2H:1V for excavations less than 20 ft deep.\n\nReversing the A < B < C ordering is the standard trap.\n\n1-1/2H:1V is the correct choice.",
       "subtopic": "Safety (OSHA)",
       "topic": "Construction Engineering"
     },
@@ -2053,7 +2053,7 @@
       "explanation": "Risk allocation is the heart of contract-type questions: lump sum shifts quantity and price risk to the contractor, while unit price keeps quantity risk with the owner. Design-build is a delivery method, not a payment-risk distinction.",
       "id": "construction-008",
       "question": "Under which contract type does the owner bear the risk of quantity overruns, because the contractor is paid for each measured unit of work actually performed?",
-      "solution": "In a unit price contract, the owner pays per measured unit, so if quantities exceed the estimate the owner pays more; quantity risk stays with the owner. In a lump sum contract the contractor absorbs quantity risk (price risk shifts to the contractor).",
+      "solution": "The governing principle is risk allocation: in a unit price contract, the owner pays the contractor for each measured unit of work actually performed.\n\nApplied to the facts: if quantities overrun the estimate, the owner pays for the extra units \\u2014 so the risk of quantity overruns stays with the owner.\n\nBy contrast, a lump sum contract shifts quantity and price risk to the contractor, and design-build is a delivery method, not a payment-risk distinction.\n\nTherefore, the owner bears quantity-overrun risk under a unit price contract.",
       "subtopic": "Contracts and bidding",
       "topic": "Construction Engineering"
     }
