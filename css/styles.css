@@ -263,6 +263,13 @@ details.card summary + div { margin-top: 16px; }
 .fc-a { font-size: 1.15rem; font-weight: 700; color: #1d6b3c; line-height: 1.5; }
 .fc-sol { margin-top: 14px; font-size: 1rem; line-height: 1.6; border-top: 1px solid #e4ddcc; padding-top: 12px; }
 .fc-nav { display: flex; gap: 10px; justify-content: center; margin: 18px 0 8px; }
+.fc-rate { margin-top: 18px; border-top: 1px solid #e4ddcc; padding-top: 14px; }
+.fc-rate-label { font-size: .9rem; color: #8a8272; margin: 0 0 10px; }
+.fc-rate-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn.know { border-color: var(--success); color: var(--success); }
+.btn.learning { border-color: var(--warning); color: var(--warning); }
+.btn.know.active { background: var(--success); border-color: var(--success); color: #fff; }
+.btn.learning.active { background: var(--warning); border-color: var(--warning); color: #fff; }
 @media (max-width: 560px) {
   .fc-face { padding: 20px 18px; }
   .fc-q { font-size: 1.05rem; }

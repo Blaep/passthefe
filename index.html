@@ -122,7 +122,7 @@
 
     <section id="view-flashcards" class="view hidden">
       <h2>Flashcards</h2>
-      <p class="lede">Conceptual questions from the bank, distilled to front-and-back cards. Tap a card to flip it.</p>
+      <p class="lede">Tap a card to flip it, then rate yourself — your progress is saved in this browser.</p>
       <div class="fc-controls">
         <select id="fc-topic" aria-label="Filter by topic"></select>
         <button class="btn" id="fc-shuffle">Shuffle</button>
@@ -140,6 +140,13 @@
             <p class="fc-answer-label">Answer</p>
             <div class="fc-a" id="fc-answer"></div>
             <div class="fc-sol" id="fc-solution"></div>
+            <div class="fc-rate">
+              <p class="fc-rate-label">Did you know it?</p>
+              <div class="fc-rate-btns">
+                <button class="btn know" id="fc-know">✓ I knew it</button>
+                <button class="btn learning" id="fc-learning">✗ Still learning</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

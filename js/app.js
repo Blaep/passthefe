@@ -713,6 +713,7 @@
 
   // ---- flashcards ----------------------------------------------------------
   var fcDeck = [], fcIndex = 0, fcTopic = "";
+  var fcRatings = store.get("fcRatings", {}); // question id -> "know" | "learning"
 
   function initFlashcards() {
     loadQuestions(function (qs) {
@@ -745,6 +746,12 @@
         });
         document.getElementById("fc-flip").addEventListener("click", function (e) {
           e.stopPropagation(); card.classList.toggle("flipped");
+        });
+        document.getElementById("fc-know").addEventListener("click", function (e) {
+          e.stopPropagation(); fcRate("know");
+        });
+        document.getElementById("fc-learning").addEventListener("click", function (e) {
+          e.stopPropagation(); fcRate("learning");
         });
         document.getElementById("fc-prev").addEventListener("click", function () { fcStep(-1); });
         document.getElementById("fc-next").addEventListener("click", function () { fcStep(1); });
@@ -785,12 +792,33 @@
     renderFcCard();
   }
 
+  function fcSaveRatings() { store.set("fcRatings", fcRatings); }
+
+  function fcKnownCount() {
+    return fcDeck.filter(function (q) { return fcRatings[q.id] === "know"; }).length;
+  }
+
+  function fcUpdateMeter() {
+    var n = fcDeck.length, k = fcKnownCount();
+    var pct = n ? Math.round((k / n) * 100) : 0;
+    document.getElementById("fc-fill").style.width = pct + "%";
+    document.getElementById("fc-count").textContent =
+      (n ? "Card " + (fcIndex + 1) + " of " + n + (fcTopic ? " · " + fcTopic : "") + " · " : "") +
+      pct + "% known (" + k + "/" + n + ")";
+  }
+
+  function fcRate(rating) {
+    if (!fcDeck.length) return;
+    fcRatings[fcDeck[fcIndex].id] = rating;
+    fcSaveRatings();
+    fcStep(1); // record and move on
+  }
+
   function renderFcCard() {
     var card = document.getElementById("fc-card");
     card.classList.remove("flipped");
     if (!fcDeck.length) {
-      document.getElementById("fc-count").textContent = "No cards in this topic.";
-      document.getElementById("fc-fill").style.width = "0%";
+      fcUpdateMeter();
       document.getElementById("fc-question").textContent = "";
       document.getElementById("fc-diagram").innerHTML = "";
       document.getElementById("fc-topic-chip").textContent = "";
@@ -799,10 +827,10 @@
       return;
     }
     var q = fcDeck[fcIndex];
-    document.getElementById("fc-count").textContent =
-      "Card " + (fcIndex + 1) + " of " + fcDeck.length + (fcTopic ? " · " + fcTopic : "");
-    document.getElementById("fc-fill").style.width =
-      (fcDeck.length ? Math.round(((fcIndex + 1) / fcDeck.length) * 100) : 0) + "%";
+    fcUpdateMeter();
+    var rated = fcRatings[q.id];
+    document.getElementById("fc-know").classList.toggle("active", rated === "know");
+    document.getElementById("fc-learning").classList.toggle("active", rated === "learning");
     document.getElementById("fc-topic-chip").textContent = q.topic;
     document.getElementById("fc-question").innerHTML = renderRich(q.question);
     document.getElementById("fc-diagram").innerHTML = diagramHtml(q);
