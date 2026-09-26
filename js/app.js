@@ -452,6 +452,26 @@
     return out;
   }
 
+  // Mastery = accuracy × confidence (confidence fills at ~10 attempts per topic).
+  function masteryLevel(m, n) {
+    if (!n) return "Not started";
+    if (m >= 85) return "Mastered";
+    if (m >= 70) return "Proficient";
+    if (m >= 40) return "Building";
+    return "Learning";
+  }
+
+  function topicMastery() {
+    var attempts = store.get("attempts", []);
+    return TOPICS.map(function (t) {
+      var ts = attempts.filter(function (a) { return a.topic === t; });
+      var n = ts.length;
+      var pct = n ? Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n) : 0;
+      var mastery = n ? Math.round(pct * Math.min(1, n / 10)) : 0;
+      return { topic: t, n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
+    });
+  }
+
   function findQuestion(id) {
     for (var i = 0; i < QUESTIONS.length; i++) {
       if (QUESTIONS[i].id === id) return QUESTIONS[i];
@@ -558,21 +578,22 @@
         " Question" + (missedIds.length === 1 ? "" : "s") + "</button>";
       html += '<div id="study-list" class="hidden"></div>';
 
-      // 4. All category scores (expandable)
-      var all = topicStats(1).sort(function (a, b) { return b.pct - a.pct; });
-      html += '<details class="card"><summary>All Category Scores</summary><div>';
-      if (!all.length) {
-        html += '<p class="muted">No topic data yet.</p>';
-      } else {
-        all.forEach(function (s) {
-          html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(s.topic) +
-            " <small>(" + s.n + ")</small></span>" +
-            '<span class="bar"><span class="fill ' + scoreClass(s.pct) +
-            '" style="width:' + s.pct + '%"></span></span>' +
-            '<span class="topic-pct">' + s.pct + "%</span></div>";
-        });
-      }
-      html += "</div></details>";
+      // 4. Topic mastery — one meter per topic, all 15 in curriculum order
+      var mastery = topicMastery();
+      var overall = Math.round(mastery.reduce(function (a, m) { return a + m.mastery; }, 0) / mastery.length);
+      html += '<div class="card"><h3>Topic Mastery</h3>';
+      html += '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Overall mastery ' + overall +
+        "% — meters fill with accuracy and practice (about 10 answered questions per topic for full confidence).</p>";
+      mastery.forEach(function (m) {
+        var cls = m.n ? scoreClass(m.mastery) : "";
+        var sub = m.n ? m.n + " · " + m.pct + "%" : "0";
+        html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(m.topic) +
+          " <small>(" + sub + ")</small></span>" +
+          '<span class="bar"><span class="fill ' + cls +
+          '" style="width:' + m.mastery + '%"></span></span>' +
+          '<span class="mastery-level ' + cls + '">' + m.level + "</span></div>";
+      });
+      html += "</div>";
 
       // 5. Best categories / categories to focus on
       var ranked = topicStats(3);

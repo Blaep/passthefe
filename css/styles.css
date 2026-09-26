@@ -145,11 +145,16 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .bar { flex: 1; height: 10px; background: #eef0f6; border-radius: 5px; overflow: hidden; }
 .bar .fill { display: block; height: 100%; background: var(--primary); border-radius: 5px; }
 .topic-pct { flex: 0 0 48px; text-align: right; font-weight: 700; }
+.mastery-level { flex: 0 0 92px; text-align: right; font-weight: 700; font-size: 0.8rem; color: var(--text-2); }
+.mastery-level.good { color: var(--success); }
+.mastery-level.mid { color: var(--warning); }
+.mastery-level.bad { color: var(--error); }
 
 @media (max-width: 640px) {
   h1 { font-size: 1.8rem; }
   .site-header nav a { margin-left: 12px; font-size: 0.9rem; }
   .topic-name { flex-basis: 140px; font-size: 0.85rem; }
+  .mastery-level { flex-basis: 76px; font-size: 0.72rem; }
 }
 
 .form-row input[type="search"] {
