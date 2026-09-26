@@ -740,7 +740,10 @@
           shuffleFc(deck); fcIndex = 0; renderFcCard();
         });
         var card = document.getElementById("fc-card");
-        card.addEventListener("click", function () { card.classList.toggle("flipped"); });
+        card.addEventListener("click", function () {
+          if (suppressFcClick) { suppressFcClick = false; return; }
+          card.classList.toggle("flipped");
+        });
         card.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") { e.preventDefault(); card.classList.toggle("flipped"); }
         });
@@ -753,6 +756,27 @@
         document.getElementById("fc-learning").addEventListener("click", function (e) {
           e.stopPropagation(); fcRate("learning");
         });
+        // ---- Tinder-style swipe rating (flipped card only) ----
+        var SWIPE_THRESHOLD = 90;
+        card.addEventListener("pointerdown", function (e) {
+          if (!card.classList.contains("flipped") || !fcDeck.length) return;
+          fcDragStartX = e.clientX;
+        });
+        card.addEventListener("pointermove", function (e) {
+          if (fcDragStartX === null) return;
+          var dx = e.clientX - fcDragStartX;
+          if (!draggingFc && Math.abs(dx) < 12) return;
+          if (!draggingFc) { draggingFc = true; card.classList.add("dragging"); }
+          fcDragX = dx;
+          card.style.transform =
+            "rotateY(180deg) translateX(" + dx + "px) rotate(" + (dx * 0.06) + "deg)";
+          document.getElementById("fc-stamp-know").style.opacity =
+            Math.min(1, Math.max(0, dx / SWIPE_THRESHOLD));
+          document.getElementById("fc-stamp-learning").style.opacity =
+            Math.min(1, Math.max(0, -dx / SWIPE_THRESHOLD));
+        });
+        card.addEventListener("pointerup", fcEndDrag);
+        card.addEventListener("pointercancel", fcEndDrag);
         document.getElementById("fc-prev").addEventListener("click", function () { fcStep(-1); });
         document.getElementById("fc-next").addEventListener("click", function () { fcStep(1); });
         document.addEventListener("keydown", function (e) {
@@ -814,9 +838,48 @@
     fcStep(1); // record and move on
   }
 
+  // swipe-rating drag state + handlers
+  var fcDragStartX = null, fcDragX = 0, draggingFc = false, suppressFcClick = false;
+
+  function fcResetStamps() {
+    document.getElementById("fc-stamp-know").style.opacity = "0";
+    document.getElementById("fc-stamp-learning").style.opacity = "0";
+  }
+
+  function fcEndDrag() {
+    if (fcDragStartX === null) return;
+    var wasDragging = draggingFc;
+    fcDragStartX = null; draggingFc = false;
+    card0().classList.remove("dragging");
+    if (!wasDragging) return;
+    suppressFcClick = true; // a drag is not a tap-to-flip
+    var c = card0();
+    if (fcDragX > 90) fcFlyOff(c, 1, "know");
+    else if (fcDragX < -90) fcFlyOff(c, -1, "learning");
+    else { c.style.transform = ""; fcResetStamps(); }
+  }
+
+  function card0() { return document.getElementById("fc-card"); }
+
+  function fcFlyOff(c, dir, rating) {
+    c.style.transition = "transform .25s ease-in, opacity .25s ease-in";
+    c.style.transform =
+      "rotateY(180deg) translateX(" + (dir * 600) + "px) rotate(" + (dir * 25) + "deg)";
+    c.style.opacity = "0";
+    setTimeout(function () {
+      c.style.transition = ""; c.style.transform = ""; c.style.opacity = "";
+      fcResetStamps();
+      fcRate(rating);
+    }, 260);
+  }
+
   function renderFcCard() {
     var card = document.getElementById("fc-card");
     card.classList.remove("flipped");
+    card.style.transform = ""; card.style.transition = ""; card.style.opacity = "";
+    card.classList.remove("dragging");
+    fcDragStartX = null; draggingFc = false; suppressFcClick = false;
+    fcResetStamps();
     if (!fcDeck.length) {
       fcUpdateMeter();
       document.getElementById("fc-question").textContent = "";

@@ -270,6 +270,11 @@ details.card summary + div { margin-top: 16px; }
 .btn.learning { border-color: var(--warning); color: var(--warning); }
 .btn.know.active { background: var(--success); border-color: var(--success); color: #fff; }
 .btn.learning.active { background: var(--warning); border-color: var(--warning); color: #fff; }
+.fc-card.flipped { touch-action: pan-y; }
+.fc-card.dragging { transition: none; cursor: grabbing; }
+.fc-stamp { position: absolute; top: 18px; padding: 6px 14px; border: 3px solid; border-radius: 8px; font-weight: 800; font-size: 1.25rem; letter-spacing: .06em; opacity: 0; pointer-events: none; z-index: 5; background: rgba(255,253,248,.85); }
+.stamp-know { right: 16px; color: var(--success); border-color: var(--success); transform: rotate(12deg); }
+.stamp-learning { left: 16px; color: var(--warning); border-color: var(--warning); transform: rotate(-12deg); }
 @media (max-width: 560px) {
   .fc-face { padding: 20px 18px; }
   .fc-q { font-size: 1.05rem; }

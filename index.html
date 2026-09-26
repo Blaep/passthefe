@@ -122,7 +122,7 @@
 
     <section id="view-flashcards" class="view hidden">
       <h2>Flashcards</h2>
-      <p class="lede">Tap a card to flip it, then rate yourself — your progress is saved in this browser.</p>
+      <p class="lede">Tap a card to flip it, then swipe right if you knew it or left if you're still learning — or use the buttons. Your progress is saved in this browser.</p>
       <div class="fc-controls">
         <select id="fc-topic" aria-label="Filter by topic"></select>
         <button class="btn" id="fc-shuffle">Shuffle</button>
@@ -137,6 +137,8 @@
             <p class="fc-hint">Tap to reveal the answer</p>
           </div>
           <div class="fc-face fc-back">
+            <div class="fc-stamp stamp-know" id="fc-stamp-know">KNOW</div>
+            <div class="fc-stamp stamp-learning" id="fc-stamp-learning">STILL LEARNING</div>
             <p class="fc-answer-label">Answer</p>
             <div class="fc-a" id="fc-answer"></div>
             <div class="fc-sol" id="fc-solution"></div>
