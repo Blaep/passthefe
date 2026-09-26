@@ -777,6 +777,23 @@
         });
         card.addEventListener("pointerup", fcEndDrag);
         card.addEventListener("pointercancel", fcEndDrag);
+        // Stop iOS Safari from hijacking horizontal swipes (back-nav gesture /
+        // page sway): claim the gesture as soon as horizontal intent is clear.
+        // Vertical scrolling is untouched.
+        var tcStartX = null, tcStartY = null;
+        card.addEventListener("touchstart", function (e) {
+          if (!card.classList.contains("flipped") || !fcDeck.length) return;
+          var t = e.touches[0];
+          tcStartX = t.clientX; tcStartY = t.clientY;
+        }, { passive: true });
+        card.addEventListener("touchmove", function (e) {
+          if (tcStartX === null) return;
+          var t = e.touches[0];
+          var dx = t.clientX - tcStartX, dy = t.clientY - tcStartY;
+          if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+        }, { passive: false });
+        card.addEventListener("touchend", function () { tcStartX = null; });
+        card.addEventListener("touchcancel", function () { tcStartX = null; });
         document.getElementById("fc-prev").addEventListener("click", function () { fcStep(-1); });
         document.getElementById("fc-next").addEventListener("click", function () { fcStep(1); });
         document.addEventListener("keydown", function (e) {
