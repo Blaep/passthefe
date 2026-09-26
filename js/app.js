@@ -938,4 +938,42 @@
 
   window.addEventListener("hashchange", route);
   document.addEventListener("DOMContentLoaded", route);
+
+  // ---- PWA install prompt ----
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+  (function initPwaInstall() {
+    var banner = document.getElementById("pwa-install-banner");
+    if (!banner) return;
+    var isStandalone = window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true;
+    if (isStandalone) return; // already installed
+    var dismissedAt = 0;
+    try { dismissedAt = parseInt(localStorage.getItem("pwaInstallDismissed") || "0", 10); } catch (e) {}
+    if (Date.now() - dismissedAt < 14 * 864e5) return; // don't nag more than every 2 weeks
+    var deferredPrompt = null;
+    function dismiss() {
+      banner.classList.add("hidden");
+      try { localStorage.setItem("pwaInstallDismissed", String(Date.now())); } catch (e) {}
+    }
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      setTimeout(function () { banner.classList.remove("hidden"); }, 2500);
+    });
+    document.getElementById("pwa-install-btn").addEventListener("click", function () {
+      banner.classList.add("hidden");
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function () {
+        try { localStorage.setItem("pwaInstallDismissed", String(Date.now())); } catch (e) {}
+        deferredPrompt = null;
+      }).catch(function () {});
+    });
+    document.getElementById("pwa-install-dismiss").addEventListener("click", dismiss);
+    window.addEventListener("appinstalled", function () { banner.classList.add("hidden"); });
+  })();
 })();
