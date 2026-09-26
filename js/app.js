@@ -790,6 +790,7 @@
     card.classList.remove("flipped");
     if (!fcDeck.length) {
       document.getElementById("fc-count").textContent = "No cards in this topic.";
+      document.getElementById("fc-fill").style.width = "0%";
       document.getElementById("fc-question").textContent = "";
       document.getElementById("fc-diagram").innerHTML = "";
       document.getElementById("fc-topic-chip").textContent = "";
@@ -800,6 +801,8 @@
     var q = fcDeck[fcIndex];
     document.getElementById("fc-count").textContent =
       "Card " + (fcIndex + 1) + " of " + fcDeck.length + (fcTopic ? " · " + fcTopic : "");
+    document.getElementById("fc-fill").style.width =
+      (fcDeck.length ? Math.round(((fcIndex + 1) / fcDeck.length) * 100) : 0) + "%";
     document.getElementById("fc-topic-chip").textContent = q.topic;
     document.getElementById("fc-question").innerHTML = renderRich(q.question);
     document.getElementById("fc-diagram").innerHTML = diagramHtml(q);
