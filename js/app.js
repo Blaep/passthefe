@@ -954,17 +954,30 @@
     var dismissedAt = 0;
     try { dismissedAt = parseInt(localStorage.getItem("pwaInstallDismissed") || "0", 10); } catch (e) {}
     if (Date.now() - dismissedAt < 14 * 864e5) return; // don't nag more than every 2 weeks
-    var deferredPrompt = null;
+    var isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var installBtn = document.getElementById("pwa-install-btn");
     function dismiss() {
       banner.classList.add("hidden");
       try { localStorage.setItem("pwaInstallDismissed", String(Date.now())); } catch (e) {}
     }
+    document.getElementById("pwa-install-dismiss").addEventListener("click", dismiss);
+    window.addEventListener("appinstalled", function () { banner.classList.add("hidden"); });
+    if (isIos) {
+      // iOS Safari has no install prompt: show manual Add to Home Screen instructions
+      installBtn.style.display = "none";
+      banner.querySelector(".pwa-banner-text span").textContent =
+        "Tap Share, then \u201cAdd to Home Screen\u201d to install.";
+      setTimeout(function () { banner.classList.remove("hidden"); }, 2500);
+      return;
+    }
+    var deferredPrompt = null;
     window.addEventListener("beforeinstallprompt", function (e) {
       e.preventDefault();
       deferredPrompt = e;
       setTimeout(function () { banner.classList.remove("hidden"); }, 2500);
     });
-    document.getElementById("pwa-install-btn").addEventListener("click", function () {
+    installBtn.addEventListener("click", function () {
       banner.classList.add("hidden");
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
@@ -973,7 +986,5 @@
         deferredPrompt = null;
       }).catch(function () {});
     });
-    document.getElementById("pwa-install-dismiss").addEventListener("click", dismiss);
-    window.addEventListener("appinstalled", function () { banner.classList.add("hidden"); });
   })();
 })();
