@@ -114,6 +114,16 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .explain-head { font-weight: 800; font-size: 1.05rem; margin: 14px 0 4px; }
 .explain-body p { margin: 0 0 10px; }
 .explain-body p:last-child { margin-bottom: 0; }
+.video-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 12px; padding: 7px 14px;
+  border: 1px solid #e2e5ee; border-radius: 999px;
+  background: var(--bg-soft);
+  font-size: 0.85rem; font-weight: 600; color: var(--primary);
+  text-decoration: none;
+}
+.video-link:hover { border-color: var(--primary); }
+.video-play { font-size: 0.72rem; }
 .math-display { margin: 16px 0; overflow-x: auto; overflow-y: hidden; }
 .math-display.left > .katex-display { text-align: left; }
 .solution code, .study-item code {
