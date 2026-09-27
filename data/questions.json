@@ -386,7 +386,7 @@
    "estimatedTimeSeconds": 120,
    "explanation": "Partial derivatives underpin multivariable optimization and sensitivity analysis. The typical slip is accidentally differentiating with respect to the wrong variable or forgetting to treat the other variable as a constant.",
    "id": "math-005",
-   "question": "For the function f(x, y) = x^2*y + 3*x*y^2, what is the partial derivative of f with respect to x, evaluated at the point (2, 1)?",
+   "question": "For the function \\(f(x, y) = x^2y + 3xy^2\\), what is the partial derivative of \\(f\\) with respect to \\(x\\), evaluated at the point \\((2, 1)\\)?",
    "solution": "Refer to the The Partial Derivative section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\frac{\\partial f}{\\partial x}\\) at the point \\((2, 1)\\). Differentiate term by term, treating \\(y\\) as a constant:\n\n$$\\frac{\\partial f}{\\partial x} = 2xy + 3y^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nx &= 2 \\\\\ny &= 1 \\\\\n\\frac{\\partial f}{\\partial x} &= ?\n\\end{aligned}$$\n\n$$\\left(\\frac{\\partial f}{\\partial x}\\right) = 2(2)(1) + 3(1)^2 \\rightarrow \\left(\\frac{\\partial f}{\\partial x}\\right) = 4 + 3$$\n\n$$\\frac{\\partial f}{\\partial x} = 7$$",
    "subtopic": "Partial derivatives",
    "topic": "Mathematics",
@@ -405,7 +405,7 @@
    "estimatedTimeSeconds": 90,
    "explanation": "Separable ODEs model simple rate processes (e.g., a velocity that grows linearly with time). The common mistake is dropping the constant of integration or failing to use the initial condition to find it.",
    "id": "math-006",
-   "question": "Solve the differential equation dy/dx = 2x with the initial condition y(0) = 1. What is y(2)?",
+   "question": "Solve the differential equation \\(\\frac{dy}{dx} = 2x\\) with the initial condition \\(y(0) = 1\\). What is \\(y(2)\\)?",
    "solution": "Refer to the Differential Equations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y(2)\\). This is a separable first-order equation:\n\n$$\\frac{dy}{dx} = 2x \\quad\\Rightarrow\\quad dy = 2x\\,dx$$\n\nIntegrating both sides:\n\n$$y = \\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to solve for \\(y(2)\\):\n\n$$\\begin{aligned}\ny(0) &= 1 \\\\\nC &= ? \\\\\ny(2) &= ?\n\\end{aligned}$$\n\nApply the initial condition: \\(y(0) = 0^2 + C = 1\\), so \\(C = 1\\) and \\(y = x^2 + 1\\).\n\n$$(y(2)) = (2)^2 + 1 = 5$$",
    "subtopic": "First-order differential equations",
    "topic": "Mathematics",
@@ -1194,7 +1194,7 @@
    "estimatedTimeSeconds": 180,
    "explanation": "Restrained heating produces compressive stress; restrained cooling produces tensile stress. The sign is the classic trap. Note thermal stress is independent of bar length and area - it depends only on E, alpha, and deltaT.",
    "id": "mechmat-008",
-   "question": "A 25-mm-diameter steel rod is snugly fitted between two rigid walls at 20 C with no initial stress. The temperature then rises to 70 C. For steel, E = 200 GPa and alpha = 12 x 10^-6 /C. What stress develops in the rod?",
+   "question": "A 25-mm-diameter steel rod is snugly fitted between two rigid walls at 20 C with no initial stress. The temperature then rises to 70 C. For steel, E = 200 GPa and \\(\\alpha = 12 \\times 10^{-6}/^{\\circ}\\mathrm{C}\\). What stress develops in the rod?",
    "solution": "Refer to the Thermal Deformations section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma\\). Fully restrained thermal expansion produces:\n\n$$\\sigma = E\\alpha\\Delta T$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} \\\\\n\\alpha &= 12 \\times 10^{-6}/^\\circ\\text{C} \\\\\n\\Delta T &= 70 - 20 = 50^\\circ\\text{C} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = (200 \\times 10^9)(12 \\times 10^{-6})(50)$$\n\n$$(\\sigma) = 120 \\times 10^6\\ \\text{Pa} = 120\\ \\text{MPa compressive}$$\n\nBecause the heated rod is restrained, the stress is compressive. (The 25 mm diameter is not needed for stress.)",
    "subtopic": "Thermal stress",
    "topic": "Mechanics of Materials",
@@ -1349,16 +1349,16 @@
   {
    "answerIndex": 1,
    "choices": [
-    "Re = 1.0 x 10^3; laminar",
-    "Re = 1.0 x 10^5; turbulent",
-    "Re = 1.0 x 10^5; laminar",
-    "Re = 1.0 x 10^7; turbulent"
+    "\\(Re = 1.0 \\times 10^3\\); laminar",
+    "\\(Re = 1.0 \\times 10^5\\); turbulent",
+    "\\(Re = 1.0 \\times 10^5\\); laminar",
+    "\\(Re = 1.0 \\times 10^7\\); turbulent"
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Reynolds number is dimensionless - verify units cancel. The 50 mm must become 0.050 m; forgetting the conversion gives Re ~ 100 (laminar), a factor-of-1000 trap. For pipe flow: Re < 2300 laminar, Re > 4000 turbulent.",
    "id": "fluid-003",
-   "question": "Water at 20 C (kinematic viscosity = 1.004 x 10^-6 m^2/s) flows at 2.0 m/s through a pipe with 50 mm inside diameter. The Reynolds number is approximately ______, and the flow is ______.",
+   "question": "Water at 20 C (kinematic viscosity = \\(1.004 \\times 10^{-6}\\ \\mathrm{m}^2/\\mathrm{s}\\)) flows at 2.0 m/s through a pipe with 50 mm inside diameter. The Reynolds number is approximately ______, and the flow is ______.",
    "solution": "Refer to the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the Reynolds number \\(Re\\) and classify the flow:\n\n$$Re = \\frac{VD}{\\nu}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 2.0\\ \\text{m/s} \\\\\nD &= 50\\ \\text{mm} = 0.050\\ \\text{m} \\\\\n\\nu &= 1.004 \\times 10^{-6}\\ \\text{m}^2/\\text{s} \\\\\nRe &= ?\n\\end{aligned}$$\n\n$$(Re) = \\frac{(2.0)(0.050)}{1.004 \\times 10^{-6}} \\rightarrow (Re) = \\frac{0.10}{1.004 \\times 10^{-6}}$$\n\n$$(Re) = 99{,}600 \\approx 1.0 \\times 10^5$$\n\nSince \\(Re > 4{,}000\\) for pipe flow, the flow is turbulent.",
    "subtopic": "Reynolds number",
    "topic": "Fluid Mechanics",
@@ -1640,7 +1640,7 @@
    "subtopic": "Beam deflection formulas",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "question": "A cantilever beam 2.5 m long carries a 6 kN concentrated load at its free end. E = 200 GPa and I = 8.0 x 10^6 mm^4. What is the deflection at the free end?",
+   "question": "A cantilever beam 2.5 m long carries a 6 kN concentrated load at its free end. E = 200 GPa and \\(I = 8.0 \\times 10^6\\ \\mathrm{mm}^4\\). What is the deflection at the free end?",
    "choices": [
     "19.5 mm downward",
     "58.6 mm downward",
@@ -1757,12 +1757,12 @@
    "subtopic": "Permeability and Darcy's law",
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
-   "question": "Water flows through a soil specimen 0.15 m long with a cross-sectional area of 0.008 m^2. The head loss across the specimen is 0.45 m and the hydraulic conductivity is k = 2.5 x 10^-5 m/s. What is the volumetric flow rate?",
+   "question": "Water flows through a soil specimen 0.15 m long with a cross-sectional area of 0.008 m^2. The head loss across the specimen is 0.45 m and the hydraulic conductivity is \\(k = 2.5 \\times 10^{-5}\\ \\mathrm{m/s}\\). What is the volumetric flow rate?",
    "choices": [
-    "6.0 x 10^-7 m^3/s",
-    "2.0 x 10^-7 m^3/s",
-    "1.8 x 10^-6 m^3/s",
-    "6.0 x 10^-5 m^3/s"
+    "\\(6.0 \\times 10^{-7}\\ \\mathrm{m}^3/\\mathrm{s}\\)",
+    "\\(2.0 \\times 10^{-7}\\ \\mathrm{m}^3/\\mathrm{s}\\)",
+    "\\(1.8 \\times 10^{-6}\\ \\mathrm{m}^3/\\mathrm{s}\\)",
+    "\\(6.0 \\times 10^{-5}\\ \\mathrm{m}^3/\\mathrm{s}\\)"
    ],
    "answerIndex": 0,
    "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the volumetric flow rate \\(q\\), from Darcy's law with the hydraulic gradient:\n\n$$q = kiA \\qquad i = \\frac{\\Delta h}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\Delta h &= 0.45\\ \\text{m} \\\\\nL &= 0.15\\ \\text{m} \\\\\ni &= \\frac{0.45}{0.15} = 3.0 \\\\\nk &= 2.5 \\times 10^{-5}\\ \\text{m/s} \\\\\nA &= 0.008\\ \\text{m}^2 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (2.5 \\times 10^{-5})(3.0)(0.008)$$\n\n$$(q) = 6.0 \\times 10^{-7}\\ \\text{m}^3/\\text{s}$$",
@@ -2074,9 +2074,9 @@
   {
    "answerIndex": 0,
    "choices": [
-    "Q is proportional to H^(3/2)",
-    "Q is proportional to H^(1/2)",
-    "Q is proportional to H^(5/2)",
+    "\\(Q\\) is proportional to \\(H^{3/2}\\)",
+    "\\(Q\\) is proportional to \\(H^{1/2}\\)",
+    "\\(Q\\) is proportional to \\(H^{5/2}\\)",
     "Q varies linearly with H"
    ],
    "difficulty": "easy",
@@ -2278,7 +2278,7 @@
    "subtopic": "U-substitution integration",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "question": "Evaluate the definite integral ∫₀¹ 3x²e^(x³) dx.",
+   "question": "Evaluate the definite integral \\(\\displaystyle\\int_0^1 3x^2 e^{x^3}\\,dx\\).",
    "choices": [
     "e − 1",
     "e",
@@ -2314,7 +2314,7 @@
    "subtopic": "Second-order ODE",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
-   "question": "Solve the differential equation y″ + 9y = 0 with initial conditions y(0) = 0 and y′(0) = 3. What is y(π/6)?",
+   "question": "Solve the differential equation \\(y'' + 9y = 0\\) with initial conditions \\(y(0) = 0\\) and \\(y'(0) = 3\\). What is \\(y(\\pi/6)\\)?",
    "choices": [
     "1",
     "1/2",
@@ -3345,7 +3345,7 @@
    "subtopic": "Simply supported beam deflection",
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
-   "question": "A simply supported beam 6 m long carries a uniform load of 10 kN/m over its full length. E = 200 GPa and I = 40 x 10^6 mm^4. What is the maximum deflection?",
+   "question": "A simply supported beam 6 m long carries a uniform load of 10 kN/m over its full length. E = 200 GPa and \\(I = 40 \\times 10^6\\ \\mathrm{mm}^4\\). What is the maximum deflection?",
    "choices": [
     "21.1 mm downward",
     "2.11 mm downward",
@@ -4352,7 +4352,7 @@
    "subtopic": "Thermal stress",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "question": "A steel bar 3.0 m long is fixed between two rigid supports at 20 C so that it cannot expand or contract. If the temperature of the bar rises to 50 C, what is the magnitude of the thermal stress developed in the bar? (α = 12 × 10^-6 / C, E = 200 GPa)",
+   "question": "A steel bar 3.0 m long is fixed between two rigid supports at 20 C so that it cannot expand or contract. If the temperature of the bar rises to 50 C, what is the magnitude of the thermal stress developed in the bar? (\\(\\alpha = 12 \\times 10^{-6}/^{\\circ}\\mathrm{C}\\), \\(E = 200\\ \\text{GPa}\\))",
    "choices": [
     "24.0 MPa",
     "36.0 MPa",
@@ -4370,7 +4370,7 @@
    "subtopic": "Fatigue (endurance limit)",
    "difficulty": "medium",
    "estimatedTimeSeconds": 100,
-   "question": "A steel has an ultimate tensile strength of S_ut = 900 MPa. Using the handbook approximation for the rotating-beam endurance limit of steels, estimate the endurance limit S_e′.",
+   "question": "A steel has an ultimate tensile strength of \\(S_{ut} = 900\\ \\text{MPa}\\). Using the handbook approximation for the rotating-beam endurance limit of steels, estimate the endurance limit \\(S_e'\\).",
    "choices": [
     "900 MPa",
     "450 MPa",
@@ -4521,8 +4521,8 @@
    "estimatedTimeSeconds": 75,
    "question": "An oil has a dynamic viscosity of 0.85 Pa-s and a mass density of 850 kg/m^3. What is its kinematic viscosity?",
    "choices": [
-    "1.00 × 10^-3 m^2/s",
-    "1.00 × 10^-6 m^2/s",
+    "\\(1.00 \\times 10^{-3}\\ \\mathrm{m}^2/\\mathrm{s}\\)",
+    "\\(1.00 \\times 10^{-6}\\ \\mathrm{m}^2/\\mathrm{s}\\)",
     "1000 m^2/s",
     "0.85 m^2/s"
    ],
@@ -4889,12 +4889,12 @@
    "subtopic": "Flow nets (seepage quantity)",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "question": "A flow net for seepage under a sheet-pile wall has 5 flow channels and 10 equipotential drops. If the hydraulic conductivity is 2.0 × 10^-5 m/s and the total head loss across the system is 4.0 m, what is the seepage rate per meter of wall?",
+   "question": "A flow net for seepage under a sheet-pile wall has 5 flow channels and 10 equipotential drops. If the hydraulic conductivity is \\(2.0 \\times 10^{-5}\\ \\mathrm{m/s}\\) and the total head loss across the system is 4.0 m, what is the seepage rate per meter of wall?",
    "choices": [
-    "8.0 × 10^-5 m^3/s per m",
-    "4.0 × 10^-5 m^3/s per m",
-    "2.0 × 10^-5 m^3/s per m",
-    "1.0 × 10^-5 m^3/s per m"
+    "\\(8.0 \\times 10^{-5}\\ \\mathrm{m}^3/\\mathrm{s}\\) per m",
+    "\\(4.0 \\times 10^{-5}\\ \\mathrm{m}^3/\\mathrm{s}\\) per m",
+    "\\(2.0 \\times 10^{-5}\\ \\mathrm{m}^3/\\mathrm{s}\\) per m",
+    "\\(1.0 \\times 10^{-5}\\ \\mathrm{m}^3/\\mathrm{s}\\) per m"
    ],
    "answerIndex": 1,
    "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q\\), the seepage rate per unit length of wall:\n\n$$q = kH\\frac{N_f}{N_d}$$\n\nList the known and unknown parameters in order to solve for \\(q\\):\n\n$$\\begin{aligned}\nk &= 2.0 \\times 10^{-5}\\ \\text{m/s} \\\\\nH &= 4.0\\ \\text{m} \\\\\nN_f &= 5 \\\\\nN_d &= 10 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (k)(H)\\frac{N_f}{N_d} \\rightarrow (q) = (2.0 \\times 10^{-5})(4.0)\\frac{5}{10}$$\n\n$$(q) = 4.0 \\times 10^{-5}\\ \\text{m}^3\\text{/s per m}$$",
