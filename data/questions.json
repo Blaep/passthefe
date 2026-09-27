@@ -13,7 +13,7 @@
    "explanation": "Power rule: integral of x^n dx = x^(n+1)/(n+1). Always evaluate upper minus lower bound.",
    "id": "math-001",
    "question": "Evaluate the definite integral from 0 to 3 of 2x dx.",
-   "solution": "Refer to the Definite Integrals section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^3 2x\\,dx\\). The power rule gives the antiderivative:\n\n$$\\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to evaluate the definite integral:\n\n$$\\begin{aligned}\nF(x) &= x^2 \\\\\na &= 0 \\\\\nb &= 3\n\\end{aligned}$$\n\n$$\\left(\\int_0^3 2x\\,dx\\right) = F(3) - F(0) \\rightarrow (3)^2 - (0)^2 = 9 - 0$$\n\n$$\\int_0^3 2x\\,dx = 9$$",
+   "solution": "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^3 2x\\,dx\\). The power rule gives the antiderivative:\n\n$$\\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to evaluate the definite integral:\n\n$$\\begin{aligned}\nF(x) &= x^2 \\\\\na &= 0 \\\\\nb &= 3\n\\end{aligned}$$\n\n$$\\left(\\int_0^3 2x\\,dx\\right) = F(3) - F(0) \\rightarrow (3)^2 - (0)^2 = 9 - 0$$\n\n$$\\int_0^3 2x\\,dx = 9$$",
    "subtopic": "Definite integrals",
    "topic": "Mathematics"
   },
@@ -47,7 +47,7 @@
    "explanation": "Hydrostatic pressure depends only on depth and fluid unit weight: p = gamma*h. Roughly 10 m of water ≈ 1 atm.",
    "id": "fluid-001",
    "question": "What is the gage pressure at a depth of 10 m in water? (unit weight of water = 9.81 kN/m^3)",
-   "solution": "Refer to the Hydrostatic Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p\\). Gage pressure varies hydrostatically with depth according to:\n\n$$p = \\gamma h$$\n\nList the known and unknown parameters in order to solve for \\(p\\):\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nh &= 10\\ \\text{m} \\\\\np &= ?\n\\end{aligned}$$\n\n$$(p) = (\\gamma)(h) \\rightarrow (p) = (9.81)(10)$$\n\n$$(p) = 98.1\\ \\text{kPa (gage)}$$",
+   "solution": "Refer to the The Pressure Field in a Static Liquid section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p\\). Gage pressure varies hydrostatically with depth according to:\n\n$$p = \\gamma h$$\n\nList the known and unknown parameters in order to solve for \\(p\\):\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nh &= 10\\ \\text{m} \\\\\np &= ?\n\\end{aligned}$$\n\n$$(p) = (\\gamma)(h) \\rightarrow (p) = (9.81)(10)$$\n\n$$(p) = 98.1\\ \\text{kPa (gage)}$$",
    "subtopic": "Hydrostatic pressure",
    "topic": "Fluid Mechanics"
   },
@@ -64,7 +64,7 @@
    "explanation": "Single-payment compound amount factor: (F/P, i%, n) = (1+i)^n. Don't confuse with simple interest ($1,100).",
    "id": "econ-001",
    "question": "$1,000 is invested at 5% annual interest, compounded annually. What is the future worth after 2 years?",
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). We can determine \\(F\\) from the single-payment compound amount factor:\n\n$$F = P(1+i)^n$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\nP &= \\$1{,}000 \\\\\ni &= 5\\% = 0.05 \\\\\nn &= 2\\ \\text{years} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (P)(1+i)^n \\rightarrow (F) = (1{,}000)(1.05)^2$$\n\n$$(F) = (1{,}000)(1.1025) = \\$1{,}102.50$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). We can determine \\(F\\) from the single-payment compound amount factor:\n\n$$F = P(1+i)^n$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\nP &= \\$1{,}000 \\\\\ni &= 5\\% = 0.05 \\\\\nn &= 2\\ \\text{years} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (P)(1+i)^n \\rightarrow (F) = (1{,}000)(1.05)^2$$\n\n$$(F) = (1{,}000)(1.1025) = \\$1{,}102.50$$",
    "subtopic": "Compound interest",
    "topic": "Engineering Economics"
   },
@@ -81,7 +81,7 @@
    "explanation": "1 N/mm^2 = 1 MPa. Unit consistency is the most common error — convert kN to N before dividing by mm^2.",
    "id": "mechmat-001",
    "question": "An axial tensile load of 10 kN acts on a bar with cross-sectional area 100 mm^2. What is the axial stress?",
-   "solution": "Refer to the Axial Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\), the axial stress:\n\n$$\\sigma = \\frac{P}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} = 10000\\ \\text{N} \\\\\nA &= 100\\ \\text{mm}^2 \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = \\frac{P}{A} \\rightarrow (\\sigma) = \\frac{10000}{100}$$\n\n$$(\\sigma) = 100\\ \\text{N/mm}^2 = 100\\ \\text{MPa}$$",
+   "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\), the axial stress:\n\n$$\\sigma = \\frac{P}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} = 10000\\ \\text{N} \\\\\nA &= 100\\ \\text{mm}^2 \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = \\frac{P}{A} \\rightarrow (\\sigma) = \\frac{10000}{100}$$\n\n$$(\\sigma) = 100\\ \\text{N/mm}^2 = 100\\ \\text{MPa}$$",
    "subtopic": "Axial stress",
    "topic": "Mechanics of Materials"
   },
@@ -258,7 +258,7 @@
     "0.45"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\nList the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n$$\\begin{aligned}\nP(A) &= 0.4 \\\\\nP(B) &= 0.5 \\\\\nP(A \\cap B) &= ?\n\\end{aligned}$$\n\n$$(P) = (0.4)(0.5)$$\n\n$$(P) = 0.2$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\nList the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n$$\\begin{aligned}\nP(A) &= 0.4 \\\\\nP(B) &= 0.5 \\\\\nP(A \\cap B) &= ?\n\\end{aligned}$$\n\n$$(P) = (0.4)(0.5)$$\n\n$$(P) = 0.2$$",
    "explanation": "'And' means multiply (for independent events); 'or' means add (minus the overlap). Confirming independence is the step most people skip."
   },
   {
@@ -292,7 +292,7 @@
     "$1,102.50"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth of $1,102.50 received 2 years from now at 5% annual interest:\n\n$$P = \\frac{F}{(1+i)^n}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned}\nF &= 1102.50\\ \\text{(future amount)} \\\\\ni &= 0.05\\ \\text{/yr} \\\\\nn &= 2\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{1102.50}{(1+0.05)^2} \\rightarrow (P) = \\frac{1102.50}{1.1025}$$\n\n$$(P) = \\$1000.00$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth of $1,102.50 received 2 years from now at 5% annual interest:\n\n$$P = \\frac{F}{(1+i)^n}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned}\nF &= 1102.50\\ \\text{(future amount)} \\\\\ni &= 0.05\\ \\text{/yr} \\\\\nn &= 2\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{1102.50}{(1+0.05)^2} \\rightarrow (P) = \\frac{1102.50}{1.1025}$$\n\n$$(P) = \\$1000.00$$",
    "explanation": "Present worth discounts the future back to today — the mirror image of the compound amount factor (F/P, i%, n)."
   },
   {
@@ -342,7 +342,7 @@
    "explanation": "Recognizing special matrix forms saves time on the FE. The determinant of any triangular matrix is just the product of its diagonal - a full cofactor expansion is wasted work here.",
    "id": "math-004",
    "question": "What is the determinant of the matrix [[2, 1, 3], [0, 4, 1], [0, 0, 5]]?",
-   "solution": "Refer to the Linear Algebra section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\det(A)\\). The matrix is upper triangular — every entry below the main diagonal is zero — so its determinant is the product of the diagonal entries:\n\n$$\\det(A) = a_{11}a_{22}a_{33}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_{11} &= 2 \\\\\na_{22} &= 4 \\\\\na_{33} &= 5 \\\\\n\\det(A) &= ?\n\\end{aligned}$$\n\n$$(\\det A) = (2)(4)(5)$$\n\n$$(\\det A) = 40$$",
+   "solution": "Refer to the Determinants section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\det(A)\\). The matrix is upper triangular — every entry below the main diagonal is zero — so its determinant is the product of the diagonal entries:\n\n$$\\det(A) = a_{11}a_{22}a_{33}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_{11} &= 2 \\\\\na_{22} &= 4 \\\\\na_{33} &= 5 \\\\\n\\det(A) &= ?\n\\end{aligned}$$\n\n$$(\\det A) = (2)(4)(5)$$\n\n$$(\\det A) = 40$$",
    "subtopic": "Determinants",
    "topic": "Mathematics"
   },
@@ -393,7 +393,7 @@
    "explanation": "Dot products test orthogonality and compute work (force dot displacement) in statics and dynamics. Watch the signs - a single missed negative flips the answer, which is why -2 and 10 are tempting traps.",
    "id": "math-007",
    "question": "What is the dot product of vectors a = (3, -1, 2) and b = (2, 4, 1)?",
-   "solution": "Refer to the Vector Operations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\cdot \\mathbf{b}\\). The dot product sums the products of corresponding components:\n\n$$\\mathbf{a} \\cdot \\mathbf{b} = a_x b_x + a_y b_y + a_z b_z$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (3, -1, 2) \\\\\n\\mathbf{b} &= (2, 4, 1)\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = (3)(2) + (-1)(4) + (2)(1) \\rightarrow 6 - 4 + 2$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = 4$$",
+   "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\cdot \\mathbf{b}\\). The dot product sums the products of corresponding components:\n\n$$\\mathbf{a} \\cdot \\mathbf{b} = a_x b_x + a_y b_y + a_z b_z$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (3, -1, 2) \\\\\n\\mathbf{b} &= (2, 4, 1)\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = (3)(2) + (-1)(4) + (2)(1) \\rightarrow 6 - 4 + 2$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = 4$$",
    "subtopic": "Vectors and dot product",
    "topic": "Mathematics"
   },
@@ -410,7 +410,7 @@
    "explanation": "Eigenvalues show up in vibration analysis, stability, and principal stresses. A frequent error is forgetting to subtract the off-diagonal product (ad - bc term), which changes the characteristic equation entirely.",
    "id": "math-008",
    "question": "What is the largest eigenvalue of the matrix [[5, 2], [2, 2]]?",
-   "solution": "Refer to the Linear Algebra section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the eigenvalues \\(\\lambda\\) of \\(A = \\begin{bmatrix} 5 & 2 \\\\ 2 & 2 \\end{bmatrix}\\). They are the roots of the characteristic equation:\n\n$$\\det(A - \\lambda I) = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\lambda &= ?\n\\end{aligned}$$\n\n$$((5-\\lambda)(2-\\lambda) - (2)(2)) = 0 \\rightarrow (\\lambda^2 - 7\\lambda + 6) = 0$$\n\nFactoring gives \\((\\lambda - 6)(\\lambda - 1) = 0\\), so \\(\\lambda = 6\\) or \\(\\lambda = 1\\):\n\n$$(\\lambda_{\\max}) = 6$$",
+   "solution": "Refer to the Matrices section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the eigenvalues \\(\\lambda\\) of \\(A = \\begin{bmatrix} 5 & 2 \\\\ 2 & 2 \\end{bmatrix}\\). They are the roots of the characteristic equation:\n\n$$\\det(A - \\lambda I) = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\lambda &= ?\n\\end{aligned}$$\n\n$$((5-\\lambda)(2-\\lambda) - (2)(2)) = 0 \\rightarrow (\\lambda^2 - 7\\lambda + 6) = 0$$\n\nFactoring gives \\((\\lambda - 6)(\\lambda - 1) = 0\\), so \\(\\lambda = 6\\) or \\(\\lambda = 1\\):\n\n$$(\\lambda_{\\max}) = 6$$",
    "subtopic": "Eigenvalues",
    "topic": "Mathematics"
   },
@@ -461,7 +461,7 @@
    "explanation": "The normal distribution is the workhorse for quality control and reliability. Mixing up the tail area (15.9%) with the area between the mean and z = 1 (34.1%) is the classic mistake.",
    "id": "stats-004",
    "question": "Compressive test results for a concrete mix are normally distributed with a mean of 100 MPa and a standard deviation of 15 MPa. Approximately what percentage of samples exceed 115 MPa?",
-   "solution": "Refer to the Normal Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must find the percentage of samples exceeding 115 MPa. Standardize with the z-score:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned}\n\\mu &= 100\\ \\text{MPa} \\\\\n\\sigma &= 15\\ \\text{MPa} \\\\\nx &= 115\\ \\text{MPa} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{115 - 100}{15} = 1$$\n\nThe area beyond \\(z = 1\\) (one standard deviation above the mean) is \\(1 - \\Phi(1) = 1 - 0.8413 = 0.1587\\):\n\n$$P(x > 115) \\approx 15.9\\%$$",
+   "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must find the percentage of samples exceeding 115 MPa. Standardize with the z-score:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned}\n\\mu &= 100\\ \\text{MPa} \\\\\n\\sigma &= 15\\ \\text{MPa} \\\\\nx &= 115\\ \\text{MPa} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{115 - 100}{15} = 1$$\n\nThe area beyond \\(z = 1\\) (one standard deviation above the mean) is \\(1 - \\Phi(1) = 1 - 0.8413 = 0.1587\\):\n\n$$P(x > 115) \\approx 15.9\\%$$",
    "subtopic": "Normal distribution and z-scores",
    "topic": "Statistics and Probability"
   },
@@ -529,7 +529,7 @@
    "explanation": "Sampling without replacement (grab samples, inspection lots) changes the denominator on each draw. The distractor 0.391 comes from treating the draws as independent, i.e., (5/8)^2 - with replacement, which is the wrong model here.",
    "id": "stats-008",
    "question": "A grab bag contains 5 red and 3 blue soil sample tags. Two tags are drawn at random without replacement. What is the probability that both are red?",
-   "solution": "Refer to the Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
    "subtopic": "Conditional probability without replacement",
    "topic": "Statistics and Probability"
   },
@@ -546,7 +546,7 @@
    "explanation": "Nominal rates understate the true cost whenever compounding is more frequent than annual. On the FE, always convert a nominal rate to the effective rate for the payment period before using any interest factor - forgetting this step is a guaranteed point lost.",
    "id": "econ-003",
    "question": "A credit card charges a nominal annual interest rate of 12%, compounded monthly. What is the effective annual interest rate?",
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the effective annual rate \\(i_{\\text{eff}}\\). A nominal rate compounded \\(m\\) times per year converts by:\n\n$$i_{\\text{eff}} = \\left(1 + \\frac{r}{m}\\right)^m - 1$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nr &= 12\\% = 0.12 \\\\\nm &= 12\\ \\text{(monthly)} \\\\\ni_{\\text{eff}} &= ?\n\\end{aligned}$$\n\n$$(i_{\\text{eff}}) = \\left(1 + \\frac{0.12}{12}\\right)^{12} - 1 \\rightarrow (i_{\\text{eff}}) = (1.01)^{12} - 1$$\n\n$$(i_{\\text{eff}}) = 1.126825 - 1 = 0.126825 = 12.68\\%$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the effective annual rate \\(i_{\\text{eff}}\\). A nominal rate compounded \\(m\\) times per year converts by:\n\n$$i_{\\text{eff}} = \\left(1 + \\frac{r}{m}\\right)^m - 1$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nr &= 12\\% = 0.12 \\\\\nm &= 12\\ \\text{(monthly)} \\\\\ni_{\\text{eff}} &= ?\n\\end{aligned}$$\n\n$$(i_{\\text{eff}}) = \\left(1 + \\frac{0.12}{12}\\right)^{12} - 1 \\rightarrow (i_{\\text{eff}}) = (1.01)^{12} - 1$$\n\n$$(i_{\\text{eff}}) = 1.126825 - 1 = 0.126825 = 12.68\\%$$",
    "subtopic": "Effective annual interest rate",
    "topic": "Engineering Economics"
   },
@@ -631,7 +631,7 @@
    "explanation": "IRR is the discount rate that zeroes the net present worth - the project's own earned rate. On the FE, bracket the unknown factor between two tabulated interest rates and interpolate; guessing from the cash flows alone without setting PW = 0 leads to the wrong neighborhood entirely.",
    "id": "econ-008",
    "question": "A project requires an initial investment of $5,000 and returns $2,000 per year for 3 years. Approximately what is the internal rate of return (IRR) of this project?",
-   "solution": "Refer to the Rate of Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
+   "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
    "subtopic": "Rate of return (IRR)",
    "topic": "Engineering Economics"
   },
@@ -793,7 +793,7 @@
     "10.0 kN (C)"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Trusses (Method of Joints) section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{AC}\\). By symmetry, the vertical reactions are:\n\n$$A_y = B_y = \\frac{10}{2} = 5\\ \\text{kN (up)}$$\n\nAt joint A, member AC rises at an angle of:\n\n$$\\theta = \\tan^{-1}\\!\\left(\\frac{3}{2}\\right) = 56.31^\\circ$$\n\nList the known and unknown parameters for joint A equilibrium:\n\n$$\\begin{aligned}\nA_y &= 5\\ \\text{kN (up)} \\\\\n\\theta &= 56.31^\\circ \\\\\nF_{AC} &= ?\n\\end{aligned}$$\n\n$$\\sum F_y = 0: \\quad 5 + F_{AC}\\sin 56.31^\\circ = 0$$\n\n$$(F_{AC}) = \\frac{-5}{\\sin 56.31^\\circ} = \\frac{-5}{0.8321} = -6.01\\ \\text{kN}$$\n\nA negative member force means compression, so the force in AC is \\(6.01\\ \\text{kN (C)}\\).",
+   "solution": "Refer to the Plane Truss: Method of Joints section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{AC}\\). By symmetry, the vertical reactions are:\n\n$$A_y = B_y = \\frac{10}{2} = 5\\ \\text{kN (up)}$$\n\nAt joint A, member AC rises at an angle of:\n\n$$\\theta = \\tan^{-1}\\!\\left(\\frac{3}{2}\\right) = 56.31^\\circ$$\n\nList the known and unknown parameters for joint A equilibrium:\n\n$$\\begin{aligned}\nA_y &= 5\\ \\text{kN (up)} \\\\\n\\theta &= 56.31^\\circ \\\\\nF_{AC} &= ?\n\\end{aligned}$$\n\n$$\\sum F_y = 0: \\quad 5 + F_{AC}\\sin 56.31^\\circ = 0$$\n\n$$(F_{AC}) = \\frac{-5}{\\sin 56.31^\\circ} = \\frac{-5}{0.8321} = -6.01\\ \\text{kN}$$\n\nA negative member force means compression, so the force in AC is \\(6.01\\ \\text{kN (C)}\\).",
    "explanation": "Method of joints always starts at a joint with at most two unknowns. The sign convention trap: a negative member force means compression, not tension.",
    "diagram": "diagrams/statics-003.svg"
   },
@@ -863,7 +863,7 @@
     "33 kN-m"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Beams section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the fixed-end moment \\(M_{\\text{wall}}\\), the moment of all loads about the fixed support.\n\nList the known and unknown parameters in order to solve for \\(M_{\\text{wall}}\\):\n\n$$\\begin{aligned}\nL &= 3\\ \\text{m} \\\\\nw &= 2\\ \\text{kN/m} \\\\\nP &= 5\\ \\text{kN (at the free end)} \\\\\nM_{\\text{wall}} &= ?\n\\end{aligned}$$\n\nThe uniform load acts as a resultant \\(wL = 6\\ \\text{kN}\\) at midspan, 1.5 m from the wall:\n\n$$(M_{\\text{UDL}}) = (6)(1.5) = 9\\ \\text{kN}\\cdot\\text{m}$$\n\nThe point load acts 3 m from the wall:\n\n$$(M_P) = (5)(3) = 15\\ \\text{kN}\\cdot\\text{m}$$\n\n$$(M_{\\text{wall}}) = 9 + 15 = 24\\ \\text{kN}\\cdot\\text{m}$$",
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the fixed-end moment \\(M_{\\text{wall}}\\), the moment of all loads about the fixed support.\n\nList the known and unknown parameters in order to solve for \\(M_{\\text{wall}}\\):\n\n$$\\begin{aligned}\nL &= 3\\ \\text{m} \\\\\nw &= 2\\ \\text{kN/m} \\\\\nP &= 5\\ \\text{kN (at the free end)} \\\\\nM_{\\text{wall}} &= ?\n\\end{aligned}$$\n\nThe uniform load acts as a resultant \\(wL = 6\\ \\text{kN}\\) at midspan, 1.5 m from the wall:\n\n$$(M_{\\text{UDL}}) = (6)(1.5) = 9\\ \\text{kN}\\cdot\\text{m}$$\n\nThe point load acts 3 m from the wall:\n\n$$(M_P) = (5)(3) = 15\\ \\text{kN}\\cdot\\text{m}$$\n\n$$(M_{\\text{wall}}) = 9 + 15 = 24\\ \\text{kN}\\cdot\\text{m}$$",
    "explanation": "Break the loading into the uniform resultant (acts at midspan) and the point load, then sum moments about the fixed end. The 33 kN-m trap comes from placing the uniform resultant at the free end.",
    "diagram": "diagrams/statics-007.svg"
   },
@@ -881,7 +881,7 @@
     "8.00 kN upward"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Equilibrium of Rigid Bodies section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(B_y\\). Summing moments about A eliminates \\(A_y\\):\n\n$$\\sum M_A = 0: \\quad B_y(6) - (8)(8) = 0$$\n\nList the known and unknown parameters in order to solve for \\(B_y\\):\n\n$$\\begin{aligned}\n\\text{Load} &= 8\\ \\text{kN downward at } 8\\ \\text{m from A} \\\\\n\\text{Span AB} &= 6\\ \\text{m} \\\\\nB_y &= ?\n\\end{aligned}$$\n\n$$(B_y) = \\frac{(8)(8)}{6} = \\frac{64}{6}$$\n\n$$(B_y) = 10.67\\ \\text{kN upward}$$\n\nCheck with \\(\\sum F_y = 0\\): \\(A_y = 8 - 10.67 = -2.67\\ \\text{kN}\\), i.e., 2.67 kN downward — the overhang load levers the far support up and pulls the near support down.",
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(B_y\\). Summing moments about A eliminates \\(A_y\\):\n\n$$\\sum M_A = 0: \\quad B_y(6) - (8)(8) = 0$$\n\nList the known and unknown parameters in order to solve for \\(B_y\\):\n\n$$\\begin{aligned}\n\\text{Load} &= 8\\ \\text{kN downward at } 8\\ \\text{m from A} \\\\\n\\text{Span AB} &= 6\\ \\text{m} \\\\\nB_y &= ?\n\\end{aligned}$$\n\n$$(B_y) = \\frac{(8)(8)}{6} = \\frac{64}{6}$$\n\n$$(B_y) = 10.67\\ \\text{kN upward}$$\n\nCheck with \\(\\sum F_y = 0\\): \\(A_y = 8 - 10.67 = -2.67\\ \\text{kN}\\), i.e., 2.67 kN downward — the overhang load levers the far support up and pulls the near support down.",
    "explanation": "Overhang loads create uplift at the near support - a negative reaction is physically meaningful (it must be held down). Always verify with both equilibrium equations.",
    "diagram": "diagrams/statics-008.svg"
   },
@@ -917,7 +917,7 @@
     "3.13 m/s"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Work–Energy Principle section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(v\\). With only speeds and distances involved, work–energy is the fastest route:\n\n$$T_1 + \\sum U_{1-2} = T_2$$\n\nThe block starts from rest and drops a vertical height \\(h = 5\\sin 30^\\circ = 2.5\\ \\text{m}\\), so:\n\n$$\\frac{1}{2}mv^2 = mgh \\quad\\Rightarrow\\quad v = \\sqrt{2gh}$$\n\nList the known and unknown parameters in order to solve for \\(v\\):\n\n$$\\begin{aligned}\ng &= 9.81\\ \\text{m/s}^2 \\\\\nh &= 2.5\\ \\text{m} \\\\\nv &= ?\n\\end{aligned}$$\n\n$$(v) = \\sqrt{2gh} \\rightarrow (v) = \\sqrt{2(9.81)(2.5)}$$\n\n$$(v) = \\sqrt{49.05} = 7.00\\ \\text{m/s}$$\n\nMass cancels out of the solution.",
+   "solution": "Refer to the Principle of Work and Energy section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(v\\). With only speeds and distances involved, work–energy is the fastest route:\n\n$$T_1 + \\sum U_{1-2} = T_2$$\n\nThe block starts from rest and drops a vertical height \\(h = 5\\sin 30^\\circ = 2.5\\ \\text{m}\\), so:\n\n$$\\frac{1}{2}mv^2 = mgh \\quad\\Rightarrow\\quad v = \\sqrt{2gh}$$\n\nList the known and unknown parameters in order to solve for \\(v\\):\n\n$$\\begin{aligned}\ng &= 9.81\\ \\text{m/s}^2 \\\\\nh &= 2.5\\ \\text{m} \\\\\nv &= ?\n\\end{aligned}$$\n\n$$(v) = \\sqrt{2gh} \\rightarrow (v) = \\sqrt{2(9.81)(2.5)}$$\n\n$$(v) = \\sqrt{49.05} = 7.00\\ \\text{m/s}$$\n\nMass cancels out of the solution.",
    "explanation": "Work-energy is the fastest route when only speeds and distances matter. The 9.90 m/s trap uses the 5 m incline length as if it were the vertical drop.",
    "diagram": "diagrams/dynamics-003.svg"
   },
@@ -952,7 +952,7 @@
     "4.17 m/s^2"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Curvilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the normal acceleration \\(a_n\\). For motion along a curved path:\n\n$$a_n = \\frac{v^2}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(a_n\\):\n\n$$\\begin{aligned}\nv &= 25\\ \\text{m/s} \\\\\n\\rho &= 150\\ \\text{m} \\\\\na_n &= ?\n\\end{aligned}$$\n\n$$(a_n) = \\frac{v^2}{\\rho} \\rightarrow (a_n) = \\frac{(25)^2}{150} = \\frac{625}{150}$$\n\n$$(a_n) = 4.17\\ \\text{m/s}^2$$\n\nSpeed is constant, so the tangential acceleration is zero; the full acceleration is the normal component, directed toward the center of curvature.",
+   "solution": "Refer to the Particle Curvilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the normal acceleration \\(a_n\\). For motion along a curved path:\n\n$$a_n = \\frac{v^2}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(a_n\\):\n\n$$\\begin{aligned}\nv &= 25\\ \\text{m/s} \\\\\n\\rho &= 150\\ \\text{m} \\\\\na_n &= ?\n\\end{aligned}$$\n\n$$(a_n) = \\frac{v^2}{\\rho} \\rightarrow (a_n) = \\frac{(25)^2}{150} = \\frac{625}{150}$$\n\n$$(a_n) = 4.17\\ \\text{m/s}^2$$\n\nSpeed is constant, so the tangential acceleration is zero; the full acceleration is the normal component, directed toward the center of curvature.",
    "explanation": "a_n = v^2/rho, directed toward the center. The v/rho trap (0.167) forgets to square the velocity."
   },
   {
@@ -1019,7 +1019,7 @@
    "explanation": "Bending stress uses the section modulus S = I/c. A common pitfall is computing I (mm^4) but forgetting to divide by c (half the depth) to get S (mm^3), which doubles the answer. Always convert kN-m to N-mm before dividing by mm^3.",
    "id": "mechmat-003",
    "question": "A rectangular beam cross-section is 100 mm wide and 200 mm deep. If the beam is subjected to a bending moment of 20 kN-m, what is the maximum bending stress?",
-   "solution": "Refer to the Bending Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{\\max}\\). Bending stress is maximum at the outer fiber:\n\n$$\\sigma_{\\max} = \\frac{M}{S}, \\qquad S = \\frac{bh^2}{6}\\ \\text{(rectangle)}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\max}\\):\n\n$$\\begin{aligned}\nb &= 100\\ \\text{mm} \\\\\nh &= 200\\ \\text{mm} \\\\\nM &= 20\\ \\text{kN}\\cdot\\text{m} = 20 \\times 10^6\\ \\text{N}\\cdot\\text{mm} \\\\\n\\sigma_{\\max} &= ?\n\\end{aligned}$$\n\nSection modulus: \\((S) = (100)(200)^2/6 = 666{,}667\\ \\text{mm}^3\\).\n\n$$(\\sigma_{\\max}) = \\frac{M}{S} \\rightarrow (\\sigma_{\\max}) = \\frac{20 \\times 10^6}{666{,}667}$$\n\n$$(\\sigma_{\\max}) = 30\\ \\text{N/mm}^2 = 30\\ \\text{MPa}$$",
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{\\max}\\). Bending stress is maximum at the outer fiber:\n\n$$\\sigma_{\\max} = \\frac{M}{S}, \\qquad S = \\frac{bh^2}{6}\\ \\text{(rectangle)}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\max}\\):\n\n$$\\begin{aligned}\nb &= 100\\ \\text{mm} \\\\\nh &= 200\\ \\text{mm} \\\\\nM &= 20\\ \\text{kN}\\cdot\\text{m} = 20 \\times 10^6\\ \\text{N}\\cdot\\text{mm} \\\\\n\\sigma_{\\max} &= ?\n\\end{aligned}$$\n\nSection modulus: \\((S) = (100)(200)^2/6 = 666{,}667\\ \\text{mm}^3\\).\n\n$$(\\sigma_{\\max}) = \\frac{M}{S} \\rightarrow (\\sigma_{\\max}) = \\frac{20 \\times 10^6}{666{,}667}$$\n\n$$(\\sigma_{\\max}) = 30\\ \\text{N/mm}^2 = 30\\ \\text{MPa}$$",
    "subtopic": "Bending stress",
    "topic": "Mechanics of Materials",
    "diagram": "diagrams/mechmat-003.svg"
@@ -1037,7 +1037,7 @@
    "explanation": "Shear stress in beams follows tau = VQ/(It); for rectangles this simplifies to a parabolic distribution with max = 1.5 x average at the neutral axis. The classic mistake is reporting the average shear stress V/A and forgetting the 1.5 factor.",
    "id": "mechmat-004",
    "question": "A rectangular beam 80 mm wide and 150 mm deep carries a transverse shear force of 24 kN. What is the maximum shear stress in the beam?",
-   "solution": "Refer to the Transverse Shear Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{\\max}\\). For a rectangular cross-section the maximum shear stress occurs at the neutral axis and equals 1.5 times the average:\n\n$$\\tau_{\\max} = 1.5\\frac{V}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\tau_{\\max}\\):\n\n$$\\begin{aligned}\nV &= 24\\ \\text{kN} = 24{,}000\\ \\text{N} \\\\\nA &= (80)(150) = 12{,}000\\ \\text{mm}^2 \\\\\n\\tau_{\\max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{\\max}) = 1.5\\frac{24{,}000}{12{,}000} \\rightarrow (\\tau_{\\max}) = 1.5(2.0)$$\n\n$$(\\tau_{\\max}) = 3.0\\ \\text{MPa}$$",
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{\\max}\\). For a rectangular cross-section the maximum shear stress occurs at the neutral axis and equals 1.5 times the average:\n\n$$\\tau_{\\max} = 1.5\\frac{V}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\tau_{\\max}\\):\n\n$$\\begin{aligned}\nV &= 24\\ \\text{kN} = 24{,}000\\ \\text{N} \\\\\nA &= (80)(150) = 12{,}000\\ \\text{mm}^2 \\\\\n\\tau_{\\max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{\\max}) = 1.5\\frac{24{,}000}{12{,}000} \\rightarrow (\\tau_{\\max}) = 1.5(2.0)$$\n\n$$(\\tau_{\\max}) = 3.0\\ \\text{MPa}$$",
    "subtopic": "Shear stress in beams",
    "topic": "Mechanics of Materials",
    "diagram": "diagrams/mechmat-004.svg"
@@ -1072,7 +1072,7 @@
    "explanation": "Columns always buckle about the axis with the smallest radius of gyration (weak axis), so use I_min. Using the strong-axis I gives 4x the load here (913 kN) - a dangerous overestimate. Pinned-pinned means effective length factor K = 1.0.",
    "id": "mechmat-006",
    "question": "A 3 m long steel column (E = 200 GPa) with a 50 mm x 100 mm rectangular cross-section is pinned at both ends. What is the Euler critical buckling load?",
-   "solution": "Refer to the Column Buckling section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_{cr}\\), the Euler critical buckling load. The column buckles about its weak axis, so use \\(I_{min}\\):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2}$$\n\nPinned at both ends gives \\(K = 1.0\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nL &= 3\\ \\text{m} \\\\\nI_{min} &= \\frac{(0.1)(0.05)^3}{12} = 1.0417 \\times 10^{-6}\\ \\text{m}^4 \\\\\nP_{cr} &= ?\n\\end{aligned}$$\n\n$$(P_{cr}) = \\frac{\\pi^2 (200 \\times 10^9)(1.0417 \\times 10^{-6})}{(1.0 \\times 3)^2} = \\frac{2056167}{9}$$\n\n$$(P_{cr}) = 228463\\ \\text{N} \\approx 228\\ \\text{kN}$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_{cr}\\), the Euler critical buckling load. The column buckles about its weak axis, so use \\(I_{min}\\):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2}$$\n\nPinned at both ends gives \\(K = 1.0\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nL &= 3\\ \\text{m} \\\\\nI_{min} &= \\frac{(0.1)(0.05)^3}{12} = 1.0417 \\times 10^{-6}\\ \\text{m}^4 \\\\\nP_{cr} &= ?\n\\end{aligned}$$\n\n$$(P_{cr}) = \\frac{\\pi^2 (200 \\times 10^9)(1.0417 \\times 10^{-6})}{(1.0 \\times 3)^2} = \\frac{2056167}{9}$$\n\n$$(P_{cr}) = 228463\\ \\text{N} \\approx 228\\ \\text{kN}$$",
    "subtopic": "Column buckling",
    "topic": "Mechanics of Materials",
    "diagram": "diagrams/mechmat-006.svg"
@@ -1090,7 +1090,7 @@
    "explanation": "Hoop stress is twice the longitudinal stress (p*r/(2t)) in a cylindrical vessel, which is why vessels typically split along their length. Common errors: using diameter instead of radius, or reporting the longitudinal stress (45 MPa) instead of the hoop stress.",
    "id": "mechmat-007",
    "question": "A thin-walled cylindrical pressure vessel has an internal diameter of 1.2 m and a wall thickness of 10 mm. If the internal pressure is 1.5 MPa, what is the hoop (circumferential) stress in the wall?",
-   "solution": "Refer to the Pressure Vessels section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the hoop stress \\(\\sigma_{\\text{hoop}}\\). For a thin-walled cylindrical vessel:\n\n$$\\sigma_{\\text{hoop}} = \\frac{pr}{t}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\text{hoop}}\\):\n\n$$\\begin{aligned}\np &= 1.5\\ \\text{MPa} \\\\\nd &= 1.2\\ \\text{m} \\;\\Rightarrow\\; r = 0.6\\ \\text{m} = 600\\ \\text{mm} \\\\\nt &= 10\\ \\text{mm} \\\\\n\\sigma_{\\text{hoop}} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{\\text{hoop}}) = \\frac{pr}{t} \\rightarrow (\\sigma_{\\text{hoop}}) = \\frac{(1.5)(600)}{10}$$\n\n$$(\\sigma_{\\text{hoop}}) = 90\\ \\text{MPa}$$",
+   "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the hoop stress \\(\\sigma_{\\text{hoop}}\\). For a thin-walled cylindrical vessel:\n\n$$\\sigma_{\\text{hoop}} = \\frac{pr}{t}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{\\text{hoop}}\\):\n\n$$\\begin{aligned}\np &= 1.5\\ \\text{MPa} \\\\\nd &= 1.2\\ \\text{m} \\;\\Rightarrow\\; r = 0.6\\ \\text{m} = 600\\ \\text{mm} \\\\\nt &= 10\\ \\text{mm} \\\\\n\\sigma_{\\text{hoop}} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{\\text{hoop}}) = \\frac{pr}{t} \\rightarrow (\\sigma_{\\text{hoop}}) = \\frac{(1.5)(600)}{10}$$\n\n$$(\\sigma_{\\text{hoop}}) = 90\\ \\text{MPa}$$",
    "subtopic": "Pressure vessels",
    "topic": "Mechanics of Materials"
   },
@@ -1285,7 +1285,7 @@
    "explanation": "Head loss scales with V^2, so doubling velocity quadruples loss. Watch the 2g denominator: using V^2/g instead doubles the answer (6.12 m). Also confirm D is in meters so L/D is dimensionless.",
    "id": "fluid-004",
    "question": "Water flows at 1.5 m/s through a 150-mm-diameter pipe that is 200 m long. If the Darcy friction factor is f = 0.020, what is the friction head loss in the pipe?",
-   "solution": "Refer to the Consequences of Fluid Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the following equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 200\\ \\text{m} \\\\\nD &= 0.15\\ \\text{m} \\\\\nV &= 1.5\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nf &= 0.020\\ (\\text{given})\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{200}{0.15}\\frac{(1.5)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(1333.3)(0.1147) = 3.06\\ \\text{m}$$",
+   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the following equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 200\\ \\text{m} \\\\\nD &= 0.15\\ \\text{m} \\\\\nV &= 1.5\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nf &= 0.020\\ (\\text{given})\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{200}{0.15}\\frac{(1.5)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(1333.3)(0.1147) = 3.06\\ \\text{m}$$",
    "subtopic": "Head loss",
    "topic": "Fluid Mechanics",
    "diagram": "diagrams/fluid-004.svg"
@@ -1303,7 +1303,7 @@
    "explanation": "Buoyancy depends only on displaced volume, not on the block's own weight or material. A frequent error is multiplying by the full 1 m^3 unit weight (9.81 kN) instead of the actual 0.5 m^3 displaced.",
    "id": "fluid-005",
    "question": "A 0.5 m^3 solid block is fully submerged in water (unit weight 9.81 kN/m^3). What is the buoyant force acting on the block?",
-   "solution": "Refer to the Buoyancy section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_b\\), the buoyant force. By Archimedes' principle it equals the weight of the displaced fluid:\n\n$$F_b = \\gamma V_{displaced}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nV_{displaced} &= 0.5\\ \\text{m}^3 \\\\\nF_b &= ?\n\\end{aligned}$$\n\n$$(F_b) = (9.81)(0.5)$$\n\n$$(F_b) = 4.905\\ \\text{kN} \\approx 4.91\\ \\text{kN}$$",
+   "solution": "Refer to the Archimedes Principle and Buoyancy section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_b\\), the buoyant force. By Archimedes' principle it equals the weight of the displaced fluid:\n\n$$F_b = \\gamma V_{displaced}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nV_{displaced} &= 0.5\\ \\text{m}^3 \\\\\nF_b &= ?\n\\end{aligned}$$\n\n$$(F_b) = (9.81)(0.5)$$\n\n$$(F_b) = 4.905\\ \\text{kN} \\approx 4.91\\ \\text{kN}$$",
    "subtopic": "Buoyancy",
    "topic": "Fluid Mechanics"
   },
@@ -1338,7 +1338,7 @@
    "explanation": "Force equals the rate of momentum destroyed: rho*Q*V = rho*A*V^2. If the plate were moving, use the relative velocity (V - U). Halving errors come from inserting a spurious 1/2 (98 N) - the momentum equation has no 1/2, unlike kinetic energy.",
    "id": "fluid-007",
    "question": "A horizontal water jet with diameter 50 mm and velocity 10 m/s strikes a stationary flat plate perpendicular to the jet. Neglecting friction and splash losses, what is the force exerted on the plate?",
-   "solution": "Refer to the Momentum Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). The jet is brought to zero x-velocity against the stationary plate:\n\n$$F = \\rho A V^2$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\n\\rho &= 1000\\ \\text{kg/m}^3 \\\\\nA &= \\frac{\\pi(0.05)^2}{4} = 0.0019635\\ \\text{m}^2 \\\\\nV &= 10\\ \\text{m/s} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (1000)(0.0019635)(10)^2$$\n\n$$(F) = 196.35 = 196\\ \\text{N}$$",
+   "solution": "Refer to the The Impulse-Momentum Principle section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). The jet is brought to zero x-velocity against the stationary plate:\n\n$$F = \\rho A V^2$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\n\\rho &= 1000\\ \\text{kg/m}^3 \\\\\nA &= \\frac{\\pi(0.05)^2}{4} = 0.0019635\\ \\text{m}^2 \\\\\nV &= 10\\ \\text{m/s} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (1000)(0.0019635)(10)^2$$\n\n$$(F) = 196.35 = 196\\ \\text{N}$$",
    "subtopic": "Momentum equation",
    "topic": "Fluid Mechanics"
   },
@@ -1355,7 +1355,7 @@
    "explanation": "Specific gravity is dimensionless; multiply by 1000 kg/m^3 for mass density or 9.81 kN/m^3 for unit weight. The 9,810 kg/m^3 distractor confuses unit weight (kN/m^3) with mass density (kg/m^3) - a unit-consistency trap.",
    "id": "fluid-008",
    "question": "An oil has a specific gravity of 0.85. What is its mass density?",
-   "solution": "Refer to the Fluid Properties section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\rho_{\\text{oil}}\\). Specific gravity is the ratio of the fluid's density to the density of water at \\(4^\\circ\\text{C}\\) \\((1{,}000\\ \\text{kg/m}^3)\\):\n\n$$\\rho = (SG)\\rho_{\\text{water}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nSG &= 0.85 \\\\\n\\rho_{\\text{water}} &= 1{,}000\\ \\text{kg/m}^3 \\\\\n\\rho_{\\text{oil}} &= ?\n\\end{aligned}$$\n\n$$(\\rho_{\\text{oil}}) = (0.85)(1{,}000)$$\n\n$$(\\rho_{\\text{oil}}) = 850\\ \\text{kg/m}^3$$",
+   "solution": "Refer to the Definitions section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\rho_{\\text{oil}}\\). Specific gravity is the ratio of the fluid's density to the density of water at \\(4^\\circ\\text{C}\\) \\((1{,}000\\ \\text{kg/m}^3)\\):\n\n$$\\rho = (SG)\\rho_{\\text{water}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nSG &= 0.85 \\\\\n\\rho_{\\text{water}} &= 1{,}000\\ \\text{kg/m}^3 \\\\\n\\rho_{\\text{oil}} &= ?\n\\end{aligned}$$\n\n$$(\\rho_{\\text{oil}}) = (0.85)(1{,}000)$$\n\n$$(\\rho_{\\text{oil}}) = 850\\ \\text{kg/m}^3$$",
    "subtopic": "Fluid properties",
    "topic": "Fluid Mechanics"
   },
@@ -1425,7 +1425,7 @@
     "16,400 m^2"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Area by Coordinates section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the parcel area \\(A\\) with the coordinate (shoelace) method, listing vertices in order around the boundary and closing back to the start:\n\n$$A = \\frac{|\\sum x_i y_{i+1} - \\sum y_i x_{i+1}|}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA(0, 0),\\; B(200, 0),\\; C(200, 120),\\; D(60, 80) \\\\\n\\sum x_i y_{i+1} &= (0)(0) + (200)(120) + (200)(80) + (60)(0) = 40{,}000 \\\\\n\\sum y_i x_{i+1} &= (0)(200) + (0)(200) + (120)(60) + (80)(0) = 7{,}200 \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = \\frac{|40{,}000 - 7{,}200|}{2} \\rightarrow (A) = \\frac{32{,}800}{2}$$\n\n$$(A) = 16{,}400\\ \\text{m}^2$$",
+   "solution": "Refer to the Area formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the parcel area \\(A\\) with the coordinate (shoelace) method, listing vertices in order around the boundary and closing back to the start:\n\n$$A = \\frac{|\\sum x_i y_{i+1} - \\sum y_i x_{i+1}|}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA(0, 0),\\; B(200, 0),\\; C(200, 120),\\; D(60, 80) \\\\\n\\sum x_i y_{i+1} &= (0)(0) + (200)(120) + (200)(80) + (60)(0) = 40{,}000 \\\\\n\\sum y_i x_{i+1} &= (0)(200) + (0)(200) + (120)(60) + (80)(0) = 7{,}200 \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = \\frac{|40{,}000 - 7{,}200|}{2} \\rightarrow (A) = \\frac{32{,}800}{2}$$\n\n$$(A) = 16{,}400\\ \\text{m}^2$$",
    "explanation": "The coordinate (shoelace) method requires listing vertices consistently around the polygon and closing back to the start. The most common errors are forgetting to divide by 2 and mixing up the cross-multiplication order, which flips the sign."
   },
   {
@@ -1548,7 +1548,7 @@
     "2.8 m"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Column Buckling section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(KL\\). The theoretical effective length factor for a fixed-free (cantilever) column is \\(K = 2.0\\):\n\n$$KL = K \\cdot L$$\n\nList the known and unknown parameters in order to solve for \\(KL\\):\n\n$$\\begin{aligned}\nK &= 2.0\\ \\text{(fixed-free)} \\\\\nL &= 4.0\\ \\text{m} \\\\\nKL &= ?\n\\end{aligned}$$\n\n$$(KL) = (2.0)(4.0)$$\n\n$$(KL) = 8.0\\ \\text{m}$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(KL\\). The theoretical effective length factor for a fixed-free (cantilever) column is \\(K = 2.0\\):\n\n$$KL = K \\cdot L$$\n\nList the known and unknown parameters in order to solve for \\(KL\\):\n\n$$\\begin{aligned}\nK &= 2.0\\ \\text{(fixed-free)} \\\\\nL &= 4.0\\ \\text{m} \\\\\nKL &= ?\n\\end{aligned}$$\n\n$$(KL) = (2.0)(4.0)$$\n\n$$(KL) = 8.0\\ \\text{m}$$",
    "explanation": "End restraint controls buckling: a flagpole-type column buckles with an effective length twice its real length, making it the worst common case. Memorizing K = 2.0 (fixed-free), 1.0 (pinned-pinned), 0.7 (fixed-pinned), 0.5 (fixed-fixed) covers most FE questions.",
    "diagram": "diagrams/structural-005.svg"
   },
@@ -1566,7 +1566,7 @@
     "0.85"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Reinforced Concrete section in the Civil Engineering chapter of the FE Reference Handbook.\n\nACI 318 ties the strength reduction factor \\(\\phi\\) to ductility: sections that give warning before failure earn a higher \\(\\phi\\). A tension-controlled section — where the steel yields well before the concrete crushes — is the most ductile flexural case and receives \\(\\phi = 0.90\\), the highest flexural factor.\n\nCompression-controlled (tied) sections use 0.65 and shear uses 0.75; 0.85 is not an ACI 318 \\(\\phi\\) value.\n\n\\(\\phi = 0.90\\) is the correct choice.",
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook.\n\nACI 318 ties the strength reduction factor \\(\\phi\\) to ductility: sections that give warning before failure earn a higher \\(\\phi\\). A tension-controlled section — where the steel yields well before the concrete crushes — is the most ductile flexural case and receives \\(\\phi = 0.90\\), the highest flexural factor.\n\nCompression-controlled (tied) sections use 0.65 and shear uses 0.75; 0.85 is not an ACI 318 \\(\\phi\\) value.\n\n\\(\\phi = 0.90\\) is the correct choice.",
    "explanation": "Phi rewards ductility: tension-controlled flexure gets the highest factor (0.90) because yielding steel gives visible warning before failure. Confusing flexure phi with shear phi (0.75) is the standard trap.",
    "conceptual": true
   },
@@ -1637,7 +1637,7 @@
     "6.0 x 10^-5 m^3/s"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Permeability section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the volumetric flow rate \\(q\\), from Darcy's law with the hydraulic gradient:\n\n$$q = kiA \\qquad i = \\frac{\\Delta h}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\Delta h &= 0.45\\ \\text{m} \\\\\nL &= 0.15\\ \\text{m} \\\\\ni &= \\frac{0.45}{0.15} = 3.0 \\\\\nk &= 2.5 \\times 10^{-5}\\ \\text{m/s} \\\\\nA &= 0.008\\ \\text{m}^2 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (2.5 \\times 10^{-5})(3.0)(0.008)$$\n\n$$(q) = 6.0 \\times 10^{-7}\\ \\text{m}^3/\\text{s}$$",
+   "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the volumetric flow rate \\(q\\), from Darcy's law with the hydraulic gradient:\n\n$$q = kiA \\qquad i = \\frac{\\Delta h}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\Delta h &= 0.45\\ \\text{m} \\\\\nL &= 0.15\\ \\text{m} \\\\\ni &= \\frac{0.45}{0.15} = 3.0 \\\\\nk &= 2.5 \\times 10^{-5}\\ \\text{m/s} \\\\\nA &= 0.008\\ \\text{m}^2 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (2.5 \\times 10^{-5})(3.0)(0.008)$$\n\n$$(q) = 6.0 \\times 10^{-7}\\ \\text{m}^3/\\text{s}$$",
    "explanation": "Darcy's law needs the gradient, not just the head loss: forgetting to divide by the specimen length (using i = 0.45) gives 2.0 x 10^-7 m^3/s, the standard trap."
   },
   {
@@ -1672,7 +1672,7 @@
     "CH"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Soil Classification (USCS) section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must classify the soil. Compute the plasticity index:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nLL &= 55 \\\\\nPL &= 28 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = 55 - 28 = 27$$\n\nSince \\(LL = 55 > 50\\), the soil is high plasticity (H). Check the A-line:\n\n$$PI_A = 0.73(LL - 20) = 0.73(35) = 25.55$$\n\n\\(PI = 27\\) plots above the A-line, so the fines are clay (C) rather than silt (M).\n\nTherefore the classification is CH (fat clay).",
+   "solution": "Refer to the Soil Classification section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must classify the soil. Compute the plasticity index:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nLL &= 55 \\\\\nPL &= 28 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = 55 - 28 = 27$$\n\nSince \\(LL = 55 > 50\\), the soil is high plasticity (H). Check the A-line:\n\n$$PI_A = 0.73(LL - 20) = 0.73(35) = 25.55$$\n\n\\(PI = 27\\) plots above the A-line, so the fines are clay (C) rather than silt (M).\n\nTherefore the classification is CH (fat clay).",
    "explanation": "USCS fine-grained classification is a two-step test: LL above/below 50 gives H/L, and position relative to the A-line gives C/M. Skipping the A-line check is how CH gets mislabeled MH.",
    "conceptual": true
   },
@@ -1707,7 +1707,7 @@
     "127 kPa"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Shear Strength section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau\\). The Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma \\tan\\phi$$\n\nList the known and unknown parameters in order to solve for \\(\\tau\\):\n\n$$\\begin{aligned}\nc &= 0\\ \\text{(clean sand)} \\\\\n\\sigma &= 150\\ \\text{kPa} \\\\\n\\phi &= 32^\\circ \\\\\n\\tau &= ?\n\\end{aligned}$$\n\n$$(\\tau) = 0 + (150)\\tan 32^\\circ = (150)(0.6249)$$\n\n$$(\\tau) = 93.7 = 94\\ \\text{kPa}$$",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau\\). The Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma \\tan\\phi$$\n\nList the known and unknown parameters in order to solve for \\(\\tau\\):\n\n$$\\begin{aligned}\nc &= 0\\ \\text{(clean sand)} \\\\\n\\sigma &= 150\\ \\text{kPa} \\\\\n\\phi &= 32^\\circ \\\\\n\\tau &= ?\n\\end{aligned}$$\n\n$$(\\tau) = 0 + (150)\\tan 32^\\circ = (150)(0.6249)$$\n\n$$(\\tau) = 93.7 = 94\\ \\text{kPa}$$",
    "explanation": "For cohesionless soil the strength envelope passes through the origin, so strength is purely frictional: sigma*tan(phi). Using phi in radians mode or confusing tan with sin are the calculator errors to watch for."
   },
   {
@@ -1792,7 +1792,7 @@
    "explanation": "Each facility type has its own LOS measure: density for freeways, control delay for signalized intersections, and percent time spent following for two-lane highways. Mixing these up is a classic conceptual trap.",
    "id": "transportation-005",
    "question": "According to the Highway Capacity Manual, which measure of effectiveness defines the level of service (LOS) for a basic freeway segment?",
-   "solution": "Refer to the Level of Service section in the Civil Engineering chapter of the FE Reference Handbook.\n\nThe Highway Capacity Manual assigns each facility type its own measure of effectiveness for level of service. For a basic freeway segment that measure is density in passenger cars per mile per lane (pc/mi/ln) — LOS A at densities of 11 pc/mi/ln or less, LOS F above 45 pc/mi/ln.\n\nAverage travel speed, volume-to-capacity ratio, and percent time spent following govern other facility types (percent time spent following, for example, defines LOS on two-lane highways), not basic freeway segments.\n\nDensity in passenger cars per mile per lane is the correct choice.",
+   "solution": "Refer to the Level of Service (LOS) section in the Civil Engineering chapter of the FE Reference Handbook.\n\nThe Highway Capacity Manual assigns each facility type its own measure of effectiveness for level of service. For a basic freeway segment that measure is density in passenger cars per mile per lane (pc/mi/ln) — LOS A at densities of 11 pc/mi/ln or less, LOS F above 45 pc/mi/ln.\n\nAverage travel speed, volume-to-capacity ratio, and percent time spent following govern other facility types (percent time spent following, for example, defines LOS on two-lane highways), not basic freeway segments.\n\nDensity in passenger cars per mile per lane is the correct choice.",
    "subtopic": "Level of service",
    "topic": "Transportation Engineering",
    "conceptual": true
@@ -1827,7 +1827,7 @@
    "explanation": "Adequacy is checked by comparing the required sum (e + f_s) from the point-mass equation against what the design provides. The common error is checking e alone against f_s, which has no physical meaning.",
    "id": "transportation-007",
    "question": "A horizontal curve with radius 1,000 ft is designed for 60 mph with a superelevation rate of 6%. If the available side friction factor is 0.12, is the superelevation design adequate?",
-   "solution": "Refer to the Superelevation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must determine whether the design is adequate by comparing the required \\((e + f_s)\\) from the point-mass equation against what the design provides:\n\n$$e + f_s = \\frac{V^2}{15R}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 60\\ \\text{mph} \\\\\nR &= 1{,}000\\ \\text{ft} \\\\\ne_{\\text{provided}} &= 6\\% = 0.06 \\\\\nf_{s,\\text{available}} &= 0.12\n\\end{aligned}$$\n\nRequired: \\((e + f_s)_{\\text{req}} = (60)^2/[15(1{,}000)] = 3{,}600/15{,}000 = 0.24\\).\n\nProvided: \\((e + f_s)_{\\text{prov}} = 0.06 + 0.12 = 0.18\\).\n\nSince \\(0.24 > 0.18\\), the required superelevation-plus-friction exceeds what is available — the design is not adequate for 60 mph.",
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must determine whether the design is adequate by comparing the required \\((e + f_s)\\) from the point-mass equation against what the design provides:\n\n$$e + f_s = \\frac{V^2}{15R}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV &= 60\\ \\text{mph} \\\\\nR &= 1{,}000\\ \\text{ft} \\\\\ne_{\\text{provided}} &= 6\\% = 0.06 \\\\\nf_{s,\\text{available}} &= 0.12\n\\end{aligned}$$\n\nRequired: \\((e + f_s)_{\\text{req}} = (60)^2/[15(1{,}000)] = 3{,}600/15{,}000 = 0.24\\).\n\nProvided: \\((e + f_s)_{\\text{prov}} = 0.06 + 0.12 = 0.18\\).\n\nSince \\(0.24 > 0.18\\), the required superelevation-plus-friction exceeds what is available — the design is not adequate for 60 mph.",
    "subtopic": "Superelevation",
    "topic": "Transportation Engineering"
   },
@@ -1915,7 +1915,7 @@
    "explanation": "Efficiency divides the water power because the motor must supply more than the water receives. Multiplying by efficiency instead (11.0 kW) or omitting it entirely (14.7 kW) are the standard traps.",
    "id": "water-005",
    "question": "A pump delivers 0.05 m^3/s of water against a total dynamic head of 30 m. If the pump efficiency is 75%, what input power is required? (gamma = 9.81 kN/m^3)",
-   "solution": "Refer to the Pumps section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the input (brake) power. First compute the water power:\n\n$$P_{water} = \\gamma Q H$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nQ &= 0.05\\ \\text{m}^3\\text{/s} \\\\\nH &= 30\\ \\text{m} \\\\\n\\eta &= 0.75 \\\\\nP_{input} &= ?\n\\end{aligned}$$\n\n$$(P_{water}) = (9.81)(0.05)(30) = 14.715\\ \\text{kW}$$\n\nThe motor must supply more than the water receives, so efficiency divides:\n\n$$(P_{input}) = \\frac{14.715}{0.75}$$\n\n$$(P_{input}) = 19.62 = 19.6\\ \\text{kW}$$",
+   "solution": "Refer to the Pump Power Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the input (brake) power. First compute the water power:\n\n$$P_{water} = \\gamma Q H$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\gamma &= 9.81\\ \\text{kN/m}^3 \\\\\nQ &= 0.05\\ \\text{m}^3\\text{/s} \\\\\nH &= 30\\ \\text{m} \\\\\n\\eta &= 0.75 \\\\\nP_{input} &= ?\n\\end{aligned}$$\n\n$$(P_{water}) = (9.81)(0.05)(30) = 14.715\\ \\text{kW}$$\n\nThe motor must supply more than the water receives, so efficiency divides:\n\n$$(P_{input}) = \\frac{14.715}{0.75}$$\n\n$$(P_{input}) = 19.62 = 19.6\\ \\text{kW}$$",
    "subtopic": "Pump power",
    "topic": "Water Resources"
   },
@@ -1932,7 +1932,7 @@
    "explanation": "Memorize the head exponents: rectangular weir 3/2, triangular weir 5/2, orifice 1/2. The exam loves swapping these among the answer choices.",
    "id": "water-006",
    "question": "For a sharp-crested rectangular weir, how does the discharge Q vary with the head H measured above the weir crest?",
-   "solution": "Refer to the Open-Channel Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nThe sharp-crested rectangular weir equation is \\(Q = CLH^{3/2}\\): discharge scales with head to the 3/2 power. The other exponents belong to other devices — a triangular (V-notch) weir gives \\(H^{5/2}\\) and an orifice gives \\(H^{1/2}\\) — which is exactly how the exam builds its distractors.\n\n\\(Q\\) is proportional to \\(H^{3/2}\\) is the correct choice.",
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nThe sharp-crested rectangular weir equation is \\(Q = CLH^{3/2}\\): discharge scales with head to the 3/2 power. The other exponents belong to other devices — a triangular (V-notch) weir gives \\(H^{5/2}\\) and an orifice gives \\(H^{1/2}\\) — which is exactly how the exam builds its distractors.\n\n\\(Q\\) is proportional to \\(H^{3/2}\\) is the correct choice.",
    "subtopic": "Weir flow",
    "topic": "Water Resources",
    "conceptual": true
@@ -1950,7 +1950,7 @@
    "explanation": "The velocity head term is V^2/(2g); forgetting the 2 in the denominator doubles the answer to 9.94 ft, and forgetting the friction factor entirely gives the absurd 248 ft.",
    "id": "water-007",
    "question": "Water flows at 4 ft/s through a 1,000-ft-long pipe with a diameter of 1 ft. If the Darcy friction factor is 0.02, what is the head loss due to friction? (g = 32.2 ft/s^2)",
-   "solution": "Refer to the Consequences of Fluid Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the Darcy\\u2013Weisbach equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 1000\\ \\text{ft} \\\\\nD &= 1\\ \\text{ft} \\\\\nV &= 4\\ \\text{ft/s} \\\\\ng &= 32.2\\ \\text{ft/s}^2 \\\\\nf &= 0.02 \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.02)\\frac{1000}{1}\\frac{(4)^2}{2(32.2)}$$\n\n$$(h_f) = (20)(0.24845) = 4.97\\ \\text{ft}$$",
+   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the Darcy\\u2013Weisbach equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 1000\\ \\text{ft} \\\\\nD &= 1\\ \\text{ft} \\\\\nV &= 4\\ \\text{ft/s} \\\\\ng &= 32.2\\ \\text{ft/s}^2 \\\\\nf &= 0.02 \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.02)\\frac{1000}{1}\\frac{(4)^2}{2(32.2)}$$\n\n$$(h_f) = (20)(0.24845) = 4.97\\ \\text{ft}$$",
    "subtopic": "Head loss",
    "topic": "Water Resources",
    "diagram": "diagrams/water-007.svg"
@@ -1968,7 +1968,7 @@
    "explanation": "Linearity (proportionality) is the core assumption of the unit hydrograph. It only applies when the storm duration equals the unit hydrograph duration; otherwise an S-hydrograph conversion is needed first.",
    "id": "water-008",
    "question": "The 1-hour unit hydrograph for a watershed has a peak discharge of 50 m^3/s for 1 cm of excess rainfall. Assuming linear watershed response, what is the peak discharge of the direct runoff hydrograph produced by 2 cm of excess rainfall in 1 hour?",
-   "solution": "Refer to the Unit Hydrograph section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the peak of the direct runoff hydrograph. Unit hydrograph theory assumes a linear watershed response: scaling the excess rainfall depth scales every hydrograph ordinate by the same factor.\n\n$$\\frac{Q_{\\text{peak, new}}}{Q_{\\text{peak, unit}}} = \\frac{P_{\\text{new}}}{P_{\\text{unit}}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ_{\\text{peak, unit}} &= 50\\ \\text{m}^3/\\text{s (1 cm excess)} \\\\\nP_{\\text{new}} &= 2\\ \\text{cm (same 1-hour duration)} \\\\\nQ_{\\text{peak, new}} &= ?\n\\end{aligned}$$\n\n$$(Q_{\\text{peak, new}}) = 2 \\times 50 = 100\\ \\text{m}^3/\\text{s}$$",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the peak of the direct runoff hydrograph. Unit hydrograph theory assumes a linear watershed response: scaling the excess rainfall depth scales every hydrograph ordinate by the same factor.\n\n$$\\frac{Q_{\\text{peak, new}}}{Q_{\\text{peak, unit}}} = \\frac{P_{\\text{new}}}{P_{\\text{unit}}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ_{\\text{peak, unit}} &= 50\\ \\text{m}^3/\\text{s (1 cm excess)} \\\\\nP_{\\text{new}} &= 2\\ \\text{cm (same 1-hour duration)} \\\\\nQ_{\\text{peak, new}} &= ?\n\\end{aligned}$$\n\n$$(Q_{\\text{peak, new}}) = 2 \\times 50 = 100\\ \\text{m}^3/\\text{s}$$",
    "subtopic": "Unit hydrograph",
    "topic": "Water Resources"
   },
@@ -2003,7 +2003,7 @@
    "explanation": "Swell applies to bank-to-loose (trucking) conversions; shrinkage applies to bank-to-compacted (fill) conversions. Applying the swell factor to a fill question gives 1,125 CCY, a very common mistake.",
    "id": "construction-003",
    "question": "An excavation measures 1,000 bank cubic yards (BCY). The soil has a swell factor of 25% and a shrinkage factor of 10%. How many compacted cubic yards (CCY) of fill will this excavation produce?",
-   "solution": "Refer to the Earthwork section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the compacted volume. A bank-to-compacted conversion uses only the shrinkage factor — swell governs the loose (trucking) volume, not the fill:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nBCY &= 1{,}000 \\\\\n\\text{shrinkage} &= 10\\% = 0.10 \\\\\nCCY &= ?\n\\end{aligned}$$\n\n$$(CCY) = (1{,}000)(1 - 0.10) \\rightarrow (CCY) = (1{,}000)(0.90)$$\n\n$$(CCY) = 900\\ \\text{CCY}$$\n\n(The 25% swell gives \\(1{,}000 \\times 1.25 = 1{,}250\\) LCY — the loose volume that governs hauling, not the compacted fill.)",
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the compacted volume. A bank-to-compacted conversion uses only the shrinkage factor — swell governs the loose (trucking) volume, not the fill:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nBCY &= 1{,}000 \\\\\n\\text{shrinkage} &= 10\\% = 0.10 \\\\\nCCY &= ?\n\\end{aligned}$$\n\n$$(CCY) = (1{,}000)(1 - 0.10) \\rightarrow (CCY) = (1{,}000)(0.90)$$\n\n$$(CCY) = 900\\ \\text{CCY}$$\n\n(The 25% swell gives \\(1{,}000 \\times 1.25 = 1{,}250\\) LCY — the loose volume that governs hauling, not the compacted fill.)",
    "subtopic": "Earthwork",
    "topic": "Construction Engineering"
   },
@@ -2143,7 +2143,7 @@
     "(3, −7, 5)"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Vector Operations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\times \\mathbf{b}\\):\n\n$$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ a_x & a_y & a_z \\\\ b_x & b_y & b_z \\end{vmatrix}$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (2, 1, -1) \\\\\n\\mathbf{b} &= (1, 2, 3)\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\mathbf{a} \\times \\mathbf{b})_x &= (1)(3) - (-1)(2) = 5 \\\\\n(\\mathbf{a} \\times \\mathbf{b})_y &= -[(2)(3) - (-1)(1)] = -7 \\\\\n(\\mathbf{a} \\times \\mathbf{b})_z &= (2)(2) - (1)(1) = 3\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\times \\mathbf{b}) = (5, -7, 3)$$",
+   "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\times \\mathbf{b}\\):\n\n$$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ a_x & a_y & a_z \\\\ b_x & b_y & b_z \\end{vmatrix}$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (2, 1, -1) \\\\\n\\mathbf{b} &= (1, 2, 3)\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\mathbf{a} \\times \\mathbf{b})_x &= (1)(3) - (-1)(2) = 5 \\\\\n(\\mathbf{a} \\times \\mathbf{b})_y &= -[(2)(3) - (-1)(1)] = -7 \\\\\n(\\mathbf{a} \\times \\mathbf{b})_z &= (2)(2) - (1)(1) = 3\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\times \\mathbf{b}) = (5, -7, 3)$$",
    "explanation": "Cross products are anti-commutative — (−5, 7, −3) is b × a, the most common trap, and the j-component carries a minus sign that is easy to drop."
   },
   {
@@ -2194,7 +2194,7 @@
     "3 − 2i"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Complex Numbers section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the product \\(z\\). Expand and use \\(i^2 = -1\\):\n\n$$z = (3 + 4i)(1 - 2i) = 3 - 6i + 4i - 8i^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ni^2 &= -1 \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = 3 - 2i - 8(-1) \\rightarrow (z) = 3 - 2i + 8$$\n\n$$(z) = 11 - 2i$$",
+   "solution": "Refer to the Algebra of Complex Numbers section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the product \\(z\\). Expand and use \\(i^2 = -1\\):\n\n$$z = (3 + 4i)(1 - 2i) = 3 - 6i + 4i - 8i^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ni^2 &= -1 \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = 3 - 2i - 8(-1) \\rightarrow (z) = 3 - 2i + 8$$\n\n$$(z) = 11 - 2i$$",
    "explanation": "The entire problem turns on i² = −1 — forgetting it gives −5 − 2i, the most common wrong answer on complex-number questions."
   },
   {
@@ -2211,7 +2211,7 @@
     "$0.50"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Expected Value section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the expected net gain \\(E\\). Subtract the ticket cost from the expected payout:\n\n$$E = \\sum p_i x_i - \\text{cost}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\np &= 0.3 \\\\\n\\text{payout} &= \\$10 \\\\\n\\text{cost} &= \\$2 \\\\\nE &= ?\n\\end{aligned}$$\n\n$$(E) = (0.3)(10) - 2 \\rightarrow (E) = 3 - 2$$\n\n$$(E) = \\$1.00$$",
+   "solution": "Refer to the Expected Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the expected net gain \\(E\\). Subtract the ticket cost from the expected payout:\n\n$$E = \\sum p_i x_i - \\text{cost}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\np &= 0.3 \\\\\n\\text{payout} &= \\$10 \\\\\n\\text{cost} &= \\$2 \\\\\nE &= ?\n\\end{aligned}$$\n\n$$(E) = (0.3)(10) - 2 \\rightarrow (E) = 3 - 2$$\n\n$$(E) = \\$1.00$$",
    "explanation": "Expected value of a gamble must subtract what you paid to play — $3.00 is the expected payout, not the net gain."
   },
   {
@@ -2245,7 +2245,7 @@
     "15.87%"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Normal Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X > 51)\\). Standardize to \\(z\\):\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\mu &= 50\\ \\text{mm} \\\\\n\\sigma &= 0.5\\ \\text{mm} \\\\\nx &= 51\\ \\text{mm} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{51 - 50}{0.5} \\rightarrow (z) = 2.0$$\n\nFrom the standard normal table, the upper tail beyond \\(z = 2.0\\) is:\n\n$$(P) = 0.0228 = 2.28\\%$$",
+   "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X > 51)\\). Standardize to \\(z\\):\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\mu &= 50\\ \\text{mm} \\\\\n\\sigma &= 0.5\\ \\text{mm} \\\\\nx &= 51\\ \\text{mm} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{51 - 50}{0.5} \\rightarrow (z) = 2.0$$\n\nFrom the standard normal table, the upper tail beyond \\(z = 2.0\\) is:\n\n$$(P) = 0.0228 = 2.28\\%$$",
    "explanation": "A one-sided 'greater than' question wants a single tail — 4.56% doubles it and 97.72% is the complement below 51 mm."
   },
   {
@@ -2262,7 +2262,7 @@
     "0.5"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Linear Regression section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the least-squares slope \\(b\\):\n\n$$b = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\bar{x} &= 3 \\\\\n\\bar{y} &= 4 \\\\\n\\sum (x_i - \\bar{x})(y_i - \\bar{y}) &= 4 + 0 + 0 + 0 + 2 = 6 \\\\\n\\sum (x_i - \\bar{x})^2 &= 4 + 1 + 0 + 1 + 4 = 10 \\\\\nb &= ?\n\\end{aligned}$$\n\n$$(b) = \\frac{6}{10}$$\n\n$$(b) = 0.6$$",
+   "solution": "Refer to the Linear Regression and Goodness of Fit section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the least-squares slope \\(b\\):\n\n$$b = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\bar{x} &= 3 \\\\\n\\bar{y} &= 4 \\\\\n\\sum (x_i - \\bar{x})(y_i - \\bar{y}) &= 4 + 0 + 0 + 0 + 2 = 6 \\\\\n\\sum (x_i - \\bar{x})^2 &= 4 + 1 + 0 + 1 + 4 = 10 \\\\\nb &= ?\n\\end{aligned}$$\n\n$$(b) = \\frac{6}{10}$$\n\n$$(b) = 0.6$$",
    "explanation": "Eyeballing the trend suggests a slope near 1, but least squares weights every deviation — always compute the ratio rather than guessing from the scatterplot."
   },
   {
@@ -2296,7 +2296,7 @@
     "$4,000"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\):\n\n$$P = F(P/F, i, n) = \\frac{F}{(1 + i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF &= \\$5{,}000 \\\\\ni &= 6\\% = 0.06 \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{5000}{(1.06)^{5}} \\rightarrow (P) = \\frac{5000}{1.3382}$$\n\n$$(P) = \\$3{,}736$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\):\n\n$$P = F(P/F, i, n) = \\frac{F}{(1 + i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF &= \\$5{,}000 \\\\\ni &= 6\\% = 0.06 \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{5000}{(1.06)^{5}} \\rightarrow (P) = \\frac{5000}{1.3382}$$\n\n$$(P) = \\$3{,}736$$",
    "explanation": "Discounting uses compound interest — $3,846 comes from simple interest and $6,691 compounds in the wrong direction."
   },
   {
@@ -2330,7 +2330,7 @@
     "$6,467"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) of a base series plus an arithmetic gradient:\n\n$$P = A(P/A, i, n) + G(P/G, i, n)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= \\$1{,}000 \\\\\nG &= \\$200 \\\\\ni &= 8\\% \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = 1000(3.9927) + 200(7.3724) \\rightarrow (P) = 3992.71 + 1474.49$$\n\n$$(P) = \\$5{,}467$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) of a base series plus an arithmetic gradient:\n\n$$P = A(P/A, i, n) + G(P/G, i, n)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= \\$1{,}000 \\\\\nG &= \\$200 \\\\\ni &= 8\\% \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = 1000(3.9927) + 200(7.3724) \\rightarrow (P) = 3992.71 + 1474.49$$\n\n$$(P) = \\$5{,}467$$",
    "explanation": "A gradient series is base amount plus gradient — $3,993 prices only the $1,000 base and $5,000 ignores the time value of money entirely."
   },
   {
@@ -2347,7 +2347,7 @@
     "$200,000"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Capitalized Cost section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the capitalized cost \\(CC\\). Convert the recurring cost to an equivalent annual amount, then capitalize it:\n\n$$CC = \\text{initial cost} + \\frac{A}{i}, \\quad A = 10000(A/F, i, 5)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{initial cost} &= \\$100{,}000 \\\\\n\\text{rehab} &= \\$10{,}000\\ \\text{every 5 years} \\\\\ni &= 6\\% \\\\\n(A/F, 6\\%, 5) &= 0.1774 \\\\\nCC &= ?\n\\end{aligned}$$\n\n$$(A) = 10000(0.1774) \\rightarrow (A) = \\$1{,}774\\text{/yr}$$\n\n$$(CC) = 100000 + \\frac{1774}{0.06} = \\$129{,}566$$",
+   "solution": "Refer to the Capitalized Costs section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the capitalized cost \\(CC\\). Convert the recurring cost to an equivalent annual amount, then capitalize it:\n\n$$CC = \\text{initial cost} + \\frac{A}{i}, \\quad A = 10000(A/F, i, 5)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{initial cost} &= \\$100{,}000 \\\\\n\\text{rehab} &= \\$10{,}000\\ \\text{every 5 years} \\\\\ni &= 6\\% \\\\\n(A/F, 6\\%, 5) &= 0.1774 \\\\\nCC &= ?\n\\end{aligned}$$\n\n$$(A) = 10000(0.1774) \\rightarrow (A) = \\$1{,}774\\text{/yr}$$\n\n$$(CC) = 100000 + \\frac{1774}{0.06} = \\$129{,}566$$",
    "explanation": "A cost every 5 years is not an annual cost — $266,667 capitalizes $10,000 as if it were spent every year."
   },
   {
@@ -2364,7 +2364,7 @@
     "$3,750"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the equivalent uniform annual cost \\(A\\):\n\n$$A = P(A/P, i, n) = P\\left[\\frac{i(1+i)^n}{(1+i)^n - 1}\\right]$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= \\$50{,}000 \\\\\ni &= 7\\% = 0.07 \\\\\nn &= 20\\ \\text{years} \\\\\n(A/P, 7\\%, 20) &= 0.09439 \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = 50000(0.09439)$$\n\n$$(A) = \\$4{,}720$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the equivalent uniform annual cost \\(A\\):\n\n$$A = P(A/P, i, n) = P\\left[\\frac{i(1+i)^n}{(1+i)^n - 1}\\right]$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= \\$50{,}000 \\\\\ni &= 7\\% = 0.07 \\\\\nn &= 20\\ \\text{years} \\\\\n(A/P, 7\\%, 20) &= 0.09439 \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = 50000(0.09439)$$\n\n$$(A) = \\$4{,}720$$",
    "explanation": "Capital recovery includes interest on the unrecovered balance — $2,500 simply divides by 20 and ignores the time value of money."
   },
   {
@@ -2627,7 +2627,7 @@
     "18.0 m/s²"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Rigid-Body Kinematics section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a_t\\). Tangential acceleration is the radius times the angular acceleration:\n\n$$a_t = r\\alpha$$\n\nList the known and unknown parameters in order to solve for \\(a_t\\):\n\n$$\\begin{aligned} r &= 0.5\\ \\text{m} \\\\ \\alpha &= 6\\ \\text{rad/s}^2 \\\\ a_t &= ? \\end{aligned}$$\n\n$$(a_t) = (0.5)(6) \\rightarrow (a_t) = 3.00\\ \\text{m/s}^2$$",
+   "solution": "Refer to the Kinematics of a Rigid Body section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a_t\\). Tangential acceleration is the radius times the angular acceleration:\n\n$$a_t = r\\alpha$$\n\nList the known and unknown parameters in order to solve for \\(a_t\\):\n\n$$\\begin{aligned} r &= 0.5\\ \\text{m} \\\\ \\alpha &= 6\\ \\text{rad/s}^2 \\\\ a_t &= ? \\end{aligned}$$\n\n$$(a_t) = (0.5)(6) \\rightarrow (a_t) = 3.00\\ \\text{m/s}^2$$",
    "explanation": "The trap is 12.0 — dividing α by r instead of multiplying; tangential acceleration grows with radius, a_t = rα."
   },
   {
@@ -2644,7 +2644,7 @@
     "2.00 m/s²"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Curvilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a\\). The normal and tangential components combine as perpendicular vectors:\n\n$$a = \\sqrt{a_n^2 + a_t^2}, \\quad a_n = \\frac{v^2}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(a\\):\n\n$$\\begin{aligned} v &= 20\\ \\text{m/s} \\\\ \\rho &= 100\\ \\text{m} \\\\ a_t &= 2.0\\ \\text{m/s}^2 \\\\ a &= ? \\end{aligned}$$\n\nFirst, \\((a_n) = (20)^2/100 = 4.00\\ \\text{m/s}^2\\). Then:\n\n$$(a) = \\sqrt{(4.00)^2 + (2.00)^2} \\rightarrow \\sqrt{20.0}$$\n\n$$(a) = 4.47\\ \\text{m/s}^2$$",
+   "solution": "Refer to the Particle Curvilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a\\). The normal and tangential components combine as perpendicular vectors:\n\n$$a = \\sqrt{a_n^2 + a_t^2}, \\quad a_n = \\frac{v^2}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(a\\):\n\n$$\\begin{aligned} v &= 20\\ \\text{m/s} \\\\ \\rho &= 100\\ \\text{m} \\\\ a_t &= 2.0\\ \\text{m/s}^2 \\\\ a &= ? \\end{aligned}$$\n\nFirst, \\((a_n) = (20)^2/100 = 4.00\\ \\text{m/s}^2\\). Then:\n\n$$(a) = \\sqrt{(4.00)^2 + (2.00)^2} \\rightarrow \\sqrt{20.0}$$\n\n$$(a) = 4.47\\ \\text{m/s}^2$$",
    "explanation": "The trap is 6.00 — adding the components directly; normal and tangential accelerations are perpendicular, so they combine by the Pythagorean theorem."
   },
   {
@@ -2678,7 +2678,7 @@
     "2.40 MPa (C)"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Combined Loading section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{max}\\). Eccentric loading superimposes uniform axial stress and bending stress:\n\n$$\\sigma_{max} = \\frac{P}{A} + \\frac{Mc}{I}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{max}\\):\n\n$$\\begin{aligned} P &= 60.0\\ \\text{kN} \\\\ A &= (0.100)(0.150) = 0.0150\\ \\text{m}^2 \\\\ M &= Pe = (60.0)(0.040) = 2.40\\ \\text{kN-m} \\\\ c &= 75.0\\ \\text{mm} \\\\ I &= 2.81 \\times 10^{-5}\\ \\text{m}^4 \\\\ \\sigma_{max} &= ? \\end{aligned}$$\n\n$$(\\sigma_{max}) = \\frac{60000}{0.0150} + \\frac{(2400)(0.075)}{2.81 \\times 10^{-5}} \\rightarrow 4.00\\ \\text{MPa} + 6.40\\ \\text{MPa}$$\n\n$$(\\sigma_{max}) = 10.4\\ \\text{MPa (C)}$$",
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{max}\\). Eccentric loading superimposes uniform axial stress and bending stress:\n\n$$\\sigma_{max} = \\frac{P}{A} + \\frac{Mc}{I}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{max}\\):\n\n$$\\begin{aligned} P &= 60.0\\ \\text{kN} \\\\ A &= (0.100)(0.150) = 0.0150\\ \\text{m}^2 \\\\ M &= Pe = (60.0)(0.040) = 2.40\\ \\text{kN-m} \\\\ c &= 75.0\\ \\text{mm} \\\\ I &= 2.81 \\times 10^{-5}\\ \\text{m}^4 \\\\ \\sigma_{max} &= ? \\end{aligned}$$\n\n$$(\\sigma_{max}) = \\frac{60000}{0.0150} + \\frac{(2400)(0.075)}{2.81 \\times 10^{-5}} \\rightarrow 4.00\\ \\text{MPa} + 6.40\\ \\text{MPa}$$\n\n$$(\\sigma_{max}) = 10.4\\ \\text{MPa (C)}$$",
    "explanation": "The trap is 6.40 MPa — computing only the bending stress and forgetting the uniform axial compression adds on top of it.",
    "diagram": "diagrams/mechmat-009.svg"
   },
@@ -2714,7 +2714,7 @@
     "20.0 MPa and −20.0 MPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Stress Transformation (Mohr's Circle) section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_1\\) and \\(\\sigma_2\\):\n\n$$\\sigma_{1,2} = \\frac{\\sigma_x + \\sigma_y}{2} \\pm \\sqrt{\\left(\\frac{\\sigma_x - \\sigma_y}{2}\\right)^2 + \\tau_{xy}^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_1\\) and \\(\\sigma_2\\):\n\n$$\\begin{aligned} \\sigma_x &= 80.0\\ \\text{MPa} \\\\ \\sigma_y &= -40.0\\ \\text{MPa} \\\\ \\tau_{xy} &= 30.0\\ \\text{MPa} \\\\ \\sigma_1, \\sigma_2 &= ? \\end{aligned}$$\n\n$$(\\sigma_{1,2}) = \\frac{80.0 + (-40.0)}{2} \\pm \\sqrt{\\left(\\frac{80.0 - (-40.0)}{2}\\right)^2 + (30.0)^2} \\rightarrow 20.0 \\pm 67.1\\ \\text{MPa}$$\n\n$$(\\sigma_1, \\sigma_2) = (87.1\\ \\text{MPa},\\ -47.1\\ \\text{MPa})$$",
+   "solution": "Refer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_1\\) and \\(\\sigma_2\\):\n\n$$\\sigma_{1,2} = \\frac{\\sigma_x + \\sigma_y}{2} \\pm \\sqrt{\\left(\\frac{\\sigma_x - \\sigma_y}{2}\\right)^2 + \\tau_{xy}^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_1\\) and \\(\\sigma_2\\):\n\n$$\\begin{aligned} \\sigma_x &= 80.0\\ \\text{MPa} \\\\ \\sigma_y &= -40.0\\ \\text{MPa} \\\\ \\tau_{xy} &= 30.0\\ \\text{MPa} \\\\ \\sigma_1, \\sigma_2 &= ? \\end{aligned}$$\n\n$$(\\sigma_{1,2}) = \\frac{80.0 + (-40.0)}{2} \\pm \\sqrt{\\left(\\frac{80.0 - (-40.0)}{2}\\right)^2 + (30.0)^2} \\rightarrow 20.0 \\pm 67.1\\ \\text{MPa}$$\n\n$$(\\sigma_1, \\sigma_2) = (87.1\\ \\text{MPa},\\ -47.1\\ \\text{MPa})$$",
    "explanation": "The trap is answering with the given 80/−40 stresses — those act on the x and y faces, not the principal planes; the shear term rotates the principal values away from them."
   },
   {
@@ -2817,7 +2817,7 @@
     "73.0 GPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Composite Materials section in the Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(E_c\\). We can determine \\(E_c\\) from the following equation:\n\n$$E_c = E_f V_f + E_m V_m$$\n\nList the known and unknown parameters in order to solve for \\(E_c\\):\n\n$$\\begin{aligned}\nE_f &= 70\\ \\text{GPa} \\\\\nV_f &= 0.60 \\\\\nE_m &= 3\\ \\text{GPa} \\\\\nV_m &= 0.40 \\\\\nE_c &= ?\n\\end{aligned}$$\n\n$$(E_c) = E_f V_f + E_m V_m \\rightarrow (E_c) = (70)(0.60) + (3)(0.40)$$\n\n$$(E_c) = 42 + 1.2 = 43.2\\ \\text{GPa}$$",
+   "solution": "Refer to the Composite Materials section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(E_c\\). We can determine \\(E_c\\) from the following equation:\n\n$$E_c = E_f V_f + E_m V_m$$\n\nList the known and unknown parameters in order to solve for \\(E_c\\):\n\n$$\\begin{aligned}\nE_f &= 70\\ \\text{GPa} \\\\\nV_f &= 0.60 \\\\\nE_m &= 3\\ \\text{GPa} \\\\\nV_m &= 0.40 \\\\\nE_c &= ?\n\\end{aligned}$$\n\n$$(E_c) = E_f V_f + E_m V_m \\rightarrow (E_c) = (70)(0.60) + (3)(0.40)$$\n\n$$(E_c) = 42 + 1.2 = 43.2\\ \\text{GPa}$$",
    "explanation": "Loading parallel to the fibers means the isostrain (Voigt) rule of mixtures applies. The inverse harmonic form (7.05 GPa) is for loading transverse to the fibers — the classic mix-up."
   },
   {
@@ -2869,7 +2869,7 @@
     "3.43 m/s"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Flow Measurement section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\). We can determine \\(V\\) from the following equation:\n\n$$V = \\sqrt{2g(\\Delta h)}$$\n\nList the known and unknown parameters in order to solve for \\(V\\):\n\n$$\\begin{aligned}\n\\Delta h &= 0.15\\ \\text{m} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = \\sqrt{2g(\\Delta h)} \\rightarrow (V) = \\sqrt{2(9.81)(0.15)}$$\n\n$$(V) = 1.72\\ \\text{m/s}$$",
+   "solution": "Refer to the Fluid Flow Measurement section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\). We can determine \\(V\\) from the following equation:\n\n$$V = \\sqrt{2g(\\Delta h)}$$\n\nList the known and unknown parameters in order to solve for \\(V\\):\n\n$$\\begin{aligned}\n\\Delta h &= 0.15\\ \\text{m} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = \\sqrt{2g(\\Delta h)} \\rightarrow (V) = \\sqrt{2(9.81)(0.15)}$$\n\n$$(V) = 1.72\\ \\text{m/s}$$",
    "explanation": "The pitot equation has 2g under the radical — using just sqrt(g times delta-h) gives 1.21 m/s. Also confirm delta-h is in meters of the flowing fluid, not millimeters.",
    "diagram": "diagrams/fluid-009.svg"
   },
@@ -2905,7 +2905,7 @@
     "4.00 kPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Pressure Drop for Laminar Flow section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\Delta p\\). We can determine \\(\\Delta p\\) from the following equation:\n\n$$\\Delta p = \\frac{32\\mu L V}{D^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\n\\mu &= 0.10\\ \\text{Pa}\\cdot\\text{s} \\\\\nL &= 100\\ \\text{m} \\\\\nV &= 0.50\\ \\text{m/s} \\\\\nD &= 0.05\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = \\frac{32\\mu L V}{D^2} \\rightarrow (\\Delta p) = \\frac{32(0.10)(100)(0.50)}{(0.05)^2}$$\n\n$$(\\Delta p) = 64{,}000\\ \\text{Pa} = 64.0\\ \\text{kPa}$$",
+   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta p\\). We can determine \\(\\Delta p\\) from the following equation:\n\n$$\\Delta p = \\frac{32\\mu L V}{D^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\n\\mu &= 0.10\\ \\text{Pa}\\cdot\\text{s} \\\\\nL &= 100\\ \\text{m} \\\\\nV &= 0.50\\ \\text{m/s} \\\\\nD &= 0.05\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = \\frac{32\\mu L V}{D^2} \\rightarrow (\\Delta p) = \\frac{32(0.10)(100)(0.50)}{(0.05)^2}$$\n\n$$(\\Delta p) = 64{,}000\\ \\text{Pa} = 64.0\\ \\text{kPa}$$",
    "explanation": "In the velocity form the diameter is squared (D-squared), not raised to the fourth power — D-to-the-fourth belongs to the discharge form. Plugging the radius in as D quadruples the answer to 256 kPa.",
    "diagram": "diagrams/fluid-011.svg"
   },
@@ -2923,7 +2923,7 @@
     "833 kg/m^3"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Buoyancy section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\rho_{body}\\). At equilibrium the weight of the body equals the buoyant force:\n\n$$\\rho_{body} V_{total} = \\rho_{water} V_{submerged}$$\n\nList the known and unknown parameters in order to solve for \\(\\rho_{body}\\):\n\n$$\\begin{aligned}\n\\rho_{water} &= 1000\\ \\text{kg/m}^3 \\\\\nh_{sub} &= 1.2\\ \\text{m} \\\\\nh_{total} &= 2.0\\ \\text{m} \\\\\n\\rho_{body} &= ?\n\\end{aligned}$$\n\n$$(\\rho_{body}) = \\rho_{water}\\frac{h_{sub}}{h_{total}} \\rightarrow (\\rho_{body}) = (1000)\\frac{1.2}{2.0}$$\n\n$$(\\rho_{body}) = 600\\ \\text{kg/m}^3$$",
+   "solution": "Refer to the Archimedes Principle and Buoyancy section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\rho_{body}\\). At equilibrium the weight of the body equals the buoyant force:\n\n$$\\rho_{body} V_{total} = \\rho_{water} V_{submerged}$$\n\nList the known and unknown parameters in order to solve for \\(\\rho_{body}\\):\n\n$$\\begin{aligned}\n\\rho_{water} &= 1000\\ \\text{kg/m}^3 \\\\\nh_{sub} &= 1.2\\ \\text{m} \\\\\nh_{total} &= 2.0\\ \\text{m} \\\\\n\\rho_{body} &= ?\n\\end{aligned}$$\n\n$$(\\rho_{body}) = \\rho_{water}\\frac{h_{sub}}{h_{total}} \\rightarrow (\\rho_{body}) = (1000)\\frac{1.2}{2.0}$$\n\n$$(\\rho_{body}) = 600\\ \\text{kg/m}^3$$",
    "explanation": "The body density is the water density times the submerged fraction — always submerged over total, which must come out less than water. Inverting the fraction gives the impossible 1,667 kg/m^3 for a floating object."
   },
   {
@@ -2940,7 +2940,7 @@
     "0.41 m"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Minor Losses section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_m\\). We can determine \\(h_m\\) from the following equation:\n\n$$h_m = \\left(\\sum K\\right)\\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_m\\):\n\n$$\\begin{aligned}\nK_{entrance} &= 0.5 \\\\\nK_{valve} &= 2.5 \\\\\nK_{exit} &= 1.0 \\\\\n\\sum K &= 4.0 \\\\\nV &= 2.0\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nh_m &= ?\n\\end{aligned}$$\n\n$$(h_m) = \\left(\\sum K\\right)\\frac{V^2}{2g} \\rightarrow (h_m) = (4.0)\\frac{(2.0)^2}{2(9.81)}$$\n\n$$(h_m) = 0.82\\ \\text{m}$$",
+   "solution": "Refer to the Minor Losses in Pipe Fittings, Contractions, and Expansions section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_m\\). We can determine \\(h_m\\) from the following equation:\n\n$$h_m = \\left(\\sum K\\right)\\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_m\\):\n\n$$\\begin{aligned}\nK_{entrance} &= 0.5 \\\\\nK_{valve} &= 2.5 \\\\\nK_{exit} &= 1.0 \\\\\n\\sum K &= 4.0 \\\\\nV &= 2.0\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nh_m &= ?\n\\end{aligned}$$\n\n$$(h_m) = \\left(\\sum K\\right)\\frac{V^2}{2g} \\rightarrow (h_m) = (4.0)\\frac{(2.0)^2}{2(9.81)}$$\n\n$$(h_m) = 0.82\\ \\text{m}$$",
    "explanation": "The velocity head is V-squared over 2g — forgetting the 2 doubles it to 1.63 m, and the pipe exit (K = 1.0) is the minor-loss coefficient most often left out (0.61 m).",
    "diagram": "diagrams/fluid-013.svg"
   },
@@ -3026,7 +3026,7 @@
     "10,000 m^3"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Earthwork section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V_{bank}\\). Shrinkage relates bank and compacted volumes by:\n\n$$V_{bank} = \\frac{V_{compacted}}{1 - \\text{shrinkage}}$$\n\nList the known and unknown parameters in order to solve for \\(V_{bank}\\):\n\n$$\\begin{aligned}\nV_{compacted} &= 10{,}000\\ \\text{m}^3 \\\\\n\\text{shrinkage} &= 0.15 \\\\\nV_{bank} &= ?\n\\end{aligned}$$\n\n$$(V_{bank}) = \\frac{V_{compacted}}{1 - 0.15} \\rightarrow (V_{bank}) = \\frac{10{,}000}{0.85}$$\n\n$$(V_{bank}) = 11{,}765\\ \\text{m}^3$$",
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V_{bank}\\). Shrinkage relates bank and compacted volumes by:\n\n$$V_{bank} = \\frac{V_{compacted}}{1 - \\text{shrinkage}}$$\n\nList the known and unknown parameters in order to solve for \\(V_{bank}\\):\n\n$$\\begin{aligned}\nV_{compacted} &= 10{,}000\\ \\text{m}^3 \\\\\n\\text{shrinkage} &= 0.15 \\\\\nV_{bank} &= ?\n\\end{aligned}$$\n\n$$(V_{bank}) = \\frac{V_{compacted}}{1 - 0.15} \\rightarrow (V_{bank}) = \\frac{10{,}000}{0.85}$$\n\n$$(V_{bank}) = 11{,}765\\ \\text{m}^3$$",
    "explanation": "Shrinkage means you need MORE bank volume, so divide by (1 - shrinkage) — multiplying by 0.85 (8,500 m^3) goes the wrong direction, and multiplying by 1.15 (11,500 m^3) confuses shrinkage with swell."
   },
   {
@@ -3097,7 +3097,7 @@
     "99 MPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Column Buckling section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{cr}\\). We can determine \\(\\sigma_{cr}\\) from the following equation:\n\n$$\\sigma_{cr} = \\frac{\\pi^2 E}{(KL/r)^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{cr}\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200{,}000\\ \\text{MPa} \\\\\nKL/r &= 100 \\\\\n\\sigma_{cr} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{cr}) = \\frac{\\pi^2 E}{(KL/r)^2} \\rightarrow (\\sigma_{cr}) = \\frac{\\pi^2(200{,}000)}{(100)^2}$$\n\n$$(\\sigma_{cr}) = 197\\ \\text{MPa}$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{cr}\\). We can determine \\(\\sigma_{cr}\\) from the following equation:\n\n$$\\sigma_{cr} = \\frac{\\pi^2 E}{(KL/r)^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{cr}\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200{,}000\\ \\text{MPa} \\\\\nKL/r &= 100 \\\\\n\\sigma_{cr} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{cr}) = \\frac{\\pi^2 E}{(KL/r)^2} \\rightarrow (\\sigma_{cr}) = \\frac{\\pi^2(200{,}000)}{(100)^2}$$\n\n$$(\\sigma_{cr}) = 197\\ \\text{MPa}$$",
    "explanation": "Euler stress falls with the SQUARE of KL/r — forgetting the square blows the answer up to 19.7 GPa, which should immediately look wrong since it exceeds the steel's yield strength by nearly 100 times.",
    "diagram": "diagrams/structural-012.svg"
   },
@@ -3152,7 +3152,7 @@
     "6.9 cm"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Consolidation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(s_c\\). We can determine \\(s_c\\) from the following equation:\n\n$$s_c = \\frac{H_0}{1 + e_0} C_c \\log\\frac{\\sigma'_{v0} + \\Delta\\sigma}{\\sigma'_{v0}}$$\n\nList the known and unknown parameters in order to solve for \\(s_c\\):\n\n$$\\begin{aligned}\nH_0 &= 3.0\\ \\text{m} \\\\\ne_0 &= 0.85 \\\\\nC_c &= 0.32 \\\\\n\\sigma'_{v0} &= 90\\ \\text{kPa} \\\\\n\\Delta\\sigma &= 60\\ \\text{kPa} \\\\\ns_c &= ?\n\\end{aligned}$$\n\n$$(s_c) = \\frac{3.0}{1 + 0.85}(0.32)\\log\\frac{90 + 60}{90} \\rightarrow (s_c) = (1.6216)(0.32)(0.2219)$$\n\n$$(s_c) = 0.115\\ \\text{m} = 11.5\\ \\text{cm}$$",
+   "solution": "Refer to the Ultimate consolidation settlement in soil layer section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(s_c\\). We can determine \\(s_c\\) from the following equation:\n\n$$s_c = \\frac{H_0}{1 + e_0} C_c \\log\\frac{\\sigma'_{v0} + \\Delta\\sigma}{\\sigma'_{v0}}$$\n\nList the known and unknown parameters in order to solve for \\(s_c\\):\n\n$$\\begin{aligned}\nH_0 &= 3.0\\ \\text{m} \\\\\ne_0 &= 0.85 \\\\\nC_c &= 0.32 \\\\\n\\sigma'_{v0} &= 90\\ \\text{kPa} \\\\\n\\Delta\\sigma &= 60\\ \\text{kPa} \\\\\ns_c &= ?\n\\end{aligned}$$\n\n$$(s_c) = \\frac{3.0}{1 + 0.85}(0.32)\\log\\frac{90 + 60}{90} \\rightarrow (s_c) = (1.6216)(0.32)(0.2219)$$\n\n$$(s_c) = 0.115\\ \\text{m} = 11.5\\ \\text{cm}$$",
    "explanation": "The (1 + e₀) term in the denominator is the classic trap — dropping it gives 21.3 cm. Also use base-10 log as the handbook writes it; natural log gives 26.5 cm."
   },
   {
@@ -3186,7 +3186,7 @@
     "2.20"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Slope Stability section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(FS\\). We can determine \\(FS\\) from the following equation:\n\n$$FS = \\frac{c + \\gamma' z \\cos^2\\beta \\tan\\phi}{\\gamma_{sat} z \\sin\\beta \\cos\\beta}$$\n\nList the known and unknown parameters in order to solve for \\(FS\\):\n\n$$\\begin{aligned}\nc &= 12\\ \\text{kPa} \\\\\n\\phi &= 25^\\circ \\\\\n\\beta &= 20^\\circ \\\\\nz &= 4\\ \\text{m} \\\\\n\\gamma_{sat} &= 20\\ \\text{kN/m}^3 \\\\\n\\gamma' &= 20 - 9.81 = 10.19\\ \\text{kN/m}^3 \\\\\nFS &= ?\n\\end{aligned}$$\n\n$$(FS) = \\frac{12 + (10.19)(4)(0.8830)(0.4663)}{(20)(4)(0.3420)(0.9397)} \\rightarrow (FS) = \\frac{28.78}{25.71}$$\n\n$$(FS) = 1.12$$",
+   "solution": "Refer to the Slope Failure Along Planar Surface section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(FS\\). We can determine \\(FS\\) from the following equation:\n\n$$FS = \\frac{c + \\gamma' z \\cos^2\\beta \\tan\\phi}{\\gamma_{sat} z \\sin\\beta \\cos\\beta}$$\n\nList the known and unknown parameters in order to solve for \\(FS\\):\n\n$$\\begin{aligned}\nc &= 12\\ \\text{kPa} \\\\\n\\phi &= 25^\\circ \\\\\n\\beta &= 20^\\circ \\\\\nz &= 4\\ \\text{m} \\\\\n\\gamma_{sat} &= 20\\ \\text{kN/m}^3 \\\\\n\\gamma' &= 20 - 9.81 = 10.19\\ \\text{kN/m}^3 \\\\\nFS &= ?\n\\end{aligned}$$\n\n$$(FS) = \\frac{12 + (10.19)(4)(0.8830)(0.4663)}{(20)(4)(0.3420)(0.9397)} \\rightarrow (FS) = \\frac{28.78}{25.71}$$\n\n$$(FS) = 1.12$$",
    "explanation": "With seepage parallel to the slope, the numerator uses buoyant weight γ′ while the denominator uses saturated weight — using γ_sat in both gives 1.75. Never drop the cohesion term (that gives 0.65).",
    "diagram": "diagrams/geotech-011.svg"
   },
@@ -3204,7 +3204,7 @@
     "378 kPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). We can determine \\(q_{ult}\\) from the following equation:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\tfrac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 60\\ \\text{kPa} \\\\\n\\phi &= 0^\\circ \\; \\Rightarrow \\; N_c = 5.7,\\ N_q = 1.0,\\ N_{\\gamma} = 0 \\; (\\text{Terzaghi}) \\\\\nB &= 2\\ \\text{m} \\\\\nD_f &= 1\\ \\text{m} \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (60)(5.7) + (18)(1)(1.0) + 0 \\rightarrow (q_{ult}) = 342 + 18$$\n\n$$(q_{ult}) = 360\\ \\text{kPa}$$",
+   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). We can determine \\(q_{ult}\\) from the following equation:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\tfrac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 60\\ \\text{kPa} \\\\\n\\phi &= 0^\\circ \\; \\Rightarrow \\; N_c = 5.7,\\ N_q = 1.0,\\ N_{\\gamma} = 0 \\; (\\text{Terzaghi}) \\\\\nB &= 2\\ \\text{m} \\\\\nD_f &= 1\\ \\text{m} \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (60)(5.7) + (18)(1)(1.0) + 0 \\rightarrow (q_{ult}) = 342 + 18$$\n\n$$(q_{ult}) = 360\\ \\text{kPa}$$",
    "explanation": "For φ = 0, Nγ = 0 so the width term vanishes, but the overburden term γD_fN_q still counts — dropping it gives 342 kPa. Use Terzaghi's N_c = 5.7, not the general 5.14 (which gives 326 kPa).",
    "diagram": "diagrams/geotech-012.svg"
   },
@@ -3291,7 +3291,7 @@
     "2.37"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(LEF\\). We can determine \\(LEF\\) from the following equation:\n\n$$LEF = \\left(\\frac{W}{18}\\right)^4$$\n\nList the known and unknown parameters in order to solve for \\(LEF\\):\n\n$$\\begin{aligned}\nW &= 24\\ \\text{kips} \\\\\nLEF &= ?\n\\end{aligned}$$\n\n$$(LEF) = \\left(\\frac{24}{18}\\right)^4 \\rightarrow (LEF) = (1.333)^4$$\n\n$$(LEF) = 3.16$$",
+   "solution": "Refer to the Highway Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(LEF\\). We can determine \\(LEF\\) from the following equation:\n\n$$LEF = \\left(\\frac{W}{18}\\right)^4$$\n\nList the known and unknown parameters in order to solve for \\(LEF\\):\n\n$$\\begin{aligned}\nW &= 24\\ \\text{kips} \\\\\nLEF &= ?\n\\end{aligned}$$\n\n$$(LEF) = \\left(\\frac{24}{18}\\right)^4 \\rightarrow (LEF) = (1.333)^4$$\n\n$$(LEF) = 3.16$$",
    "explanation": "Damage scales with the FOURTH power of the load ratio — each wrong exponent is a trap: linear gives 1.33, squared 1.78, cubed 2.37."
   },
   {
@@ -3399,7 +3399,7 @@
     "4.50 in."
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Hydrology section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\). We can determine \\(Q\\) from the following equations:\n\n$$S = \\frac{1000}{CN} - 10 \\qquad Q = \\frac{(P - 0.2S)^2}{P + 0.8S}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nCN &= 80 \\\\\nP &= 5.0\\ \\text{in.} \\\\\nS &= \\tfrac{1000}{80} - 10 = 2.5\\ \\text{in.} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{(5.0 - 0.2(2.5))^2}{5.0 + 0.8(2.5)} \\rightarrow (Q) = \\frac{(4.5)^2}{7.0} = \\frac{20.25}{7.0}$$\n\n$$(Q) = 2.89\\ \\text{in.}$$",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\). We can determine \\(Q\\) from the following equations:\n\n$$S = \\frac{1000}{CN} - 10 \\qquad Q = \\frac{(P - 0.2S)^2}{P + 0.8S}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nCN &= 80 \\\\\nP &= 5.0\\ \\text{in.} \\\\\nS &= \\tfrac{1000}{80} - 10 = 2.5\\ \\text{in.} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{(5.0 - 0.2(2.5))^2}{5.0 + 0.8(2.5)} \\rightarrow (Q) = \\frac{(4.5)^2}{7.0} = \\frac{20.25}{7.0}$$\n\n$$(Q) = 2.89\\ \\text{in.}$$",
    "explanation": "Subtract the initial abstraction I_a = 0.2S before squaring — skipping it gives 3.57 in. The storage S itself (2.50 in.) is not the runoff."
   },
   {
@@ -3537,7 +3537,7 @@
     "(6, 6)"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Vector Analysis section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\nabla f(1, 2)\\). The gradient is the vector of partial derivatives:\n\n$$\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j}$$\n\nList the known and unknown parameters in order to solve for \\(\\nabla f\\):\n\n$$\\begin{aligned}\n\\frac{\\partial f}{\\partial x} &= 2xy + y^2 = 2(1)(2) + (2)^2 = 8 \\\\\n\\frac{\\partial f}{\\partial y} &= x^2 + 2xy = (1)^2 + 2(1)(2) = 5 \\\\\n\\nabla f(1, 2) &= ?\n\\end{aligned}$$\n\n$$(\\nabla f(1, 2)) = 8\\mathbf{i} + 5\\mathbf{j} \\rightarrow (8, 5)$$\n\n$$(\\nabla f(1, 2)) = (8, 5)$$",
+   "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\nabla f(1, 2)\\). The gradient is the vector of partial derivatives:\n\n$$\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j}$$\n\nList the known and unknown parameters in order to solve for \\(\\nabla f\\):\n\n$$\\begin{aligned}\n\\frac{\\partial f}{\\partial x} &= 2xy + y^2 = 2(1)(2) + (2)^2 = 8 \\\\\n\\frac{\\partial f}{\\partial y} &= x^2 + 2xy = (1)^2 + 2(1)(2) = 5 \\\\\n\\nabla f(1, 2) &= ?\n\\end{aligned}$$\n\n$$(\\nabla f(1, 2)) = 8\\mathbf{i} + 5\\mathbf{j} \\rightarrow (8, 5)$$\n\n$$(\\nabla f(1, 2)) = (8, 5)$$",
    "explanation": "Each component needs both product-rule terms — the (4, 4) trap differentiates only one term of each product."
   },
   {
@@ -3588,7 +3588,7 @@
     "The number of vectors in the set equals the dimension of the space"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Linear Algebra section in the Mathematics chapter of the FE Reference Handbook.\n\nA set of vectors \\(\\{v_1, v_2, \\ldots, v_n\\}\\) is linearly independent exactly when the only scalars \\(c_1, c_2, \\ldots, c_n\\) satisfying \\(c_1v_1 + c_2v_2 + \\cdots + c_nv_n = 0\\) are \\(c_1 = c_2 = \\cdots = c_n = 0\\).\n\nIn other words, no vector in the set can be written as a linear combination of the others. Mutual perpendicularity (orthogonality) is a stronger, separate condition, and it is not required for independence.",
+   "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nA set of vectors \\(\\{v_1, v_2, \\ldots, v_n\\}\\) is linearly independent exactly when the only scalars \\(c_1, c_2, \\ldots, c_n\\) satisfying \\(c_1v_1 + c_2v_2 + \\cdots + c_nv_n = 0\\) are \\(c_1 = c_2 = \\cdots = c_n = 0\\).\n\nIn other words, no vector in the set can be written as a linear combination of the others. Mutual perpendicularity (orthogonality) is a stronger, separate condition, and it is not required for independence.",
    "explanation": "Linear independence means no vector is a combination of the others; perpendicularity (orthogonality) is stricter and not required.",
    "conceptual": true
   },
@@ -3658,7 +3658,7 @@
     "40.0 kN (T)"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Method of Joints section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{ED}\\). At joint E, vertical equilibrium involves only the diagonal member and the applied load:\n\n$$\\sum F_y = 0 \\quad\\Rightarrow\\quad F_{ED}\\sin 60^\\circ - 20 = 0$$\n\nList the known and unknown parameters in order to solve for \\(F_{ED}\\):\n\n$$\\begin{aligned}\n\\theta &= 60^\\circ \\\\\nP &= 20\\ \\text{kN downward} \\\\\nF_{ED} &= ?\n\\end{aligned}$$\n\n$$(F_{ED}) = \\frac{20}{\\sin 60^\\circ} \\rightarrow (F_{ED}) = \\frac{20}{0.866}$$\n\n$$(F_{ED}) = 23.1\\ \\text{kN}$$\n\nThe diagonal must pull up and to the left on the joint to balance the downward load, so it is in tension: \\(23.1\\ \\text{kN (T)}\\).",
+   "solution": "Refer to the Plane Truss: Method of Joints section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F_{ED}\\). At joint E, vertical equilibrium involves only the diagonal member and the applied load:\n\n$$\\sum F_y = 0 \\quad\\Rightarrow\\quad F_{ED}\\sin 60^\\circ - 20 = 0$$\n\nList the known and unknown parameters in order to solve for \\(F_{ED}\\):\n\n$$\\begin{aligned}\n\\theta &= 60^\\circ \\\\\nP &= 20\\ \\text{kN downward} \\\\\nF_{ED} &= ?\n\\end{aligned}$$\n\n$$(F_{ED}) = \\frac{20}{\\sin 60^\\circ} \\rightarrow (F_{ED}) = \\frac{20}{0.866}$$\n\n$$(F_{ED}) = 23.1\\ \\text{kN}$$\n\nThe diagonal must pull up and to the left on the joint to balance the downward load, so it is in tension: \\(23.1\\ \\text{kN (T)}\\).",
    "explanation": "Vertical equilibrium alone isolates the diagonal — the (C) trap gets the magnitude right but misreads the direction of the member force on the joint.",
    "diagram": "diagrams/statics-018.svg"
   },
@@ -3763,7 +3763,7 @@
     "3.54 m/s²"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Equation of Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a\\). The angled pull reduces the normal force, which reduces the kinetic friction:\n\n$$\\sum F_x = ma, \\qquad F_k = \\mu_k N, \\qquad N = mg - P\\sin 30^\\circ$$\n\nList the known and unknown parameters in order to solve for \\(a\\):\n\n$$\\begin{aligned}\nm &= 20\\ \\text{kg} \\\\\nP &= 100\\ \\text{N} \\\\\nN &= (20)(9.81) - (100)(0.5) = 146.2\\ \\text{N} \\\\\nF_k &= (0.20)(146.2) = 29.2\\ \\text{N} \\\\\na &= ?\n\\end{aligned}$$\n\n$$(a) = \\frac{P\\cos 30^\\circ - F_k}{m} \\rightarrow (a) = \\frac{86.6 - 29.2}{20}$$\n\n$$(a) = 2.87\\ \\text{m/s}^2$$",
+   "solution": "Refer to the Particle Kinetics section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a\\). The angled pull reduces the normal force, which reduces the kinetic friction:\n\n$$\\sum F_x = ma, \\qquad F_k = \\mu_k N, \\qquad N = mg - P\\sin 30^\\circ$$\n\nList the known and unknown parameters in order to solve for \\(a\\):\n\n$$\\begin{aligned}\nm &= 20\\ \\text{kg} \\\\\nP &= 100\\ \\text{N} \\\\\nN &= (20)(9.81) - (100)(0.5) = 146.2\\ \\text{N} \\\\\nF_k &= (0.20)(146.2) = 29.2\\ \\text{N} \\\\\na &= ?\n\\end{aligned}$$\n\n$$(a) = \\frac{P\\cos 30^\\circ - F_k}{m} \\rightarrow (a) = \\frac{86.6 - 29.2}{20}$$\n\n$$(a) = 2.87\\ \\text{m/s}^2$$",
    "explanation": "The upward component of the pull lightens the block, so friction drops — the 2.37 m/s² trap computes friction from the full weight.",
    "diagram": "diagrams/dynamics-018.svg"
   },
@@ -3833,7 +3833,7 @@
     "60.0 MPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Stress Transformation section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{x'}\\). With \\(\\tau_{xy} = 0\\) the transformation reduces to the average stress plus the deviatoric term at twice the angle:\n\n$$\\sigma_{x'} = \\frac{\\sigma_x + \\sigma_y}{2} + \\frac{\\sigma_x - \\sigma_y}{2}\\cos 2\\theta$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{x'}\\):\n\n$$\\begin{aligned}\n\\sigma_x &= 60\\ \\text{MPa} \\\\\n\\sigma_y &= -20\\ \\text{MPa} \\\\\n\\theta &= 30^\\circ \\\\\n\\sigma_{x'} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{x'}) = \\frac{60 + (-20)}{2} + \\frac{60 - (-20)}{2}\\cos 60^\\circ \\rightarrow (\\sigma_{x'}) = 20 + 40(0.5)$$\n\n$$(\\sigma_{x'}) = 40.0\\ \\text{MPa}$$",
+   "solution": "Refer to the Mohr's Circle—Stress, 2D section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma_{x'}\\). With \\(\\tau_{xy} = 0\\) the transformation reduces to the average stress plus the deviatoric term at twice the angle:\n\n$$\\sigma_{x'} = \\frac{\\sigma_x + \\sigma_y}{2} + \\frac{\\sigma_x - \\sigma_y}{2}\\cos 2\\theta$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma_{x'}\\):\n\n$$\\begin{aligned}\n\\sigma_x &= 60\\ \\text{MPa} \\\\\n\\sigma_y &= -20\\ \\text{MPa} \\\\\n\\theta &= 30^\\circ \\\\\n\\sigma_{x'} &= ?\n\\end{aligned}$$\n\n$$(\\sigma_{x'}) = \\frac{60 + (-20)}{2} + \\frac{60 - (-20)}{2}\\cos 60^\\circ \\rightarrow (\\sigma_{x'}) = 20 + 40(0.5)$$\n\n$$(\\sigma_{x'}) = 40.0\\ \\text{MPa}$$",
    "explanation": "The transformation uses 2θ = 60°, not θ = 30° — plugging the raw angle gives the 54.6 MPa trap."
   },
   {
@@ -3885,7 +3885,7 @@
     "3.98 MPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Transverse Shear Stress section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{max}\\). For a solid circular cross-section the maximum shear stress at the neutral axis is 4/3 of the average:\n\n$$\\tau_{max} = \\frac{4}{3}\\frac{V}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\tau_{max}\\):\n\n$$\\begin{aligned}\nV &= 30\\ \\text{kN} = 30000\\ \\text{N} \\\\\nd &= 80\\ \\text{mm} \\\\\nA &= \\frac{\\pi(80)^2}{4} = 5027\\ \\text{mm}^2 \\\\\n\\tau_{max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{max}) = \\frac{4}{3}\\frac{30000}{5027} \\rightarrow (\\tau_{max}) = \\frac{4}{3}(5.97)$$\n\n$$(\\tau_{max}) = 7.96\\ \\text{MPa}$$",
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\tau_{max}\\). For a solid circular cross-section the maximum shear stress at the neutral axis is 4/3 of the average:\n\n$$\\tau_{max} = \\frac{4}{3}\\frac{V}{A}$$\n\nList the known and unknown parameters in order to solve for \\(\\tau_{max}\\):\n\n$$\\begin{aligned}\nV &= 30\\ \\text{kN} = 30000\\ \\text{N} \\\\\nd &= 80\\ \\text{mm} \\\\\nA &= \\frac{\\pi(80)^2}{4} = 5027\\ \\text{mm}^2 \\\\\n\\tau_{max} &= ?\n\\end{aligned}$$\n\n$$(\\tau_{max}) = \\frac{4}{3}\\frac{30000}{5027} \\rightarrow (\\tau_{max}) = \\frac{4}{3}(5.97)$$\n\n$$(\\tau_{max}) = 7.96\\ \\text{MPa}$$",
    "explanation": "Shear stress peaks at the neutral axis at 4/3 of the average for a circle (3/2 for a rectangle) — the 5.97 MPa trap reports the average V/A."
   },
   {
@@ -3902,7 +3902,7 @@
     "The stress amplitude that causes failure in exactly one million cycles"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Fatigue section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nOn an S–N curve, the endurance limit is the stress amplitude below which the curve flattens — the material can theoretically endure an infinite number of load cycles without fatigue failure. It is a property read off the horizontal asymptote of the S–N diagram, not a single-cycle strength. (Many nonferrous metals show no true endurance limit.)",
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook.\n\nOn an S–N curve, the endurance limit is the stress amplitude below which the curve flattens — the material can theoretically endure an infinite number of load cycles without fatigue failure. It is a property read off the horizontal asymptote of the S–N diagram, not a single-cycle strength. (Many nonferrous metals show no true endurance limit.)",
    "explanation": "The endurance limit is the S–N curve's flat asymptote — cycle below it and fatigue failure theoretically never occurs.",
    "conceptual": true
   },
@@ -3920,7 +3920,7 @@
     "18.8 kN·m"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Influence Lines section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(M_{max}\\) at the section. The influence-line ordinate for moment at a section distance \\(a\\) from the left peaks when the unit load sits exactly at the section:\n\n$$M = P\\frac{ab}{L}$$\n\nList the known and unknown parameters in order to solve for \\(M_{max}\\):\n\n$$\\begin{aligned}\nP &= 25\\ \\text{kN} \\\\\na &= 3\\ \\text{m} \\\\\nb &= 12 - 3 = 9\\ \\text{m} \\\\\nL &= 12\\ \\text{m} \\\\\nM_{max} &= ?\n\\end{aligned}$$\n\n$$(M_{max}) = (25)\\frac{(3)(9)}{12} \\rightarrow (M_{max}) = (25)(2.25)$$\n\n$$(M_{max}) = 56.3\\ \\text{kN}\\cdot\\text{m}$$",
+   "solution": "Refer to the Influence Lines for Beams and Trusses section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(M_{max}\\) at the section. The influence-line ordinate for moment at a section distance \\(a\\) from the left peaks when the unit load sits exactly at the section:\n\n$$M = P\\frac{ab}{L}$$\n\nList the known and unknown parameters in order to solve for \\(M_{max}\\):\n\n$$\\begin{aligned}\nP &= 25\\ \\text{kN} \\\\\na &= 3\\ \\text{m} \\\\\nb &= 12 - 3 = 9\\ \\text{m} \\\\\nL &= 12\\ \\text{m} \\\\\nM_{max} &= ?\n\\end{aligned}$$\n\n$$(M_{max}) = (25)\\frac{(3)(9)}{12} \\rightarrow (M_{max}) = (25)(2.25)$$\n\n$$(M_{max}) = 56.3\\ \\text{kN}\\cdot\\text{m}$$",
    "explanation": "Maximum moment at a section occurs with the load directly on it — the 75.0 kN·m trap multiplies P by a alone, and 37.5 kN·m halves the influence-line ordinate.",
    "diagram": "diagrams/structural-015.svg"
   },
@@ -3972,7 +3972,7 @@
     "36.5 × 10⁶ mm⁴"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Column Buckling section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the minimum \\(I\\). Rearrange the Euler buckling formula to solve for the required moment of inertia:\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2} \\quad\\Rightarrow\\quad I = \\frac{P(KL)^2}{\\pi^2 E}$$\n\nList the known and unknown parameters in order to solve for \\(I\\):\n\n$$\\begin{aligned}\nP &= 500\\ \\text{kN} = 500000\\ \\text{N} \\\\\nKL &= (1.0)(6)\\ \\text{m} = 6\\ \\text{m} \\\\\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= ?\n\\end{aligned}$$\n\n$$(I) = \\frac{(500000)(6)^2}{\\pi^2(200 \\times 10^9)} \\rightarrow (I) = 9.12 \\times 10^{-6}\\ \\text{m}^4$$\n\n$$(I) = 9.12 \\times 10^6\\ \\text{mm}^4$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the minimum \\(I\\). Rearrange the Euler buckling formula to solve for the required moment of inertia:\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2} \\quad\\Rightarrow\\quad I = \\frac{P(KL)^2}{\\pi^2 E}$$\n\nList the known and unknown parameters in order to solve for \\(I\\):\n\n$$\\begin{aligned}\nP &= 500\\ \\text{kN} = 500000\\ \\text{N} \\\\\nKL &= (1.0)(6)\\ \\text{m} = 6\\ \\text{m} \\\\\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= ?\n\\end{aligned}$$\n\n$$(I) = \\frac{(500000)(6)^2}{\\pi^2(200 \\times 10^9)} \\rightarrow (I) = 9.12 \\times 10^{-6}\\ \\text{m}^4$$\n\n$$(I) = 9.12 \\times 10^6\\ \\text{mm}^4$$",
    "explanation": "Pin-ended means K = 1.0, and π² stays in the denominator — the 2.28×10⁶ trap uses K = 0.5 and 90.0×10⁶ drops π² entirely."
   },
   {
@@ -3989,7 +3989,7 @@
     "6.25 kN"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Force Method section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(R_B\\). Release the roller as the redundant: the downward tip deflection of a cantilever under uniform load must be cancelled by the upward tip deflection from \\(R_B\\):\n\n$$\\Delta_{cantilever} = \\frac{wL^4}{8EI}, \\qquad \\Delta_{redundant} = \\frac{R_B L^3}{3EI}$$\n\nList the known and unknown parameters in order to solve for \\(R_B\\):\n\n$$\\begin{aligned}\nw &= 5\\ \\text{kN/m} \\\\\nL &= 4\\ \\text{m} \\\\\nR_B &= ?\n\\end{aligned}$$\n\n$$(R_B) = \\frac{3wL}{8} \\rightarrow (R_B) = \\frac{3(5)(4)}{8}$$\n\n$$(R_B) = 7.50\\ \\text{kN upward}$$",
+   "solution": "Refer to the Elementary Statically Indeterminate Structures by Force Method of Analysis section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(R_B\\). Release the roller as the redundant: the downward tip deflection of a cantilever under uniform load must be cancelled by the upward tip deflection from \\(R_B\\):\n\n$$\\Delta_{cantilever} = \\frac{wL^4}{8EI}, \\qquad \\Delta_{redundant} = \\frac{R_B L^3}{3EI}$$\n\nList the known and unknown parameters in order to solve for \\(R_B\\):\n\n$$\\begin{aligned}\nw &= 5\\ \\text{kN/m} \\\\\nL &= 4\\ \\text{m} \\\\\nR_B &= ?\n\\end{aligned}$$\n\n$$(R_B) = \\frac{3wL}{8} \\rightarrow (R_B) = \\frac{3(5)(4)}{8}$$\n\n$$(R_B) = 7.50\\ \\text{kN upward}$$",
    "explanation": "Compatibility of deflection gives the classic 3wL/8 — the 10.0 kN trap answers as if the beam were simply supported (wL/2).",
    "diagram": "diagrams/structural-019.svg"
   },
@@ -4007,7 +4007,7 @@
     "To replace the longitudinal tension steel"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Reinforced Concrete Beams section in the Civil Engineering chapter of the FE Reference Handbook.\n\nStirrups are the transverse (vertical or U-shaped) reinforcement in a beam. Their primary job is to resist diagonal-tension shear forces that the concrete alone cannot carry, and they simultaneously confine the longitudinal bars and hold them in position. They do not meaningfully add flexural strength — that is the longitudinal steel's job.",
+   "solution": "Refer to the Beams—Shear section in the Civil Engineering chapter of the FE Reference Handbook.\n\nStirrups are the transverse (vertical or U-shaped) reinforcement in a beam. Their primary job is to resist diagonal-tension shear forces that the concrete alone cannot carry, and they simultaneously confine the longitudinal bars and hold them in position. They do not meaningfully add flexural strength — that is the longitudinal steel's job.",
    "explanation": "Stirrups = shear reinforcement plus confinement; flexural strength comes from the longitudinal steel, not the stirrups.",
    "conceptual": true
   },
@@ -4043,7 +4043,7 @@
     "It decreases by 0.0072 mm"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Poisson's Ratio section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta d\\), the change in diameter. Lateral strain is related to axial strain by Poisson's ratio:\n\n$$\\nu = -\\frac{\\epsilon_{\\text{lateral}}}{\\epsilon_{\\text{axial}}}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta d\\):\n\n$$\\begin{aligned}\n\\epsilon_{\\text{axial}} &= 0.0020\\ \\text{mm/mm} \\\\\n\\nu &= 0.30 \\\\\nd &= 12.0\\ \\text{mm} \\\\\n\\epsilon_{\\text{lateral}} &= -\\nu\\,\\epsilon_{\\text{axial}} = -(0.30)(0.0020) = -0.0006\\ \\text{mm/mm} \\\\\n\\Delta d &= ?\n\\end{aligned}$$\n\n$$(\\Delta d) = (\\epsilon_{\\text{lateral}})(d) \\rightarrow (\\Delta d) = (-0.0006)(12.0)$$\n\n$$(\\Delta d) = -0.0072\\ \\text{mm}$$\n\nThe negative sign means the diameter decreases by 0.0072 mm.",
+   "solution": "Refer to the Shear Stress-Strain section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta d\\), the change in diameter. Lateral strain is related to axial strain by Poisson's ratio:\n\n$$\\nu = -\\frac{\\epsilon_{\\text{lateral}}}{\\epsilon_{\\text{axial}}}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta d\\):\n\n$$\\begin{aligned}\n\\epsilon_{\\text{axial}} &= 0.0020\\ \\text{mm/mm} \\\\\n\\nu &= 0.30 \\\\\nd &= 12.0\\ \\text{mm} \\\\\n\\epsilon_{\\text{lateral}} &= -\\nu\\,\\epsilon_{\\text{axial}} = -(0.30)(0.0020) = -0.0006\\ \\text{mm/mm} \\\\\n\\Delta d &= ?\n\\end{aligned}$$\n\n$$(\\Delta d) = (\\epsilon_{\\text{lateral}})(d) \\rightarrow (\\Delta d) = (-0.0006)(12.0)$$\n\n$$(\\Delta d) = -0.0072\\ \\text{mm}$$\n\nThe negative sign means the diameter decreases by 0.0072 mm.",
    "explanation": "Tension stretches a bar axially but squeezes it laterally — the minus sign in Poisson's ratio is the whole point. Forgetting ν gives 0.0240 mm; dropping the sign claims the diameter grows."
   },
   {
@@ -4060,7 +4060,7 @@
     "144 MPa"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Thermal Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\), the restrained thermal stress. Because the supports prevent the free thermal expansion \\(\\alpha(\\Delta T)L\\), an equal and opposite mechanical strain develops, giving:\n\n$$\\sigma = E\\,\\alpha\\,(\\Delta T)$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\n\\alpha &= 12 \\times 10^{-6}\\ /\\!^\\circ\\text{C} \\\\\n\\Delta T &= 50 - 20 = 30^\\circ\\text{C} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = (E)(\\alpha)(\\Delta T) \\rightarrow (\\sigma) = (200 \\times 10^9)(12 \\times 10^{-6})(30)$$\n\n$$(\\sigma) = 72 \\times 10^6\\ \\text{Pa} = 72.0\\ \\text{MPa}\\ (\\text{compressive})$$",
+   "solution": "Refer to the Thermal Deformations section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\sigma\\), the restrained thermal stress. Because the supports prevent the free thermal expansion \\(\\alpha(\\Delta T)L\\), an equal and opposite mechanical strain develops, giving:\n\n$$\\sigma = E\\,\\alpha\\,(\\Delta T)$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\n\\alpha &= 12 \\times 10^{-6}\\ /\\!^\\circ\\text{C} \\\\\n\\Delta T &= 50 - 20 = 30^\\circ\\text{C} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = (E)(\\alpha)(\\Delta T) \\rightarrow (\\sigma) = (200 \\times 10^9)(12 \\times 10^{-6})(30)$$\n\n$$(\\sigma) = 72 \\times 10^6\\ \\text{Pa} = 72.0\\ \\text{MPa}\\ (\\text{compressive})$$",
    "explanation": "Restrained thermal stress is just E times α times ΔT — length cancels out, so the 3.0 m is a distractor. A temperature rise in a restrained bar produces compressive stress.",
    "diagram": "diagrams/materials-016.svg"
   },
@@ -4148,7 +4148,7 @@
     "83.4 kPa"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Fluid Statics section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p\\), the gage pressure at depth. From hydrostatics:\n\n$$p = \\gamma h$$\n\nList the known and unknown parameters in order to solve for \\(p\\):\n\n$$\\begin{aligned}\nSG &= 0.85 \\\\\n\\gamma_{\\text{oil}} &= (SG)(\\gamma_{\\text{water}}) = (0.85)(9.81) = 8.34\\ \\text{kN/m}^3 \\\\\nh &= 5.0\\ \\text{m} \\\\\np &= ?\n\\end{aligned}$$\n\n$$(p) = (\\gamma)(h) \\rightarrow (p) = (8.34)(5.0)$$\n\n$$(p) = 41.7\\ \\text{kPa}\\ (\\text{gage})$$",
+   "solution": "Refer to the The Pressure Field in a Static Liquid section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(p\\), the gage pressure at depth. From hydrostatics:\n\n$$p = \\gamma h$$\n\nList the known and unknown parameters in order to solve for \\(p\\):\n\n$$\\begin{aligned}\nSG &= 0.85 \\\\\n\\gamma_{\\text{oil}} &= (SG)(\\gamma_{\\text{water}}) = (0.85)(9.81) = 8.34\\ \\text{kN/m}^3 \\\\\nh &= 5.0\\ \\text{m} \\\\\np &= ?\n\\end{aligned}$$\n\n$$(p) = (\\gamma)(h) \\rightarrow (p) = (8.34)(5.0)$$\n\n$$(p) = 41.7\\ \\text{kPa}\\ (\\text{gage})$$",
    "explanation": "Pressure is γh with the fluid's own unit weight — multiply water's 9.81 by the specific gravity first. 49.1 kPa uses water's unit weight; 35.4 kPa applies the 0.85 factor twice.",
    "diagram": "diagrams/fluid-014.svg"
   },
@@ -4184,7 +4184,7 @@
     "the pressure at the impeller inlet falls below the liquid's vapor pressure"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Pumps section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nCavitation is the formation and violent collapse of vapor bubbles in a liquid. It occurs wherever the local absolute pressure drops to the liquid's vapor pressure — in a pump, that happens at the impeller eye when the suction head is insufficient (low NPSH available). The collapsing bubbles pit and erode the impeller.\n\nThrottling the discharge, running below rated speed, or shortening the suction line do not by themselves create vapor cavities; the trigger is specifically pressure falling below vapor pressure.\n\nThe pressure at the impeller inlet falling below the liquid's vapor pressure is the correct choice.",
+   "solution": "Refer to the Centrifugal Pump Characteristics section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nCavitation is the formation and violent collapse of vapor bubbles in a liquid. It occurs wherever the local absolute pressure drops to the liquid's vapor pressure — in a pump, that happens at the impeller eye when the suction head is insufficient (low NPSH available). The collapsing bubbles pit and erode the impeller.\n\nThrottling the discharge, running below rated speed, or shortening the suction line do not by themselves create vapor cavities; the trigger is specifically pressure falling below vapor pressure.\n\nThe pressure at the impeller inlet falling below the liquid's vapor pressure is the correct choice.",
    "explanation": "Cavitation = local pressure below vapor pressure, usually from starved suction. It sounds like gravel in the pump and eats impellers — raise the suction head or lower the pump to fix it.",
    "conceptual": true
   },
@@ -4219,7 +4219,7 @@
     "0.85 m^2/s"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Fluid Properties section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\nu\\), the kinematic viscosity:\n\n$$\\nu = \\frac{\\mu}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(\\nu\\):\n\n$$\\begin{aligned}\n\\mu &= 0.85\\ \\text{Pa}\\cdot\\text{s} \\\\\n\\rho &= 850\\ \\text{kg/m}^3 \\\\\n\\nu &= ?\n\\end{aligned}$$\n\n$$(\\nu) = \\frac{(\\mu)}{(\\rho)} \\rightarrow (\\nu) = \\frac{0.85}{850}$$\n\n$$(\\nu) = 1.00 \\times 10^{-3}\\ \\text{m}^2\\text{/s}$$",
+   "solution": "Refer to the Stress, Pressure, and Viscosity section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\nu\\), the kinematic viscosity:\n\n$$\\nu = \\frac{\\mu}{\\rho}$$\n\nList the known and unknown parameters in order to solve for \\(\\nu\\):\n\n$$\\begin{aligned}\n\\mu &= 0.85\\ \\text{Pa}\\cdot\\text{s} \\\\\n\\rho &= 850\\ \\text{kg/m}^3 \\\\\n\\nu &= ?\n\\end{aligned}$$\n\n$$(\\nu) = \\frac{(\\mu)}{(\\rho)} \\rightarrow (\\nu) = \\frac{0.85}{850}$$\n\n$$(\\nu) = 1.00 \\times 10^{-3}\\ \\text{m}^2\\text{/s}$$",
    "explanation": "Kinematic viscosity is dynamic viscosity divided by density — ‘kinematic’ means the mass has been divided out. Inverting the ratio gives 1000 m^2/s."
   },
   {
@@ -4236,7 +4236,7 @@
     "8.24 m"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Pipe Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). In parallel, both pipes share the same head loss while their discharges sum to the total:\n\n$$h_{f1} = h_{f2}, \\quad Q_1 + Q_2 = 0.30\\ \\text{m}^3\\text{/s}, \\quad h_f = f\\frac{L}{D}\\frac{V^2}{2g}$$\n\nWith equal \\(f\\) and \\(L\\), equal head loss gives \\(\\dfrac{Q_1}{Q_2} = \\left(\\dfrac{D_1}{D_2}\\right)^{2.5} = (1.5)^{2.5} = 2.756\\). List the parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nQ_1 &= \\frac{2.756}{3.756}(0.30) = 0.220\\ \\text{m}^3\\text{/s} \\\\\nA_1 &= \\frac{\\pi(0.30)^2}{4} = 0.07069\\ \\text{m}^2 \\\\\nV_1 &= \\frac{0.220}{0.07069} = 3.11\\ \\text{m/s} \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D_1}\\frac{V_1^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{1000}{0.30}\\frac{(3.11)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(3333.3)(0.494) = 33.0\\ \\text{m}$$\n\n(Checking Pipe 2: \\(V_2 = 2.54\\ \\text{m/s}\\) gives the same \\(h_f = 33.0\\ \\text{m}\\).)",
+   "solution": "Refer to the Multipath Pipeline Problems section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). In parallel, both pipes share the same head loss while their discharges sum to the total:\n\n$$h_{f1} = h_{f2}, \\quad Q_1 + Q_2 = 0.30\\ \\text{m}^3\\text{/s}, \\quad h_f = f\\frac{L}{D}\\frac{V^2}{2g}$$\n\nWith equal \\(f\\) and \\(L\\), equal head loss gives \\(\\dfrac{Q_1}{Q_2} = \\left(\\dfrac{D_1}{D_2}\\right)^{2.5} = (1.5)^{2.5} = 2.756\\). List the parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nQ_1 &= \\frac{2.756}{3.756}(0.30) = 0.220\\ \\text{m}^3\\text{/s} \\\\\nA_1 &= \\frac{\\pi(0.30)^2}{4} = 0.07069\\ \\text{m}^2 \\\\\nV_1 &= \\frac{0.220}{0.07069} = 3.11\\ \\text{m/s} \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D_1}\\frac{V_1^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{1000}{0.30}\\frac{(3.11)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(3333.3)(0.494) = 33.0\\ \\text{m}$$\n\n(Checking Pipe 2: \\(V_2 = 2.54\\ \\text{m/s}\\) gives the same \\(h_f = 33.0\\ \\text{m}\\).)",
    "explanation": "Parallel pipes share head loss, not discharge — flow splits as D^2.5. 61.2 m forces all flow through the big pipe; 65.9 m uses V^2/g instead of V^2/2g.",
    "diagram": "diagrams/fluid-019.svg"
   },
@@ -4254,7 +4254,7 @@
     "2.98 mm"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Fluid Properties section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h\\), the capillary rise:\n\n$$h = \\frac{4\\sigma\\cos\\beta}{\\gamma d}$$\n\nList the known and unknown parameters in order to solve for \\(h\\):\n\n$$\\begin{aligned}\n\\sigma &= 0.073\\ \\text{N/m} \\\\\n\\beta &= 0^\\circ \\rightarrow \\cos\\beta = 1 \\\\\n\\gamma &= 9.79\\ \\text{kN/m}^3 = 9790\\ \\text{N/m}^3 \\\\\nd &= 1.0\\ \\text{mm} = 0.001\\ \\text{m} \\\\\nh &= ?\n\\end{aligned}$$\n\n$$(h) = \\frac{4(0.073)(1)}{(9790)(0.001)}$$\n\n$$(h) = 0.0298\\ \\text{m} = 29.8\\ \\text{mm}$$",
+   "solution": "Refer to the Surface Tension and Capillarity section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h\\), the capillary rise:\n\n$$h = \\frac{4\\sigma\\cos\\beta}{\\gamma d}$$\n\nList the known and unknown parameters in order to solve for \\(h\\):\n\n$$\\begin{aligned}\n\\sigma &= 0.073\\ \\text{N/m} \\\\\n\\beta &= 0^\\circ \\rightarrow \\cos\\beta = 1 \\\\\n\\gamma &= 9.79\\ \\text{kN/m}^3 = 9790\\ \\text{N/m}^3 \\\\\nd &= 1.0\\ \\text{mm} = 0.001\\ \\text{m} \\\\\nh &= ?\n\\end{aligned}$$\n\n$$(h) = \\frac{4(0.073)(1)}{(9790)(0.001)}$$\n\n$$(h) = 0.0298\\ \\text{m} = 29.8\\ \\text{mm}$$",
    "explanation": "Capillary rise scales as 1/d — halve the tube diameter and the rise doubles (59.7 mm uses the radius as the diameter). Keep γ in N/m^3 so the units work."
   },
   {
@@ -4306,7 +4306,7 @@
     "468 m^3"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Earthwork section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\), the volume by the prismoidal formula:\n\n$$V = \\frac{L}{6}\\left(A_1 + 4A_m + A_2\\right)$$\n\nList the known and unknown parameters in order to solve for \\(V\\):\n\n$$\\begin{aligned}\nL &= 25\\ \\text{m} \\\\\nA_1 &= 42.5\\ \\text{m}^2 \\\\\nA_m &= 38.0\\ \\text{m}^2 \\\\\nA_2 &= 30.0\\ \\text{m}^2 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = \\frac{(L)}{6}\\left(A_1 + 4A_m + A_2\\right) \\rightarrow (V) = \\frac{25}{6}\\left(42.5 + 4(38.0) + 30.0\\right)$$\n\n$$(V) = \\frac{25}{6}(224.5) = 935\\ \\text{m}^3$$",
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V\\), the volume by the prismoidal formula:\n\n$$V = \\frac{L}{6}\\left(A_1 + 4A_m + A_2\\right)$$\n\nList the known and unknown parameters in order to solve for \\(V\\):\n\n$$\\begin{aligned}\nL &= 25\\ \\text{m} \\\\\nA_1 &= 42.5\\ \\text{m}^2 \\\\\nA_m &= 38.0\\ \\text{m}^2 \\\\\nA_2 &= 30.0\\ \\text{m}^2 \\\\\nV &= ?\n\\end{aligned}$$\n\n$$(V) = \\frac{(L)}{6}\\left(A_1 + 4A_m + A_2\\right) \\rightarrow (V) = \\frac{25}{6}\\left(42.5 + 4(38.0) + 30.0\\right)$$\n\n$$(V) = \\frac{25}{6}(224.5) = 935\\ \\text{m}^3$$",
    "explanation": "The prismoidal formula weights the middle section by 4 — it is exact for prismoids. The average-end-area shortcut gives 906 m^3, slightly low here."
   },
   {
@@ -4340,7 +4340,7 @@
     "a foresight reading taken on an unknown point"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Leveling section in the Civil Engineering chapter of the FE Reference Handbook.\n\nA benchmark is a permanent, stable monument — a brass disk, chiseled mark, or similar — whose elevation above the datum is known and published. Level runs start from benchmarks and close on them so every elevation in the survey traces back to the datum.\n\nA turning point is temporary, the instrument setup is just a vantage point, and a foresight reading is an observation — none of them is a benchmark.\n\nA permanent monument of known elevation used as a vertical reference is the correct choice.",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook.\n\nA benchmark is a permanent, stable monument — a brass disk, chiseled mark, or similar — whose elevation above the datum is known and published. Level runs start from benchmarks and close on them so every elevation in the survey traces back to the datum.\n\nA turning point is temporary, the instrument setup is just a vantage point, and a foresight reading is an observation — none of them is a benchmark.\n\nA permanent monument of known elevation used as a vertical reference is the correct choice.",
    "explanation": "Benchmarks anchor every elevation to the datum. If it isn't permanent and published, it isn't a benchmark — it's just a turning point."
   },
   {
@@ -4392,7 +4392,7 @@
     "1.209 m^3/s"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Weirs section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\), the weir discharge:\n\n$$Q = 1.84\\,L\\,H^{1.5}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nL &= 2.0\\ \\text{m} \\\\\nH &= 0.30\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = (1.84)(L)(H)^{1.5} \\rightarrow (Q) = (1.84)(2.0)(0.30)^{1.5}$$\n\n$$(Q) = (3.68)(0.1643) = 0.605\\ \\text{m}^3\\text{/s}$$",
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\), the weir discharge:\n\n$$Q = 1.84\\,L\\,H^{1.5}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nL &= 2.0\\ \\text{m} \\\\\nH &= 0.30\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = (1.84)(L)(H)^{1.5} \\rightarrow (Q) = (1.84)(2.0)(0.30)^{1.5}$$\n\n$$(Q) = (3.68)(0.1643) = 0.605\\ \\text{m}^3\\text{/s}$$",
    "explanation": "Rectangular weir discharge grows with H^1.5 — not linearly. 1.104 m^3/s uses H^1 and 0.331 m^3/s uses H^2.",
    "diagram": "diagrams/water-014.svg"
   },
@@ -4410,7 +4410,7 @@
     "3033 m^3/day"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Groundwater Flow section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\), the steady well discharge. The Thiem equation for a confined aquifer is:\n\n$$Q = \\frac{2\\pi K b\\,(h_2 - h_1)}{\\ln(r_2/r_1)}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nK &= 25\\ \\text{m/day} \\\\\nb &= 20\\ \\text{m} \\\\\nh_2 - h_1 &= 3.0\\ \\text{m} \\\\\nr_2 &= 100\\ \\text{m},\\ r_1 = 0.20\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{2\\pi(25)(20)(3.0)}{\\ln(100/0.20)} \\rightarrow (Q) = \\frac{9424.8}{\\ln(500)}$$\n\n$$(Q) = \\frac{9424.8}{6.2146} = 1517\\ \\text{m}^3\\text{/day}$$",
+   "solution": "Refer to the Thiem Equation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Q\\), the steady well discharge. The Thiem equation for a confined aquifer is:\n\n$$Q = \\frac{2\\pi K b\\,(h_2 - h_1)}{\\ln(r_2/r_1)}$$\n\nList the known and unknown parameters in order to solve for \\(Q\\):\n\n$$\\begin{aligned}\nK &= 25\\ \\text{m/day} \\\\\nb &= 20\\ \\text{m} \\\\\nh_2 - h_1 &= 3.0\\ \\text{m} \\\\\nr_2 &= 100\\ \\text{m},\\ r_1 = 0.20\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{2\\pi(25)(20)(3.0)}{\\ln(100/0.20)} \\rightarrow (Q) = \\frac{9424.8}{\\ln(500)}$$\n\n$$(Q) = \\frac{9424.8}{6.2146} = 1517\\ \\text{m}^3\\text{/day}$$",
    "explanation": "Thiem's equation uses the natural log of the radius ratio — base-10 log gives 3492 m^3/day. The 2π is part of the formula; dropping it halves the answer to 758."
   },
   {
@@ -4427,7 +4427,7 @@
     "0.486 m"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Open-Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y_c\\), the critical depth. For a rectangular channel:\n\n$$y_c = \\left(\\frac{q^2}{g}\\right)^{1/3}, \\quad q = \\frac{Q}{b}$$\n\nList the known and unknown parameters in order to solve for \\(y_c\\):\n\n$$\\begin{aligned}\nQ &= 12\\ \\text{m}^3\\text{/s} \\\\\nb &= 4.0\\ \\text{m} \\rightarrow q = \\frac{12}{4.0} = 3.0\\ \\text{m}^2\\text{/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\ny_c &= ?\n\\end{aligned}$$\n\n$$(y_c) = \\left(\\frac{(q)^2}{g}\\right)^{1/3} \\rightarrow (y_c) = \\left(\\frac{(3.0)^2}{9.81}\\right)^{1/3}$$\n\n$$(y_c) = (0.9174)^{1/3} = 0.972\\ \\text{m}$$",
+   "solution": "Refer to the Specific Energy section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y_c\\), the critical depth. For a rectangular channel:\n\n$$y_c = \\left(\\frac{q^2}{g}\\right)^{1/3}, \\quad q = \\frac{Q}{b}$$\n\nList the known and unknown parameters in order to solve for \\(y_c\\):\n\n$$\\begin{aligned}\nQ &= 12\\ \\text{m}^3\\text{/s} \\\\\nb &= 4.0\\ \\text{m} \\rightarrow q = \\frac{12}{4.0} = 3.0\\ \\text{m}^2\\text{/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\ny_c &= ?\n\\end{aligned}$$\n\n$$(y_c) = \\left(\\frac{(q)^2}{g}\\right)^{1/3} \\rightarrow (y_c) = \\left(\\frac{(3.0)^2}{9.81}\\right)^{1/3}$$\n\n$$(y_c) = (0.9174)^{1/3} = 0.972\\ \\text{m}$$",
    "explanation": "Critical depth needs the discharge per unit width q, then the cube root — skipping the root gives 0.917 m. It depends only on q, not on slope or roughness."
   },
   {
@@ -4444,7 +4444,7 @@
     "0.861 m"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Open-Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(R\\), the hydraulic radius, \\(R = A/P\\):\n\n$$A = (b + my)y, \\quad P = b + 2y\\sqrt{1 + m^2}$$\n\nList the known and unknown parameters in order to solve for \\(R\\):\n\n$$\\begin{aligned}\nb &= 2.0\\ \\text{m} \\\\\ny &= 1.5\\ \\text{m} \\\\\nm &= 2 \\\\\nA &= (2.0 + 2(1.5))(1.5) = 7.50\\ \\text{m}^2 \\\\\nP &= 2.0 + 2(1.5)\\sqrt{1 + 2^2} = 2.0 + 3.0\\sqrt{5} = 8.708\\ \\text{m} \\\\\nR &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{(A)}{(P)} \\rightarrow (R) = \\frac{7.50}{8.708}$$\n\n$$(R) = 0.861\\ \\text{m}$$",
+   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(R\\), the hydraulic radius, \\(R = A/P\\):\n\n$$A = (b + my)y, \\quad P = b + 2y\\sqrt{1 + m^2}$$\n\nList the known and unknown parameters in order to solve for \\(R\\):\n\n$$\\begin{aligned}\nb &= 2.0\\ \\text{m} \\\\\ny &= 1.5\\ \\text{m} \\\\\nm &= 2 \\\\\nA &= (2.0 + 2(1.5))(1.5) = 7.50\\ \\text{m}^2 \\\\\nP &= 2.0 + 2(1.5)\\sqrt{1 + 2^2} = 2.0 + 3.0\\sqrt{5} = 8.708\\ \\text{m} \\\\\nR &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{(A)}{(P)} \\rightarrow (R) = \\frac{7.50}{8.708}$$\n\n$$(R) = 0.861\\ \\text{m}$$",
    "explanation": "The wetted perimeter follows the sloped sides — using b + 2y (1.500 m) or the top width (0.938 m) mismeasures it. R = A/P, always."
   },
   {
@@ -4461,7 +4461,7 @@
     "reducing the total volume of runoff"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Hydrology section in the Civil Engineering chapter of the FE Reference Handbook.\n\nA detention basin is a storage facility: it captures the inflow hydrograph, holds the water temporarily, and releases it through a controlled outlet over a longer time. The total runoff volume barely changes, but spreading it out flattens — attenuates — the peak discharge downstream.\n\nConveying flow faster would increase the peak, infiltration is the job of retention/infiltration basins, and detention does not meaningfully reduce total volume.\n\nStoring inflow temporarily and releasing it slowly is the correct choice.",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook.\n\nA detention basin is a storage facility: it captures the inflow hydrograph, holds the water temporarily, and releases it through a controlled outlet over a longer time. The total runoff volume barely changes, but spreading it out flattens — attenuates — the peak discharge downstream.\n\nConveying flow faster would increase the peak, infiltration is the job of retention/infiltration basins, and detention does not meaningfully reduce total volume.\n\nStoring inflow temporarily and releasing it slowly is the correct choice.",
    "explanation": "Detention = peak shaving through temporary storage. It doesn't reduce how much water runs off, only how fast it arrives downstream.",
    "conceptual": true
   },
@@ -4479,7 +4479,7 @@
     "0.650 m"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Open-Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y_n\\), the normal depth. Manning's equation in SI units:\n\n$$Q = \\frac{1}{n} A R^{2/3} S^{1/2}, \\quad A = by,\\ R = \\frac{by}{b + 2y}$$\n\nList the known parameters and trial values in order to solve for \\(y_n\\):\n\n$$\\begin{aligned}\nQ &= 8.0\\ \\text{m}^3\\text{/s} \\\\\nb &= 4.0\\ \\text{m},\\ n = 0.014,\\ S = 0.002 \\\\\n\\text{Trial } y = 0.80\\ \\text{m} &: A = 3.20,\\ R = 0.571 \\rightarrow Q = 7.04\\ \\text{m}^3\\text{/s}\\ (\\text{low}) \\\\\n\\text{Trial } y = 0.90\\ \\text{m} &: A = 3.60,\\ R = 0.621 \\rightarrow Q = 8.37\\ \\text{m}^3\\text{/s}\\ (\\text{high}) \\\\\ny_n &= ?\n\\end{aligned}$$\n\nInterpolating between the trials for \\(Q = 8.0\\):\n\n$$(y_n) = 0.80 + \\frac{8.0 - 7.04}{8.37 - 7.04}(0.10)$$\n\n$$(y_n) = 0.80 + 0.072 = 0.873\\ \\text{m}$$",
+   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y_n\\), the normal depth. Manning's equation in SI units:\n\n$$Q = \\frac{1}{n} A R^{2/3} S^{1/2}, \\quad A = by,\\ R = \\frac{by}{b + 2y}$$\n\nList the known parameters and trial values in order to solve for \\(y_n\\):\n\n$$\\begin{aligned}\nQ &= 8.0\\ \\text{m}^3\\text{/s} \\\\\nb &= 4.0\\ \\text{m},\\ n = 0.014,\\ S = 0.002 \\\\\n\\text{Trial } y = 0.80\\ \\text{m} &: A = 3.20,\\ R = 0.571 \\rightarrow Q = 7.04\\ \\text{m}^3\\text{/s}\\ (\\text{low}) \\\\\n\\text{Trial } y = 0.90\\ \\text{m} &: A = 3.60,\\ R = 0.621 \\rightarrow Q = 8.37\\ \\text{m}^3\\text{/s}\\ (\\text{high}) \\\\\ny_n &= ?\n\\end{aligned}$$\n\nInterpolating between the trials for \\(Q = 8.0\\):\n\n$$(y_n) = 0.80 + \\frac{8.0 - 7.04}{8.37 - 7.04}(0.10)$$\n\n$$(y_n) = 0.80 + 0.072 = 0.873\\ \\text{m}$$",
    "explanation": "Normal depth needs iteration since y sits inside both A and R. 0.742 m is the critical depth — uniform flow on a mild slope runs deeper than critical, a good sanity check."
   },
   {
@@ -4496,7 +4496,7 @@
     "15.0 kW"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Pumps section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_2\\), the brake power at the new speed. The pump affinity laws state:\n\n$$\\frac{Q_2}{Q_1} = \\frac{N_2}{N_1}, \\quad \\frac{H_2}{H_1} = \\left(\\frac{N_2}{N_1}\\right)^2, \\quad \\frac{P_2}{P_1} = \\left(\\frac{N_2}{N_1}\\right)^3$$\n\nList the known and unknown parameters in order to solve for \\(P_2\\):\n\n$$\\begin{aligned}\nN_1 &= 1200\\ \\text{rpm},\\ N_2 = 1800\\ \\text{rpm} \\rightarrow \\frac{N_2}{N_1} = 1.5 \\\\\nP_1 &= 15\\ \\text{kW} \\\\\nP_2 &= ?\n\\end{aligned}$$\n\n$$(P_2) = (P_1)\\left(\\frac{N_2}{N_1}\\right)^3 \\rightarrow (P_2) = (15)(1.5)^3$$\n\n$$(P_2) = (15)(3.375) = 50.6\\ \\text{kW}$$",
+   "solution": "Refer to the Scaling Laws; Affinity Laws section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P_2\\), the brake power at the new speed. The pump affinity laws state:\n\n$$\\frac{Q_2}{Q_1} = \\frac{N_2}{N_1}, \\quad \\frac{H_2}{H_1} = \\left(\\frac{N_2}{N_1}\\right)^2, \\quad \\frac{P_2}{P_1} = \\left(\\frac{N_2}{N_1}\\right)^3$$\n\nList the known and unknown parameters in order to solve for \\(P_2\\):\n\n$$\\begin{aligned}\nN_1 &= 1200\\ \\text{rpm},\\ N_2 = 1800\\ \\text{rpm} \\rightarrow \\frac{N_2}{N_1} = 1.5 \\\\\nP_1 &= 15\\ \\text{kW} \\\\\nP_2 &= ?\n\\end{aligned}$$\n\n$$(P_2) = (P_1)\\left(\\frac{N_2}{N_1}\\right)^3 \\rightarrow (P_2) = (15)(1.5)^3$$\n\n$$(P_2) = (15)(3.375) = 50.6\\ \\text{kW}$$",
    "explanation": "Power follows the cube of the speed ratio — a 50% speedup needs 3.375× the power. Linear scaling (22.5 kW) badly underestimates the motor required."
   },
   {
@@ -4513,7 +4513,7 @@
     "11.5"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Atterberg Limits section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(PI\\), the plasticity index — the range of water contents over which the soil behaves plastically:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters in order to solve for \\(PI\\):\n\n$$\\begin{aligned}\nLL &= 42 \\\\\nPL &= 19 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = (LL) - (PL) \\rightarrow (PI) = 42 - 19$$\n\n$$(PI) = 23$$",
+   "solution": "Refer to the Soil Classification section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(PI\\), the plasticity index — the range of water contents over which the soil behaves plastically:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters in order to solve for \\(PI\\):\n\n$$\\begin{aligned}\nLL &= 42 \\\\\nPL &= 19 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = (LL) - (PL) \\rightarrow (PI) = 42 - 19$$\n\n$$(PI) = 23$$",
    "explanation": "PI = LL − PL, a difference — not a sum (61) or a ratio (2.2). Higher PI means a more plastic, more clay-like soil."
   },
   {
@@ -4565,7 +4565,7 @@
     "1.0 × 10^-5 m^3/s per m"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Seepage section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q\\), the seepage rate per unit length of wall:\n\n$$q = kH\\frac{N_f}{N_d}$$\n\nList the known and unknown parameters in order to solve for \\(q\\):\n\n$$\\begin{aligned}\nk &= 2.0 \\times 10^{-5}\\ \\text{m/s} \\\\\nH &= 4.0\\ \\text{m} \\\\\nN_f &= 5 \\\\\nN_d &= 10 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (k)(H)\\frac{N_f}{N_d} \\rightarrow (q) = (2.0 \\times 10^{-5})(4.0)\\frac{5}{10}$$\n\n$$(q) = 4.0 \\times 10^{-5}\\ \\text{m}^3\\text{/s per m}$$",
+   "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q\\), the seepage rate per unit length of wall:\n\n$$q = kH\\frac{N_f}{N_d}$$\n\nList the known and unknown parameters in order to solve for \\(q\\):\n\n$$\\begin{aligned}\nk &= 2.0 \\times 10^{-5}\\ \\text{m/s} \\\\\nH &= 4.0\\ \\text{m} \\\\\nN_f &= 5 \\\\\nN_d &= 10 \\\\\nq &= ?\n\\end{aligned}$$\n\n$$(q) = (k)(H)\\frac{N_f}{N_d} \\rightarrow (q) = (2.0 \\times 10^{-5})(4.0)\\frac{5}{10}$$\n\n$$(q) = 4.0 \\times 10^{-5}\\ \\text{m}^3\\text{/s per m}$$",
    "explanation": "Seepage scales with flow channels over equipotential drops — N_f/N_d, not the inverse (8.0 × 10^-5). The head H belongs in the formula; 2.0 × 10^-5 drops it."
   },
   {
@@ -4582,7 +4582,7 @@
     "15 days"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Consolidation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(t\\), the time to 50% consolidation:\n\n$$t = \\frac{T_v H_{dr}^2}{c_v}$$\n\nList the known and unknown parameters in order to solve for \\(t\\):\n\n$$\\begin{aligned}\nc_v &= 5.0\\ \\text{m}^2\\text{/yr} \\\\\n\\text{double drainage} &\\rightarrow H_{dr} = \\frac{4.0}{2} = 2.0\\ \\text{m} \\\\\nT_{50} &= 0.197 \\\\\nt &= ?\n\\end{aligned}$$\n\n$$(t) = \\frac{(T_{50})(H_{dr})^2}{c_v} \\rightarrow (t) = \\frac{(0.197)(2.0)^2}{5.0}$$\n\n$$(t) = 0.1576\\ \\text{yr} = 58\\ \\text{days}$$",
+   "solution": "Refer to the Ultimate consolidation settlement in soil layer section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(t\\), the time to 50% consolidation:\n\n$$t = \\frac{T_v H_{dr}^2}{c_v}$$\n\nList the known and unknown parameters in order to solve for \\(t\\):\n\n$$\\begin{aligned}\nc_v &= 5.0\\ \\text{m}^2\\text{/yr} \\\\\n\\text{double drainage} &\\rightarrow H_{dr} = \\frac{4.0}{2} = 2.0\\ \\text{m} \\\\\nT_{50} &= 0.197 \\\\\nt &= ?\n\\end{aligned}$$\n\n$$(t) = \\frac{(T_{50})(H_{dr})^2}{c_v} \\rightarrow (t) = \\frac{(0.197)(2.0)^2}{5.0}$$\n\n$$(t) = 0.1576\\ \\text{yr} = 58\\ \\text{days}$$",
    "explanation": "Double drainage halves the drainage path — and time scales with H_dr^2, so that halves the time twice over. 230 days uses the full 4 m as if drainage were one-way."
   },
   {
@@ -4599,7 +4599,7 @@
     "1080 kPa"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). Terzaghi's equation for a strip footing is:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\frac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 20\\ \\text{kPa},\\ N_c = 25.1 \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nD_f &= 1.0\\ \\text{m},\\ N_q = 12.7 \\\\\nB &= 2.0\\ \\text{m},\\ N_{\\gamma} = 9.7 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (c)(N_c) + (\\gamma)(D_f)(N_q) + \\frac{1}{2}(\\gamma)(B)(N_{\\gamma})$$\n\n$$(q_{ult}) = (20)(25.1) + (18)(1.0)(12.7) + \\frac{1}{2}(18)(2.0)(9.7)$$\n\n$$(q_{ult}) = 502 + 228.6 + 174.6 = 905\\ \\text{kPa}$$",
+   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). Terzaghi's equation for a strip footing is:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\frac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 20\\ \\text{kPa},\\ N_c = 25.1 \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nD_f &= 1.0\\ \\text{m},\\ N_q = 12.7 \\\\\nB &= 2.0\\ \\text{m},\\ N_{\\gamma} = 9.7 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (c)(N_c) + (\\gamma)(D_f)(N_q) + \\frac{1}{2}(\\gamma)(B)(N_{\\gamma})$$\n\n$$(q_{ult}) = (20)(25.1) + (18)(1.0)(12.7) + \\frac{1}{2}(18)(2.0)(9.7)$$\n\n$$(q_{ult}) = 502 + 228.6 + 174.6 = 905\\ \\text{kPa}$$",
    "explanation": "All three Terzaghi terms count: cohesion, surcharge, and self-weight. 731 kPa drops the ½γBN_γ term; 1080 kPa forgets the ½ in front of it.",
    "diagram": "diagrams/geotech-019.svg"
   },
@@ -4635,7 +4635,7 @@
     "8.0%"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Superelevation section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the required superelevation rate \\(e\\). We can determine \\(e\\) from the AASHTO point-mass equation:\n\n$$e + f_s = \\frac{V^2}{15R}$$\n\nList the known and unknown parameters in order to solve for \\(e\\):\n\n$$\\begin{aligned} V &= 60\\ \\text{mph} \\\\ R &= 2000\\ \\text{ft} \\\\ f_s &= 0.11 \\\\ e &= ? \\end{aligned}$$\n\nSubstituting and solving for \\(e\\):\n\n$$e = \\frac{60^2}{15(2000)} - 0.11 = 0.12 - 0.11$$\n\n$$e = 0.01 = 1.0\\%$$",
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the required superelevation rate \\(e\\). We can determine \\(e\\) from the AASHTO point-mass equation:\n\n$$e + f_s = \\frac{V^2}{15R}$$\n\nList the known and unknown parameters in order to solve for \\(e\\):\n\n$$\\begin{aligned} V &= 60\\ \\text{mph} \\\\ R &= 2000\\ \\text{ft} \\\\ f_s &= 0.11 \\\\ e &= ? \\end{aligned}$$\n\nSubstituting and solving for \\(e\\):\n\n$$e = \\frac{60^2}{15(2000)} - 0.11 = 0.12 - 0.11$$\n\n$$e = 0.01 = 1.0\\%$$",
    "explanation": "Solve the point-mass equation for e: e = V²/(15R) − f_s. Forgetting to subtract the side friction factor is the classic error — it leads to the 12.0% trap."
   },
   {
@@ -4875,7 +4875,7 @@
     "$34,029"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the uniform annual deposit \\(A\\). We can determine \\(A\\) from the sinking fund factor:\n\n$$A = F(A/F, i, n) = F\\frac{i}{(1+i)^n - 1}$$\n\nList the known and unknown parameters in order to solve for \\(A\\):\n\n$$\\begin{aligned} F &= \\$50{,}000 \\\\ i &= 8\\% = 0.08 \\\\ n &= 5\\ \\text{years} \\\\ A &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$A = 50000\\frac{0.08}{(1.08)^5 - 1} = 50000(0.17046)$$\n\n$$A = \\$8{,}523$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the uniform annual deposit \\(A\\). We can determine \\(A\\) from the sinking fund factor:\n\n$$A = F(A/F, i, n) = F\\frac{i}{(1+i)^n - 1}$$\n\nList the known and unknown parameters in order to solve for \\(A\\):\n\n$$\\begin{aligned} F &= \\$50{,}000 \\\\ i &= 8\\% = 0.08 \\\\ n &= 5\\ \\text{years} \\\\ A &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$A = 50000\\frac{0.08}{(1.08)^5 - 1} = 50000(0.17046)$$\n\n$$A = \\$8{,}523$$",
    "explanation": "Sinking fund: A = F(A/F, i, n). The $10,000 trap ignores interest entirely; the $34,029 trap discounts instead of accumulating."
   },
   {
@@ -4892,7 +4892,7 @@
     "$4,545"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) of a geometric gradient series, where each year's cost grows by the rate \\(g\\):\n\n$$P = A_1\\frac{1 - (1+g)^n(1+i)^{-n}}{i - g}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} A_1 &= \\$1{,}000 \\\\ g &= 5\\% = 0.05 \\\\ i &= 10\\% = 0.10 \\\\ n &= 5\\ \\text{years} \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1000\\frac{1 - (1.05)^5(1.10)^{-5}}{0.10 - 0.05} = 1000\\frac{1 - 0.79247}{0.05}$$\n\n$$P = \\$4{,}151$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) of a geometric gradient series, where each year's cost grows by the rate \\(g\\):\n\n$$P = A_1\\frac{1 - (1+g)^n(1+i)^{-n}}{i - g}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} A_1 &= \\$1{,}000 \\\\ g &= 5\\% = 0.05 \\\\ i &= 10\\% = 0.10 \\\\ n &= 5\\ \\text{years} \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1000\\frac{1 - (1.05)^5(1.10)^{-5}}{0.10 - 0.05} = 1000\\frac{1 - 0.79247}{0.05}$$\n\n$$P = \\$4{,}151$$",
    "explanation": "Geometric gradient: P = A₁[1 − (1+g)ⁿ(1+i)⁻ⁿ]/(i − g). Treating it as a level annuity gives the $3,791 trap.",
    "diagram": "diagrams/econ-015.svg"
   },
@@ -4910,7 +4910,7 @@
     "$1,947"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) by discounting each cash flow at its own year:\n\n$$P = \\sum_{t=0}^{n}\\frac{CF_t}{(1+i)^t}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} CF_0 &= -\\$8{,}000 \\\\ CF_1 &= \\$3{,}000 \\\\ CF_2 &= \\$4{,}000 \\\\ CF_3 &= \\$5{,}000 \\\\ i &= 10\\% = 0.10 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = -8000 + \\frac{3000}{1.10} + \\frac{4000}{1.10^2} + \\frac{5000}{1.10^3} = -8000 + 2727.27 + 3305.79 + 3756.57$$\n\n$$P = \\$1{,}790$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) by discounting each cash flow at its own year:\n\n$$P = \\sum_{t=0}^{n}\\frac{CF_t}{(1+i)^t}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} CF_0 &= -\\$8{,}000 \\\\ CF_1 &= \\$3{,}000 \\\\ CF_2 &= \\$4{,}000 \\\\ CF_3 &= \\$5{,}000 \\\\ i &= 10\\% = 0.10 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = -8000 + \\frac{3000}{1.10} + \\frac{4000}{1.10^2} + \\frac{5000}{1.10^3} = -8000 + 2727.27 + 3305.79 + 3756.57$$\n\n$$P = \\$1{,}790$$",
    "explanation": "Discount each cash flow at its own year — averaging the inflows into an annuity gives the $1,947 trap.",
    "diagram": "diagrams/econ-016.svg"
   },
@@ -4979,7 +4979,7 @@
     "12.5%"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Time Value of Money section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the annual effective interest rate \\(i\\). We can determine \\(i\\) from the single-payment compound amount relationship:\n\n$$F = P(1+i)^n \\quad\\Rightarrow\\quad i = \\left(\\frac{F}{P}\\right)^{1/n} - 1$$\n\nList the known and unknown parameters in order to solve for \\(i\\):\n\n$$\\begin{aligned} P &= \\$5{,}000 \\\\ F &= \\$8{,}000 \\\\ n &= 4\\ \\text{years} \\\\ i &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$i = \\left(\\frac{8000}{5000}\\right)^{1/4} - 1 = (1.6)^{0.25} - 1 = 0.1247$$\n\n$$i = 12.5\\%$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the annual effective interest rate \\(i\\). We can determine \\(i\\) from the single-payment compound amount relationship:\n\n$$F = P(1+i)^n \\quad\\Rightarrow\\quad i = \\left(\\frac{F}{P}\\right)^{1/n} - 1$$\n\nList the known and unknown parameters in order to solve for \\(i\\):\n\n$$\\begin{aligned} P &= \\$5{,}000 \\\\ F &= \\$8{,}000 \\\\ n &= 4\\ \\text{years} \\\\ i &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$i = \\left(\\frac{8000}{5000}\\right)^{1/4} - 1 = (1.6)^{0.25} - 1 = 0.1247$$\n\n$$i = 12.5\\%$$",
    "explanation": "Solve F = P(1+i)ⁿ for i: (F/P)^(1/n) − 1. Dividing the total 60% gain by 4 years gives the 15.0% trap."
   },
   {
@@ -4996,7 +4996,7 @@
     "50th percentile"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Normal Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the percentile of \\(x = 600\\). Standardize with the z-score, then read the cumulative area from the standard normal table:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned} \\mu &= 500\\ \\text{psi} \\\\ \\sigma &= 100\\ \\text{psi} \\\\ x &= 600\\ \\text{psi} \\\\ z &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$z = \\frac{600 - 500}{100} = 1.00$$\n\nFrom the standard normal table, \\(\\Phi(1.00) = 0.8413\\), so a strength of 600 psi is at the 84.1st percentile.",
+   "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the percentile of \\(x = 600\\). Standardize with the z-score, then read the cumulative area from the standard normal table:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned} \\mu &= 500\\ \\text{psi} \\\\ \\sigma &= 100\\ \\text{psi} \\\\ x &= 600\\ \\text{psi} \\\\ z &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$z = \\frac{600 - 500}{100} = 1.00$$\n\nFrom the standard normal table, \\(\\Phi(1.00) = 0.8413\\), so a strength of 600 psi is at the 84.1st percentile.",
    "explanation": "z = 1.00 → Φ(1) = 0.8413, the 84.1st percentile. The 68.3% trap confuses this with the within-one-sigma empirical-rule band.",
    "diagram": "diagrams/stats-014.svg"
   },
@@ -5014,7 +5014,7 @@
     "0.200"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{at least one defective})\\). Use the complement rule:\n\n$$P(\\text{at least one}) = 1 - P(\\text{none defective}) = 1 - (1 - p)^n$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} p &= 5\\% = 0.05 \\\\ n &= 4 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1 - (0.95)^4 = 1 - 0.81451$$\n\n$$P = 0.185$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{at least one defective})\\). Use the complement rule:\n\n$$P(\\text{at least one}) = 1 - P(\\text{none defective}) = 1 - (1 - p)^n$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} p &= 5\\% = 0.05 \\\\ n &= 4 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1 - (0.95)^4 = 1 - 0.81451$$\n\n$$P = 0.185$$",
    "explanation": "“At least one” means use the complement: 1 − (1−p)ⁿ. The 0.815 trap is P(none defective)."
   },
   {
@@ -5083,7 +5083,7 @@
     "−18"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Var(3X - 2Y)\\). For independent random variables, variances add with squared coefficients — the minus sign does not survive squaring:\n\n$$Var(aX + bY) = a^2Var(X) + b^2Var(Y)$$\n\nList the known and unknown parameters in order to solve for \\(Var(3X - 2Y)\\):\n\n$$\\begin{aligned} Var(X) &= 4 \\\\ Var(Y) &= 9 \\\\ a &= 3,\\ b = -2 \\\\ Var(3X - 2Y) &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$Var(3X - 2Y) = (3)^2(4) + (-2)^2(9) = 36 + 36$$\n\n$$Var(3X - 2Y) = 72$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Var(3X - 2Y)\\). For independent random variables, variances add with squared coefficients — the minus sign does not survive squaring:\n\n$$Var(aX + bY) = a^2Var(X) + b^2Var(Y)$$\n\nList the known and unknown parameters in order to solve for \\(Var(3X - 2Y)\\):\n\n$$\\begin{aligned} Var(X) &= 4 \\\\ Var(Y) &= 9 \\\\ a &= 3,\\ b = -2 \\\\ Var(3X - 2Y) &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$Var(3X - 2Y) = (3)^2(4) + (-2)^2(9) = 36 + 36$$\n\n$$Var(3X - 2Y) = 72$$",
    "explanation": "Variance squares the coefficients and the minus sign vanishes: 9(4) + 4(9) = 72. The −18 trap keeps the sign."
   },
   {
