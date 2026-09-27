@@ -262,6 +262,13 @@
     saveProgress();
   }
 
+  function videoLinkHtml(q) {
+    if (!q.videoUrl) return "";
+    var tip = q.videoTitle ? ' title="YouTube: ' + escapeHtml(q.videoTitle) + '"' : "";
+    return '<a class="video-link" href="' + escapeHtml(q.videoUrl) + '" target="_blank" rel="noopener"' + tip + '>' +
+      '<span class="video-play" aria-hidden="true">\u25B6</span><span>Watch video explanation</span></a>';
+  }
+
   function revealAnswer(q, chosenI, ok) {
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "1";
@@ -275,7 +282,8 @@
     sol.innerHTML = "<strong>" + (ok ? "Correct." : "Not quite.") + "</strong>" +
       '<p class="explain-head">Explanation</p>' +
       '<div class="explain-body">' + renderRich(q.solution) + "</div>" +
-      (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "");
+      (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
+      videoLinkHtml(q);
     sol.style.display = "block";
     document.getElementById("quiz-next").style.display = "inline-block";
   }
@@ -522,7 +530,7 @@
         escapeHtml(q.question) + '</p>' + diagramHtml(q) +
         '<p class="answer-line"><strong>Correct answer:</strong> ' +
         escapeHtml(q.choices[q.answerIndex]) + '</p><div class="explain-body">' +
-        renderRich(q.solution) + "</div></div>";
+        renderRich(q.solution) + "</div>" + videoLinkHtml(q) + "</div></div>";
     }).join("");
   }
 
