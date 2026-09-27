@@ -220,11 +220,11 @@
       quiz.list.length + " · " + escapeHtml(quiz.topic) + "</p>";
     html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
       escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
-    html += '<p class="question-text">' + escapeHtml(q.question) + "</p>";
+    html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
     html += '<ul class="choices" id="quiz-choices">';
     shuffle(q.choices.map(function (c, i) { return i; })).forEach(function (i) {
-      html += '<li data-i="' + i + '">' + escapeHtml(q.choices[i]) + "</li>";
+      html += '<li data-i="' + i + '">' + inlineMath(q.choices[i]) + "</li>";
     });
     html += "</ul>";
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
@@ -527,9 +527,9 @@
     return known.map(function (q) {
       return '<div class="card study-item"><div class="formula-topic">' +
         escapeHtml(q.topic) + '</div><p class="question-text">' +
-        escapeHtml(q.question) + '</p>' + diagramHtml(q) +
+        inlineMath(q.question) + '</p>' + diagramHtml(q) +
         '<p class="answer-line"><strong>Correct answer:</strong> ' +
-        escapeHtml(q.choices[q.answerIndex]) + '</p><div class="explain-body">' +
+        inlineMath(q.choices[q.answerIndex]) + '</p><div class="explain-body">' +
         renderRich(q.solution) + "</div>" + videoLinkHtml(q) + "</div></div>";
     }).join("");
   }
@@ -717,6 +717,15 @@
       }
     } catch (e) { /* fall through to fallback */ }
     return "<code>" + escapeHtml(tex) + "</code>";
+  }
+
+  // Inline math for question stems and choices: \(...\) renders via KaTeX,
+  // everything else is HTML-escaped plain text. Plain $ is never math.
+  function inlineMath(s) {
+    return String(s).split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
+      var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
+      return m ? texHtml(m[1], false) : escapeHtml(part);
+    }).join("");
   }
 
   // ---- flashcards ----------------------------------------------------------
