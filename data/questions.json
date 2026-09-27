@@ -2825,7 +2825,7 @@
     "18.0 m/s²"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Kinematics of a Rigid Body section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(a_t\\). Tangential acceleration is the radius times the angular acceleration:\n\n$$a_t = r\\alpha$$\n\nList the known and unknown parameters in order to solve for \\(a_t\\):\n\n$$\\begin{aligned} r &= 0.5\\ \\text{m} \\\\ \\alpha &= 6\\ \\text{rad/s}^2 \\\\ a_t &= ? \\end{aligned}$$\n\n$$(a_t) = (0.5)(6) \\rightarrow (a_t) = 3.00\\ \\text{m/s}^2$$",
+   "solution": "Refer to the Plane Circular Motion section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the tangential acceleration. For plane circular motion, the handbook gives the transverse (tangential) acceleration as the radius times the angular acceleration:\n\n$$a_\\theta = r\\alpha$$\n\nList the known and unknown parameters in order to solve for \\(a_\\theta\\):\n\n$$\\begin{aligned} r &= 0.5\\ \\text{m} \\\\ \\alpha &= 6\\ \\text{rad/s}^2 \\\\ a_\\theta &= ? \\end{aligned}$$\n\n$$(a_\\theta) = (0.5)(6) \\rightarrow (a_\\theta) = 3.00\\ \\text{m/s}^2$$",
    "explanation": "The trap is 12.0 — dividing α by r instead of multiplying; tangential acceleration grows with radius, a_t = rα."
   },
   {
