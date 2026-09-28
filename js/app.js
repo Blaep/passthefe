@@ -1018,7 +1018,7 @@
     html += '<div class="formula-topic">' + escapeHtml(ch.title) + "</div>";
     html += "<h3>" + escapeHtml(e.title || "") + "</h3>";
     if (e.equation) {
-      html += '<div class="math-display">' + texHtml(e.equation, true) + "</div>";
+      html += '<div class="math-display">' + displayMath(e.equation) + "</div>";
     }
     html += refSymbolsHtml(e);
     html += '<p class="ref-source">FE Reference Handbook 10.6' +
@@ -1097,6 +1097,15 @@
     return String(s).split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
       var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
       return m ? texHtml(m[1], false) : escapeHtml(part);
+    }).join("");
+  }
+
+  // Display math for reference equation cards: each \(...\) segment renders
+  // via KaTeX in display mode (the equation strings carry their delimiters).
+  function displayMath(s) {
+    return String(s).split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
+      var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
+      return m ? texHtml(m[1], true) : escapeHtml(part);
     }).join("");
   }
 
