@@ -152,6 +152,7 @@
   },
   {
    "id": "surveying-001",
+   "diagram": "diagrams/surveying-001.svg",
    "topic": "Surveying",
    "subtopic": "Differential leveling",
    "difficulty": "easy",
@@ -857,6 +858,7 @@
   },
   {
    "id": "statics-004",
+   "diagram": "diagrams/statics-004.svg",
    "topic": "Statics",
    "subtopic": "Centroid of composite areas",
    "difficulty": "medium",
@@ -876,6 +878,7 @@
   },
   {
    "id": "statics-005",
+   "diagram": "diagrams/statics-005.svg",
    "topic": "Statics",
    "subtopic": "Friction on an inclined plane",
    "difficulty": "medium",
@@ -1050,6 +1053,7 @@
   },
   {
    "id": "dynamics-007",
+   "diagram": "diagrams/dynamics-007.svg",
    "topic": "Dynamics",
    "subtopic": "Vibrations (natural frequency)",
    "difficulty": "hard",
@@ -1194,6 +1198,7 @@
    "estimatedTimeSeconds": 180,
    "explanation": "Restrained heating produces compressive stress; restrained cooling produces tensile stress. The sign is the classic trap. Note thermal stress is independent of bar length and area - it depends only on E, alpha, and deltaT.",
    "id": "mechmat-008",
+   "diagram": "diagrams/mechmat-008.svg",
    "question": "A 25-mm-diameter steel rod is snugly fitted between two rigid walls at 20 C with no initial stress. The temperature then rises to 70 C. For steel, E = 200 GPa and \\(\\alpha = 12 \\times 10^{-6}/^{\\circ}\\mathrm{C}\\). What stress develops in the rod?",
    "solution": "Refer to the Thermal Deformations section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma\\). Fully restrained thermal expansion produces:\n\n$$\\sigma = E\\alpha\\Delta T$$\n\nList the known and unknown parameters in order to solve for \\(\\sigma\\):\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} \\\\\n\\alpha &= 12 \\times 10^{-6}/^\\circ\\text{C} \\\\\n\\Delta T &= 70 - 20 = 50^\\circ\\text{C} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = (200 \\times 10^9)(12 \\times 10^{-6})(50)$$\n\n$$(\\sigma) = 120 \\times 10^6\\ \\text{Pa} = 120\\ \\text{MPa compressive}$$\n\nBecause the heated rod is restrained, the stress is compressive. (The 25 mm diameter is not needed for stress.)",
    "subtopic": "Thermal stress",
@@ -1437,6 +1442,7 @@
    "estimatedTimeSeconds": 180,
    "explanation": "Force equals the rate of momentum destroyed: rho*Q*V = rho*A*V^2. If the plate were moving, use the relative velocity (V - U). Halving errors come from inserting a spurious 1/2 (98 N) - the momentum equation has no 1/2, unlike kinetic energy.",
    "id": "fluid-007",
+   "diagram": "diagrams/fluid-007.svg",
    "question": "A horizontal water jet with diameter 50 mm and velocity 10 m/s strikes a stationary flat plate perpendicular to the jet. Neglecting friction and splash losses, what is the force exerted on the plate?",
    "solution": "Refer to the Impulse-Momentum Principle section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). The jet is brought to zero x-velocity against the stationary plate:\n\n$$F = \\rho A V^2$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\n\\rho &= 1000\\ \\text{kg/m}^3 \\\\\nA &= \\frac{\\pi(0.05)^2}{4} = 0.0019635\\ \\text{m}^2 \\\\\nV &= 10\\ \\text{m/s} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (1000)(0.0019635)(10)^2$$\n\n$$(F) = 196.35 = 196\\ \\text{N}$$",
    "subtopic": "Momentum equation",
@@ -1483,6 +1489,7 @@
   },
   {
    "id": "surveying-003",
+   "diagram": "diagrams/surveying-003.svg",
    "topic": "Surveying",
    "subtopic": "Bearing and azimuth conversions",
    "difficulty": "easy",
@@ -1521,6 +1528,7 @@
   },
   {
    "id": "surveying-005",
+   "diagram": "diagrams/surveying-005.svg",
    "topic": "Surveying",
    "subtopic": "Area by coordinates (coordinate method)",
    "difficulty": "medium",
@@ -1577,6 +1585,7 @@
   },
   {
    "id": "surveying-008",
+   "diagram": "diagrams/surveying-008.svg",
    "topic": "Surveying",
    "subtopic": "Vertical curves",
    "difficulty": "hard",
@@ -1753,6 +1762,7 @@
   },
   {
    "id": "geotech-003",
+   "diagram": "diagrams/geotech-003.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Permeability and Darcy's law",
    "difficulty": "medium",
@@ -1829,6 +1839,7 @@
   },
   {
    "id": "geotech-007",
+   "diagram": "diagrams/geotech-007.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Shear strength (Mohr-Coulomb)",
    "difficulty": "hard",
@@ -1949,6 +1960,7 @@
    "estimatedTimeSeconds": 180,
    "explanation": "Crest and sag curves use different sight-distance constants (2158 for crest SSD, 1320 for sag SSD). Using the sag constant by mistake gives 1,136 ft. Always verify the S < L or S > L assumption after computing.",
    "id": "transportation-006",
+   "diagram": "diagrams/transportation-006.svg",
    "question": "A crest vertical curve connects a +3% grade to a -3% grade on a highway with a required stopping sight distance of 500 ft. What is the minimum curve length L? (Assume S < L.)",
    "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(L\\), the minimum crest curve length. For \\(S < L\\):\n\n$$L = \\frac{AS^2}{2158}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ng_1 &= +3\\% \\\\\ng_2 &= -3\\% \\\\\nA &= |3 - (-3)| = 6\\% \\\\\nS &= 500\\ \\text{ft} \\\\\nL &= ?\n\\end{aligned}$$\n\n$$(L) = \\frac{6(500)^2}{2158} = \\frac{1500000}{2158}$$\n\n$$(L) = 695.1\\ \\text{ft} \\approx 695\\ \\text{ft}$$\n\nCheck: \\(S = 500\\) ft \\(< L = 695\\) ft, so the assumption holds.",
    "subtopic": "Vertical curves",
@@ -2665,6 +2677,7 @@
   },
   {
    "id": "statics-010",
+   "diagram": "diagrams/statics-010.svg",
    "topic": "Statics",
    "subtopic": "Particle equilibrium (cables)",
    "difficulty": "medium",
@@ -2703,6 +2716,7 @@
   },
   {
    "id": "statics-012",
+   "diagram": "diagrams/statics-012.svg",
    "topic": "Statics",
    "subtopic": "Centroid of composite area with hole",
    "difficulty": "medium",
@@ -2722,6 +2736,7 @@
   },
   {
    "id": "statics-013",
+   "diagram": "diagrams/statics-013.svg",
    "topic": "Statics",
    "subtopic": "Belt friction (capstan equation)",
    "difficulty": "hard",
@@ -2758,6 +2773,7 @@
   },
   {
    "id": "dynamics-009",
+   "diagram": "diagrams/dynamics-009.svg",
    "topic": "Dynamics",
    "subtopic": "Work-energy with spring",
    "difficulty": "medium",
@@ -2906,6 +2922,7 @@
   },
   {
    "id": "mechmat-011",
+   "diagram": "diagrams/mechmat-011.svg",
    "topic": "Mechanics of Materials",
    "subtopic": "Principal stresses (Mohr's circle)",
    "difficulty": "medium",
@@ -3129,6 +3146,7 @@
   },
   {
    "id": "fluid-012",
+   "diagram": "diagrams/fluid-012.svg",
    "topic": "Fluid Mechanics",
    "subtopic": "Floating bodies",
    "difficulty": "easy",
@@ -3206,6 +3224,7 @@
   },
   {
    "id": "surveying-011",
+   "diagram": "diagrams/surveying-011.svg",
    "topic": "Surveying",
    "subtopic": "Horizontal curve external distance",
    "difficulty": "medium",
@@ -3225,6 +3244,7 @@
   },
   {
    "id": "surveying-012",
+   "diagram": "diagrams/surveying-012.svg",
    "topic": "Surveying",
    "subtopic": "Vertical curve elevations",
    "difficulty": "hard",
@@ -3380,6 +3400,7 @@
   },
   {
    "id": "geotech-009",
+   "diagram": "diagrams/geotech-009.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Consolidation settlement",
    "difficulty": "medium",
@@ -3397,6 +3418,7 @@
   },
   {
    "id": "geotech-010",
+   "diagram": "diagrams/geotech-010.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Effective stress in layered soil",
    "difficulty": "medium",
@@ -3508,6 +3530,7 @@
   },
   {
    "id": "transportation-011",
+   "diagram": "diagrams/transportation-011.svg",
    "topic": "Transportation Engineering",
    "subtopic": "Horizontal curve sight clearance",
    "difficulty": "medium",
@@ -3862,7 +3885,7 @@
    "subtopic": "Resultant of concurrent forces in 3D",
    "difficulty": "easy",
    "estimatedTimeSeconds": 75,
-   "question": "Three concurrent forces act at a point: \\(\\mathbf{F}_1 = 3\\mathbf{i} + 4\\mathbf{j}\\) kN and \\(\\mathbf{F}_2 = 12\\mathbf{k}\\) kN. What is the magnitude of their resultant?",
+   "question": "Two concurrent forces act at a point: \\(\\mathbf{F}_1 = 3\\mathbf{i} + 4\\mathbf{j}\\) kN and \\(\\mathbf{F}_2 = 12\\mathbf{k}\\) kN. What is the magnitude of their resultant?",
    "choices": [
     "19 kN",
     "13 kN",
@@ -3936,6 +3959,7 @@
   },
   {
    "id": "statics-019",
+   "diagram": "diagrams/statics-019.svg",
    "topic": "Statics",
    "subtopic": "Area moment of inertia",
    "difficulty": "easy",
@@ -3973,6 +3997,7 @@
   },
   {
    "id": "dynamics-015",
+   "diagram": "diagrams/dynamics-015.svg",
    "topic": "Dynamics",
    "subtopic": "Damped vibrations",
    "difficulty": "medium",
@@ -4012,6 +4037,7 @@
   },
   {
    "id": "dynamics-017",
+   "diagram": "diagrams/dynamics-017.svg",
    "topic": "Dynamics",
    "subtopic": "Mass moment of inertia (rigid body kinetics)",
    "difficulty": "medium",
@@ -4051,6 +4077,7 @@
   },
   {
    "id": "dynamics-019",
+   "diagram": "diagrams/dynamics-019.svg",
    "topic": "Dynamics",
    "subtopic": "Conical pendulum (curvilinear kinetics)",
    "difficulty": "hard",
@@ -4088,6 +4115,7 @@
   },
   {
    "id": "mechmat-015",
+   "diagram": "diagrams/mechmat-015.svg",
    "topic": "Mechanics of Materials",
    "subtopic": "Torsion of thin-walled closed sections",
    "difficulty": "medium",
@@ -4105,6 +4133,7 @@
   },
   {
    "id": "mechmat-016",
+   "diagram": "diagrams/mechmat-016.svg",
    "topic": "Mechanics of Materials",
    "subtopic": "Stress transformation",
    "difficulty": "medium",
@@ -4220,6 +4249,7 @@
   },
   {
    "id": "structural-016",
+   "diagram": "diagrams/structural-016.svg",
    "topic": "Structural Engineering",
    "subtopic": "Static indeterminacy of beams",
    "difficulty": "medium",
@@ -4496,6 +4526,7 @@
   },
   {
    "id": "fluid-017",
+   "diagram": "diagrams/fluid-017.svg",
    "topic": "Fluid Mechanics",
    "subtopic": "Drag force",
    "difficulty": "medium",
@@ -4722,6 +4753,7 @@
   },
   {
    "id": "water-015",
+   "diagram": "diagrams/water-015.svg",
    "topic": "Water Resources",
    "subtopic": "Confined aquifer flow (Thiem equation)",
    "difficulty": "medium",
@@ -4758,6 +4790,7 @@
   },
   {
    "id": "water-017",
+   "diagram": "diagrams/water-017.svg",
    "topic": "Water Resources",
    "subtopic": "Trapezoidal channel geometry",
    "difficulty": "medium",
@@ -4793,6 +4826,7 @@
   },
   {
    "id": "water-019",
+   "diagram": "diagrams/water-019.svg",
    "topic": "Water Resources",
    "subtopic": "Normal depth (Manning's equation)",
    "difficulty": "hard",
@@ -4885,6 +4919,7 @@
   },
   {
    "id": "geotech-017",
+   "diagram": "diagrams/geotech-017.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Flow nets (seepage quantity)",
    "difficulty": "medium",
@@ -5000,6 +5035,7 @@
   },
   {
    "id": "transportation-016",
+   "diagram": "diagrams/transportation-016.svg",
    "topic": "Transportation Engineering",
    "subtopic": "Vertical curves",
    "difficulty": "hard",
@@ -5282,7 +5318,7 @@
     "3.56 years"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the discounted payback period: the time until the cumulative discounted cash inflows recover the initial investment:\n\n$$\\sum_{t=1}^{n}\\frac{A}{(1+i)^t} \\geq P$$\n\nList the known and unknown parameters in order to solve for \\(n\\):\n\n$$\\begin{aligned} P &= \\$12{,}000 \\\\ A &= \\$4{,}000/\\text{yr} \\\\ i &= 10\\% = 0.10 \\\\ n &= ? \\end{aligned}$$\n\nAccumulate the discounted inflows:\n\n$$\\begin{aligned} \\text{Year 1:} &\\quad 4000/1.10 = 3636.36 \\quad (\\text{cum } 3636.36) \\\\ \\text{Year 2:} &\\quad 4000/1.10^2 = 3305.79 \\quad (\\text{cum } 6942.15) \\\\ \\text{Year 3:} &\\quad 4000/1.10^3 = 3005.78 \\quad (\\text{cum } 9947.93) \\\\ \\text{Year 4:} &\\quad 4000/1.10^4 = 2732.48 \\quad (\\text{cum } 12680.41) \\end{aligned}$$\n\nThe investment is recovered during year 4:\n\n$$n = 3 + \\frac{12000 - 9947.93}{2732.48} = 3 + 0.75$$\n\n$$n = 3.75\\ \\text{years}$$",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the discounted payback period: the time until the cumulative discounted cash inflows recover the initial investment:\n\n$$\\sum_{t=1}^{n}\\frac{A}{(1+i)^t} \\geq P$$\n\nList the known and unknown parameters in order to solve for \\(n\\):\n\n$$\\begin{aligned} P &= \\$12{,}000 \\\\ A &= \\$4{,}000/\\text{yr} \\\\ i &= 10\\% = 0.10 \\\\ n &= ? \\end{aligned}$$\n\nAccumulate the discounted inflows:\n\n$$\\begin{aligned} \\text{Year 1:} &\\quad 4000/1.10 = 3636.36 \\quad (\\text{cum } 3636.36) \\\\ \\text{Year 2:} &\\quad 4000/1.10^2 = 3305.79 \\quad (\\text{cum } 6942.15) \\\\ \\text{Year 3:} &\\quad 4000/1.10^3 = 3005.26 \\quad (\\text{cum } 9947.41) \\\\ \\text{Year 4:} &\\quad 4000/1.10^4 = 2732.05 \\quad (\\text{cum } 12679.46) \\end{aligned}$$\n\nThe investment is recovered during year 4:\n\n$$n = 3 + \\frac{12000 - 9947.41}{2732.05} = 3 + 0.75$$\n\n$$n = 3.75\\ \\text{years}$$",
    "explanation": "Discounted payback discounts first, then accumulates; the 3.00-year trap is the simple (undiscounted) payback."
   },
   {
@@ -5812,6 +5848,7 @@
    "estimatedTimeSeconds": 75,
    "explanation": "On a frictionless incline the only thing pulling the crate downhill is the downhill component of its own weight, W·sinθ. The holding force must exactly balance that component: 400·sin25° ≈ 169 N up the plane.",
    "id": "statics-021",
+   "diagram": "diagrams/statics-021.svg",
    "question": "A 400 N crate rests on a frictionless plane inclined at 25° to the horizontal. What force P, applied parallel to the plane, is required to hold the crate in equilibrium?",
    "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\nFor equilibrium, the sum of force components along the plane must vanish: \\(\\sum F_{\\parallel} = 0\\).\nThe component of the crate's weight acting down the plane is \\(W_{\\parallel} = W \\sin\\theta\\).\n\\(W_{\\parallel} = (400\\ \\mathrm{N})(\\sin 25^\\circ)\\).\n\\(W_{\\parallel} = (400\\ \\mathrm{N})(0.4226) = 169\\ \\mathrm{N}\\).\nTherefore \\(P = 169\\ \\mathrm{N}\\) directed up the plane.",
    "subtopic": "Particle equilibrium on an inclined plane",
@@ -5847,6 +5884,7 @@
    "estimatedTimeSeconds": 165,
    "explanation": "Two things can happen: the crate can slide (when P beats maximum static friction, 200 N) or tip over its bottom corner (when P's overturning moment beats the weight's restoring moment, 161 N). The smaller one wins — the crate tips first at about 161 N.",
    "id": "statics-023",
+   "diagram": "diagrams/statics-023.svg",
    "question": "A 500 N rectangular crate is 0.9 m wide and 1.4 m tall. It rests on a horizontal surface with coefficient of static friction \\(\\mu_s = 0.40\\). A horizontal force P is applied at the top edge of the crate and slowly increased. Does the crate tip or slip first, and at what value of P does motion impend?",
    "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook.\nVertical equilibrium gives the normal force: \\(N = 500\\ \\mathrm{N}\\).\nThe limiting friction is \\(F \\le \\mu_s N\\).\n\\(F_{\\max} = (0.40)(500\\ \\mathrm{N}) = 200\\ \\mathrm{N}\\).\nSo slipping would impend at \\(P = 200\\ \\mathrm{N}\\).\nRefer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\nFor tipping, take moments about the bottom corner on the side toward which P pushes, at the instant the normal force acts at that corner:\n\\(\\sum M = 0 \\Rightarrow P(1.4\\ \\mathrm{m}) - (500\\ \\mathrm{N})(0.45\\ \\mathrm{m}) = 0\\).\n\\(P = \\dfrac{(500)(0.45)}{1.4} = 160.7\\ \\mathrm{N}\\).\nSince \\(160.7\\ \\mathrm{N} < 200\\ \\mathrm{N}\\), tipping impends first at \\(P \\approx 161\\ \\mathrm{N}\\).",
    "subtopic": "Tipping versus slipping",
@@ -5966,6 +6004,7 @@
    "estimatedTimeSeconds": 60,
    "explanation": "A flagpole-like column (fixed at the base, free at the top) buckles as if it were twice as long as it really is: K = 2.0, so the effective length is 2.0 × 4.0 = 8.0 m. That's why flagpoles buckle so easily.",
    "id": "mechmat-021",
+   "diagram": "diagrams/mechmat-021.svg",
    "question": "A 4.0 m steel column is fixed at its base and free at its top (flagpole condition). What is the effective length \\(KL\\) used in Euler's buckling formula?",
    "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\nEuler's formula uses the effective length \\(KL\\), where \\(K\\) is the effective-length factor for the end supports.\nFor fixed-free ends, the printed factor is \\(K = 2.0\\).\n\\(KL = (2.0)(4.0\\ \\mathrm{m})\\).\n\\(KL = 8.0\\ \\mathrm{m}\\).",
    "subtopic": "Column effective length",
@@ -6000,6 +6039,7 @@
    "estimatedTimeSeconds": 180,
    "explanation": "Bending gives a normal stress (65.2 MPa) and torsion gives a shear stress (48.9 MPa) on the shaft's outer fiber. Combining them via the principal-stress equations yields σ1 = 91.4 MPa and σ2 = −26.2 MPa, and the Tresca maximum shear stress is half their difference: 58.8 MPa.",
    "id": "mechmat-023",
+   "diagram": "diagrams/mechmat-023.svg",
    "question": "A solid circular shaft of diameter 50 mm is subjected to a bending moment of 800 N·m and a torque of 1200 N·m acting simultaneously. Determine the maximum shear stress in the shaft (Tresca/maximum-shear-stress basis).",
    "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\nBending produces \\(\\sigma_x = \\pm Mc/I\\); for a solid circle this becomes \\(\\sigma_x = 32M/(\\pi d^3)\\).\n\\(\\sigma_x = \\dfrac{32(800\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\sigma_x = 6.52 \\times 10^7\\ \\mathrm{Pa} = 65.2\\ \\mathrm{MPa}\\).\nRefer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook.\nTorsion produces \\(\\tau_{xy} = T\\rho/J\\); for a solid circle \\(\\tau_{xy} = 16T/(\\pi d^3)\\).\n\\(\\tau_{xy} = \\dfrac{16(1200\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\tau_{xy} = 4.89 \\times 10^7\\ \\mathrm{Pa} = 48.9\\ \\mathrm{MPa}\\).\nRefer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\\(\\sigma_{1,2} = \\dfrac{\\sigma_x}{2} \\pm \\sqrt{\\left(\\dfrac{\\sigma_x}{2}\\right)^2 + \\tau_{xy}^2}\\).\n\\(\\sigma_{1,2} = 32.6 \\pm \\sqrt{(32.6)^2 + (48.9)^2} = 32.6 \\pm 58.8\\).\n\\(\\sigma_1 = 91.4\\ \\mathrm{MPa},\\quad \\sigma_2 = -26.2\\ \\mathrm{MPa}\\).\nRefer to the Mohr's Circle—Stress, 2D section in the Mechanics of Materials chapter of the FE Reference Handbook.\nThe circle's radius is the maximum shear stress; with principal stresses of opposite sign this equals \\(\\tau_{\\max} = \\dfrac{\\sigma_1 - \\sigma_2}{2}\\) (Tresca basis).\n\\(\\tau_{\\max} = \\dfrac{91.4 - (-26.2)}{2}\\).\n\\(\\tau_{\\max} = 58.8\\ \\mathrm{MPa}\\).",
    "subtopic": "Combined bending and torsion (maximum shear stress)",
@@ -6034,6 +6074,7 @@
    "estimatedTimeSeconds": 130,
    "explanation": "The total push on the gate equals the pressure at its centroid depth times its area: the centroid is 2.75 m down, so F = 9.81 × 2.75 × 3.0 ≈ 80.9 kN. (It acts below the centroid, at the center of pressure, because pressure grows with depth.)",
    "id": "fluid-022",
+   "diagram": "diagrams/fluid-022.svg",
    "question": "A vertical rectangular gate 2.0 m wide and 1.5 m tall has its top edge 2.0 m below the water surface. Determine the magnitude of the resultant hydrostatic force acting on the gate.",
    "solution": "Refer to the Forces on Submerged Surfaces and the Center of Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook.\nWith atmospheric pressure acting on both sides, the net resultant is \\(F_R = (\\rho g h_C) A = \\gamma h_C A\\), where \\(h_C\\) is the vertical depth of the centroid.\n\\(h_C = 2.00\\ \\mathrm{m} + \\dfrac{1.50\\ \\mathrm{m}}{2} = 2.75\\ \\mathrm{m}\\).\n\\(A = (2.0\\ \\mathrm{m})(1.5\\ \\mathrm{m}) = 3.00\\ \\mathrm{m^2}\\).\n\\(F_R = (9.81\\ \\mathrm{kN/m^3})(2.75\\ \\mathrm{m})(3.00\\ \\mathrm{m^2})\\).\n\\(F_R = 80.9\\ \\mathrm{kN}\\).",
    "subtopic": "Hydrostatic force on a plane surface",
@@ -6051,6 +6092,7 @@
    "estimatedTimeSeconds": 170,
    "explanation": "Manning's equation estimates open-channel flow from the channel's roughness, shape, and slope. With A = 3.6 m², wetted perimeter 5.4 m (both sides plus bottom), hydraulic radius 0.667 m, and slope 0.001, the discharge works out to about 6.68 m³/s.",
    "id": "fluid-023",
+   "diagram": "diagrams/fluid-023.svg",
    "question": "A rectangular concrete channel (Manning's n = 0.013) is 3.0 m wide and carries water 1.2 m deep on a longitudinal slope of 0.0010. Estimate the discharge in the channel using Manning's equation (SI units).",
    "solution": "Refer to the Manning's Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\nThe printed SI form is \\(Q = \\dfrac{K}{n} A R_H^{2/3} S^{1/2}\\) with \\(K = 1.0\\).\nFlow area: \\(A = (3.0\\ \\mathrm{m})(1.2\\ \\mathrm{m}) = 3.60\\ \\mathrm{m^2}\\).\nWetted perimeter: \\(P = 3.0 + 2(1.2) = 5.40\\ \\mathrm{m}\\).\nHydraulic radius: \\(R_H = A/P = 3.60/5.40 = 0.6667\\ \\mathrm{m}\\).\n\\(Q = \\dfrac{1.0}{0.013}(3.60)(0.6667)^{2/3}(0.0010)^{1/2}\\).\n\\((0.6667)^{2/3} = 0.763\\); \\((0.0010)^{1/2} = 0.03162\\).\n\\(Q = (76.92)(3.60)(0.763)(0.03162)\\).\n\\(Q = 6.68\\ \\mathrm{m^3/s}\\).",
    "subtopic": "Manning's equation (open-channel flow)",
@@ -6058,6 +6100,7 @@
   },
   {
    "id": "surveying-021",
+   "diagram": "diagrams/surveying-021.svg",
    "topic": "Surveying",
    "subtopic": "Area by Simpson's one-third rule",
    "difficulty": "easy",
@@ -6075,6 +6118,7 @@
   },
   {
    "id": "surveying-022",
+   "diagram": "diagrams/surveying-022.svg",
    "topic": "Surveying",
    "subtopic": "Horizontal curve deflection angles (staking)",
    "difficulty": "medium",
@@ -6085,9 +6129,9 @@
     "9.17 degrees",
     "2.29 degrees"
    ],
-   "answerIndex": 1,
-   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the deflection angle \\(d\\) of the sub-chord. The handbook prints the sub-chord length relation:\n\n$$l = R\\,d\\,\\frac{\\pi}{180}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nR &= 250\\ \\text{m} \\\\\nl &= 20\\ \\text{m} \\\\\nd &= ?\n\\end{aligned}$$\n\nRearrange for \\(d\\):\n\n$$(d) = \\frac{l \\cdot 180}{R\\,\\pi}$$\n\n$$(d) = \\frac{20 \\cdot 180}{250\\,\\pi}$$\n\n$$(d) = \\frac{3600}{785.40} = 4.58^\\circ$$\n\nTurn \\(4.58^\\circ\\) from the tangent at the PC.",
-   "explanation": "The deflection angle from the tangent is half the central angle subtended by the chord (2.29 degrees would be the half-angle error). Doubling the answer to 9.17 degrees confuses deflection angle with central angle.",
+   "answerIndex": 3,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\nUltimately, we must solve for the deflection angle turned from the tangent at the PC. The deflection angle from the tangent equals half the central angle subtended by the chord. The handbook prints the arc-length relation for the central angle:\n$$l = R\\,\\Delta\\,\\frac{\\pi}{180}$$\nList the known and unknown parameters:\n$$\\begin{aligned}\nR &= 250\\ \\text{m} \\\\\nl &= 20\\ \\text{m} \\\\\n\\Delta &= ? \\\\\n\\delta &= ?\n\\end{aligned}$$\nSolve the arc-length relation for the central angle \\(\\Delta\\):\n$$(\\Delta) = \\frac{l \\cdot 180}{R\\,\\pi}$$\n$$(\\Delta) = \\frac{20 \\cdot 180}{250\\,\\pi}$$\n$$(\\Delta) = \\frac{3600}{785.40} = 4.58^\\circ$$\nHalve the central angle to get the deflection angle \\(\\delta\\):\n$$(\\delta) = \\frac{4.58^\\circ}{2}$$\n$$(\\delta) = 2.29^\\circ$$\nTurn \\(2.29^\\circ\\) from the tangent at the PC.",
+   "explanation": "The deflection angle from the tangent is half the central angle subtended by the chord: 4.58 degrees is the central angle, not the deflection angle. Doubling to 9.17 degrees confuses the two.",
    "estimatedTimeSeconds": 120
   },
   {
@@ -6109,6 +6153,7 @@
   },
   {
    "id": "structural-021",
+   "diagram": "diagrams/structural-021.svg",
    "topic": "Structural Engineering",
    "subtopic": "Moment distribution (carryover)",
    "difficulty": "easy",
@@ -6126,6 +6171,7 @@
   },
   {
    "id": "structural-022",
+   "diagram": "diagrams/structural-022.svg",
    "topic": "Structural Engineering",
    "subtopic": "Fixed-end moments (concentrated load)",
    "difficulty": "medium",
@@ -6177,6 +6223,7 @@
   },
   {
    "id": "geotech-022",
+   "diagram": "diagrams/geotech-022.svg",
    "topic": "Geotechnical Engineering",
    "subtopic": "Rankine passive earth pressure",
    "difficulty": "medium",
@@ -6211,6 +6258,7 @@
   },
   {
    "id": "transportation-021",
+   "diagram": "diagrams/transportation-021.svg",
    "topic": "Transportation Engineering",
    "subtopic": "Greenshields traffic flow model",
    "difficulty": "easy",
@@ -6262,6 +6310,7 @@
   },
   {
    "id": "water-021",
+   "diagram": "diagrams/water-021.svg",
    "topic": "Water Resources",
    "subtopic": "V-notch weir discharge",
    "difficulty": "easy",
@@ -6279,6 +6328,7 @@
   },
   {
    "id": "water-022",
+   "diagram": "diagrams/water-022.svg",
    "topic": "Water Resources",
    "subtopic": "Unconfined aquifer (Dupuit)",
    "difficulty": "medium",
@@ -6347,6 +6397,7 @@
   },
   {
    "id": "construction-023",
+   "diagram": "diagrams/construction-023.svg",
    "topic": "Construction Engineering",
    "subtopic": "CPM backward pass (late start)",
    "difficulty": "hard",
