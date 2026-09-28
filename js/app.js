@@ -77,6 +77,17 @@
     var parts = (location.hash || "#/").replace("#/", "").split("#");
     var name = parts[0] || "home";
     var anchor = parts[1] || "";
+    // #/portable reuses the practice section as its host: the other device
+    // types its session code here and runs the quiz with the same cards.
+    if (name === "portable") {
+      VIEWS.forEach(function (v) {
+        var el = document.getElementById("view-" + v);
+        if (el) el.classList.toggle("hidden", v !== "practice");
+      });
+      initPortableEntry();
+      window.scrollTo(0, 0);
+      return;
+    }
     if (VIEWS.indexOf(name) === -1) name = "home";
     VIEWS.forEach(function (v) {
       var el = document.getElementById("view-" + v);
@@ -271,8 +282,225 @@
     return a;
   }
 
+  // ---- portable sessions -------------------------------------------------
+  // Continue a quiz on another device with no login and no server. The
+  // phone packs the quiz state into a short typed code; any browser opens
+  // #/portable, types it in, and runs the exact same quiz. A result code
+  // carries the answers back to the phone's tracker.
+  //
+  // The phone's localStorage stays the source of truth. The other device
+  // keeps its session only in sessionStorage (gone when the tab closes),
+  // never writes the tracker's storage, and wipes itself on demand.
+  var B32_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+  var PORTABLE_TTL_MIN = 60;
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function seededShuffle(arr, seed) {
+    var r = mulberry32(seed >>> 0);
+    arr = arr.slice();
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function bwWrite(bits, val, n) {
+    for (var i = n - 1; i >= 0; i--) bits.push((val >> i) & 1);
+  }
+
+  function bitsToBytes(bits) {
+    var bytes = [];
+    for (var i = 0; i < bits.length; i += 8) {
+      var b = 0, n = Math.min(8, bits.length - i);
+      for (var j = 0; j < n; j++) b = (b << 1) | bits[i + j];
+      bytes.push(b << (8 - n));
+    }
+    return bytes;
+  }
+
+  function crc8(bytes) {
+    var crc = 0;
+    for (var i = 0; i < bytes.length; i++) {
+      crc ^= bytes[i];
+      for (var j = 0; j < 8; j++) {
+        crc = (crc & 0x80) ? (((crc << 1) ^ 0x07) & 0xFF) : ((crc << 1) & 0xFF);
+      }
+    }
+    return crc;
+  }
+
+  function b32encodeBytes(bytes) {
+    var out = "", acc = 0, accBits = 0;
+    for (var i = 0; i < bytes.length; i++) {
+      acc = (acc << 8) | bytes[i]; accBits += 8;
+      while (accBits >= 5) { accBits -= 5; out += B32_ALPHABET[(acc >> accBits) & 31]; }
+    }
+    if (accBits > 0) out += B32_ALPHABET[(acc << (5 - accBits)) & 31];
+    return out;
+  }
+
+  function chunkCode(s) {
+    return s.replace(/(.{4})/g, "$1-").replace(/-+$/, "");
+  }
+
+  // Decoding tolerates dashes, spaces, and lowercase, and maps the
+  // commonly confused I/L/O to 1/1/0 (Crockford base32).
+  function b32decodeToBytes(s) {
+    var clean = String(s).toUpperCase().replace(/[^0-9A-Z]/g, "")
+      .replace(/I/g, "1").replace(/L/g, "1").replace(/O/g, "0");
+    if (!clean.length) return null;
+    var bits = [];
+    for (var i = 0; i < clean.length; i++) {
+      var v = B32_ALPHABET.indexOf(clean[i]);
+      if (v < 0) return null;
+      for (var j = 4; j >= 0; j--) bits.push((v >> j) & 1);
+    }
+    var nBytes = Math.floor(bits.length / 8);
+    if (nBytes < 2) return null;
+    var bytes = [];
+    for (var k = 0; k < nBytes; k++) {
+      var b = 0;
+      for (var m = 0; m < 8; m++) b = (b << 1) | bits[k * 8 + m];
+      bytes.push(b);
+    }
+    return bytes;
+  }
+
+  function bitReader(bytes) {
+    var bits = [];
+    bytes.forEach(function (by) {
+      for (var j = 7; j >= 0; j--) bits.push((by >> j) & 1);
+    });
+    var pos = 0;
+    return {
+      read: function (n) {
+        var v = 0;
+        for (var i = 0; i < n; i++) v = (v << 1) | (bits[pos++] || 0);
+        return v;
+      }
+    };
+  }
+
+  // Short fingerprint of the question bank (order-sensitive). The other
+  // device recomputes it from the live bank and refuses the code if the
+  // bank changed in between, instead of silently rebuilding a wrong quiz.
+  function portableBankHash(ids) {
+    var h = 2166136261;
+    var s = ids.join(",");
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h & 0xFFFF;
+  }
+
+  // Session code (phone -> other device), version 1.
+  function encodeSessionCode(f) {
+    var bits = [];
+    bwWrite(bits, 1, 4);
+    bwWrite(bits, f.bankHash & 0xFFFF, 16);
+    bwWrite(bits, f.seed & 0xFFFFF, 20);
+    bwWrite(bits, f.topicSel & 15, 4);
+    bwWrite(bits, f.count & 63, 6);
+    bwWrite(bits, f.numAnswered & 63, 6);
+    bwWrite(bits, f.genMin & 1023, 10);
+    bwWrite(bits, Math.min(4095, f.elapsed) & 4095, 12);
+    for (var i = 0; i < f.chosen.length; i++) bwWrite(bits, f.chosen[i] & 3, 2);
+    var payload = bitsToBytes(bits);
+    payload.push(crc8(payload));
+    return chunkCode(b32encodeBytes(payload));
+  }
+
+  function decodeSessionCode(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || bytes.length < 8) return { error: "checksum" };
+    var crc = bytes[bytes.length - 1];
+    var payload = bytes.slice(0, -1);
+    if (crc8(payload) !== crc) return { error: "checksum" };
+    var r = bitReader(payload);
+    var version = r.read(4);
+    if (version === 2) return { error: "wrongtype", actual: 2 };
+    if (version !== 1) return { error: "checksum" };
+    // Shortest valid session code: 78 payload bits + CRC = 11 bytes.
+    if (bytes.length < 11) return { error: "checksum" };
+    var out = {
+      bankHash: r.read(16), seed: r.read(20), topicSel: r.read(4),
+      count: r.read(6), numAnswered: r.read(6), genMin: r.read(10),
+      elapsed: r.read(12), chosen: []
+    };
+    if (out.topicSel > 15 || out.count < 1 || out.count > 50 ||
+        out.numAnswered > out.count) return { error: "checksum" };
+    if (out.numAnswered >= out.count) return { error: "finished" };
+    for (var i = 0; i < out.numAnswered; i++) out.chosen.push(r.read(2));
+    var nowMin = Math.floor(Date.now() / 60000) % 1024;
+    var age = (nowMin - out.genMin + 1024) % 1024;
+    if (age > PORTABLE_TTL_MIN) return { error: "expired" };
+    return out;
+  }
+
+  // Result code (other device -> phone), version 2. Carries the seed so the
+  // phone can match it to the waiting session, plus per-question choices
+  // and times for the questions answered on the other device.
+  function encodeResultCode(f) {
+    var bits = [];
+    bwWrite(bits, 2, 4);
+    bwWrite(bits, f.seed & 0xFFFFF, 20);
+    bwWrite(bits, f.answers.length & 63, 6);
+    for (var i = 0; i < f.answers.length; i++) {
+      bwWrite(bits, f.answers[i].chosen & 3, 2);
+      bwWrite(bits, Math.min(255, f.answers[i].secs || 0) & 255, 8);
+    }
+    bwWrite(bits, Math.min(4095, f.pcActiveSecs || 0) & 4095, 12);
+    var payload = bitsToBytes(bits);
+    payload.push(crc8(payload));
+    return chunkCode(b32encodeBytes(payload));
+  }
+
+  function decodeResultCode(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || bytes.length < 8) return { error: "checksum" };
+    var crc = bytes[bytes.length - 1];
+    var payload = bytes.slice(0, -1);
+    if (crc8(payload) !== crc) return { error: "checksum" };
+    var r = bitReader(payload);
+    var version = r.read(4);
+    if (version === 1) return { error: "wrongtype", actual: 1 };
+    if (version !== 2) return { error: "checksum" };
+    var seed = r.read(20), n = r.read(6);
+    if (n < 1 || n > 50) return { error: "checksum" };
+    var answers = [];
+    for (var i = 0; i < n; i++) answers.push({ chosen: r.read(2), secs: r.read(8) });
+    return { seed: seed, answers: answers, pcActiveSecs: r.read(12) };
+  }
+
+  // Exposed for automated tests (harmless in the browser).
+  window.PortableCodes = {
+    encodeSessionCode: encodeSessionCode,
+    decodeSessionCode: decodeSessionCode,
+    encodeResultCode: encodeResultCode,
+    decodeResultCode: decodeResultCode,
+    bankHash: portableBankHash,
+    seededShuffle: seededShuffle,
+    TTL_MIN: PORTABLE_TTL_MIN
+  };
+
   function startQuiz() {
     loadQuestions(function (qs) {
+      // A fresh quiz retires any session code still waiting — its answers
+      // no longer line up with this quiz.
+      if (store.get("portableOut", null)) {
+        store.set("portableOut", null);
+        toast("The old session code stopped working — you started a new quiz.");
+      }
       var topic = document.getElementById("quiz-topic").value;
       var pool = topic ? qs.filter(function (q) { return q.topic === topic; }) : qs;
       if (!pool.length) {
@@ -282,10 +510,16 @@
         return;
       }
       var n = Math.min(selectedLength(), pool.length);
+      // Portable sessions: the shuffle is seeded so a session code typed on
+      // another device regenerates this exact question list. The seed also
+      // doubles as the session id that result codes are matched against.
+      var seed = Math.floor(Math.random() * 1048576); // 20 bits
+      var ti = topic ? TOPICS.indexOf(topic) : -1;
       quiz = {
-        list: shuffle(pool).slice(0, n),
+        list: seededShuffle(pool, seed).slice(0, n),
         idx: 0, correct: 0, topic: topic || "All topics", answers: [],
-        t0: Date.now(), elapsedBase: 0, qStart: null
+        t0: Date.now(), elapsedBase: 0, qStart: null,
+        seed: seed, topicSel: ti === -1 ? 15 : ti
       };
       saveProgress();
       renderQuestion();
@@ -298,9 +532,14 @@
   // every question advance, so closing the tab mid-quiz loses nothing.
   function saveProgress() {
     if (!quiz || !quiz.list.length) { store.set("resume", null); return; }
+    // Portable quizzes (other device) never touch the tracker's storage:
+    // they persist only in this tab's sessionStorage, gone on tab close.
+    if (quiz.portable) { writePortableSave(); return; }
     store.set("resume", {
       v: 1,
       qids: quiz.list.map(function (q) { return q.id; }),
+      seed: quiz.seed,
+      topicSel: quiz.topicSel,
       idx: quiz.idx,
       correct: quiz.correct,
       topic: quiz.topic,
@@ -328,7 +567,9 @@
         answers: saved.answers || [],
         t0: Date.now(),
         elapsedBase: saved.elapsedSecs || 0,
-        qStart: null
+        qStart: null,
+        seed: saved.seed,
+        topicSel: saved.topicSel
       };
       renderQuestion();
       showOnly("quiz-run");
@@ -338,6 +579,29 @@
   function renderResumeBanner() {
     var el = document.getElementById("quiz-resume");
     if (!el) return;
+    // A portable session code is out: the quiz is parked here until the
+    // other device's result code comes back (or the session is cancelled).
+    var pend = store.get("portableOut", null);
+    if (pend) {
+      el.innerHTML = '<div class="resume-banner"><div><strong>Session code active</strong><br>' +
+        '<span class="muted">Your quiz is parked on this phone until the other device sends its answers back.</span></div>' +
+        '<div class="resume-actions"><button id="pb-import-toggle" class="btn primary">Enter result code</button>' +
+        '<button id="pb-cancel" class="btn text">Cancel</button></div></div>' +
+        '<div id="pb-import" class="hidden" style="margin-top:10px">' +
+        '<label for="pb-import-input"><strong>Result code from the other computer</strong></label>' +
+        '<input id="pb-import-input" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">' +
+        '<p class="form-error hidden" id="pb-import-error"></p>' +
+        '<div class="quiz-nav"><button id="pb-import-btn" class="btn primary">Import answers</button></div></div>';
+      el.classList.remove("hidden");
+      document.getElementById("pb-import-toggle").addEventListener("click", function () {
+        document.getElementById("pb-import").classList.toggle("hidden");
+      });
+      document.getElementById("pb-import-btn").addEventListener("click", function () {
+        importResultCode(document.getElementById("pb-import-input").value, "pb-import-error");
+      });
+      document.getElementById("pb-cancel").addEventListener("click", cancelPortableSession);
+      return;
+    }
     var saved = store.get("resume", null);
     var valid = saved && saved.v === 1 && saved.qids && saved.qids.length &&
       (saved.idx || 0) < saved.qids.length;
@@ -361,7 +625,7 @@
   }
 
   function showOnly(id) {
-    ["quiz-setup", "quiz-run", "quiz-result"].forEach(function (x) {
+    ["quiz-setup", "quiz-run", "quiz-result", "portable-entry"].forEach(function (x) {
       document.getElementById(x).classList.toggle("hidden", x !== id);
     });
   }
@@ -393,7 +657,17 @@
     html += "</ul>";
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
     html += '<div class="quiz-nav"><button id="quiz-next" class="btn primary" style="display:none">' +
-      (quiz.idx + 1 === quiz.list.length ? "See results" : "Next question") + "</button></div>";
+      (quiz.idx + 1 === quiz.list.length ? "See results" : "Next question") + "</button>";
+    if (quiz.portable) {
+      // Other device: offer the result code once at least one answer was
+      // given here. The phone imports it back into its tracker.
+      if (quiz.answers.length > quiz.handoff) {
+        html += ' <button id="quiz-resultcode-btn" class="btn">Get result code</button>';
+      }
+    } else if (typeof quiz.seed === "number" && quiz.answers.length < quiz.list.length) {
+      html += ' <button id="quiz-portable-btn" class="btn">Continue on another device</button>';
+    }
+    html += "</div>";
     box.innerHTML = html;
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { answerCurrent(parseInt(li.dataset.i, 10)); });
@@ -406,6 +680,10 @@
       }
       else showResult();
     });
+    var portableBtn = document.getElementById("quiz-portable-btn");
+    if (portableBtn) portableBtn.addEventListener("click", openSessionCodeScreen);
+    var resultCodeBtn = document.getElementById("quiz-resultcode-btn");
+    if (resultCodeBtn) resultCodeBtn.addEventListener("click", openResultCodeScreen);
     // Restoring a saved quiz where the current question was already answered:
     // show it in its answered state without re-logging anything, with the
     // recorded time frozen on the chip. Otherwise start the question timer.
@@ -466,6 +744,7 @@
   }
 
   function logAttempt(q, ok) {
+    if (quiz && quiz.portable) return; // the other device never writes the tracker
     var attempts = store.get("attempts", []);
     attempts.push({ qid: q.id, topic: q.topic, correct: ok, ts: Date.now() });
     store.set("attempts", attempts.slice(-2000)); // keep it bounded
@@ -474,6 +753,9 @@
 
   function showResult() {
     stopQuizTimer();
+    // Other device: show the result code for the phone instead of the
+    // phone's share/analytics UI. Nothing is recorded on this device.
+    if (quiz && quiz.portable) { renderPortableResult(); return; }
     var box = document.getElementById("quiz-result");
     var pct = Math.round(100 * quiz.correct / quiz.list.length);
     var timed = quiz.answers.filter(function (a) { return typeof a.secs === "number"; });
@@ -525,6 +807,384 @@
     clearResume(); // finished quizzes have nothing left to resume
     renderResumeBanner(); // refresh the setup card so it never shows a stale banner
     recordSession();
+  }
+
+  // ---- portable sessions: phone side ------------------------------------
+  function copyAnswer(a) {
+    return { qid: a.qid, topic: a.topic, correct: a.correct, chosen: a.chosen, secs: a.secs };
+  }
+
+  // Freeze the live quiz, pack it into a session code, and park it here
+  // until the other device's result code arrives (or the session is
+  // cancelled). The pending record is what result codes are matched
+  // against, which makes each code one-use.
+  function openSessionCodeScreen() {
+    if (!quiz || quiz.portable) return;
+    if (typeof quiz.seed !== "number") {
+      toast("This quiz was saved before session codes existed — finish it and start a fresh one to try this.");
+      return;
+    }
+    stopQuizTimer();
+    var code = PortableCodes.encodeSessionCode({
+      bankHash: PortableCodes.bankHash(QUESTIONS.map(function (q) { return q.id; })),
+      seed: quiz.seed,
+      topicSel: quiz.topicSel,
+      count: quiz.list.length,
+      numAnswered: quiz.answers.length,
+      genMin: Math.floor(Date.now() / 60000) % 1024,
+      elapsed: Math.round(totalQuizSecs()),
+      chosen: quiz.answers.map(function (a) { return a.chosen; })
+    });
+    store.set("portableOut", {
+      seed: quiz.seed,
+      qids: quiz.list.map(function (q) { return q.id; }),
+      topic: quiz.topic,
+      topicSel: quiz.topicSel,
+      numAnsweredHandoff: quiz.answers.length,
+      answers: quiz.answers.map(copyAnswer),
+      elapsedBase: Math.round(totalQuizSecs()),
+      createdAt: Date.now()
+    });
+    quiz.parked = true;
+    var box = document.getElementById("quiz-run");
+    box.dataset.answered = "1";
+    var html = '<p class="quiz-progress">Session code · ' + escapeHtml(quiz.topic) + "</p>";
+    html += "<h3>Continue on another device</h3>";
+    html += '<div class="code-display" id="sc-code" title="Tap to copy">' + escapeHtml(code) + "</div>";
+    html += '<p style="margin-top:12px">On the other computer, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact quiz — same questions, right where you left off.</p>';
+    html += '<p class="muted">The code works for 60 minutes and only once. Nothing about you stays on the other computer.</p>';
+    html += '<div class="quiz-nav"><button id="sc-import-toggle" class="btn primary">Enter result code</button> ';
+    html += '<button id="sc-cancel" class="btn text">Cancel session</button></div>';
+    html += '<div id="sc-import" class="hidden" style="margin-top:12px">';
+    html += '<label for="sc-import-input"><strong>Result code from the other computer</strong></label>';
+    html += '<input id="sc-import-input" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">';
+    html += '<p class="form-error hidden" id="sc-import-error"></p>';
+    html += '<div class="quiz-nav"><button id="sc-import-btn" class="btn primary">Import answers</button></div></div>';
+    box.innerHTML = html;
+    showOnly("quiz-run");
+    document.getElementById("sc-code").addEventListener("click", function () {
+      copyText(code, function () { toast("Code copied."); });
+    });
+    document.getElementById("sc-import-toggle").addEventListener("click", function () {
+      document.getElementById("sc-import").classList.toggle("hidden");
+    });
+    document.getElementById("sc-import-btn").addEventListener("click", function () {
+      importResultCode(document.getElementById("sc-import-input").value, "sc-import-error");
+    });
+    document.getElementById("sc-cancel").addEventListener("click", cancelPortableSession);
+  }
+
+  function cancelPortableSession() {
+    store.set("portableOut", null);
+    if (quiz) quiz.parked = false;
+    toast("Session code cancelled — your quiz is back on this phone.");
+    if (quiz && !quiz.portable && quiz.list) {
+      renderQuestion();
+      showOnly("quiz-run");
+    } else {
+      showOnly("quiz-setup");
+      renderResumeBanner();
+    }
+  }
+
+  // Merge the other device's answers into the parked quiz (or rebuild it
+  // from the pending record if this phone's tab was closed in between),
+  // log them in the tracker, and retire the session code.
+  function importResultCode(str, errId) {
+    function fail(msg) {
+      var errEl = errId && document.getElementById(errId);
+      if (errEl) { errEl.textContent = msg; errEl.classList.remove("hidden"); }
+      else toast(msg);
+    }
+    var d = PortableCodes.decodeResultCode(str);
+    if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
+    if (d.error === "wrongtype") return fail("That's a session code — it goes on the other computer, not here.");
+    if (d.error) return fail("That code didn't work — try typing it again.");
+    var pending = store.get("portableOut", null);
+    if (!pending || pending.seed !== d.seed) {
+      return fail("That code doesn't match the session waiting on this phone. Make sure you typed the latest result code.");
+    }
+    loadQuestions(function () {
+      var list = (pending.qids || []).map(findQuestion).filter(Boolean);
+      if (!list.length || list.length !== pending.qids.length) {
+        return fail("The question bank changed since this session started — the answers can't be matched up.");
+      }
+      var handoff = pending.numAnsweredHandoff || 0;
+      if (handoff + d.answers.length > list.length) {
+        return fail("That code doesn't match this quiz — it covers more questions than are left.");
+      }
+      var answers = (pending.answers || []).map(copyAnswer);
+      var correct = answers.filter(function (a) { return a.correct; }).length;
+      for (var i = 0; i < d.answers.length; i++) {
+        var q = list[handoff + i];
+        var ok = d.answers[i].chosen === q.answerIndex;
+        if (ok) correct++;
+        var rec = { qid: q.id, topic: q.topic, correct: ok, chosen: d.answers[i].chosen, secs: d.answers[i].secs };
+        answers.push(rec);
+        logAttempt(q, ok);
+      }
+      quiz = {
+        list: list,
+        idx: Math.min(handoff + d.answers.length, list.length - 1),
+        correct: correct,
+        topic: pending.topic || "Quiz from another device",
+        answers: answers,
+        t0: Date.now(),
+        elapsedBase: (pending.elapsedBase || 0) + (d.pcActiveSecs || 0),
+        qStart: null,
+        seed: pending.seed,
+        topicSel: pending.topicSel,
+        parked: false
+      };
+      store.set("portableOut", null); // one use
+      saveProgress();
+      var n = d.answers.length;
+      toast("Imported " + n + " answer" + (n === 1 ? "" : "s") + " from the other device.");
+      if (answers.length >= list.length) showResult();
+      else { renderQuestion(); showOnly("quiz-run"); }
+    });
+  }
+
+  // ---- portable sessions: other-device side -------------------------------
+  // sessionStorage only: reloading this tab keeps the session, closing the
+  // tab (or wiping) destroys it. localStorage is never touched here.
+  function portableSaveShape() {
+    return {
+      v: 1,
+      portable: true,
+      seed: quiz.seed,
+      topicSel: quiz.topicSel,
+      topic: quiz.topic,
+      handoff: quiz.handoff,
+      phoneElapsed: quiz.phoneElapsed || 0,
+      qids: quiz.list.map(function (q) { return q.id; }),
+      idx: quiz.idx,
+      correct: quiz.correct,
+      answers: quiz.answers.map(copyAnswer),
+      elapsedBase: Math.round((quiz.elapsedBase || 0) + (Date.now() - quiz.t0) / 1000),
+      savedAt: Date.now()
+    };
+  }
+
+  function writePortableSave() {
+    if (!quiz || !quiz.portable) return;
+    try { sessionStorage.setItem("fecp:portableQuiz", JSON.stringify(portableSaveShape())); }
+    catch (e) { /* private mode etc: the session just won't survive reload */ }
+  }
+
+  function readPortableSave() {
+    try {
+      var raw = sessionStorage.getItem("fecp:portableQuiz");
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      return (s && s.v === 1 && s.portable && s.qids && s.qids.length) ? s : null;
+    } catch (e) { return null; }
+  }
+
+  function clearPortableSave() {
+    try { sessionStorage.removeItem("fecp:portableQuiz"); } catch (e) {}
+  }
+
+  function initPortableEntry() {
+    quiz = null; // the tab's sessionStorage copy is authoritative from here
+    stopQuizTimer();
+    showOnly("portable-entry");
+    var main = document.getElementById("pe-main");
+    if (!main) return;
+    var saved = readPortableSave();
+    if (saved) {
+      var doneHere = saved.answers.length - (saved.handoff || 0);
+      main.innerHTML = '<div class="resume-banner"><div><strong>A session is open on this device</strong><br>' +
+        '<span class="muted">Question ' + (Math.min(saved.idx, saved.qids.length - 1) + 1) +
+        " of " + saved.qids.length + " · " + doneHere + " answered here</span></div>" +
+        '<div class="resume-actions"><button id="pe-resume" class="btn primary">Keep going</button>' +
+        '<button id="pe-fresh" class="btn text">Wipe and start fresh</button></div></div>';
+      document.getElementById("pe-resume").addEventListener("click", function () {
+        resumePortableSession(saved);
+      });
+      document.getElementById("pe-fresh").addEventListener("click", function () {
+        clearPortableSave();
+        initPortableEntry();
+      });
+      return;
+    }
+    main.innerHTML =
+      '<label for="pe-code"><strong>Session code from your phone</strong></label>' +
+      '<input id="pe-code" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX">' +
+      '<p class="form-error hidden" id="pe-error"></p>' +
+      '<div class="quiz-nav"><button id="pe-start" class="btn primary">Open my quiz</button></div>';
+    document.getElementById("pe-start").addEventListener("click", function () {
+      startPortableSession(document.getElementById("pe-code").value);
+    });
+    document.getElementById("pe-code").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") startPortableSession(e.target.value);
+    });
+  }
+
+  function startPortableSession(codeStr) {
+    var errEl = document.getElementById("pe-error");
+    function fail(msg) {
+      if (errEl) { errEl.textContent = msg; errEl.classList.remove("hidden"); }
+    }
+    var d = PortableCodes.decodeSessionCode(codeStr);
+    if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
+    if (d.error === "wrongtype") return fail("That's a result code — it goes on your phone, not here.");
+    if (d.error === "expired") return fail("That code expired — codes last 60 minutes. Make a fresh one on your phone.");
+    if (d.error === "finished") return fail("That quiz was already finished on your phone — there's nothing to continue here.");
+    if (d.error) return fail("That code didn't work — try typing it again.");
+    loadQuestions(function (qs) {
+      if (PortableCodes.bankHash(qs.map(function (q) { return q.id; })) !== d.bankHash) {
+        return fail("The question bank changed since this code was made. Make a fresh code on your phone.");
+      }
+      var pool = d.topicSel === 15 ? qs : qs.filter(function (q) { return q.topic === TOPICS[d.topicSel]; });
+      var list = PortableCodes.seededShuffle(pool, d.seed).slice(0, d.count);
+      if (list.length !== d.count) {
+        return fail("Couldn't rebuild that quiz — make a fresh code on your phone.");
+      }
+      var answers = [], correct = 0;
+      for (var i = 0; i < d.numAnswered; i++) {
+        var q = list[i];
+        var ok = d.chosen[i] === q.answerIndex;
+        if (ok) correct++;
+        // secs: null marks "answered on the phone" — shown as – here, and
+        // the phone already holds the real times for these.
+        answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: d.chosen[i], secs: null });
+      }
+      quiz = {
+        list: list,
+        idx: d.numAnswered,
+        correct: correct,
+        topic: d.topicSel === 15 ? "All topics" : TOPICS[d.topicSel],
+        answers: answers,
+        t0: Date.now(),
+        elapsedBase: Math.min(4095, d.elapsed),
+        qStart: null,
+        portable: true,
+        seed: d.seed,
+        handoff: d.numAnswered,
+        phoneElapsed: Math.min(4095, d.elapsed),
+        topicSel: d.topicSel
+      };
+      writePortableSave();
+      showOnly("quiz-run");
+      renderQuestion();
+    });
+  }
+
+  function resumePortableSession(saved) {
+    loadQuestions(function () {
+      var list = (saved.qids || []).map(findQuestion).filter(Boolean);
+      if (!list.length || list.length !== saved.qids.length) {
+        clearPortableSave();
+        initPortableEntry();
+        return;
+      }
+      quiz = {
+        list: list,
+        idx: Math.min(saved.idx || 0, list.length - 1),
+        correct: saved.correct || 0,
+        topic: saved.topic || "Quiz from your phone",
+        answers: saved.answers || [],
+        t0: Date.now(),
+        elapsedBase: saved.elapsedBase || 0,
+        qStart: null,
+        portable: true,
+        seed: saved.seed,
+        handoff: saved.handoff || 0,
+        phoneElapsed: saved.phoneElapsed || 0,
+        topicSel: saved.topicSel
+      };
+      showOnly("quiz-run");
+      renderQuestion();
+      toast("Picked up right where you left off on this device.");
+    });
+  }
+
+  function currentResultCode() {
+    var pcAnswers = quiz.answers.slice(quiz.handoff);
+    var active = Math.max(0, Math.round(totalQuizSecs() - (quiz.phoneElapsed || 0)));
+    return PortableCodes.encodeResultCode({
+      seed: quiz.seed,
+      answers: pcAnswers.map(function (a) {
+        return { chosen: a.chosen, secs: Math.min(255, a.secs || 0) };
+      }),
+      pcActiveSecs: active
+    });
+  }
+
+  function openResultCodeScreen() {
+    if (!quiz || !quiz.portable) return;
+    if (quiz.answers.length - quiz.handoff < 1) {
+      toast("Answer at least one question here first.");
+      return;
+    }
+    var code = currentResultCode();
+    var ov = document.createElement("div");
+    ov.className = "portable-overlay";
+    ov.innerHTML = '<div class="card"><h3>Result code</h3>' +
+      '<p>On your phone, tap <strong>Enter result code</strong> and type this in. Your answers move into your tracker.</p>' +
+      '<div class="code-display">' + escapeHtml(code) + "</div>" +
+      '<div class="quiz-nav" style="margin-top:12px"><button id="rc-copy" class="btn">Copy code</button> ' +
+      '<button id="rc-back" class="btn primary">Back to quiz</button></div>' +
+      '<div class="quiz-nav"><button id="rc-wipe" class="btn text">Wipe this device</button></div>' +
+      '<p class="muted">Nothing is saved on this computer — wiping clears this tab completely.</p></div>';
+    document.body.appendChild(ov);
+    document.getElementById("rc-copy").addEventListener("click", function () {
+      copyText(code, function () { toast("Result code copied."); });
+    });
+    document.getElementById("rc-back").addEventListener("click", function () { ov.remove(); });
+    document.getElementById("rc-wipe").addEventListener("click", function () {
+      ov.remove();
+      wipePortableDevice();
+    });
+  }
+
+  function renderPortableResult() {
+    var box = document.getElementById("quiz-result");
+    var pct = Math.round(100 * quiz.correct / quiz.list.length);
+    var pcCount = quiz.answers.length - quiz.handoff;
+    var html = "<h3>Quiz complete</h3>";
+    html += '<p class="result-score">' + quiz.correct + "/" + quiz.list.length +
+      " <span>(" + pct + "%)</span></p>";
+    html += '<div class="qtime-list">';
+    quiz.answers.forEach(function (a, n) {
+      var secs = (typeof a.secs === "number") ? fmtSecs(a.secs) : "–";
+      html += '<div class="qtime-row"><span class="qtime-n">Q' + (n + 1) + "</span>" +
+        '<span class="qtime-mark ' + (a.correct ? "good" : "bad") + '">' +
+        (a.correct ? "✓" : "✗") + "</span>" +
+        '<span class="qtime-topic">' + escapeHtml(a.topic || "") + "</span>" +
+        '<span class="qtime-secs">' + secs + "</span></div>";
+    });
+    html += "</div>";
+    if (pcCount > 0) {
+      var code = currentResultCode();
+      html += '<div class="card" style="margin-top:14px"><h4>Take this back to your phone</h4>' +
+        '<p class="muted">On your phone, tap <strong>Enter result code</strong> and type this in. Your answers move into your tracker.</p>' +
+        '<div class="code-display">' + escapeHtml(code) + "</div>" +
+        '<div class="quiz-nav" style="margin-top:10px"><button id="pr-copy" class="btn">Copy code</button></div></div>';
+    }
+    html += '<div class="quiz-nav"><button id="pr-wipe" class="btn primary">Wipe this device</button></div>';
+    html += '<p class="disclaimer">Nothing from this session is saved on this computer.</p>';
+    box.innerHTML = html;
+    showOnly("quiz-result");
+    // Bind after innerHTML: #pr-copy only exists when pcCount > 0.
+    var cpBtn = document.getElementById("pr-copy");
+    if (cpBtn) {
+      (function (c) {
+        cpBtn.addEventListener("click", function () {
+          copyText(c, function () { toast("Result code copied."); });
+        });
+      })(code);
+    }
+    document.getElementById("pr-wipe").addEventListener("click", wipePortableDevice);
+    clearPortableSave();
+  }
+
+  function wipePortableDevice() {
+    clearPortableSave();
+    quiz = null;
+    initPortableEntry();
+    toast("Wiped — nothing from your session stays on this computer.");
   }
 
   // ---- score sharing ---------------------------------------------------
@@ -696,7 +1356,7 @@
 
   // One completed quiz = one logged session (score, scope, missed question ids).
   function recordSession() {
-    if (!quiz || !quiz.answers.length) return;
+    if (!quiz || !quiz.answers.length || quiz.portable) return;
     var missed = [];
     quiz.answers.forEach(function (a) {
       if (!a.correct) missed.push(a.qid);

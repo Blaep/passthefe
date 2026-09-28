@@ -347,3 +347,57 @@ details.card summary + div { margin-top: 16px; }
 .ref-symbols li { margin-bottom: 4px; }
 .ref-source { font-size: 0.82rem; color: var(--text-2); margin: 8px 0; }
 .ref-card-link { font-size: 0.85rem; font-weight: 600; }
+
+/* ---------- Portable sessions (session / result codes) ---------- */
+.code-display {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: #0f1c33;
+  color: #ffd97a;
+  padding: 14px 12px;
+  border-radius: 10px;
+  text-align: center;
+  word-break: break-all;
+  line-height: 1.8;
+  cursor: pointer;
+  user-select: all;
+}
+.code-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-transform: uppercase;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  border: 2px solid var(--border, #d5dbe7);
+  border-radius: 10px;
+  margin: 8px 0 4px;
+}
+.code-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.form-error {
+  color: var(--error, #d93025);
+  font-weight: 600;
+  margin: 8px 0;
+}
+.portable-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 18, 36, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 16px;
+}
+.portable-overlay .card {
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
