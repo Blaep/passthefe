@@ -6,7 +6,7 @@
   <title>PassTheFE — FE Civil Exam Practice Questions & Simulator</title>
   <meta name="google-site-verification" content="SrnnuvGN50Gp0qZfXJZIaEBHWMZCIMRgNmlkOF54dIk" />
   <meta name="google-site-verification" content="jPgnFEoHxjI8jtjwUs7jm5od8tge3DLqPOM4GZz8kEg" />
-  <meta name="description" content="PassTheFE: free FE Civil exam practice questions, realistic exam simulations, and study analytics across all 15 NCEES FE Civil topics.">
+  <meta name="description" content="PassTheFE: free FE Civil exam practice questions, realistic exam simulations, and study analytics mapped to the FE Reference Handbook chapters.">
   <meta property="og:title" content="PassTheFE — FE Civil Exam Prep">
   <meta property="og:description" content="Practice questions, exam simulations, and study analytics for the NCEES FE Civil exam.">
   <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://passthefe.pages.dev/icons/icon-512.png">
   <link rel="canonical" href="https://passthefe.pages.dev/">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"PassTheFE","url":"https://passthefe.pages.dev/","description":"Free FE Civil exam practice questions, exam simulations, flashcards, and study analytics across all 15 NCEES FE Civil topics."}
+  {"@context":"https://schema.org","@type":"WebSite","name":"PassTheFE","url":"https://passthefe.pages.dev/","description":"Free FE Civil exam practice questions, exam simulations, flashcards, and study analytics mapped to the FE Reference Handbook chapters."}
   </script>
   <meta name="theme-color" content="#1b2a4a">
   <!-- Home-screen app icon -->
@@ -49,6 +49,7 @@
         <a href="#/practice">Practice</a>
         <a href="#/exam">Exam Sim</a>
         <a href="#/formulas">Formulas</a>
+        <a href="#/reference">Reference</a>
         <a href="#/flashcards">Flashcards</a>
         <a href="#/analytics">Analytics</a>
       </nav>
@@ -58,14 +59,14 @@
   <main class="wrap" id="app">
     <section id="view-home" class="view">
       <h1>Pass the FE Civil exam with real practice.</h1>
-      <p class="lede">A growing bank of practice questions across all 15 FE Civil topics, full exam simulations with realistic timing, and analytics that show exactly where you stand.</p>
+      <p class="lede">A growing bank of practice questions mapped to the FE Reference Handbook chapters, full exam simulations with realistic timing, and analytics that show exactly where you stand.</p>
       <div class="cta-row">
         <a class="btn primary" href="#/practice">Start practicing</a>
         <a class="btn" href="#/exam">Try an exam sim</a>
       </div>
       <div class="stats">
         <div class="stat"><strong id="stat-questions">–</strong><span>questions in the bank</span></div>
-        <div class="stat"><strong>15</strong><span>topics covered</span></div>
+        <div class="stat"><strong id="stat-chapters">–</strong><span>handbook chapters covered</span></div>
         <div class="stat"><strong>110</strong><span>exam questions</span></div>
         <div class="stat"><strong>5h 20m</strong><span>exam timer</span></div>
       </div>
@@ -74,13 +75,15 @@
 
     <section id="view-practice" class="view hidden">
       <h2>Practice</h2>
-      <p class="lede">Pick a topic and a quiz length. Answers are checked instantly, with full solutions.</p>
+      <p class="lede">Pick a handbook chapter and a quiz length. Answers are checked instantly, with full solutions.</p>
       <div id="quiz-setup" class="card">
         <div id="quiz-resume" class="hidden"></div>
         <div class="form-row">
-          <label for="quiz-topic">Topic</label>
-          <select id="quiz-topic"></select>
+          <label for="quiz-chapter">Handbook chapter</label>
+          <select id="quiz-chapter"></select>
+          <select id="quiz-topic" class="hidden" aria-hidden="true" tabindex="-1"></select>
         </div>
+        <div id="quiz-topic-chips" class="chip-row hidden"></div>
         <div class="form-row">
           <label>Questions</label>
           <div class="length-row" id="quiz-lengths">
@@ -118,6 +121,17 @@
       <div id="formula-filters" class="chip-row"></div>
       <div id="formula-list"></div>
       <p class="disclaimer">Reference only — confirm against the current NCEES FE Reference Handbook before exam day.</p>
+    </section>
+
+    <section id="view-reference" class="view hidden">
+      <h2>Reference</h2>
+      <p class="lede">Key equations from the FE Reference Handbook 10.6, searchable and grouped by handbook chapter.</p>
+      <div class="form-row">
+        <label for="ref-search">Search</label>
+        <input id="ref-search" type="search" placeholder="e.g. bernoulli, moment of inertia, manning">
+      </div>
+      <div id="ref-list"><p class="muted">Reference loading…</p></div>
+      <p class="disclaimer">Equations are reproduced in standard mathematical form; explanations and examples are original. Not endorsed by or affiliated with NCEES. Always confirm against the current NCEES FE Reference Handbook before exam day.</p>
     </section>
 
     <section id="view-flashcards" class="view hidden">
@@ -182,6 +196,6 @@
     <button id="pwa-install-dismiss" class="pwa-banner-close" aria-label="Dismiss">&times;</button>
   </div>
 
-  <script src="js/app.js?v=4"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>

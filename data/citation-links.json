@@ -1,0 +1,220 @@
+{
+ "Algebra of Complex Numbers": [
+  "eq-mathematics-08"
+ ],
+ "Archimedes Principle and Buoyancy": [
+  "eq-fluid-mechanics-04"
+ ],
+ "Area formulas": [
+  "eq-civil-engineering-30"
+ ],
+ "Beams": [
+  "eq-civil-engineering-13"
+ ],
+ "Benefit-Cost Analysis": [
+  "eq-engineering-economics-06"
+ ],
+ "Bernoulli Equation": [
+  "eq-fluid-mechanics-01"
+ ],
+ "Binomial Distribution": [
+  "eq-probability-statistics-04"
+ ],
+ "CPM Precedence Relationships": [
+  "eq-civil-engineering-31",
+  "eq-civil-engineering-32"
+ ],
+ "Capitalized Costs": [
+  "eq-engineering-economics-04"
+ ],
+ "Centroids of Masses, Areas, Lengths, and Volumes": [
+  "eq-statics-04"
+ ],
+ "Columns": [
+  "eq-mechanics-of-materials-02"
+ ],
+ "Concurrent Forces": [
+  "eq-statics-05"
+ ],
+ "Cylindrical Pressure Vessel": [
+  "eq-mechanics-of-materials-08"
+ ],
+ "Darcy's Law": [
+  "eq-civil-engineering-15",
+  "eq-civil-engineering-16"
+ ],
+ "Definitions": [
+  "eq-fluid-mechanics-08"
+ ],
+ "Deflection of Beams": [
+  "eq-mechanics-of-materials-04"
+ ],
+ "Depreciation": [
+  "eq-engineering-economics-03"
+ ],
+ "Design of Reinforced Concrete Components (ACI 318-14)": [
+  "eq-civil-engineering-11",
+  "eq-civil-engineering-12"
+ ],
+ "Determinants": [
+  "eq-mathematics-06"
+ ],
+ "Differential Calculus": [
+  "eq-mathematics-01"
+ ],
+ "Differential Equations": [
+  "eq-mathematics-04"
+ ],
+ "Dispersion, Mean, Median, and Mode Values": [
+  "eq-probability-statistics-02"
+ ],
+ "Earthwork formulas": [
+  "eq-civil-engineering-28",
+  "eq-civil-engineering-29"
+ ],
+ "Equilibrium Requirements": [
+  "eq-statics-01"
+ ],
+ "Expected Values": [
+  "eq-probability-statistics-07"
+ ],
+ "Free and Forced Vibration": [
+  "eq-dynamics-07"
+ ],
+ "Friction": [
+  "eq-statics-06"
+ ],
+ "Horizontal Curves": [
+  "eq-civil-engineering-23",
+  "eq-civil-engineering-24"
+ ],
+ "Horizontal Stress Profiles and Forces": [
+  "eq-civil-engineering-06",
+  "eq-civil-engineering-07"
+ ],
+ "Impulse and Momentum": [
+  "eq-dynamics-04"
+ ],
+ "Integral Calculus": [
+  "eq-mathematics-03"
+ ],
+ "Laws of Probability": [
+  "eq-probability-statistics-01"
+ ],
+ "Level of Service (LOS)": [
+  "eq-civil-engineering-25"
+ ],
+ "Linear Regression and Goodness of Fit": [
+  "eq-probability-statistics-08"
+ ],
+ "Manning's Equation": [
+  "eq-civil-engineering-17"
+ ],
+ "Manometers": [
+  "eq-fluid-mechanics-06"
+ ],
+ "Matrices": [
+  "eq-mathematics-05"
+ ],
+ "Normal Distribution (Gaussian Distribution)": [
+  "eq-probability-statistics-03"
+ ],
+ "Particle Curvilinear Motion": [
+  "eq-dynamics-05"
+ ],
+ "Particle Kinematics": [
+  "eq-dynamics-03"
+ ],
+ "Particle Kinetics": [
+  "eq-dynamics-02"
+ ],
+ "Phase Relationships": [
+  "eq-civil-engineering-01",
+  "eq-civil-engineering-02"
+ ],
+ "Plane Truss: Method of Joints": [
+  "eq-statics-03"
+ ],
+ "Principal Stresses": [
+  "eq-mechanics-of-materials-07"
+ ],
+ "Principle of Work and Energy": [
+  "eq-dynamics-01"
+ ],
+ "Probability and Density Functions: Means and Variances": [
+  "eq-probability-statistics-06"
+ ],
+ "Properties of Materials": [
+  "eq-materials-science-01"
+ ],
+ "Pump Power Equation": [
+  "eq-fluid-mechanics-07"
+ ],
+ "Rate-of-Return": [
+  "eq-engineering-economics-05"
+ ],
+ "Rational Formula": [
+  "eq-civil-engineering-14"
+ ],
+ "Relative Motion": [
+  "eq-dynamics-08"
+ ],
+ "Resultant (Two Dimensions)": [
+  "eq-statics-07"
+ ],
+ "Rigid Body Rotation About a Fixed Axis": [
+  "eq-dynamics-06"
+ ],
+ "Soil Classification": [
+  "eq-civil-engineering-09"
+ ],
+ "Stopping Sight Distance": [
+  "eq-civil-engineering-20"
+ ],
+ "Stresses in Beams": [
+  "eq-mechanics-of-materials-03"
+ ],
+ "Structural Analysis": [
+  "eq-civil-engineering-10"
+ ],
+ "Systems of Forces": [
+  "eq-statics-02"
+ ],
+ "The Partial Derivative": [
+  "eq-mathematics-02"
+ ],
+ "Thermal Deformations": [
+  "eq-mechanics-of-materials-06"
+ ],
+ "Torsion": [
+  "eq-mechanics-of-materials-05"
+ ],
+ "Traffic Flow Relationships": [
+  "eq-civil-engineering-26",
+  "eq-civil-engineering-27"
+ ],
+ "Ultimate Bearing Capacity": [
+  "eq-civil-engineering-08"
+ ],
+ "Ultimate consolidation settlement in soil layer": [
+  "eq-civil-engineering-03"
+ ],
+ "Uniaxial Loading and Deformation": [
+  "eq-mechanics-of-materials-01"
+ ],
+ "Uniform Series": [
+  "eq-engineering-economics-01",
+  "eq-engineering-economics-02"
+ ],
+ "Vectors": [
+  "eq-mathematics-07"
+ ],
+ "Vertical Curves": [
+  "eq-civil-engineering-21",
+  "eq-civil-engineering-22"
+ ],
+ "Weir Formulas": [
+  "eq-civil-engineering-18",
+  "eq-civil-engineering-19"
+ ]
+}

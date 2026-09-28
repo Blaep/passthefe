@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["home", "practice", "exam", "formulas", "flashcards", "analytics"];
+  var VIEWS = ["home", "practice", "exam", "formulas", "reference", "flashcards", "analytics"];
   var TOPICS = [
     "Mathematics", "Statistics and Probability", "Engineering Economics",
     "Ethics and Professional Practice", "Statics", "Dynamics",
@@ -37,10 +37,46 @@
       .catch(function () { cb([]); });
   }
 
+  // ---- handbook chapters -------------------------------------------------
+  // data/handbook-structure.json maps FE Reference Handbook 10.6 chapters to
+  // the question bank's topic names. Navigation only — the quiz engine,
+  // analytics, flashcards, and exam views keep using q.topic untouched.
+  var CHAPTERS = null;
+  function loadChapters(cb) {
+    if (CHAPTERS) { cb(CHAPTERS); return; }
+    fetch("data/handbook-structure.json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        CHAPTERS = Array.isArray(d) ? d : (d.chapters || []);
+        cb(CHAPTERS);
+      })
+      .catch(function () { cb([]); });
+  }
+
+  function chapterQuestionCount(ch, qs) {
+    var n = 0;
+    for (var i = 0; i < qs.length; i++) {
+      if (ch.topics.indexOf(qs[i].topic) !== -1) n++;
+    }
+    return n;
+  }
+
+  function findChapter(id) {
+    if (!CHAPTERS) return null;
+    for (var i = 0; i < CHAPTERS.length; i++) {
+      if (CHAPTERS[i].id === id) return CHAPTERS[i];
+    }
+    return null;
+  }
+
   // ---- router ------------------------------------------------------------
   function route() {
     stopQuizTimer(); // navigating away freezes the live timer; resume restarts it
-    var name = (location.hash || "#/").replace("#/", "") || "home";
+    loadCitationLinks(); // fire-and-forget so solution citations can deep-link
+    // Deep links look like #/reference#eq-<id>: the view first, then the anchor.
+    var parts = (location.hash || "#/").replace("#/", "").split("#");
+    var name = parts[0] || "home";
+    var anchor = parts[1] || "";
     if (VIEWS.indexOf(name) === -1) name = "home";
     VIEWS.forEach(function (v) {
       var el = document.getElementById("view-" + v);
@@ -51,13 +87,32 @@
     if (name === "formulas") initFormulas();
     if (name === "flashcards") initFlashcards();
     if (name === "analytics") renderAnalytics();
-    window.scrollTo(0, 0);
+    if (name === "reference") {
+      initReference(function () { if (anchor) scrollToAnchor(anchor); });
+    } else if (!anchor) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function scrollToAnchor(anchor) {
+    var el = document.getElementById(anchor);
+    if (el && el.scrollIntoView) el.scrollIntoView();
   }
 
   function renderStats() {
     loadQuestions(function (qs) {
       var el = document.getElementById("stat-questions");
       if (el) el.textContent = qs.length > 0 ? qs.length : "–";
+      var chEl = document.getElementById("stat-chapters");
+      if (chEl) {
+        loadChapters(function (chapters) {
+          var n = 0;
+          chapters.forEach(function (c) {
+            if (chapterQuestionCount(c, qs) > 0) n++;
+          });
+          chEl.textContent = n > 0 ? n : "–";
+        });
+      }
     });
   }
 
@@ -100,15 +155,26 @@
 
   function initPractice() {
     loadQuestions(function (qs) {
-      var sel = document.getElementById("quiz-topic");
-      if (sel && !sel.options.length) {
-        sel.appendChild(opt("", "All topics (" + qs.length + " questions)"));
-        TOPICS.forEach(function (t) {
-          var n = qs.filter(function (q) { return q.topic === t; }).length;
-          sel.appendChild(opt(t, t + " (" + n + ")"));
-        });
-      }
-      renderStreak();
+      loadChapters(function (chapters) {
+        var chapSel = document.getElementById("quiz-chapter");
+        if (chapSel && !chapSel.options.length) {
+          chapSel.appendChild(opt("", "All handbook chapters (" + qs.length + " questions)"));
+          chapters.forEach(function (c) {
+            var n = chapterQuestionCount(c, qs);
+            var o = opt(c.id, c.title + " (" + (n ? n : "coming soon") + ")");
+            if (!n) o.disabled = true;
+            chapSel.appendChild(o);
+          });
+          chapSel.addEventListener("change", function () {
+            renderTopicChips(qs, chapters);
+          });
+        }
+        if (chapSel && !chapSel.dataset.init) {
+          chapSel.dataset.init = "1";
+          renderTopicChips(qs, chapters);
+        }
+        renderStreak();
+      });
     });
     renderResumeBanner();
     var lens = document.getElementById("quiz-lengths");
@@ -134,6 +200,61 @@
     var o = document.createElement("option");
     o.value = value; o.textContent = label;
     return o;
+  }
+
+  // Practice picker, part 2: topic chips for the selected handbook chapter.
+  // The hidden #quiz-topic select keeps holding the quiz's topic id ("" =
+  // all topics), so startQuiz and everything downstream are untouched.
+  function renderTopicChips(qs, chapters) {
+    var chapSel = document.getElementById("quiz-chapter");
+    var topicSel = document.getElementById("quiz-topic");
+    var chips = document.getElementById("quiz-topic-chips");
+    if (!chapSel || !topicSel || !chips) return;
+    topicSel.innerHTML = "";
+    chips.innerHTML = "";
+    chips.classList.add("hidden");
+    var ch = findChapter(chapSel.value);
+    if (!ch) { // "All handbook chapters"
+      topicSel.appendChild(opt("", ""));
+      return;
+    }
+    topicSel.appendChild(opt("", ""));
+    ch.topics.forEach(function (t) {
+      var n = 0;
+      for (var i = 0; i < qs.length; i++) {
+        if (qs[i].topic === t) n++;
+      }
+      if (n) topicSel.appendChild(opt(t, t));
+    });
+    if (ch.topics.length === 1) {
+      // Single-topic chapter: quiz that topic directly, no chips needed.
+      if (topicSel.options.length === 2) topicSel.value = ch.topics[0];
+      return;
+    }
+    chips.classList.remove("hidden");
+    chips.appendChild(topicChip("", "All " + ch.title, true));
+    ch.topics.forEach(function (t) {
+      var n = 0;
+      for (var i = 0; i < qs.length; i++) {
+        if (qs[i].topic === t) n++;
+      }
+      if (n) chips.appendChild(topicChip(t, t + " (" + n + ")", false));
+    });
+  }
+
+  function topicChip(value, label, selected) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (selected ? " selected" : "");
+    b.textContent = label;
+    b.addEventListener("click", function () {
+      document.getElementById("quiz-topic").value = value;
+      document.getElementById("quiz-topic-chips").querySelectorAll(".chip")
+        .forEach(function (x) {
+          x.classList.toggle("selected", x === b);
+        });
+    });
+    return b;
   }
 
   function selectedLength() {
@@ -337,7 +458,7 @@
     var sol = document.getElementById("quiz-solution");
     sol.innerHTML = "<strong>" + (ok ? "Correct." : "Not quite.") + "</strong>" +
       '<p class="explain-head">Explanation</p>' +
-      '<div class="explain-body">' + renderRich(q.solution) + "</div>" +
+      '<div class="explain-body">' + linkifyCitations(renderRich(q.solution)) + "</div>" +
       (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
       videoLinkHtml(q);
     sol.style.display = "block";
@@ -786,6 +907,169 @@
         (f.notes ? '<p class="formula-notes">' + escapeHtml(f.notes) + "</p>" : "") +
         "</div>";
     }).join("");
+  }
+
+  // Citation deep-links: "Refer to the <section> section in the <chapter>
+  // chapter" becomes a link into #/reference when data/citation-links.json
+  // maps that exact section name to equation ids. Never guess a link.
+  function linkifyCitations(html) {
+    if (!CITATION_LINKS) return html;
+    return html.replace(/Refer to the (.+?) section in the (.+?) chapter/g,
+      function (match, section) {
+        var ids = CITATION_LINKS[section];
+        if (ids && ids.length) {
+          return '<a href="#/reference#' + eqAnchorId(ids[0]) + '">' + match + "</a>";
+        }
+        return match;
+      });
+  }
+
+  // ---- reference (handbook equations) ------------------------------------
+  // data/equations.json: array of {id, chapter, section, title, equation,
+  // symbols, explanation, example}. data/citation-links.json:
+  // {"<section name>": ["<eq id>", ...]}. Both are optional — the view
+  // shows "Reference loading…", then a graceful note if they are missing.
+  // The router never crashes on this view.
+  var EQUATIONS = null; // null = not fetched yet
+  function loadEquations(cb) {
+    if (EQUATIONS !== null) { cb(EQUATIONS); return; }
+    fetch("data/equations.json")
+      .then(function (r) { if (!r.ok) throw new Error("missing"); return r.json(); })
+      .then(function (d) {
+        EQUATIONS = Array.isArray(d) ? d : (d.equations || []);
+        cb(EQUATIONS);
+      })
+      .catch(function () { EQUATIONS = []; cb([]); });
+  }
+
+  var CITATION_LINKS = null; // null = not fetched yet; {} = missing/failed
+  function loadCitationLinks(cb) {
+    if (CITATION_LINKS !== null) { if (cb) cb(CITATION_LINKS); return; }
+    fetch("data/citation-links.json")
+      .then(function (r) { if (!r.ok) throw new Error("missing"); return r.json(); })
+      .then(function (d) { CITATION_LINKS = d || {}; if (cb) cb(CITATION_LINKS); })
+      .catch(function () { CITATION_LINKS = {}; if (cb) cb(CITATION_LINKS); });
+  }
+
+  function initReference(done) {
+    var search = document.getElementById("ref-search");
+    if (search && !search.dataset.bound) {
+      search.dataset.bound = "1";
+      search.addEventListener("input", function () { renderReference(); });
+    }
+    loadChapters(function () {
+      loadEquations(function () {
+        renderReference();
+        if (done) done();
+      });
+    });
+  }
+
+  // Equation ids in the data files may or may not carry the "eq-" prefix;
+  // anchors are always exactly "eq-<rest>".
+  function eqAnchorId(raw) {
+    var id = String(raw);
+    return id.indexOf("eq-") === 0 ? id : "eq-" + id;
+  }
+
+  function refSymbolHay(e) {
+    if (!e.symbols) return "";
+    if (typeof e.symbols === "string") return e.symbols;
+    if (Array.isArray(e.symbols)) {
+      return e.symbols.map(function (s) {
+        return typeof s === "string"
+          ? s
+          : ((s.symbol || "") + " " + (s.meaning || s.definition || ""));
+      }).join(" ");
+    }
+    // object map: { "symbol": "meaning", ... }
+    return Object.keys(e.symbols).map(function (k) {
+      return k + " " + e.symbols[k];
+    }).join(" ");
+  }
+
+  function refSymbolsHtml(e) {
+    if (!e.symbols) return "";
+    if (typeof e.symbols === "string") {
+      return '<p class="formula-symbols">' + escapeHtml(e.symbols) + "</p>";
+    }
+    var items = [];
+    if (Array.isArray(e.symbols)) {
+      e.symbols.forEach(function (s) {
+        if (typeof s === "string") {
+          items.push("<li>" + escapeHtml(s) + "</li>");
+        } else {
+          items.push("<li><strong>" + escapeHtml(s.symbol || "") + "</strong> &mdash; " +
+            escapeHtml(s.meaning || s.definition || "") + "</li>");
+        }
+      });
+    } else {
+      Object.keys(e.symbols).forEach(function (k) {
+        items.push("<li><strong>" + escapeHtml(k) + "</strong> &mdash; " +
+          escapeHtml(e.symbols[k]) + "</li>");
+      });
+    }
+    if (!items.length) return "";
+    return '<ul class="ref-symbols">' + items.join("") + "</ul>";
+  }
+
+  function refCardHtml(e, ch) {
+    var html = '<div class="card eq-card" id="' + escapeHtml(eqAnchorId(e.id)) + '">';
+    html += '<div class="formula-topic">' + escapeHtml(ch.title) + "</div>";
+    html += "<h3>" + escapeHtml(e.title || "") + "</h3>";
+    if (e.equation) {
+      html += '<div class="math-display">' + texHtml(e.equation, true) + "</div>";
+    }
+    html += refSymbolsHtml(e);
+    html += '<p class="ref-source">FE Reference Handbook 10.6' +
+      (e.section ? ", " + escapeHtml(e.section) : "") +
+      ", p. " + (e.page || ch.printedPage) + "</p>";
+    if (e.explanation) {
+      html += '<div class="explain-body">' + renderRich(e.explanation) + "</div>";
+    }
+    if (e.example) {
+      html += '<details class="card"><summary>Worked example</summary><div>' +
+        renderRich(e.example) + "</div></details>";
+    }
+    html += "</div>";
+    return html;
+  }
+
+  function renderReference() {
+    var list = document.getElementById("ref-list");
+    if (!list) return;
+    if (EQUATIONS === null) {
+      list.innerHTML = '<p class="muted">Reference loading…</p>';
+      return;
+    }
+    if (!EQUATIONS.length) {
+      list.innerHTML = '<div class="card"><p class="muted">' +
+        "Reference data is not available yet — check back soon." +
+        "</p></div>";
+      return;
+    }
+    var searchEl = document.getElementById("ref-search");
+    var q = searchEl ? (searchEl.value || "").toLowerCase() : "";
+    var html = "";
+    (CHAPTERS || []).forEach(function (ch) {
+      var entries = EQUATIONS.filter(function (e) { return e.chapter === ch.id; });
+      if (q) {
+        entries = entries.filter(function (e) {
+          var hay = ((e.title || "") + " " + (e.section || "") + " " +
+            ch.title + " " + refSymbolHay(e) + " " + (e.equation || ""));
+          return hay.toLowerCase().indexOf(q) !== -1;
+        });
+      }
+      if (!entries.length) return;
+      html += '<h3 class="ref-chapter">' + escapeHtml(ch.title) + "</h3>";
+      entries.forEach(function (e) { html += refCardHtml(e, ch); });
+    });
+    if (!html) {
+      list.innerHTML = '<div class="card"><p class="muted">' +
+        "No reference entries match your search." + "</p></div>";
+      return;
+    }
+    list.innerHTML = html;
   }
 
   function escapeHtml(s) {

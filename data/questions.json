@@ -5595,6 +5595,771 @@
    "answerIndex": 2,
    "solution": "The NSPE Code of Ethics provides that engineers shall not accept compensation, financial or otherwise, from more than one party for services on the same project unless the circumstances are fully disclosed to and agreed to by all interested parties.\n\nA secret supplier commission for specifying its products is a textbook violation; technical equivalence of the products and the size of the commission do not cure it.\n\nFull disclosure to and consent of the client is the correct choice.",
    "explanation": "Compensation from two parties on one project is allowed only with full disclosure to and consent of all interested parties."
+  },
+  {
+   "id": "math-021",
+   "topic": "Mathematics",
+   "subtopic": "Newton's method for root extraction",
+   "difficulty": "medium",
+   "question": "Use one iteration of Newton's method for root extraction to estimate the root of \\(f(x) = x^3 - 2x - 5\\), starting from the initial estimate \\(x_0 = 2\\). What is \\(x_1\\)?",
+   "choices": [
+    "1.90",
+    "2.10",
+    "2.05",
+    "2.25"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Newton's Method for Root Extraction section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(x_1\\). The handbook gives the iteration formula:\n\n$$x_{j+1} = x_j - \\frac{f(x_j)}{f'(x_j)}$$\n\nList the known and unknown parameters in order to compute \\(x_1\\):\n\n$$\\begin{aligned}\nf(x) &= x^3 - 2x - 5 \\\\\nf'(x) &= 3x^2 - 2 \\\\\nx_0 &= 2 \\\\\nx_1 &= ?\n\\end{aligned}$$\n\nEvaluate \\(f\\) and \\(f'\\) at the initial estimate:\n\n$$(f(2)) = (2)^3 - 2(2) - 5 \\rightarrow 8 - 4 - 5 = -1$$\n\n$$(f'(2)) = 3(2)^2 - 2 \\rightarrow 12 - 2 = 10$$\n\nSubstitute into the iteration formula:\n\n$$(x_1) = (2) - \\frac{(-1)}{(10)} \\rightarrow 2 + 0.10 = 2.10$$\n\n$$x_1 = 2.10$$",
+   "explanation": "Newton's method improves each guess by subtracting f/f'. Watch the sign: a negative f value moves the guess upward.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "math-022",
+   "topic": "Mathematics",
+   "subtopic": "Integration by parts",
+   "difficulty": "easy",
+   "question": "Evaluate the definite integral \\(\\displaystyle\\int_0^1 x e^x\\,dx\\).",
+   "choices": [
+    "e",
+    "e - 1",
+    "1",
+    "0"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Indefinite Integrals section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^1 x e^x\\,dx\\). The handbook's integral equation #6 (integration by parts) gives:\n\n$$\\int u(x)\\,dv(x) = u(x)v(x) - \\int v(x)\\,du(x)$$\n\nList the known and unknown parameters in order to apply the formula:\n\n$$\\begin{aligned}\nu &= x \\\\\ndv &= e^x\\,dx \\\\\ndu &= dx \\\\\nv &= e^x\n\\end{aligned}$$\n\nSubstitute into the integration-by-parts formula and evaluate from 0 to 1:\n\n$$\\left(\\int_0^1 x e^x\\,dx\\right) = \\left[x e^x\\right]_0^1 - \\int_0^1 e^x\\,dx$$\n\nEvaluate the boundary term on its own line:\n\n$$\\left[x e^x\\right]_0^1 = (1)(e) - (0)(1) = e$$\n\nEvaluate the remaining integral on its own line:\n\n$$\\left(\\int_0^1 e^x\\,dx\\right) = \\left[e^x\\right]_0^1 = e - 1$$\n\nCombine the two results:\n\n$$\\left(\\int_0^1 x e^x\\,dx\\right) = (e) - (e - 1) = 1$$\n\n$$\\int_0^1 x e^x\\,dx = 1$$",
+   "explanation": "Integration by parts splits the integrand into u (the part that simplifies when differentiated) and dv (the part that is easy to integrate).",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "math-023",
+   "topic": "Mathematics",
+   "subtopic": "Centroid of area",
+   "difficulty": "hard",
+   "question": "Consider the region bounded by the curve \\(y = x^2\\), the x-axis, and the vertical lines \\(x = 0\\) and \\(x = 2\\). What is the x-coordinate of the centroid of this region?",
+   "choices": [
+    "1.0",
+    "0.75",
+    "2.0",
+    "1.5"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Centroids of Masses, Areas, Lengths, and Volumes section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(x_c\\). The handbook gives, for an area bounded by the axes and the function \\(y = f(x)\\):\n\n$$x_c = \\frac{\\int x\\,dA}{A}, \\qquad A = \\int f(x)\\,dx, \\qquad dA = f(x)\\,dx$$\n\nList the known and unknown parameters in order to compute \\(x_c\\):\n\n$$\\begin{aligned}\nf(x) &= x^2 \\\\\ndA &= x^2\\,dx \\\\\nA &= \\int_0^2 x^2\\,dx \\\\\n\\int x\\,dA &= \\int_0^2 x \\cdot x^2\\,dx = \\int_0^2 x^3\\,dx \\\\\nx_c &= ?\n\\end{aligned}$$\n\nCompute the area on its own line:\n\n$$(A) = \\left[\\frac{x^3}{3}\\right]_0^2 = \\frac{8}{3} - 0 = \\frac{8}{3}$$\n\nCompute the first moment with respect to the y-axis on its own line:\n\n$$\\left(\\int x\\,dA\\right) = \\left[\\frac{x^4}{4}\\right]_0^2 = \\frac{16}{4} - 0 = 4$$\n\nDivide the moment by the area:\n\n$$(x_c) = \\frac{(4)}{(8/3)} \\rightarrow (4)\\left(\\frac{3}{8}\\right) = \\frac{12}{8} = 1.5$$\n\n$$x_c = 1.5$$",
+   "explanation": "The x-centroid weights each vertical strip by its distance x from the y-axis; the taller strips on the right pull the centroid right of the midpoint.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "stats-021",
+   "topic": "Statistics and Probability",
+   "subtopic": "Combinations",
+   "difficulty": "easy",
+   "question": "An engineering firm must select 3 engineers from a team of 8 to form a design review panel. How many distinct panels are possible?",
+   "choices": [
+    "56",
+    "336",
+    "24",
+    "28"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Permutations and Combinations section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(C(8, 3)\\). Because the order of the 3 engineers on the panel does not matter, the handbook's combination formula applies:\n\n$$C(n, r) = \\frac{n!}{r!(n - r)!}$$\n\nList the known and unknown parameters in order to compute \\(C(8, 3)\\):\n\n$$\\begin{aligned}\nn &= 8 \\\\\nr &= 3 \\\\\nC(8, 3) &= ?\n\\end{aligned}$$\n\nSubstitute into the combination formula:\n\n$$(C(8, 3)) = \\frac{8!}{3!(8 - 3)!} = \\frac{8!}{3!\\,5!}$$\n\nCancel the common factors on their own line:\n\n$$\\left(\\frac{8!}{3!\\,5!}\\right) = \\frac{8 \\cdot 7 \\cdot 6}{3 \\cdot 2 \\cdot 1} = \\frac{336}{6}$$\n\nEvaluate the result:\n\n$$C(8, 3) = 56$$",
+   "explanation": "Order doesn't matter for a panel, so use combinations. If the 3 seats were distinct roles, you would use permutations instead.",
+   "estimatedTimeSeconds": 60
+  },
+  {
+   "id": "stats-022",
+   "topic": "Statistics and Probability",
+   "subtopic": "Conditional probability from joint probabilities",
+   "difficulty": "medium",
+   "question": "In a batch of castings, 30% have a surface flaw (event \\(F\\)) and 12% have both a surface flaw and a dimensional deviation (event \\(D\\)). Given that a randomly selected casting has a surface flaw, what is the probability it also has a dimensional deviation?",
+   "choices": [
+    "0.12",
+    "0.40",
+    "0.30",
+    "0.036"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(D \\mid F)\\). Property 3 (Law of Compound or Joint Probability) gives:\n\n$$P(A, B) = P(A) \\cdot P(B \\mid A)$$\n\nRearranging for the conditional probability:\n\n$$P(D \\mid F) = \\frac{P(D, F)}{P(F)}$$\n\nList the known and unknown parameters in order to compute \\(P(D \\mid F)\\):\n\n$$\\begin{aligned}\nP(F) &= 0.30 \\\\\nP(D, F) &= 0.12 \\\\\nP(D \\mid F) &= ?\n\\end{aligned}$$\n\nSubstitute into the rearranged formula:\n\n$$(P(D \\mid F)) = \\frac{(0.12)}{(0.30)}$$\n\nEvaluate the result:\n\n$$P(D \\mid F) = 0.40$$",
+   "explanation": "Given the condition, divide the 'both' probability by the probability of the condition. The answer must be at least as large as the joint probability.",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "stats-023",
+   "topic": "Statistics and Probability",
+   "subtopic": "Expected value of a function",
+   "difficulty": "hard",
+   "question": "A continuous random variable \\(X\\) has probability density function \\(f(x) = 1/10\\) for \\(0 \\le x \\le 10\\) (and zero otherwise). What is the expected value of \\(X^2\\)?",
+   "choices": [
+    "25.00",
+    "50.00",
+    "33.33",
+    "66.67"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Expected Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(E[X^2]\\). The handbook gives the expected value of a function \\(Y = g(X)\\) of a continuous random variable:\n\n$$E[Y] = E[g(X)] = \\int_{-\\infty}^{\\infty} g(x)\\,f(x)\\,dx$$\n\nList the known and unknown parameters in order to compute \\(E[X^2]\\):\n\n$$\\begin{aligned}\ng(x) &= x^2 \\\\\nf(x) &= \\frac{1}{10}, \\quad 0 \\le x \\le 10 \\\\\nE[X^2] &= ?\n\\end{aligned}$$\n\nSubstitute into the expected-value formula, noting the density is zero outside \\([0, 10]\\):\n\n$$(E[X^2]) = \\int_0^{10} x^2 \\left(\\frac{1}{10}\\right)\\,dx = \\frac{1}{10}\\int_0^{10} x^2\\,dx$$\n\nEvaluate the integral on its own line:\n\n$$\\left(\\int_0^{10} x^2\\,dx\\right) = \\left[\\frac{x^3}{3}\\right]_0^{10} = \\frac{1000}{3} - 0 = \\frac{1000}{3}$$\n\nMultiply by the constant factor:\n\n$$(E[X^2]) = \\left(\\frac{1}{10}\\right)\\left(\\frac{1000}{3}\\right) = \\frac{100}{3} \\approx 33.33$$\n\n$$E[X^2] = 33.33$$",
+   "explanation": "E[X²] is not the square of E[X]. Integrate x² against the density directly — the variance is the difference between the two.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "ethics-021",
+   "topic": "Ethics and Professional Practice",
+   "subtopic": "Misrepresentation of qualifications",
+   "difficulty": "easy",
+   "question": "A proposal an engineer submits to a client states that she 'led the structural design of three high-rise projects,' when in fact she only assisted on one mid-rise project and played no role in the other two. Under the NCEES Model Rules, this conduct:",
+   "choices": [
+    "Violates the rule against misrepresenting academic or professional qualifications and degree of responsibility in prior assignments",
+    "Is acceptable because proposal language is marketing, not engineering practice",
+    "Is acceptable if no contract has been signed yet",
+    "Violates only the rule against political contributions"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Obligations of Licensees to Other Licensees section in the Ethics and Professional Practice chapter of the FE Reference Handbook.\n\nThe Model Rules provide that licensees shall not falsify or permit misrepresentation of their, or their associates', academic or professional qualifications. They shall not misrepresent or exaggerate their degree of responsibility in prior assignments nor the complexity of said assignments.\n\nClaiming to have led three high-rise designs when she only assisted on one mid-rise project exaggerates both her degree of responsibility and the complexity of her prior assignments, so it violates this rule. Proposal language is still a professional representation, and no signed contract is needed for the violation to occur.\n\nMisrepresenting qualifications and degree of responsibility in prior assignments is the correct choice.",
+   "explanation": "Marketing language doesn't excuse misrepresentation. The rule covers proposals and employment solicitations, not just sealed documents.",
+   "estimatedTimeSeconds": 60
+  },
+  {
+   "id": "ethics-022",
+   "topic": "Ethics and Professional Practice",
+   "subtopic": "Association with fraudulent firms",
+   "difficulty": "medium",
+   "question": "An engineer is invited to form a joint venture with a firm she knows has been falsifying concrete test results on public projects. Under the NCEES Model Rules, she should:",
+   "choices": [
+    "Accept the invitation, because the other firm's past conduct is not her responsibility",
+    "Accept the invitation, but report the firm only if a client asks about it",
+    "Decline, because licensees must not partner or practice with any person or firm known to engage in fraudulent or dishonest business or professional practices",
+    "Decline only if her own current clients would find out about the partnership"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Obligations of Licensees to the Public section in the Ethics and Professional Practice chapter of the FE Reference Handbook.\n\nThe Model Rules provide that licensees shall not partner, practice, or offer to practice with any person or firm that they know is engaged in fraudulent or dishonest business or professional practices.\n\nFalsifying concrete test results on public projects is fraudulent and dishonest professional practice, and the engineer has knowledge of it. Accepting the joint venture would mean partnering with a known bad actor, which the rule prohibits regardless of whether her own clients ever learn of it. She also has a separate duty to report the violation to the board.\n\nDeclining the joint venture is the correct choice.",
+   "explanation": "You don't need to have participated in the fraud — knowingly associating your practice with it is itself the violation.",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "ethics-023",
+   "topic": "Ethics and Professional Practice",
+   "subtopic": "Political contributions to secure work",
+   "difficulty": "hard",
+   "question": "To improve his firm's chances of winning a municipal design contract, an engineer makes a $5,000 personal contribution to the mayor's reelection campaign with the intent of influencing the contract award. Under the NCEES Model Rules, this is:",
+   "choices": [
+    "Permitted, because personal political contributions are a private matter",
+    "A violation, because licensees must not make a political contribution with the intent to influence the award of a contract by public authority",
+    "Permitted, because the contribution went to a campaign rather than to an official directly",
+    "A violation only if the firm actually wins the contract"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Obligations of Licensees to Other Licensees section in the Ethics and Professional Practice chapter of the FE Reference Handbook.\n\nThe Model Rules provide that licensees shall not offer, give, solicit, or receive, either directly or indirectly, any commission, or gift, or other valuable consideration in order to secure work, and shall not make any political contribution with the intent to influence the award of a contract by public authority.\n\nThe engineer's contribution was made with the stated intent of influencing the award of a public contract, which is exactly what this rule prohibits. That the money went to a campaign rather than directly to an official does not change the intent, and the violation is complete when the contribution is made — whether or not the firm wins the contract is irrelevant.\n\nA violation of the political-contribution rule is the correct choice.",
+   "explanation": "The intent to influence the award is what triggers the rule, whether or not the contract is actually won.",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "econ-021",
+   "topic": "Engineering Economics",
+   "subtopic": "Inflation-adjusted interest rate",
+   "difficulty": "easy",
+   "question": "A project cost is estimated in constant (year-0) dollars. If the market interest rate is 8% per year and general inflation is 3% per year, what inflation-adjusted interest rate should be used to compute the present worth of future costs stated in constant dollars?",
+   "choices": [
+    "11.00%",
+    "11.24%",
+    "8.24%",
+    "5.15%"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Inflation section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(d\\), the inflation-adjusted interest rate per interest period. The handbook gives:\n\n$$d = i + f + (i \\times f)$$\n\nList the known and unknown parameters in order to compute \\(d\\):\n\n$$\\begin{aligned}\ni &= 8\\% = 0.08 \\\\\nf &= 3\\% = 0.03 \\\\\nd &= ?\n\\end{aligned}$$\n\nSubstitute into the inflation formula:\n\n$$(d) = (0.08) + (0.03) + (0.08)(0.03)$$\n\nEvaluate the cross term on its own line:\n\n$$((0.08)(0.03)) = 0.0024$$\n\nAdd the terms:\n\n$$(d) = 0.08 + 0.03 + 0.0024 = 0.1124 = 11.24\\%$$\n\n$$d = 11.24\\%$$",
+   "explanation": "The cross term i×f is small but not zero — dropping it is the classic 11.00% trap.",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "econ-022",
+   "topic": "Engineering Economics",
+   "subtopic": "Bond valuation",
+   "difficulty": "medium",
+   "question": "A 10-year bond with a $1,000 face value pays 6% annual coupons at each year end. If the market interest rate is 8% per year, what is the bond's value?",
+   "choices": [
+    "$865.80",
+    "$402.60",
+    "$1,000.00",
+    "$1,463.19"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Uniform Series and Single Payment sections in the Engineering Economics chapter of the FE Reference Handbook.\n\nThe Bonds section defines the bond value as the present worth of the payments the holder receives at interest rate \\(i\\). Ultimately, we must solve for the bond value \\(V\\):\n\n$$V = C(P/A, i\\%, n) + F(P/F, i\\%, n)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, n) = (1+i)^{-n}$$\n\nList the known and unknown parameters in order to compute \\(V\\):\n\n$$\\begin{aligned}\nC &= (0.06)(1000) = \\$60 \\\\\nF &= \\$1{,}000 \\\\\ni &= 8\\% = 0.08 \\\\\nn &= 10 \\\\\nV &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 8\\%, 10)) = \\frac{(1.08)^{10} - 1}{(0.08)(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\nCompute the single-payment present worth factor on its own line:\n\n$$((P/F, 8\\%, 10)) = (1.08)^{-10} = 0.4632$$\n\nSubstitute both factors into the bond-value equation:\n\n$$(V) = (60)(6.7101) + (1000)(0.4632) \\rightarrow 402.61 + 463.19 = 865.80$$\n\n$$V = \\$865.80$$",
+   "explanation": "A bond is worth the present worth of its coupon stream plus the discounted face value. When the market rate exceeds the coupon rate, the bond sells at a discount (below face value).",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "econ-023",
+   "topic": "Engineering Economics",
+   "subtopic": "Deferred uniform series",
+   "difficulty": "hard",
+   "question": "A machine upgrade will save $4,000 per year for 6 years, with the first savings occurring at the end of year 3 (the series is deferred 2 years). At 10% annual interest, what is the present worth of the savings?",
+   "choices": [
+    "$17,421",
+    "$14,398",
+    "$15,837",
+    "$13,089"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Uniform Series and Single Payment sections in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\). A deferred annuity is priced as an ordinary annuity at the start of its first payment year, then discounted back through the deferral period:\n\n$$P = A(P/A, i\\%, n)(P/F, i\\%, k)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, k) = (1+i)^{-k}$$\n\nList the known and unknown parameters in order to compute \\(P\\):\n\n$$\\begin{aligned}\nA &= \\$4{,}000 \\\\\ni &= 10\\% = 0.10 \\\\\nn &= 6 \\\\\nk &= 2 \\\\\nP &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 10\\%, 6)) = \\frac{(1.10)^6 - 1}{(0.10)(1.10)^6} = \\frac{0.771561}{0.177156} = 4.3553$$\n\nCompute the deferral (single-payment) factor on its own line:\n\n$$((P/F, 10\\%, 2)) = (1.10)^{-2} = 0.8264$$\n\nSubstitute both factors:\n\n$$(P) = (4000)(4.3553)(0.8264) \\rightarrow (4000)(3.5994) = 14{,}397.56$$\n\n$$P = \\$14{,}398$$",
+   "explanation": "Deferral is handled by discounting the whole annuity back through the gap years with a P/F factor — forgetting that step prices the annuity as if it started today.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "169 N up the plane",
+    "187 N up the plane",
+    "363 N up the plane",
+    "400 N up the plane"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "explanation": "On a frictionless incline the only thing pulling the crate downhill is the downhill component of its own weight, W·sinθ. The holding force must exactly balance that component: 400·sin25° ≈ 169 N up the plane.",
+   "id": "statics-021",
+   "question": "A 400 N crate rests on a frictionless plane inclined at 25° to the horizontal. What force P, applied parallel to the plane, is required to hold the crate in equilibrium?",
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\nFor equilibrium, the sum of force components along the plane must vanish: \\(\\sum F_{\\parallel} = 0\\).\nThe component of the crate's weight acting down the plane is \\(W_{\\parallel} = W \\sin\\theta\\).\n\\(W_{\\parallel} = (400\\ \\mathrm{N})(\\sin 25^\\circ)\\).\n\\(W_{\\parallel} = (400\\ \\mathrm{N})(0.4226) = 169\\ \\mathrm{N}\\).\nTherefore \\(P = 169\\ \\mathrm{N}\\) directed up the plane.",
+   "subtopic": "Particle equilibrium on an inclined plane",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "-15.0 N·m",
+    "9.0 N·m",
+    "24.0 N·m",
+    "-9.0 N·m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Only the moment component along the hinge axis tends to rotate the bracket about its hinge. Using My = z·Fx − x·Fz gives (−15 + 24) = 9.0 N·m; the positive sign means it acts in the +y direction by the right-hand rule.",
+   "id": "statics-022",
+   "question": "A bracket is hinged along the y-axis (the hinge axis passes through the origin). A force \\(\\mathbf{F} = (-60\\mathbf{i} + 25\\mathbf{j} - 40\\mathbf{k})\\) N is applied at the point \\((0.60, 0.10, 0.25)\\) m measured from the origin. What is the scalar moment of the force about the y-axis?",
+   "solution": "Refer to the Moments (Couples) section in the Statics chapter of the FE Reference Handbook.\nThe moment about an axis is the corresponding component of \\(\\mathbf{M} = \\mathbf{r} \\times \\mathbf{F}\\).\nAbout the y-axis: \\(M_y = zF_x - xF_z\\).\n\\(M_y = (0.25\\ \\mathrm{m})(-60\\ \\mathrm{N}) - (0.60\\ \\mathrm{m})(-40\\ \\mathrm{N})\\).\n\\(M_y = -15.0\\ \\mathrm{N{\\cdot}m} + 24.0\\ \\mathrm{N{\\cdot}m}\\).\n\\(M_y = 9.0\\ \\mathrm{N{\\cdot}m}\\).",
+   "subtopic": "Moment of a force about an axis",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Tips first at P = 161 N",
+    "Slips first at P = 200 N",
+    "Tips first at P = 200 N",
+    "Slips first at P = 161 N"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 165,
+   "explanation": "Two things can happen: the crate can slide (when P beats maximum static friction, 200 N) or tip over its bottom corner (when P's overturning moment beats the weight's restoring moment, 161 N). The smaller one wins — the crate tips first at about 161 N.",
+   "id": "statics-023",
+   "question": "A 500 N rectangular crate is 0.9 m wide and 1.4 m tall. It rests on a horizontal surface with coefficient of static friction \\(\\mu_s = 0.40\\). A horizontal force P is applied at the top edge of the crate and slowly increased. Does the crate tip or slip first, and at what value of P does motion impend?",
+   "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook.\nVertical equilibrium gives the normal force: \\(N = 500\\ \\mathrm{N}\\).\nThe limiting friction is \\(F \\le \\mu_s N\\).\n\\(F_{\\max} = (0.40)(500\\ \\mathrm{N}) = 200\\ \\mathrm{N}\\).\nSo slipping would impend at \\(P = 200\\ \\mathrm{N}\\).\nRefer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\nFor tipping, take moments about the bottom corner on the side toward which P pushes, at the instant the normal force acts at that corner:\n\\(\\sum M = 0 \\Rightarrow P(1.4\\ \\mathrm{m}) - (500\\ \\mathrm{N})(0.45\\ \\mathrm{m}) = 0\\).\n\\(P = \\dfrac{(500)(0.45)}{1.4} = 160.7\\ \\mathrm{N}\\).\nSince \\(160.7\\ \\mathrm{N} < 200\\ \\mathrm{N}\\), tipping impends first at \\(P \\approx 161\\ \\mathrm{N}\\).",
+   "subtopic": "Tipping versus slipping",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "0.93 rev/s",
+    "1.50 rev/s",
+    "2.41 rev/s",
+    "3.87 rev/s"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "explanation": "Pulling mass closer to the spin axis reduces the moment of inertia, so the spin rate must increase to keep angular momentum (I·ω) constant: 1.5 × (4.5/2.8) ≈ 2.41 rev/s.",
+   "id": "dynamics-021",
+   "question": "A figure skater spins with arms outstretched at 1.5 rev/s. Her mass moment of inertia about the spin axis is 4.5 kg·m² with arms out and 2.8 kg·m² with arms pulled in. Neglecting external moments about the spin axis, what is her spin rate after she pulls her arms in?",
+   "solution": "Refer to the Conservation of Angular Momentum section in the Dynamics chapter of the FE Reference Handbook.\nWith no external moment, angular momentum is conserved: \\(\\sum (\\text{syst. } H)_1 = \\sum (\\text{syst. } H)_2\\).\nRefer to the Angular Momentum or Moment of Momentum section in the Dynamics chapter of the FE Reference Handbook.\nFor rotation about a fixed axis, \\(H = I\\omega\\), so \\(I_1\\omega_1 = I_2\\omega_2\\).\n\\(\\omega_2 = \\omega_1 \\dfrac{I_1}{I_2} = (1.5\\ \\mathrm{rev/s})\\dfrac{4.5}{2.8}\\).\n\\(\\omega_2 = 2.41\\ \\mathrm{rev/s}\\).",
+   "subtopic": "Conservation of angular momentum",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "3.00 m/s²",
+    "9.00 m/s²",
+    "27.0 m/s²",
+    "54.0 m/s²"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "When velocity is given as a function of position (not time), use the chain rule a = v·(dv/ds). Differentiating v = 0.25s² gives dv/ds = 0.50s, so a = 0.125s³ = 27.0 m/s² at s = 6 m.",
+   "id": "dynamics-022",
+   "question": "A particle moves along a straight line with velocity \\(v = 0.25 s^2\\) m/s, where s is the distance in meters from a fixed origin. Determine the acceleration of the particle when \\(s = 6.0\\) m.",
+   "solution": "Refer to the Particle Rectilinear Motion section in the Dynamics chapter of the FE Reference Handbook.\nThe printed relation \\(a\\,ds = v\\,dv\\) gives \\(a = v\\dfrac{dv}{ds}\\).\n\\(\\dfrac{dv}{ds} = \\dfrac{d}{ds}(0.25 s^2) = 0.50 s\\).\n\\(a = (0.25 s^2)(0.50 s) = 0.125 s^3\\).\nAt \\(s = 6.0\\ \\mathrm{m}\\): \\(a = 0.125(6.0)^3\\).\n\\(a = 0.125(216) = 27.0\\ \\mathrm{m/s^2}\\).",
+   "subtopic": "Rectilinear motion with variable acceleration",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "-5.75 m/s",
+    "-3.69 m/s",
+    "-0.50 m/s",
+    "+2.69 m/s"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 170,
+   "explanation": "Momentum conservation gives one equation, the restitution definition gives a second. Solving the pair, ball A rebounds at 3.69 m/s opposite its original direction (the negative sign), while the heavier ball B carries on forward.",
+   "id": "dynamics-023",
+   "question": "A 3.0 kg ball A moving at 8.0 m/s strikes head-on a 5.0 kg ball B moving at 3.0 m/s in the opposite direction. The coefficient of restitution is e = 0.70. Determine the velocity of ball A just after impact (positive in A's original direction).",
+   "solution": "Refer to the Impact section in the Dynamics chapter of the FE Reference Handbook.\nMomentum is conserved: \\(m_A v_A + m_B v_B = m_A v_A' + m_B v_B'\\).\nTake A's original direction as positive, so \\(v_B = -3.0\\ \\mathrm{m/s}\\).\n\\((3.0)(8.0) + (5.0)(-3.0) = 3.0\\,v_A' + 5.0\\,v_B'\\).\n\\(9.0 = 3.0\\,v_A' + 5.0\\,v_B'\\).\nThe coefficient of restitution: \\(e = \\dfrac{v_B' - v_A'}{v_A - v_B} = 0.70\\).\n\\(v_B' - v_A' = 0.70[8.0 - (-3.0)] = 7.70\\ \\mathrm{m/s}\\).\nSubstitute \\(v_B' = v_A' + 7.70\\) into the momentum equation:\n\\(3.0\\,v_A' + 5.0(v_A' + 7.70) = 9.0\\).\n\\(8.0\\,v_A' = 9.0 - 38.5 = -29.5\\).\n\\(v_A' = -3.69\\ \\mathrm{m/s}\\).",
+   "subtopic": "Direct central impact (coefficient of restitution)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "11.5%",
+    "18.7%",
+    "23.0%",
+    "123%"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Percent elongation measures ductility — how much the material permanently stretched before breaking, relative to its original gage length: (61.5 − 50)/50 × 100 = 23.0%.",
+   "id": "materials-021",
+   "question": "A tensile test specimen has an original gage length of 50.0 mm. After fracture, the two pieces are fitted together and the final gage length is measured as 61.5 mm. What is the percent elongation of the material?",
+   "solution": "Refer to the Percent Elongation section in the Mechanics of Materials chapter of the FE Reference Handbook. (Note: although percent elongation is a materials property, the handbook prints this section in the Mechanics of Materials chapter, not in Materials Science/Structure of Matter.)\nThe printed relation is \\(\\%\\text{ Elongation} = \\dfrac{\\Delta L}{L_0} \\times 100\\).\n\\(\\Delta L = 61.5\\ \\mathrm{mm} - 50.0\\ \\mathrm{mm} = 11.5\\ \\mathrm{mm}\\).\n\\(\\%\\text{ Elongation} = \\dfrac{11.5}{50.0} \\times 100\\).\n\\(\\%\\text{ Elongation} = 23.0\\%\\).",
+   "subtopic": "Percent elongation (ductility)",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "42.2 wt%",
+    "49.1 wt%",
+    "57.8 wt%",
+    "67.3 wt%"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The lever rule splits the alloy between the two phases in proportion to the opposite segment lengths on the composition axis: (55−18)/(82−18) = 37/64 ≈ 57.8% β phase (the rest is α).",
+   "id": "materials-022",
+   "question": "At a certain temperature, a binary alloy of overall composition 55 wt% B lies in a two-phase (α + β) region of its phase diagram. At this temperature the α phase contains 18 wt% B and the β phase contains 82 wt% B. Using the lever rule, determine the weight percent of the β phase present.",
+   "solution": "Refer to the Lever Rule section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook.\nFor average composition \\(x\\) between phase compositions \\(x_\\alpha\\) and \\(x_\\beta\\):\n$$\\text{wt}\\%\\ \\beta = \\frac{x - x_\\alpha}{x_\\beta - x_\\alpha} \\times 100$$\n\\(\\text{wt}\\%\\ \\beta = \\dfrac{55 - 18}{82 - 18} \\times 100\\).\n\\(\\text{wt}\\%\\ \\beta = \\dfrac{37}{64} \\times 100\\).\n\\(\\text{wt}\\%\\ \\beta = 57.8\\%\\).",
+   "subtopic": "Lever rule (phase fractions)",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "116 MPa",
+    "398 MPa",
+    "431 MPa",
+    "465 MPa"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "explanation": "True stress uses the actual shrunken cross-section at that instant, not the original one — that's why it's larger than the engineering stress (398 MPa, computed with the original 12.0 mm diameter).",
+   "id": "materials-023",
+   "question": "A round tensile specimen has an original diameter of 12.0 mm. At a certain point during the test, the applied load is 45.0 kN and the instantaneous (actual) diameter of the specimen is 11.1 mm. What is the true stress in the specimen at that instant?",
+   "solution": "Refer to the True stress section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook.\nThe printed relation is \\(\\sigma_T = \\dfrac{F}{A}\\), where \\(A\\) is the actual (instantaneous) cross-sectional area.\n\\(A = \\dfrac{\\pi d^2}{4} = \\dfrac{\\pi (11.1\\ \\mathrm{mm})^2}{4}\\).\n\\(A = 96.8\\ \\mathrm{mm^2}\\).\n\\(\\sigma_T = \\dfrac{45.0 \\times 10^3\\ \\mathrm{N}}{96.8\\ \\mathrm{mm^2}}\\).\n\\(\\sigma_T = 465\\ \\mathrm{N/mm^2} = 465\\ \\mathrm{MPa}\\).",
+   "subtopic": "True stress",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "2.0 m",
+    "2.8 m",
+    "4.0 m",
+    "8.0 m"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "A flagpole-like column (fixed at the base, free at the top) buckles as if it were twice as long as it really is: K = 2.0, so the effective length is 2.0 × 4.0 = 8.0 m. That's why flagpoles buckle so easily.",
+   "id": "mechmat-021",
+   "question": "A 4.0 m steel column is fixed at its base and free at its top (flagpole condition). What is the effective length \\(KL\\) used in Euler's buckling formula?",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\nEuler's formula uses the effective length \\(KL\\), where \\(K\\) is the effective-length factor for the end supports.\nFor fixed-free ends, the printed factor is \\(K = 2.0\\).\n\\(KL = (2.0)(4.0\\ \\mathrm{m})\\).\n\\(KL = 8.0\\ \\mathrm{m}\\).",
+   "subtopic": "Column effective length",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.96 MPa",
+    "9.38 MPa",
+    "18.8 MPa",
+    "37.5 MPa"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 140,
+   "explanation": "Power and speed fix the torque (T = P/ω ≈ 796 N·m); the torsion formula then gives the peak shear stress at the shaft surface, about 18.8 MPa — well below steel's strength, as you'd expect for a transmission shaft.",
+   "id": "mechmat-022",
+   "question": "A solid steel shaft with diameter 60 mm transmits 75 kW of power while rotating at 900 rpm. What is the maximum torsional shear stress in the shaft?",
+   "solution": "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook. (Note: the relation \\(P = T\\omega\\) used below to get torque from power is not printed in the Mechanics of Materials chapter; the shear-stress relation \\(\\tau = T\\rho/J\\) is.)\nConvert speed to angular velocity: \\(\\omega = (900\\ \\mathrm{rev/min})\\dfrac{2\\pi\\ \\mathrm{rad/rev}}{60\\ \\mathrm{s/min}} = 94.2\\ \\mathrm{rad/s}\\).\nTorque from power: \\(T = \\dfrac{P}{\\omega} = \\dfrac{75{,}000\\ \\mathrm{W}}{94.2\\ \\mathrm{rad/s}} = 796\\ \\mathrm{N{\\cdot}m}\\).\nMaximum shear stress at the outer fiber: \\(\\tau_{\\max} = \\dfrac{T\\rho}{J}\\) with \\(J = \\pi d^4/32\\) and \\(\\rho = d/2\\).\nThis reduces to \\(\\tau_{\\max} = \\dfrac{16T}{\\pi d^3}\\).\n\\(\\tau_{\\max} = \\dfrac{16(796\\ \\mathrm{N{\\cdot}m})}{\\pi (0.060\\ \\mathrm{m})^3}\\).\n\\(\\tau_{\\max} = \\dfrac{12{,}736}{6.786 \\times 10^{-4}} = 1.88 \\times 10^7\\ \\mathrm{Pa}\\).\n\\(\\tau_{\\max} = 18.8\\ \\mathrm{MPa}\\).",
+   "subtopic": "Shaft power and torsional shear stress",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "58.8 MPa",
+    "65.2 MPa",
+    "91.4 MPa",
+    "107 MPa"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Bending gives a normal stress (65.2 MPa) and torsion gives a shear stress (48.9 MPa) on the shaft's outer fiber. Combining them via the principal-stress equations yields σ1 = 91.4 MPa and σ2 = −26.2 MPa, and the Tresca maximum shear stress is half their difference: 58.8 MPa.",
+   "id": "mechmat-023",
+   "question": "A solid circular shaft of diameter 50 mm is subjected to a bending moment of 800 N·m and a torque of 1200 N·m acting simultaneously. Determine the maximum shear stress in the shaft (Tresca/maximum-shear-stress basis).",
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\nBending produces \\(\\sigma_x = \\pm Mc/I\\); for a solid circle this becomes \\(\\sigma_x = 32M/(\\pi d^3)\\).\n\\(\\sigma_x = \\dfrac{32(800\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\sigma_x = 6.52 \\times 10^7\\ \\mathrm{Pa} = 65.2\\ \\mathrm{MPa}\\).\nRefer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook.\nTorsion produces \\(\\tau_{xy} = T\\rho/J\\); for a solid circle \\(\\tau_{xy} = 16T/(\\pi d^3)\\).\n\\(\\tau_{xy} = \\dfrac{16(1200\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\tau_{xy} = 4.89 \\times 10^7\\ \\mathrm{Pa} = 48.9\\ \\mathrm{MPa}\\).\nRefer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\\(\\sigma_{1,2} = \\dfrac{\\sigma_x}{2} \\pm \\sqrt{\\left(\\dfrac{\\sigma_x}{2}\\right)^2 + \\tau_{xy}^2}\\).\n\\(\\sigma_{1,2} = 32.6 \\pm \\sqrt{(32.6)^2 + (48.9)^2} = 32.6 \\pm 58.8\\).\n\\(\\sigma_1 = 91.4\\ \\mathrm{MPa},\\quad \\sigma_2 = -26.2\\ \\mathrm{MPa}\\).\nRefer to the Mohr's Circle—Stress, 2D section in the Mechanics of Materials chapter of the FE Reference Handbook.\nThe circle's radius is the maximum shear stress; with principal stresses of opposite sign this equals \\(\\tau_{\\max} = \\dfrac{\\sigma_1 - \\sigma_2}{2}\\) (Tresca basis).\n\\(\\tau_{\\max} = \\dfrac{91.4 - (-26.2)}{2}\\).\n\\(\\tau_{\\max} = 58.8\\ \\mathrm{MPa}\\).",
+   "subtopic": "Combined bending and torsion (maximum shear stress)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "6.62 kW",
+    "8.83 kW",
+    "11.8 kW",
+    "15.7 kW"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The water itself only receives γQH ≈ 8.83 kW, but because the pump is 75% efficient you must supply more at the shaft: 8.83/0.75 ≈ 11.8 kW. The extra ~3 kW is lost to friction and turbulence inside the pump.",
+   "id": "fluid-021",
+   "question": "A pump delivers 0.060 m³/s of water against a total head of 15 m. If the pump efficiency is 75%, what brake power must be supplied to the pump?",
+   "solution": "Refer to the Pump Power Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\nFluid (water) power: \\(W_{\\text{fluid}} = \\gamma Q H\\).\n\\(W_{\\text{fluid}} = (9.81\\ \\mathrm{kN/m^3})(0.060\\ \\mathrm{m^3/s})(15\\ \\mathrm{m})\\).\n\\(W_{\\text{fluid}} = 8.83\\ \\mathrm{kW}\\).\nBrake power accounts for pump efficiency: \\(W_{\\text{brake}} = W_{\\text{fluid}}/\\eta_{\\text{pump}}\\).\n\\(W_{\\text{brake}} = \\dfrac{8.83\\ \\mathrm{kW}}{0.75}\\).\n\\(W_{\\text{brake}} = 11.8\\ \\mathrm{kW}\\).",
+   "subtopic": "Pump power",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "40.5 kN",
+    "58.9 kN",
+    "80.9 kN",
+    "103 kN"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 130,
+   "explanation": "The total push on the gate equals the pressure at its centroid depth times its area: the centroid is 2.75 m down, so F = 9.81 × 2.75 × 3.0 ≈ 80.9 kN. (It acts below the centroid, at the center of pressure, because pressure grows with depth.)",
+   "id": "fluid-022",
+   "question": "A vertical rectangular gate 2.0 m wide and 1.5 m tall has its top edge 2.0 m below the water surface. Determine the magnitude of the resultant hydrostatic force acting on the gate.",
+   "solution": "Refer to the Forces on Submerged Surfaces and the Center of Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook.\nWith atmospheric pressure acting on both sides, the net resultant is \\(F_R = (\\rho g h_C) A = \\gamma h_C A\\), where \\(h_C\\) is the vertical depth of the centroid.\n\\(h_C = 2.00\\ \\mathrm{m} + \\dfrac{1.50\\ \\mathrm{m}}{2} = 2.75\\ \\mathrm{m}\\).\n\\(A = (2.0\\ \\mathrm{m})(1.5\\ \\mathrm{m}) = 3.00\\ \\mathrm{m^2}\\).\n\\(F_R = (9.81\\ \\mathrm{kN/m^3})(2.75\\ \\mathrm{m})(3.00\\ \\mathrm{m^2})\\).\n\\(F_R = 80.9\\ \\mathrm{kN}\\).",
+   "subtopic": "Hydrostatic force on a plane surface",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "86.9 L/s",
+    "6.68 m³/s",
+    "7.90 m³/s",
+    "9.89 m³/s"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 170,
+   "explanation": "Manning's equation estimates open-channel flow from the channel's roughness, shape, and slope. With A = 3.6 m², wetted perimeter 5.4 m (both sides plus bottom), hydraulic radius 0.667 m, and slope 0.001, the discharge works out to about 6.68 m³/s.",
+   "id": "fluid-023",
+   "question": "A rectangular concrete channel (Manning's n = 0.013) is 3.0 m wide and carries water 1.2 m deep on a longitudinal slope of 0.0010. Estimate the discharge in the channel using Manning's equation (SI units).",
+   "solution": "Refer to the Manning's Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\nThe printed SI form is \\(Q = \\dfrac{K}{n} A R_H^{2/3} S^{1/2}\\) with \\(K = 1.0\\).\nFlow area: \\(A = (3.0\\ \\mathrm{m})(1.2\\ \\mathrm{m}) = 3.60\\ \\mathrm{m^2}\\).\nWetted perimeter: \\(P = 3.0 + 2(1.2) = 5.40\\ \\mathrm{m}\\).\nHydraulic radius: \\(R_H = A/P = 3.60/5.40 = 0.6667\\ \\mathrm{m}\\).\n\\(Q = \\dfrac{1.0}{0.013}(3.60)(0.6667)^{2/3}(0.0010)^{1/2}\\).\n\\((0.6667)^{2/3} = 0.763\\); \\((0.0010)^{1/2} = 0.03162\\).\n\\(Q = (76.92)(3.60)(0.763)(0.03162)\\).\n\\(Q = 6.68\\ \\mathrm{m^3/s}\\).",
+   "subtopic": "Manning's equation (open-channel flow)",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "id": "surveying-021",
+   "topic": "Surveying",
+   "subtopic": "Area by Simpson's one-third rule",
+   "difficulty": "easy",
+   "question": "An irregular shoreline is offset from a straight survey line at 10-m intervals. The seven perpendicular offsets, in meters, are 0, 3.2, 4.1, 3.8, 4.5, 2.9, and 0. Using Simpson's one-third rule, what is the approximate area between the survey line and the shoreline?",
+   "choices": [
+    "196 m^2",
+    "185 m^2",
+    "173 m^2",
+    "189 m^2"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Latitudes and Departures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the area \\(A\\) by Simpson's one-third rule:\n\n$$A = \\frac{w}{3}\\left[h_1 + h_7 + 4(h_2 + h_4 + h_6) + 2(h_3 + h_5)\\right]$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nw &= 10\\ \\text{m} \\\\\nh_1 &= 0\\ \\text{m} \\\\\nh_2 &= 3.2\\ \\text{m} \\\\\nh_3 &= 4.1\\ \\text{m} \\\\\nh_4 &= 3.8\\ \\text{m} \\\\\nh_5 &= 4.5\\ \\text{m} \\\\\nh_6 &= 2.9\\ \\text{m} \\\\\nh_7 &= 0\\ \\text{m} \\\\\nA &= ?\n\\end{aligned}$$\n\n$$(A) = \\frac{10}{3}\\left[0 + 0 + 4(3.2 + 3.8 + 2.9) + 2(4.1 + 4.5)\\right]$$\n\n$$(A) = \\frac{10}{3}\\left[4(9.9) + 2(8.6)\\right]$$\n\n$$(A) = \\frac{10}{3}\\left[39.6 + 17.2\\right]$$\n\n$$(A) = \\frac{10}{3}(56.8) = 189.3\\ \\text{m}^2$$\n\nThe closest choice is \\(189\\ \\text{m}^2\\).",
+   "explanation": "Simpson's one-third rule weights alternating interior offsets by 4 and 2 (starting with 4 on the second offset) and requires an odd number of offsets. Using the trapezoidal rule instead gives 185 m^2, a common wrong pick.",
+   "estimatedTimeSeconds": 90
+  },
+  {
+   "id": "surveying-022",
+   "topic": "Surveying",
+   "subtopic": "Horizontal curve deflection angles (staking)",
+   "difficulty": "medium",
+   "question": "A simple horizontal curve with a radius of 250 m is to be staked from the PC using 20-m sub-chords. What deflection angle should be turned from the tangent at the PC to set the first 20-m stake on the curve?",
+   "choices": [
+    "6.88 degrees",
+    "4.58 degrees",
+    "9.17 degrees",
+    "2.29 degrees"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the deflection angle \\(d\\) of the sub-chord. The handbook prints the sub-chord length relation:\n\n$$l = R\\,d\\,\\frac{\\pi}{180}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nR &= 250\\ \\text{m} \\\\\nl &= 20\\ \\text{m} \\\\\nd &= ?\n\\end{aligned}$$\n\nRearrange for \\(d\\):\n\n$$(d) = \\frac{l \\cdot 180}{R\\,\\pi}$$\n\n$$(d) = \\frac{20 \\cdot 180}{250\\,\\pi}$$\n\n$$(d) = \\frac{3600}{785.40} = 4.58^\\circ$$\n\nTurn \\(4.58^\\circ\\) from the tangent at the PC.",
+   "explanation": "The deflection angle from the tangent is half the central angle subtended by the chord (2.29 degrees would be the half-angle error). Doubling the answer to 9.17 degrees confuses deflection angle with central angle.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "surveying-023",
+   "topic": "Surveying",
+   "subtopic": "Differential leveling (height of instrument method)",
+   "difficulty": "medium",
+   "question": "A differential leveling run starts at BM-A with an elevation of 50.00 m. At the first setup the backsight is 1.50 m and the foresight to TP-1 is 2.10 m. The instrument is then moved, and at the second setup the backsight on TP-1 is 2.40 m and the foresight to TP-2 is 0.90 m. What is the elevation of TP-2?",
+   "choices": [
+    "51.90 m",
+    "49.10 m",
+    "50.90 m",
+    "50.10 m"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the elevation of TP-2 using the height-of-instrument method: each setup's height of instrument is \\(HI = Elev + BS\\), and each point's elevation is \\(Elev = HI - FS\\).\n\nList the known parameters:\n\n$$\\begin{aligned}\nElev_{BM\\text{-}A} &= 50.00\\ \\text{m} \\\\\nBS_1 &= 1.50\\ \\text{m},\\quad FS_1 = 2.10\\ \\text{m} \\\\\nBS_2 &= 2.40\\ \\text{m},\\quad FS_2 = 0.90\\ \\text{m}\n\\end{aligned}$$\n\nFirst setup:\n\n$$(HI_1) = 50.00 + 1.50 = 51.50\\ \\text{m}$$\n\n$$(Elev_{TP\\text{-}1}) = 51.50 - 2.10 = 49.40\\ \\text{m}$$\n\nSecond setup:\n\n$$(HI_2) = 49.40 + 2.40 = 51.80\\ \\text{m}$$\n\n$$(Elev_{TP\\text{-}2}) = 51.80 - 0.90 = 50.90\\ \\text{m}$$\n\nCheck: \\(\\sum BS - \\sum FS = (1.50 + 2.40) - (2.10 + 0.90) = 0.90\\) m, and \\(50.00 + 0.90 = 50.90\\) m. The elevation of TP-2 is \\(50.90\\) m.",
+   "explanation": "The arithmetic check (sum of backsights minus sum of foresights equals last elevation minus first) catches a sign slip at any turning point. Subtracting the backsight instead of adding it is the classic leveling error.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "structural-021",
+   "topic": "Structural Engineering",
+   "subtopic": "Moment distribution (carryover)",
+   "difficulty": "easy",
+   "question": "A prismatic beam AB is pinned at A and fixed at B. A 60 kN-m moment is applied at end A. Using the moment-carryover concept, what moment is carried over to the fixed end B?",
+   "choices": [
+    "15 kN-m",
+    "120 kN-m",
+    "30 kN-m",
+    "60 kN-m"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the carryover moment \\(M_B\\). The handbook prints:\n\n$$M_B = \\frac{M_A}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nM_A &= 60\\ \\text{kN-m} \\\\\nM_B &= ?\n\\end{aligned}$$\n\n$$(M_B) = \\frac{60}{2}$$\n\n$$(M_B) = 30\\ \\text{kN-m}$$\n\nThe carryover factor from a pinned (or moment-applied) end to a fixed far end is one-half, so \\(30\\ \\text{kN-m}\\) is carried to B.",
+   "explanation": "Carryover is one-half of the applied end moment when the far end is fixed. Carrying over the full 60 kN-m forgets the 1/2 factor.",
+   "estimatedTimeSeconds": 60
+  },
+  {
+   "id": "structural-022",
+   "topic": "Structural Engineering",
+   "subtopic": "Fixed-end moments (concentrated load)",
+   "difficulty": "medium",
+   "question": "A prismatic beam fixed at both ends spans 6 m. A concentrated load of 20 kN acts 2 m from the left support. What is the magnitude of the fixed-end moment at the left support?",
+   "choices": [
+    "26.7 kN-m",
+    "17.8 kN-m",
+    "8.9 kN-m",
+    "13.3 kN-m"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the fixed-end moment at the left support, \\(FEM_{AB}\\). The handbook prints, for a concentrated load \\(P\\) at distance \\(a\\) from A and \\(b\\) from B:\n\n$$FEM_{AB} = \\frac{P\\,a\\,b^2}{L^2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= 20\\ \\text{kN} \\\\\na &= 2\\ \\text{m} \\\\\nb &= 6 - 2 = 4\\ \\text{m} \\\\\nL &= 6\\ \\text{m} \\\\\nFEM_{AB} &= ?\n\\end{aligned}$$\n\n$$(FEM_{AB}) = \\frac{20 \\cdot 2 \\cdot 4^2}{6^2}$$\n\n$$(FEM_{AB}) = \\frac{20 \\cdot 2 \\cdot 16}{36}$$\n\n$$(FEM_{AB}) = \\frac{640}{36} = 17.8\\ \\text{kN-m}$$\n\nThe fixed-end moment at the left support is \\(17.8\\ \\text{kN-m}\\).",
+   "explanation": "The squared term belongs to the distance from the far end (b^2 at support A). Using P a^2 b / L^2 gives 8.9 kN-m, which is the fixed-end moment at the right support instead.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "structural-023",
+   "topic": "Structural Engineering",
+   "subtopic": "Beam stiffness (slope deflection)",
+   "difficulty": "hard",
+   "question": "A prismatic beam AB has E = 200 GPa, I = 50 x 10^6 mm^4, and a span L = 4 m. What is the flexural stiffness factor k_AB used in slope-deflection analysis?",
+   "choices": [
+    "5,000 kN-m/rad",
+    "10,000 kN-m/rad",
+    "40,000 kN-m/rad",
+    "2,500 kN-m/rad"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the flexural stiffness \\(k_{AB}\\). The handbook prints:\n\n$$k_{AB} = \\frac{4EI}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= 50 \\times 10^6\\ \\text{mm}^4 = 50 \\times 10^6 \\times 10^{-12}\\ \\text{m}^4 \\\\\nL &= 4\\ \\text{m} \\\\\nk_{AB} &= ?\n\\end{aligned}$$\n\nFirst convert \\(EI\\) to consistent units:\n\n$$(EI) = (200 \\times 10^9)(50 \\times 10^6 \\times 10^{-12})$$\n\n$$(EI) = (200 \\times 10^9)(50 \\times 10^{-6}) = 10 \\times 10^6\\ \\text{N-m}^2$$\n\n$$(EI) = 10{,}000\\ \\text{kN-m}^2$$\n\n$$(k_{AB}) = \\frac{4 \\cdot 10{,}000}{4}$$\n\n$$(k_{AB}) = 10{,}000\\ \\text{kN-m/rad}$$\n\nThe flexural stiffness factor is \\(10{,}000\\ \\text{kN-m/rad}\\).",
+   "explanation": "The mm^4 to m^4 conversion (x10^-12) is where this problem is usually lost. Skipping it inflates EI by a factor of 10^12.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "geotech-021",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Relative density",
+   "difficulty": "easy",
+   "question": "A sand has a maximum void ratio of 0.90, a minimum void ratio of 0.40, and an in-place void ratio of 0.65. What is the relative density of the sand?",
+   "choices": [
+    "64%",
+    "50%",
+    "72%",
+    "28%"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the relative density \\(D_r\\). The handbook prints:\n\n$$D_r = \\frac{e_{max} - e}{e_{max} - e_{min}} \\times 100$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ne_{max} &= 0.90 \\\\\ne_{min} &= 0.40 \\\\\ne &= 0.65 \\\\\nD_r &= ?\n\\end{aligned}$$\n\n$$(D_r) = \\frac{0.90 - 0.65}{0.90 - 0.40} \\times 100$$\n\n$$(D_r) = \\frac{0.25}{0.50} \\times 100$$\n\n$$(D_r) = 0.50 \\times 100 = 50\\%$$\n\nThe sand is at \\(50\\%\\) relative density (medium dense).",
+   "explanation": "Relative density compares the in-place void ratio to the loosest state in the numerator (emax - e). A result of 0% means the loosest possible state and 100% the densest.",
+   "estimatedTimeSeconds": 60
+  },
+  {
+   "id": "geotech-022",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Rankine passive earth pressure",
+   "difficulty": "medium",
+   "question": "A 4-m-tall smooth vertical wall retains level cohesionless backfill with a friction angle of 28 degrees and a unit weight of 19 kN/m^3. What is the total Rankine passive force per meter of wall?",
+   "choices": [
+    "421 kN/m",
+    "55 kN/m",
+    "152 kN/m",
+    "237 kN/m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Horizontal Stress Profiles and Forces section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the total passive force \\(P_P\\). The handbook prints the Rankine passive coefficient:\n\n$$K_P = \\tan^2\\!\\left(45^\\circ + \\frac{\\phi}{2}\\right)$$\n\nand passive forces follow the same form as the printed active forces, so for one layer:\n\n$$P_P = \\frac{1}{2}\\,\\gamma\\,H^2\\,K_P$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nH &= 4\\ \\text{m} \\\\\n\\phi &= 28^\\circ \\\\\n\\gamma &= 19\\ \\text{kN/m}^3 \\\\\nK_P &= ? \\\\\nP_P &= ?\n\\end{aligned}$$\n\n$$(K_P) = \\tan^2\\!\\left(45^\\circ + \\frac{28^\\circ}{2}\\right) = \\tan^2(59^\\circ)$$\n\n$$(K_P) = (1.6643)^2 = 2.770$$\n\n$$(P_P) = \\frac{1}{2}(19)(4^2)(2.770)$$\n\n$$(P_P) = (152)(2.770) = 421\\ \\text{kN/m}$$\n\nThe total passive force is \\(421\\ \\text{kN/m}\\).",
+   "explanation": "Passive pressure uses 45 + phi/2 while active uses 45 - phi/2; 55 kN/m is the active force for the same wall, a classic mix-up. Passive resistance is much larger because the wall pushes into the soil.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "geotech-023",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Seepage liquefaction (factor of safety)",
+   "difficulty": "hard",
+   "question": "Upward seepage through a saturated sand layer produces an exit gradient of 0.35. The saturated unit weight of the sand is 20.0 kN/m^3. What is the factor of safety against seepage liquefaction (quicksand)?",
+   "choices": [
+    "5.71",
+    "1.04",
+    "2.97",
+    "0.34"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the factor of safety against seepage liquefaction \\(FS_s\\). The handbook prints:\n\n$$FS_s = \\frac{i_c}{i_e}, \\qquad i_c = \\frac{\\gamma_{sat} - \\gamma_w}{\\gamma_w}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ni_e &= 0.35 \\\\\n\\gamma_{sat} &= 20.0\\ \\text{kN/m}^3 \\\\\n\\gamma_w &= 9.81\\ \\text{kN/m}^3 \\\\\ni_c &= ? \\\\\nFS_s &= ?\n\\end{aligned}$$\n\nFirst find the critical (quick) gradient:\n\n$$(i_c) = \\frac{20.0 - 9.81}{9.81}$$\n\n$$(i_c) = \\frac{10.19}{9.81} = 1.039$$\n\nThen the factor of safety:\n\n$$(FS_s) = \\frac{1.039}{0.35}$$\n\n$$(FS_s) = 2.97$$\n\nThe factor of safety against seepage liquefaction is \\(2.97\\).",
+   "explanation": "Quicksand initiates when the upward seepage gradient reaches the critical gradient ic (about 1.0 for most sands). Dividing ie by ic instead gives 0.34, the inverse of the factor of safety.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "transportation-021",
+   "topic": "Transportation Engineering",
+   "subtopic": "Greenshields traffic flow model",
+   "difficulty": "easy",
+   "question": "A freeway lane has a free-flow speed of 60 mph and a jam density of 200 veh/mi/ln. Using the Greenshields linear speed-density model, what is the maximum flow (capacity) per lane?",
+   "choices": [
+    "1,500 veh/hr/ln",
+    "6,000 veh/hr/ln",
+    "12,000 veh/hr/ln",
+    "3,000 veh/hr/ln"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Traffic Flow Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the maximum flow \\(V_m\\). The handbook prints for the Greenshields model:\n\n$$V_m = \\frac{S_f\\,D_j}{4}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nS_f &= 60\\ \\text{mph} \\\\\nD_j &= 200\\ \\text{veh/mi/ln} \\\\\nV_m &= ?\n\\end{aligned}$$\n\n$$(V_m) = \\frac{60 \\cdot 200}{4}$$\n\n$$(V_m) = \\frac{12{,}000}{4} = 3{,}000\\ \\text{veh/hr/ln}$$\n\nThe maximum flow per lane is \\(3{,}000\\ \\text{veh/hr/ln}\\).",
+   "explanation": "The factor of 4 comes from the parabolic flow-density curve peaking at half the jam density and half the free-flow speed. Multiplying Sf by Dj directly gives 12,000, which ignores it.",
+   "estimatedTimeSeconds": 75
+  },
+  {
+   "id": "transportation-022",
+   "topic": "Transportation Engineering",
+   "subtopic": "Signal timing (yellow interval)",
+   "difficulty": "medium",
+   "question": "A signalized intersection approach has a vehicle approach speed of 50 ft/s, a driver reaction time of 1.0 s, and a comfortable deceleration of 10 ft/s^2 on level grade. What yellow interval, to the nearest 0.1 s, is required?",
+   "choices": [
+    "2.5 s",
+    "6.0 s",
+    "3.5 s",
+    "4.5 s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the yellow interval \\(y\\). The handbook prints:\n\n$$y = t + \\frac{v}{2a \\pm 64.4\\,G}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nt &= 1.0\\ \\text{s} \\\\\nv &= 50\\ \\text{ft/s} \\\\\na &= 10\\ \\text{ft/s}^2 \\\\\nG &= 0\\ \\text{(level grade)} \\\\\ny &= ?\n\\end{aligned}$$\n\n$$(y) = 1.0 + \\frac{50}{2(10) + 64.4(0)}$$\n\n$$(y) = 1.0 + \\frac{50}{20}$$\n\n$$(y) = 1.0 + 2.5 = 3.5\\ \\text{s}$$\n\nThe required yellow interval is \\(3.5\\ \\text{s}\\).",
+   "explanation": "The yellow interval covers the driver's reaction distance (t term) plus the braking distance at a comfortable deceleration. Omitting the reaction time gives 2.5 s, which strands drivers in the dilemma zone.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "transportation-023",
+   "topic": "Transportation Engineering",
+   "subtopic": "AASHTO structural number",
+   "difficulty": "hard",
+   "question": "A flexible pavement has 3 in. of asphalt surface (a1 = 0.44), 8 in. of granular base (a2 = 0.14, m2 = 1.0), and 12 in. of granular subbase (a3 = 0.11, m3 = 0.9). What is the AASHTO structural number SN?",
+   "choices": [
+    "3.76",
+    "3.63",
+    "4.64",
+    "2.51"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Highway Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the structural number \\(SN\\). The handbook prints the AASHTO Structural Number Equation:\n\n$$SN = a_1D_1 + a_2D_2m_2 + a_3D_3m_3$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_1 &= 0.44,\\quad D_1 = 3\\ \\text{in.} \\\\\na_2 &= 0.14,\\quad D_2 = 8\\ \\text{in.},\\quad m_2 = 1.0 \\\\\na_3 &= 0.11,\\quad D_3 = 12\\ \\text{in.},\\quad m_3 = 0.9 \\\\\nSN &= ?\n\\end{aligned}$$\n\n$$(SN) = (0.44)(3) + (0.14)(8)(1.0) + (0.11)(12)(0.9)$$\n\n$$(SN) = 1.32 + 1.12 + 1.188$$\n\n$$(SN) = 3.628 \\approx 3.63$$\n\nThe structural number is \\(3.63\\).",
+   "explanation": "Drainage coefficients (m) apply to the base and subbase but never to the surface layer. Forgetting the subbase drainage factor (using m3 = 1.0) gives 3.76.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "water-021",
+   "topic": "Water Resources",
+   "subtopic": "V-notch weir discharge",
+   "difficulty": "easy",
+   "question": "A 90-degree V-notch weir is used to measure flow in a small channel. If the head over the weir crest is 0.25 m, what is the discharge? (Use SI units.)",
+   "choices": [
+    "0.0875 m^3/s",
+    "0.0438 m^3/s",
+    "0.350 m^3/s",
+    "0.0219 m^3/s"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge \\(Q\\). The handbook prints for a V-notch weir:\n\n$$Q = C\\,H^{5/2}$$\n\nwith \\(C = 1.40\\) for a 90-degree V-notch weir in SI units.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nC &= 1.40 \\\\\nH &= 0.25\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = 1.40 \\cdot (0.25)^{5/2}$$\n\n$$(Q) = 1.40 \\cdot (0.03125)$$\n\n$$(Q) = 0.04375 \\approx 0.0438\\ \\text{m}^3\\text{/s}$$\n\nThe discharge is \\(0.0438\\ \\text{m}^3\\text{/s}\\).",
+   "explanation": "A V-notch weir discharge varies with H^2.5, not H^1.5 like a rectangular weir. Using the rectangular exponent gives 0.0875, and the USCS coefficient 2.54 gives a much larger wrong answer.",
+   "estimatedTimeSeconds": 75
+  },
+  {
+   "id": "water-022",
+   "topic": "Water Resources",
+   "subtopic": "Unconfined aquifer (Dupuit)",
+   "difficulty": "medium",
+   "question": "Steady flow to a fully penetrating well in an unconfined aquifer gives water-surface heights above the aquifer bottom of h1 = 8.0 m at the well (r1 = 0.15 m) and h2 = 12.0 m at r2 = 60 m. If the hydraulic conductivity is 25 m/day, what is the well discharge?",
+   "choices": [
+    "1,049 m^3/day",
+    "524 m^3/day",
+    "786 m^3/day",
+    "1,398 m^3/day"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Well Drawdown section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the well discharge \\(Q\\). The handbook prints Dupuit's Formula:\n\n$$Q = \\frac{\\pi\\,K\\,(h_2^2 - h_1^2)}{\\ln(r_2/r_1)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nK &= 25\\ \\text{m/day} \\\\\nh_1 &= 8.0\\ \\text{m} \\\\\nh_2 &= 12.0\\ \\text{m} \\\\\nr_1 &= 0.15\\ \\text{m} \\\\\nr_2 &= 60\\ \\text{m} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{\\pi(25)\\left(12.0^2 - 8.0^2\\right)}{\\ln(60/0.15)}$$\n\n$$(Q) = \\frac{\\pi(25)(144 - 64)}{\\ln(400)}$$\n\n$$(Q) = \\frac{6283.19}{5.9915} = 1048.7\\ \\text{m}^3\\text{/day}$$\n\nThe well discharge is \\(1{,}049\\ \\text{m}^3\\text{/day}\\).",
+   "explanation": "Dupuit's formula for unconfined flow uses the difference of squared heads; the confined (Thiem) form uses the plain head difference. Swapping in (h2 - h1) = 4 m gives a far smaller answer.",
+   "estimatedTimeSeconds": 150
+  },
+  {
+   "id": "water-023",
+   "topic": "Water Resources",
+   "subtopic": "Specific energy",
+   "difficulty": "medium",
+   "question": "A rectangular channel 3.0 m wide carries 9.0 m^3/s at a flow depth of 1.5 m. What is the specific energy of the flow? (Use alpha = 1.0.)",
+   "choices": [
+    "1.50 m",
+    "1.70 m",
+    "2.10 m",
+    "1.91 m"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Specific Energy section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the specific energy \\(E\\). The handbook prints:\n\n$$E = \\frac{\\alpha\\,V^2}{2g} + y$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ &= 9.0\\ \\text{m}^3\\text{/s} \\\\\nB &= 3.0\\ \\text{m} \\\\\ny &= 1.5\\ \\text{m} \\\\\n\\alpha &= 1.0 \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nV &= ? \\\\\nE &= ?\n\\end{aligned}$$\n\nFirst find the velocity:\n\n$$(V) = \\frac{Q}{A} = \\frac{9.0}{(3.0)(1.5)}$$\n\n$$(V) = \\frac{9.0}{4.5} = 2.0\\ \\text{m/s}$$\n\nThen the specific energy:\n\n$$(E) = \\frac{(1.0)(2.0)^2}{2(9.81)} + 1.5$$\n\n$$(E) = \\frac{4.0}{19.62} + 1.5$$\n\n$$(E) = 0.2039 + 1.5 = 1.70\\ \\text{m}$$\n\nThe specific energy is \\(1.70\\ \\text{m}\\).",
+   "explanation": "Specific energy is the velocity head plus the flow depth, measured from the channel bottom. Using g instead of 2g in the velocity head gives 1.91 m.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "construction-021",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (cost performance index)",
+   "difficulty": "easy",
+   "question": "At the status date, a project has BCWP = $90,000 (earned value) and ACWP = $95,000 (actual cost). What is the cost performance index (CPI)?",
+   "choices": [
+    "1.06",
+    "0.95",
+    "0.90",
+    "$5,000"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the cost performance index \\(CPI\\). The handbook prints:\n\n$$CPI = \\frac{BCWP}{ACWP}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nBCWP &= \\$90{,}000 \\\\\nACWP &= \\$95{,}000 \\\\\nCPI &= ?\n\\end{aligned}$$\n\n$$(CPI) = \\frac{90{,}000}{95{,}000}$$\n\n$$(CPI) = 0.9474 \\approx 0.95$$\n\nThe cost performance index is \\(0.95\\).",
+   "explanation": "CPI = Earned / Actual, so below 1.0 means over budget (here about 5% over). The $5,000 cost variance (BCWP - ACWP) is a dollar amount, not an index.",
+   "estimatedTimeSeconds": 75
+  },
+  {
+   "id": "construction-022",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (estimate to complete)",
+   "difficulty": "medium",
+   "question": "A project has a budget at completion BAC = $200,000, earned value BCWP = $90,000, and a cost performance index CPI = 0.90. Assuming cost performance continues at the same rate, what is the estimate to complete (ETC)?",
+   "choices": [
+    "$110,000",
+    "$133,333",
+    "$122,222",
+    "$100,000"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the estimate to complete \\(ETC\\). The handbook prints:\n\n$$ETC = \\frac{BAC - BCWP}{CPI}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nBAC &= \\$200{,}000 \\\\\nBCWP &= \\$90{,}000 \\\\\nCPI &= 0.90 \\\\\nETC &= ?\n\\end{aligned}$$\n\n$$(ETC) = \\frac{200{,}000 - 90{,}000}{0.90}$$\n\n$$(ETC) = \\frac{110{,}000}{0.90}$$\n\n$$(ETC) = 122{,}222.22 \\approx \\$122{,}222$$\n\nThe estimate to complete is \\(\\$122{,}222\\).",
+   "explanation": "ETC divides the remaining budgeted work by the CPI, because at 0.90 efficiency each future dollar of budgeted work costs about $1.11. Using the unadjusted $110,000 assumes efficiency returns to 1.0.",
+   "estimatedTimeSeconds": 120
+  },
+  {
+   "id": "construction-023",
+   "topic": "Construction Engineering",
+   "subtopic": "CPM backward pass (late start)",
+   "difficulty": "hard",
+   "question": "A project uses finish-to-start relationships: activity A (4 days) precedes B (5 days) and C (6 days); both B and C precede D (3 days). What is the late start of activity B?",
+   "choices": [
+    "Day 10",
+    "Day 8",
+    "Day 5",
+    "Day 4"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the late start \\(LS_B\\). The handbook prints \\(LF =\\) earliest \\(LS\\) of successors and \\(LS = LF - D\\). First run the forward pass to find the project duration:\n\n$$\\begin{aligned}\n\\text{Path A-B-D} &= 4 + 5 + 3 = 12\\ \\text{days} \\\\\n\\text{Path A-C-D} &= 4 + 6 + 3 = 13\\ \\text{days}\n\\end{aligned}$$\n\nThe critical path is A-C-D, so the project duration is 13 days. Now run the backward pass from D:\n\n$$(LF_D) = 13, \\qquad (LS_D) = 13 - 3 = 10$$\n\nActivity B's only successor is D, so:\n\n$$(LF_B) = LS_D = 10$$\n\n$$(LS_B) = LF_B - D_B$$\n\n$$(LS_B) = 10 - 5 = 5$$\n\nThe late start of activity B is day \\(5\\).",
+   "explanation": "Backward pass: B inherits its late finish from D's late start (day 10), then subtracts its own 5-day duration. Day 10 is the late finish, not the late start, and day 4 is the late start of C.",
+   "estimatedTimeSeconds": 150
   }
  ]
 }

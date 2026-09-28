@@ -1,0 +1,1407 @@
+[
+ {
+  "id": "eq-mathematics-01",
+  "chapter": "mathematics",
+  "section": "Differential Calculus",
+  "title": "Limit definition of the derivative",
+  "equation": "\\(y' = \\frac{dy}{dx} = \\lim_{\\Delta x \\to 0}\\frac{\\Delta y}{\\Delta x}\\)",
+  "symbols": {
+   "y'": "the derivative of y with respect to x, i.e. the slope of the curve at a point",
+   "\\Delta x": "a small change in the input variable x",
+   "\\Delta y": "the change in the output y caused by that change in x",
+   "y": "the function value, y = f(x)"
+  },
+  "page": 46,
+  "explanation": "Refer to the Differential Calculus section in the Mathematics chapter of the FE Reference Handbook. The derivative is the limiting value of the ratio of output change to input change as the input change shrinks to zero.",
+  "example": "Find the derivative of \\(f(x) = x^2\\) at \\(x = 3\\) using the limit definition.\n\n$$\\frac{dy}{dx} = \\lim_{\\Delta x \\to 0}\\frac{(x + \\Delta x)^2 - x^2}{\\Delta x}$$\n\n$$= \\lim_{\\Delta x \\to 0}\\frac{2x\\,\\Delta x + (\\Delta x)^2}{\\Delta x}$$\n\n$$= \\lim_{\\Delta x \\to 0}\\left(2x + \\Delta x\\right)$$\n\n$$= 2x = 2(3) = 6$$"
+ },
+ {
+  "id": "eq-mathematics-02",
+  "chapter": "mathematics",
+  "section": "The Partial Derivative",
+  "title": "Partial derivative notation",
+  "equation": "\\(\\frac{\\partial z}{\\partial x}\\ \\text{for}\\ z = f(x, y)\\ \\text{with } y \\text{ held fixed}\\)",
+  "symbols": {
+   "z": "the dependent variable, a function z = f(x, y) of two independent variables",
+   "\\partial z / \\partial x": "the partial derivative of z with respect to x, found by treating y as a constant"
+  },
+  "page": 46,
+  "explanation": "Refer to The Partial Derivative section in the Mathematics chapter of the FE Reference Handbook. When one variable is held fixed, the two-variable function behaves like a single-variable function in the remaining variable.",
+  "example": "Find \\(\\partial z/\\partial x\\) for \\(z = 3x^2y + xy^2\\), then evaluate at \\(x = 2,\\ y = 1\\).\n\n$$\\frac{\\partial z}{\\partial x} = \\frac{\\partial}{\\partial x}\\left(3x^2y + xy^2\\right)$$\n\n$$= 3y \\cdot 2x + y^2 = 6xy + y^2$$\n\nSubstituting \\(x = 2\\) and \\(y = 1\\):\n\n$$= 6(2)(1) + (1)^2$$\n\n$$= 12 + 1 = 13$$"
+ },
+ {
+  "id": "eq-mathematics-03",
+  "chapter": "mathematics",
+  "section": "Integral Calculus",
+  "title": "Definite integral as a limit of Riemann sums",
+  "equation": "\\(\\lim_{n \\to \\infty}\\sum_{i=1}^{n} f(x_i)\\,\\Delta x_i = \\int_a^b f(x)\\,dx\\)",
+  "symbols": {
+   "n": "the number of subintervals the interval [a, b] is divided into",
+   "x_i": "a sample point in the i-th subinterval",
+   "\\Delta x_i": "the width of the i-th subinterval, which goes to zero for every i as n grows",
+   "a": "the lower limit of integration",
+   "b": "the upper limit of integration"
+  },
+  "page": 48,
+  "explanation": "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook. The definite integral is the limit, as the subintervals shrink, of the sum of rectangle areas under the curve.",
+  "example": "Estimate \\(\\int_0^2 x\\,dx\\) with a right-endpoint Riemann sum using \\(n = 4\\) subintervals.\n\n$$\\Delta x = \\frac{2 - 0}{4} = 0.5$$\n\n$$\\sum_{i=1}^{4} f(x_i)\\,\\Delta x = 0.5\\,(0.5 + 1.0 + 1.5 + 2.0)$$\n\n$$= 0.5\\,(5.0) = 2.5$$\n\nThe exact integral is \\(x^2/2\\big|_0^2 = 2\\), so the estimate 2.5 approaches the true value as \\(n\\) grows."
+ },
+ {
+  "id": "eq-mathematics-04",
+  "chapter": "mathematics",
+  "section": "Differential Equations",
+  "title": "Solution of first-order linear homogeneous ODE",
+  "equation": "\\(y' + ay = 0 \\;\\;\\Longrightarrow\\;\\; y = Ce^{-at}\\)",
+  "symbols": {
+   "y'": "the derivative of the unknown function y with respect to its variable",
+   "a": "a real constant coefficient",
+   "C": "a constant fixed by the initial condition",
+   "t": "the independent variable (time in transient problems)"
+  },
+  "page": 52,
+  "explanation": "Refer to the Differential Equations section in the Mathematics chapter of the FE Reference Handbook. A first-order linear homogeneous equation with constant coefficients has an exponential solution that decays (or grows) at rate a.",
+  "example": "Solve \\(y' + 3y = 0\\) with \\(y(0) = 5\\), then evaluate at \\(t = 1\\).\n\n$$y(t) = Ce^{-3t}$$\n\nApply the initial condition \\(y(0) = 5\\):\n\n$$5 = Ce^{0} \\;\\Longrightarrow\\; C = 5$$\n\n$$y(t) = 5e^{-3t}$$\n\nAt \\(t = 1\\):\n\n$$y(1) = 5e^{-3}$$\n\n$$\\approx 5(0.0498) = 0.249$$"
+ },
+ {
+  "id": "eq-mathematics-05",
+  "chapter": "mathematics",
+  "section": "Matrices",
+  "title": "Matrix inverse from the adjoint",
+  "equation": "\\(A^{-1} = \\frac{\\text{adj}(A)}{|A|}\\)",
+  "symbols": {
+   "A^{-1}": "the inverse of the square matrix A; satisfies A A^{-1} = A^{-1} A = I",
+   "\\text{adj}(A)": "the adjoint of A, formed by replacing the elements of the transpose with their cofactors",
+   "|A|": "the determinant of A; the inverse exists only when this is nonzero",
+   "I": "the identity matrix"
+  },
+  "page": 58,
+  "explanation": "Refer to the Matrices section in the Mathematics chapter of the FE Reference Handbook. A square matrix can be inverted by dividing its adjoint by its determinant.",
+  "example": "Invert \\(A = \\begin{bmatrix} 2 & 1 \\\\ 1 & 1 \\end{bmatrix}\\).\n\n$$|A| = (2)(1) - (1)(1)$$\n\n$$= 1$$\n\n$$\\text{adj}(A) = \\begin{bmatrix} 1 & -1 \\\\ -1 & 2 \\end{bmatrix}$$\n\n$$A^{-1} = \\frac{1}{1}\\begin{bmatrix} 1 & -1 \\\\ -1 & 2 \\end{bmatrix} = \\begin{bmatrix} 1 & -1 \\\\ -1 & 2 \\end{bmatrix}$$\n\nCheck: \\(A A^{-1} = \\begin{bmatrix} 2 & 1 \\\\ 1 & 1 \\end{bmatrix}\\begin{bmatrix} 1 & -1 \\\\ -1 & 2 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I\\)."
+ },
+ {
+  "id": "eq-mathematics-06",
+  "chapter": "mathematics",
+  "section": "Determinants",
+  "title": "Second-order determinant",
+  "equation": "\\(\\begin{vmatrix} a_1 & a_2 \\\\ b_1 & b_2 \\end{vmatrix} = a_1b_2 - a_2b_1\\)",
+  "symbols": {
+   "a_1, a_2": "the elements of the first row of the determinant",
+   "b_1, b_2": "the elements of the second row of the determinant"
+  },
+  "page": 59,
+  "explanation": "Refer to the Determinants section in the Mathematics chapter of the FE Reference Handbook. A two-by-two determinant is the product of the main diagonal minus the product of the off diagonal.",
+  "example": "Evaluate \\(\\begin{vmatrix} 3 & 2 \\\\ 1 & 4 \\end{vmatrix}\\).\n\n$$= (3)(4) - (2)(1)$$\n\n$$= 12 - 2$$\n\n$$= 10$$"
+ },
+ {
+  "id": "eq-mathematics-07",
+  "chapter": "mathematics",
+  "section": "Vectors",
+  "title": "Dot product of two vectors",
+  "equation": "\\(\\mathbf{A} \\cdot \\mathbf{B} = a_xb_x + a_yb_y + a_zb_z = AB\\cos\\theta\\)",
+  "symbols": {
+   "\\mathbf{A}, \\mathbf{B}": "the two vectors being combined",
+   "a_x, a_y, a_z": "the scalar components of vector A along the i, j, k axes",
+   "b_x, b_y, b_z": "the scalar components of vector B along the i, j, k axes",
+   "A, B": "the magnitudes (lengths) of vectors A and B",
+   "\\theta": "the angle between the two vectors"
+  },
+  "page": 59,
+  "explanation": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook. The dot product is a scalar equal to the projection of one vector onto the other times its length; it is zero when the vectors are perpendicular.",
+  "example": "Find \\(\\mathbf{A} \\cdot \\mathbf{B}\\) for \\(\\mathbf{A} = 2\\mathbf{i} + 3\\mathbf{j} - \\mathbf{k}\\) and \\(\\mathbf{B} = \\mathbf{i} - 2\\mathbf{j} + 4\\mathbf{k}\\).\n\n$$\\mathbf{A} \\cdot \\mathbf{B} = (2)(1) + (3)(-2) + (-1)(4)$$\n\n$$= 2 - 6 - 4$$\n\n$$= -8$$"
+ },
+ {
+  "id": "eq-mathematics-08",
+  "chapter": "mathematics",
+  "section": "Algebra of Complex Numbers",
+  "title": "Multiplication of complex numbers in polar form",
+  "equation": "\\(z_1 z_2 = (c_1c_2)\\,\\angle\\,(\\theta_1 + \\theta_2)\\)",
+  "symbols": {
+   "z_1, z_2": "complex numbers written in polar form, z = c(cos θ + j sin θ) = c∠θ",
+   "c_1, c_2": "the magnitudes (moduli) of z_1 and z_2",
+   "\\theta_1, \\theta_2": "the angles (arguments) of z_1 and z_2"
+  },
+  "page": 37,
+  "explanation": "Refer to the Algebra of Complex Numbers section in the Mathematics chapter of the FE Reference Handbook. In polar form, multiplying two complex numbers multiplies their magnitudes and adds their angles.",
+  "example": "Multiply \\(z_1 = 4\\angle 30^\\circ\\) by \\(z_2 = 2\\angle 15^\\circ\\).\n\n$$z_1 z_2 = (4 \\times 2)\\,\\angle\\,(30^\\circ + 15^\\circ)$$\n\n$$= 8\\,\\angle\\,45^\\circ$$"
+ },
+ {
+  "id": "eq-probability-statistics-01",
+  "chapter": "probability-statistics",
+  "section": "Laws of Probability",
+  "title": "Law of total probability",
+  "equation": "\\(P(A + B) = P(A) + P(B) - P(A, B)\\)",
+  "symbols": {
+   "P(A + B)": "the probability that event A occurs, or event B occurs, or both occur",
+   "P(A), P(B)": "the individual probabilities that A and B occur",
+   "P(A, B)": "the joint probability that A and B occur simultaneously"
+  },
+  "page": 64,
+  "explanation": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. Adding the two individual probabilities double-counts the overlap, so the joint probability is subtracted once.",
+  "example": "Given \\(P(A) = 0.6\\), \\(P(B) = 0.5\\), and \\(P(A, B) = 0.3\\), find \\(P(A + B)\\).\n\n$$P(A + B) = 0.6 + 0.5 - 0.3$$\n\n$$= 1.1 - 0.3$$\n\n$$= 0.8$$"
+ },
+ {
+  "id": "eq-probability-statistics-02",
+  "chapter": "probability-statistics",
+  "section": "Dispersion, Mean, Median, and Mode Values",
+  "title": "Sample variance",
+  "equation": "\\(s^2 = \\frac{1}{n-1}\\sum_{i=1}^{n}(X_i - \\bar{X})^2\\)",
+  "symbols": {
+   "s^2": "the sample variance, measuring the spread of the sampled data",
+   "n": "the number of observations in the sample",
+   "X_i": "the value of the i-th observation",
+   "\\bar{X}": "the arithmetic mean of the sample"
+  },
+  "page": 63,
+  "explanation": "Refer to the Dispersion, Mean, Median, and Mode Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. The sample variance averages the squared deviations from the mean, dividing by n − 1 rather than n.",
+  "example": "Find the sample variance of the data 4, 6, 8.\n\n$$\\bar{X} = \\frac{4 + 6 + 8}{3} = 6$$\n\n$$s^2 = \\frac{(4-6)^2 + (6-6)^2 + (8-6)^2}{3-1}$$\n\n$$= \\frac{4 + 0 + 4}{2}$$\n\n$$= \\frac{8}{2} = 4$$"
+ },
+ {
+  "id": "eq-probability-statistics-03",
+  "chapter": "probability-statistics",
+  "section": "Normal Distribution (Gaussian Distribution)",
+  "title": "Normal probability density function",
+  "equation": "\\(f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}\\)",
+  "symbols": {
+   "f(x)": "the density of the normal distribution at the value x",
+   "\\mu": "the population mean; the center (mode) of the symmetric curve",
+   "\\sigma": "the population standard deviation; controls the width of the curve",
+   "x": "any real value, with the curve inflecting one standard deviation on either side of the mean"
+  },
+  "page": 67,
+  "explanation": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. The bell-shaped density is centered at the mean, and its spread is set entirely by the standard deviation.",
+  "example": "Evaluate the normal density at its center for \\(\\mu = 100\\) and \\(\\sigma = 15\\).\n\n$$f(100) = \\frac{1}{15\\sqrt{2\\pi}}\\,e^{-\\frac{1}{2}\\left(\\frac{100-100}{15}\\right)^2}$$\n\n$$= \\frac{1}{15\\sqrt{2\\pi}}\\,e^{0}$$\n\n$$= \\frac{1}{15(2.5066)}$$\n\n$$\\approx 0.0266$$"
+ },
+ {
+  "id": "eq-probability-statistics-04",
+  "chapter": "probability-statistics",
+  "section": "Binomial Distribution",
+  "title": "Binomial probability of x successes",
+  "equation": "\\(P_n(x) = C(n,x)\\,p^x q^{\\,n-x} = \\frac{n!}{x!(n-x)!}\\,p^x q^{\\,n-x}\\)",
+  "symbols": {
+   "P_n(x)": "the probability of exactly x successes in n independent trials",
+   "n": "the number of trials",
+   "x": "the number of successes, from 0 to n",
+   "p": "the probability of success on a single trial",
+   "q": "the probability of failure on a single trial, q = 1 − p",
+   "C(n,x)": "the number of combinations of n items taken x at a time"
+  },
+  "page": 65,
+  "explanation": "Refer to the Binomial Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. Each specific sequence of x successes has probability p^x q^(n−x), and there are C(n, x) such sequences.",
+  "example": "Find the probability of exactly 2 successes in 10 trials with \\(p = 0.3\\).\n\n$$P_{10}(2) = \\frac{10!}{2!\\,8!}\\,(0.3)^2(0.7)^8$$\n\n$$= 45\\,(0.09)(0.05765)$$\n\n$$\\approx 0.2335$$"
+ },
+ {
+  "id": "eq-probability-statistics-05",
+  "chapter": "probability-statistics",
+  "section": "Confidence Intervals, Sample Distributions and Sample Size",
+  "title": "Two-sided confidence interval for the mean",
+  "equation": "\\(\\bar{x} \\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt{n}}\\)",
+  "symbols": {
+   "\\bar{x}": "the sample mean, the center of the interval",
+   "z_{\\alpha/2}": "the standard normal value cutting off probability α/2 in the upper tail for the chosen confidence level",
+   "\\sigma": "the known population standard deviation",
+   "n": "the sample size",
+   "\\alpha": "one minus the confidence level (e.g. 0.05 for a 95% interval)"
+  },
+  "page": 73,
+  "explanation": "Refer to the Confidence Intervals, Sample Distributions and Sample Size section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. Note: in FE Reference Handbook 10.6 the interval for the mean is displayed in a figure in this section (printed p. 75); the plain-text extraction of the handbook does not reproduce the figure's formula. The interval centers on the sample mean and widens with more variability and shrinks with more data.",
+  "example": "Build a 95% confidence interval for the mean with \\(\\bar{x} = 52\\), \\(\\sigma = 8\\), \\(n = 64\\) (so \\(z_{0.025} = 1.96\\)).\n\n$$52 \\pm 1.96\\frac{8}{\\sqrt{64}}$$\n\n$$= 52 \\pm 1.96\\frac{8}{8}$$\n\n$$= 52 \\pm 1.96$$\n\n$$= (50.04,\\ 53.96)$$"
+ },
+ {
+  "id": "eq-probability-statistics-06",
+  "chapter": "probability-statistics",
+  "section": "Probability and Density Functions: Means and Variances",
+  "title": "Poisson distribution: mass function, mean, variance",
+  "equation": "\\(f(x;\\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!},\\quad \\text{mean} = \\lambda,\\quad \\text{variance} = \\lambda\\)",
+  "symbols": {
+   "f(x;\\lambda)": "the probability of exactly x events occurring",
+   "x": "the number of events observed (0, 1, 2, ...)",
+   "\\lambda": "the average number of events in the interval; it equals both the mean and the variance"
+  },
+  "page": 84,
+  "explanation": "Refer to the Probability and Density Functions: Means and Variances section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. The Poisson model counts events in a fixed interval, and its mean and variance are the same number.",
+  "example": "A call center averages 3 calls per minute. Find the probability of exactly 2 calls in a minute.\n\n$$f(2; 3) = \\frac{3^2 e^{-3}}{2!}$$\n\n$$= \\frac{9(0.0498)}{2}$$\n\n$$\\approx 0.224$$\n\nThe mean and variance are both \\(\\lambda = 3\\)."
+ },
+ {
+  "id": "eq-probability-statistics-07",
+  "chapter": "probability-statistics",
+  "section": "Expected Values",
+  "title": "Expected value of a discrete random variable",
+  "equation": "\\(E[X] = \\sum_{k=1}^{n} x_k\\,f(x_k)\\)",
+  "symbols": {
+   "E[X]": "the expected (average) value of the random variable X",
+   "x_k": "the k-th possible value of X",
+   "f(x_k)": "the probability mass at x_k, i.e. the probability that X equals x_k",
+   "n": "the number of possible values"
+  },
+  "page": 65,
+  "explanation": "Refer to the Expected Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. The expected value is a probability-weighted average of all possible outcomes.",
+  "example": "Find \\(E[X]\\) when \\(X\\) takes values 0, 1, 2 with probabilities 0.2, 0.5, 0.3.\n\n$$E[X] = (0)(0.2) + (1)(0.5) + (2)(0.3)$$\n\n$$= 0 + 0.5 + 0.6$$\n\n$$= 1.1$$"
+ },
+ {
+  "id": "eq-probability-statistics-08",
+  "chapter": "probability-statistics",
+  "section": "Linear Regression and Goodness of Fit",
+  "title": "Least-squares regression slope",
+  "equation": "\\(\\hat{b} = \\frac{S_{xy}}{S_{xx}},\\quad \\hat{a} = \\bar{y} - \\hat{b}\\bar{x}\\)",
+  "symbols": {
+   "\\hat{b}": "the estimated slope of the fitted line ŷ = â + b̂x",
+   "\\hat{a}": "the estimated y-intercept of the fitted line",
+   "S_{xy}": "the sum of products of x- and y-deviations from their means, S_xy = Σx_i y_i − (Σx_i)(Σy_i)/n",
+   "S_{xx}": "the sum of squared x-deviations from the mean, S_xx = Σx_i² − (Σx_i)²/n",
+   "\\bar{x}, \\bar{y}": "the sample means of the x and y data"
+  },
+  "page": 69,
+  "explanation": "Refer to the Linear Regression and Goodness of Fit section in the Engineering Probability and Statistics chapter of the FE Reference Handbook. The least-squares line minimizes the total squared vertical miss, which forces the slope to be the ratio of S_xy to S_xx.",
+  "example": "Fit a least-squares line to the points (1, 2), (2, 3), (3, 5).\n\n$$\\sum x = 6,\\quad \\sum y = 10,\\quad \\sum xy = 2 + 6 + 15 = 23$$\n\n$$S_{xy} = 23 - \\frac{(6)(10)}{3} = 23 - 20 = 3$$\n\n$$S_{xx} = (1 + 4 + 9) - \\frac{6^2}{3} = 14 - 12 = 2$$\n\n$$\\hat{b} = \\frac{3}{2} = 1.5$$\n\n$$\\hat{a} = \\frac{10}{3} - 1.5(2) = 3.333 - 3 = 0.333$$\n\nFitted line: \\(\\hat{y} = 0.333 + 1.5x\\)."
+ },
+ {
+  "id": "eq-engineering-economics-01",
+  "chapter": "engineering-economics",
+  "section": "Uniform Series",
+  "title": "Sinking fund factor",
+  "equation": "\\((A/F,\\ i\\%,\\ n) = \\frac{i}{(1+i)^n - 1}\\)",
+  "symbols": {
+   "(A/F, i\\%, n)": "the factor converting a future amount F into an equivalent uniform series A",
+   "A": "the uniform end-of-period payment",
+   "F": "the future amount accumulated after n periods",
+   "i": "the interest rate per period",
+   "n": "the number of periods"
+  },
+  "page": 234,
+  "explanation": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook. The sinking fund factor gives the equal periodic deposit that will grow to a target future sum.",
+  "example": "What uniform annual deposit accumulates to \\(F = \\$10{,}000\\) in 5 years at \\(i = 6\\%\\)?\n\n$$A = 10{,}000\\frac{0.06}{(1.06)^5 - 1}$$\n\n$$= 10{,}000\\frac{0.06}{1.33823 - 1}$$\n\n$$= 10{,}000\\frac{0.06}{0.33823}$$\n\n$$\\approx \\$1{,}773.96\\ \\text{per year}$$"
+ },
+ {
+  "id": "eq-engineering-economics-02",
+  "chapter": "engineering-economics",
+  "section": "Uniform Series",
+  "title": "Uniform series present worth factor",
+  "equation": "\\((P/A,\\ i\\%,\\ n) = \\frac{(1+i)^n - 1}{i(1+i)^n}\\)",
+  "symbols": {
+   "(P/A, i\\%, n)": "the factor converting a uniform series A into an equivalent present worth P",
+   "P": "the present worth (value today) of the series",
+   "A": "the uniform end-of-period payment",
+   "i": "the interest rate per period",
+   "n": "the number of periods"
+  },
+  "page": 234,
+  "explanation": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook. The present worth factor collapses a stream of equal payments into a single equivalent value today.",
+  "example": "Find the present worth of \\(A = \\$2{,}000\\) per year for 10 years at \\(i = 8\\%\\).\n\n$$P = 2{,}000\\frac{(1.08)^{10} - 1}{0.08(1.08)^{10}}$$\n\n$$= 2{,}000\\frac{2.15892 - 1}{0.08(2.15892)}$$\n\n$$= 2{,}000\\frac{1.15892}{0.17271}$$\n\n$$\\approx 2{,}000(6.71008) = \\$13{,}420.16$$"
+ },
+ {
+  "id": "eq-engineering-economics-03",
+  "chapter": "engineering-economics",
+  "section": "Depreciation",
+  "title": "Straight-line depreciation",
+  "equation": "\\(D_j = \\frac{C - S_n}{n}\\)",
+  "symbols": {
+   "D_j": "the depreciation charge in year j (the same every year under straight line)",
+   "C": "the initial cost of the asset",
+   "S_n": "the expected salvage value at the end of the asset's life",
+   "n": "the depreciable life of the asset in years"
+  },
+  "page": 235,
+  "explanation": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook. Straight-line depreciation spreads the loss of value (cost minus salvage) evenly over the asset's life.",
+  "example": "An asset costs \\(C = \\$50{,}000\\), has salvage \\(S_n = \\$5{,}000\\), and a 9-year life. Find the annual depreciation.\n\n$$D_j = \\frac{50{,}000 - 5{,}000}{9}$$\n\n$$= \\frac{45{,}000}{9}$$\n\n$$= \\$5{,}000\\ \\text{per year}$$"
+ },
+ {
+  "id": "eq-engineering-economics-04",
+  "chapter": "engineering-economics",
+  "section": "Capitalized Costs",
+  "title": "Capitalized cost of a perpetual series",
+  "equation": "\\(\\text{Capitalized cost} = P = \\frac{A}{i}\\)",
+  "symbols": {
+   "P": "the capitalized cost, i.e. the present worth of a perpetual uniform series",
+   "A": "the uniform amount paid every period, forever",
+   "i": "the interest rate per period"
+  },
+  "page": 235,
+  "explanation": "Refer to the Capitalized Costs section in the Engineering Economics chapter of the FE Reference Handbook. A payment that repeats forever is worth today the annual amount divided by the interest rate.",
+  "example": "What lump sum today funds \\(A = \\$1{,}200\\) per year forever at \\(i = 6\\%\\)?\n\n$$P = \\frac{1{,}200}{0.06}$$\n\n$$= \\$20{,}000$$"
+ },
+ {
+  "id": "eq-engineering-economics-05",
+  "chapter": "engineering-economics",
+  "section": "Rate-of-Return",
+  "title": "Rate-of-return (IRR) condition",
+  "equation": "\\(PW(\\text{benefits}) = PW(\\text{costs})\\ \\text{at}\\ i = \\text{ROR}\\)",
+  "symbols": {
+   "ROR": "the rate-of-return (internal rate of return) on the investment",
+   "PW(\\text{benefits})": "the present worth of all benefit cash flows, discounted at the rate-of-return",
+   "PW(\\text{costs})": "the present worth of all cost cash flows, discounted at the rate-of-return",
+   "i": "the interest rate that makes the two present worths equal"
+  },
+  "page": 235,
+  "explanation": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook. Note: the rate-of-return equation is not printed in the FE Reference Handbook 10.6; the section (printed p. 235) states only in words that the rate-of-return is the interest rate that makes the benefits and costs equal. The project is acceptable when its rate-of-return exceeds the minimum acceptable rate (MARR).",
+  "example": "A project costs \\$10,000 now and returns \\$2,500 per year for 5 years. Find the rate-of-return.\n\n$$2{,}500\\,(P/A, i\\%, 5) = 10{,}000$$\n\n$$(P/A, i\\%, 5) = 4.0000$$\n\nFrom interest tables, \\((P/A, 7\\%, 5) = 4.1002\\) and \\((P/A, 8\\%, 5) = 3.9927\\), so:\n\n$$i \\approx 7.93\\%$$"
+ },
+ {
+  "id": "eq-engineering-economics-06",
+  "chapter": "engineering-economics",
+  "section": "Benefit-Cost Analysis",
+  "title": "Benefit-cost ratio decision rule",
+  "equation": "\\(B - C \\ge 0,\\ \\text{or}\\ B/C \\ge 1\\)",
+  "symbols": {
+   "B": "the present worth (or equivalent uniform value) of the project's benefits",
+   "C": "the present worth (or equivalent uniform value) of the project's costs",
+   "B/C": "the benefit-cost ratio"
+  },
+  "page": 236,
+  "explanation": "Refer to the Benefit-Cost Analysis section in the Engineering Economics chapter of the FE Reference Handbook. A project is justified when its benefits at least cover its costs, i.e. the ratio of benefits to costs is one or more.",
+  "example": "A project has benefits \\(B = \\$180{,}000\\) and costs \\(C = \\$150{,}000\\) (same worth basis). Is it acceptable?\n\n$$B/C = \\frac{180{,}000}{150{,}000}$$\n\n$$= 1.2$$\n\nSince \\(1.2 \\ge 1\\), the project is acceptable."
+ },
+ {
+  "id": "eq-statics-01",
+  "chapter": "statics",
+  "section": "Equilibrium Requirements",
+  "title": "Force and moment equilibrium",
+  "equation": "\\(\\sum F_n = 0, \\quad \\sum M_n = 0\\)",
+  "symbols": {
+   "F_n": "each individual force acting on the body",
+   "M_n": "each individual moment acting on the body, taken about any single point"
+  },
+  "page": 95,
+  "explanation": "A body stays at rest only when every force on it cancels out and every twisting effect cancels out as well. On the exam these two vector sums expand into the scalar equations you solve for unknown reactions.",
+  "example": "A 200-N sign hangs from two symmetric cables, each at 30 deg above the horizontal.\nLet T = tension in each cable. Vertical forces must sum to zero:\n\\(2T\\sin(30^\\circ) - 200 = 0\\)\n\\(T = \\dfrac{200}{2\\sin(30^\\circ)}\\)\n\\(T = \\dfrac{200}{1} = 200\\ \\text{N}\\)"
+ },
+ {
+  "id": "eq-statics-02",
+  "chapter": "statics",
+  "section": "Systems of Forces",
+  "title": "Resultant force and moment of a force system",
+  "equation": "\\(F = \\sum F_n, \\quad M = \\sum (r_n \\times F_n)\\)",
+  "symbols": {
+   "F": "single force equivalent to the entire system",
+   "M": "single moment equivalent to the entire system about the reference point",
+   "F_n": "one force belonging to the system",
+   "r_n": "position vector from the reference point to the line of action of F_n"
+  },
+  "page": 95,
+  "explanation": "Any collection of forces can be traded for one net push plus one net twist about a chosen point. Picking the point cleverly, for example at an unknown reaction, makes the moment equation much shorter.",
+  "example": "A 50-N force pushes straight down at a point 3 m to the right of point O.\nThe equivalent moment about O is:\n\\(M_O = r \\times F\\)\n\\(M_O = (3\\ \\text{m})(50\\ \\text{N})\\)\n\\(M_O = 150\\ \\text{N}\\cdot\\text{m}\\) clockwise"
+ },
+ {
+  "id": "eq-statics-03",
+  "chapter": "statics",
+  "section": "Plane Truss: Method of Joints",
+  "title": "Joint equilibrium equations",
+  "equation": "\\(\\sum F_H = 0, \\quad \\sum F_V = 0\\)",
+  "symbols": {
+   "F_H": "horizontal force or horizontal component of a member force at the joint",
+   "F_V": "vertical force or vertical component of a member force at the joint"
+  },
+  "page": 98,
+  "explanation": "Cut the truss joint by joint and treat each pin as a particle in equilibrium. Two equations per joint means you can solve for two unknown member forces at a time, so start at a joint with only two unknowns.",
+  "example": "At a truss joint a 10-kN load pulls straight down.\nTwo members leave the joint symmetrically at 45 deg above the horizontal.\nVertical equilibrium at the joint:\n\\(2F\\sin(45^\\circ) - 10 = 0\\)\n\\(F = \\dfrac{10}{2\\sin(45^\\circ)}\\)\n\\(F = \\dfrac{10}{1.414} = 7.07\\ \\text{kN}\\) (tension)"
+ },
+ {
+  "id": "eq-statics-04",
+  "chapter": "statics",
+  "section": "Centroids of Masses, Areas, Lengths, and Volumes",
+  "title": "Centroid of discrete masses and composite areas",
+  "equation": "\\(r_c = \\dfrac{\\sum m_n r_n}{\\sum m_n}, \\quad x_{ac} = \\dfrac{\\sum x_n a_n}{A}\\)",
+  "symbols": {
+   "r_c": "position vector of the centroid (center of mass) of the system",
+   "m_n": "mass of particle n",
+   "r_n": "position vector of particle n from the reference point",
+   "x_ac": "x-coordinate of the centroid of a composite area",
+   "x_n": "x-coordinate of the centroid of sub-area n",
+   "a_n": "sub-area n",
+   "A": "total area, the sum of all sub-areas"
+  },
+  "page": 96,
+  "explanation": "The centroid is the weighted-average position of whatever you are averaging: mass, area, length, or volume. Split a composite shape into simple rectangles and triangles, then average their individual centroids weighted by size.",
+  "example": "Two point masses: 2 kg at x = 0 m and 6 kg at x = 4 m.\nCenter of mass:\n\\(x_c = \\dfrac{m_1 x_1 + m_2 x_2}{m_1 + m_2}\\)\n\\(x_c = \\dfrac{(2)(0) + (6)(4)}{2 + 6}\\)\n\\(x_c = \\dfrac{24}{8} = 3\\ \\text{m}\\)"
+ },
+ {
+  "id": "eq-statics-05",
+  "chapter": "statics",
+  "section": "Concurrent Forces",
+  "title": "Two-force body equilibrium",
+  "equation": "\\(F_1 + F_2 = 0\\)",
+  "symbols": {
+   "F_1": "the first of the two forces acting on the body",
+   "F_2": "the second of the two forces acting on the body"
+  },
+  "page": 98,
+  "explanation": "When every force's line of action passes through one point, the system can only balance if the forces add to zero there. The classic case is a body with just two forces: they must be equal in size, opposite in direction, and share one line of action.",
+  "example": "A strut pinned at both ends receives a 500-N push at one pin.\nFor equilibrium the other pin must push back equally, oppositely, and collinearly:\n\\(F_1 + F_2 = 0\\)\n\\(F_2 = -F_1 = -500\\ \\text{N}\\)\nThe strut carries 500 N in pure compression."
+ },
+ {
+  "id": "eq-statics-06",
+  "chapter": "statics",
+  "section": "Friction",
+  "title": "Limiting static friction",
+  "equation": "\\(F \\le \\mu_s N\\)",
+  "symbols": {
+   "F": "friction force resisting the impending sliding motion",
+   "mu_s": "coefficient of static friction between the two contacting surfaces",
+   "N": "normal force pressing the two surfaces together"
+  },
+  "page": 97,
+  "explanation": "Static friction only pushes back as hard as it must, up to a ceiling set by the surfaces. If the force trying to slide the object exceeds mu_s times N, the contact breaks loose and motion starts.",
+  "example": "A 100-N crate rests on a floor with mu_s = 0.4.\nNormal force: N = 100 N.\nLargest friction the contact can supply:\n\\(F_{max} = \\mu_s N\\)\n\\(F_{max} = (0.4)(100)\\)\n\\(F_{max} = 40\\ \\text{N}\\)\nA 30-N push will not move the crate; a 50-N push will."
+ },
+ {
+  "id": "eq-statics-07",
+  "chapter": "statics",
+  "section": "Resultant (Two Dimensions)",
+  "title": "Magnitude and direction of a planar resultant",
+  "equation": "\\(F = \\sqrt{\\left(\\sum F_{x,i}\\right)^2 + \\left(\\sum F_{y,i}\\right)^2}, \\quad \\theta = \\arctan\\left(\\dfrac{\\sum F_{y,i}}{\\sum F_{x,i}}\\right)\\)",
+  "symbols": {
+   "F": "magnitude of the single resultant force",
+   "F_x,i": "x-component of force number i",
+   "F_y,i": "y-component of force number i",
+   "theta": "direction angle of the resultant measured from the positive x-axis"
+  },
+  "page": 95,
+  "explanation": "Add all the x-pieces together and all the y-pieces together, then rebuild one arrow from those two sums. The arctangent gives the arrow's direction, so watch the component signs to land in the correct quadrant.",
+  "example": "Forces on a bracket: 30 N to the right and 40 N upward.\nComponent sums: sum F_x = 30 N, sum F_y = 40 N.\nResultant magnitude:\n\\(F = \\sqrt{30^2 + 40^2}\\)\n\\(F = \\sqrt{2500} = 50\\ \\text{N}\\)\nDirection:\n\\(\\theta = \\arctan(40/30) = 53.1^\\circ\\) above the x-axis."
+ },
+ {
+  "id": "eq-dynamics-01",
+  "chapter": "dynamics",
+  "section": "Principle of Work and Energy",
+  "title": "Conservation of mechanical energy with nonconservative work",
+  "equation": "\\(T_2 + V_2 = T_1 + V_1 + U_{1\\to2}\\)",
+  "symbols": {
+   "T_1": "kinetic energy of the particle at state 1",
+   "T_2": "kinetic energy of the particle at state 2",
+   "V_1": "potential energy of the particle at state 1",
+   "V_2": "potential energy of the particle at state 2",
+   "U_{1->2}": "work done by nonconservative forces (such as friction) moving between states 1 and 2"
+  },
+  "page": 107,
+  "explanation": "Energy at the finish equals energy at the start, plus whatever nonconservative forces added or drained along the way. It is the go-to tool when a problem gives positions and speeds but no time information.",
+  "example": "A 2-kg block slides from rest down a frictionless 5-m-high ramp.\nT_1 = 0, V_1 = mgh, V_2 = 0, and no nonconservative work:\n\\(\\tfrac{1}{2} m v_2^2 = mgh\\)\n\\(v_2 = \\sqrt{2gh} = \\sqrt{2(9.81)(5)}\\)\n\\(v_2 = 9.90\\ \\text{m/s}\\)"
+ },
+ {
+  "id": "eq-dynamics-02",
+  "chapter": "dynamics",
+  "section": "Particle Kinetics",
+  "title": "Newton's second law for a particle",
+  "equation": "\\(\\sum F = ma\\)",
+  "symbols": {
+   "sum F": "vector sum of all forces acting on the particle",
+   "m": "mass of the particle",
+   "a": "acceleration vector of the particle"
+  },
+  "page": 106,
+  "explanation": "Add the forces as vectors and the result must equal mass times acceleration. Draw the free-body diagram first, because this equation is only as good as the forces you remember to include.",
+  "example": "A 5-kg block is pulled by a 20-N horizontal force on a frictionless surface.\nNewton's second law along the motion:\n\\(\\sum F = ma\\)\n\\(20 = (5)a\\)\n\\(a = 4\\ \\text{m/s}^2\\)"
+ },
+ {
+  "id": "eq-dynamics-03",
+  "chapter": "dynamics",
+  "section": "Particle Kinematics",
+  "title": "Velocity and acceleration as time derivatives",
+  "equation": "\\(v = \\dfrac{dr}{dt}, \\quad a = \\dfrac{dv}{dt}\\)",
+  "symbols": {
+   "v": "instantaneous velocity vector of the particle",
+   "r": "position vector of the particle in an inertial frame",
+   "a": "instantaneous acceleration vector of the particle",
+   "t": "time"
+  },
+  "page": 102,
+  "explanation": "Velocity is the rate at which position changes, and acceleration is the rate at which velocity changes. Differentiate to travel from position toward acceleration; integrate, carrying the starting values along, to go the other way.",
+  "example": "A particle moves in one dimension with position r(t) = 3t^2 meters.\nVelocity is the time derivative of position:\n\\(v = \\dfrac{dr}{dt} = 6t\\)\nAt t = 2 s:\n\\(v = 6(2) = 12\\ \\text{m/s}\\)"
+ },
+ {
+  "id": "eq-dynamics-04",
+  "chapter": "dynamics",
+  "section": "Impulse and Momentum",
+  "title": "Linear impulse-momentum for a particle",
+  "equation": "\\(m v_2 = m v_1 + \\int_{t_1}^{t_2} F\\,dt\\)",
+  "symbols": {
+   "m": "mass of the particle (constant)",
+   "v_1": "velocity vector at time t_1",
+   "v_2": "velocity vector at time t_2",
+   "F": "net force vector acting on the particle",
+   "integral": "linear impulse: the total push delivered by F over the time interval"
+  },
+  "page": 108,
+  "explanation": "Momentum at the end equals momentum at the start plus the total push delivered over the elapsed time. Reach for it when a force acts over a known time, as in collisions, kicks, and impacts.",
+  "example": "A 0.5-kg ball moving at 10 m/s is brought to rest in 0.05 s.\nImpulse-momentum along the motion:\n\\(m v_2 - m v_1 = F_{avg}\\,\\Delta t\\)\n\\(0 - (0.5)(10) = F_{avg}(0.05)\\)\n\\(F_{avg} = \\dfrac{-5}{0.05} = -100\\ \\text{N}\\)\nThe average stopping force is 100 N opposite the motion."
+ },
+ {
+  "id": "eq-dynamics-05",
+  "chapter": "dynamics",
+  "section": "Particle Curvilinear Motion",
+  "title": "Tangential and normal acceleration components",
+  "equation": "\\(a_t = \\dfrac{dv}{dt} = v\\dfrac{dv}{ds}, \\quad a_n = \\dfrac{v^2}{\\rho}\\)",
+  "symbols": {
+   "a_t": "tangential acceleration: the part that changes the speed",
+   "a_n": "normal acceleration: the part that changes the direction of motion",
+   "v": "speed of the particle along its path",
+   "s": "distance measured along the path",
+   "rho": "radius of curvature of the path at the particle's location"
+  },
+  "page": 103,
+  "explanation": "On a curved path acceleration splits into two jobs: one changes how fast you go, the other bends your heading toward the inside of the curve. The normal part is always speed squared over the local radius.",
+  "example": "A car rounds a 50-m-radius curve at a constant 20 m/s.\nSpeed is constant, so a_t = 0.\nNormal acceleration:\n\\(a_n = \\dfrac{v^2}{\\rho}\\)\n\\(a_n = \\dfrac{20^2}{50} = \\dfrac{400}{50}\\)\n\\(a_n = 8\\ \\text{m/s}^2\\) toward the center of the curve."
+ },
+ {
+  "id": "eq-dynamics-06",
+  "chapter": "dynamics",
+  "section": "Rigid Body Rotation About a Fixed Axis",
+  "title": "Torque equals spin inertia times angular acceleration",
+  "equation": "\\(\\sum T = I\\,\\alpha\\)",
+  "symbols": {
+   "sum T": "sum of the torques about the fixed axis of rotation",
+   "I": "mass moment of inertia about the axis of rotation",
+   "alpha": "angular acceleration about the axis of rotation"
+  },
+  "page": 110,
+  "explanation": "This is the rotational twin of F = ma: net torque about the fixed axle equals the body's spin inertia times its angular acceleration. Mass sitting farther from the axle counts more, which is exactly what I captures.",
+  "example": "A 12-N·m torque is applied to a wheel with I = 3 kg·m² about its axle.\nRotational equation of motion:\n\\(\\sum T = I\\alpha\\)\n\\(12 = (3)\\alpha\\)\n\\(\\alpha = 4\\ \\text{rad/s}^2\\)"
+ },
+ {
+  "id": "eq-dynamics-07",
+  "chapter": "dynamics",
+  "section": "Free and Forced Vibration",
+  "title": "Equation of motion of a damped spring-mass system",
+  "equation": "\\(m\\ddot{x} + c\\dot{x} + kx = F\\)",
+  "symbols": {
+   "m": "mass of the vibrating body",
+   "c": "viscous damping coefficient",
+   "k": "spring stiffness",
+   "x": "displacement measured from the equilibrium position (dots denote time derivatives)",
+   "F": "externally applied force; zero for free vibration"
+  },
+  "page": 113,
+  "explanation": "One equation tells the whole mass-spring-damper story: inertia resists speeding up, the damper bleeds motion away, and the spring pulls back toward center. Set F to zero for free vibration; make F periodic for forced vibration.",
+  "example": "A 4-kg mass hangs from a spring with k = 100 N/m, no damping, no forcing.\nEquation of motion:\n\\(4\\ddot{x} + 100x = 0\\)\nDivide by 4: x-double-dot + 25x = 0, so the natural frequency is:\n\\(\\omega_n = \\sqrt{25} = 5\\ \\text{rad/s}\\)"
+ },
+ {
+  "id": "eq-dynamics-08",
+  "chapter": "dynamics",
+  "section": "Relative Motion",
+  "title": "Position, velocity, and acceleration of A relative to B",
+  "equation": "\\(r_A = r_B + r_{A/B}, \\quad v_A = v_B + v_{A/B}, \\quad a_A = a_B + a_{A/B}\\)",
+  "symbols": {
+   "r_A": "position vector of particle A",
+   "v_A": "velocity vector of particle A",
+   "a_A": "acceleration vector of particle A",
+   "r_B": "position vector of particle B",
+   "v_B": "velocity vector of particle B",
+   "a_B": "acceleration vector of particle B",
+   "r_{A/B}": "position of A measured relative to B (and likewise for v and a)"
+  },
+  "page": 103,
+  "explanation": "What A does equals what B does plus what A does as seen from B. It is careful bookkeeping for moving reference points, like finding a walker's ground speed on a moving train.",
+  "example": "A train B moves at 25 m/s while passenger A walks forward at 2 m/s relative to the train.\nAbsolute velocity of the passenger:\n\\(v_A = v_B + v_{A/B}\\)\n\\(v_A = 25 + 2\\)\n\\(v_A = 27\\ \\text{m/s}\\) relative to the ground."
+ },
+ {
+  "id": "eq-mechanics-of-materials-01",
+  "chapter": "mechanics-of-materials",
+  "section": "Uniaxial Loading and Deformation",
+  "title": "Axial stress and elastic elongation",
+  "equation": "\\(\\sigma = \\dfrac{P}{A}, \\quad \\delta = \\dfrac{PL}{AE}\\)",
+  "symbols": {
+   "sigma": "axial stress on the cross section",
+   "P": "axial tensile or compressive load",
+   "A": "cross-sectional area of the member",
+   "delta": "elastic change in length of the member",
+   "L": "original length of the member",
+   "E": "modulus of elasticity of the material"
+  },
+  "page": 131,
+  "explanation": "Pull a bar and two things happen: the stress is simply force over area, and the stretch grows with load and length but shrinks with a fatter section or stiffer material. Both formulas assume the stress stays below yielding.",
+  "example": "Steel bar: P = 20,000 N, A = 400 mm², L = 2 m, E = 200 GPa.\nAxial stress:\n\\(\\sigma = \\dfrac{P}{A}\\)\n\\(\\sigma = \\dfrac{20{,}000}{400 \\times 10^{-6}} = 50 \\times 10^6\\ \\text{Pa} = 50\\ \\text{MPa}\\)\nElongation:\n\\(\\delta = \\dfrac{PL}{AE}\\)\n\\(\\delta = \\dfrac{(20{,}000)(2)}{(400 \\times 10^{-6})(200 \\times 10^9)}\\)\n\\(\\delta = 5.0 \\times 10^{-4}\\ \\text{m} = 0.5\\ \\text{mm}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-02",
+  "chapter": "mechanics-of-materials",
+  "section": "Columns",
+  "title": "Euler critical buckling load",
+  "equation": "\\(P_{cr} = \\dfrac{\\pi^2 EI}{(KL)^2}\\)",
+  "symbols": {
+   "P_cr": "critical axial load at which the column begins to buckle",
+   "E": "modulus of elasticity",
+   "I": "smallest area moment of inertia of the cross section",
+   "K": "effective-length factor accounting for the end supports",
+   "L": "unbraced length of the column"
+  },
+  "page": 137,
+  "explanation": "A long slender column fails by bowing sideways long before the material itself yields, and Euler's formula gives the load where that bowing starts. Shortening the effective length pays off fast because length is squared in the denominator.",
+  "example": "Pinned-pinned steel column: L = 3 m, K = 1.0, EI = 50,000 N·m².\nCritical buckling load:\n\\(P_{cr} = \\dfrac{\\pi^2 EI}{(KL)^2}\\)\n\\(P_{cr} = \\dfrac{\\pi^2 (50{,}000)}{(1.0 \\times 3)^2}\\)\n\\(P_{cr} = \\dfrac{493{,}480}{9} = 54{,}831\\ \\text{N} \\approx 54.8\\ \\text{kN}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-03",
+  "chapter": "mechanics-of-materials",
+  "section": "Stresses in Beams",
+  "title": "Bending normal stress",
+  "equation": "\\(\\sigma_x = -\\dfrac{My}{I}\\)",
+  "symbols": {
+   "sigma_x": "normal stress from bending at the fiber",
+   "M": "bending moment at the cross section",
+   "y": "distance of the fiber from the neutral axis",
+   "I": "area moment of inertia of the cross section about the neutral axis"
+  },
+  "page": 135,
+  "explanation": "Bending stress is zero at the neutral axis and grows linearly to a maximum at the outermost fibers, tension on one side and compression on the other. The sign keeps track of which side is which for the chosen coordinates.",
+  "example": "Beam with M = 10 kN·m, I = 8×10⁻⁶ m⁴, outer fiber at y = 0.1 m.\nBending stress at the outer fiber:\n\\(\\sigma_x = -\\dfrac{My}{I}\\)\n\\(\\sigma_x = -\\dfrac{(10{,}000)(0.1)}{8 \\times 10^{-6}}\\)\n\\(\\sigma_x = -125 \\times 10^6\\ \\text{Pa} = -125\\ \\text{MPa}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-04",
+  "chapter": "mechanics-of-materials",
+  "section": "Deflection of Beams",
+  "title": "Differential equation of the deflection curve",
+  "equation": "\\(EI\\,\\dfrac{d^2y}{dx^2} = M, \\quad EI\\,y = \\int\\!\\!\\int M(x)\\,dx\\,dx\\)",
+  "symbols": {
+   "E": "modulus of elasticity",
+   "I": "area moment of inertia of the cross section",
+   "y": "transverse deflection of the beam",
+   "x": "position measured along the beam",
+   "M": "bending moment, as a function of x"
+  },
+  "page": 136,
+  "explanation": "The bending moment is proportional to the beam's curvature, which yields a differential equation for the bent shape. Integrate twice and use the supports, zero deflection at a pin and zero slope at a wall, to fix the integration constants.",
+  "example": "Cantilever beam: tip load P = 1,000 N, L = 2 m, EI = 40,000 N·m².\nDouble integration with y(0) = 0 and y'(0) = 0 gives the tip deflection:\n\\(y_{tip} = -\\dfrac{PL^3}{3EI}\\)\n\\(y_{tip} = -\\dfrac{(1{,}000)(2)^3}{3(40{,}000)}\\)\n\\(y_{tip} = -\\dfrac{8{,}000}{120{,}000} = -0.0667\\ \\text{m} = -66.7\\ \\text{mm}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-05",
+  "chapter": "mechanics-of-materials",
+  "section": "Torsion",
+  "title": "Torsional shear stress and angle of twist",
+  "equation": "\\(\\tau = \\dfrac{Tr}{J}, \\quad \\phi = \\dfrac{TL}{GJ}\\)",
+  "symbols": {
+   "tau": "shear stress from torsion at radius r",
+   "T": "applied torque",
+   "r": "radial distance from the shaft center",
+   "J": "polar moment of inertia of the cross section",
+   "phi": "total angle of twist, in radians",
+   "L": "length of the shaft",
+   "G": "shear modulus of the material"
+  },
+  "page": 134,
+  "explanation": "Twisting stress is zero at the shaft's center and largest at the outer surface, growing in direct proportion to radius. The total twist angle grows with torque and length, and shrinks with stiffer material and a stockier cross section.",
+  "example": "Solid shaft: T = 500 N·m, outer radius r = 0.025 m, J = 6.14×10⁻⁷ m⁴.\nMaximum shear stress at the surface:\n\\(\\tau = \\dfrac{Tr}{J}\\)\n\\(\\tau = \\dfrac{(500)(0.025)}{6.14 \\times 10^{-7}}\\)\n\\(\\tau = 20.4 \\times 10^6\\ \\text{Pa} = 20.4\\ \\text{MPa}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-06",
+  "chapter": "mechanics-of-materials",
+  "section": "Thermal Deformations",
+  "title": "Free thermal expansion of a bar",
+  "equation": "\\(\\delta_t = \\alpha L\\,(T - T_0)\\)",
+  "symbols": {
+   "delta_t": "change in length caused by the temperature change",
+   "alpha": "temperature coefficient of expansion of the material",
+   "L": "original length of the member",
+   "T": "final temperature",
+   "T_0": "initial temperature"
+  },
+  "page": 131,
+  "explanation": "Heat a free bar and it grows in proportion to its length and the temperature swing; cool it and it shrinks the same way. If something blocks that growth, the trapped deformation turns into thermal stress instead.",
+  "example": "Steel rod: L = 5 m, alpha = 12×10⁻⁶/°C, heated from 20 °C to 70 °C.\nThermal elongation:\n\\(\\delta_t = \\alpha L\\,(T - T_0)\\)\n\\(\\delta_t = (12 \\times 10^{-6})(5)(70 - 20)\\)\n\\(\\delta_t = 3.0 \\times 10^{-3}\\ \\text{m} = 3.0\\ \\text{mm}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-07",
+  "chapter": "mechanics-of-materials",
+  "section": "Principal Stresses",
+  "title": "In-plane principal stresses (2D stress state)",
+  "equation": "\\(\\sigma_{a,b} = \\dfrac{\\sigma_x + \\sigma_y}{2} \\pm \\sqrt{\\left(\\dfrac{\\sigma_x - \\sigma_y}{2}\\right)^2 + \\tau_{xy}^2}\\)",
+  "symbols": {
+   "sigma_a": "one in-plane principal stress (the larger becomes sigma_1 after ordering)",
+   "sigma_b": "the other in-plane principal stress (the smaller becomes sigma_3 after ordering)",
+   "sigma_x": "normal stress acting on the x-face of the element",
+   "sigma_y": "normal stress acting on the y-face of the element",
+   "tau_xy": "shear stress acting on the element"
+  },
+  "page": 132,
+  "explanation": "At every point there is an orientation where the shear stress vanishes and the normal stresses reach their extremes; those are the principal stresses. This formula finds them directly from the stresses on the x- and y-faces, no rotation needed.",
+  "example": "Stress element: sigma_x = 80 MPa, sigma_y = -20 MPa, tau_xy = 30 MPa.\nAverage normal stress:\n\\(\\dfrac{80 + (-20)}{2} = 30\\ \\text{MPa}\\)\nRadius term:\n\\(R = \\sqrt{\\left(\\dfrac{80 - (-20)}{2}\\right)^2 + 30^2} = \\sqrt{50^2 + 30^2}\\)\n\\(R = \\sqrt{3400} = 58.3\\ \\text{MPa}\\)\n\\(\\sigma_a = 30 + 58.3 = 88.3\\ \\text{MPa}, \\quad \\sigma_b = 30 - 58.3 = -28.3\\ \\text{MPa}\\)"
+ },
+ {
+  "id": "eq-mechanics-of-materials-08",
+  "chapter": "mechanics-of-materials",
+  "section": "Cylindrical Pressure Vessel",
+  "title": "Thin-wall hoop and axial stress",
+  "equation": "\\(\\sigma_t = \\dfrac{Pr}{t}, \\quad \\sigma_a = \\dfrac{Pr}{2t}\\)",
+  "symbols": {
+   "sigma_t": "hoop (tangential) stress in the cylinder wall",
+   "sigma_a": "axial stress in the cylinder wall",
+   "P": "internal pressure",
+   "r": "mean radius of the cylinder",
+   "t": "wall thickness (thin-wall approximation applies when t is about one-tenth of the inside radius or less)"
+  },
+  "page": 131,
+  "explanation": "Internal pressure tries to split a thin cylinder two ways: around its circumference and along its length. The hoop direction carries the bigger load, exactly twice the axial stress.",
+  "example": "Thin tank: P = 2 MPa, r = 0.5 m, t = 0.01 m (t = r/50, so thin-wall applies).\nHoop stress:\n\\(\\sigma_t = \\dfrac{Pr}{t}\\)\n\\(\\sigma_t = \\dfrac{(2)(0.5)}{0.01} = 100\\ \\text{MPa}\\)\nAxial stress:\n\\(\\sigma_a = \\dfrac{Pr}{2t} = 50\\ \\text{MPa}\\)"
+ },
+ {
+  "id": "eq-materials-science-01",
+  "chapter": "materials-science",
+  "section": "Properties of Materials",
+  "title": "Electrical resistivity of a conductor",
+  "equation": "\\(\\rho = \\dfrac{RA}{L}\\)",
+  "symbols": {
+   "rho": "resistivity of the material",
+   "R": "electrical resistance of the resistor",
+   "A": "cross-sectional area of the resistor",
+   "L": "length of the resistor"
+  },
+  "page": 118,
+  "explanation": "Resistivity is the material's own opposition to current with shape factored out: resistance grows with length and shrinks with area, and rho is the constant that makes that true. Conductivity is simply its reciprocal.",
+  "example": "Copper wire: R = 0.5 ohm, L = 100 m, A = 3.31 mm².\nResistivity:\n\\(\\rho = \\dfrac{RA}{L}\\)\n\\(\\rho = \\dfrac{(0.5)(3.31 \\times 10^{-6})}{100}\\)\n\\(\\rho = 1.66 \\times 10^{-8}\\ \\Omega\\cdot\\text{m}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-01",
+  "chapter": "fluid-mechanics",
+  "section": "Bernoulli Equation",
+  "title": "Bernoulli energy balance between two sections",
+  "equation": "\\(\\dfrac{P_1}{\\gamma} + \\dfrac{v_1^2}{2g} + z_1 = \\dfrac{P_2}{\\gamma} + \\dfrac{v_2^2}{2g} + z_2\\)",
+  "symbols": {
+   "P_1": "pressure at section 1",
+   "P_2": "pressure at section 2",
+   "v_1": "average flow velocity at section 1",
+   "v_2": "average flow velocity at section 2",
+   "z_1": "elevation of section 1 above a datum",
+   "z_2": "elevation of section 2 above a datum",
+   "gamma": "specific weight of the fluid",
+   "g": "acceleration of gravity"
+  },
+  "page": 185,
+  "explanation": "With no friction and no pump between two points, pressure head plus velocity head plus elevation head stays constant; energy just trades among the three forms. It is the energy equation with the loss term set to zero.",
+  "example": "Horizontal pipe: P_1 = 200 kPa, v_1 = 2 m/s, v_2 = 4 m/s, water gamma = 9.79 kN/m³, z_1 = z_2.\nBernoulli between the sections:\n\\(\\dfrac{P_1}{\\gamma} + \\dfrac{v_1^2}{2g} = \\dfrac{P_2}{\\gamma} + \\dfrac{v_2^2}{2g}\\)\n\\(\\dfrac{200}{9.79} + \\dfrac{2^2}{2(9.81)} = \\dfrac{P_2}{9.79} + \\dfrac{4^2}{2(9.81)}\\)\n\\(20.43 + 0.204 = \\dfrac{P_2}{9.79} + 0.815\\)\n\\(P_2 = 9.79 \\times 19.82 = 194\\ \\text{kPa}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-02",
+  "chapter": "fluid-mechanics",
+  "section": "Energy Equation",
+  "title": "Pressure drop for a fluid of constant density",
+  "equation": "\\(P_1 - P_2 = \\gamma\\,h_f = \\rho g\\,h_f\\)",
+  "symbols": {
+   "P_1": "pressure at section 1",
+   "P_2": "pressure at section 2",
+   "gamma": "specific weight of the fluid",
+   "rho": "fluid density",
+   "g": "acceleration of gravity",
+   "h_f": "head loss from friction between the two sections"
+  },
+  "page": 185,
+  "explanation": "When a pipe keeps the same diameter and elevation, velocity and height cancel out of the energy equation, leaving the pressure drop equal to the friction loss converted back into pressure. A denser fluid loses more pressure for the same head loss.",
+  "example": "Water (gamma = 9.79 kN/m³) flows through a constant-diameter horizontal pipe with h_f = 3 m.\nPressure drop:\n\\(P_1 - P_2 = \\gamma\\,h_f\\)\n\\(P_1 - P_2 = (9.79)(3)\\)\n\\(P_1 - P_2 = 29.4\\ \\text{kPa}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-03",
+  "chapter": "fluid-mechanics",
+  "section": "The Pressure Field in a Static Liquid",
+  "title": "Hydrostatic pressure difference between two points",
+  "equation": "\\(P_2 - P_1 = -\\gamma\\,(z_2 - z_1) = -\\rho g\\,h\\)",
+  "symbols": {
+   "P_1": "pressure at the first point",
+   "P_2": "pressure at the second point",
+   "z_1": "elevation of the first point",
+   "z_2": "elevation of the second point",
+   "gamma": "specific weight of the liquid",
+   "rho": "density of the liquid",
+   "g": "acceleration of gravity",
+   "h": "vertical distance between the two points"
+  },
+  "page": 182,
+  "explanation": "In a still liquid, pressure depends only on depth: go deeper and it rises by the specific weight times the depth. The minus sign is the bookkeeping that says higher elevation means lower pressure.",
+  "example": "Find the gauge pressure 4 m below the surface of water (gamma = 9.79 kN/m³); surface pressure is atmospheric, so gauge is zero there.\nWith depth h measured downward, P = gamma·h:\n\\(P = (9.79)(4)\\)\n\\(P = 39.2\\ \\text{kPa gauge}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-04",
+  "chapter": "fluid-mechanics",
+  "section": "Archimedes Principle and Buoyancy",
+  "title": "Buoyant force equals weight of displaced fluid",
+  "equation": "\\(F_b = \\gamma\\,V_{displaced} = \\rho g\\,V_{displaced}\\)",
+  "symbols": {
+   "F_b": "buoyant force pushing upward on the body",
+   "gamma": "specific weight of the fluid",
+   "rho": "density of the fluid",
+   "g": "acceleration of gravity",
+   "V_displaced": "volume of fluid pushed aside by the submerged portion of the body"
+  },
+  "page": 184,
+  "explanation": "A submerged or floating body is pushed up with a force equal to the weight of the fluid it shoves out of the way. A floating body settles at exactly the depth where that upward push matches its own weight.",
+  "example": "A 0.5-m³ block floats in water (gamma = 9.79 kN/m³) with 60% of its volume submerged.\nDisplaced volume:\n\\(V_{displaced} = (0.60)(0.5) = 0.3\\ \\text{m}^3\\)\nBuoyant force:\n\\(F_b = \\gamma\\,V_{displaced}\\)\n\\(F_b = (9.79)(0.3) = 2.94\\ \\text{kN}\\)\nThe block therefore weighs 2.94 kN."
+ },
+ {
+  "id": "eq-fluid-mechanics-05",
+  "chapter": "fluid-mechanics",
+  "section": "The Continuity Equation (Conservation of Mass)",
+  "title": "Volume and mass flow rate for one-dimensional flow",
+  "equation": "\\(Q = A\\,v, \\quad \\dot{m} = \\rho Q = \\rho A\\,v\\)",
+  "symbols": {
+   "Q": "volumetric flow rate",
+   "A": "cross-sectional area of the flow",
+   "v": "average flow velocity",
+   "m_dot": "mass flow rate",
+   "rho": "fluid density"
+  },
+  "page": 184,
+  "explanation": "What flows in must flow out: for steady flow the mass rate is identical at every cross section. If the fluid is incompressible as well, the volume rate Q is constant too, so narrowing the pipe forces the fluid to speed up.",
+  "example": "Water flows at 3 m/s through a pipe of diameter 0.1 m.\nFlow area:\n\\(A = \\dfrac{\\pi d^2}{4} = \\dfrac{\\pi(0.1)^2}{4}\\)\n\\(A = 0.007854\\ \\text{m}^2\\)\nVolume flow rate:\n\\(Q = A\\,v = (0.007854)(3)\\)\n\\(Q = 0.0236\\ \\text{m}^3/\\text{s}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-06",
+  "chapter": "fluid-mechanics",
+  "section": "Manometers",
+  "title": "Simple manometer pressure relation",
+  "equation": "\\(P_0 = P_2 + \\gamma_2 h_2 - \\gamma_1 h_1\\)",
+  "symbols": {
+   "P_0": "unknown pressure being measured",
+   "P_2": "known reference pressure at the other end",
+   "gamma_1": "specific weight of the first manometer fluid",
+   "gamma_2": "specific weight of the second manometer fluid",
+   "h_1": "column height of the first fluid",
+   "h_2": "column height of the second fluid"
+  },
+  "page": 183,
+  "explanation": "A manometer reads pressure by balancing it against fluid columns: walk from the unknown pressure to the known one, adding gamma·h when moving down a column and subtracting it when moving up. Different fluids simply contribute different gammas.",
+  "example": "U-tube open to the atmosphere (P_2 = 0 gauge), mercury column h_2 = 0.2 m (gamma_2 = 133.1 kN/m³), water column h_1 = 0.1 m (gamma_1 = 9.79 kN/m³).\nManometer equation:\n\\(P_0 = P_2 + \\gamma_2 h_2 - \\gamma_1 h_1\\)\n\\(P_0 = 0 + (133.1)(0.2) - (9.79)(0.1)\\)\n\\(P_0 = 26.62 - 0.979 = 25.6\\ \\text{kPa gauge}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-07",
+  "chapter": "fluid-mechanics",
+  "section": "Pump Power Equation",
+  "title": "Power required to pump a fluid through a head",
+  "equation": "\\(\\dot{W} = \\dfrac{Q\\,\\gamma\\,h}{\\eta_t} = \\dfrac{Q\\,\\rho g\\,h}{\\eta_t}\\)",
+  "symbols": {
+   "W_dot": "power that the pump and motor together must draw",
+   "Q": "volumetric flow rate",
+   "gamma": "specific weight of the fluid",
+   "rho": "fluid density",
+   "g": "acceleration of gravity",
+   "h": "head the fluid must be lifted",
+   "eta_t": "total efficiency, pump efficiency times motor efficiency"
+  },
+  "page": 197,
+  "explanation": "Pump power is the weight of fluid moved per second times how high it must go, marked up for the pump's and motor's inefficiency. A real installation always draws more than the ideal fluid power.",
+  "example": "A pump lifts water at Q = 0.05 m³/s through h = 20 m with total efficiency eta_t = 0.70 (gamma = 9,790 N/m³).\nRequired power:\n\\(\\dot{W} = \\dfrac{Q\\,\\gamma\\,h}{\\eta_t}\\)\n\\(\\dot{W} = \\dfrac{(0.05)(9{,}790)(20)}{0.70}\\)\n\\(\\dot{W} = \\dfrac{9{,}790}{0.70} = 13{,}986\\ \\text{W} \\approx 14.0\\ \\text{kW}\\)"
+ },
+ {
+  "id": "eq-fluid-mechanics-08",
+  "chapter": "fluid-mechanics",
+  "section": "Definitions",
+  "title": "Specific weight and specific gravity of a fluid",
+  "equation": "\\(\\gamma = \\rho\\,g, \\quad SG = \\dfrac{\\gamma}{\\gamma_w} = \\dfrac{\\rho}{\\rho_w}\\)",
+  "symbols": {
+   "gamma": "specific weight: weight of fluid per unit volume",
+   "rho": "density: mass of fluid per unit volume",
+   "g": "acceleration of gravity",
+   "SG": "specific gravity: dimensionless ratio comparing the fluid to water",
+   "gamma_w": "specific weight of water",
+   "rho_w": "density of water"
+  },
+  "page": 181,
+  "explanation": "Specific weight is density with gravity folded in, and it is the version that appears in pressure equations. Specific gravity strips the units away entirely by comparing the fluid against water.",
+  "example": "An oil has density rho = 850 kg/m³.\nSpecific weight:\n\\(\\gamma = \\rho\\,g\\)\n\\(\\gamma = (850)(9.81) = 8{,}339\\ \\text{N/m}^3 = 8.34\\ \\text{kN/m}^3\\)\nSpecific gravity:\n\\(SG = \\dfrac{\\rho}{\\rho_w} = \\dfrac{850}{1000}\\)\n\\(SG = 0.85\\)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(\\gamma_{sat} = \\frac{(G_s + e)\\,\\gamma_w}{1 + e}\\)",
+  "example": "Given G_s = 2.65, e = 0.60, γ_w = 62.4 pcf:\nStep 1: γ_sat = (2.65 + 0.60)(62.4) / (1 + 0.60)\nStep 2: γ_sat = (3.25)(62.4) / 1.60\nStep 3: γ_sat = 202.8 / 1.60 = 126.75 ≈ 127 pcf",
+  "explanation": "When every void in a soil sample holds water, the total unit weight rises to its saturated value, which blends the weight of the solids and the pore water through the void ratio.",
+  "id": "eq-civil-engineering-01",
+  "page": 264,
+  "section": "Phase Relationships",
+  "symbols": {
+   "G_s": "specific gravity of the soil solids",
+   "e": "void ratio",
+   "γ_sat": "saturated unit weight of the soil (all voids filled with water)",
+   "γ_w": "unit weight of water"
+  },
+  "title": "Saturated unit weight"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(RC = \\frac{\\gamma_{D,field}}{\\gamma_{D,max}} \\times 100\\)",
+  "example": "Field dry unit weight = 118 pcf, lab maximum = 124 pcf:\nStep 1: RC = (118 / 124) × 100\nStep 2: RC = 0.9516 × 100 = 95.2%",
+  "explanation": "Relative compaction compares how dense the soil ended up in the field to the densest it became in the lab, so inspectors can check whether a fill meets the specification.",
+  "id": "eq-civil-engineering-02",
+  "page": 265,
+  "section": "Phase Relationships",
+  "symbols": {
+   "RC": "relative compaction, in percent",
+   "γ_D,field": "dry unit weight measured in the field after compaction",
+   "γ_D,max": "maximum dry unit weight from the laboratory compaction test"
+  },
+  "title": "Relative compaction"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(S_{ULT} = \\varepsilon_v H_S\\), \\(\\varepsilon_v = \\frac{\\Delta e_{TOT}}{1 + e_0}\\)",
+  "example": "H_S = 10 ft, e_0 = 0.90, Δe_TOT = 0.18:\nStep 1: ε_v = 0.18 / (1 + 0.90)\nStep 2: ε_v = 0.18 / 1.90 = 0.0947\nStep 3: S_ULT = 0.0947 × 10 = 0.947 ft ≈ 11.4 in",
+  "explanation": "As a clay layer squeezes pore water out under load, its voids shrink; the final settlement is that volumetric strain multiplied by the layer thickness.",
+  "id": "eq-civil-engineering-03",
+  "page": 266,
+  "section": "Ultimate consolidation settlement in soil layer",
+  "symbols": {
+   "H_S": "thickness of the compressible soil layer",
+   "S_ULT": "ultimate (long-term) consolidation settlement of the layer",
+   "e_0": "initial void ratio",
+   "Δe_TOT": "total change in void ratio from recompression plus virgin compression",
+   "ε_v": "vertical strain from the change in void ratio"
+  },
+  "title": "Ultimate consolidation settlement"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(\\sigma' = \\sigma - u\\), \\(u = h_u \\gamma_w\\)",
+  "example": "σ = 2000 psf, h_u = 10 ft, γ_w = 62.4 pcf:\nStep 1: u = 10 × 62.4\nStep 2: u = 624 psf\nStep 3: σ' = 2000 − 624 = 1376 psf",
+  "explanation": "Soil strength comes only from grain-to-grain contact, so the pore water pressure pushing the grains apart is subtracted from the total stress.",
+  "id": "eq-civil-engineering-04",
+  "page": 268,
+  "section": "Effective stress",
+  "symbols": {
+   "h_u": "uplift or pressure head",
+   "u": "pore water pressure",
+   "γ_w": "unit weight of water",
+   "σ": "total stress",
+   "σ'": "effective stress, carried by the soil skeleton"
+  },
+  "title": "Effective stress"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(\\tau_f = c + \\sigma_N \\tan\\phi\\)",
+  "example": "c = 200 psf, σ_N = 1500 psf, φ = 25°:\nStep 1: τ_f = 200 + 1500 × tan(25°)\nStep 2: τ_f = 200 + 1500 × 0.4663\nStep 3: τ_f = 200 + 699.5 = 899.5 ≈ 900 psf",
+  "explanation": "A soil fails in shear when the shear stress on a plane reaches the soil's cohesive stickiness plus its frictional resistance, which grows with the normal stress.",
+  "id": "eq-civil-engineering-05",
+  "page": 268,
+  "section": "Effective stress",
+  "symbols": {
+   "c": "cohesion of the soil",
+   "σ_N": "total normal stress acting on the failure plane",
+   "τ_f": "shear stress on the plane at failure",
+   "φ": "angle of internal friction"
+  },
+  "title": "Shear strength at failure (Mohr–Coulomb)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(K_A = \\tan^2\\left(45° - \\frac{\\phi}{2}\\right)\\)",
+  "example": "φ = 30°:\nStep 1: K_A = tan²(45° − 30°/2)\nStep 2: K_A = tan²(30°)\nStep 3: K_A = (0.5774)² = 0.333",
+  "explanation": "When a retaining wall yields outward, the soil behind it relaxes into the active state, and this coefficient scales the vertical stress down to the horizontal push.",
+  "id": "eq-civil-engineering-06",
+  "page": 268,
+  "section": "Horizontal Stress Profiles and Forces",
+  "symbols": {
+   "K_A": "Rankine active earth pressure coefficient (smooth wall, cohesionless soil, level backfill)",
+   "φ": "angle of internal friction"
+  },
+  "title": "Rankine active earth pressure coefficient"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(P_{A1} = \\frac{1}{2}\\,\\sigma'_1 K_A H_1 = \\frac{1}{2}\\,\\gamma_1 K_A H_1^2\\)",
+  "example": "γ_1 = 120 pcf, H_1 = 10 ft, K_A = 0.333:\nStep 1: P_A1 = 0.5 × 120 × 0.333 × (10)²\nStep 2: P_A1 = 0.5 × 120 × 0.333 × 100\nStep 3: P_A1 = 1998 ≈ 2000 lb/ft",
+  "explanation": "The triangular active pressure distribution over a soil layer integrates to a single resultant force — the lateral load the wall must be designed to resist.",
+  "id": "eq-civil-engineering-07",
+  "page": 268,
+  "section": "Horizontal Stress Profiles and Forces",
+  "symbols": {
+   "H_1": "thickness of layer 1",
+   "K_A": "Rankine active earth pressure coefficient",
+   "P_A1": "active force per unit length of wall from the top soil layer",
+   "γ_1": "unit weight of layer 1",
+   "σ'_1": "effective vertical stress at the base of layer 1"
+  },
+  "title": "Active earth force on retaining wall"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(q_{ULT} = cN_c + \\gamma' D_f N_q + \\frac{1}{2}\\,\\gamma' B N_\\gamma\\)",
+  "example": "c = 0, γ' = 110 pcf, D_f = 3 ft, N_q = 18.4, B = 6 ft, N_γ = 15.1:\nStep 1: q_ULT = 0 + 110(3)(18.4) + 0.5(110)(6)(15.1)\nStep 2: q_ULT = 6072 + 4983\nStep 3: q_ULT = 11,055 psf ≈ 11.1 ksf",
+  "explanation": "A footing fails when the soil beneath it shears along a rupture surface; the capacity adds up the cohesion term, the surcharge of soil above the base, and the weight of the failure wedge.",
+  "id": "eq-civil-engineering-08",
+  "page": 269,
+  "section": "Ultimate Bearing Capacity",
+  "symbols": {
+   "B": "width of strip footing",
+   "D_f": "depth of footing below ground surface",
+   "N_c": "bearing capacity factor for cohesion",
+   "N_q": "bearing capacity factor for depth (surcharge)",
+   "N_γ": "bearing capacity factor for unit weight",
+   "c": "cohesion",
+   "q_ULT": "ultimate bearing capacity of the soil",
+   "γ'": "effective unit weight of soil"
+  },
+  "title": "Ultimate bearing capacity (Terzaghi)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(C_u \\ge 4 \\text{ and } 1 \\le C_c \\le 3 \\Rightarrow \\text{GW}\\)",
+  "example": "D10 = 0.5 mm, D30 = 2 mm, D60 = 4 mm:\nStep 1: C_u = 4 / 0.5 = 8, and 8 ≥ 4 ✓\nStep 2: C_c = (2)² / (0.5 × 4) = 4 / 2 = 2.0, and 1 ≤ 2.0 ≤ 3 ✓\nStep 3: Both criteria met → GW",
+  "explanation": "A gravel earns the well-graded label when its particle sizes span a wide, smooth range instead of clustering at one size, which makes it pack into a denser, stronger fill.",
+  "id": "eq-civil-engineering-09",
+  "page": 272,
+  "section": "Soil Classification",
+  "symbols": {
+   "C_c": "coefficient of curvature, (D30)²/(D10 × D60)",
+   "C_u": "coefficient of uniformity, D60/D10",
+   "GW": "well-graded gravel (USCS group symbol)"
+  },
+  "title": "Well-graded gravel (GW) criterion"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(M_B = \\frac{M_A}{2}\\)",
+  "example": "M_A = 80 k·ft applied at end A:\nStep 1: M_B = 80 / 2\nStep 2: M_B = 40 k·ft",
+  "explanation": "In moment distribution, half of an unbalanced moment applied at one end of a prismatic beam shows up at the fixed far end — the carryover factor is one-half.",
+  "id": "eq-civil-engineering-10",
+  "page": 273,
+  "section": "Structural Analysis",
+  "symbols": {
+   "M_A": "moment applied at the near end A of a prismatic member",
+   "M_B": "moment carried over to the far end B (far end fixed)"
+  },
+  "title": "Carryover moment"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(a = \\frac{A_s f_y}{0.85\\,f'_c\\,b}\\)",
+  "example": "A_s = 2.0 in², f_y = 60,000 psi, f'_c = 4000 psi, b = 12 in:\nStep 1: a = (2.0 × 60,000) / (0.85 × 4000 × 12)\nStep 2: a = 120,000 / 40,800\nStep 3: a = 2.94 in",
+  "explanation": "The concrete compression zone is idealized as a uniform stress block whose depth is set so its total push exactly balances the tensile pull of the steel.",
+  "id": "eq-civil-engineering-11",
+  "page": 280,
+  "section": "Design of Reinforced Concrete Components (ACI 318-14)",
+  "symbols": {
+   "A_s": "area of longitudinal tension reinforcement",
+   "a": "depth of the equivalent rectangular concrete stress block",
+   "b": "width of the compression face of the member",
+   "f'_c": "compressive strength of the concrete",
+   "f_y": "yield strength of the steel reinforcement"
+  },
+  "title": "Equivalent rectangular stress block depth"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(M_n = A_s f_y\\left(d - \\frac{a}{2}\\right)\\)",
+  "example": "A_s = 2.0 in², f_y = 60 ksi, d = 21 in, a = 2.94 in:\nStep 1: M_n = (2.0 × 60) × (21 − 2.94/2)\nStep 2: M_n = 120 × (21 − 1.47)\nStep 3: M_n = 120 × 19.53 = 2343.6 k·in = 195.3 k·ft",
+  "explanation": "The beam's bending strength is the steel's tensile force multiplied by its lever arm measured from the middle of the concrete compression block.",
+  "id": "eq-civil-engineering-12",
+  "page": 280,
+  "section": "Design of Reinforced Concrete Components (ACI 318-14)",
+  "symbols": {
+   "A_s": "area of longitudinal tension reinforcement",
+   "M_n": "nominal flexural strength at the section",
+   "a": "depth of the equivalent rectangular stress block",
+   "d": "distance from the extreme compression fiber to the centroid of the tension steel",
+   "f_y": "yield strength of the steel reinforcement"
+  },
+  "title": "Nominal flexural strength (singly reinforced)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(M_n = M_p = F_y Z_x\\)",
+  "example": "F_y = 50 ksi, Z_x = 100 in³:\nStep 1: M_n = 50 × 100\nStep 2: M_n = 5000 k·in = 416.7 k·ft",
+  "explanation": "A compact steel beam bent about its strong axis reaches its full plastic moment once the entire cross section has yielded.",
+  "id": "eq-civil-engineering-13",
+  "page": 286,
+  "section": "Beams",
+  "symbols": {
+   "F_y": "specified minimum yield stress of the steel",
+   "M_n": "nominal flexural strength",
+   "M_p": "plastic moment capacity",
+   "Z_x": "plastic section modulus about the x-axis"
+  },
+  "title": "Steel beam nominal flexural strength (yielding)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Q = CIA\\)",
+  "example": "C = 0.6, I = 3 in/hr, A = 25 acres:\nStep 1: Q = 0.6 × 3 × 25\nStep 2: Q = 45 cfs",
+  "explanation": "For small watersheds, the peak runoff is the rainfall intensity scaled by how much of it runs off the surface and by the area it falls on.",
+  "id": "eq-civil-engineering-14",
+  "page": 295,
+  "section": "Rational Formula",
+  "symbols": {
+   "A": "watershed area, in acres",
+   "C": "runoff coefficient (fraction of rainfall that becomes runoff)",
+   "I": "rainfall intensity, in inches per hour",
+   "Q": "peak discharge, in cfs"
+  },
+  "title": "Rational formula for peak runoff"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Q = -KA\\frac{dh}{dx}\\)",
+  "example": "K = 0.01 ft/s, A = 50 ft², dh/dx = −0.02:\nStep 1: Q = −(0.01)(50)(−0.02)\nStep 2: Q = 0.01 cfs",
+  "explanation": "Water seeps through soil faster through more permeable, larger areas under steeper head gradients; the minus sign marks flow in the direction of falling head.",
+  "id": "eq-civil-engineering-15",
+  "page": 297,
+  "section": "Darcy's Law",
+  "symbols": {
+   "A": "cross-sectional area of flow",
+   "K": "hydraulic conductivity of the soil",
+   "Q": "discharge rate through the soil",
+   "dh/dx": "hydraulic gradient (head loss per unit length)"
+  },
+  "title": "Darcy's law (discharge)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(v = q = -K\\frac{dh}{dx}\\)",
+  "example": "K = 0.01 ft/s, dh/dx = −0.02:\nStep 1: v = −(0.01)(−0.02)\nStep 2: v = 0.0002 ft/s",
+  "explanation": "Dividing the flow by the area gives the superficial velocity — the speed water would have if it moved through the full cross section, pores and grains alike.",
+  "id": "eq-civil-engineering-16",
+  "page": 297,
+  "section": "Darcy's Law",
+  "symbols": {
+   "K": "hydraulic conductivity of the soil",
+   "dh/dx": "hydraulic gradient",
+   "v (q)": "specific discharge, also called the Darcy or superficial velocity"
+  },
+  "title": "Darcy velocity (specific discharge)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Q = \\frac{K}{n}\\,A\\,R_H^{2/3}\\,S^{1/2}\\)",
+  "example": "K = 1.486, n = 0.013, A = 20 ft², R_H = 2 ft, S = 0.001:\nStep 1: Q = (1.486/0.013)(20)(2)^{2/3}(0.001)^{1/2}\nStep 2: Q = (114.31)(20)(1.5874)(0.031623)\nStep 3: Q = 114.8 ≈ 115 cfs",
+  "explanation": "Open-channel flow grows with area and slope but is held back by boundary roughness, with the hydraulic radius capturing how efficiently the channel shape conveys water.",
+  "id": "eq-civil-engineering-17",
+  "page": 302,
+  "section": "Manning's Equation",
+  "symbols": {
+   "A": "cross-sectional area of flow",
+   "K": "unit constant, 1.486 for USCS units and 1.0 for SI units",
+   "Q": "discharge",
+   "R_H": "hydraulic radius (area divided by wetted perimeter)",
+   "S": "slope of the channel",
+   "n": "roughness coefficient"
+  },
+  "title": "Manning's equation (discharge)"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Q = C\\,L\\,H^{3/2}\\), \\(C = 3.33\\) for USCS units",
+  "example": "L = 6 ft, H = 1.0 ft:\nStep 1: Q = 3.33 × 6 × (1.0)^{3/2}\nStep 2: Q = 19.98 ≈ 20.0 cfs",
+  "explanation": "Flow over a sharp-crested rectangular weir scales with the 3/2 power of head — double the head and the flow nearly triples.",
+  "id": "eq-civil-engineering-18",
+  "page": 302,
+  "section": "Weir Formulas",
+  "symbols": {
+   "C": "weir coefficient (3.33 for a rectangular weir in USCS units)",
+   "H": "head, the depth of water above the weir crest",
+   "L": "length of the weir crest",
+   "Q": "discharge over the weir"
+  },
+  "title": "Rectangular weir discharge"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Q = C\\,H^{5/2}\\), \\(C = 2.54\\) for a 90° V-notch in USCS units",
+  "example": "H = 1.5 ft:\nStep 1: Q = 2.54 × (1.5)^{5/2}\nStep 2: Q = 2.54 × 2.756\nStep 3: Q = 7.0 cfs",
+  "explanation": "A V-notch weir is extra sensitive at low flows, with discharge rising as the 5/2 power of head — ideal for measuring small discharges accurately.",
+  "id": "eq-civil-engineering-19",
+  "page": 302,
+  "section": "Weir Formulas",
+  "symbols": {
+   "C": "weir coefficient (2.54 for a 90° V-notch in USCS units)",
+   "H": "head above the vertex of the notch",
+   "Q": "discharge over the weir"
+  },
+  "title": "V-notch weir discharge"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(SSD = 1.47Vt + \\frac{V^2}{30\\left(\\frac{a}{32.2} \\pm G\\right)}\\)",
+  "example": "V = 60 mph, t = 2.5 s, a = 11.2 ft/s², G = 0:\nStep 1: SSD = 1.47(60)(2.5) + (60)² / [30(11.2/32.2 + 0)]\nStep 2: SSD = 220.5 + 3600 / [30(0.3478)]\nStep 3: SSD = 220.5 + 3600 / 10.435\nStep 4: SSD = 220.5 + 345.0 = 565.5 ≈ 566 ft",
+  "explanation": "A driver needs room to perceive a hazard and then brake; the first term covers the reaction distance and the second the braking distance, which stretches out on downgrades.",
+  "id": "eq-civil-engineering-20",
+  "page": 305,
+  "section": "Stopping Sight Distance",
+  "symbols": {
+   "G": "percent grade divided by 100 (positive for uphill)",
+   "SSD": "stopping sight distance, in feet",
+   "V": "design speed, in mph",
+   "a": "deceleration rate, in ft/s²",
+   "t": "driver reaction time, in seconds"
+  },
+  "title": "Stopping sight distance"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Y = Y_{PVC} + g_1 x + \\frac{g_2 - g_1}{2L}\\,x^2\\)",
+  "example": "Y_PVC = 100.00 ft, g_1 = 0.02, g_2 = −0.03, L = 500 ft, x = 200 ft:\nStep 1: Y = 100.00 + (0.02)(200) + [(−0.03 − 0.02)/(2 × 500)] × (200)²\nStep 2: Y = 100.00 + 4.00 + (−0.00005) × 40,000\nStep 3: Y = 104.00 − 2.00 = 102.00 ft",
+  "explanation": "A vertical curve is a parabola eased between two grades, so any point's elevation is the tangent line plus a parabolic offset that grows with the square of the distance.",
+  "id": "eq-civil-engineering-21",
+  "page": 306,
+  "section": "Vertical Curves",
+  "symbols": {
+   "L": "length of the curve",
+   "Y": "elevation of the curve at distance x from the PVC",
+   "Y_PVC": "elevation at the point of vertical curvature (beginning of curve)",
+   "g_1": "grade of the back tangent divided by 100",
+   "g_2": "grade of the forward tangent divided by 100",
+   "x": "horizontal distance from the PVC to the point"
+  },
+  "title": "Vertical curve elevation"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(K = \\frac{L}{A}\\)",
+  "example": "L = 600 ft, A = 5%:\nStep 1: K = 600 / 5\nStep 2: K = 120 ft per percent grade",
+  "explanation": "K tells how many feet of curve it takes to change the grade by one percent — a larger K means a flatter, more gradual curve.",
+  "id": "eq-civil-engineering-22",
+  "page": 306,
+  "section": "Vertical Curves",
+  "symbols": {
+   "A": "algebraic difference in grades, in percent",
+   "K": "rate of vertical curvature, feet of curve per one percent of grade change",
+   "L": "length of the vertical curve, in feet"
+  },
+  "title": "Rate of vertical curvature"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(T = R\\tan\\frac{I}{2}\\), \\(L = R\\,I\\,\\frac{\\pi}{180}\\)",
+  "example": "R = 1000 ft, I = 30°:\nStep 1: T = 1000 × tan(15°)\nStep 2: T = 1000 × 0.2679 = 267.9 ≈ 268 ft\nStep 3: L = 1000 × 30 × π/180\nStep 4: L = 523.6 ≈ 524 ft",
+  "explanation": "The tangent legs from the intersection point and the arc length both follow directly from the radius and how sharply the roadway turns.",
+  "id": "eq-civil-engineering-23",
+  "page": 308,
+  "section": "Horizontal Curves",
+  "symbols": {
+   "I": "intersection angle between the two tangents, in degrees",
+   "L": "length of curve from PC to PT",
+   "R": "radius of the curve",
+   "T": "tangent distance from the PI to the PC or PT"
+  },
+  "title": "Horizontal curve tangent and length"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(E = R\\left(\\sec\\frac{I}{2} - 1\\right)\\), \\(M = R\\left(1 - \\cos\\frac{I}{2}\\right)\\)",
+  "example": "R = 1000 ft, I = 30°:\nStep 1: E = 1000 × (sec(15°) − 1)\nStep 2: E = 1000 × (1.0353 − 1) = 35.3 ft\nStep 3: M = 1000 × (1 − cos(15°))\nStep 4: M = 1000 × (1 − 0.9659) = 34.1 ft",
+  "explanation": "The external distance sets how far the curve pulls away from the tangent intersection, and the middle ordinate measures the curve's bulge at its midpoint.",
+  "id": "eq-civil-engineering-24",
+  "page": 308,
+  "section": "Horizontal Curves",
+  "symbols": {
+   "E": "external distance from the PI to the curve",
+   "I": "intersection angle between the two tangents, in degrees",
+   "M": "middle ordinate, the offset at the midpoint of the curve",
+   "R": "radius of the curve"
+  },
+  "title": "Horizontal curve external distance and middle ordinate"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(\\text{LOS} = \\begin{cases} A & D \\le 11 \\\\ B & 11 < D \\le 18 \\\\ C & 18 < D \\le 26 \\\\ D & 26 < D \\le 35 \\\\ E & 35 < D \\le 45 \\\\ F & D > 45 \\end{cases}\\)",
+  "example": "Measured density D = 20 pc/mi/ln:\nStep 1: 20 falls in the interval >18 to 26\nStep 2: LOS = C",
+  "explanation": "On a basic freeway segment, the letter grade comes straight from density — how tightly the vehicles pack together.",
+  "id": "eq-civil-engineering-25",
+  "page": 310,
+  "section": "Level of Service (LOS)",
+  "symbols": {
+   "D": "density in passenger cars per mile per lane (pc/mi/ln); LOS F also applies when demand exceeds capacity"
+  },
+  "title": "Freeway level of service by density"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(S = S_f - \\frac{S_f}{D_j}\\,D\\)",
+  "example": "S_f = 60 mph, D_j = 180 veh/mi/ln, D = 60 veh/mi/ln:\nStep 1: S = 60 − (60/180) × 60\nStep 2: S = 60 − 20 = 40 mph",
+  "explanation": "In the Greenshields model, speed falls linearly as the road fills up — from free-flow speed at zero density down to zero at jam density.",
+  "id": "eq-civil-engineering-26",
+  "page": 311,
+  "section": "Traffic Flow Relationships",
+  "symbols": {
+   "D": "traffic density",
+   "D_j": "jam density",
+   "S": "space mean speed",
+   "S_f": "free-flow speed"
+  },
+  "title": "Greenshields speed–density relation"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(V_m = \\frac{S_f D_j}{4}\\), \\(D_0 = \\frac{D_j}{2}\\)",
+  "example": "S_f = 60 mph, D_j = 180 veh/mi/ln:\nStep 1: V_m = (60 × 180) / 4\nStep 2: V_m = 2700 veh/hr/ln\nStep 3: D_0 = 180 / 2 = 90 veh/mi/ln",
+  "explanation": "The speed–density parabola peaks at half the jam density, giving the lane's capacity as one quarter of free-flow speed times jam density.",
+  "id": "eq-civil-engineering-27",
+  "page": 311,
+  "section": "Traffic Flow Relationships",
+  "symbols": {
+   "D_0": "optimum density at which maximum flow occurs",
+   "D_j": "jam density",
+   "S_f": "free-flow speed",
+   "V_m": "maximum flow (capacity) of the lane"
+  },
+  "title": "Maximum flow and optimum density"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(V = \\frac{L\\,(A_1 + A_2)}{2}\\)",
+  "example": "A_1 = 200 ft², A_2 = 320 ft², L = 100 ft:\nStep 1: V = 100 × (200 + 320) / 2\nStep 2: V = 100 × 260 = 26,000 ft³\nStep 3: V = 26,000 / 27 = 963 yd³",
+  "explanation": "Between two cross sections, the volume is the average of the two end areas times the distance between them — the workhorse of earthwork takeoffs.",
+  "id": "eq-civil-engineering-28",
+  "page": 314,
+  "section": "Earthwork formulas",
+  "symbols": {
+   "A_1": "cross-sectional area at the first station",
+   "A_2": "cross-sectional area at the second station",
+   "L": "distance between the two cross sections",
+   "V": "volume of earthwork"
+  },
+  "title": "Average end area earthwork volume"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(V = \\frac{L\\,(A_1 + 4A_m + A_2)}{6}\\)",
+  "example": "A_1 = 200 ft², A_m = 260 ft², A_2 = 320 ft², L = 100 ft:\nStep 1: V = 100 × (200 + 4 × 260 + 320) / 6\nStep 2: V = 100 × (200 + 1040 + 320) / 6\nStep 3: V = 100 × 1560 / 6 = 26,000 ft³",
+  "explanation": "Weighting the mid-section four times corrects the average-end-area estimate — it is exact for prismoids and closer for irregular ground.",
+  "id": "eq-civil-engineering-29",
+  "page": 314,
+  "section": "Earthwork formulas",
+  "symbols": {
+   "A_1": "cross-sectional area at the first station",
+   "A_2": "cross-sectional area at the second station",
+   "A_m": "cross-sectional area at the mid-section",
+   "L": "distance between the two end sections",
+   "V": "volume of earthwork"
+  },
+  "title": "Prismoidal earthwork volume"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(Area = \\frac{X_A(Y_B - Y_N) + X_B(Y_C - Y_A) + X_C(Y_D - Y_B) + \\cdots + X_N(Y_A - Y_{N-1})}{2}\\)",
+  "example": "A(0,0), B(100,0), C(100,50), D(0,50), taken in order (N = D):\nStep 1: Area = [0(0 − 50) + 100(50 − 0) + 100(50 − 0) + 0(0 − 50)] / 2\nStep 2: Area = [0 + 5000 + 5000 + 0] / 2\nStep 3: Area = 5000 ft²",
+  "explanation": "A closed traverse's area comes from cross-multiplying consecutive station coordinates in order — no graph paper or planimeter needed.",
+  "id": "eq-civil-engineering-30",
+  "page": 315,
+  "section": "Area formulas",
+  "symbols": {
+   "X_A … X_N": "easting (x) coordinates of traverse stations A through N, in order around the figure",
+   "Y_A … Y_N": "northing (y) coordinates of the same stations"
+  },
+  "title": "Area by coordinates"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(ES = \\text{latest } EF \\text{ of predecessors}\\), \\(EF = ES + D\\)",
+  "example": "Predecessors finish at EF = 6 and EF = 9 days; activity duration D = 4 days:\nStep 1: ES = latest(6, 9) = 9\nStep 2: EF = 9 + 4 = 13",
+  "explanation": "Working forward through the network, each activity starts as soon as its slowest predecessor finishes, and its early finish is its early start plus its duration.",
+  "id": "eq-civil-engineering-31",
+  "page": 315,
+  "section": "CPM Precedence Relationships",
+  "symbols": {
+   "D": "activity duration",
+   "EF": "early finish of the activity",
+   "ES": "early start of the activity"
+  },
+  "title": "CPM forward pass"
+ },
+ {
+  "chapter": "civil-engineering",
+  "equation": "\\(LF = \\text{earliest } LS \\text{ of successors}\\), \\(LS = LF - D\\), \\(\\text{Float} = LS - ES = LF - EF\\)",
+  "example": "Successors start at LS = 15; D = 4 days; ES = 9, EF = 13:\nStep 1: LF = 15\nStep 2: LS = 15 − 4 = 11\nStep 3: Float = 11 − 9 = 2 days",
+  "explanation": "Working backward, each activity must finish before its tightest successor starts; the gap between the early and late dates is the float — zero on the critical path.",
+  "id": "eq-civil-engineering-32",
+  "page": 315,
+  "section": "CPM Precedence Relationships",
+  "symbols": {
+   "D": "activity duration",
+   "Float": "scheduling leeway before the activity delays the project",
+   "LF": "late finish of the activity",
+   "LS": "late start of the activity"
+  },
+  "title": "CPM backward pass and float"
+ }
+]

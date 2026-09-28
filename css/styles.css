@@ -337,3 +337,13 @@ details.card summary + div { margin-top: 16px; }
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .qtime-secs { font-variant-numeric: tabular-nums; font-weight: 600; flex: none; }
+
+/* ---------- Reference view ---------- */
+.hidden { display: none !important; }
+.ref-chapter { margin: 28px 0 4px; }
+.eq-card { scroll-margin-top: 76px; }
+.eq-card:target { border: 2px solid var(--primary); }
+.ref-symbols { margin: 0 0 10px 22px; font-size: 0.92rem; }
+.ref-symbols li { margin-bottom: 4px; }
+.ref-source { font-size: 0.82rem; color: var(--text-2); margin: 8px 0; }
+.ref-card-link { font-size: 0.85rem; font-weight: 600; }
