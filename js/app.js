@@ -188,6 +188,20 @@
       });
     });
     renderResumeBanner();
+    // Restore the right sub-card: navigating here from #/portable (or a tab
+    // reload) must not leave the other device's screens showing.
+    var pend = store.get("portableOut", null);
+    if (pend && pend.createdAt && Date.now() - pend.createdAt > 60 * 60 * 1000) {
+      store.set("portableOut", null); // the code outlived its 60 minutes
+      toast("The old session code expired — start a fresh quiz to make a new one.");
+      pend = null;
+    }
+    if (pend && pend.code) {
+      renderCodeScreen(pend.code, pend.topic); // parked: show the code again
+    } else if (!quiz || quiz.portable) {
+      showOnly("quiz-setup");
+    }
+    // else: a live phone quiz is in progress — leave its card alone.
     var lens = document.getElementById("quiz-lengths");
     if (lens && !lens.dataset.bound) {
       lens.dataset.bound = "1";
@@ -843,12 +857,21 @@
       numAnsweredHandoff: quiz.answers.length,
       answers: quiz.answers.map(copyAnswer),
       elapsedBase: Math.round(totalQuizSecs()),
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      code: code // re-displayed if the tab is reloaded or revisited
     });
     quiz.parked = true;
+    renderCodeScreen(code, quiz.topic);
+  }
+
+  // The parked code screen, rendered either right after generating the code
+  // or restored later from the pending record (tab reload, navigating back
+  // from #/portable). Import/cancel both work from the pending record, so
+  // the in-memory quiz isn't needed here.
+  function renderCodeScreen(code, topic) {
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "1";
-    var html = '<p class="quiz-progress">Session code · ' + escapeHtml(quiz.topic) + "</p>";
+    var html = '<p class="quiz-progress">Session code · ' + escapeHtml(topic || "") + "</p>";
     html += "<h3>Continue on another device</h3>";
     html += '<div class="code-display" id="sc-code" title="Tap to copy">' + escapeHtml(code) + "</div>";
     html += '<p style="margin-top:12px">On the other computer, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact quiz — same questions, right where you left off.</p>';
