@@ -5829,6 +5829,7 @@
    "estimatedTimeSeconds": 120,
    "explanation": "Only the moment component along the hinge axis tends to rotate the bracket about its hinge. Using My = z·Fx − x·Fz gives (−15 + 24) = 9.0 N·m; the positive sign means it acts in the +y direction by the right-hand rule.",
    "id": "statics-022",
+   "diagram": "diagrams/statics-022.svg",
    "question": "A bracket is hinged along the y-axis (the hinge axis passes through the origin). A force \\(\\mathbf{F} = (-60\\mathbf{i} + 25\\mathbf{j} - 40\\mathbf{k})\\) N is applied at the point \\((0.60, 0.10, 0.25)\\) m measured from the origin. What is the scalar moment of the force about the y-axis?",
    "solution": "Refer to the Moments (Couples) section in the Statics chapter of the FE Reference Handbook.\nThe moment about an axis is the corresponding component of \\(\\mathbf{M} = \\mathbf{r} \\times \\mathbf{F}\\).\nAbout the y-axis: \\(M_y = zF_x - xF_z\\).\n\\(M_y = (0.25\\ \\mathrm{m})(-60\\ \\mathrm{N}) - (0.60\\ \\mathrm{m})(-40\\ \\mathrm{N})\\).\n\\(M_y = -15.0\\ \\mathrm{N{\\cdot}m} + 24.0\\ \\mathrm{N{\\cdot}m}\\).\n\\(M_y = 9.0\\ \\mathrm{N{\\cdot}m}\\).",
    "subtopic": "Moment of a force about an axis",
