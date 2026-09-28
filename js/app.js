@@ -39,6 +39,7 @@
 
   // ---- router ------------------------------------------------------------
   function route() {
+    stopQuizTimer(); // navigating away freezes the live timer; resume restarts it
     var name = (location.hash || "#/").replace("#/", "") || "home";
     if (VIEWS.indexOf(name) === -1) name = "home";
     VIEWS.forEach(function (v) {
@@ -61,7 +62,41 @@
   }
 
   // ---- quiz engine -------------------------------------------------------
-  var quiz = null; // { list, idx, correct, topic, answers: [{qid, correct}] }
+  var quiz = null; // { list, idx, correct, topic, answers: [{qid, topic, correct, chosen, secs}] }
+  var quizTick = null; // setInterval handle for the live per-question timer chip
+
+  // Question timers: each question is timed from the moment it renders
+  // until the user answers. Reading the solution afterwards doesn't count.
+  function fmtSecs(s) {
+    s = Math.max(0, Math.round(s));
+    var m = Math.floor(s / 60);
+    return m + ":" + (s % 60 < 10 ? "0" : "") + (s % 60);
+  }
+
+  function totalQuizSecs() {
+    if (!quiz || !quiz.t0) return 0;
+    return (quiz.elapsedBase || 0) + (Date.now() - quiz.t0) / 1000;
+  }
+
+  function stopQuizTimer() {
+    if (quizTick) { clearInterval(quizTick); quizTick = null; }
+    if (quiz) quiz.qStart = null;
+  }
+
+  function updateTimerChip() {
+    var qEl = document.getElementById("qt-q");
+    if (!qEl || !quiz || !quiz.qStart) return;
+    qEl.textContent = fmtSecs((Date.now() - quiz.qStart) / 1000);
+    var tEl = document.getElementById("qt-t");
+    if (tEl) tEl.textContent = fmtSecs(totalQuizSecs());
+  }
+
+  function startQuizTimer() {
+    stopQuizTimer();
+    quiz.qStart = Date.now();
+    updateTimerChip();
+    quizTick = setInterval(updateTimerChip, 500);
+  }
 
   function initPractice() {
     loadQuestions(function (qs) {
@@ -128,7 +163,8 @@
       var n = Math.min(selectedLength(), pool.length);
       quiz = {
         list: shuffle(pool).slice(0, n),
-        idx: 0, correct: 0, topic: topic || "All topics", answers: []
+        idx: 0, correct: 0, topic: topic || "All topics", answers: [],
+        t0: Date.now(), elapsedBase: 0, qStart: null
       };
       saveProgress();
       renderQuestion();
@@ -148,6 +184,7 @@
       correct: quiz.correct,
       topic: quiz.topic,
       answers: quiz.answers,
+      elapsedSecs: Math.round(totalQuizSecs()),
       savedAt: Date.now()
     });
   }
@@ -167,7 +204,10 @@
         idx: Math.min(saved.idx || 0, list.length - 1),
         correct: saved.correct || 0,
         topic: saved.topic || "Saved quiz",
-        answers: saved.answers || []
+        answers: saved.answers || [],
+        t0: Date.now(),
+        elapsedBase: saved.elapsedSecs || 0,
+        qStart: null
       };
       renderQuestion();
       showOnly("quiz-run");
@@ -184,7 +224,9 @@
     el.innerHTML = '<div class="resume-banner"><div><strong>Unfinished quiz</strong><br>' +
       '<span class="muted">' + escapeHtml(saved.topic || "") + " · question " +
       ((saved.idx || 0) + 1) + " of " + saved.qids.length + " · " +
-      (saved.correct || 0) + " correct so far</span></div>" +
+      (saved.correct || 0) + " correct so far" +
+      (saved.elapsedSecs ? " · ⏱ " + fmtSecs(saved.elapsedSecs) + " elapsed" : "") +
+      "</span></div>" +
       '<div class="resume-actions"><button id="quiz-resume-btn" class="btn primary">Resume</button>' +
       '<button id="quiz-discard-btn" class="btn text">Discard</button></div></div>';
     el.classList.remove("hidden");
@@ -217,7 +259,8 @@
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
     var html = '<p class="quiz-progress">Question ' + (quiz.idx + 1) + " of " +
-      quiz.list.length + " · " + escapeHtml(quiz.topic) + "</p>";
+      quiz.list.length + " · " + escapeHtml(quiz.topic) +
+      ' <span class="timer-chip" title="Time on this question · total quiz time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b> total</span></p>';
     html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
       escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
@@ -243,10 +286,19 @@
       else showResult();
     });
     // Restoring a saved quiz where the current question was already answered:
-    // show it in its answered state without re-logging anything.
+    // show it in its answered state without re-logging anything, with the
+    // recorded time frozen on the chip. Otherwise start the question timer.
     var prev = quiz.answers.length ? quiz.answers[quiz.answers.length - 1] : null;
     if (prev && prev.qid === q.id && typeof prev.chosen === "number") {
       revealAnswer(q, prev.chosen, prev.correct);
+      stopQuizTimer();
+      var qEl = document.getElementById("qt-q");
+      if (qEl) qEl.textContent = fmtSecs(prev.secs || 0);
+      var tEl = document.getElementById("qt-t");
+      if (tEl) tEl.textContent = fmtSecs(totalQuizSecs());
+    }
+    else {
+      startQuizTimer();
     }
   }
 
@@ -255,8 +307,12 @@
     if (box.dataset.answered) return;
     var q = quiz.list[quiz.idx];
     var ok = i === q.answerIndex;
+    var secs = quiz.qStart ? Math.round((Date.now() - quiz.qStart) / 1000) : 0;
+    stopQuizTimer();
+    var qEl = document.getElementById("qt-q");
+    if (qEl) qEl.textContent = fmtSecs(secs); // freeze the chip at answer time
     if (ok) quiz.correct++;
-    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: i });
+    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: i, secs: secs });
     logAttempt(q, ok);
     revealAnswer(q, i, ok);
     saveProgress();
@@ -296,11 +352,41 @@
   }
 
   function showResult() {
+    stopQuizTimer();
     var box = document.getElementById("quiz-result");
     var pct = Math.round(100 * quiz.correct / quiz.list.length);
+    var timed = quiz.answers.filter(function (a) { return typeof a.secs === "number"; });
+    var totalSecs = Math.round(totalQuizSecs());
+    var avgSecs = timed.length
+      ? Math.round(timed.reduce(function (s, a) { return s + a.secs; }, 0) / timed.length)
+      : 0;
+    quiz.totalSecs = totalSecs;
+    quiz.avgSecs = avgSecs;
     var html = "<h3>Quiz complete</h3>";
     html += '<p class="result-score">' + quiz.correct + "/" + quiz.list.length +
       " <span>(" + pct + "%)</span></p>";
+    // Timing summary vs real FE exam pace (110 questions in 5h20m ≈ 2:55 each).
+    var FE_PACE_SECS = 175;
+    html += '<p class="time-summary">⏱ Total ' + fmtSecs(totalSecs) +
+      " · avg " + fmtSecs(avgSecs) + " per question</p>";
+    if (avgSecs > 0) {
+      var onPace = avgSecs <= FE_PACE_SECS;
+      html += '<p class="pace-note ' + (onPace ? "good" : "warn") + '">' +
+        (onPace
+          ? "On exam pace — the real FE allows about 2:55 per question."
+          : "Over exam pace — the real FE allows about 2:55 per question. Speed comes with reps.") +
+        "</p>";
+    }
+    // Per-question time breakdown, in quiz order.
+    html += '<div class="qtime-list">';
+    quiz.answers.forEach(function (a, n) {
+      html += '<div class="qtime-row"><span class="qtime-n">Q' + (n + 1) + "</span>" +
+        '<span class="qtime-mark ' + (a.correct ? "good" : "bad") + '">' +
+        (a.correct ? "✓" : "✗") + "</span>" +
+        '<span class="qtime-topic">' + escapeHtml(a.topic || "") + "</span>" +
+        '<span class="qtime-secs">' + fmtSecs(a.secs || 0) + "</span></div>";
+    });
+    html += "</div>";
     html += '<div class="quiz-nav"><button id="quiz-again" class="btn primary">New quiz</button> ' +
       '<button id="quiz-share" class="btn">Share my score</button> ' +
       '<a class="btn" href="#/analytics">View analytics</a></div>';
@@ -501,7 +587,9 @@
       total: quiz.list.length,
       pct: Math.round(100 * quiz.correct / quiz.list.length),
       scope: quiz.topic,
-      missed: missed
+      missed: missed,
+      totalSecs: quiz.totalSecs || 0,
+      avgSecs: quiz.avgSecs || 0
     });
     store.set("sessions", sessions.slice(-100));
   }
