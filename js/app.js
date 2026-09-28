@@ -988,6 +988,14 @@
     }).join(" ");
   }
 
+  // Symbol names render as inline KaTeX math; plain multi-letter words
+  // (e.g. "Float", "theta") stay as regular text.
+  function symNameHtml(s) {
+    var t = String(s);
+    if (/^[A-Za-z]{2,}$/.test(t)) return escapeHtml(t);
+    return texHtml(t, false);
+  }
+
   function refSymbolsHtml(e) {
     if (!e.symbols) return "";
     if (typeof e.symbols === "string") {
@@ -999,13 +1007,13 @@
         if (typeof s === "string") {
           items.push("<li>" + escapeHtml(s) + "</li>");
         } else {
-          items.push("<li><strong>" + escapeHtml(s.symbol || "") + "</strong> &mdash; " +
+          items.push("<li><strong>" + symNameHtml(s.symbol || "") + "</strong> &mdash; " +
             escapeHtml(s.meaning || s.definition || "") + "</li>");
         }
       });
     } else {
       Object.keys(e.symbols).forEach(function (k) {
-        items.push("<li><strong>" + escapeHtml(k) + "</strong> &mdash; " +
+        items.push("<li><strong>" + symNameHtml(k) + "</strong> &mdash; " +
           escapeHtml(e.symbols[k]) + "</li>");
       });
     }
