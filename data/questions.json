@@ -7262,6 +7262,431 @@
    "solution": "Refer to the Gravity Model section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(T_{i1}\\\\). The handbook prints:\n\n$$T_{ij} = P_i\\\\frac{A_j F_{ij} K_{ij}}{\\\\sum_j A_j F_{ij} K_{ij}}$$\n\nCompute the denominator (sum over both destinations):\n\n$$\\\\sum = (3{,}000)(0.5)(1) + (2{,}000)(0.8)(1) = 1{,}500 + 1{,}600 = 3{,}100$$\n\n$$(T_{i1}) = 5{,}000\\\\frac{1{,}500}{3{,}100} = 5{,}000(0.48387) = 2{,}419$$",
    "subtopic": "Gravity model (trip distribution)",
    "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "4.86 hr",
+    "5.83 hr",
+    "6.48 hr",
+    "7.20 hr"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "A learning curve below 100% means each doubling of repetitions cuts the time per unit. The exponent s is negative and comes from the log of the learning rate -- a common slip is using the rate itself as the exponent.",
+   "id": "construction-027",
+   "question": "An assembly task follows a 90% learning curve. The first unit takes 8.0 hours to complete. How long will the 8th unit take?",
+   "solution": "Refer to the Learning Curves section in the Industrial and Systems Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(T_8\\\\). The handbook prints:\n\n$$T_N = K N^s$$\n\nwhere \\\\(s = \\\\ln(\\\\text{learning rate})/\\\\ln 2\\\\).\n\nCompute the exponent:\n\n$$(s) = \\\\frac{\\\\ln(0.90)}{\\\\ln 2} = \\\\frac{-0.10536}{0.69315} = -0.1520$$\n\n$$(T_8) = (8.0)(8)^{-0.1520} = (8.0)(0.7290) = 5.83 \\\\text{ hr}$$",
+   "subtopic": "Learning curve (repetition time)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "CV = -$30,000, SV = -$20,000",
+    "CV = -$20,000, SV = -$30,000",
+    "CV = +$30,000, SV = +$20,000",
+    "CV = -$30,000, SV = +$20,000"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Variances compare earned value against actual cost (cost variance) and against planned value (schedule variance). Negative means bad news on both: over budget and behind schedule.",
+   "id": "construction-028",
+   "question": "At a project review, the budgeted cost of work scheduled is $200,000, the budgeted cost of work performed is $180,000, and the actual cost of work performed is $210,000. What are the cost variance and the schedule variance?",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(CV\\\\) and \\\\(SV\\\\). The handbook prints:\n\n$$\\\\begin{aligned}\nCV &= BCWP - ACWP \\\\\\\\\nSV &= BCWP - BCWS\n\\\\end{aligned}$$\n\n$$(CV) = 180{,}000 - 210{,}000 = -30{,}000$$\n\n$$(SV) = 180{,}000 - 200{,}000 = -20{,}000$$\n\nBoth variances are negative: the project is over budget and behind schedule.",
+   "subtopic": "Earned value (cost and schedule variance)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "2.14 kN",
+    "3.00 kN",
+    "4.28 kN",
+    "5.71 kN"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Tangential kinetics sums ALL tangential forces -- the tires must overcome both the inertia term and the downslope component of the weight. On level ground the weight term vanishes.",
+   "id": "dynamics-028",
+   "question": "A 1500-kg car accelerates at 2.0 m/s^2 up a 5-degree incline. Neglecting air resistance and rolling resistance, what tractive force must the tires develop?",
+   "solution": "Refer to the Normal and Tangential Kinetics for Planar Problems section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the tractive force \\\\(F\\\\). The handbook prints:\n\n$$\\\\sum F_t = m a_t$$\n\nSumming forces along the incline (positive uphill):\n\n$$(F - mg\\\\sin 5^\\\\circ) = m a_t$$\n\n$$(F) = (1500)(2.0) + (1500)(9.81)\\\\sin 5^\\\\circ$$\n\n$$(F) = 3{,}000 + 1{,}283 = 4{,}283 \\\\text{ N} = 4.28 \\\\text{ kN}$$",
+   "subtopic": "Tangential kinetics (accelerating on a grade)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "$23,674",
+    "$26,362",
+    "$29,567",
+    "$31,874"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "End-of-period deposits form a uniform series. The (F/A) factor compounds each deposit for its remaining life -- the first deposit earns interest for 9 years, the last earns none.",
+   "id": "econ-027",
+   "question": "$2,000 is deposited at the end of each year for 10 years into an account earning 6% annual interest. What is the future worth of the deposits?",
+   "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(F\\\\). The handbook prints the uniform-series compound-amount factor:\n\n$$(F) = A(F/A, i\\\\%, n)$$\n\n$$\\\\left(\\\\frac{F}{A}, 6\\\\%, 10\\\\right) = \\\\frac{(1.06)^{10} - 1}{0.06} = 13.1808$$\n\n$$(F) = (2{,}000)(13.1808) = 26{,}361.60 \\\\approx \\\\$26{,}362$$",
+   "subtopic": "Uniform series future worth (F/A)",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "$190,000",
+    "$210,000",
+    "$280,000",
+    "$370,000"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Taxable income subtracts both ordinary expenses and depreciation from revenue. Depreciation is a non-cash charge, but it still shelters income from tax.",
+   "id": "econ-028",
+   "question": "A company has annual revenue of $800,000, ordinary operating expenses of $520,000, and depreciation of $90,000. What is its taxable income?",
+   "solution": "Refer to the Taxation section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for taxable income. The handbook prints:\n\n$$\\\\text{Taxable income} = \\\\text{total income} - \\\\text{depreciation} - \\\\text{ordinary expenses}$$\n\n$$(\\\\text{Taxable income}) = 800{,}000 - 90{,}000 - 520{,}000 = \\\\$190{,}000$$",
+   "subtopic": "Taxable income",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "It is fine as long as the side work is done on personal time",
+    "The engineer must disclose the outside work and avoid the conflict",
+    "It is allowed if the side client pays a higher fee",
+    "Only licensed PEs are restricted from outside work"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Personal time does not erase loyalty: a faithful agent cannot secretly serve a competitor of the employer. Disclosure comes first -- the employer then decides whether the conflict is acceptable.",
+   "id": "ethics-027",
+   "question": "An engineer employed full-time by a design firm takes on weekend design work for a developer who competes directly with the firm's clients, without telling the firm. What does the NSPE Code of Ethics require?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must decide what the Code requires. NSPE Code II.4 requires engineers to act for each employer or client as faithful agents and trustees.\n\nSecretly designing for a competitor of the employer's clients serves an interest adverse to the employer -- it cannot be squared with faithful agency, no matter when the hours are worked.\n\nThe engineer must therefore disclose the outside work to the employer and avoid the conflict.\n\nPersonal time, a higher fee, and licensure status do not cure an undisclosed conflict of interest.",
+   "subtopic": "Moonlighting (outside employment)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "It is acceptable if the gift is worth less than $100",
+    "It is prohibited as an improper attempt to influence the award",
+    "It is allowed if the official discloses the gift",
+    "It is only prohibited for federal contracts"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Honest competition means winning on qualifications and price. A personal gift to the decision-maker is an attempt to buy influence, regardless of the dollar amount or the level of government.",
+   "id": "ethics-028",
+   "question": "An engineer offers an expensive personal gift to a public procurement official while the official is evaluating the engineer's proposal. Which principle does this violate?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must identify the violated principle. NSPE Code II.5 requires engineers to avoid deceptive acts, and the Code's professional obligations forbid attempting to obtain employment or advancement by improper means.\n\nOffering a personal gift to the official evaluating the proposal is an attempt to influence the award through means other than merit.\n\nThis is prohibited as an improper attempt to influence the award.\n\nA dollar threshold, disclosure by the recipient, or the level of government does not make buying influence ethical.",
+   "subtopic": "Improper gifts to public officials",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3.0 m/s",
+    "6.0 m/s",
+    "9.0 m/s",
+    "12.0 m/s"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Steady incompressible flow keeps the volume flow rate constant, so velocity scales with the inverse of area -- halving the diameter quadruples the velocity, not doubles it.",
+   "id": "fluid-027",
+   "question": "Water flows steadily through a pipe that narrows from a diameter of 200 mm to a diameter of 100 mm. The velocity in the larger section is 1.5 m/s. What is the velocity in the smaller section?",
+   "solution": "Refer to The Continuity Equation (Conservation of Mass) in the Principles of One-Dimensional Fluid Flow section of the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(V_2\\\\). For steady incompressible flow:\n\n$$(A_1 V_1) = (A_2 V_2)$$\n\n$$(V_2) = V_1\\\\left(\\\\frac{D_1}{D_2}\\\\right)^2 = (1.5)\\\\left(\\\\frac{200}{100}\\\\right)^2$$\n\n$$(V_2) = (1.5)(4) = 6.0 \\\\text{ m/s}$$",
+   "subtopic": "Continuity equation (pipe constriction)",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "2.63 m/s",
+    "3.71 m/s",
+    "5.24 m/s",
+    "7.42 m/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The energy line sits one velocity head above the hydraulic grade line. Their vertical separation IS the velocity head -- no need for the pressure or the elevation individually.",
+   "id": "fluid-028",
+   "question": "At a section of a pipe carrying water, the energy line is 3.2 m above the datum and the hydraulic grade line is 2.5 m above the datum. What is the flow velocity at that section?",
+   "solution": "Refer to the Hydraulic Gradient (Grade Line) section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(V\\\\). The handbook prints that the difference between the energy line and the hydraulic grade line is the velocity-head term:\n\n$$\\\\frac{V^2}{2g} = (\\\\text{energy line}) - (\\\\text{HGL}) = 3.2 - 2.5 = 0.70 \\\\text{ m}$$\n\n$$(V) = \\\\sqrt{2(9.81)(0.70)} = \\\\sqrt{13.734} = 3.71 \\\\text{ m/s}$$",
+   "subtopic": "Energy line and hydraulic grade line",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "8",
+    "11",
+    "14",
+    "18"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The group index penalizes fines, high liquid limit, and high plasticity separately -- compute each term with F, LL, and PI as whole numbers, then round the sum to the nearest integer.",
+   "id": "geotech-027",
+   "question": "A soil has 65% passing the No. 200 sieve, a liquid limit of 50, and a plasticity index of 22. What is its AASHTO group index?",
+   "solution": "Refer to the AASHTO Soil Classification section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(GI\\\\). The handbook prints:\n\n$$GI = (F - 35)[0.2 + 0.005(LL - 40)] + 0.01(F - 15)(PI - 10)$$\n\n$$(GI) = (65 - 35)[0.2 + 0.005(50 - 40)] + 0.01(65 - 15)(22 - 10)$$\n\n$$(GI) = (30)(0.25) + 0.01(50)(12) = 7.5 + 6.0 = 13.5 \\\\approx 14$$",
+   "subtopic": "AASHTO group index",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.67",
+    "2.50",
+    "3.33",
+    "5.00"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Overturning stability compares the moments that hold the wall down against the moments trying to tip it, both taken about the toe. The lateral force overturns; the wall weight resists.",
+   "id": "geotech-028",
+   "question": "A gravity retaining wall weighs 120 kN/m acting 1.5 m from the toe. The active earth pressure resultant is 45 kN/m acting 1.2 m above the base. What is the factor of safety against overturning?",
+   "solution": "Refer to the Retaining Walls section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(FS_{overturning}\\\\). The handbook prints:\n\n$$FS_{overturning} = \\\\frac{\\\\sum M_R}{\\\\sum M_O}$$\n\n$$\\\\begin{aligned}\n\\\\sum M_R &= (120)(1.5) = 180 \\\\text{ kN-m/m} \\\\\\\\\n\\\\sum M_O &= (45)(1.2) = 54 \\\\text{ kN-m/m}\n\\\\end{aligned}$$\n\n$$(FS_{overturning}) = \\\\frac{180}{54} = 3.33$$",
+   "subtopic": "Retaining wall factor of safety (overturning)",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.0 x 10^-8 kg/(m^2-s)",
+    "2.5 x 10^-8 kg/(m^2-s)",
+    "4.0 x 10^-8 kg/(m^2-s)",
+    "1.0 x 10^-7 kg/(m^2-s)"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Fick's first law drives flux down the concentration gradient -- the negative sign cancels the negative gradient, so flux is positive in the direction of decreasing concentration. Thickness must be in meters.",
+   "id": "materials-027",
+   "question": "Carbon diffuses through a steel plate. The diffusion coefficient is 2.5 x 10^-11 m^2/s. The carbon concentration drops from 1.2 kg/m^3 to 0.4 kg/m^3 across the 2-mm plate thickness. What is the steady-state diffusion flux?",
+   "solution": "Refer to the Diffusion (Fick's First Law) section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(J\\\\). The handbook prints:\n\n$$J = -D\\\\frac{dC}{dx}$$\n\nThe concentration gradient across the plate is:\n\n$$\\\\left(\\\\frac{dC}{dx}\\\\right) = \\\\frac{0.4 - 1.2}{0.002} = -400 \\\\text{ kg/m}^4$$\n\n$$(J) = -(2.5 \\\\times 10^{-11})(-400) = 1.0 \\\\times 10^{-8} \\\\text{ kg/(m}^2\\\\text{-s)}$$",
+   "subtopic": "Fick's first law (diffusion flux)",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "5",
+    "6",
+    "7",
+    "8"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The ASTM relation is a power of two: each increment of the grain size number doubles the grain count. Count 64 = 2^6, then add one for the offset in the definition.",
+   "id": "materials-028",
+   "question": "A metallographic sample shows 64 grains within the standard 0.0645 mm^2 area at 100x magnification. What is the ASTM grain size number?",
+   "solution": "Refer to the ASTM Grain Size section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(n\\\\). The handbook prints:\n\n$$N = 2^{n-1}$$\n\nwhere \\\\(N\\\\) is the number of grains in 0.0645 mm^2.\n\n$$(64) = 2^{n-1}$$\n\n$$(n - 1) = 6$$\n\n$$(n) = 7$$",
+   "subtopic": "ASTM grain size number",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "2.67",
+    "3.00",
+    "3.33",
+    "4.00"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The trapezoidal rule averages the endpoint heights of each subinterval. For a convex-up function it overestimates -- the exact value 2.67 is the trap answer here, not the trapezoidal estimate.",
+   "id": "math-028",
+   "question": "Use the trapezoidal rule with n = 2 subintervals to approximate the integral from 0 to 2 of x^2 dx.",
+   "solution": "Refer to the Trapezoidal Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the trapezoidal estimate. The handbook prints, with \\\\(h = (b-a)/n\\\\):\n\n$$\\\\int_a^b f(x)\\\\,dx \\\\approx \\\\frac{h}{2}[f(x_0) + 2f(x_1) + f(x_2)]$$\n\n$$(h) = \\\\frac{2 - 0}{2} = 1$$\n\n$$\\\\approx \\\\frac{1}{2}[(0)^2 + 2(1)^2 + (2)^2] = \\\\frac{1}{2}(6) = 3.00$$",
+   "subtopic": "Trapezoidal rule",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "114 GPa",
+    "133 GPa",
+    "152 GPa",
+    "167 GPa"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The bulk modulus links E and Poisson's ratio for hydrostatic loading. As Poisson's ratio approaches 0.5 (incompressible), the denominator shrinks and K grows large.",
+   "id": "mechmat-028",
+   "question": "A metal has a modulus of elasticity of 200 GPa and a Poisson's ratio of 0.28. What is its bulk modulus?",
+   "solution": "Refer to the Bulk (Volume) Modulus of Elasticity section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(K\\\\). The handbook prints:\n\n$$K = \\\\frac{E}{3(1 - 2\\\\nu)}$$\n\n$$(K) = \\\\frac{200}{3[1 - 2(0.28)]} = \\\\frac{200}{3(0.44)}$$\n\n$$(K) = \\\\frac{200}{1.32} = 151.5 \\\\text{ GPa} \\\\approx 152 \\\\text{ GPa}$$",
+   "subtopic": "Bulk (volume) modulus of elasticity",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "28.9 mm",
+    "57.7 mm",
+    "81.6 mm",
+    "115.5 mm"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The radius of gyration packs the second moment of area into an equivalent distance: r = sqrt(I/A). Use the centroidal I = bh^3/12 -- the parallel-axis value about the base gives the 115.5 mm trap.",
+   "id": "statics-028",
+   "question": "A rectangular cross-section is 100 mm wide and 200 mm deep. What is the radius of gyration about its horizontal centroidal axis?",
+   "solution": "Refer to the Radius of Gyration section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(r_x\\\\). The handbook prints:\n\n$$r_x = \\\\sqrt{\\\\frac{I_x}{A}}$$\n\n$$\\\\begin{aligned}\nI_x &= \\\\frac{bh^3}{12} = \\\\frac{(100)(200)^3}{12} = 66.67 \\\\times 10^6 \\\\text{ mm}^4 \\\\\\\\\nA &= (100)(200) = 20{,}000 \\\\text{ mm}^2\n\\\\end{aligned}$$\n\n$$(r_x) = \\\\sqrt{\\\\frac{66.67 \\\\times 10^6}{20{,}000}} = \\\\sqrt{3{,}333} = 57.7 \\\\text{ mm}$$",
+   "subtopic": "Radius of gyration",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Mean 50, SD 12",
+    "Mean 50, SD 2",
+    "Mean 50, SD 0.33",
+    "Mean 8.33, SD 2"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The Central Limit Theorem centers the sampling distribution on the population mean and shrinks its spread by the square root of the sample size -- the population shape does not matter for large n.",
+   "id": "stats-028",
+   "question": "A population has a mean of 50 and a standard deviation of 12. For random samples of n = 36, what are the mean and standard deviation of the sampling distribution of the sample mean?",
+   "solution": "Refer to The Central Limit Theorem in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the sampling distribution parameters. The handbook prints that for large \\\\(n\\\\), the sample mean is approximately normal with:\n\n$$\\\\begin{aligned}\n\\\\mu_{\\\\bar{x}} &= \\\\mu \\\\\\\\\n\\\\sigma_{\\\\bar{x}} &= \\\\frac{\\\\sigma}{\\\\sqrt{n}}\n\\\\end{aligned}$$\n\n$$(\\\\mu_{\\\\bar{x}}) = 50$$\n\n$$(\\\\sigma_{\\\\bar{x}}) = \\\\frac{12}{\\\\sqrt{36}} = \\\\frac{12}{6} = 2$$",
+   "subtopic": "Central limit theorem (sampling distribution)",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "10.88 m from the left support",
+    "12.00 m from the left support",
+    "13.13 m from the left support",
+    "14.25 m from the left support"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The absolute maximum moment falls under the load nearest the resultant when the resultant and that load sit equidistant from midspan. The 10.88 m choice is where the resultant sits -- a different question.",
+   "id": "structural-027",
+   "question": "Two moving concentrated loads, 30 kN and 50 kN spaced 6 m apart, cross a 24-m simply supported beam. For the absolute maximum moment under the 50-kN load, where should the 50-kN load be positioned?",
+   "solution": "Refer to the Moving Concentrated Load Sets section in the Structural Analysis chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must position the load set. The handbook prints that the absolute maximum moment occurs when the resultant of the load set and the adjacent load are equidistant from the beam centerline.\n\nLocate the resultant relative to the 50-kN load:\n\n$$(\\\\bar{x}) = \\\\frac{(30)(6)}{30 + 50} = 2.25 \\\\text{ m from the 50-kN load}$$\n\nEach sits half this distance from midspan (12 m):\n\n$$(x_{50}) = 12 + \\\\frac{2.25}{2} = 13.13 \\\\text{ m from the left support}$$",
+   "subtopic": "Moving concentrated loads (absolute maximum moment)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "84 kips",
+    "124 kips",
+    "216 kips",
+    "232 kips"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Check every applicable combination -- the winner is not always the one with the biggest live load. Here the wind combination edges out the gravity-only case.",
+   "id": "structural-028",
+   "question": "A beam carries a dead load of 60 kips, a live load of 90 kips, and a wind load of 70 kips. What is the controlling LRFD factored load?",
+   "solution": "Refer to the Load Combinations using Strength Design (LRFD) section in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the largest factored load. The handbook prints:\n\n$$\\\\begin{aligned}\n1.4D &= 1.4(60) = 84 \\\\text{ kips} \\\\\\\\\n1.2D + 1.6L &= 1.2(60) + 1.6(90) = 216 \\\\text{ kips} \\\\\\\\\n1.2D + 1.0W + L &= 1.2(60) + 70 + 90 = 232 \\\\text{ kips} \\\\\\\\\n0.9D + 1.0W &= 0.9(60) + 70 = 124 \\\\text{ kips}\n\\\\end{aligned}$$\n\nThe controlling factored load is 232 kips.",
+   "subtopic": "LRFD load combination (controlling factored load)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "890 ft",
+    "1112 ft",
+    "1335 ft",
+    "1602 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "For standard driver eye and object heights, the crest formula collapses to L = A*S^2/2158. The sight distance enters squared -- doubling S quadruples the required length.",
+   "id": "surveying-027",
+   "question": "A crest vertical curve has grades changing by A = 8%. For a required stopping sight distance of 600 ft, what minimum curve length satisfies the standard SSD criteria (S <= L)?",
+   "solution": "Refer to the Vertical Curves: Sight Distance Related to Curve Length section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(L\\\\). The handbook prints, for standard criteria (\\\\(h_1 = 3.50\\\\) ft, \\\\(h_2 = 2.0\\\\) ft) with \\\\(S \\\\le L\\\\):\n\n$$(L) = \\\\frac{AS^2}{2158}$$\n\n$$(L) = \\\\frac{(8)(600)^2}{2158} = \\\\frac{2{,}880{,}000}{2158} = 1{,}335 \\\\text{ ft}$$",
+   "subtopic": "Crest vertical curve length (stopping sight distance)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "360 ft",
+    "450 ft",
+    "540 ft",
+    "630 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The spiral eases drivers into the curve -- its length grows with the cube of speed, so small speed changes matter a lot. The default lateral-acceleration rate is 1 ft/s^3.",
+   "id": "surveying-028",
+   "question": "A highway curve with radius 2000 ft is designed for 70 mph. Using the default rate of increase of lateral acceleration, what is the spiral transition length?",
+   "solution": "Refer to the Spiral Transition Length section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(L_s\\\\). The handbook prints:\n\n$$(L_s) = \\\\frac{3.15V^3}{RC}$$\n\nwith \\\\(C = 1 \\\\text{ ft/s}^3\\\\) unless stated otherwise.\n\n$$(L_s) = \\\\frac{3.15(70)^3}{(2000)(1)} = \\\\frac{1{,}080{,}450}{2000} = 540 \\\\text{ ft}$$",
+   "subtopic": "Spiral transition curve length",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.622",
+    "0.731",
+    "0.818",
+    "0.875"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The logit model exponentiates each utility and normalizes -- both modes appear in the denominator. Using 1 instead of e^(U_transit) is the classic slip.",
+   "id": "transportation-027",
+   "question": "A traveler's utility for driving is 1.5 and for transit is 0.5. Using a binary logit model, what is the probability the traveler chooses to drive?",
+   "solution": "Refer to the Logit Models section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(P_{auto}\\\\). The handbook prints:\n\n$$(P_A) = \\\\frac{e^{U_A}}{e^{U_A} + e^{U_T}}$$\n\n$$(P_A) = \\\\frac{e^{1.5}}{e^{1.5} + e^{0.5}} = \\\\frac{4.4817}{4.4817 + 1.6487}$$\n\n$$(P_A) = \\\\frac{4.4817}{6.1304} = 0.731$$",
+   "subtopic": "Logit model (mode split)",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "14",
+    "18",
+    "20",
+    "27"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The reduction factor applies to the expected crashes, then scales with the traffic change -- more exposure after the fix means more crashes prevented in absolute terms.",
+   "id": "transportation-028",
+   "question": "A countermeasure with a crash reduction factor of 0.30 is installed at a site averaging 60 crashes per year. Traffic grows so that ADT after the improvement is 9000 versus 8000 before. How many crashes per year are prevented?",
+   "solution": "Refer to the Crash Reduction section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for crashes prevented. The handbook prints:\n\n$$\\\\text{Crashes prevented} = N \\\\times CR \\\\times \\\\frac{\\\\text{ADT after}}{\\\\text{ADT before}}$$\n\n$$(\\\\text{Crashes prevented}) = (60)(0.30)\\\\frac{9000}{8000} = (18)(1.125) = 20.25 \\\\approx 20$$",
+   "subtopic": "Crash reduction (countermeasure)",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "5 mm/day",
+    "7 mm/day",
+    "10 mm/day",
+    "14 mm/day"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Pans evaporate faster than lakes because their small water body heats up more. The pan coefficient scales the pan reading down -- a value above 1.0 would be physically backwards here.",
+   "id": "water-027",
+   "question": "A evaporation pan records 10 mm/day of evaporation. Using the common pan coefficient, estimate the lake evaporation.",
+   "solution": "Refer to the Pan Evaporation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(E_L\\\\). The handbook prints:\n\n$$(E_L) = P_c E_p$$\n\nwith a common \\\\(P_c = 0.7\\\\).\n\n$$(E_L) = (0.7)(10) = 7 \\\\text{ mm/day}$$",
+   "subtopic": "Lake evaporation (pan coefficient)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "10 gpm/ft",
+    "15 gpm/ft",
+    "20 gpm/ft",
+    "30 gpm/ft"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Specific capacity is discharge per foot of drawdown -- a quick field measure of well productivity. It is a ratio, not a product: dividing the small number by the big one is the trap.",
+   "id": "water-028",
+   "question": "A pumping well discharges 450 gpm with a steady drawdown of 30 ft. What is the specific capacity of the well?",
+   "solution": "Refer to the Well Drawdown section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for specific capacity. The handbook prints:\n\n$$\\\\text{Specific capacity} = \\\\frac{Q}{D_w}$$\n\n$$(\\\\text{Specific capacity}) = \\\\frac{450}{30} = 15 \\\\text{ gpm/ft}$$",
+   "subtopic": "Well specific capacity",
+   "topic": "Water Resources"
   }
  ]
 }
