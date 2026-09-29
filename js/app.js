@@ -114,6 +114,18 @@
     loadQuestions(function (qs) {
       var el = document.getElementById("stat-questions");
       if (el) el.textContent = qs.length > 0 ? qs.length : "–";
+      var rEl = document.getElementById("stat-readiness");
+      if (rEl) {
+        var nAtt = store.get("attempts", []).length;
+        if (nAtt) {
+          var rp = readiness().pct;
+          rEl.textContent = rp + "%";
+          rEl.className = readinessClass(rp);
+        } else {
+          rEl.textContent = "–";
+          rEl.className = "";
+        }
+      }
       var chEl = document.getElementById("stat-chapters");
       if (chEl) {
         loadChapters(function (chapters) {
@@ -202,7 +214,23 @@
       showOnly("quiz-setup");
     }
     // else: a live phone quiz is in progress — leave its card alone.
-    var lens = document.getElementById("quiz-lengths");
+    bindLengthRow("quiz-lengths");
+    bindLengthRow("adaptive-lengths");
+    var start = document.getElementById("quiz-start");
+    if (start && !start.dataset.bound) {
+      start.dataset.bound = "1";
+      start.addEventListener("click", startQuiz);
+    }
+    var aStart = document.getElementById("adaptive-start");
+    if (aStart && !aStart.dataset.bound) {
+      aStart.dataset.bound = "1";
+      aStart.addEventListener("click", startAdaptiveQuiz);
+    }
+    renderAdaptivePanel();
+  }
+
+  function bindLengthRow(id) {
+    var lens = document.getElementById(id);
     if (lens && !lens.dataset.bound) {
       lens.dataset.bound = "1";
       lens.addEventListener("click", function (e) {
@@ -213,11 +241,6 @@
         });
         b.classList.add("selected");
       });
-    }
-    var start = document.getElementById("quiz-start");
-    if (start && !start.dataset.bound) {
-      start.dataset.bound = "1";
-      start.addEventListener("click", startQuiz);
     }
   }
 
@@ -557,6 +580,8 @@
       idx: quiz.idx,
       correct: quiz.correct,
       topic: quiz.topic,
+      mode: quiz.mode || null,
+      masteryBefore: quiz.masteryBefore || null,
       answers: quiz.answers,
       elapsedSecs: Math.round(totalQuizSecs()),
       savedAt: Date.now()
@@ -578,6 +603,8 @@
         idx: Math.min(saved.idx || 0, list.length - 1),
         correct: saved.correct || 0,
         topic: saved.topic || "Saved quiz",
+        mode: saved.mode || null,
+        masteryBefore: saved.masteryBefore || null,
         answers: saved.answers || [],
         t0: Date.now(),
         elapsedBase: saved.elapsedSecs || 0,
@@ -804,6 +831,7 @@
         '<span class="qtime-secs">' + fmtSecs(a.secs || 0) + "</span></div>";
     });
     html += "</div>";
+    if (quiz && quiz.mode === "adaptive") { html += adaptiveResultHtml(); }
     html += '<div class="quiz-nav"><button id="quiz-again" class="btn primary">New quiz</button> ' +
       '<button id="quiz-share" class="btn">Share my score</button> ' +
       '<a class="btn" href="#/analytics">View analytics</a></div>';
@@ -1375,6 +1403,236 @@
       if (QUESTIONS[i].id === id) return QUESTIONS[i];
     }
     return null;
+  }
+
+  // ---- adaptive practice ---------------------------------------------------
+  // NCEES FE Civil CBT Exam Specifications (effective July 2020, 110
+  // questions): midpoints of the official per-section question ranges.
+  // "Mathematics and Statistics" (8-12) is split 6.5 / 3.5 across the
+  // bank's separate Mathematics and Statistics topics; "Water Resources and
+  // Environmental Engineering" (8-12) counts fully toward the bank's Water
+  // Resources topic. Midpoints sum to 120 (ranges are approximate), so
+  // weights are normalized against the sum below.
+  var BLUEPRINT = [
+    { topic: "Mathematics", w: 6.5 },
+    { topic: "Statistics and Probability", w: 3.5 },
+    { topic: "Ethics and Professional Practice", w: 5 },
+    { topic: "Engineering Economics", w: 6.5 },
+    { topic: "Statics", w: 10 },
+    { topic: "Dynamics", w: 5 },
+    { topic: "Mechanics of Materials", w: 9 },
+    { topic: "Materials", w: 6.5 },
+    { topic: "Fluid Mechanics", w: 9 },
+    { topic: "Surveying", w: 7.5 },
+    { topic: "Water Resources", w: 10 },
+    { topic: "Structural Engineering", w: 10 },
+    { topic: "Geotechnical Engineering", w: 11.5 },
+    { topic: "Transportation Engineering", w: 10 },
+    { topic: "Construction Engineering", w: 10 }
+  ];
+
+  // Adaptive mastery: recency-weighted accuracy with exponential decay.
+  // Each attempt's weight decays by 0.9 per older attempt, giving an
+  // effective window of ~10 attempts — matching the app's existing
+  // "~10 attempts per topic for full confidence" rule. A neutral prior
+  // (50% with a weight of 5 attempts) keeps topics with little history
+  // near the middle instead of swinging on one lucky/unlucky answer, and
+  // puts unattempted topics at 50 so the sampler rotates through them
+  // evenly rather than treating them as mastered (100) or critical (0).
+  // As attempts accumulate the prior washes out and mastery converges to
+  // recent accuracy.
+  var ADAPT_DECAY = 0.9, ADAPT_PRIOR_W = 5, ADAPT_PRIOR_PCT = 50;
+
+  function adaptiveMastery() {
+    var attempts = store.get("attempts", []);
+    var byTopic = {};
+    attempts.forEach(function (a) {
+      (byTopic[a.topic] = byTopic[a.topic] || []).push(a);
+    });
+    return TOPICS.map(function (t) {
+      var ts = byTopic[t] || [];
+      var wSum = 0, wCorrect = 0, w = 1; // newest attempt weighs 1
+      for (var i = ts.length - 1; i >= 0; i--) {
+        wSum += w;
+        if (ts[i].correct) wCorrect += w;
+        w *= ADAPT_DECAY;
+      }
+      var mastery = Math.round(100 *
+        (wCorrect + ADAPT_PRIOR_W * ADAPT_PRIOR_PCT / 100) / (wSum + ADAPT_PRIOR_W));
+      return { topic: t, mastery: mastery, n: ts.length };
+    });
+  }
+
+  // Readiness: per-topic adaptive mastery weighted by the NCEES blueprint
+  // weights. An estimate built from practice history — never a prediction
+  // of the exam result (that disclaimer travels with every display).
+  var READINESS_NOTE = "Based on your practice so far — not a prediction of your exam result.";
+  function readiness() {
+    var m = adaptiveMastery();
+    var byTopic = {};
+    m.forEach(function (x) { byTopic[x.topic] = x.mastery; });
+    var wSum = 0, wScore = 0;
+    BLUEPRINT.forEach(function (b) {
+      var mt = byTopic[b.topic];
+      wSum += b.w;
+      wScore += b.w * (typeof mt === "number" ? mt : ADAPT_PRIOR_PCT);
+    });
+    return { pct: Math.round(wScore / wSum), perTopic: m };
+  }
+
+  function readinessClass(p) { return p >= 70 ? "good" : (p >= 50 ? "mid" : "bad"); }
+
+  function readinessHtml(r, compact) {
+    var total = store.get("attempts", []).length;
+    var html = '<div class="readiness-panel">';
+    if (!total) {
+      html += '<p class="muted">Answer practice questions and this panel builds your readiness estimate.</p>';
+    } else {
+      html += '<div class="readiness-head"><span class="readiness-score ' +
+        readinessClass(r.pct) + '">' + r.pct + '%</span>' +
+        '<span class="readiness-label">Exam readiness</span></div>' +
+        '<p class="disclaimer">' + READINESS_NOTE + '</p>';
+      if (!compact) {
+        html += '<div class="readiness-topics">';
+        r.perTopic.forEach(function (m) {
+          var cls = m.n ? readinessClass(m.mastery) : "";
+          html += '<div class="topic-row"><span class="topic-name">' +
+            escapeHtml(m.topic) + ' <small>(' + (m.n ? m.n + " answered" : "not started") + ")</small></span>" +
+            '<span class="bar"><span class="fill ' + cls +
+            '" style="width:' + m.mastery + '%"></span></span>' +
+            '<span class="mastery-level ' + cls + '">' + m.mastery + "%</span></div>";
+        });
+        html += "</div>";
+      }
+    }
+    html += "</div>";
+    return html;
+  }
+
+  // Adaptive session builder: sample n questions weighted toward the
+  // lowest-mastery topics, preferring questions never seen (then the
+  // least-recently-seen). Topic pick uses (101 - mastery)^2 weighting —
+  // a 0% topic is ~85x likelier than a 90% one, but strong topics still
+  // surface occasionally. With no attempts every topic sits at the neutral
+  // 50, so new users get an even rotation across topics.
+  function buildAdaptiveSession(qs, n) {
+    var m = adaptiveMastery();
+    var byTopic = {};
+    m.forEach(function (x) { byTopic[x.topic] = x.mastery; });
+    var attempts = store.get("attempts", []);
+    var lastSeen = {}; // attempts are chronological; later entries overwrite
+    attempts.forEach(function (a) { lastSeen[a.qid] = a.ts; });
+    function unseenFirst(a, b) {
+      return (lastSeen[a.id] || 0) - (lastSeen[b.id] || 0);
+    }
+    function pickTopic() {
+      var total = 0;
+      var entries = TOPICS.map(function (t) {
+        var mt = typeof byTopic[t] === "number" ? byTopic[t] : ADAPT_PRIOR_PCT;
+        var wgt = Math.pow(101 - mt, 2);
+        total += wgt;
+        return { topic: t, wgt: wgt };
+      });
+      var r = Math.random() * total;
+      for (var i = 0; i < entries.length; i++) {
+        r -= entries[i].wgt;
+        if (r <= 0) return entries[i].topic;
+      }
+      return entries[entries.length - 1].topic;
+    }
+    var picked = [], pickedIds = {}, guard = 0;
+    while (picked.length < n && guard++ < n * 60) {
+      var topic = pickTopic();
+      var pool = qs.filter(function (q) { return q.topic === topic && !pickedIds[q.id]; });
+      var choice;
+      if (pool.length) {
+        // Fresh questions first (random among the unseen for variety);
+        // once a topic's questions have all been seen, cycle back through
+        // the least-recently-seen — spaced repetition of the stalest.
+        var unseen = pool.filter(function (q) { return !lastSeen[q.id]; });
+        var cands = unseen.length ? unseen : pool.slice().sort(unseenFirst).slice(0, 5);
+        choice = cands[Math.floor(Math.random() * cands.length)];
+      } else {
+        // Topic exhausted inside this session: take the stalest remaining
+        // question from anywhere in the bank.
+        var rest = qs.filter(function (q) { return !pickedIds[q.id]; });
+        if (!rest.length) break; // bank exhausted — can't happen via the UI
+        rest.sort(unseenFirst);
+        choice = rest[0];
+      }
+      picked.push(choice);
+      pickedIds[choice.id] = 1;
+    }
+    return picked;
+  }
+
+  function selectedAdaptiveLength() {
+    var b = document.querySelector("#adaptive-lengths .length-btn.selected");
+    return b ? parseInt(b.dataset.n, 10) : 10;
+  }
+
+  function startAdaptiveQuiz() {
+    loadQuestions(function (qs) {
+      // A fresh quiz retires any session code still waiting.
+      if (store.get("portableOut", null)) {
+        store.set("portableOut", null);
+        toast("The old session code stopped working — you started a new quiz.");
+      }
+      var n = Math.min(selectedAdaptiveLength(), qs.length);
+      var list = buildAdaptiveSession(qs, n);
+      if (!list.length) {
+        toast("The question bank failed to load — check your connection and try again.");
+        return;
+      }
+      var before = {};
+      adaptiveMastery().forEach(function (x) { before[x.topic] = x.mastery; });
+      quiz = {
+        list: list,
+        idx: 0, correct: 0, topic: "Adaptive Practice", mode: "adaptive",
+        answers: [],
+        t0: Date.now(), elapsedBase: 0, qStart: null,
+        seed: null, // adaptive lists can't be regenerated from a seed,
+        topicSel: 15, // so portable sessions stay off for this mode
+        masteryBefore: before
+      };
+      saveProgress();
+      renderQuestion();
+      showOnly("quiz-run");
+    });
+  }
+
+  function renderAdaptivePanel() {
+    var el = document.getElementById("adaptive-panel");
+    if (!el) return;
+    el.innerHTML = readinessHtml(readiness(), false);
+  }
+
+  // Mastery movement shown after an adaptive session: per-topic before ->
+  // after for every topic the session touched, plus updated readiness.
+  function adaptiveResultHtml() {
+    if (!quiz.masteryBefore) return "";
+    var after = adaptiveMastery();
+    var byAfter = {};
+    after.forEach(function (x) { byAfter[x.topic] = x.mastery; });
+    var touched = {};
+    quiz.answers.forEach(function (a) { touched[a.topic] = 1; });
+    var html = '<div class="adaptive-moves"><h3>Mastery movement</h3>';
+    TOPICS.forEach(function (t) {
+      if (!touched[t]) return;
+      var b = quiz.masteryBefore[t], a = byAfter[t];
+      var d = a - b;
+      var cls = d > 0 ? "good" : (d < 0 ? "bad" : "");
+      var arrow = d > 0 ? "↑" : (d < 0 ? "↓" : "→");
+      html += '<div class="move-row"><span class="move-topic">' + escapeHtml(t) + "</span>" +
+        '<span class="move-delta ' + cls + '">' + b + "% → " + a + "% " + arrow +
+        (d ? " " + (d > 0 ? "+" : "") + d : "") + "</span></div>";
+    });
+    var r = readiness();
+    html += '<div class="readiness-head" style="margin-top:14px"><span class="readiness-score ' +
+      readinessClass(r.pct) + '">' + r.pct + '%</span>' +
+      '<span class="readiness-label">Updated exam readiness</span></div>' +
+      '<p class="disclaimer">' + READINESS_NOTE + "</p></div>";
+    return html;
   }
 
   // One completed quiz = one logged session (score, scope, missed question ids).

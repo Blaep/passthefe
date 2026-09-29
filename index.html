@@ -70,6 +70,7 @@
         <div class="stat"><strong id="stat-chapters">–</strong><span>handbook chapters covered</span></div>
         <div class="stat"><strong>185</strong><span>video explanations</span></div>
         <div class="stat"><strong>125</strong><span>diagrams</span></div>
+        <div class="stat"><strong id="stat-readiness">–</strong><span><a href="#/practice">your exam readiness</a></span></div>
       </div>
       <div class="ad-slot" data-ad-slot="home"></div>
       <p class="disclaimer">Independent study tool. Not endorsed by or affiliated with NCEES. Every question and answer independently verified.</p>
@@ -98,6 +99,22 @@
         <div class="form-row">
           <button id="quiz-start" class="btn primary">Start quiz</button>
           <span id="quiz-streak" class="streak"></span>
+        </div>
+      </div>
+      <div id="adaptive-setup" class="card">
+        <h3>Adaptive Practice</h3>
+        <p class="lede">We build the session for you — questions lean toward your weakest topics, weighted by the NCEES exam blueprint. Nothing to configure.</p>
+        <div id="adaptive-panel"></div>
+        <div class="form-row">
+          <label>Questions</label>
+          <div class="length-row" id="adaptive-lengths">
+            <button data-n="10" class="length-btn selected">10</button>
+            <button data-n="20" class="length-btn">20</button>
+            <button data-n="30" class="length-btn">30</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <button id="adaptive-start" class="btn primary">Start adaptive session</button>
         </div>
       </div>
       <div id="quiz-run" class="card hidden"></div>
@@ -230,6 +247,6 @@
   <!-- AdSense: publisher ID is set — ad slots render once Google approves the site.
        Set back to "" to hide all ad slots. -->
   <script>window.PASSTHEFE_ADSENSE_CLIENT = "ca-pub-5006432658217162";</script>
-  <script src="js/app.js?v=8"></script>
+  <script src="js/app.js?v=9"></script>
 </body>
 </html>
