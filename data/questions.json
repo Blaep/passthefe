@@ -7687,6 +7687,431 @@
    "solution": "Refer to the Well Drawdown section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for specific capacity. The handbook prints:\n\n$$\\\\text{Specific capacity} = \\\\frac{Q}{D_w}$$\n\n$$(\\\\text{Specific capacity}) = \\\\frac{450}{30} = 15 \\\\text{ gpm/ft}$$",
    "subtopic": "Well specific capacity",
    "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "\\(1/(s + 3)\\)",
+    "\\(1/(s - 3)\\)",
+    "\\(s/(s + 3)\\)",
+    "\\(3/(s + 3)\\)"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The handbook's Laplace transform table lists transforms by form. The decaying exponential \\(e^{-at}\\) maps to \\(1/(s + a)\\) -- the sign in the exponent flips in the denominator, which is where most sign errors come from.",
+   "id": "math-029",
+   "question": "What is the Laplace transform of \\(f(t) = e^{-3t}\\), for \\(t \\ge 0\\)?",
+   "solution": "Refer to the Laplace Transforms section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify \\\\(\\\\mathcal{L}\\\\{e^{-3t}\\\\}\\\\). The handbook prints:\n\n$$\\\\mathcal{L}\\\\{e^{-at}\\\\} = \\\\frac{1}{s + a}$$\n\nWith \\\\(a = 3\\\\):\n\n$$\\\\mathcal{L}\\\\{e^{-3t}\\\\} = \\\\frac{1}{s + 3}$$",
+   "subtopic": "Laplace transform of an exponential",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "5.20",
+    "6.24",
+    "8.60",
+    "10.44"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The included angle goes with the two known sides in the law of cosines. The minus sign in front of the 2bc cos A term matters -- flipping it to a plus is the classic error.",
+   "id": "math-030",
+   "question": "A triangle has sides of length 5 and 7 with an included angle of 60°. What is the length of the third side?",
+   "solution": "Refer to the Trigonometry (Law of Cosines) section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(c\\\\). The handbook prints:\n\n$$c^2 = a^2 + b^2 - 2ab\\\\cos C$$\n\nSubstituting:\n\n$$(c^2) = 5^2 + 7^2 - 2(5)(7)\\\\cos 60^\\\\circ$$\n\n$$(c^2) = 25 + 49 - 70(0.5) = 39$$\n\n$$(c) = \\\\sqrt{39} = 6.24$$",
+   "subtopic": "Law of cosines",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "−0.90",
+    "−1.80",
+    "0.90",
+    "1.80"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The standard error is s divided by the square root of n, not s -- forgetting the square root of the sample size is the most common mistake. The negative sign reflects that the sample mean fell below the hypothesized value.",
+   "id": "stats-029",
+   "question": "A random sample of 25 measurements has a sample mean of 48.2 and a sample standard deviation of 10.0. What is the value of the t-statistic for testing the hypothesis that the population mean is 50?",
+   "solution": "Refer to the t-Distribution section in the Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(t\\\\). The handbook prints:\n\n$$t = \\\\frac{\\\\bar{x} - \\\\mu}{s/\\\\sqrt{n}}$$\n\nSubstituting:\n\n$$(t) = \\\\frac{48.2 - 50}{10/\\\\sqrt{25}}$$\n\n$$(t) = \\\\frac{-1.8}{2.0} = -0.90$$",
+   "subtopic": "t-statistic for a mean",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "210",
+    "5,040",
+    "10,000",
+    "24"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The offices are distinct, so order matters -- this is a permutation, not a combination. Dividing by the factorial of the offices (the 210 answer) treats the distinct offices as interchangeable.",
+   "id": "stats-030",
+   "question": "A club must elect a president, a vice president, a secretary, and a treasurer from 10 members. No member may hold more than one office. How many different slates of officers are possible?",
+   "solution": "Refer to the Permutations and Combinations section in the Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute \\\\(P(10, 4)\\\\). The handbook prints:\n\n$$P(n, r) = \\\\frac{n!}{(n - r)!}$$\n\nSubstituting:\n\n$$(P(10,4)) = \\\\frac{10!}{6!} = 10 \\\\times 9 \\\\times 8 \\\\times 7 = 5{,}040$$",
+   "subtopic": "Permutations (officer election)",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "72 in⁴",
+    "144 in⁴",
+    "288 in⁴",
+    "576 in⁴"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The parallel-axis relation for the product of inertia uses the offsets along BOTH axes multiplied by the area -- not the moments of inertia. The rectangle's own centroidal product of inertia vanishes by symmetry.",
+   "id": "statics-029",
+   "question": "A rectangular area is 4 in. wide in the x-direction and 6 in. tall in the y-direction. By symmetry, its centroidal product of inertia is zero. What is the product of inertia about a pair of axes parallel to the centroidal axes, offset by 3 in. in x and 2 in. in y?",
+   "solution": "Refer to the Product of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(I_{xy}\\\\). The handbook prints:\n\n$$I'_{xy} = I_{x_c y_c} + d_x d_y A$$\n\nThe area:\n\n$$(A) = (4)(6) = 24 \\\\text{ in}^2$$\n\nSubstituting (\\\\(I_{x_c y_c} = 0\\\\) by symmetry):\n\n$$(I_{xy}) = 0 + (3)(2)(24) = 144 \\\\text{ in}^4$$",
+   "subtopic": "Product of inertia (parallel-axis)",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "(1.0, 1.0)",
+    "(1.2, 1.5)",
+    "(1.5, 1.2)",
+    "(2.0, 2.5)"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Each coordinate is the mass-weighted average of the particle coordinates. The unweighted average of the positions ignores the fact that the masses differ.",
+   "id": "statics-030",
+   "question": "Three point masses lie in the xy-plane: 2 kg at (0, 0), 3 kg at (4, 0), and 5 kg at (0, 3). What are the coordinates of the centroid of the system?",
+   "solution": "Refer to the Centroids of Masses, Areas, Lengths, and Volumes section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\bar{x}\\\\) and \\\\(\\\\bar{y}\\\\). The handbook prints:\n\n$$\\\\mathbf{r}_c = \\\\frac{\\\\sum m_n \\\\mathbf{r}_n}{\\\\sum m_n}$$\n\nTotal mass:\n\n$$(\\\\sum m_n) = 2 + 3 + 5 = 10 \\\\text{ kg}$$\n\n$$(\\\\bar{x}) = \\\\frac{2(0) + 3(4) + 5(0)}{10} = \\\\frac{12}{10} = 1.2$$\n\n$$(\\\\bar{y}) = \\\\frac{2(0) + 3(0) + 5(3)}{10} = \\\\frac{15}{10} = 1.5$$\n\nThe centroid is at \\\\((1.2, 1.5)\\\\).",
+   "subtopic": "Centroid of discrete masses",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "10 rad/s",
+    "14.1 rad/s",
+    "20 rad/s",
+    "28.3 rad/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The torsional equation of motion has the same form as the translational one, with k_t replacing k and I replacing m. The natural frequency is the square root of stiffness over inertia -- squaring or halving are the usual slips.",
+   "id": "dynamics-029",
+   "question": "A disk with a mass moment of inertia of 0.5 kg·m² is attached to a shaft with torsional stiffness 200 N·m/rad. What is the natural frequency of free torsional oscillation?",
+   "solution": "Refer to the Torsional Vibration section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\omega_n\\\\). The handbook prints:\n\n$$\\\\ddot{\\\\theta} + \\\\frac{k_t}{I}\\\\theta = 0$$\n\nso\n\n$$(\\\\omega_n) = \\\\sqrt{\\\\frac{k_t}{I}}$$\n\nSubstituting:\n\n$$(\\\\omega_n) = \\\\sqrt{\\\\frac{200}{0.5}} = \\\\sqrt{400} = 20 \\\\text{ rad/s}$$",
+   "subtopic": "Torsional vibration (natural frequency)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "0.054 m",
+    "0.084 m",
+    "0.100 m",
+    "0.141 m"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "With zero initial velocity the sine term drops out, leaving pure cosine decay -- but the cosine is evaluated at omega_n times t in radians, not degrees. Using degrees (or skipping the cosine entirely) gives the wrong answer.",
+   "id": "dynamics-030",
+   "question": "An undamped single-degree-of-freedom system has a natural frequency of 5 rad/s. It is released from rest with an initial displacement of 0.1 m. What is the displacement at t = 0.2 s?",
+   "solution": "Refer to the Free and Forced Vibration section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(x(0.2)\\\\). The handbook prints:\n\n$$x(t) = x_0 \\\\cos(\\\\omega_n t) + \\\\frac{\\\\dot{x}_0}{\\\\omega_n}\\\\sin(\\\\omega_n t)$$\n\nReleased from rest means \\\\(\\\\dot{x}_0 = 0\\\\):\n\n$$(x(t)) = 0.1\\\\cos(5t)$$\n\nAt \\\\(t = 0.2\\\\) s (angle in radians):\n\n$$(x(0.2)) = 0.1\\\\cos(1.0) = 0.1(0.5403) = 0.054 \\\\text{ m}$$",
+   "subtopic": "Free vibration response (undamped)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "125 MPa",
+    "250 MPa",
+    "500 MPa",
+    "1,000 MPa"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The modular ratio n = E_1/E_2 scales the stress in Material 1 -- skipping it gives the Material-2 stress instead. The transformed-section stress formula then works exactly like the flexure formula.",
+   "id": "mechmat-029",
+   "question": "A composite beam bonds Material 1 (E₁ = 200 GPa) to Material 2 (E₂ = 100 GPa). The transformed section (all Material 2) has I_T = 40×10⁶ mm⁴. Under a bending moment of 50 kN·m, what is the bending stress in Material 1 at a fiber 100 mm from the neutral axis?",
+   "solution": "Refer to the Composite Sections section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\sigma_1\\\\). The handbook prints:\n\n$$\\\\sigma_1 = -\\\\frac{nMy}{I_T}, \\\\quad n = \\\\frac{E_1}{E_2}$$\n\nModular ratio:\n\n$$(n) = \\\\frac{200}{100} = 2$$\n\nConvert units: \\\\(M = 50{,}000\\\\) N\\·m, \\\\(y = 0.1\\\\) m, \\\\(I_T = 40 \\\\times 10^6(10^{-3})^4 = 4 \\\\times 10^{-5}\\\\) m\\⁴.\n\n$$(\\\\sigma_1) = \\\\frac{(2)(50{,}000)(0.1)}{4 \\\\times 10^{-5}} = \\\\frac{10{,}000}{4 \\\\times 10^{-5}}$$\n\n$$(\\\\sigma_1) = 2.5 \\\\times 10^8 \\\\text{ Pa} = 250 \\\\text{ MPa (magnitude)}$$",
+   "subtopic": "Composite beam (transformed section)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "0.75 kN·m",
+    "1.50 kN·m",
+    "2.25 kN·m",
+    "3.00 kN·m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Compatibility requires the twist at the load point to be the same from both sides, so the reactions split in inverse proportion to the segment lengths. The longer segment takes the smaller reaction.",
+   "id": "mechmat-030",
+   "question": "A steel shaft 2.0 m long is fixed at both ends. A torque of 3.0 kN·m is applied 0.5 m from the left end. What is the reactive torque at the left support?",
+   "solution": "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(T_L\\\\). The handbook prints:\n\n$$\\\\phi = \\\\frac{TL}{GJ}$$\n\nCompatibility: the angle of twist at the load is the same computed from either end:\n\n$$\\\\frac{T_L(0.5)}{GJ} = \\\\frac{T_R(1.5)}{GJ}$$\n\n$$(T_L) = 3T_R$$\n\nEquilibrium:\n\n$$(T_L + T_R) = 3.0$$\n\n$$(4T_R) = 3.0 \\\\Rightarrow T_R = 0.75 \\\\text{ kN\\·m}$$\n\n$$(T_L) = 3(0.75) = 2.25 \\\\text{ kN\\·m}$$",
+   "subtopic": "Statically indeterminate torsion",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.4 m/s",
+    "2.0 m/s",
+    "10 m/s",
+    "50 m/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Equal Froude numbers require the velocity ratio to equal the square root of the length ratio -- not the length ratio itself. Gravity-dominated free-surface flows scale this way because the Froude number balances inertia against gravity.",
+   "id": "fluid-029",
+   "question": "A 1:25 scale spillway model is tested under Froude dynamic similarity. If the prototype flow velocity is 10 m/s, what model velocity reproduces the prototype Froude number?",
+   "solution": "Refer to the Similitude section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\\\(V_m\\\\) such that the Froude numbers match. Equal Froude numbers give:\n\n$$\\\\frac{V_r}{\\\\sqrt{g_r L_r}} = 1 \\\\Rightarrow V_r = \\\\sqrt{L_r} = \\\\sqrt{\\\\frac{1}{25}} = \\\\frac{1}{5}$$\n\n$$(V_m) = V_p V_r = \\\\frac{10}{5} = 2.0 \\\\text{ m/s}$$",
+   "subtopic": "Similitude (Froude scaling)",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.00 m",
+    "1.17 m",
+    "1.33 m",
+    "1.50 m"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The center of pressure always lies below the centroid -- the centroid depth alone (1.00 m) is the trap. The correction term uses the centroidal moment of inertia divided by the first moment of area.",
+   "id": "fluid-030",
+   "question": "A vertical rectangular plate 2.0 m tall and 1.0 m wide is submerged with its top edge at the water surface. How far below the free surface is the center of pressure?",
+   "solution": "Refer to the Forces on Submerged Surfaces and the Center of Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(y_{CP}\\\\). The handbook prints:\n\n$$y_{CP} = y_C + \\\\frac{I_{xC}}{y_C A}$$\n\nCentroid depth (plate vertical, so slant distance equals vertical depth):\n\n$$(y_C) = 1.0 \\\\text{ m}, \\\\quad (A) = (2.0)(1.0) = 2.0 \\\\text{ m}^2$$\n\nCentroidal moment of inertia:\n\n$$(I_{xC}) = \\\\frac{bh^3}{12} = \\\\frac{(1.0)(2.0)^3}{12} = 0.6667 \\\\text{ m}^4$$\n\n$$(y_{CP}) = 1.0 + \\\\frac{0.6667}{(1.0)(2.0)} = 1.0 + 0.3333 = 1.33 \\\\text{ m}$$",
+   "subtopic": "Center of pressure (vertical plate)",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1.84 m",
+    "2.59 m",
+    "3.12 m",
+    "4.00 m"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The sequent-depth equation takes the upstream Froude number -- the jump only exists because the approach flow is supercritical. Plugging in the depth ratio upside down is the common error.",
+   "id": "water-029",
+   "question": "Flow enters a hydraulic jump at a depth of 0.5 m with a Froude number of 4.0. What is the sequent (downstream) depth?",
+   "solution": "Refer to the Hydraulic Jump section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(y_2\\\\). The handbook prints:\n\n$$y_2 = \\\\frac{y_1}{2}\\\\left(-1 + \\\\sqrt{1 + 8Fr_1^2}\\\\right)$$\n\nSubstituting:\n\n$$(y_2) = \\\\frac{0.5}{2}\\\\left(-1 + \\\\sqrt{1 + 8(4.0)^2}\\\\right)$$\n\n$$(y_2) = 0.25\\\\left(-1 + \\\\sqrt{129}\\\\right) = 0.25(-1 + 11.358)$$\n\n$$(y_2) = 0.25(10.358) = 2.59 \\\\text{ m}$$",
+   "subtopic": "Hydraulic jump (sequent depth)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.0×10⁻⁵ m/s",
+    "2.0×10⁻⁵ m/s",
+    "4.0×10⁻⁵ m/s",
+    "8.0×10⁻⁵ m/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Darcy's law gives the discharge velocity, but water only moves through the pores -- dividing by the porosity gives the faster true seepage velocity. Stopping at the Darcy velocity is the trap.",
+   "id": "water-030",
+   "question": "Water seeps through a soil with hydraulic conductivity 2.0×10⁻⁵ m/s under a hydraulic gradient of 0.5. If the effective porosity is 0.25, what is the average seepage velocity?",
+   "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(v_s\\\\). The handbook prints:\n\n$$q = -K\\\\frac{dh}{dx}, \\\\quad v_s = \\\\frac{q}{n}$$\n\nDarcy velocity:\n\n$$(q) = (2.0 \\\\times 10^{-5})(0.5) = 1.0 \\\\times 10^{-5} \\\\text{ m/s}$$\n\nSeepage velocity:\n\n$$(v_s) = \\\\frac{1.0 \\\\times 10^{-5}}{0.25} = 4.0 \\\\times 10^{-5} \\\\text{ m/s}$$",
+   "subtopic": "Seepage velocity (Darcy vs. pore velocity)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "0.5",
+    "1.0",
+    "2.0",
+    "3.0"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "OCR is the preconsolidation pressure divided by the current effective stress. Values above 1 mean the soil has been loaded more heavily in the past -- the inverse ratio (0.5) is the slip.",
+   "id": "geotech-029",
+   "question": "A clay layer has a preconsolidation pressure of 300 kPa and a current vertical effective stress of 150 kPa. What is the overconsolidation ratio?",
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for OCR. The handbook defines:\n\n$$OCR = \\\\frac{\\\\text{preconsolidation pressure}}{\\\\text{current effective stress}}$$\n\n$$(OCR) = \\\\frac{300}{150} = 2.0$$",
+   "subtopic": "Overconsolidation ratio",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "75%",
+    "90%",
+    "100%",
+    "111%"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Relative compaction is the field dry unit weight over the lab maximum, times 100. The 111% answer comes from flipping the ratio -- compaction above 100% of the lab maximum is a red flag.",
+   "id": "geotech-030",
+   "question": "A field density test gives a dry unit weight of 18.0 kN/m³. The laboratory maximum dry unit weight is 20.0 kN/m³. What is the relative compaction?",
+   "solution": "Refer to the Compaction section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for RC. The handbook prints:\n\n$$RC = \\\\frac{\\\\gamma_{D,\\\\text{ field}}}{\\\\gamma_{D,\\\\text{ max}}} \\\\times 100$$\n\n$$(RC) = \\\\frac{18.0}{20.0} \\\\times 100 = 90\\\\%$$",
+   "subtopic": "Relative compaction",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "2.75 in²",
+    "3.13 in²",
+    "3.50 in²",
+    "4.00 in²"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The handbook adds 1/8 in. to the bolt diameter for the effective hole -- using the bolt diameter alone overstates the net area. The gross area (4.00 in²) ignores the holes entirely.",
+   "id": "structural-029",
+   "question": "A flat steel bar 8 in. wide and 1/2 in. thick has two 3/4-in.-diameter bolts in a single cross-section (parallel holes). What is the net area?",
+   "solution": "Refer to the Tension Members section in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(A_n\\\\). The handbook prints (parallel holes):\n\n$$A_n = \\\\left[b_g - \\\\sum\\\\left(d_b + \\\\frac{1}{8}\\\\text{''}\\\\right)\\\\right]t$$\n\nSubstituting:\n\n$$(A_n) = \\\\left[8 - 2\\\\left(0.75 + 0.125\\\\right)\\\\right](0.5)$$\n\n$$(A_n) = [8 - 1.75](0.5) = (6.25)(0.5) = 3.125 \\\\text{ in}^2 \\\\approx 3.13 \\\\text{ in}^2$$",
+   "subtopic": "Steel tension member (net area)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "145 kips",
+    "161 kips",
+    "163 kips",
+    "215 kips"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Block shear takes the SMALLER of the rupture-controlled and yield-controlled paths, then applies phi = 0.75. The 163-kip answer uses the larger path; the 215-kip answer forgets the resistance factor.",
+   "id": "structural-030",
+   "question": "A tension connection has A_gv = 4.0 in², A_nv = 3.0 in², and A_nt = 1.5 in². With F_y = 50 ksi, F_u = 65 ksi, and U_bs = 1.0, what is the LRFD block shear design strength?",
+   "solution": "Refer to the Block Shear provisions in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\phi R_n\\\\). The handbook prints \\\\(R_n\\\\) as the smaller of:\n\n$$R_n = 0.6F_u A_{nv} + U_{bs}F_u A_{nt}$$\n$$R_n = 0.6F_y A_{gv} + U_{bs}F_u A_{nt}$$\n\nPath 1:\n\n$$(R_n) = 0.6(65)(3.0) + (1.0)(65)(1.5) = 117 + 97.5 = 214.5 \\\\text{ kips}$$\n\nPath 2:\n\n$$(R_n) = 0.6(50)(4.0) + (1.0)(65)(1.5) = 120 + 97.5 = 217.5 \\\\text{ kips}$$\n\nThe smaller value controls:\n\n$$(\\\\phi R_n) = 0.75(214.5) = 160.9 \\\\text{ kips} \\\\approx 161 \\\\text{ kips}$$",
+   "subtopic": "Steel tension member (block shear)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "$38,462",
+    "$57,500",
+    "$65,000",
+    "$71,500"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The cost scales with the ratio of the current index to the original index. Flipping the ratio ($38,462) estimates the cost as if prices had fallen -- check the direction of the change.",
+   "id": "econ-029",
+   "question": "A pump cost $50,000 in 2015, when the cost index was 550. If the current index is 715, what is the estimated current cost?",
+   "solution": "Refer to the Cost Indexes section of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the current cost. The handbook prints:\n\n$$\\\\text{Current \\\\$} = (\\\\text{Cost in year M}) \\\\times \\\\frac{\\\\text{Current Index}}{\\\\text{Index in year M}}$$\n\nSubstituting:\n\n$$(\\\\text{Current \\\\$}) = 50{,}000 \\\\times \\\\frac{715}{550} = 50{,}000(1.30)$$\n\n$$(\\\\text{Current \\\\$}) = \\\\$65{,}000$$",
+   "subtopic": "Cost index updating",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "4 years",
+    "5 years",
+    "6 years",
+    "8 years"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The present-worth factor (P/A, 10%, n) must equal the investment divided by the annual return. Solve by testing integer values of n -- n = 5 makes the factor exactly 3.7908.",
+   "id": "econ-030",
+   "question": "An investment of $37,908 returns $10,000 at the end of each year. If the interest rate is 10% per year, how many years of returns are needed to recover the investment?",
+   "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\\\(n\\\\). The handbook prints the uniform-series present-worth factor:\n\n$$(P) = A(P/A, i\\\\%, n)$$\n\n$$(P/A, 10\\\\%, n) = \\\\frac{37{,}908}{10{,}000} = 3.7908$$\n\nTesting \\\\(n = 5\\\\):\n\n$$(P/A, 10\\\\%, 5) = \\\\frac{(1.10)^5 - 1}{0.10(1.10)^5} = \\\\frac{0.61051}{0.16105} = 3.7908$$\n\nSo \\\\(n = 5\\\\) years.",
+   "subtopic": "Unknown number of periods (P/A)",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "200 MPa",
+    "350 MPa",
+    "700 MPa",
+    "1,400 MPa"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The handbook's empirical relation multiplies the Brinell number by 3.5 for the tensile strength in MPa. The 200-MPa answer confuses the hardness number itself for a stress.",
+   "id": "materials-029",
+   "question": "A plain carbon steel has a Brinell hardness number of 200. What is the approximate tensile strength in MPa?",
+   "solution": "Refer to the Relationship Between Hardness and Tensile Strength section in the Materials Science chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must estimate TS. The handbook prints:\n\n$$TS(\\\\text{MPa}) = 3.5 \\\\times BHN$$\n\n$$(TS) = 3.5(200) = 700 \\\\text{ MPa}$$",
+   "subtopic": "Hardness-tensile strength relation",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "380 ft",
+    "444 ft",
+    "520 ft",
+    "640 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "For sag curves the headlight criterion controls, and the algebraic grade change is |+2 - (-3)| = 5, not 1. Check that S is at most L afterward to confirm the formula applies.",
+   "id": "surveying-029",
+   "question": "A sag vertical curve changes grade from −3% to +2%. For a headlight sight distance of 400 ft, what is the minimum curve length?",
+   "solution": "Refer to the Vertical Curves: Sight Distance Related to Curve Length section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(L\\\\). The handbook prints (for \\\\(S \\\\le L\\\\)):\n\n$$L = \\\\frac{AS^2}{400 + 3.5S}$$\n\nGrade change:\n\n$$(A) = |+2 - (-3)| = 5$$\n\nSubstituting:\n\n$$(L) = \\\\frac{(5)(400)^2}{400 + 3.5(400)} = \\\\frac{800{,}000}{1{,}800} = 444 \\\\text{ ft}$$\n\nSince \\\\(S = 400 \\\\le 444 = L\\\\), the formula applies.",
+   "subtopic": "Sag vertical curve (headlight sight distance)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "Start-to-start",
+    "Start-to-finish",
+    "Finish-to-start",
+    "Finish-to-finish"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The dependency links the two finishes: curing's finish waits on placement's finish. The everyday finish-to-start link (successor starts after the predecessor finishes) is the distractor most schedulers default to.",
+   "id": "construction-029",
+   "question": "On a CPM schedule, the concrete curing activity cannot finish until the concrete placement activity finishes. What type of precedence relationship is this?",
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the dependency. The handbook diagrams four precedence relationships: start-to-start, finish-to-finish, finish-to-start, and start-to-finish.\n\nHere the successor's finish depends on the predecessor's finish -- the two activities' finish nodes are linked. That is a finish-to-finish (FF) relationship.",
+   "subtopic": "CPM precedence relationships (FF)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "331 ft",
+    "496 ft",
+    "662 ft",
+    "744 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "ISD is simply 1.47 times the major-road speed times the gap -- there is no deceleration term like stopping sight distance. The 331-ft answer uses a 5.0-s gap; the 662-ft answer doubles the gap.",
+   "id": "transportation-029",
+   "question": "A stop-controlled minor road meets a major road with a design speed of 45 mph. If the time gap for a passenger car is 7.5 s, what is the required intersection sight distance?",
+   "solution": "Refer to the Stopping Sight Distance section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for ISD. The handbook prints:\n\n$$ISD = 1.47 V_{\\\\text{major}} t_g$$\n\nSubstituting:\n\n$$(ISD) = 1.47(45)(7.5) = 496 \\\\text{ ft}$$",
+   "subtopic": "Intersection sight distance",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "The purchase is acceptable if the engineer discloses it to the client afterward",
+    "The engineer must not use confidential information for personal profit without the client's consent",
+    "The purchase is acceptable because the engineer used personal funds",
+    "The engineer must offer the adjacent parcel to the client at cost"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Confidential information stays confidential -- using it for personal gain violates the licensee's obligation to the employer or client even when no design decision is affected. Disclosure and consent are the only cure.",
+   "id": "ethics-029",
+   "question": "Through confidential project documents, an engineer learns that a client is about to buy a large tract of land. The engineer quietly buys an adjacent parcel, expecting its value to rise. What does the NCEES Model Rules of Professional Conduct require?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must apply Section B of the NCEES Model Rules 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice section of the FE Reference Handbook (v10.6). Section B.9 states:\n\nLicensees shall not use confidential information received in the course of their assignments as a means of making personal profit without the consent of the party from whom the information was obtained.\n\nBuying the adjacent parcel to profit from the client's confidential plans is exactly that violation -- the source of funds does not matter.",
+   "subtopic": "Confidential information for personal profit",
+   "topic": "Ethics and Professional Practice"
   }
  ]
 }
