@@ -2380,6 +2380,244 @@
     renderFormulas();
   }
 
+  // ---- formula library: Unicode -> LaTeX ----------------------------------
+  // data/formulas.json stores formulas as plain Unicode text (p1/gamma,
+  // V1^2/2g, sqrt(...), ...). formulaToTex converts one such string to LaTeX
+  // so the Formulas page renders through the same KaTeX path as quiz cards
+  // (texHtml). Returns null for text-only entries (no math characters),
+  // which render as plain text instead.
+  var FORMULA_SUB = { "₀": "0", "₁": "1", "₂": "2", "₋": "-", "ᵢ": "i" };
+  var FORMULA_SUP = { "²": "2", "³": "3", "⁴": "4", "⁻": "-", "ⁿ": "n", "ᵏ": "k", "ᵐ": "m" };
+  var FORMULA_GREEK = {
+    "γ": "\\gamma", "δ": "\\delta", "ε": "\\epsilon", "μ": "\\mu",
+    "ν": "\\nu", "π": "\\pi", "ρ": "\\rho", "σ": "\\sigma",
+    "τ": "\\tau", "φ": "\\phi", "Δ": "\\Delta", "Σ": "\\Sigma"
+  };
+  var FORMULA_SYM = {
+    "±": "\\pm", "·": "\\cdot", "½": "\\frac{1}{2}", "≈": "\\approx",
+    "→": "\\to", "−": "-", "′": "'", "ȳ": "\\bar{y}"
+  };
+
+  function formulaToTex(src) {
+    var s = String(src);
+    if (!/[0-9²³⁴ⁿᵏᵐᵢ₀₁₂√±·½ΔΣγδεμνπρστφ^_\\⁻₋=]/.test(s)) return null;
+    return formulaToTexInner(s);
+  }
+
+  // Append a space after a control word when the next char is a letter,
+  // so e.g. \gamma followed by D doesn't become the undefined \gammaD.
+  function formulaCmdSpace(next) {
+    return next && /[A-Za-z]/.test(next) ? " " : "";
+  }
+
+  function formulaToTexInner(s) {
+    // combining macron (x + U+0304) -> \bar{x}; runs before char mapping
+    s = s.replace(/([A-Za-z])\u0304/g, "\\bar{$1}");
+    s = formulaSqrt(s);
+    // binomial coefficient notation used by the probability formulas
+    s = s.replace(/C\(n,k\)/g, "\\binom{n}{k}");
+    var out = "", i = 0;
+    while (i < s.length) {
+      var c = s[i];
+      if (FORMULA_SUB[c]) {
+        var sub = "";
+        while (i < s.length && FORMULA_SUB[s[i]]) { sub += FORMULA_SUB[s[i]]; i++; }
+        out += "_{" + sub + "}";
+        continue;
+      }
+      if (FORMULA_SUP[c]) {
+        var sup = "";
+        while (i < s.length && FORMULA_SUP[s[i]]) { sup += FORMULA_SUP[s[i]]; i++; }
+        out += "^{" + sup + "}";
+        continue;
+      }
+      if (FORMULA_GREEK[c]) { out += FORMULA_GREEK[c] + formulaCmdSpace(s[i + 1]); i++; continue; }
+      if (FORMULA_SYM[c]) {
+        var sym = FORMULA_SYM[c];
+        // control words need a terminator before a following letter
+        if (/^\\[a-z]+$/.test(sym)) sym += formulaCmdSpace(s[i + 1]);
+        out += sym; i++; continue;
+      }
+      if (c === "^") {
+        // already-formed ^{...} (from the \sqrt recursion above): pass through
+        if (s[i + 1] === "{") { out += c; i++; continue; }
+        // caret groups: R^(2/3) -> R^{2/3} (matching paren becomes the brace)
+        i++;
+        if (s[i] === "(") {
+          var depth = 0, k = i, ok = false;
+          for (; k < s.length; k++) {
+            if (s[k] === "(") depth++;
+            else if (s[k] === ")") { depth--; if (depth === 0) { ok = true; break; } }
+          }
+          if (ok) { out += "^{" + s.slice(i + 1, k) + "}"; i = k + 1; }
+          else { out += "^{}"; }
+        } else {
+          out += "^{" + (s[i] || "") + "}";
+          i++;
+        }
+        continue;
+      }
+      out += c; i++;
+    }
+    s = out;
+    // multi-letter lowercase subscripts: i_eff -> i_{eff}, D_f -> D_{f}
+    // (single chars like h_L are already fine for KaTeX as-is)
+    s = s.replace(/_([a-z][a-z,]*)/g, "_{$1}");
+    // trig function names
+    s = s.replace(/\bsin\b/g, "\\sin").replace(/\bcos\b/g, "\\cos");
+    // divisions -> \frac{}{} where the operands look like math
+    s = formulaFrac(s);
+    return s;
+  }
+
+  // √( ... ) / √[ ... ] -> \sqrt{...}, inner content converted recursively
+  function formulaSqrt(s) {
+    var out = "", i = 0;
+    while (i < s.length) {
+      var idx = s.indexOf("√", i);
+      if (idx === -1) { out += s.slice(i); break; }
+      out += s.slice(i, idx);
+      var j = idx + 1;
+      while (j < s.length && s[j] === " ") j++;
+      var open = s[j], close = open === "(" ? ")" : (open === "[" ? "]" : null);
+      if (!close) { out += "\\sqrt{}"; i = j; continue; }
+      var depth = 0, k = j, found = false;
+      for (; k < s.length; k++) {
+        if (s[k] === open) depth++;
+        else if (s[k] === close) { depth--; if (depth === 0) { found = true; break; } }
+      }
+      if (!found) { out += s.slice(idx); break; }
+      out += "\\sqrt{" + formulaToTexInner(s.slice(j + 1, k)) + "}";
+      i = k + 1;
+    }
+    return out;
+  }
+
+  // Turn a/b divisions into \frac{a}{b}, recursing into balanced bracketed
+  // groups first so inner divisions convert too. A division is only
+  // converted when an operand looks like math (has a digit, backslash,
+  // underscore, caret, or is an ALL-CAPS token), so plain text like
+  // "client/employer" is left alone.
+  function formulaFrac(s) {
+    var out = "", i = 0;
+    while (i < s.length) {
+      var c = s[i];
+      if (c === "(" || c === "[" || c === "{") {
+        var close = c === "(" ? ")" : (c === "[" ? "]" : "}");
+        var depth = 0, k = i, ok = false;
+        for (; k < s.length; k++) {
+          if (s[k] === c) depth++;
+          else if (s[k] === close) { depth--; if (depth === 0) { ok = true; break; } }
+        }
+        if (!ok) { out += s.slice(i); break; }
+        out += c + formulaFrac(s.slice(i + 1, k)) + close;
+        i = k + 1;
+      } else {
+        out += c; i++;
+      }
+    }
+    return formulaFracTop(out);
+  }
+
+  function formulaFracTop(s) {
+    var parts = [], depth = 0, cur = "";
+    for (var k = 0; k < s.length; k++) {
+      var c = s[k];
+      if (c === "(" || c === "[" || c === "{") depth++;
+      else if (c === ")" || c === "]" || c === "}") depth--;
+      if (c === "/" && depth === 0) { parts.push(cur); cur = ""; }
+      else cur += c;
+    }
+    parts.push(cur);
+    if (parts.length < 2) return s;
+    var acc = parts[0];
+    for (var j = 1; j < parts.length; j++) acc = formulaCombineFrac(acc, parts[j]);
+    return acc;
+  }
+
+  function formulaCombineFrac(left, right) {
+    var L = formulaLeftOperand(left), R = formulaRightOperand(right);
+    if (!formulaFracGuard(L.tail, R.head)) return left + "/" + right;
+    return L.head + "\\frac{" + formulaStripOuter(L.tail) + "}{" +
+      formulaStripOuter(R.head) + "}" + R.tail;
+  }
+
+  function formulaFracGuard(a, b) {
+    if (/[0-9\\_^]/.test(a) || /[0-9\\_^]/.test(b)) return true;
+    return /^[A-Z]+$/.test(a.trim()) || /^[A-Z]+$/.test(b.trim());
+  }
+
+  function formulaLeftOperand(s) {
+    var depth = 0, k = s.length;
+    while (k > 0 && s[k - 1] === " ") k--;
+    var end = k;
+    while (k > 0) {
+      var c = s[k - 1];
+      if (c === ")" || c === "]" || c === "}") depth++;
+      else if (c === "(" || c === "[" || c === "{") {
+        if (depth === 0) break;
+        depth--;
+      }
+      else if (depth === 0 && (c === "=" || c === "+" || c === "-" || c === "," || c === ";")) break;
+      k--;
+    }
+    return { head: s.slice(0, k), tail: s.slice(k, end).replace(/^\s+/, "") };
+  }
+
+  function formulaRightOperand(s) {
+    var depth = 0, k = 0, n = s.length;
+    while (k < n && s[k] === " ") k++;
+    var start = k;
+    while (k < n) {
+      var c = s[k];
+      if (c === "(" || c === "[" || c === "{") depth++;
+      else if (c === ")" || c === "]" || c === "}") {
+        if (depth === 0) break;
+        depth--;
+      }
+      else if (depth === 0 && (c === "=" || c === "+" || c === "-" || c === "," || c === ";")) break;
+      k++;
+    }
+    return { head: s.slice(start, k), tail: s.slice(k) };
+  }
+
+  function formulaStripOuter(s) {
+    s = s.trim();
+    var pairs = { "(": ")", "[": "]" };
+    var close = pairs[s[0]];
+    if (!close || s[s.length - 1] !== close) return s;
+    var depth = 0;
+    for (var k = 0; k < s.length; k++) {
+      if (s[k] === s[0]) depth++;
+      else if (s[k] === close) {
+        depth--;
+        if (depth === 0) return k === s.length - 1 ? s.slice(1, -1) : s;
+      }
+    }
+    return s;
+  }
+
+  function formulaExprHtml(formula) {
+    var tex = formulaToTex(formula);
+    if (tex === null) {
+      return '<p class="formula-expr formula-text">' + escapeHtml(formula) + "</p>";
+    }
+    return '<div class="formula-expr">' + texHtml(tex, true) + "</div>";
+  }
+
+  function formulaSymbolsHtml(symbols) {
+    if (!symbols) return "";
+    var items = String(symbols).split(";").map(function (chunk) {
+      var idx = chunk.indexOf("=");
+      if (idx === -1) return escapeHtml(chunk.trim());
+      var sym = chunk.slice(0, idx).trim(), meaning = chunk.slice(idx + 1).trim();
+      var tex = formulaToTex(sym);
+      var symHtml = tex === null ? escapeHtml(sym) : texHtml(tex, false);
+      return '<span class="formula-sym">' + symHtml + "</span> = " + escapeHtml(meaning);
+    });
+    return '<p class="formula-symbols">' + items.join("; ") + "</p>";
+  }
+
   function renderFormulas() {
     var list = document.getElementById("formula-list");
     if (!list) return;
@@ -2397,8 +2635,8 @@
     list.innerHTML = fs.map(function (f) {
       return '<div class="card formula-card"><div class="formula-topic">' +
         escapeHtml(f.topic) + '</div><h3>' + escapeHtml(f.name) + "</h3>" +
-        '<p class="formula-expr">' + escapeHtml(f.formula) + "</p>" +
-        (f.symbols ? '<p class="formula-symbols">' + escapeHtml(f.symbols) + "</p>" : "") +
+        formulaExprHtml(f.formula) +
+        formulaSymbolsHtml(f.symbols) +
         (f.notes ? '<p class="formula-notes">' + escapeHtml(f.notes) + "</p>" : "") +
         "</div>";
     }).join("");

@@ -8537,6 +8537,431 @@
    "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must apply the decision rule. The handbook states:\n\nThe minimum acceptable rate-of-return (MARR) is that interest rate that one is willing to accept. The rate-of-return on an investment is the interest rate that makes the benefits and costs equal.\n\nAn investment is acceptable when its rate of return meets or exceeds the MARR.\n\nHere \\\\(9\\\\% < 12\\\\%\\\\); the computed return falls short of the hurdle rate.\n\nTherefore the investment should NOT be accepted.",
    "subtopic": "MARR decision rule",
    "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "$583,000",
+    "$530,000",
+    "$500,000",
+    "$560,000"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "EAC = ACWP + ETC with ETC = (BAC − BCWP)/CPI. CPI = 180/210 = 0.857, so the current cost overrun projects a $583,000 final cost. Adding the bare cost variance to BAC ($530,000) skips the forecasting step.",
+   "id": "construction-032",
+   "question": "A commercial building project has a budget at completion (BAC) of $500,000. At the status date, the budgeted cost of work scheduled (BCWS) is $200,000, the budgeted cost of work performed (BCWP) is $180,000, and the actual cost of work performed (ACWP) is $210,000. Using the handbook's forecasting equations, what is the estimate at completion (EAC)?",
+   "solution": "Refer to the Earned-Value Analysis (Forecasting) section in the Construction chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(EAC\\\\). The handbook prints:\n\n$$ETC = \\\\frac{BAC - BCWP}{CPI} \\\\qquad EAC = ACWP + ETC$$\n\nwhere \\\\(CPI = BCWP/ACWP\\\\).\n\nComputing the cost performance index:\n\n$$CPI = \\\\frac{180{,}000}{210{,}000} = 0.8571$$\n\nEstimating the cost to complete:\n\n$$ETC = \\\\frac{500{,}000 - 180{,}000}{0.8571} = \\\\frac{320{,}000}{0.8571} = 373{,}333$$\n\nAdding the cost incurred to date:\n\n$$EAC = 210{,}000 + 373{,}333 = 583{,}333 \\\\approx \\\\$583{,}000$$\n",
+   "subtopic": "Earned value (estimate at completion)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "83.0 dB",
+    "160 dB",
+    "80.0 dB",
+    "86.0 dB"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Decibels combine logarithmically: doubling the sound energy adds about 3 dB, so 80 dB + 80 dB = 83 dB. Adding the decibel values directly (160 dB) is the common trap.",
+   "id": "construction-033",
+   "question": "Two identical air compressors each produce a sound pressure level of 80 dB at an operator's position. The handbook's Noise Pollution section gives the equation for combining sources. What is the total sound pressure level at the operator?",
+   "solution": "Refer to the Noise Pollution section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(SPL_{total}\\\\). The handbook prints:\n\n$$SPL_{total} = 10\\\\log_{10}\\\\sum 10^{SPL/10}$$\n\nSubstituting the two equal sources:\n\n$$SPL_{total} = 10\\\\log_{10}\\\\left(10^{80/10} + 10^{80/10}\\\\right)$$\n\n$$SPL_{total} = 10\\\\log_{10}\\\\left(2 \\\\times 10^{8}\\\\right)$$\n\n$$SPL_{total} = 10(8 + \\\\log_{10}2) = 10(8.301) = 83.0\\\\text{ dB}$$\n",
+   "subtopic": "Combined noise level",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "7.67 m/s",
+    "5.42 m/s",
+    "3.84 m/s",
+    "15.3 m/s"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "With no nonconservative work, \\(T_1 + V_1 = T_2 + V_2\\). The mass cancels and \\(v = \\sqrt{2gh}\\). Using \\(gh\\) instead of \\(2gh\\) gives 5.42 m/s.",
+   "id": "dynamics-033",
+   "question": "A 2-kg block is released from rest and slides down a frictionless ramp, dropping a vertical distance of 3 m. Using the principle of work and energy, what is the block's speed at the bottom of the ramp? Use \\(g = 9.81\\text{ m/s}^2\\).",
+   "solution": "Refer to the Principle of Work and Energy section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(v_2\\\\). The handbook prints, for conservative systems:\n\n$$T_2 + V_2 = T_1 + V_1$$\n\nThe block starts from rest, so \\\\(T_1 = 0\\\\); taking the datum at the bottom, \\\\(V_2 = 0\\\\):\n\n$$\\\\frac{1}{2}mv_2^2 = mgh$$\n\nThe mass cancels:\n\n$$v_2 = \\\\sqrt{2gh} = \\\\sqrt{2(9.81)(3)}$$\n\n$$v_2 = \\\\sqrt{58.86} = 7.67\\\\text{ m/s}$$\n",
+   "subtopic": "Principle of work and energy",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "$7,106",
+    "$7,451",
+    "$7,796",
+    "$6,761"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "EUAC = \\(P(A/P,i,n) - S(A/F,i,n)\\). The salvage value is a future receipt, so it is subtracted as an \\(A/F\\) amount. Ignoring salvage gives $7,451.",
+   "id": "econ-033",
+   "question": "A machine costs $50,000 new, has an estimated salvage value of $5,000 after 10 years, and the interest rate is 8% per year. What is the equivalent uniform annual cost (EUAC) of owning the machine?",
+   "solution": "Refer to the Capital Recovery and Sinking Fund sections in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the \\\\(EUAC\\\\). The handbook prints:\n\n$$(A/P,i,n) = \\\\frac{i(1+i)^n}{(1+i)^n-1} \\\\qquad (A/F,i,n) = (A/P,i,n) - i$$\n\nThe equivalent uniform annual cost spreads the first cost and recovers the salvage value:\n\n$$EUAC = P(A/P,8\\\\%,10) - S(A/F,8\\\\%,10)$$\n\nComputing the factors:\n\n$$(A/P,8\\\\%,10) = \\\\frac{0.08(1.08)^{10}}{(1.08)^{10}-1} = \\\\frac{0.172714}{1.158925} = 0.14903$$\n\n$$(A/F,8\\\\%,10) = 0.14903 - 0.08 = 0.06903$$\n\nSubstituting:\n\n$$EUAC = 50{,}000(0.14903) - 5{,}000(0.06903)$$\n\n$$EUAC = 7{,}451.5 - 345.2 = 7{,}106.3 \\\\approx \\\\$7{,}106$$\n",
+   "subtopic": "Equivalent uniform annual cost",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Proceed, since her New York license covers neighboring states",
+    "Comply with New Jersey's licensing laws and rules before practicing there",
+    "Practice under her client's New Jersey business license",
+    "Design the project but have a New Jersey contractor sign the drawings"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Rule A.10 requires licensees to comply with the licensing laws and rules of each jurisdiction in which they practice. A home-state license does not travel with the engineer.",
+   "id": "ethics-032",
+   "question": "A professional engineer licensed in New York is asked to design a commercial building located in New Jersey, where she holds no engineering license. New Jersey law requires licensure of anyone practicing engineering within the state. Under NCEES Model Rules §240.15(A)(10), what must she do?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nRefer to the 2025-26 NCEES Model Rules, Section 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must determine the licensee's obligation. Rule A.10 states:\n\n\"Licensees shall comply with the licensing laws and rules governing their professional practice in each of the jurisdictions in which they practice.\"\n\nThe engineer intends to practice engineering in New Jersey, a jurisdiction whose laws require licensure there.\n\nTherefore she must comply with New Jersey's licensing laws and rules -- for example, by obtaining a New Jersey license or comity licensure -- before performing the design work. None of the workarounds (borrowing a client's license, having a contractor sign, or assuming reciprocity) satisfy the rule.\n",
+   "subtopic": "Multi-jurisdiction licensure compliance (NCEES A.10)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Yes, because each technical segment is signed and sealed by its responsible licensee",
+    "No, a coordinating engineer must personally prepare every segment",
+    "No, coordination of an entire project is never permitted",
+    "Yes, but only if she also re-seals every segment herself"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Rule B.3 expressly permits accepting coordination of an entire project when each technical segment is signed and sealed by the licensee responsible for its preparation.",
+   "id": "ethics-033",
+   "question": "A licensed engineer agrees to coordinate an entire mixed-use development project. The structural, mechanical, and electrical design segments are each prepared, signed, and sealed by the licensee responsible for that segment. Under NCEES Model Rules §240.15(B)(3), may she assume responsibility for coordination of the entire project?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nRefer to the 2025-26 NCEES Model Rules, Section 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must determine whether the coordination role is permitted. Rule B.3 states:\n\n\"Licensees may accept assignments and assume responsibility for coordination of an entire project if each technical segment is signed and sealed by the licensee responsible for preparation of that technical segment.\"\n\nEach segment here -- structural, mechanical, electrical -- is signed and sealed by the licensee responsible for preparing it.\n\nTherefore the condition in Rule B.3 is satisfied, and she may assume responsibility for coordination of the entire project.\n",
+   "subtopic": "Project coordination responsibility (NCEES B.3)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1,960 N",
+    "3,920 N",
+    "980 N",
+    "2,450 N"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The handbook gives \\(F_L = C_L\\rho v^2 A_P/2\\). Skipping the division by 2 doubles the answer to 3,920 N.",
+   "id": "fluid-033",
+   "question": "A wing with a planform area of 2.5 m² flies at 40 m/s through air with density 1.225 kg/m³. If the lift coefficient is 0.8, what is the lift force on the wing?",
+   "solution": "Refer to the Airfoil/Wing Theory section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(F_L\\\\). The handbook prints:\n\n$$F_L = \\\\frac{C_L \\\\rho v^2 A_P}{2}$$\n\nSubstituting:\n\n$$F_L = \\\\frac{0.8(1.225)(40)^2(2.5)}{2}$$\n\nEvaluating one step at a time:\n\n$$F_L = \\\\frac{0.8(1.225)(1{,}600)(2.5)}{2} = \\\\frac{3{,}920}{2} = 1{,}960\\\\text{ N}$$\n",
+   "subtopic": "Lift force on a wing",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "2.08",
+    "1.04",
+    "0.48",
+    "4.15"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "\\(FS_s = i_c/i_e\\) with \\(i_c = (\\gamma_{sat} - \\gamma_w)/\\gamma_w\\). Quicksand initiates when the exit gradient reaches \\(i_c\\); reporting \\(i_c\\) alone (1.04) misses the division by the exit gradient.",
+   "id": "geotech-032",
+   "question": "Upward seepage occurs through a saturated sand with a saturated unit weight of 20.0 kN/m³. The seepage exit gradient is 0.50. Using \\(\\gamma_w = 9.81\\text{ kN/m}^3\\), what is the factor of safety against seepage liquefaction?",
+   "solution": "Refer to the Seepage section in the Geotechnical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(FS_s\\\\). The handbook prints:\n\n$$FS_s = \\\\frac{i_c}{i_e} \\\\qquad i_c = \\\\frac{\\\\gamma_{sat} - \\\\gamma_w}{\\\\gamma_w}$$\n\nComputing the critical gradient:\n\n$$i_c = \\\\frac{20.0 - 9.81}{9.81} = \\\\frac{10.19}{9.81} = 1.039$$\n\nDividing by the exit gradient:\n\n$$FS_s = \\\\frac{1.039}{0.50} = 2.078 \\\\approx 2.08$$\n",
+   "subtopic": "Factor of safety against seepage liquefaction",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "10.8 mm",
+    "64.8 mm",
+    "1.08 mm",
+    "108 mm"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Because the final stress stays below the preconsolidation stress, the clay recompresses along \\(C_R = C_C/6\\). Using \\(C_C\\) directly overestimates the settlement sixfold (64.8 mm).",
+   "id": "geotech-033",
+   "question": "A 3.0-m-thick overconsolidated clay layer has an initial void ratio of 0.90 and a compression index of 0.36. The initial vertical effective stress is 100 kPa, the preconsolidation stress is 150 kPa, and construction raises the effective stress to 130 kPa. Using the handbook correlation \\(C_R = C_C/6\\), what is the consolidation settlement?",
+   "solution": "Refer to the Soil Consolidation section in the Geotechnical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\Delta H\\\\). The handbook prints, for \\\\(\\\\sigma'_0 < \\\\sigma'_c\\\\) and \\\\(\\\\sigma'_f < \\\\sigma'_c\\\\):\n\n$$\\\\Delta H = \\\\frac{H_0}{1+e_0} C_R \\\\log_{10}\\\\frac{\\\\sigma'_f}{\\\\sigma'_0}$$\n\nwith the correlation \\\\(C_R = C_C/6\\\\).\n\nComputing the recompression index:\n\n$$C_R = \\\\frac{0.36}{6} = 0.06$$\n\nChecking the stress condition: \\\\(100\\\\text{ kPa} < 150\\\\text{ kPa}\\\\) and \\\\(130\\\\text{ kPa} < 150\\\\text{ kPa}\\\\), so the recompression equation applies.\n\nSubstituting:\n\n$$\\\\Delta H = \\\\frac{3.0}{1+0.90}(0.06)\\\\log_{10}\\\\frac{130}{100}$$\n\n$$\\\\Delta H = (1.5789)(0.06)(0.11394) = 0.010795\\\\text{ m} = 10.8\\\\text{ mm}$$\n",
+   "subtopic": "Recompression settlement of overconsolidated clay",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "125 kW",
+    "12.5 kW",
+    "1,250 kW",
+    "1.25 kW"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Fourier's law \\(Q = kA\\Delta T/L\\) with \\(L\\) in meters (0.020 m). Forgetting the mm-to-m conversion throws the answer off by a factor of 1,000.",
+   "id": "materials-032",
+   "question": "Heat flows steadily through a steel plate 20 mm thick with thermal conductivity 50 W/(m·K). The plate area perpendicular to the heat flow is 0.50 m² and the temperature drop across the plate is 100 K. What is the rate of heat transfer?",
+   "solution": "Refer to Fourier's Law of Conduction in the Heat Transfer section of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\dot{Q}\\\\). The handbook prints:\n\n$$\\\\dot{Q} = -kA\\\\frac{dT}{dx}$$\n\nFor a plane wall with a linear temperature drop this becomes:\n\n$$\\\\dot{Q} = \\\\frac{kA\\\\Delta T}{L}$$\n\nConverting the thickness to meters: \\\\(L = 20\\\\text{ mm} = 0.020\\\\text{ m}\\\\).\n\nSubstituting:\n\n$$\\\\dot{Q} = \\\\frac{50(0.50)(100)}{0.020} = \\\\frac{2{,}500}{0.020} = 125{,}000\\\\text{ W} = 125\\\\text{ kW}$$\n",
+   "subtopic": "Fourier's law of heat conduction",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.0×10⁻⁷ Ω·m",
+    "1.0×10⁻⁶ Ω·m",
+    "1.0×10⁻⁵ Ω·m",
+    "2.5×10⁻⁷ Ω·m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "\\(\\rho = RA/L\\). The area must be converted from mm² to m² (\\(2.0 \\times 10^{-6}\\text{ m}^2\\)); skipping the conversion gives \\(10^{-5}\\).",
+   "id": "materials-033",
+   "question": "A copper wire 10 m long with a cross-sectional area of 2.0 mm² has a measured resistance of 0.50 Ω. What is the resistivity of the copper?",
+   "solution": "Refer to the Resistivity section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\rho\\\\). The handbook prints:\n\n$$\\\\rho = \\\\frac{RA}{L}$$\n\nConverting the area: \\\\(A = 2.0\\\\text{ mm}^2 = 2.0 \\\\times 10^{-6}\\\\text{ m}^2\\\\).\n\nSubstituting:\n\n$$\\\\rho = \\\\frac{0.50(2.0 \\\\times 10^{-6})}{10} = \\\\frac{1.0 \\\\times 10^{-6}}{10} = 1.0 \\\\times 10^{-7}\\\\text{ }\\\\Omega\\\\cdot\\\\text{m}$$\n",
+   "subtopic": "Electrical resistivity",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "3",
+    "0",
+    "1",
+    "1/3"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Direct substitution gives the indeterminate form 0/0, so L'Hôpital's rule applies: the limit equals \\(\\lim_{x\\to 0} 3\\cos(3x) = 3\\).",
+   "id": "math-032",
+   "question": "Evaluate \\(\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}\\).",
+   "solution": "Refer to L'Hôpital's Rule in the Calculus section of the FE Reference Handbook (v10.6).\n\nUltimately, we must evaluate the limit. Direct substitution gives \\\\(0/0\\\\), an indeterminate form, so the handbook's rule applies:\n\n$$\\\\lim_{x \\\\to a}\\\\frac{f(x)}{g(x)} = \\\\lim_{x \\\\to a}\\\\frac{f'(x)}{g'(x)}$$\n\nDifferentiating numerator and denominator:\n\n$$\\\\lim_{x \\\\to 0}\\\\frac{\\\\sin(3x)}{x} = \\\\lim_{x \\\\to 0}\\\\frac{3\\\\cos(3x)}{1}$$\n\nEvaluating at \\\\(x = 0\\\\):\n\n$$3\\\\cos(0) = 3(1) = 3$$\n",
+   "subtopic": "L'Hôpital's rule",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1/(s + 3)",
+    "1/(s − 3)",
+    "3/s",
+    "e^(−3s)/s"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The handbook's Laplace Transform Pairs table gives \\(L\\{e^{-at}\\} = 1/(s + a)\\). The minus sign in the exponent becomes a plus sign in the denominator.",
+   "id": "math-033",
+   "question": "What is the Laplace transform of \\(f(t) = e^{-3t}\\) for \\(t \\geq 0\\)?",
+   "solution": "Refer to the Laplace Transform Pairs table in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\\\(F(s)\\\\). The handbook's table prints:\n\n$$e^{-at} \\\\quad\\\\Longleftrightarrow\\\\quad \\\\frac{1}{s+a}$$\n\nHere \\\\(a = 3\\\\), so:\n\n$$L\\\\{e^{-3t}\\\\} = \\\\frac{1}{s+3}$$\n",
+   "subtopic": "Laplace transform of exponential function",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "88.9 MPa",
+    "100 MPa",
+    "70.0 MPa",
+    "50.0 MPa"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "First find the in-plane principal stresses (70 MPa and −30 MPa), then apply \\(\\sigma' = \\sqrt{\\sigma_A^2 - \\sigma_A\\sigma_B + \\sigma_B^2}\\). Using \\(\\sigma_x - \\sigma_y = 100\\text{ MPa}\\) directly is the trap.",
+   "id": "mechmat-033",
+   "question": "A point in a steel component is subjected to \\(\\sigma_x = 60\\text{ MPa}\\), \\(\\sigma_y = -20\\text{ MPa}\\), and \\(\\tau_{xy} = 30\\text{ MPa}\\). What is the von Mises effective stress at the point?",
+   "solution": "Refer to the Distortion-Energy Theory section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\sigma'\\\\). The handbook prints, for a biaxial stress state:\n\n$$\\\\sigma' = \\\\sqrt{\\\\sigma_A^2 - \\\\sigma_A\\\\sigma_B + \\\\sigma_B^2}$$\n\nwhere \\\\(\\\\sigma_A\\\\) and \\\\(\\\\sigma_B\\\\) are the two nonzero principal stresses.\n\nFinding the in-plane principal stresses:\n\n$$\\\\sigma_{A,B} = \\\\frac{60 + (-20)}{2} \\\\pm \\\\sqrt{\\\\left(\\\\frac{60 - (-20)}{2}\\\\right)^2 + 30^2}$$\n\n$$\\\\sigma_{A,B} = 20 \\\\pm \\\\sqrt{1{,}600 + 900} = 20 \\\\pm 50$$\n\n$$\\\\sigma_A = 70\\\\text{ MPa} \\\\qquad \\\\sigma_B = -30\\\\text{ MPa}$$\n\nSubstituting into the effective stress:\n\n$$\\\\sigma' = \\\\sqrt{70^2 - (70)(-30) + (-30)^2} = \\\\sqrt{4{,}900 + 2{,}100 + 900}$$\n\n$$\\\\sigma' = \\\\sqrt{7{,}900} = 88.9\\\\text{ MPa}$$\n",
+   "subtopic": "Von Mises effective stress",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "550 cm⁴",
+    "150 cm⁴",
+    "750 cm⁴",
+    "70,000 cm⁴"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "\\(J = I_x + I_y\\) for any two perpendicular axes through the same point. Subtracting (150) or multiplying (70,000) are the traps.",
+   "id": "statics-032",
+   "question": "A cross-section has area moments of inertia \\(I_x = 200\\text{ cm}^4\\) and \\(I_y = 350\\text{ cm}^4\\) about perpendicular centroidal axes. What is the polar moment of inertia of the area about the centroid?",
+   "solution": "Refer to the Moment of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(J\\\\). The handbook prints:\n\n$$J = I_x + I_y$$\n\nSubstituting:\n\n$$J = 200 + 350 = 550\\\\text{ cm}^4$$\n",
+   "subtopic": "Polar moment of inertia",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "2.50",
+    "0.375",
+    "1.50",
+    "3.00"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "\\(F = MST/MSE\\) with \\(MST = SS_{treatments}/(k-1)\\) and \\(MSE = SS_{error}/(N-k)\\). Dividing the raw sums of squares (150/400 = 0.375) skips the degrees of freedom.",
+   "id": "stats-032",
+   "question": "A one-way ANOVA compares 4 treatments using 24 total observations. The sum of squares between treatments is 150 and the sum of squares for error is 400. What is the F-statistic for testing whether the treatment means differ?",
+   "solution": "Refer to the One-Way Analysis of Variance (ANOVA) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(F\\\\). The handbook's ANOVA table prints:\n\n$$F = \\\\frac{MST}{MSE} \\\\qquad MST = \\\\frac{SS_{treatments}}{k-1} \\\\qquad MSE = \\\\frac{SS_{error}}{N-k}$$\n\nComputing the mean squares:\n\n$$MST = \\\\frac{150}{4-1} = \\\\frac{150}{3} = 50$$\n\n$$MSE = \\\\frac{400}{24-4} = \\\\frac{400}{20} = 20$$\n\nForming the ratio:\n\n$$F = \\\\frac{50}{20} = 2.50$$\n",
+   "subtopic": "One-way ANOVA (F-statistic)",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Type I error",
+    "Type II error",
+    "No error — the test was merely inconclusive",
+    "A loss of statistical power"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Rejecting a true null hypothesis is a Type I error (probability α); failing to reject a false null is a Type II error (β).",
+   "id": "stats-033",
+   "question": "A hypothesis test rejects the null hypothesis \\(H_0\\), but \\(H_0\\) is actually true. What type of error has occurred?",
+   "solution": "Refer to the Hypothesis Testing section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the error. The handbook prints:\n\n\"A Type I error occurs when the null hypothesis is rejected when it is true.\"\n\n\"A Type II error occurs when the null hypothesis is not rejected when it is false.\"\n\nThe test rejected \\\\(H_0\\\\) while \\\\(H_0\\\\) was true.\n\nTherefore a Type I error occurred.\n",
+   "subtopic": "Type I and Type II errors",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Chi-square with 5 degrees of freedom",
+    "Normal with mean 5",
+    "t with 5 degrees of freedom",
+    "F with (5, 5) degrees of freedom"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The handbook defines the chi-square distribution with \\(n\\) degrees of freedom as the sum of squares of \\(n\\) independent unit normal variables.",
+   "id": "stats-034",
+   "question": "Let \\(Z_1, Z_2, Z_3, Z_4, Z_5\\) be independent standard normal random variables. What is the distribution of \\(W = Z_1^2 + Z_2^2 + Z_3^2 + Z_4^2 + Z_5^2\\)?",
+   "solution": "Refer to the Chi-Square Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify the distribution of \\\\(W\\\\). The handbook prints:\n\n\"If \\\\(Z_1, Z_2, \\\\ldots, Z_n\\\\) are independent unit normal random variables, then \\\\(\\\\chi^2 = Z_1^2 + Z_2^2 + \\\\cdots + Z_n^2\\\\) is said to have a chi-square distribution with \\\\(n\\\\) degrees of freedom.\"\n\nHere \\\\(n = 5\\\\).\n\nTherefore \\\\(W\\\\) has a chi-square distribution with 5 degrees of freedom.\n",
+   "subtopic": "Chi-square distribution",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "124 kips",
+    "139 kips",
+    "104 kips",
+    "92.7 kips"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Block shear \\(R_n\\) is the smaller of the rupture-on-both-planes and yield-on-shear-plus-rupture-on-tension values. The 104-kip and 92.7-kip choices apply the \\(\\phi = 0.75\\) factor, but the question asks for nominal strength.",
+   "id": "structural-033",
+   "question": "A steel tension connection has a gross shear area \\(A_{gv} = 2.5\\text{ in}^2\\), net shear area \\(A_{nv} = 2.0\\text{ in}^2\\), net tension area \\(A_{nt} = 1.2\\text{ in}^2\\), \\(F_y = 36\\text{ ksi}\\), \\(F_u = 58\\text{ ksi}\\), and \\(U_{bs} = 1.0\\). What is the nominal block shear rupture strength \\(R_n\\)?",
+   "solution": "Refer to the Steel Design (Block Shear) section in the Structural Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(R_n\\\\). The handbook prints:\n\n$$R_n = \\\\text{smaller of } \\\\begin{cases} 0.6F_u A_{nv} + U_{bs}F_u A_{nt} \\\\\\\\ 0.6F_y A_{gv} + U_{bs}F_u A_{nt} \\\\end{cases}$$\n\nEvaluating the first expression (rupture on both planes):\n\n$$R_{n1} = 0.6(58)(2.0) + 1.0(58)(1.2) = 69.6 + 69.6 = 139.2\\\\text{ kips}$$\n\nEvaluating the second expression (yield on shear, rupture on tension):\n\n$$R_{n2} = 0.6(36)(2.5) + 1.0(58)(1.2) = 54.0 + 69.6 = 123.6\\\\text{ kips}$$\n\nTaking the smaller:\n\n$$R_n = 123.6 \\\\approx 124\\\\text{ kips}$$\n",
+   "subtopic": "Block shear rupture strength",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "205 ft²",
+    "230 ft²",
+    "180 ft²",
+    "410 ft²"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Trapezoidal rule: \\(w[(h_1+h_n)/2 + \\text{interior sum}]\\). Only the end offsets are halved; halving none of them gives 230 ft².",
+   "id": "surveying-032",
+   "question": "Offsets taken at 10-ft intervals across a lot are 0, 4, 6, 8, and 5 ft. Using the trapezoidal rule from the handbook's Area Formulas section, what is the area of the lot?",
+   "solution": "Refer to the Area Formulas section in the Surveying chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the area. The handbook prints the Trapezoidal Rule:\n\n$$A = w\\\\left[\\\\frac{h_1 + h_n}{2} + h_2 + h_3 + \\\\cdots + h_{n-1}\\\\right]$$\n\nSubstituting \\\\(w = 10\\\\text{ ft}\\\\) and the five offsets:\n\n$$A = 10\\\\left[\\\\frac{0 + 5}{2} + 4 + 6 + 8\\\\right]$$\n\n$$A = 10[2.5 + 18] = 10(20.5) = 205\\\\text{ ft}^2$$\n",
+   "subtopic": "Area by trapezoidal rule",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "25.7 s",
+    "20.3 s",
+    "17.1 s",
+    "31.1 s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "\\(G_p = 3.2 + L/S_p + 0.27N_{ped}\\) accounts for start-up time, crossing time, and pedestrian volume. Omitting the start-up and volume terms gives 17.1 s.",
+   "id": "transportation-032",
+   "question": "A signalized crosswalk is 60 ft long, the assumed pedestrian walking speed is 3.5 ft/s, and 20 pedestrians use the crosswalk during the interval. What is the minimum pedestrian green time \\(G_p\\)?",
+   "solution": "Refer to the Traffic Signal Timing section in the Transportation chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(G_p\\\\). The handbook prints:\n\n$$G_p = 3.2 + \\\\frac{L}{S_p} + 0.27N_{ped}$$\n\nSubstituting \\\\(L = 60\\\\text{ ft}\\\\), \\\\(S_p = 3.5\\\\text{ ft/s}\\\\), and \\\\(N_{ped} = 20\\\\):\n\n$$G_p = 3.2 + \\\\frac{60}{3.5} + 0.27(20)$$\n\n$$G_p = 3.2 + 17.143 + 5.4 = 25.743 \\\\approx 25.7\\\\text{ s}$$\n",
+   "subtopic": "Pedestrian green time",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "58.4 mph",
+    "63.1 mph",
+    "65.0 mph",
+    "56.6 mph"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The table gives a 6.6-mph reduction for lanes in the 10-to-11-ft band. Using the 11-to-12-ft reduction (1.9 mph) gives 63.1 mph.",
+   "id": "transportation-033",
+   "question": "A basic freeway segment has a base free-flow speed of 65 mph and 10.5-ft lanes. Using the handbook's HCM adjustment table for average lane width, what is the adjusted free-flow speed?",
+   "solution": "Refer to the Basic Freeway Segment Highway Capacity section in the Transportation chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must adjust the free-flow speed. The handbook's HCM table prints, for average lane width:\n\n- \\\\(\\\\geq 12\\\\) ft: 0.0 mph reduction\n- \\\\(\\\\geq 11\\\\)--12 ft: 1.9 mph reduction\n- \\\\(\\\\geq 10\\\\)--11 ft: 6.6 mph reduction\n\nA 10.5-ft lane falls in the \\\\(\\\\geq 10\\\\)--11 ft band, so \\\\(f_{LW} = 6.6\\\\text{ mph}\\\\).\n\n$$FFS_{adj} = 65 - 6.6 = 58.4\\\\text{ mph}$$\n",
+   "subtopic": "Lane-width adjustment to free-flow speed",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "4.0 vehicles",
+    "0.80 vehicles",
+    "5.0 vehicles",
+    "0.20 vehicles"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "For a single-server queue, \\(L = \\lambda/(\\mu - \\lambda)\\). The 0.80 choice is the utilization \\(\\rho = \\lambda/\\mu\\), not the expected number in the system.",
+   "id": "transportation-034",
+   "question": "Vehicles arrive at a single toll booth at 400 veh/hr (Poisson arrivals) and the booth serves 500 veh/hr (exponential service times). What is the expected number of vehicles in the system?",
+   "solution": "Refer to the Queueing Models section in the Industrial Engineering chapter of the FE Reference Handbook (v10.6) -- the Transportation chapter explicitly directs queueing questions there.\n\nUltimately, we must solve for \\\\(L\\\\). The handbook prints, for single-server Poisson-input/exponential-service models:\n\n$$L = \\\\frac{\\\\lambda}{\\\\mu - \\\\lambda}$$\n\nSubstituting \\\\(\\\\lambda = 400\\\\text{ veh/hr}\\\\) and \\\\(\\\\mu = 500\\\\text{ veh/hr}\\\\):\n\n$$L = \\\\frac{400}{500 - 400} = \\\\frac{400}{100} = 4.0\\\\text{ vehicles}$$\n",
+   "subtopic": "Toll plaza queueing (M/M/1)",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "171 mg/L",
+    "250 mg/L",
+    "79 mg/L",
+    "34 mg/L"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "\\(BOD_t = L_0(1 - e^{-kt})\\) gives the oxygen consumed through day \\(t\\); the 79 mg/L choice is the BOD remaining to be exerted after day 5.",
+   "id": "water-032",
+   "question": "A wastewater sample has an ultimate BOD (\\(L_0\\)) of 250 mg/L and a deoxygenation rate \\(k = 0.23\\text{ day}^{-1}\\) (base \\(e\\)). What is the 5-day BOD (\\(BOD_5\\))?",
+   "solution": "Refer to the BOD Exertion section in the Water Resources chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(BOD_5\\\\). The handbook prints:\n\n$$BOD_t = L_0\\\\left(1 - e^{-kt}\\\\right)$$\n\nSubstituting \\\\(L_0 = 250\\\\text{ mg/L}\\\\), \\\\(k = 0.23\\\\text{ day}^{-1}\\\\), and \\\\(t = 5\\\\text{ days}\\\\):\n\n$$BOD_5 = 250\\\\left(1 - e^{-0.23(5)}\\\\right) = 250\\\\left(1 - e^{-1.15}\\\\right)$$\n\n$$BOD_5 = 250(1 - 0.31664) = 250(0.68336) = 170.84 \\\\approx 171\\\\text{ mg/L}$$\n",
+   "subtopic": "BOD exertion",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "12,214",
+    "12,000",
+    "10,200",
+    "14,000"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Geometric growth: \\(P_t = P_0e^{k\\Delta t}\\). The linear projection (12,000) underestimates the compounding.",
+   "id": "water-033",
+   "question": "A town's current population is 10,000 and it is growing geometrically at 2% per year. What is the projected population in 10 years?",
+   "solution": "Refer to the Population Modeling section in the Water Resources chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(P_t\\\\). The handbook prints, for geometric (log) growth:\n\n$$P_t = P_0e^{k\\\\Delta t}$$\n\nSubstituting \\\\(P_0 = 10{,}000\\\\), \\\\(k = 0.02\\\\text{/yr}\\\\), and \\\\(\\\\Delta t = 10\\\\text{ yr}\\\\):\n\n$$P_t = 10{,}000e^{0.02(10)} = 10{,}000e^{0.2}$$\n\n$$P_t = 10{,}000(1.22140) = 12{,}214$$\n",
+   "subtopic": "Population projection (geometric growth)",
+   "topic": "Water Resources"
   }
  ]
 }
