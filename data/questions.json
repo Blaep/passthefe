@@ -6837,7 +6837,431 @@
    "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must decide whether sealing is permitted. The Code requires engineers to approve and seal only design documents prepared under their responsible charge.\n\nThe engineer neither supervised nor reviewed the other firm's work.\n\nTherefore the engineer must refuse to seal the drawings.\n\nChecking the title block, relying on the other firm's licenses, or adding a disclaimer does not create responsible charge.\n\nThe ethical course is to refuse to seal work not prepared under his responsible charge.",
    "subtopic": "Plan stamping (responsible charge)",
    "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "(1, -1, 0)",
+    "(1, 1, 0)",
+    "(3, -1, 0)",
+    "(0, 0, 1)"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The curl measures the rotation of a vector field at a point. Each component is a difference of two cross-partial derivatives -- the most common slip is swapping the subtraction order, which flips the sign.",
+   "id": "math-026",
+   "question": "The vector field is given by F = (x*z, y^2, x*y). What is the curl of F at the point (1, 2, 3)?",
+   "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\nabla \\\\times \\\\mathbf{F}\\\\). The handbook prints:\n\n$$\\\\nabla \\\\times \\\\mathbf{F} = \\\\left(\\\\frac{\\\\partial R}{\\\\partial y} - \\\\frac{\\\\partial Q}{\\\\partial z}\\\\right)\\\\mathbf{i} + \\\\left(\\\\frac{\\\\partial P}{\\\\partial z} - \\\\frac{\\\\partial R}{\\\\partial x}\\\\right)\\\\mathbf{j} + \\\\left(\\\\frac{\\\\partial Q}{\\\\partial x} - \\\\frac{\\\\partial P}{\\\\partial y}\\\\right)\\\\mathbf{k}$$\n\nIdentify the components:\n\n$$\\\\begin{aligned}\nP &= xz \\\\\\\\\nQ &= y^2 \\\\\\\\\nR &= xy\n\\\\end{aligned}$$\n\nCompute the six partial derivatives:\n\n$$\\\\begin{aligned}\n\\\\frac{\\\\partial R}{\\\\partial y} &= x, & \\\\frac{\\\\partial Q}{\\\\partial z} &= 0 \\\\\\\\\n\\\\frac{\\\\partial P}{\\\\partial z} &= x, & \\\\frac{\\\\partial R}{\\\\partial x} &= y \\\\\\\\\n\\\\frac{\\\\partial Q}{\\\\partial x} &= 0, & \\\\frac{\\\\partial P}{\\\\partial y} &= 0\n\\\\end{aligned}$$\n\nEvaluate at \\\\((1, 2, 3)\\\\):\n\n$$\\\\begin{aligned}\n(\\\\nabla \\\\times \\\\mathbf{F})_x &= 1 - 0 = 1 \\\\\\\\\n(\\\\nabla \\\\times \\\\mathbf{F})_y &= 1 - 2 = -1 \\\\\\\\\n(\\\\nabla \\\\times \\\\mathbf{F})_z &= 0 - 0 = 0\n\\\\end{aligned}$$\n\n$$(\\\\nabla \\\\times \\\\mathbf{F}) = (1, -1, 0)$$",
+   "subtopic": "Curl of a vector field",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.75",
+    "2.00",
+    "2.25",
+    "2.50"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Newton's method replaces the function with its tangent line at the current estimate and takes the tangent's root as the next estimate. The most common slips are subtracting the correction term instead of adding it (which gives 1.75) and miscomputing the derivative.",
+   "id": "math-027",
+   "question": "Use one iteration of Newton's method to approximate the positive root of f(x) = x^2 - 5, starting from the initial estimate x0 = 2. What is x1?",
+   "solution": "Refer to the Newton's Method for Root Extraction section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(x_1\\\\). The handbook prints the update:\n\n$$x_{j+1} = x_j - \\\\frac{f(x_j)}{f'(x_j)}$$\n\nFor \\\\(f(x) = x^2 - 5\\\\):\n\n$$(f'(x)) = 2x$$\n\nEvaluate at \\\\(x_0 = 2\\\\):\n\n$$\\\\begin{aligned}\nf(2) &= 4 - 5 = -1 \\\\\\\\\nf'(2) &= 4\n\\\\end{aligned}$$\n\n$$(x_1) = 2 - \\\\frac{-1}{4} = 2 + 0.25 = 2.25$$",
+   "subtopic": "Newton's method (one iteration)",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.2816",
+    "1.6449",
+    "1.9600",
+    "2.0537"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "For a two-sided interval, alpha/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed.",
+   "id": "stats-026",
+   "question": "A two-sided 95% confidence interval for a population mean is constructed using the standard normal distribution. What is the critical value Z_{alpha/2}?",
+   "solution": "Refer to the Test Statistics section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(Z_{\\\\alpha/2}\\\\). The handbook prints the Values of \\\\(Z_{\\\\alpha/2}\\\\) table:\n\n$$\\\\begin{aligned}\n80\\\\% &\\\\to 1.2816 \\\\\\\\\n90\\\\% &\\\\to 1.6449 \\\\\\\\\n95\\\\% &\\\\to 1.9600 \\\\\\\\\n96\\\\% &\\\\to 2.0537\n\\\\end{aligned}$$\n\nFor a 95% two-sided interval:\n\n$$(Z_{\\\\alpha/2}) = 1.9600$$",
+   "subtopic": "Standard normal critical value",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.149",
+    "0.224",
+    "0.423",
+    "0.577"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The Poisson distribution models counts of rare events in a fixed interval. The factorial in the denominator grows fast, so probabilities for counts far from the mean drop quickly.",
+   "id": "stats-027",
+   "question": "Emergency calls arrive at a fire station at an average rate of 3 per hour. Assuming a Poisson process, what is the probability of exactly 2 calls in the next hour?",
+   "solution": "Refer to the Poisson distribution in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(P(X = 2)\\\\). The handbook prints:\n\n$$f(x; \\\\lambda) = \\\\frac{\\\\lambda^x e^{-\\\\lambda}}{x!}$$\n\nHere \\\\(\\\\lambda = 3\\\\) and \\\\(x = 2\\\\):\n\n$$(P) = \\\\frac{3^2 e^{-3}}{2!} = \\\\frac{9(0.04979)}{2}$$\n\n$$(P) = \\\\frac{0.4481}{2} = 0.224$$",
+   "subtopic": "Poisson exact-count probability",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "98 N-m",
+    "137 N-m",
+    "171 N-m",
+    "205 N-m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Tightening a screw jack means driving the load up the thread against friction. The friction angle phi adds to the pitch angle -- use the plus sign for tightening, minus for loosening.",
+   "id": "statics-026",
+   "question": "A square-thread screw jack has a mean thread radius of 40 mm and a pitch angle of 4 degrees. The coefficient of friction between the threads is 0.10. What moment is required to tighten the jack against a 20 kN load?",
+   "solution": "Refer to the Screw Thread section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(M\\\\). The handbook prints, for a square thread:\n\n$$M = Pr \\\\tan(\\\\alpha \\\\pm \\\\phi)$$\n\nwith \\\\(+ \\\\) for tightening, and \\\\(\\\\mu = \\\\tan\\\\phi\\\\).\n\nCompute the friction angle:\n\n$$(\\\\phi) = \\\\arctan(0.10) = 5.71^\\\\circ$$\n\n$$(\\\\alpha + \\\\phi) = 4^\\\\circ + 5.71^\\\\circ = 9.71^\\\\circ$$\n\n$$(M) = (20{,}000)(0.040)\\\\tan(9.71^\\\\circ) = (800)(0.1710) = 136.8 \\\\text{ N-m} \\\\approx 137 \\\\text{ N-m}$$",
+   "subtopic": "Screw jack (tightening moment)",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "35 N",
+    "57 N",
+    "70 N",
+    "200 N"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Static friction adjusts itself up to a limit -- it equals the applied push until the push exceeds the limiting value. On a horizontal surface the normal force is just the weight.",
+   "id": "statics-027",
+   "question": "A 200 N crate rests on a horizontal surface. The coefficient of static friction is 0.35. What is the largest horizontal push the crate can resist without slipping?",
+   "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the limiting friction. The handbook prints:\n\n$$F \\\\le \\\\mu_s N$$\n\nOn a horizontal surface:\n\n$$(N) = 200 \\\\text{ N}$$\n\n$$(F_{\\\\max}) = (0.35)(200) = 70 \\\\text{ N}$$",
+   "subtopic": "Limiting static friction",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1.2 m/s",
+    "1.8 m/s",
+    "3.0 m/s",
+    "4.5 m/s"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "In polar coordinates the velocity splits into a radial part (dr/dt) and a transverse part (r times d(theta)/dt). The transverse part grows both when the angle changes faster and when the particle is farther out.",
+   "id": "dynamics-026",
+   "question": "A particle's position is described in polar coordinates by r = 0.5t^2 m and theta = 0.4t rad, with t in seconds. At t = 3 s, what is the transverse component of velocity?",
+   "solution": "Refer to the Radial and Transverse Components for Planar Motion section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(v_\\\\theta\\\\). The handbook prints:\n\n$$\\\\mathbf{v} = \\\\dot{r}\\\\,\\\\mathbf{e}_r + r\\\\dot{\\\\theta}\\\\,\\\\mathbf{e}_\\\\theta$$\n\nDifferentiate the given position functions:\n\n$$\\\\begin{aligned}\n\\\\dot{r} &= \\\\frac{d}{dt}(0.5t^2) = t \\\\\\\\\n\\\\dot{\\\\theta} &= \\\\frac{d}{dt}(0.4t) = 0.4 \\\\text{ rad/s}\n\\\\end{aligned}$$\n\nAt \\\\(t = 3 \\\\text{ s}\\\\):\n\n$$\\\\begin{aligned}\nr &= 0.5(3)^2 = 4.5 \\\\text{ m} \\\\\\\\\n\\\\dot{\\\\theta} &= 0.4 \\\\text{ rad/s}\n\\\\end{aligned}$$\n\n$$(v_\\\\theta) = r\\\\dot{\\\\theta} = (4.5)(0.4) = 1.8 \\\\text{ m/s}$$",
+   "subtopic": "Polar coordinates (transverse velocity)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3.33 kN",
+    "5.00 kN",
+    "7.50 kN",
+    "12.0 kN"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "On a curved path the normal direction points toward the center of curvature. The required centripetal force is mass times v-squared over rho -- on a level road, tire friction alone supplies it.",
+   "id": "dynamics-027",
+   "question": "A 1200-kg car travels at 25 m/s around a level (unbanked) curve of radius 150 m. What lateral friction force must the tires develop to keep the car on the curve?",
+   "solution": "Refer to the Normal and Tangential Kinetics for Planar Problems section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the lateral force. The handbook prints:\n\n$$\\\\sum F_n = m a_n = m\\\\frac{v^2}{\\\\rho}$$\n\n$$(F_n) = (1200)\\\\frac{(25)^2}{150} = \\\\frac{750{,}000}{150} = 5{,}000 \\\\text{ N} = 5.00 \\\\text{ kN}$$",
+   "subtopic": "Normal kinetics (curved path)",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "10.8 J",
+    "21.6 J",
+    "32.4 J",
+    "43.2 J"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Strain energy is the area under the load-deflection curve. For linear elastic loading from zero, that area is a triangle: one-half times load times elongation.",
+   "id": "mechmat-026",
+   "question": "A steel rod (E = 200 GPa) with a cross-sectional area of 400 mm^2 and a length of 1.5 m elongates 0.9 mm under an axial tensile load. How much elastic strain energy is stored in the rod?",
+   "solution": "Refer to the Elastic Strain Energy section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(U\\\\). The handbook prints:\n\n$$U = W = \\\\frac{P\\\\delta}{2}$$\n\nFirst find the load from the axial deformation:\n\n$$(P) = \\\\frac{\\\\delta A E}{L} = \\\\frac{(0.0009)(400 \\\\times 10^{-6})(200 \\\\times 10^9)}{1.5}$$\n\n$$(P) = \\\\frac{72{,}000}{1.5} = 48{,}000 \\\\text{ N}$$\n\n$$(U) = \\\\frac{(48{,}000)(0.0009)}{2} = 21.6 \\\\text{ J}$$",
+   "subtopic": "Elastic strain energy (axial bar)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "30 MPa",
+    "40 MPa",
+    "50 MPa",
+    "60 MPa"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Thick-walled vessels need the full Lame solution -- the thin-wall Pr/t shortcut underestimates the inner-wall stress. At the inner wall the tangential stress is always the largest principal stress.",
+   "id": "mechmat-027",
+   "question": "A thick-walled steel cylinder has an inner radius of 60 mm and an outer radius of 120 mm. It is subjected to an internal pressure of 30 MPa with zero external pressure. What is the tangential (hoop) stress at the inner wall?",
+   "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\sigma_t\\\\) at the inner wall. The handbook prints, for internal pressure only:\n\n$$\\\\sigma_t = P_i\\\\frac{r_o^2 + r_i^2}{r_o^2 - r_i^2}$$\n\n$$\\\\begin{aligned}\nr_i^2 &= (60)^2 = 3{,}600 \\\\text{ mm}^2 \\\\\\\\\nr_o^2 &= (120)^2 = 14{,}400 \\\\text{ mm}^2\n\\\\end{aligned}$$\n\n$$(\\\\sigma_t) = 30\\\\frac{14{,}400 + 3{,}600}{14{,}400 - 3{,}600} = 30\\\\frac{18{,}000}{10{,}800}$$\n\n$$(\\\\sigma_t) = 30(1.6667) = 50 \\\\text{ MPa}$$",
+   "subtopic": "Thick-walled cylinder (Lame equations)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "0.10 m",
+    "0.15 m",
+    "0.20 m",
+    "0.24 m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Noncircular conduits use the hydraulic diameter so that circular-pipe formulas still apply. It is four times the hydraulic radius -- a common slip is forgetting the factor of 4.",
+   "id": "fluid-026",
+   "question": "Water flows full through a rectangular duct 0.30 m wide and 0.15 m high. What is the hydraulic diameter of the duct?",
+   "solution": "Refer to the Flow in Noncircular Conduits section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(D_H\\\\). The handbook prints:\n\n$$D_H = \\\\frac{4A}{P_{wet}}$$\n\n$$\\\\begin{aligned}\nA &= (0.30)(0.15) = 0.045 \\\\text{ m}^2 \\\\\\\\\nP_{wet} &= 2(0.30 + 0.15) = 0.90 \\\\text{ m}\n\\\\end{aligned}$$\n\n$$(D_H) = \\\\frac{4(0.045)}{0.90} = \\\\frac{0.18}{0.90} = 0.20 \\\\text{ m}$$",
+   "subtopic": "Hydraulic diameter",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "4.0 x 10^-6 m^3/s",
+    "4.0 x 10^-5 m^3/s",
+    "4.0 x 10^-4 m^3/s",
+    "4.0 x 10^-3 m^3/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Darcy's law says discharge is proportional to the hydraulic gradient. The gradient is head loss per unit flow distance -- use the distance along the flow path, not the cross-section dimension.",
+   "id": "water-026",
+   "question": "Groundwater flows through a sand stratum with hydraulic conductivity K = 2.0 x 10^-4 m/s. The flow cross-section is 5 m^2 and the hydraulic head drops 1.2 m over a flow distance of 30 m. What is the discharge?",
+   "solution": "Refer to the Darcy's Law section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(Q\\\\). The handbook prints:\n\n$$Q = KA\\\\frac{dh}{dx}$$\n\nThe hydraulic gradient is:\n\n$$\\\\left(\\\\frac{dh}{dx}\\\\right) = \\\\frac{1.2}{30} = 0.04$$\n\n$$(Q) = (2.0 \\\\times 10^{-4})(5)(0.04) = 4.0 \\\\times 10^{-5} \\\\text{ m}^3\\\\text{/s}$$",
+   "subtopic": "Darcy's law",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "4.0",
+    "8.0",
+    "12.0",
+    "16.0"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The coefficient of uniformity measures the spread of the grain-size curve: a larger Cu means a wider range of particle sizes. It pairs with the coefficient of curvature to judge whether a soil is well graded.",
+   "id": "geotech-026",
+   "question": "A sieve analysis gives D10 = 0.08 mm and D60 = 0.96 mm for a sand. What is the coefficient of uniformity Cu?",
+   "solution": "Refer to the Coefficient of uniformity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(C_u\\\\). The handbook prints:\n\n$$C_u = \\\\frac{D_{60}}{D_{10}}$$\n\n$$(C_u) = \\\\frac{0.96}{0.08} = 12.0$$",
+   "subtopic": "Coefficient of uniformity",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "125 N/mm",
+    "200 N/mm",
+    "320 N/mm",
+    "480 N/mm"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Shear flow is the horizontal shear force per unit length along the beam -- it is what connectors, welds, or glue lines must resist. Watch the units: with V in newtons and Q/I in 1/mm, q comes out in N/mm.",
+   "id": "structural-026",
+   "question": "A beam carries a vertical shear of V = 80 kN. At a particular level in the cross-section, Q = 150 x 10^3 mm^3 and I = 60 x 10^6 mm^4. What is the horizontal shear flow q at that level?",
+   "solution": "Refer to the Transverse shear flow section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(q\\\\). The handbook prints:\n\n$$q = \\\\frac{VQ}{I}$$\n\n$$(q) = \\\\frac{(80{,}000)(150 \\\\times 10^3)}{60 \\\\times 10^6} = \\\\frac{12 \\\\times 10^9}{60 \\\\times 10^6}$$\n\n$$(q) = 200 \\\\text{ N/mm}$$",
+   "subtopic": "Shear flow",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3.00%",
+    "3.03%",
+    "3.12%",
+    "12.68%"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "When compounding is more frequent than the period of interest, first find the rate per compounding period, then compound it over the periods in one quarter. The nominal rate divided by 4 is only an approximation.",
+   "id": "econ-026",
+   "question": "A savings account pays 12% nominal interest compounded monthly. What is the effective interest rate per quarter?",
+   "solution": "Refer to the Non-Annual Compounding section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the effective quarterly rate. The handbook prints:\n\n$$i_e = \\\\left(1 + \\\\frac{r}{m}\\\\right)^m - 1$$\n\nThe monthly rate is:\n\n$$(i_{month}) = \\\\frac{0.12}{12} = 0.01$$\n\nOne quarter contains 3 months:\n\n$$(i_{quarter}) = (1.01)^3 - 1 = 1.030301 - 1 = 0.0303 = 3.03\\\\%$$",
+   "subtopic": "Non-annual compounding (effective quarterly rate)",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Day 14",
+    "Day 17",
+    "Day 21",
+    "Day 26"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The forward pass moves from project start toward the end: an activity cannot start until ALL its predecessors finish, so its early start is the latest of their early finishes.",
+   "id": "construction-025",
+   "question": "In a CPM network, activity B has two predecessors: activity A (duration 4 days, early finish = day 9) and activity C (duration 6 days, early finish = day 12). Activity B has a duration of 5 days. What is the early finish of activity B?",
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(EF_B\\\\). The handbook prints:\n\n$$\\\\begin{aligned}\nES &= \\\\text{latest } EF \\\\text{ of predecessors} \\\\\\\\\nEF &= ES + \\\\text{duration}\n\\\\end{aligned}$$\n\n$$(ES_B) = \\\\max(9, 12) = 12$$\n\n$$(EF_B) = 12 + 5 = 17$$",
+   "subtopic": "CPM forward pass (early finish)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "0.83",
+    "0.91",
+    "1.10",
+    "1.20"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "SPI compares earned progress against planned progress -- both in budgeted dollars, so cost overruns do not distort it. Below 1.0 means behind schedule; CPI below 1.0 would mean over budget.",
+   "id": "construction-026",
+   "question": "At a project review, the budgeted cost of work scheduled is $120,000, the budgeted cost of work performed is $100,000, and the actual cost of work performed is $110,000. What is the schedule performance index?",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(SPI\\\\). The handbook prints:\n\n$$SPI = \\\\frac{BCWP}{BCWS}$$\n\n$$(SPI) = \\\\frac{100{,}000}{120{,}000} = 0.83$$",
+   "subtopic": "Earned value (schedule performance index)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Implement the substitution to save the client money",
+    "Inform the client of the violation and refuse the substitution",
+    "Implement it but document that the client ordered it",
+    "Report the client to the licensing board immediately"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "A faithful agent serves the client's informed interests -- not their uninformed instructions. Loyalty to the client and the paramount duty to public safety both point the same way here: no code violations.",
+   "id": "ethics-025",
+   "question": "Under the NSPE Code of Ethics, an engineer acts for each employer or client as a faithful agent and trustee. A client demands a design substitution that would violate the building code. What does the faithful-agent duty require of the engineer?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must decide what the faithful-agent duty requires. NSPE Code I.4 requires engineers to act for each employer or client as faithful agents and trustees, and I.1 holds public safety, health, and welfare paramount.\n\nA code-violating substitution endangers the public and exposes the client to liability -- it cannot be in the client's informed interest.\n\nThe engineer must therefore inform the client of the violation and refuse the substitution.\n\nBlind obedience, documenting the order, or immediately reporting the client all miss the mark: the duty is loyal counsel plus refusal.",
+   "subtopic": "Faithful agent (duty to client)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "It is acceptable competitive behavior",
+    "The duty not to maliciously injure another engineer's professional reputation",
+    "The duty of confidentiality to the former client",
+    "It is allowed if the engineer sincerely believes it"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Competition must stay honest: you may sell your own qualifications, but you may not tear down a competitor with unsubstantiated claims. Sincere belief is not a defense against a false statement.",
+   "id": "ethics-026",
+   "question": "After losing a bid to a competitor, an engineer tells the client that the competitor 'always cuts corners,' with no evidence for the claim. Which NSPE Code provision does this violate?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must identify the violated provision. NSPE Code III.7 provides that engineers shall not attempt to injure, maliciously or falsely, directly or indirectly, the professional reputation, prospects, practice, or employment of other engineers.\n\nThe engineer made an unevidenced claim that the competitor cuts corners, directly attacking the competitor's professional reputation.\n\nThis violates the duty not to maliciously injure another engineer's professional reputation.\n\nIt is not acceptable competition, not a confidentiality matter, and sincere belief does not excuse a baseless claim.",
+   "subtopic": "Criticism of fellow engineers",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1.38 mm",
+    "2.76 mm",
+    "4.14 mm",
+    "5.52 mm"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "With free ends there is no stress -- the bar simply grows. Thermal strain is alpha times the temperature change, and elongation is strain times original length.",
+   "id": "materials-025",
+   "question": "A 2.0-m aluminum bar with free ends is heated from 20 C to 80 C. The coefficient of thermal expansion is 23 x 10^-6 per C. How much does the bar elongate?",
+   "solution": "Refer to the Thermal Expansion section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the elongation \\\\(\\\\delta\\\\). The handbook prints:\n\n$$\\\\varepsilon = \\\\alpha\\\\,\\\\Delta T$$\n\nCompute the thermal strain:\n\n$$(\\\\varepsilon) = (23 \\\\times 10^{-6})(80 - 20) = (23 \\\\times 10^{-6})(60) = 1.38 \\\\times 10^{-3}$$\n\n$$(\\\\delta) = \\\\varepsilon L = (1.38 \\\\times 10^{-3})(2.0) = 2.76 \\\\times 10^{-3} \\\\text{ m} = 2.76 \\\\text{ mm}$$",
+   "subtopic": "Thermal expansion (free elongation)",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "24.9 MPa-m^1/2",
+    "28.0 MPa-m^1/2",
+    "30.8 MPa-m^1/2",
+    "34.1 MPa-m^1/2"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The stress intensity combines applied stress, crack size, and geometry. Crack length must be in meters under the square root -- millimeters give a result off by a factor of about 31.6.",
+   "id": "materials-026",
+   "question": "A steel plate contains an edge crack 4.0 mm long (geometry factor Y = 1.1). The plate is subjected to a tensile stress of 250 MPa. What is the mode-I stress intensity factor?",
+   "solution": "Refer to the Fracture Toughness section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(K\\\\). The handbook relates the stress intensity to applied stress, crack length, and geometry factor:\n\n$$K = Y\\\\sigma\\\\sqrt{\\\\pi a}$$\n\nConvert the crack length to meters:\n\n$$(a) = 4.0 \\\\text{ mm} = 0.004 \\\\text{ m}$$\n\n$$(K) = (1.1)(250)\\\\sqrt{\\\\pi(0.004)} = (275)(0.11210)$$\n\n$$(K) = 30.8 \\\\text{ MPa-m}^{1/2}$$",
+   "subtopic": "Fracture toughness (edge crack)",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "282 ft",
+    "306 ft",
+    "332 ft",
+    "400 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The long chord is the straight line from PC to PT. It depends on the half-angle -- using the full intersection angle in the sine is the classic error.",
+   "id": "surveying-025",
+   "question": "A horizontal curve has a radius of 400 ft and an intersection angle of 45 degrees. What is the length of the long chord?",
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(LC\\\\). The handbook prints:\n\n$$LC = 2R\\\\sin\\\\left(\\\\frac{I}{2}\\\\right)$$\n\n$$(LC) = 2(400)\\\\sin\\\\left(\\\\frac{45^\\\\circ}{2}\\\\right) = 800\\\\sin(22.5^\\\\circ)$$\n\n$$(LC) = 800(0.38268) = 306 \\\\text{ ft}$$",
+   "subtopic": "Horizontal curve (long chord)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "80 ft",
+    "100 ft",
+    "133 ft",
+    "160 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "K is the curve length per percent of grade change. The grade change A is the absolute algebraic difference -- for a crest with +3% in and -5% out, that is 8%, not 2%.",
+   "id": "surveying-026",
+   "question": "A crest vertical curve is 800 ft long with grades g1 = +3% and g2 = -5%. What is the K value (rate of vertical curvature)?",
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(K\\\\). The handbook prints:\n\n$$K = \\\\frac{L}{A}$$\n\nThe algebraic difference in grades is:\n\n$$(A) = |-5 - 3| = 8\\\\%$$\n\n$$(K) = \\\\frac{800}{8} = 100 \\\\text{ ft per percent grade}$$",
+   "subtopic": "Vertical curve (K value)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.41",
+    "0.55",
+    "1.10",
+    "1.83"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Crash rates normalize by exposure so segments can be compared fairly. Vehicle-miles of travel is ADT times days times segment length -- the segment length is easy to forget.",
+   "id": "transportation-025",
+   "question": "A 2.5-mile roadway segment with an ADT of 8,000 experienced 12 crashes over 3 years. What is the crash rate per million vehicle-miles?",
+   "solution": "Refer to the Crash Rates for Roadway Segments section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(R_{MVM}\\\\). The handbook prints:\n\n$$R_{MVM} = \\\\frac{A \\\\times 1{,}000{,}000}{VMT}$$\n\nwhere \\\\(VMT = ADT \\\\times (\\\\text{days}) \\\\times (\\\\text{length})\\\\).\n\n$$(VMT) = (8{,}000)(3 \\\\times 365)(2.5) = 21{,}900{,}000$$\n\n$$(R_{MVM}) = \\\\frac{12 \\\\times 1{,}000{,}000}{21{,}900{,}000} = 0.548 \\\\approx 0.55$$",
+   "subtopic": "Crash rate (roadway segment)",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1,613",
+    "2,419",
+    "2,581",
+    "3,000"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The gravity model splits productions in proportion to each destination's attraction times friction factor. The denominator sums over ALL destinations -- normalizing by only one destination is the classic error.",
+   "id": "transportation-026",
+   "question": "Zone i produces 5,000 trips. Two destination zones have attractions and friction factors of (A1 = 3,000, F_i1 = 0.5) and (A2 = 2,000, F_i2 = 0.8). Using the gravity model with all K_ij = 1, how many trips are distributed from zone i to zone 1?",
+   "solution": "Refer to the Gravity Model section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(T_{i1}\\\\). The handbook prints:\n\n$$T_{ij} = P_i\\\\frac{A_j F_{ij} K_{ij}}{\\\\sum_j A_j F_{ij} K_{ij}}$$\n\nCompute the denominator (sum over both destinations):\n\n$$\\\\sum = (3{,}000)(0.5)(1) + (2{,}000)(0.8)(1) = 1{,}500 + 1{,}600 = 3{,}100$$\n\n$$(T_{i1}) = 5{,}000\\\\frac{1{,}500}{3{,}100} = 5{,}000(0.48387) = 2{,}419$$",
+   "subtopic": "Gravity model (trip distribution)",
+   "topic": "Transportation Engineering"
   }
-
  ]
 }
