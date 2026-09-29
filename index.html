@@ -69,6 +69,7 @@
         <div class="stat"><strong>185</strong><span>video explanations</span></div>
         <div class="stat"><strong>125</strong><span>diagrams</span></div>
       </div>
+      <div class="ad-slot" data-ad-slot="home"></div>
       <p class="disclaimer">Independent study tool. Not endorsed by or affiliated with NCEES. Every question and answer independently verified.</p>
     </section>
 
@@ -99,6 +100,7 @@
       </div>
       <div id="quiz-run" class="card hidden"></div>
       <div id="quiz-result" class="card hidden"></div>
+      <div class="ad-slot" data-ad-slot="practice"></div>
       <div id="portable-entry" class="card hidden">
         <h3>Continue on another device</h3>
         <p class="lede">Type the session code from your phone. This opens the exact quiz — same questions, right where you left off.</p>
@@ -183,11 +185,33 @@
       <p class="lede">Your accuracy and topic mastery, stored locally in your browser. Answer practice questions to fill this in.</p>
       <div id="analytics-body"></div>
     </section>
+
+    <section id="view-privacy" class="view hidden">
+      <h2>Privacy Policy</h2>
+      <p class="disclaimer">Last updated: September 29, 2026.</p>
+      <div class="card policy">
+        <h3>What we store</h3>
+        <p>Your quiz progress, flashcard ratings, and study preferences are stored <strong>locally in your browser</strong> (localStorage). This data never leaves your device: PassTheFE has no user accounts and our servers never receive it.</p>
+        <h3>Analytics</h3>
+        <p>We use Google Analytics 4 to understand aggregate usage (pages visited, approximate location, device type). Google Analytics sets cookies in your browser. You can opt out with Google's <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt-out browser add-on</a>.</p>
+        <h3>Advertising</h3>
+        <p>We use Google AdSense to display ads that keep PassTheFE free. Google and its advertising partners use cookies — including the DoubleClick cookie — to serve ads based on your prior visits to this site and other sites on the web.</p>
+        <p>You may opt out of personalized advertising at <a href="https://www.google.com/settings/ads" rel="noopener">Google Ad Settings</a> or <a href="http://www.aboutads.info/choices/" rel="noopener">aboutads.info/choices</a>. See also <a href="https://policies.google.com/technologies/ads" rel="noopener">Google's advertising privacy information</a>.</p>
+        <h3>Data sharing</h3>
+        <p>We do not sell personal information. Data is processed only by Google (Analytics, AdSense) under Google's terms.</p>
+        <h3>Children</h3>
+        <p>PassTheFE is intended for adult FE exam candidates, not children under 13.</p>
+        <h3>Changes</h3>
+        <p>If this policy changes, we will post the updated version here with a new "last updated" date.</p>
+        <h3>Contact</h3>
+        <p>Questions about this policy: <a href="mailto:CONTACT_EMAIL_PLACEHOLDER">CONTACT_EMAIL_PLACEHOLDER</a>.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <p><strong>PassTheFE</strong> — independent study tool for the NCEES FE Civil exam. Not endorsed by or affiliated with NCEES.<br><a href="#/portable">Continue a quiz on another device</a></p>
+      <p><strong>PassTheFE</strong> — independent study tool for the NCEES FE Civil exam. Not endorsed by or affiliated with NCEES.<br><a href="#/portable">Continue a quiz on another device</a> · <a href="#/privacy">Privacy Policy</a></p>
     </div>
   </footer>
 
@@ -201,6 +225,10 @@
     <button id="pwa-install-dismiss" class="pwa-banner-close" aria-label="Dismiss">&times;</button>
   </div>
 
-  <script src="js/app.js?v=6"></script>
+  <!-- AdSense: paste your publisher ID below after your AdSense account is
+       approved (looks like ca-pub-1234567890123456). Leave empty to keep
+       the ad slots hidden. -->
+  <script>window.PASSTHEFE_ADSENSE_CLIENT = "";</script>
+  <script src="js/app.js?v=7"></script>
 </body>
 </html>

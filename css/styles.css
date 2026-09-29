@@ -401,3 +401,11 @@ details.card summary + div { margin-top: 16px; }
   max-height: 90vh;
   overflow: auto;
 }
+
+/* AdSense slots: hidden until a publisher ID is configured. */
+.ad-slot { margin: 28px auto; max-width: 728px; min-height: 0; text-align: center; }
+.ad-slot:empty { display: none; }
+body.no-ads .ad-slot { display: none; }
+.policy h3 { margin: 20px 0 8px; }
+.policy h3:first-child { margin-top: 0; }
+.policy p { margin: 8px 0; line-height: 1.6; }

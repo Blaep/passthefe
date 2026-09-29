@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["home", "practice", "exam", "formulas", "reference", "flashcards", "analytics"];
+  var VIEWS = ["home", "practice", "exam", "formulas", "reference", "flashcards", "analytics", "privacy"];
   var TOPICS = [
     "Mathematics", "Statistics and Probability", "Engineering Economics",
     "Ethics and Professional Practice", "Statics", "Dynamics",
@@ -2027,6 +2027,33 @@
 
   window.addEventListener("hashchange", route);
   document.addEventListener("DOMContentLoaded", route);
+
+  // ---- AdSense -----------------------------------------------------------
+  // Slots stay hidden until window.PASSTHEFE_ADSENSE_CLIENT is set to a real
+  // publisher ID (ca-pub-...). Flip that one value after AdSense approval and
+  // ads render on the next deploy — no other code changes needed.
+  (function initAds() {
+    var client = window.PASSTHEFE_ADSENSE_CLIENT || "";
+    if (!client) {
+      document.body.classList.add("no-ads");
+      return;
+    }
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client);
+    s.crossOrigin = "anonymous";
+    document.head.appendChild(s);
+    document.querySelectorAll(".ad-slot").forEach(function (slot) {
+      var ins = document.createElement("ins");
+      ins.className = "adsbygoogle";
+      ins.style.display = "block";
+      ins.setAttribute("data-ad-client", client);
+      ins.setAttribute("data-ad-format", "auto");
+      ins.setAttribute("data-full-width-responsive", "true");
+      slot.appendChild(ins);
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  })();
 
   // ---- PWA install prompt ----
   if ("serviceWorker" in navigator) {
