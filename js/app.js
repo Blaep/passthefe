@@ -72,6 +72,7 @@
   // ---- router ------------------------------------------------------------
   function route() {
     stopQuizTimer(); // navigating away freezes the live timer; resume restarts it
+    if (typeof exam !== "undefined" && exam && exam.tick) pauseExamTimer(); // exam sim pauses off-view
     loadCitationLinks(); // fire-and-forget so solution citations can deep-link
     // Deep links look like #/reference#eq-<id>: the view first, then the anchor.
     var parts = (location.hash || "#/").replace("#/", "").split("#");
@@ -95,6 +96,7 @@
     });
     if (name === "home") renderStats();
     if (name === "practice") initPractice();
+    if (name === "exam") initExam();
     if (name === "formulas") initFormulas();
     if (name === "flashcards") initFlashcards();
     if (name === "analytics") renderAnalytics();
@@ -1634,6 +1636,558 @@
       '<p class="disclaimer">' + READINESS_NOTE + "</p></div>";
     return html;
   }
+
+  // ---- exam simulator ------------------------------------------------------
+  // Full 110-question timed simulation, apportioned across the 15 topics by
+  // the NCEES FE Civil blueprint (reuses BLUEPRINT from adaptive practice).
+  // No backend, no account — state lives in localStorage like everything
+  // else. Answers are NOT revealed during the sim; grading happens once at
+  // submit, like the real exam.
+  var EXAM_N = 110;
+  var EXAM_SECS = 5 * 3600 + 20 * 60; // 5h20m — the real FE testing time
+  var EXAM_BREAK_SECS = 25 * 60;      // one optional scheduled break
+  var EXAM_NOTE = "Timed, exam-style practice — not the real NCEES exam.";
+  var exam = null; // live sim: {list, idx, chosen, flagged, timeLeft,
+                   //  breakUsed, breakActive, breakLeft, tick, submitted,
+                   //  startedAt, saveTick}
+
+  function fmtClock(s) {
+    s = Math.max(0, Math.round(s));
+    var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), ss = s % 60;
+    return h + ":" + (m < 10 ? "0" : "") + m + ":" + (ss < 10 ? "0" : "") + ss;
+  }
+
+  // Largest-remainder apportionment of 110 questions over BLUEPRINT weights.
+  function examTopicCounts() {
+    var wSum = 0;
+    BLUEPRINT.forEach(function (b) { wSum += b.w; });
+    var rows = BLUEPRINT.map(function (b) {
+      var exact = b.w / wSum * EXAM_N;
+      return { topic: b.topic, n: Math.floor(exact), rem: exact - Math.floor(exact) };
+    });
+    var total = 0;
+    rows.forEach(function (r) { total += r.n; });
+    rows.sort(function (a, b) { return b.rem - a.rem; });
+    var i = 0;
+    while (total < EXAM_N) { rows[i % rows.length].n++; total++; i++; }
+    var out = {};
+    rows.forEach(function (r) { out[r.topic] = r.n; });
+    return out;
+  }
+
+  // Sample 110 questions across topics. Prefers questions not used in recent
+  // sims so consecutive sims don't repeat; once the 345-question bank is
+  // exhausted, the rotation starts over.
+  function buildExamSim(qs) {
+    var counts = examTopicCounts();
+    var usedSet = {};
+    store.get("examUsed", []).forEach(function (id) { usedSet[id] = 1; });
+    var picked = [], pickedSet = {};
+    TOPICS.forEach(function (t) {
+      var need = counts[t] || 0;
+      if (!need) return;
+      var pool = qs.filter(function (q) { return q.topic === t; });
+      var fresh = shuffle(pool.filter(function (q) { return !usedSet[q.id]; }));
+      var stale = shuffle(pool.filter(function (q) { return usedSet[q.id]; }));
+      while (need > 0 && fresh.length) { var q = fresh.pop(); picked.push(q); pickedSet[q.id] = 1; need--; }
+      while (need > 0 && stale.length) { var q2 = stale.pop(); picked.push(q2); pickedSet[q2.id] = 1; need--; }
+    });
+    // Rotation bookkeeping: if this sim covers every bank question, reset.
+    var bankIds = {};
+    qs.forEach(function (q) { bankIds[q.id] = 1; });
+    var nextUsed = store.get("examUsed", []).concat(picked.map(function (q) { return q.id; }));
+    var coversAll = Object.keys(bankIds).every(function (id) {
+      return nextUsed.indexOf(id) !== -1;
+    });
+    store.set("examUsed", coversAll
+      ? picked.map(function (q) { return q.id; })
+      : nextUsed);
+    return shuffle(picked);
+  }
+
+  function examAnsweredCount() {
+    if (!exam) return 0;
+    var n = 0, c = exam.chosen;
+    for (var k in c) { if (c.hasOwnProperty(k) && typeof c[k] === "number") n++; }
+    return n;
+  }
+
+  function examFlaggedCount() {
+    if (!exam) return 0;
+    var n = 0, f = exam.flagged;
+    for (var k in f) { if (f.hasOwnProperty(k)) n++; }
+    return n;
+  }
+
+  // ---- exam persistence ----------------------------------------------------
+  function saveExamProgress() {
+    if (!exam || exam.submitted || !exam.list.length) { store.set("examResume", null); return; }
+    store.set("examResume", {
+      v: 1,
+      qids: exam.list.map(function (q) { return q.id; }),
+      chosen: exam.chosen,
+      flagged: exam.flagged,
+      idx: exam.idx,
+      timeLeft: Math.round(exam.timeLeft),
+      breakUsed: exam.breakUsed,
+      startedAt: exam.startedAt,
+      savedAt: Date.now()
+    });
+  }
+
+  function clearExamResume() { store.set("examResume", null); }
+
+  function pauseExamTimer() {
+    if (!exam || !exam.tick) return;
+    clearInterval(exam.tick);
+    exam.tick = null;
+    saveExamProgress();
+  }
+
+  function resumeExam(saved) {
+    loadQuestions(function () {
+      var list = (saved.qids || []).map(findQuestion).filter(Boolean);
+      if (!list.length || list.length !== saved.qids.length) {
+        clearExamResume();
+        renderExamSetup();
+        return;
+      }
+      exam = {
+        list: list,
+        idx: Math.min(saved.idx || 0, list.length - 1),
+        chosen: saved.chosen || {},
+        flagged: saved.flagged || {},
+        timeLeft: (typeof saved.timeLeft === "number") ? saved.timeLeft : EXAM_SECS,
+        breakUsed: !!saved.breakUsed,
+        breakActive: false, // a reload forfeits an in-progress break
+        breakLeft: EXAM_BREAK_SECS,
+        tick: null, submitted: false,
+        startedAt: saved.startedAt || Date.now(),
+        saveTick: 0
+      };
+      showExamScreen("exam-run");
+      renderExamRun();
+      startExamTimer();
+    });
+  }
+
+  // ---- exam setup ----------------------------------------------------------
+  function showExamScreen(id) {
+    ["exam-setup", "exam-run", "exam-review", "exam-result"].forEach(function (x) {
+      document.getElementById(x).classList.toggle("hidden", x !== id);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function examHistoryHtml() {
+    var sims = store.get("examSims", []);
+    if (!sims.length) return '<p class="muted">No simulations completed yet.</p>';
+    var html = '<div class="sim-history">';
+    sims.forEach(function (s) {
+      var d = new Date(s.ts);
+      var when = d.toLocaleDateString() + " " + d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      html += '<div class="sim-row"><span class="sim-date">' + escapeHtml(when) + "</span>" +
+        '<span class="sim-score ' + scoreClass(s.pct) + '">' + s.score + "/" + s.total +
+        " (" + s.pct + "%)</span>" +
+        '<span class="muted">' + fmtClock(s.timeSecs) + " used</span></div>";
+    });
+    html += "</div>";
+    return html;
+  }
+
+  function renderExamSetup() {
+    var el = document.getElementById("exam-setup");
+    var saved = store.get("examResume", null);
+    var validResume = saved && saved.v === 1 && saved.qids && saved.qids.length;
+    var html = "<h3>Full Exam Simulation</h3>" +
+      '<p class="lede">110 questions · 5 hour 20 minute timer · mark for review · one 25-minute scheduled break.</p>' +
+      '<p class="disclaimer">' + EXAM_NOTE + " Questions follow the NCEES topic blueprint.</p>";
+    if (validResume) {
+      html += '<div class="resume-banner"><div><strong>Simulation in progress</strong><br>' +
+        '<span class="muted">Question ' + ((saved.idx || 0) + 1) + " of " + saved.qids.length +
+        " · " + fmtClock(saved.timeLeft) + " left</span></div>" +
+        '<div class="resume-actions"><button id="exam-resume-btn" class="btn primary">Resume</button>' +
+        '<button id="exam-discard-btn" class="btn text">Discard</button></div></div>';
+    }
+    html += '<div class="form-row"><button id="exam-start-btn" class="btn primary">' +
+      (validResume ? "Start a new simulation" : "Start full exam simulation") + "</button></div>" +
+      "<h3>Past simulations</h3>" + examHistoryHtml();
+    el.innerHTML = html;
+    var rb = document.getElementById("exam-resume-btn");
+    if (rb) rb.addEventListener("click", function () { resumeExam(store.get("examResume", null)); });
+    var db = document.getElementById("exam-discard-btn");
+    if (db) db.addEventListener("click", function () { clearExamResume(); renderExamSetup(); });
+    document.getElementById("exam-start-btn").addEventListener("click", startExam);
+  }
+
+  function initExam() {
+    if (exam && !exam.submitted) {
+      // Returning to a live sim (e.g. after visiting another view).
+      showExamScreen("exam-run");
+      renderExamRun();
+      startExamTimer();
+      return;
+    }
+    showExamScreen("exam-setup");
+    renderExamSetup();
+  }
+
+  // ---- exam run ------------------------------------------------------------
+  function startExam() {
+    loadQuestions(function (qs) {
+      var list = buildExamSim(qs);
+      if (list.length < EXAM_N) {
+        toast("The question bank failed to load — check your connection and try again.");
+        return;
+      }
+      exam = {
+        list: list, idx: 0, chosen: {}, flagged: {},
+        timeLeft: EXAM_SECS,
+        breakUsed: false, breakActive: false, breakLeft: EXAM_BREAK_SECS,
+        tick: null, submitted: false,
+        startedAt: Date.now(), saveTick: 0
+      };
+      saveExamProgress();
+      showExamScreen("exam-run");
+      renderExamRun();
+      startExamTimer();
+    });
+  }
+
+  function startExamTimer() {
+    if (!exam || exam.tick || exam.submitted) return;
+    exam.tick = setInterval(examTick, 1000);
+  }
+
+  function examTick() {
+    if (!exam || exam.submitted) return;
+    if (exam.breakActive) {
+      exam.breakLeft--;
+      var bEl = document.getElementById("exam-break-timer");
+      if (bEl) bEl.textContent = fmtClock(exam.breakLeft);
+      if (exam.breakLeft <= 0) endBreak();
+      return;
+    }
+    exam.timeLeft--;
+    var tEl = document.getElementById("exam-timer");
+    if (tEl) {
+      tEl.textContent = fmtClock(exam.timeLeft);
+      tEl.classList.toggle("low", exam.timeLeft <= 600);
+    }
+    exam.saveTick++;
+    if (exam.saveTick % 15 === 0) saveExamProgress();
+    if (exam.timeLeft <= 0) {
+      toast("Time expired — submitting your exam.");
+      submitExam(true);
+    }
+  }
+
+  function renderExamRun() {
+    var box = document.getElementById("exam-run");
+    var html = '<div class="exam-bar">' +
+      '<div><div class="exam-timer" id="exam-timer">' + fmtClock(exam.timeLeft) + "</div>" +
+      '<div class="exam-count" id="exam-count"></div></div>' +
+      '<div class="exam-actions">' +
+      '<button id="exam-flag-btn" class="btn">Flag</button>' +
+      (exam.breakUsed ? "" : '<button id="exam-break-btn" class="btn">Take break</button>') +
+      '<button id="exam-submit-btn" class="btn primary">Submit exam</button>' +
+      "</div></div>" +
+      '<div id="exam-palette" class="exam-palette"></div>' +
+      '<div id="exam-qcard"></div>' +
+      '<div class="quiz-nav exam-nav"><button id="exam-prev" class="btn">← Prev</button>' +
+      '<button id="exam-next" class="btn primary">Next →</button></div>' +
+      '<div id="exam-break-overlay" class="break-overlay hidden">' +
+      '<div class="break-card"><h3>Break</h3>' +
+      '<p class="muted">Your exam timer is paused. Questions are hidden during the break.</p>' +
+      '<div class="exam-timer" id="exam-break-timer">' + fmtClock(exam.breakLeft) + "</div>" +
+      '<button id="exam-endbreak-btn" class="btn primary">End break early</button></div></div>';
+    box.innerHTML = html;
+    document.getElementById("exam-flag-btn").addEventListener("click", examToggleFlag);
+    var bb = document.getElementById("exam-break-btn");
+    if (bb) bb.addEventListener("click", startBreak);
+    document.getElementById("exam-endbreak-btn").addEventListener("click", endBreak);
+    document.getElementById("exam-submit-btn").addEventListener("click", function () { examReviewScreen(); });
+    document.getElementById("exam-prev").addEventListener("click", function () { examGoto(exam.idx - 1); });
+    document.getElementById("exam-next").addEventListener("click", function () { examGoto(exam.idx + 1); });
+    renderExamPalette();
+    renderExamQuestion();
+  }
+
+  function renderExamPalette() {
+    var pal = document.getElementById("exam-palette");
+    if (!pal || !exam) return;
+    var html = "";
+    exam.list.forEach(function (q, i) {
+      var cls = "pal-btn";
+      if (i === exam.idx) cls += " cur";
+      if (typeof exam.chosen[q.id] === "number") cls += " ans";
+      if (exam.flagged[q.id]) cls += " flag";
+      html += '<button class="' + cls + '" data-i="' + i + '" aria-label="Question ' + (i + 1) + '">' + (i + 1) + "</button>";
+    });
+    pal.innerHTML = html;
+    pal.querySelectorAll(".pal-btn").forEach(function (b) {
+      b.addEventListener("click", function () { examGoto(parseInt(b.dataset.i, 10)); });
+    });
+    var cEl = document.getElementById("exam-count");
+    if (cEl) cEl.textContent = "Q " + (exam.idx + 1) + " of " + exam.list.length +
+      " · " + examAnsweredCount() + " answered · " + examFlaggedCount() + " flagged";
+  }
+
+  function renderExamQuestion() {
+    var q = exam.list[exam.idx];
+    var card = document.getElementById("exam-qcard");
+    var html = '<p class="quiz-progress">Question ' + (exam.idx + 1) + " of " + exam.list.length + "</p>";
+    html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
+      escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
+    html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
+    html += diagramHtml(q);
+    html += '<ul class="choices" id="exam-choices">';
+    q.choices.forEach(function (c, i) {
+      var cls = (exam.chosen[q.id] === i) ? ' class="sel"' : "";
+      html += "<li" + cls + ' data-i="' + i + '">' + inlineMath(c) + "</li>";
+    });
+    html += "</ul>";
+    card.innerHTML = html;
+    card.querySelectorAll("#exam-choices li").forEach(function (li) {
+      li.addEventListener("click", function () { examSelectChoice(parseInt(li.dataset.i, 10)); });
+    });
+    var fb = document.getElementById("exam-flag-btn");
+    if (fb) {
+      fb.textContent = exam.flagged[q.id] ? "Unflag" : "Flag";
+      fb.classList.toggle("flagged", !!exam.flagged[q.id]);
+    }
+    var prev = document.getElementById("exam-prev");
+    if (prev) prev.disabled = exam.idx === 0;
+    var next = document.getElementById("exam-next");
+    if (next) next.textContent = (exam.idx + 1 === exam.list.length) ? "Review →" : "Next →";
+  }
+
+  function examGoto(i) {
+    if (!exam || exam.submitted) return;
+    if (i < 0 || i >= exam.list.length) return;
+    if (i === exam.idx) return;
+    exam.idx = i;
+    saveExamProgress();
+    renderExamPalette();
+    renderExamQuestion();
+  }
+
+  function examSelectChoice(i) {
+    if (!exam || exam.submitted || exam.breakActive) return;
+    var q = exam.list[exam.idx];
+    exam.chosen[q.id] = i;
+    saveExamProgress();
+    renderExamPalette();
+    renderExamQuestion();
+  }
+
+  function examToggleFlag() {
+    if (!exam || exam.submitted) return;
+    var q = exam.list[exam.idx];
+    if (exam.flagged[q.id]) delete exam.flagged[q.id];
+    else exam.flagged[q.id] = 1;
+    saveExamProgress();
+    renderExamPalette();
+    renderExamQuestion();
+  }
+
+  // ---- scheduled break -------------------------------------------------------
+  function startBreak() {
+    if (!exam || exam.submitted || exam.breakUsed || exam.breakActive) return;
+    exam.breakActive = true;
+    exam.breakUsed = true;
+    exam.breakLeft = EXAM_BREAK_SECS;
+    var bEl = document.getElementById("exam-break-timer");
+    if (bEl) bEl.textContent = fmtClock(exam.breakLeft);
+    document.getElementById("exam-break-overlay").classList.remove("hidden");
+    var bb = document.getElementById("exam-break-btn");
+    if (bb) bb.style.display = "none";
+    saveExamProgress();
+  }
+
+  function endBreak() {
+    if (!exam || !exam.breakActive) return;
+    exam.breakActive = false;
+    document.getElementById("exam-break-overlay").classList.add("hidden");
+    saveExamProgress();
+    toast("Break over — timer resumed.");
+  }
+
+  // ---- review + submit -------------------------------------------------------
+  function examReviewScreen() {
+    if (!exam || exam.submitted) return;
+    pauseExamTimer();
+    var box = document.getElementById("exam-review");
+    var flagged = [], unanswered = [];
+    exam.list.forEach(function (q, i) {
+      if (exam.flagged[q.id]) flagged.push(i);
+      if (typeof exam.chosen[q.id] !== "number") unanswered.push(i);
+    });
+    function rowList(arr, label) {
+      if (!arr.length) return '<p class="muted">None.</p>';
+      return '<div class="review-list">' + arr.map(function (i) {
+        var q = exam.list[i];
+        return '<div class="review-row"><span><strong>Q' + (i + 1) + "</strong> · " +
+          escapeHtml(q.topic) + (label === "unanswered" ? ' <span class="unans">unanswered</span>' : " flagged") +
+          '</span><button class="btn text" data-i="' + i + '">Go to →</button></div>';
+      }).join("") + "</div>";
+    }
+    var html = "<h3>Review before submitting</h3>" +
+      '<p class="lede">' + examAnsweredCount() + " of " + exam.list.length + " answered · " +
+      flagged.length + " flagged · " + fmtClock(exam.timeLeft) + " left on the clock.</p>" +
+      "<h4>Flagged for review</h4>" + rowList(flagged, "flagged") +
+      "<h4>Unanswered</h4>" + rowList(unanswered, "unanswered") +
+      '<div class="quiz-nav"><button id="exam-back-btn" class="btn">Back to exam</button> ' +
+      '<button id="exam-confirm-btn" class="btn primary">Submit exam</button></div>' +
+      '<p class="disclaimer" id="exam-confirm-note" style="display:none">This grades your exam and ends the simulation. ' +
+      '<button id="exam-confirm-yes" class="btn primary">Yes, submit</button></p>';
+    box.innerHTML = html;
+    box.querySelectorAll(".review-row .btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        showExamScreen("exam-run");
+        renderExamRun();
+        startExamTimer();
+        examGoto(parseInt(b.dataset.i, 10));
+      });
+    });
+    document.getElementById("exam-back-btn").addEventListener("click", function () {
+      showExamScreen("exam-run");
+      renderExamRun();
+      startExamTimer();
+    });
+    document.getElementById("exam-confirm-btn").addEventListener("click", function () {
+      document.getElementById("exam-confirm-note").style.display = "block";
+      this.style.display = "none";
+    });
+    document.getElementById("exam-confirm-yes").addEventListener("click", function () { submitExam(false); });
+    showExamScreen("exam-review");
+  }
+
+  function submitExam(auto) {
+    if (!exam || exam.submitted) return;
+    if (exam.tick) { clearInterval(exam.tick); exam.tick = null; }
+    exam.submitted = true;
+    var timeUsed = EXAM_SECS - Math.max(0, exam.timeLeft);
+    var correct = 0;
+    var perTopic = {};
+    TOPICS.forEach(function (t) { perTopic[t] = { correct: 0, total: 0 }; });
+    var attempts = store.get("attempts", []);
+    var now = Date.now();
+    exam.list.forEach(function (q) {
+      perTopic[q.topic].total++;
+      var chosen = exam.chosen[q.id];
+      if (typeof chosen === "number") {
+        var ok = chosen === q.answerIndex;
+        if (ok) { correct++; perTopic[q.topic].correct++; }
+        attempts.push({ qid: q.id, topic: q.topic, correct: ok, ts: now });
+      }
+    });
+    store.set("attempts", attempts.slice(-2000));
+    bumpStreak();
+    var rec = {
+      ts: now,
+      score: correct,
+      total: exam.list.length,
+      pct: Math.round(100 * correct / exam.list.length),
+      timeSecs: Math.round(timeUsed),
+      perTopic: TOPICS.map(function (t) {
+        return { topic: t, correct: perTopic[t].correct, total: perTopic[t].total };
+      }),
+      qids: exam.list.map(function (q) { return q.id; }),
+      answers: exam.list.map(function (q) {
+        return (typeof exam.chosen[q.id] === "number") ? exam.chosen[q.id] : -1;
+      })
+    };
+    var sims = store.get("examSims", []);
+    sims.unshift(rec);
+    store.set("examSims", sims.slice(0, 20));
+    clearExamResume();
+    renderExamResult(rec);
+  }
+
+  // ---- results ---------------------------------------------------------------
+  function renderExamResult(rec) {
+    var box = document.getElementById("exam-result");
+    var counts = examTopicCounts();
+    var html = "<h3>Simulation complete</h3>" +
+      '<p class="result-score">' + rec.score + "/" + rec.total +
+      " <span>(" + rec.pct + "%)</span></p>" +
+      '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) + " of 5:20:00</p>" +
+      '<p class="disclaimer">' + EXAM_NOTE + "</p>" +
+      "<h4>Score by topic</h4>" + '<div class="exam-topics">';
+    rec.perTopic.forEach(function (p) {
+      var pct = p.total ? Math.round(100 * p.correct / p.total) : 0;
+      html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(p.topic) +
+        " <small>(" + p.correct + "/" + p.total + " · ≈" + (counts[p.topic] || 0) + " on the real exam)</small></span>" +
+        '<span class="bar"><span class="fill ' + scoreClass(pct) +
+        '" style="width:' + pct + '%"></span></span>' +
+        '<span class="mastery-level ' + scoreClass(pct) + '">' + pct + "%</span></div>";
+    });
+    html += "</div>" +
+      '<div class="quiz-nav"><button id="exam-review-answers" class="btn primary">Review answers</button> ' +
+      '<button id="exam-again" class="btn">New simulation</button> ' +
+      '<a class="btn" href="#/practice">Back to practice</a></div>' +
+      '<div id="exam-answer-review"></div>';
+    box.innerHTML = html;
+    document.getElementById("exam-again").addEventListener("click", function () {
+      exam = null;
+      renderExamSetup();
+      showExamScreen("exam-setup");
+    });
+    document.getElementById("exam-review-answers").addEventListener("click", function () {
+      renderExamAnswerReview(rec);
+      this.style.display = "none";
+    });
+    showExamScreen("exam-result");
+  }
+
+  // Expandable per-question review: KaTeX renders only when a row opens.
+  function renderExamAnswerReview(rec) {
+    var host = document.getElementById("exam-answer-review");
+    var html = "<h4>Answer review</h4>" + '<div class="review-list">';
+    rec.qids.forEach(function (qid, i) {
+      var q = findQuestion(qid);
+      if (!q) return;
+      var chosen = rec.answers[i];
+      var mark = chosen === -1 ? '<span class="unans">unanswered</span>'
+        : (chosen === q.answerIndex ? '<span class="good">✓ correct</span>' : '<span class="bad">✗ wrong</span>');
+      html += '<div class="review-row"><span><strong>Q' + (i + 1) + "</strong> · " +
+        escapeHtml(q.topic) + " · " + mark + '</span>' +
+        '<button class="btn text" data-i="' + i + '">View</button></div>' +
+        '<div class="review-detail hidden" id="exam-rev-' + i + '"></div>';
+    });
+    html += "</div>";
+    host.innerHTML = html;
+    host.querySelectorAll(".review-row .btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var i = parseInt(b.dataset.i, 10);
+        var det = document.getElementById("exam-rev-" + i);
+        if (!det.classList.contains("hidden")) { det.classList.add("hidden"); return; }
+        var q = findQuestion(rec.qids[i]);
+        var chosen = rec.answers[i];
+        var dh = '<p class="question-text">' + inlineMath(q.question) + "</p>" + diagramHtml(q) +
+          '<ul class="choices">';
+        q.choices.forEach(function (c, ci) {
+          var style = "";
+          if (ci === q.answerIndex) style = ' style="border-color:#34C759;background:#e9f9ee"';
+          else if (ci === chosen) style = ' style="border-color:#FF3B30;background:#fdeceb"';
+          dh += "<li" + style + ">" + inlineMath(c) + "</li>";
+        });
+        dh += "</ul>" +
+          '<div class="explain-body">' + linkifyCitations(renderRich(q.solution)) + "</div>" +
+          (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
+          videoLinkHtml(q);
+        det.innerHTML = dh;
+        det.classList.remove("hidden");
+      });
+    });
+  }
+
+  // Save the exam clock when the tab hides so a reload keeps honest time.
+  window.addEventListener("pagehide", function () { if (exam && exam.tick) saveExamProgress(); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden && exam && exam.tick) saveExamProgress();
+  });
 
   // One completed quiz = one logged session (score, scope, missed question ids).
   function recordSession() {
