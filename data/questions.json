@@ -8112,6 +8112,431 @@
    "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must apply Section B of the NCEES Model Rules 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice section of the FE Reference Handbook (v10.6). Section B.9 states:\n\nLicensees shall not use confidential information received in the course of their assignments as a means of making personal profit without the consent of the party from whom the information was obtained.\n\nBuying the adjacent parcel to profit from the client's confidential plans is exactly that violation -- the source of funds does not matter.",
    "subtopic": "Confidential information for personal profit",
    "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Yes — any space with limited entry or exit is automatically permit-required",
+    "No — it is a confined space, but none of the permit-required characteristics are present",
+    "Yes — all underground vaults are permit-required confined spaces",
+    "No — with a top hatch for access it is not even a confined space"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Limited entry/exit plus not being designed for continuous occupancy makes it a confined space, but permit-required status needs one of four specific characteristics: a hazardous atmosphere, engulfment material, converging or tapered walls, or another serious hazard. None are present here.",
+   "id": "construction-030",
+   "question": "A precast concrete vault 6 ft deep is accessed only through a 24-in. diameter top hatch. The atmosphere tests safe, there is no material that could engulf an entrant, the walls are vertical, and no other serious safety or health hazard is present. Under OSHA, is this a permit-required confined space?",
+   "solution": "Refer to the Confined Space Safety section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must decide whether the vault is permit-required. The handbook defines a confined space as having limited or restricted means for entry or exit and not being designed for continuous employee occupancy.\n\nThe vault satisfies this definition (single 24-in. hatch, 6 ft deep).\n\nOSHA reserves the term \"permit-required confined space\" for a confined space having one or more of the following characteristics: it contains or has the potential to contain a hazardous atmosphere; it contains a material that has the potential to engulf an entrant; it has walls that converge inward or a floor that slopes downward and tapers into a smaller area; or it contains any other recognized serious safety or health hazard.\n\nThe atmosphere tests safe, no engulfment material exists, the walls are vertical, and no other serious hazard is present.\n\nTherefore the vault is a confined space but NOT a permit-required confined space.",
+   "subtopic": "Permit-required confined space",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "4.0",
+    "6.0",
+    "2.0",
+    "8.0"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The incidence rate normalizes the injury count to 200,000 hours -- the hours 100 employees work in a year -- so rates are comparable across firms and periods of different size.",
+   "id": "construction-031",
+   "question": "A contractor recorded 3 injuries requiring medical treatment beyond first aid during a period in which all employees worked a total of 150,000 hours. What is the total injury/illness incidence rate?",
+   "solution": "Refer to the Incidence Variable Values section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(IR\\\\). The handbook prints:\n\n$$IR = \\\\frac{N \\\\times 200{,}000}{T}$$\n\nwhere \\\\(N\\\\) is the number of injuries, illnesses, and fatalities (including all injuries requiring medical treatment beyond mere first aid) and \\\\(T\\\\) is the total hours worked by all employees.\n\nSubstituting:\n\n$$(IR) = \\\\frac{3 \\\\times 200{,}000}{150{,}000}$$\n\n$$(IR) = \\\\frac{600{,}000}{150{,}000} = 4.0$$",
+   "subtopic": "OSHA incidence rate",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Provide the reference as requested — professional loyalty to colleagues comes first",
+    "Decline, or give only a truthful assessment — knowingly providing false or incomplete information about an applicant is prohibited",
+    "Sign the reference, then privately warn the licensing board about the exaggeration",
+    "Refer the applicant to another engineer without any explanation"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Rule A.9 is absolute: a licensee shall not knowingly provide false or incomplete information regarding an applicant in obtaining licensure. Loyalty to a colleague does not override it, and signing something known to be exaggerated is exactly what the rule forbids.",
+   "id": "ethics-030",
+   "question": "A licensed engineer is asked to serve as a reference for an engineer intern's licensure application. The engineer knows the applicant's claimed responsible-charge experience is exaggerated. What does the NCEES Model Rules of Professional Conduct require?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must apply Section A of the NCEES Model Rules 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice section of the FE Reference Handbook (v10.6). Rule A.9 states:\n\nLicensees shall not knowingly provide false or incomplete information regarding an applicant in obtaining licensure.\n\nThe engineer knows the claimed experience is exaggerated.\n\nTherefore the engineer must not sign a reference endorsing the exaggerated claim; the only compliant options are to decline or to provide a strictly truthful assessment.",
+   "subtopic": "Licensure reference honesty (NCEES A.9)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Quietly correct the error in the shop drawings without telling anyone",
+    "Make a reasonable effort to inform the other licensee of the error",
+    "Report the engineer to the media before contacting them",
+    "Ignore it — responsibility lies solely with the engineer who sealed the work"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Rule C.4 creates an affirmative duty: when you believe another licensee's work contains a material error affecting public health, safety, or welfare, you must make a reasonable effort to tell them -- unless reporting is legally prohibited.",
+   "id": "ethics-031",
+   "question": "While reviewing shop drawings prepared and sealed by another licensed engineer, an engineer discovers a material error in the structural calculations that could endanger public safety. What does the NCEES Model Rules of Professional Conduct require?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must apply Section C of the NCEES Model Rules 240.15 (Rules of Professional Conduct), printed in the Ethics and Professional Practice section of the FE Reference Handbook (v10.6). Rule C.4 states:\n\nLicensees shall make a reasonable effort to inform another licensee whose work is believed to contain a material discrepancy, error, or omission that may impact the health, safety, or welfare of the public, unless such reporting is legally prohibited.\n\nThe discovered calculation error is material and could endanger public safety, and no legal prohibition on reporting is indicated.\n\nTherefore the engineer must make a reasonable effort to inform the other licensee of the error.",
+   "subtopic": "Duty to inform fellow licensee of errors (NCEES C.4)",
+   "topic": "Ethics and Professional Practice"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "38%",
+    "62%",
+    "27%",
+    "161%"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Percent reduction in area measures how much the cross-section shrank: initial minus final over initial. Using final over initial gives the fraction remaining, not the reduction.",
+   "id": "materials-030",
+   "question": "A tensile test specimen has an initial cross-sectional area of 100 mm² and a final cross-sectional area at fracture of 62 mm². What is the percent reduction in area?",
+   "solution": "Refer to the Percent Reduction in Area (RA) section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(%RA\\\\). The handbook prints:\n\n$$\\\\%RA = \\\\frac{A_i - A_f}{A_i} \\\\times 100$$\n\nSubstituting:\n\n$$(\\\\%RA) = \\\\frac{100 - 62}{100} \\\\times 100$$\n\n$$(\\\\%RA) = 38\\\\%$$",
+   "subtopic": "Percent reduction in area",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "To determine the ductile-to-brittle transition temperature",
+    "To measure the ultimate tensile strength at each temperature",
+    "To determine the endurance limit of the steel",
+    "To calibrate the testing machine at different temperatures"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The handbook states the Charpy test finds the energy required to fracture and identifies the ductile-to-brittle transition -- and that transition only shows up when you test across temperatures.",
+   "id": "materials-031",
+   "question": "Charpy impact tests on samples of a structural steel are performed over a range of temperatures, and the energy absorbed at fracture is recorded at each temperature. What is the primary purpose of testing over a range of temperatures?",
+   "solution": "Refer to the Impact Test section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify the purpose of multi-temperature testing. The handbook states:\n\nThe Charpy Impact Test is used to find energy required to fracture and to identify ductile to brittle transition.\n\nImpact tests determine the amount of energy required to cause failure in standardized test samples. The tests are performed over a range of temperatures to determine the ductile to brittle transition temperature.\n\nA single-temperature test gives only one energy value.\n\nTherefore the range of temperatures is needed to locate the ductile-to-brittle transition temperature.",
+   "subtopic": "Charpy impact test",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "5,750 m³",
+    "4,348 m³",
+    "5,000 m³",
+    "6,500 m³"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Shrinkage means the fill compacts to less than its loose volume, so the excavation must be larger than the compacted fill -- the fill volume is increased by the shrinkage factor, not divided by it.",
+   "id": "surveying-030",
+   "question": "A mass haul computation indicates that 5,000 m³ of compacted embankment is required. Laboratory tests give a shrinkage factor of 15% for the borrow soil. What volume of excavation should be planned?",
+   "solution": "Refer to the Mass Haul Diagram section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the required excavation volume. The handbook states:\n\nEarthwork may be adjusted to account for shrinkage by increasing fill at each station by the shrinkage factor.\n\nThe compacted fill required is \\\\(5{,}000\\\\ \\\\mathrm{m}^3\\\\) and the shrinkage factor is \\\\(15\\\\%\\\\):\n\n$$(V_{excavation}) = 5{,}000 \\\\times (1 + 0.15)$$\n\n$$(V_{excavation}) = 5{,}000 \\\\times 1.15 = 5{,}750\\\\ \\\\mathrm{m}^3$$",
+   "subtopic": "Mass haul diagram (shrinkage adjustment)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "12.6 yd³",
+    "37.7 yd³",
+    "6.3 yd³",
+    "25.1 yd³"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "A cone is one-third the volume of the cylinder with the same base and height -- skipping the division by 3 triples the answer. The final step is converting cubic feet to cubic yards.",
+   "id": "surveying-031",
+   "question": "A conical aggregate stockpile has a base diameter of 12 ft and a height of 9 ft. Approximately how many cubic yards of aggregate does it contain?",
+   "solution": "Refer to the Earthwork Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(V\\\\). The handbook prints, for a pyramid or cone:\n\n$$V = \\\\frac{h \\\\times (\\\\text{area of base})}{3}$$\n\nThe base area:\n\n$$(A) = \\\\pi r^2 = \\\\pi (6)^2 = 113.1\\\\ \\\\mathrm{ft}^2$$\n\nThe volume in cubic feet:\n\n$$(V) = \\\\frac{9 \\\\times 113.1}{3} = 339.3\\\\ \\\\mathrm{ft}^3$$\n\nConverting \\\\((1\\\\ \\\\mathrm{yd}^3 = 27\\\\ \\\\mathrm{ft}^3)\\\\):\n\n$$(V) = \\\\frac{339.3}{27} = 12.6\\\\ \\\\mathrm{yd}^3$$",
+   "subtopic": "Stockpile volume (cone)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "0.909",
+    "0.833",
+    "1.100",
+    "0.091"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The formula uses (E_T - 1), not E_T -- the equivalent counts the truck as one passenger car already, so only the excess matters. Forgetting the minus one understates the factor, and entering the 10% share as 10 instead of 0.10 collapses it to 0.091.",
+   "id": "transportation-030",
+   "question": "A level-terrain freeway segment carries 10% single-unit trucks and tractor-trailers. The handbook table gives a passenger-car equivalent \\(E_T = 2.0\\) for level terrain. What is the heavy-vehicle adjustment factor \\(f_{HV}\\)?",
+   "solution": "Refer to the Highway Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(f_{HV}\\\\). The handbook prints:\n\n$$f_{HV} = \\\\frac{1}{1 + P_T (E_T - 1)}$$\n\nwhere \\\\(P_T\\\\) is the proportion of single-unit trucks and tractor trailers and \\\\(E_T\\\\) is the passenger-car equivalent.\n\nSubstituting \\\\((P_T = 0.10\\\\), \\\\(E_T = 2.0)\\\\):\n\n$$(f_{HV}) = \\\\frac{1}{1 + 0.10(2.0 - 1)}$$\n\n$$(f_{HV}) = \\\\frac{1}{1.10} = 0.909$$",
+   "subtopic": "Heavy-vehicle adjustment factor",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.68",
+    "1.37",
+    "2.74",
+    "5.48"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The intersection rate normalizes by entering vehicles (ADT times 365 days), not by vehicle-miles -- that is the segment formula. Mixing the two denominators is the classic error.",
+   "id": "transportation-031",
+   "question": "An intersection with an entering ADT of 24,000 experienced 12 crashes in one year. What is the crash rate per million entering vehicles (RMEV)?",
+   "solution": "Refer to the Crash Rates at Intersections section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(RMEV\\\\). The handbook prints:\n\n$$RMEV = \\\\frac{A \\\\times 1{,}000{,}000}{V}$$\n\nwhere \\\\(A\\\\) is the number of crashes in a single year and \\\\(V = ADT \\\\times 365\\\\).\n\nThe entering volume:\n\n$$(V) = 24{,}000 \\\\times 365 = 8{,}760{,}000\\\\ \\\\text{vehicles}$$\n\nSubstituting:\n\n$$(RMEV) = \\\\frac{12 \\\\times 1{,}000{,}000}{8{,}760{,}000}$$\n\n$$(RMEV) = 1.37\\\\ \\\\text{crashes per million entering vehicles}$$",
+   "subtopic": "Crash rate (intersection)",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.75",
+    "2.67",
+    "2.75",
+    "3.50"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The forward rule evaluates the function at the LEFT endpoint of each subinterval -- including x = 0 and excluding x = 2. Shifting the evaluation points right gives the backward-rectangular (or trapezoidal) value instead.",
+   "id": "math-031",
+   "question": "Use Euler's forward rectangular rule with \\(n = 4\\) subintervals to estimate \\(\\int_0^2 x^2 \\, dx\\).",
+   "solution": "Refer to the Numerical Integration section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must estimate the integral. The handbook prints Euler's (forward rectangular) rule:\n\n$$\\\\int_a^b f(x)\\\\,dx \\\\approx \\\\Delta x \\\\sum_{k=0}^{n-1} f(a + k\\\\Delta x)$$\n\nThe subinterval width:\n\n$$(\\\\Delta x) = \\\\frac{2 - 0}{4} = 0.5$$\n\nThe function values at the left endpoints \\\\(0, 0.5, 1.0, 1.5\\\\):\n\n$$(f) = 0^2,\\\\ 0.5^2,\\\\ 1.0^2,\\\\ 1.5^2 = 0,\\\\ 0.25,\\\\ 1.00,\\\\ 2.25$$\n\nSumming and multiplying:\n\n$$(I) \\\\approx 0.5 \\\\times (0 + 0.25 + 1.00 + 2.25)$$\n\n$$(I) \\\\approx 0.5 \\\\times 3.50 = 1.75$$",
+   "subtopic": "Numerical integration (Euler forward rectangular rule)",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.27",
+    "1.62",
+    "0.81",
+    "2.54"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The formula gives the variance S_e squared -- the standard error is its square root. Stopping at 1.62 answers a different question.",
+   "id": "stats-031",
+   "question": "A linear regression on \\(n = 12\\) observations yields \\(S_{xx} = 20\\), \\(S_{yy} = 45\\), and \\(S_{xy} = 24\\). What is the standard error of the estimate \\(S_e\\)?",
+   "solution": "Refer to the Linear Regression section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(S_e\\\\). The handbook prints:\n\n$$S_e^2 = \\\\frac{S_{xx} S_{yy} - S_{xy}^2}{S_{xx}(n - 2)} = MSE$$\n\nSubstituting:\n\n$$(S_e^2) = \\\\frac{(20)(45) - 24^2}{20(12 - 2)}$$\n\n$$(S_e^2) = \\\\frac{900 - 576}{200} = \\\\frac{324}{200} = 1.62$$\n\nTaking the square root:\n\n$$(S_e) = \\\\sqrt{1.62} = 1.27$$",
+   "subtopic": "Standard error of estimate",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "5.47 N·m",
+    "29.7 N·m",
+    "2.74 N·m",
+    "10.9 N·m"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Loosening uses the MINUS sign in tan(alpha minus phi); the plus sign gives the much larger tightening moment. The friction angle phi comes from arctan(mu), not mu itself.",
+   "id": "statics-031",
+   "question": "A square-thread screw jack supports an axial load of 8,000 N. The mean thread radius is 25 mm, the pitch angle is 5°, and the coefficient of thread friction is 0.06. What moment must be applied to loosen the screw?",
+   "solution": "Refer to the Screw Thread section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(M\\\\). The handbook prints, for a square-thread screw jack:\n\n$$M = Pr\\\\tan(\\\\alpha \\\\pm \\\\phi)$$\n\nwhere the minus sign is for screw loosening, \\\\(\\\\mu = \\\\tan\\\\phi\\\\), \\\\(P\\\\) is the axial load, and \\\\(r\\\\) is the mean thread radius.\n\nThe friction angle:\n\n$$(\\\\phi) = \\\\arctan(0.06) = 3.43^\\\\circ$$\n\nLoosening uses \\\\(\\\\alpha - \\\\phi\\\\):\n\n$$(M) = (8{,}000)(0.025)\\\\tan(5^\\\\circ - 3.43^\\\\circ)$$\n\n$$(M) = 200\\\\tan(1.57^\\\\circ) = 200(0.02735) = 5.47\\\\ \\\\mathrm{N\\\\!\\\\cdot\\\\! m}$$",
+   "subtopic": "Screw jack (loosening moment)",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.00",
+    "0.50",
+    "2.00",
+    "0.25"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "For overconsolidated soil the normally-consolidated value (1 - sin phi) is multiplied by OCR raised to sin phi -- using the NC formula alone ignores the stress history.",
+   "id": "geotech-031",
+   "question": "A sand deposit has an effective friction angle of 30° and an overconsolidation ratio of 4. What is the at-rest earth pressure coefficient \\(K_0\\)?",
+   "solution": "Refer to the At-Rest Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(K_0\\\\). The handbook prints, for overconsolidated soil:\n\n$$K_0 = (1 - \\\\sin\\\\phi)\\\\,OCR^{\\\\sin\\\\phi}$$\n\nSubstituting \\\\(\\\\phi = 30^\\\\circ\\\\) and \\\\(OCR = 4\\\\):\n\n$$(K_0) = (1 - \\\\sin 30^\\\\circ)(4^{\\\\sin 30^\\\\circ})$$\n\n$$(K_0) = (1 - 0.5)(4^{0.5}) = (0.5)(2) = 1.00$$",
+   "subtopic": "At-rest earth pressure (overconsolidated)",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "60 mg·min/L",
+    "41.7 mg·min/L",
+    "30 mg·min/L",
+    "120 mg·min/L"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "CT is simply concentration times t_10 -- the time for 10% of the water to pass through, not the full hydraulic residence time. Dividing instead of multiplying inverts the relationship.",
+   "id": "water-031",
+   "question": "A chlorine contact chamber operates with a residual disinfectant concentration of 1.2 mg/L during peak hourly flow. A tracer study gives \\(t_{10} = 50\\) min. What is the calculated CT value?",
+   "solution": "Refer to the Disinfection section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(CT_{calc}\\\\). The handbook prints:\n\n$$CT_{calc} = C \\\\times t_{10}$$\n\nwhere \\\\(C\\\\) is the residual disinfectant concentration during peak hourly flow and \\\\(t_{10}\\\\) is the time for 10% of the water to flow through the reactor.\n\nSubstituting:\n\n$$(CT_{calc}) = (1.2)(50) = 60\\\\ \\\\mathrm{mg\\\\!\\\\cdot\\\\!min/L}$$",
+   "subtopic": "Disinfection CT",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "0.149",
+    "0.446",
+    "0.075",
+    "0.298"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The decrement is the natural log of the amplitude ratio divided by the NUMBER of cycles between the peaks -- three here, not one. The log must be the natural log, and the ratio goes larger over smaller.",
+   "id": "dynamics-031",
+   "question": "In a free-vibration test, the measured oscillation amplitude is 50 mm at one peak and 32 mm three cycles later. What is the logarithmic decrement?",
+   "solution": "Refer to the Logarithmic Decrement section in the Instrumentation, Measurement, and Control chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\delta\\\\). The handbook prints:\n\n$$\\\\delta = \\\\frac{1}{m}\\\\ln\\\\frac{x_k}{x_{k+m}}$$\n\nwhere \\\\(x_k\\\\) and \\\\(x_{k+m}\\\\) are the amplitudes of oscillation at cycles \\\\(k\\\\) and \\\\(k + m\\\\), respectively.\n\nWith \\\\(m = 3\\\\) cycles between the 50-mm and 32-mm peaks:\n\n$$(\\\\delta) = \\\\frac{1}{3}\\\\ln\\\\frac{50}{32}$$\n\n$$(\\\\delta) = \\\\frac{1}{3}\\\\ln(1.5625)$$\n\n$$(\\\\delta) = \\\\frac{0.4463}{3} = 0.149$$",
+   "subtopic": "Logarithmic decrement",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.25 m",
+    "0.50 m",
+    "0.71 m",
+    "2.00 m"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The radius of gyration is the square root of inertia over mass -- it is the radius at which the whole mass could sit as a thin ring with the same inertia. Dividing without the square root gives I/m, not r_m.",
+   "id": "dynamics-032",
+   "question": "A 50-kg flywheel has a mass moment of inertia of 12.5 kg·m² about its central axis. What is its mass radius of gyration?",
+   "solution": "Refer to the Mass Radius of Gyration section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(r_m\\\\). The handbook prints:\n\n$$r_m = \\\\sqrt{\\\\frac{I}{m}}$$\n\nSubstituting:\n\n$$(r_m) = \\\\sqrt{\\\\frac{12.5}{50}}$$\n\n$$(r_m) = \\\\sqrt{0.25} = 0.50\\\\ \\\\mathrm{m}$$",
+   "subtopic": "Mass radius of gyration",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "1.88",
+    "2.50",
+    "1.33",
+    "2.14"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Goodman adds the alternating-stress ratio and the mean-stress ratio: sigma_a over S_e plus sigma_m over S_ut equals one over n. Dropping the mean term gives the infinite-life factor for fully reversed loading, which overstates safety here.",
+   "id": "mechmat-031",
+   "question": "A machine part experiences an alternating stress of 120 MPa and a mean stress of 80 MPa. The material has an endurance limit of 300 MPa and an ultimate tensile strength of 600 MPa. What is the factor of safety against fatigue failure according to the Modified Goodman criterion?",
+   "solution": "Refer to the Variable Loading Failure Theories section in the Mechanical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(n\\\\). The handbook prints the Modified Goodman criterion (with a factor of safety):\n\n$$\\\\frac{\\\\sigma_a}{S_e} + \\\\frac{\\\\sigma_m}{S_{ut}} = \\\\frac{1}{n}$$\n\nwhere \\\\(\\\\sigma_a\\\\) is the alternating stress, \\\\(\\\\sigma_m\\\\) is the mean stress, \\\\(S_e\\\\) is the endurance limit, and \\\\(S_{ut}\\\\) is the ultimate strength.\n\nSubstituting:\n\n$$\\\\frac{120}{300} + \\\\frac{80}{600} = \\\\frac{1}{n}$$\n\n$$0.400 + 0.133 = \\\\frac{1}{n}$$\n\n$$\\\\frac{1}{n} = 0.533$$\n\n$$(n) = \\\\frac{1}{0.533} = 1.88$$",
+   "subtopic": "Modified Goodman fatigue criterion",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "600 × 10⁻⁶ rad",
+    "300 × 10⁻⁶ rad",
+    "1,200 × 10⁻⁶ rad",
+    "60 × 10⁻⁶ rad"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Shear strain in torsion grows linearly with radius -- zero at the center, maximum at the outer fiber. Using the diameter instead of the radius doubles the answer.",
+   "id": "mechmat-032",
+   "question": "A solid circular shaft twists at a rate of 0.015 rad/m. If the shaft radius is 40 mm, what is the maximum shear strain in the shaft?",
+   "solution": "Refer to the Torsional Strain section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\gamma_{max}\\\\). The handbook prints:\n\n$$\\\\tau_{rz} = G\\\\gamma_{rz} = Gr\\\\frac{d\\\\phi}{dz}$$\n\nso the shear strain at radius \\\\(r\\\\) is:\n\n$$(\\\\gamma) = r\\\\frac{d\\\\phi}{dz}$$\n\nThe strain is largest at the outer fiber \\\\((r = 40\\\\ \\\\mathrm{mm} = 0.040\\\\ \\\\mathrm{m})\\\\):\n\n$$(\\\\gamma_{max}) = (0.040)(0.015)$$\n\n$$(\\\\gamma_{max}) = 6.00 \\\\times 10^{-4}\\\\ \\\\mathrm{rad} = 600 \\\\times 10^{-6}\\\\ \\\\mathrm{rad}$$",
+   "subtopic": "Torsional shear strain",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "0.350",
+    "2.86",
+    "0.175",
+    "0.700"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The Mach number is flow velocity over the speed of sound -- a ratio below 1 is subsonic. Inverting the ratio answers how many times faster sound is than the flow, which is not the Mach number.",
+   "id": "fluid-031",
+   "question": "Air at 20°C flows through a duct at 120 m/s. The handbook's worked example gives the speed of sound in dry air at 20°C and 1 atm as 343.2 m/s. What is the Mach number of the flow?",
+   "solution": "Refer to the Mach Number section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(Ma\\\\). The handbook prints:\n\n$$Ma \\\\equiv \\\\frac{V}{c}$$\n\nwhere \\\\(V\\\\) is the mean fluid velocity and \\\\(c\\\\) is the local speed of sound.\n\nSubstituting:\n\n$$(Ma) = \\\\frac{120}{343.2} = 0.350$$\n\nThe flow is subsonic \\\\((Ma < 1)\\\\).",
+   "subtopic": "Mach number",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "320 K",
+    "300 K",
+    "340 K",
+    "380 K"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Stagnation temperature adds the kinetic-energy term V squared over 2 c_p to the static temperature -- it is the temperature the gas would reach if brought to rest adiabatically. Watch the units: c_p must be in J/(kg K) so the term comes out in kelvin.",
+   "id": "fluid-032",
+   "question": "Air (\\(c_p = 1{,}005\\) J/(kg·K)) at a static temperature of 300 K flows at 200 m/s. What is the stagnation temperature?",
+   "solution": "Refer to the Isentropic Flow Relationships section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(T_0\\\\). The handbook prints:\n\n$$T_0 = T + \\\\frac{V^2}{2c_p}$$\n\nSubstituting \\\\((T = 300\\\\ \\\\mathrm{K}\\\\), \\\\(V = 200\\\\ \\\\mathrm{m/s}\\\\), \\\\(c_p = 1{,}005\\\\ \\\\mathrm{J/(kg\\\\!\\\\cdot\\\\!K)}\\\\):\n\n$$(T_0) = 300 + \\\\frac{200^2}{2(1{,}005)}$$\n\n$$(T_0) = 300 + \\\\frac{40{,}000}{2{,}010}$$\n\n$$(T_0) = 300 + 19.9 = 319.9\\\\ \\\\mathrm{K} \\\\approx 320\\\\ \\\\mathrm{K}$$",
+   "subtopic": "Stagnation temperature",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "28.2 psf",
+    "33.1 psf",
+    "38.9 psf",
+    "44.1 psf"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The 0.00256 coefficient already handles the mph-to-psf conversion -- do not convert V again. Every factor multiplies: exposure, topographic, directionality, and V squared. Dropping K_d is the most common slip.",
+   "id": "structural-031",
+   "question": "For a building in open terrain (Exposure C), the velocity pressure exposure coefficient at the roof height is \\(K_z = 0.90\\). The basic wind speed is 130 mph, the topographic factor \\(K_{zt} = 1.0\\), and the wind directionality factor \\(K_d = 0.85\\). What is the velocity pressure \\(q_z\\) at the roof?",
+   "solution": "Refer to the Wind Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(q_z\\\\). The handbook prints:\n\n$$q_z = 0.00256\\\\,K_z K_{zt} K_d V^2\\\\ \\\\mathrm{(lb/ft^2)}$$\n\nwhere \\\\(V\\\\) is the basic wind speed in mph.\n\nSubstituting:\n\n$$(q_z) = 0.00256(0.90)(1.0)(0.85)(130)^2$$\n\n$$(q_z) = 0.00256(0.765)(16{,}900)$$\n\n$$(q_z) = 33.1\\\\ \\\\mathrm{psf}$$",
+   "subtopic": "Wind velocity pressure",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "23.1 psf",
+    "21.0 psf",
+    "30.0 psf",
+    "33.0 psf"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The 0.7 converts ground snow to roof snow; the exposure, thermal, and importance factors then adjust it. Using the ground load directly skips the 0.7 entirely.",
+   "id": "structural-032",
+   "question": "A flat roof has a ground snow load \\(P_g = 30\\) psf, exposure factor \\(C_e = 1.0\\), thermal factor \\(C_t = 1.1\\), and importance factor \\(I_s = 1.0\\). What is the flat roof snow load \\(P_f\\)?",
+   "solution": "Refer to the Snow Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(P_f\\\\). The handbook prints:\n\n$$P_f = 0.7\\\\,C_e C_t I_s P_g$$\n\nSubstituting:\n\n$$(P_f) = 0.7(1.0)(1.1)(1.0)(30)$$\n\n$$(P_f) = 0.7(33) = 23.1\\\\ \\\\mathrm{psf}$$",
+   "subtopic": "Flat roof snow load",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Alternative A (EV = $40,000)",
+    "Alternative B (EV = $45,000)",
+    "Alternative A (EV = $35,000)",
+    "Neither — both alternatives have negative expected value"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Expected value weights each outcome by its probability -- losses enter with a negative sign. The decision rule is to choose the branch with the highest expected value, not the highest best-case payoff.",
+   "id": "econ-031",
+   "question": "A decision node offers two alternatives. Alternative A: a 60% chance of an $80,000 profit and a 40% chance of a $20,000 loss. Alternative B: a 50% chance of a $100,000 profit and a 50% chance of a $10,000 loss. On an expected-value basis, which alternative should the decision maker choose?",
+   "solution": "Refer to the Economic Decision Trees section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values. The handbook prints:\n\n$$EV = (C_1)(p_1) + (C_2)(p_2) + \\\\cdots$$\n\nFor Alternative A:\n\n$$(EV_A) = (80{,}000)(0.60) + (-20{,}000)(0.40)$$\n\n$$(EV_A) = 48{,}000 - 8{,}000 = \\\\$40{,}000$$\n\nFor Alternative B:\n\n$$(EV_B) = (100{,}000)(0.50) + (-10{,}000)(0.50)$$\n\n$$(EV_B) = 50{,}000 - 5{,}000 = \\\\$45{,}000$$\n\nSince \\\\(EV_B > EV_A\\\\), the decision maker should choose Alternative B.",
+   "subtopic": "Decision tree expected value",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Yes — a 9% return exceeds inflation",
+    "No — the rate of return is below the MARR",
+    "Yes — any positive rate of return is acceptable",
+    "No — the rate of return exceeds the MARR"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The MARR is the hurdle rate: accept only if the computed rate of return meets or exceeds it. A positive return is not enough if it falls short of what the company demands.",
+   "id": "econ-032",
+   "question": "A proposed investment has a computed rate of return of 9%. The company's minimum acceptable rate of return (MARR) is 12%. Based on the rate-of-return criterion, should the investment be accepted?",
+   "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must apply the decision rule. The handbook states:\n\nThe minimum acceptable rate-of-return (MARR) is that interest rate that one is willing to accept. The rate-of-return on an investment is the interest rate that makes the benefits and costs equal.\n\nAn investment is acceptable when its rate of return meets or exceeds the MARR.\n\nHere \\\\(9\\\\% < 12\\\\%\\\\); the computed return falls short of the hurdle rate.\n\nTherefore the investment should NOT be accepted.",
+   "subtopic": "MARR decision rule",
+   "topic": "Engineering Economics"
   }
  ]
 }
