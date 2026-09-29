@@ -6412,6 +6412,432 @@
    "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the late start \\(LS_B\\). The handbook prints \\(LF =\\) earliest \\(LS\\) of successors and \\(LS = LF - D\\). First run the forward pass to find the project duration:\n\n$$\\begin{aligned}\n\\text{Path A-B-D} &= 4 + 5 + 3 = 12\\ \\text{days} \\\\\n\\text{Path A-C-D} &= 4 + 6 + 3 = 13\\ \\text{days}\n\\end{aligned}$$\n\nThe critical path is A-C-D, so the project duration is 13 days. Now run the backward pass from D:\n\n$$(LF_D) = 13, \\qquad (LS_D) = 13 - 3 = 10$$\n\nActivity B's only successor is D, so:\n\n$$(LF_B) = LS_D = 10$$\n\n$$(LS_B) = LF_B - D_B$$\n\n$$(LS_B) = 10 - 5 = 5$$\n\nThe late start of activity B is day \\(5\\).",
    "explanation": "Backward pass: B inherits its late finish from D's late start (day 10), then subtracts its own 5-day duration. Day 10 is the late finish, not the late start, and day 4 is the late start of C.",
    "estimatedTimeSeconds": 150
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "10",
+    "12",
+    "14",
+    "18"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Divergence measures the net outflow of a vector field at a point. It is the sum of three partial derivatives, each taken with respect to its own coordinate -- a common slip is differentiating a component with respect to the wrong variable.",
+   "id": "math-024",
+   "question": "The vector field is given by F = (x^2 * y, y * z^2, x * z). What is the divergence of F at the point (1, 2, 3)?",
+   "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\nabla \\\\cdot \\\\mathbf{F}\\\\). The handbook prints:\n\n$$\\\\nabla \\\\cdot \\\\mathbf{F} = \\\\frac{\\\\partial P}{\\\\partial x} + \\\\frac{\\\\partial Q}{\\\\partial y} + \\\\frac{\\\\partial R}{\\\\partial z}$$\n\nIdentify the components:\n\n$$\\\\begin{aligned}\nP &= x^2 y \\\\\\\\\nQ &= y z^2 \\\\\\\\\nR &= x z\n\\\\end{aligned}$$\n\nDifferentiate each component with respect to its own variable:\n\n$$\\\\begin{aligned}\n\\\\frac{\\\\partial P}{\\\\partial x} &= 2xy \\\\\\\\\n\\\\frac{\\\\partial Q}{\\\\partial y} &= z^2 \\\\\\\\\n\\\\frac{\\\\partial R}{\\\\partial z} &= x\n\\\\end{aligned}$$\n\nEvaluate at \\\\((1, 2, 3)\\\\):\n\n$$\\\\begin{aligned}\n2xy &= 2(1)(2) = 4 \\\\\\\\\nz^2 &= (3)^2 = 9 \\\\\\\\\nx &= 1\n\\\\end{aligned}$$\n\n$$(\\\\nabla \\\\cdot \\\\mathbf{F}) = 4 + 9 + 1 = 14$$",
+   "subtopic": "Divergence of a vector field",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1.083",
+    "1.111",
+    "1.125",
+    "1.167"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Simpson's rule fits a parabola through each pair of subintervals, so it is exact for polynomials up to degree 3. With n = 2 there is a single parabola through the three points.",
+   "id": "math-025",
+   "question": "Use Simpson's rule with n = 2 to approximate the integral of (1/x) dx from x = 1 to x = 3. What is the approximate value?",
+   "solution": "Refer to the Simpson's Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(I\\\\). For \\\\(n = 2\\\\), the handbook prints:\n\n$$\\\\int_{a}^{b} f(x) \\\\, dx \\\\approx \\\\frac{h}{3}\\\\,[f(x_0) + 4f(x_1) + f(x_2)]$$\n\nCompute the step size:\n\n$$h = \\\\frac{b - a}{n} = \\\\frac{3 - 1}{2} = 1$$\n\nEvaluate the function at the three nodes:\n\n$$\\\\begin{aligned}\nf(x_0) &= f(1) = \\\\frac{1}{1} = 1 \\\\\\\\\nf(x_1) &= f(2) = \\\\frac{1}{2} = 0.5 \\\\\\\\\nf(x_2) &= f(3) = \\\\frac{1}{3} \\\\approx 0.3333\n\\\\end{aligned}$$\n\nApply Simpson's rule:\n\n$$(I) \\\\approx \\\\frac{1}{3}\\\\,[1 + 4(0.5) + 0.3333]$$\n\n$$(I) \\\\approx \\\\frac{1}{3}(3.3333) \\\\approx 1.111$$",
+   "subtopic": "Simpson's rule",
+   "topic": "Mathematics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "0.64",
+    "0.72",
+    "0.80",
+    "0.89"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The correlation coefficient standardizes the covariance by the two standard deviations, so it always lies between -1 and 1. A value near 1 means the points lie close to a rising line.",
+   "id": "stats-024",
+   "question": "Four paired observations are (1, 2), (2, 3), (3, 5), and (4, 4). What is the sample correlation coefficient R?",
+   "solution": "Refer to the Sample Correlation Coefficient section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(R\\\\). The handbook prints:\n\n$$R = \\\\frac{S_{xy}}{\\\\sqrt{S_{xx} \\\\, S_{yy}}}$$\n\nCompute the means:\n\n$$\\\\begin{aligned}\n\\\\bar{x} &= \\\\frac{1 + 2 + 3 + 4}{4} = 2.5 \\\\\\\\\n\\\\bar{y} &= \\\\frac{2 + 3 + 5 + 4}{4} = 3.5\n\\\\end{aligned}$$\n\nCompute the sums of squares and cross-products:\n\n$$\\\\begin{aligned}\nS_{xy} &= (-1.5)(-1.5) + (-0.5)(-0.5) + (0.5)(1.5) + (1.5)(0.5) = 4.0 \\\\\\\\\nS_{xx} &= (-1.5)^2 + (-0.5)^2 + (0.5)^2 + (1.5)^2 = 5.0 \\\\\\\\\nS_{yy} &= (-1.5)^2 + (-0.5)^2 + (1.5)^2 + (0.5)^2 = 5.0\n\\\\end{aligned}$$\n\n$$(R) = \\\\frac{4.0}{\\\\sqrt{(5.0)(5.0)}} = \\\\frac{4.0}{5.0} = 0.80$$",
+   "subtopic": "Sample correlation coefficient",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The least-squares line always passes through the point of the two means. Once the slope is known, the intercept is forced by that single fact.",
+   "id": "stats-025",
+   "question": "Three data points (1, 3), (2, 5), and (3, 7) are fit with the least-squares line y = a + bx. What is the intercept a?",
+   "solution": "Refer to the Linear Regression and Goodness of Fit section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(a\\\\). The handbook prints the intercept as:\n\n$$a = \\\\bar{y} - b\\\\bar{x}$$\n\nCompute the means:\n\n$$\\\\begin{aligned}\n\\\\bar{x} &= \\\\frac{1 + 2 + 3}{3} = 2 \\\\\\\\\n\\\\bar{y} &= \\\\frac{3 + 5 + 7}{3} = 5\n\\\\end{aligned}$$\n\nCompute the slope:\n\n$$b = \\\\frac{\\\\sum (x_i - \\\\bar{x})(y_i - \\\\bar{y})}{\\\\sum (x_i - \\\\bar{x})^2} = \\\\frac{(-1)(-2) + (0)(0) + (1)(2)}{1 + 0 + 1} = \\\\frac{4}{2} = 2$$\n\n$$(a) = 5 - (2)(2) = 1$$",
+   "subtopic": "Least-squares intercept",
+   "topic": "Statistics and Probability"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3 kN upward",
+    "6 kN upward",
+    "9 kN upward",
+    "12 kN upward"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "A Gerber beam is solved from the free end inward: analyze the secondary segment first to find the hinge force, then apply it reversed to the primary segment. The hinge transmits force but no moment.",
+   "id": "statics-024",
+   "question": "A compound beam has segment AB with a pin support at A (x = 0 m) and a roller at B (x = 6 m). Segment BD is connected by an internal hinge at B, rests on a roller at C (x = 10 m), and carries a 10 kN downward load at D (x = 12 m). Segment AB carries a uniform load of 2 kN/m over its full length. What is the vertical reaction at the pin support A?",
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(A_y\\\\). Start with the free-body diagram of the secondary segment BD (hinge at B, roller at C, 10 kN at D):\n\n$$\\\\sum M_B = 0: \\\\quad C_y(4) - 10(6) = 0$$\n\n$$(C_y) = \\\\frac{60}{4} = 15 \\\\text{ kN (upward)}$$\n\n$$\\\\sum F_y = 0: \\\\quad B_y + 15 - 10 = 0$$\n\n$$(B_y) = -5 \\\\text{ kN}$$\n\nThe hinge pulls downward on segment BD with 5 kN, so it pushes upward on segment AB with 5 kN.\n\nNow draw segment AB: pin at A, roller at B, uniform load \\\\((2 \\\\text{ kN/m})(6 \\\\text{ m}) = 12 \\\\text{ kN}\\\\) at \\\\(x = 3 \\\\text{ m}\\\\), and the 5 kN hinge force upward at B.\n\n$$\\\\sum M_A = 0: \\\\quad R_B(6) + 5(6) - 12(3) = 0$$\n\n$$(R_B) = \\\\frac{36 - 30}{6} = 1 \\\\text{ kN (upward)}$$\n\n$$\\\\sum F_y = 0: \\\\quad A_y + 1 + 5 - 12 = 0$$\n\n$$(A_y) = 6 \\\\text{ kN (upward)}$$",
+   "subtopic": "Compound beam (Gerber beam)",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "60 kN at 3 m",
+    "60 kN at 4 m",
+    "60 kN at 5 m",
+    "50 kN at 4 m"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The resultant of parallel forces is their algebraic sum, and its position comes from Varignon's theorem: the moment of the resultant about any point equals the sum of the moments of the components.",
+   "id": "statics-025",
+   "question": "Three parallel downward forces of 10 kN, 20 kN, and 30 kN act at x = 1 m, x = 4 m, and x = 7 m along a horizontal bar. What is the resultant force, and how far is its line of action from the 10 kN force?",
+   "solution": "Refer to the Resultant (Two Dimensions) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(R\\\\) and its location. The resultant magnitude is the sum of the parallel forces:\n\n$$(R) = 10 + 20 + 30 = 60 \\\\text{ kN (downward)}$$\n\nTake moments about the origin (\\\\(x = 0\\\\)) to locate the resultant at \\\\(\\\\bar{x}\\\\):\n\n$$R\\\\,\\\\bar{x} = 10(1) + 20(4) + 30(7)$$\n\n$$60\\\\,\\\\bar{x} = 10 + 80 + 210 = 300$$\n\n$$(\\\\bar{x}) = \\\\frac{300}{60} = 5 \\\\text{ m from the origin}$$\n\nThe 10 kN force acts at \\\\(x = 1 \\\\text{ m}\\\\), so the distance from it is:\n\n$$(d) = 5 - 1 = 4 \\\\text{ m}$$",
+   "subtopic": "Resultant of a parallel force system",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3.46 m/s upward",
+    "3.46 m/s downward",
+    "6.93 m/s downward",
+    "6.00 m/s downward"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The instant center sits where the perpendiculars to the two known velocity directions meet. Every point's speed is the angular velocity times its distance from the instant center.",
+   "id": "dynamics-024",
+   "question": "A rigid bar AB, 2 m long, has end A constrained to horizontal motion and end B constrained to vertical motion. At the instant the bar makes 60 degrees with the horizontal, end A moves to the right at 6 m/s. Using the instantaneous center method, what is the velocity of end B?",
+   "solution": "Refer to the Instantaneous Center of Rotation section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(v_B\\\\). Place A at the origin: \\\\(A = (0, 0)\\\\), so \\\\(B = (2\\\\cos 60^\\\\circ, 2\\\\sin 60^\\\\circ) = (1, 1.732) \\\\text{ m}\\\\).\n\nThe perpendicular to \\\\(v_A\\\\) (horizontal) through A is the vertical line \\\\(x = 0\\\\); the perpendicular to \\\\(v_B\\\\) (vertical) through B is the horizontal line \\\\(y = 1.732 \\\\text{ m}\\\\).\n\n$$(IC) = (0, 1.732) \\\\text{ m}$$\n\nThe angular velocity about the instant center is:\n\n$$\\\\omega = \\\\frac{v_A}{d_{IC \\\\to A}} = \\\\frac{6}{1.732} = 3.464 \\\\text{ rad/s}$$\n\nThe speed of B is:\n\n$$(v_B) = \\\\omega \\\\, d_{IC \\\\to B} = (3.464)(1) = 3.46 \\\\text{ m/s}$$\n\nPoint A moves right while directly below the IC, so the rotation is clockwise; point B, to the right of the IC, therefore moves downward.\n\n$$(v_B) = 3.46 \\\\text{ m/s downward}$$",
+   "subtopic": "Instantaneous center of rotation",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "22.2 rad/s",
+    "44.4 rad/s",
+    "66.7 rad/s",
+    "88.9 rad/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Angular impulse and momentum is the rotational twin of linear impulse and momentum: a moment acting over time changes the angular momentum. For a constant moment, the integral is just moment times time.",
+   "id": "dynamics-025",
+   "question": "A 10-kg solid disk of radius 0.30 m spins on a frictionless axle and is initially at rest. A constant couple moment of 5 N-m is applied for 4 s. What is the angular velocity of the disk at the end of the 4 s?",
+   "solution": "Refer to the Principle of Angular Impulse and Momentum section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\omega_2\\\\). The handbook prints:\n\n$$\\\\int_{t_1}^{t_2} M \\\\, dt = I\\\\omega_2 - I\\\\omega_1$$\n\nFor a constant couple moment starting from rest:\n\n$$M\\\\Delta t = I\\\\omega_2$$\n\nThe mass moment of inertia of a solid disk about its central axle is:\n\n$$(I) = \\\\frac{1}{2}mr^2 = \\\\frac{1}{2}(10)(0.30)^2 = 0.45 \\\\text{ kg-m}^2$$\n\n$$(\\\\omega_2) = \\\\frac{M\\\\Delta t}{I} = \\\\frac{(5)(4)}{0.45} = \\\\frac{20}{0.45} \\\\approx 44.4 \\\\text{ rad/s}$$",
+   "subtopic": "Angular impulse and momentum",
+   "topic": "Dynamics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "12.5 MPa",
+    "25 MPa",
+    "50 MPa",
+    "75 MPa"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The handbook prints separate formulas for hoop and axial stress in a cylindrical vessel. The axial stress is half the hoop stress because the end-cap force acts on twice the wall area of the hoop section.",
+   "id": "mechmat-024",
+   "question": "A thin-walled cylindrical pressure vessel with end caps has an inner radius of 0.40 m and a wall thickness of 12 mm. It holds gas at an internal pressure of 1.5 MPa. What is the axial stress in the wall?",
+   "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\sigma_a\\\\). The handbook prints:\n\n$$\\\\sigma_a = \\\\frac{Pr}{2t}$$\n\nConvert the thickness to meters:\n\n$$(t) = 12 \\\\text{ mm} = 0.012 \\\\text{ m}$$\n\n$$(\\\\sigma_a) = \\\\frac{(1.5 \\\\times 10^6)(0.40)}{2(0.012)} = \\\\frac{600{,}000}{0.024} = 25{,}000{,}000 \\\\text{ Pa} = 25 \\\\text{ MPa}$$",
+   "subtopic": "Cylindrical pressure vessel (axial stress)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.096 rad",
+    "0.192 rad",
+    "0.288 rad",
+    "0.384 rad"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "In a stepped shaft each segment twists by its own TL/(GJ) and the twists add, because the free end rotates by the accumulated twist of every segment. The smaller-diameter segment dominates since J scales with diameter to the fourth power.",
+   "id": "mechmat-025",
+   "question": "A steel shaft (G = 79 GPa) is fixed at one end and consists of two segments in series: segment 1 has diameter 50 mm and length 1.0 m, and segment 2 has diameter 40 mm and length 1.5 m. A torque of 2 kN-m is applied at the free end. What is the total angle of twist at the free end, in radians?",
+   "solution": "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\phi\\\\). The handbook prints:\n\n$$\\\\phi = \\\\frac{TL}{GJ}$$\n\nThe polar moment of inertia of a solid circular shaft is:\n\n$$J = \\\\frac{\\\\pi d^4}{32}$$\n\nCompute each segment's polar moment of inertia:\n\n$$\\\\begin{aligned}\nJ_1 &= \\\\frac{\\\\pi (0.050)^4}{32} = 6.136 \\\\times 10^{-7} \\\\text{ m}^4 \\\\\\\\\nJ_2 &= \\\\frac{\\\\pi (0.040)^4}{32} = 2.513 \\\\times 10^{-7} \\\\text{ m}^4\n\\\\end{aligned}$$\n\nTwist of each segment (the full 2 kN-m acts in both segments):\n\n$$\\\\begin{aligned}\n\\\\phi_1 &= \\\\frac{(2000)(1.0)}{(79 \\\\times 10^9)(6.136 \\\\times 10^{-7})} = 0.0413 \\\\text{ rad} \\\\\\\\\n\\\\phi_2 &= \\\\frac{(2000)(1.5)}{(79 \\\\times 10^9)(2.513 \\\\times 10^{-7})} = 0.1511 \\\\text{ rad}\n\\\\end{aligned}$$\n\n$$(\\\\phi) = \\\\phi_1 + \\\\phi_2 = 0.0413 + 0.1511 = 0.192 \\\\text{ rad}$$",
+   "subtopic": "Angle of twist (stepped shaft)",
+   "topic": "Mechanics of Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The Buckingham Pi theorem turns a dimensional guessing game into a counting exercise: list the variables, count the fundamental dimensions they span, and the difference is the number of pi groups.",
+   "id": "fluid-024",
+   "question": "The drag force F on a sphere is assumed to depend on the fluid density rho, the approach velocity V, the sphere diameter D, and the fluid dynamic viscosity mu. Using the M-L-T system, how many independent dimensionless pi terms are needed to describe this relationship?",
+   "solution": "Refer to the Dimensional Analysis section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the number of pi terms. The handbook prints the Buckingham Pi Theorem:\n\n$$\\\\text{number of } \\\\pi \\\\text{ terms} = n - k$$\n\nCount the variables: \\\\(F\\\\), \\\\(\\\\rho\\\\), \\\\(V\\\\), \\\\(D\\\\), \\\\(\\\\mu\\\\).\n\n$$(n) = 5$$\n\nCount the independent fundamental dimensions spanned (M, L, T):\n\n$$(k) = 3$$\n\n$$(\\\\text{pi terms}) = 5 - 3 = 2$$",
+   "subtopic": "Buckingham Pi theorem",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "6.26 m/s",
+    "7.67 m/s",
+    "8.29 m/s",
+    "9.90 m/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "A siphon is just the energy equation between the reservoir surface and the outlet. The reservoir is large, so its surface velocity is negligible, and both points are at atmospheric pressure.",
+   "id": "fluid-025",
+   "question": "A siphon discharges water from a large reservoir. The reservoir surface is 5.0 m above the siphon outlet, and the total head loss through the siphon is 1.5 m of water. What is the velocity at the outlet?",
+   "solution": "Refer to the Bernoulli Equation section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(V_2\\\\). Write the energy equation from the reservoir surface (1) to the outlet (2):\n\n$$z_1 = \\\\frac{p_2}{\\\\gamma} + \\\\frac{V_2^2}{2g} + z_2 + h_L$$\n\nBoth points are at atmospheric pressure and the reservoir surface velocity is negligible, so with the outlet as the datum:\n\n$$5.0 = \\\\frac{V_2^2}{2(9.81)} + 0 + 1.5$$\n\n$$\\\\frac{V_2^2}{19.62} = 5.0 - 1.5 = 3.5$$\n\n$$(V_2) = \\\\sqrt{19.62 \\\\times 3.5} = \\\\sqrt{68.67} = 8.29 \\\\text{ m/s}$$",
+   "subtopic": "Siphon (energy equation)",
+   "topic": "Fluid Mechanics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.88 m",
+    "1.02 m",
+    "1.18 m",
+    "1.35 m"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Normal depth is the depth where Manning's equation reproduces the given discharge. For a triangular section both area and wetted perimeter are simple powers of depth, so the equation can be solved directly for depth.",
+   "id": "water-024",
+   "question": "A triangular channel with side slopes 2H:1V carries 3.0 m^3/s on a bed slope of 0.001. Manning's n is 0.013. What is the normal depth?",
+   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(y_n\\\\). The handbook prints (SI units):\n\n$$Q = \\\\frac{1}{n} A R^{2/3} S^{1/2}$$\n\nFor a triangular channel with side slope \\\\(m = 2\\\\):\n\n$$\\\\begin{aligned}\nA &= m y^2 = 2y^2 \\\\\\\\\nP &= 2y\\\\sqrt{1 + m^2} = 2y\\\\sqrt{5} \\\\\\\\\nR &= \\\\frac{A}{P} = \\\\frac{2y^2}{2y\\\\sqrt{5}} = \\\\frac{y}{\\\\sqrt{5}}\n\\\\end{aligned}$$\n\nSubstitute into Manning's equation:\n\n$$3.0 = \\\\frac{1}{0.013} (2y^2) \\\\left(\\\\frac{y}{\\\\sqrt{5}}\\\\right)^{2/3} (0.001)^{1/2}$$\n\n$$3.0 = \\\\left(\\\\frac{2\\\\sqrt{0.001}}{0.013 \\\\times 5^{1/3}}\\\\right) y^{8/3} = 2.841 \\\\, y^{8/3}$$\n\n$$(y^{8/3}) = \\\\frac{3.0}{2.841} = 1.056$$\n\n$$(y_n) = 1.056^{3/8} = 1.02 \\\\text{ m}$$",
+   "subtopic": "Normal depth (triangular channel)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.00217",
+    "0.00434",
+    "0.00868",
+    "0.0174"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The critical slope is the bed slope that would make the given discharge flow at critical depth. Find the critical depth first, then ask Manning's equation which slope produces the same discharge at that depth.",
+   "id": "water-025",
+   "question": "A rectangular channel 3.0 m wide carries 9.0 m^3/s with Manning's n = 0.015. What is the critical slope?",
+   "solution": "Refer to the Manning's Equation and Specific Energy sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(S_c\\\\). First find the critical depth for a rectangular channel:\n\n$$y_c = \\\\left(\\\\frac{q^2}{g}\\\\right)^{1/3}$$\n\n$$q = \\\\frac{9.0}{3.0} = 3.0 \\\\text{ m}^2\\\\text{/s}$$\n\n$$(y_c) = \\\\left(\\\\frac{3.0^2}{9.81}\\\\right)^{1/3} = (0.9174)^{1/3} = 0.9717 \\\\text{ m}$$\n\nAt critical depth:\n\n$$\\\\begin{aligned}\nA_c &= (3.0)(0.9717) = 2.915 \\\\text{ m}^2 \\\\\\\\\nP_c &= 3.0 + 2(0.9717) = 4.943 \\\\text{ m} \\\\\\\\\nR_c &= \\\\frac{2.915}{4.943} = 0.5897 \\\\text{ m}\n\\\\end{aligned}$$\n\nNow set Manning's equation equal to the discharge and solve for the slope:\n\n$$9.0 = \\\\frac{1}{0.015} (2.915)(0.5897)^{2/3} S_c^{1/2}$$\n\n$$(S_c^{1/2}) = \\\\frac{9.0 \\\\times 0.015}{2.915 \\\\times 0.7025} = 0.06593$$\n\n$$(S_c) = (0.06593)^2 = 0.00434$$",
+   "subtopic": "Critical slope",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.75",
+    "1.33",
+    "3.00",
+    "12.0"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The gradation coefficients describe the shape of the grain-size curve: Cu measures its spread and Cc measures its curvature. Together they decide whether a coarse soil is well graded or poorly graded.",
+   "id": "geotech-024",
+   "question": "A sieve analysis gives D10 = 0.10 mm, D30 = 0.40 mm, and D60 = 1.20 mm for a sand. What is the coefficient of curvature Cc?",
+   "solution": "Refer to the Coefficient of concavity (or curvature) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(C_c\\\\). The handbook prints:\n\n$$C_c = \\\\frac{(D_{30})^2}{D_{10} \\\\times D_{60}}$$\n\n$$(C_c) = \\\\frac{(0.40)^2}{(0.10)(1.20)} = \\\\frac{0.16}{0.12} = 1.33$$",
+   "subtopic": "Soil gradation (coefficient of curvature)",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "30 kPa",
+    "45 kPa",
+    "60 kPa",
+    "90 kPa"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "At-rest pressure applies when the soil cannot strain laterally -- the natural state of a flat ground surface. For normally consolidated soils the handbook gives K0 directly from the friction angle.",
+   "id": "geotech-025",
+   "question": "A 5-m-thick deposit of normally consolidated clean sand has a total unit weight of 18 kN/m^3 and an effective friction angle of 30 degrees. The water table is below the deposit. What is the horizontal effective stress at 5 m depth?",
+   "solution": "Refer to the At-Rest Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\sigma'_h\\\\). The handbook prints, for normally consolidated soil:\n\n$$K_0 \\\\approx 1 - \\\\sin\\\\phi'$$\n\n$$(K_0) = 1 - \\\\sin 30^\\\\circ = 1 - 0.5 = 0.5$$\n\nThe vertical effective stress at 5 m (no pore pressure, water table below):\n\n$$(\\\\sigma'_v) = (18)(5) = 90 \\\\text{ kPa}$$\n\n$$(\\\\sigma'_h) = K_0 \\\\, \\\\sigma'_v = (0.5)(90) = 45 \\\\text{ kPa}$$",
+   "subtopic": "At-rest earth pressure",
+   "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "4.75 mm",
+    "9.50 mm",
+    "19.0 mm",
+    "38.0 mm"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The unit load method is virtual work for trusses: apply a dummy unit load at the point of interest, multiply real and virtual member forces member by member, and sum nNL/AE. Tension-positive signs take care of themselves.",
+   "id": "structural-024",
+   "question": "A truss has joints A(0,0) pinned, B(6,0) on a roller, and C(3,4) carrying a 200 kN downward load. Members AC and BC are each 5 m long, and member AB is 6 m long. All members have AE = 100 MN. Using the unit load method, what is the vertical deflection at C?",
+   "solution": "Refer to the Truss Deflection by Unit Load Method section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\Delta_C\\\\). The handbook prints:\n\n$$\\\\Delta = \\\\sum \\\\frac{nNL}{AE}$$\n\nReactions for the real 200 kN load: \\\\(A_y = B_y = 100 \\\\text{ kN}\\\\).\n\nMember forces \\\\(N\\\\) (tension positive) by joint equilibrium:\n\n$$\\\\begin{aligned}\nN_{AC} &= -\\\\frac{100}{\\\\sin 53.13^\\\\circ} = -125 \\\\text{ kN} \\\\\\\\\nN_{BC} &= -125 \\\\text{ kN (by symmetry)} \\\\\\\\\nN_{AB} &= 125\\\\cos 53.13^\\\\circ = 75 \\\\text{ kN}\n\\\\end{aligned}$$\n\nApply a dummy 1 kN downward load at C; the virtual forces \\\\(n\\\\) scale by \\\\(1/200\\\\):\n\n$$\\\\begin{aligned}\nn_{AC} &= n_{BC} = -\\\\frac{125}{200} = -0.625 \\\\\\\\\nn_{AB} &= \\\\frac{75}{200} = 0.375\n\\\\end{aligned}$$\n\n$$(\\\\Delta_C) = \\\\frac{2(-0.625)(-125)(5) + (0.375)(75)(6)}{100{,}000} = \\\\frac{781.25 + 168.75}{100{,}000}$$\n\n$$(\\\\Delta_C) = \\\\frac{950}{100{,}000} = 0.0095 \\\\text{ m} = 9.50 \\\\text{ mm (downward)}$$",
+   "subtopic": "Truss deflection (unit load method)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "15 kN-m",
+    "30 kN-m",
+    "45 kN-m",
+    "60 kN-m"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Fixed-end moments are the starting point of slope-deflection and moment distribution. For the common cases the handbook tabulates them, so no integration is needed.",
+   "id": "structural-025",
+   "question": "A prismatic beam fixed at both ends spans 6 m and carries a uniform load of 10 kN/m over its entire length. What is the fixed-end moment at each support?",
+   "solution": "Refer to the Member Fixed-End Moments section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(FEM\\\\). The handbook prints, for a uniform load on a fixed-fixed beam:\n\n$$FEM = \\\\frac{wL^2}{12}$$\n\n$$(FEM) = \\\\frac{(10)(6)^2}{12} = \\\\frac{360}{12} = 30 \\\\text{ kN-m}$$\n\nThe moments are equal at both ends (hogging at the supports).",
+   "subtopic": "Fixed-end moments (uniform load)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "$29,800",
+    "$33,400",
+    "$37,100",
+    "$40,600"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The balance after any payment is the present worth of the payments still owed -- never the original principal minus payments made, because each payment is part interest. Work forward to the payment, then discount the remaining ones.",
+   "id": "econ-024",
+   "question": "A $50,000 loan at 6% annual interest is repaid with 10 equal end-of-year payments. What is the remaining balance immediately after the 4th payment?",
+   "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the balance \\\\(B_4\\\\). First find the annual payment with the capital recovery factor:\n\n$$A = P(A/P, i, n) = 50{,}000 \\\\left[\\\\frac{0.06(1.06)^{10}}{(1.06)^{10} - 1}\\\\right]$$\n\n$$(A) = 50{,}000(0.13587) = 6{,}793.36$$\n\nThe balance after 4 payments is the present worth of the 6 remaining payments:\n\n$$B_4 = A(P/A, i, 6) = 6{,}793.36 \\\\left[\\\\frac{(1.06)^6 - 1}{0.06(1.06)^6}\\\\right]$$\n\n$$(B_4) = 6{,}793.36(4.91732) = 33{,}405 \\\\approx \\\\$33{,}400$$",
+   "subtopic": "Loan balance (remaining principal)",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "$8,000",
+    "$9,600",
+    "$10,400",
+    "$12,800"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "MACRS depreciation uses statutory recovery percentages, not the straight-line formula. Book value is always cost minus accumulated depreciation, whatever method produced the depreciation.",
+   "id": "econ-025",
+   "question": "A $20,000 asset is classified as 5-year MACRS property. What is its book value at the end of year 2?",
+   "solution": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(BV_2\\\\). The handbook's MACRS table gives, for 5-year property:\n\n$$\\\\begin{aligned}\n\\\\text{Year 1 rate} &= 20.00\\\\% \\\\\\\\\n\\\\text{Year 2 rate} &= 32.00\\\\%\n\\\\end{aligned}$$\n\nAccumulated depreciation through year 2:\n\n$$(D_{acc}) = 20{,}000(0.2000 + 0.3200) = 20{,}000(0.52) = 10{,}400$$\n\nBook value is cost minus accumulated depreciation:\n\n$$(BV_2) = 20{,}000 - 10{,}400 = 9{,}600$$",
+   "subtopic": "MACRS depreciation (book value)",
+   "topic": "Engineering Economics"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.200",
+    "0.223",
+    "0.250",
+    "0.288"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Engineering strain divides elongation by the original length, but true strain accumulates each incremental stretch against the current length. The two agree at small strains and diverge as deformation grows.",
+   "id": "materials-024",
+   "question": "A tensile specimen elongates 25% before necking begins. What is the true strain at the onset of necking?",
+   "solution": "Refer to the True strain section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(\\\\varepsilon_T\\\\). The handbook prints:\n\n$$\\\\varepsilon_T = \\\\ln(1 + \\\\varepsilon)$$\n\nThe engineering strain is:\n\n$$(\\\\varepsilon) = 0.25$$\n\n$$(\\\\varepsilon_T) = \\\\ln(1 + 0.25) = \\\\ln(1.25) = 0.223$$",
+   "subtopic": "True strain",
+   "topic": "Materials"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "5.73 deg",
+    "11.46 deg",
+    "22.92 deg",
+    "28.65 deg"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Degree of curve and radius are inversely related: a sharper curve has a larger degree. The constant 5729.58 ft comes from the arc length of one degree on a 100-ft arc.",
+   "id": "surveying-024",
+   "question": "A horizontal curve has a radius of 500 ft. Using the arc definition, what is the degree of curve?",
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(D\\\\). The handbook prints, for the arc definition:\n\n$$D = \\\\frac{5729.58}{R}$$\n\n$$(D) = \\\\frac{5729.58}{500} = 11.46^\\\\circ$$",
+   "subtopic": "Degree of curve (arc definition)",
+   "topic": "Surveying"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "$5,000",
+    "$6,000",
+    "$7,000",
+    "$8,000"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Straight-line depreciation spreads the depreciable amount evenly over the life. Salvage value is never depreciated -- only cost minus salvage is.",
+   "id": "construction-024",
+   "question": "Equipment purchased for $12,000 has an estimated salvage value of $2,000 and a 4-year useful life. Using straight-line depreciation, what is the book value at the end of year 2?",
+   "solution": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(BV_2\\\\). The handbook prints the straight-line annual depreciation:\n\n$$D = \\\\frac{C - S}{N}$$\n\n$$(D) = \\\\frac{12{,}000 - 2{,}000}{4} = \\\\frac{10{,}000}{4} = 2{,}500 \\\\text{ per year}$$\n\nBook value is cost minus accumulated depreciation:\n\n$$(BV_2) = 12{,}000 - 2(2{,}500) = 12{,}000 - 5{,}000 = 7{,}000$$",
+   "subtopic": "Book value (straight-line depreciation)",
+   "topic": "Construction Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.9 s",
+    "1.2 s",
+    "1.8 s",
+    "2.4 s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The all-red interval lets a vehicle that legally entered at the end of yellow clear the intersection before cross traffic starts. Convert the approach speed to ft/s first -- mixing mph with feet is the classic error here.",
+   "id": "transportation-024",
+   "question": "At a signalized intersection, the curb-to-curb width is 60 ft, the design vehicle is 20 ft long, and the approach speed is 45 mph. What is the all-red clearance interval?",
+   "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\\\(r\\\\). The handbook prints:\n\n$$r = \\\\frac{W + l}{v}$$\n\nConvert the approach speed to ft/s:\n\n$$(v) = 45 \\\\text{ mph} \\\\times 1.46667 = 66 \\\\text{ ft/s}$$\n\n$$(r) = \\\\frac{60 + 20}{66} = \\\\frac{80}{66} = 1.21 \\\\text{ s} \\\\approx 1.2 \\\\text{ s}$$",
+   "subtopic": "All-red clearance interval",
+   "topic": "Transportation Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Seal them after checking the title block",
+    "Refuse to seal work not prepared under his responsible charge",
+    "Seal them since the other firm employs licensed engineers",
+    "Seal them with a written disclaimer of authorship"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "A seal is a certification of professional responsibility, not a rubber stamp. The NSPE Code ties sealing to responsible charge -- direct supervision or thorough review -- and no disclaimer cures its absence.",
+   "id": "ethics-024",
+   "question": "A licensed engineer is asked by a client to sign and seal drawings prepared by another firm's engineers, whom the engineer has never supervised or reviewed. What is the ethical course of action?",
+   "solution": "This question is governed by the NSPE Code of Ethics (adopted by NCEES model rules), not by a handbook equation.\n\nUltimately, we must decide whether sealing is permitted. The Code requires engineers to approve and seal only design documents prepared under their responsible charge.\n\nThe engineer neither supervised nor reviewed the other firm's work.\n\nTherefore the engineer must refuse to seal the drawings.\n\nChecking the title block, relying on the other firm's licenses, or adding a disclaimer does not create responsible charge.\n\nThe ethical course is to refuse to seal work not prepared under his responsible charge.",
+   "subtopic": "Plan stamping (responsible charge)",
+   "topic": "Ethics and Professional Practice"
   }
+
  ]
 }
