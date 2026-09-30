@@ -1668,9 +1668,12 @@
   // before this file) defines window.ECON_GENERATORS with the identical
   // contract and topic "Engineering Economics". js/generators_stats.js
   // (also loaded before this file) defines window.STATS_GENERATORS with the
-  // identical contract and topic "Statistics and Probability". The econ and
-  // stats libraries are optional: a missing library's picker button is
-  // hidden and the mode falls back to the libraries that are present.
+  // identical contract and topic "Statistics and Probability".
+  // js/generators_materials.js (also loaded before this file) defines
+  // window.MATERIALS_GENERATORS with the identical contract and topic
+  // "Materials". The econ, stats and materials libraries are optional: a
+  // missing library's picker button is hidden and the mode falls back to
+  // the libraries that are present.
   // The mode card is hidden when all libraries are missing or empty.
   // Sessions are open-ended: after each answer the user can re-roll the
   // same generator ("New numbers") or take a fresh random generator
@@ -1684,12 +1687,12 @@
   // to per-topic mastery/readiness through the attempt's topic field, and
   // missed variant ids are silently filtered from the study list.
   // saveProgress skips randomized sessions: variants are not resumable.
-  // The chapter picker ("mixed" | "math" | "econ" | "stats") filters the
+  // The chapter picker ("mixed" | "math" | "econ" | "stats" | "mat") filters the
   // combined pool; "Next" draws a different generator from the active
   // (filtered) pool, "New numbers" re-rolls the same generator as before.
   var randomizedChapterSel = "mixed";
 
-  // Unfiltered combined pool (math + econ + stats), or null when all are missing.
+  // Unfiltered combined pool (math + econ + stats + materials), or null when all are missing.
   function randomizedGeneratorsAll() {
     var all = [];
     var m = window.MATH_GENERATORS;
@@ -1698,6 +1701,8 @@
     if (Array.isArray(e) && e.length) all = all.concat(e);
     var s = window.STATS_GENERATORS;
     if (Array.isArray(s) && s.length) all = all.concat(s);
+    var mt = window.MATERIALS_GENERATORS;
+    if (Array.isArray(mt) && mt.length) all = all.concat(mt);
     return all.length ? all : null;
   }
 
@@ -1710,16 +1715,20 @@
     var m = window.MATH_GENERATORS;
     var e = window.ECON_GENERATORS;
     var s = window.STATS_GENERATORS;
+    var mt = window.MATERIALS_GENERATORS;
     var okM = Array.isArray(m) && m.length;
     var okE = Array.isArray(e) && e.length;
     var okS = Array.isArray(s) && s.length;
+    var okMt = Array.isArray(mt) && mt.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
     if (ch === "stats") return okS ? s.slice() : null;
+    if (ch === "mat") return okMt ? mt.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
     if (okS) all = all.concat(s);
+    if (okMt) all = all.concat(mt);
     return all.length ? all : null;
   }
 
@@ -1742,8 +1751,9 @@
     var okM = Array.isArray(window.MATH_GENERATORS) && window.MATH_GENERATORS.length;
     var okE = Array.isArray(window.ECON_GENERATORS) && window.ECON_GENERATORS.length;
     var okS = Array.isArray(window.STATS_GENERATORS) && window.STATS_GENERATORS.length;
-    var okMap = { math: okM, econ: okE, stats: okS };
-    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0);
+    var okMt = Array.isArray(window.MATERIALS_GENERATORS) && window.MATERIALS_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0);
     picker.classList.toggle("hidden", present < 2);
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       var ch = b.dataset.chapter || "mixed";
