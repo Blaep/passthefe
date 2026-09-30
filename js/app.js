@@ -1431,6 +1431,58 @@
     return null;
   }
 
+  // ---- per-skill analytics -------------------------------------------------
+  // Attempts are logged with qid = bank question id, or baseId:variantKey
+  // for randomized variants. Stripping the variant suffix merges a bank
+  // question with its generator (they share the baseId), so accuracy is
+  // tracked per SKILL, not per chapter and not per rolled variant.
+  function skillKey(qid) {
+    if (!qid) return qid;
+    var c = qid.indexOf(":");
+    return c >= 0 ? qid.slice(0, c) : qid;
+  }
+
+  function findGeneratorByBaseId(baseId) {
+    var libs = [window.MATH_GENERATORS, window.ECON_GENERATORS,
+                window.STATS_GENERATORS, window.MATERIALS_GENERATORS];
+    for (var i = 0; i < libs.length; i++) {
+      var lib = libs[i];
+      if (!Array.isArray(lib)) continue;
+      for (var j = 0; j < lib.length; j++) {
+        if (lib[j] && lib[j].baseId === baseId) return lib[j];
+      }
+    }
+    return null;
+  }
+
+  // Per-skill accuracy: { key, topic, subtopic, n, pct, drillable }.
+  // A skill is drillable when a generator exists for its baseId.
+  function skillStats(minN) {
+    var attempts = store.get("attempts", []);
+    var bySkill = {};
+    attempts.forEach(function (a) {
+      var key = skillKey(a.qid);
+      (bySkill[key] = bySkill[key] || []).push(a);
+    });
+    var out = [];
+    Object.keys(bySkill).forEach(function (key) {
+      var ts = bySkill[key];
+      if (ts.length < minN) return;
+      var r = ts.filter(function (a) { return a.correct; }).length;
+      var gen = findGeneratorByBaseId(key);
+      var q = gen ? null : findQuestion(key);
+      out.push({
+        key: key,
+        topic: gen ? gen.topic : (q ? q.topic : (ts[0] ? ts[0].topic : "")),
+        subtopic: gen ? (gen.subtopic || key) : (q ? (q.subtopic || key) : key),
+        n: ts.length,
+        pct: Math.round(100 * r / ts.length),
+        drillable: !!gen
+      });
+    });
+    return out;
+  }
+
   // ---- adaptive practice ---------------------------------------------------
   // NCEES FE Civil CBT Exam Specifications (effective July 2020, 110
   // questions): midpoints of the official per-section question ranges.
@@ -1806,8 +1858,10 @@
     return v;
   }
 
-  function startRandomizedQuiz() {
-    var gen = pickRandomGenerator(null);
+  function startRandomizedQuiz(pinnedGen) {
+    // pinnedGen: drill one weak skill — every question re-rolls the same
+    // generator. Otherwise a random generator from the active chapter pool.
+    var gen = pinnedGen || pickRandomGenerator(null);
     if (!gen) {
       toast("The generator library didn't load — check your connection and try again.");
       return;
@@ -1825,7 +1879,8 @@
       answers: [],
       t0: Date.now(), elapsedBase: 0, qStart: null,
       seed: null, // variants can't be regenerated elsewhere, so portable
-      topicSel: 15 // sessions stay off for this mode
+      topicSel: 15, // sessions stay off for this mode
+      drillBaseId: pinnedGen ? pinnedGen.baseId : null
     };
     renderRandomQuestion();
     showOnly("quiz-run");
@@ -1839,7 +1894,9 @@
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
-    var html = '<p class="quiz-progress">Randomized practice · question ' +
+    var modeLabel = (quiz.drillBaseId && q._gen && q._gen.subtopic)
+      ? "Drilling " + q._gen.subtopic : "Randomized practice";
+    var html = '<p class="quiz-progress">' + escapeHtml(modeLabel) + " · question " +
       (quiz.answers.length + 1) + " · " + quiz.correct + " correct so far" +
       ' <span class="timer-chip" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b> total</span></p>';
     html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
@@ -1861,8 +1918,9 @@
       li.addEventListener("click", function () { answerRandom(parseInt(li.dataset.i, 10)); });
     });
     document.getElementById("quiz-next").addEventListener("click", function () {
-      // "Next": a fresh variant from a different random generator.
-      var gen = pickRandomGenerator(q._gen);
+      // "Next": a fresh variant from a different random generator — unless
+      // drilling one weak skill, in which case the same generator re-rolls.
+      var gen = quiz.drillBaseId ? q._gen : pickRandomGenerator(q._gen);
       if (!gen) { toast("The generator library didn't load — finish up and check your connection."); return; }
       var nv;
       try { nv = rollVariant(gen); }
@@ -2575,6 +2633,25 @@
         html += '<div class="card"><h3>Categories to Focus On</h3>' + catRows(worst3) + "</div>";
       }
 
+      // 6. Skills to focus on — per-question accuracy with drill buttons.
+      // Bank attempts and randomized variants merge on the shared baseId,
+      // so this names the specific skill (not just the chapter).
+      var weakSkills = skillStats(3).sort(function (a, b) { return a.pct - b.pct; }).slice(0, 5);
+      if (weakSkills.length) {
+        html += '<div class="card"><h3>Skills to Focus On</h3>' +
+          '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Your weakest specific skills — tap Drill to practice one with fresh numbers.</p>';
+        weakSkills.forEach(function (s) {
+          html += '<div class="cat-row"><span>' + escapeHtml(s.subtopic) +
+            " <small>(" + escapeHtml(s.topic) + " · " + s.n + ")</small></span><span>" +
+            '<span class="pct ' + scoreClass(s.pct) + '">' + s.pct + "%</span>";
+          if (s.drillable) {
+            html += ' <button class="btn drill-btn" data-baseid="' + escapeHtml(s.key) + '">Drill</button>';
+          }
+          html += "</span></div>";
+        });
+        html += "</div>";
+      }
+
       body.innerHTML = html;
 
       var toggle = document.getElementById("study-toggle");
@@ -2591,6 +2668,18 @@
             " Question" + (missedIds.length === 1 ? "" : "s");
         });
       }
+
+      // Drill buttons: start a randomized session pinned to one generator.
+      body.querySelectorAll(".drill-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var gen = findGeneratorByBaseId(btn.dataset.baseid);
+          if (!gen) {
+            toast("That skill's generator didn't load — check your connection and try again.");
+            return;
+          }
+          startRandomizedQuiz(gen);
+        });
+      });
     });
   }
 
