@@ -718,6 +718,16 @@
     return '<button class="quiz-back" id="quiz-back" aria-label="Back to practice">‹</button>';
   }
 
+  // Leave the quiz and return to the practice setup card. Setting
+  // location.hash would be a no-op here: the quiz already runs under
+  // #/practice, so changing the hash to itself fires no event.
+  function quizGoBack() {
+    stopQuizTimer();
+    initPractice();
+    showOnly("quiz-setup");
+    window.scrollTo(0, 0);
+  }
+
   function renderQuestion() {
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
@@ -754,9 +764,7 @@
     }
     html += "</div>";
     box.innerHTML = html;
-    document.getElementById("quiz-back").addEventListener("click", function () {
-      location.hash = "#/practice";
-    });
+    document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { answerCurrent(parseInt(li.dataset.i, 10)); });
     });
@@ -1948,9 +1956,7 @@
       '<button id="quiz-finish" class="btn text">Finish &amp; results</button></div>';
     html += "</div></div>";
     box.innerHTML = html;
-    document.getElementById("quiz-back").addEventListener("click", function () {
-      location.hash = "#/practice";
-    });
+    document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { answerRandom(parseInt(li.dataset.i, 10)); });
     });
