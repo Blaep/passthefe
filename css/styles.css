@@ -563,3 +563,28 @@ span.bad { color: var(--error); font-weight: 700; }
 }
 .btn-block { display: block; width: 100%; padding: 15px; font-size: 1.1rem; border-radius: 12px; }
 .quiz-nav-sub { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* ---- Exams list (Sep 2026) ---- */
+.exams-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 6px; }
+#exam-setup .lede { margin-bottom: 18px; }
+.exam-card {
+  background: #fff; border-radius: 14px; padding: 20px;
+  margin-bottom: 14px; display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px;
+}
+.exam-card.in-progress {
+  border: 2px solid #bcd7f5;
+  box-shadow: 0 1px 4px rgba(20, 60, 120, 0.06);
+  cursor: pointer;
+}
+.exam-card.in-progress:hover { border-color: var(--primary); }
+.exam-card.completed { box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); }
+.exam-card-label { font-weight: 700; font-size: 0.95rem; }
+.exam-card-date { color: #6e6e73; margin-top: 2px; }
+.exam-card-date-blue { color: #0a84ff; font-weight: 600; }
+.exam-card-progress { font-size: 2rem; color: #6e6e73; font-weight: 500; text-align: right; }
+.exam-stats { display: flex; justify-content: space-around; gap: 8px; margin-top: 14px; text-align: center; }
+.exam-stat-label { font-size: 0.95rem; }
+.exam-stat-num { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+.exam-stat-num.pct { color: #22b07d; font-weight: 700; }
+#exam-timer.low { color: var(--error); }

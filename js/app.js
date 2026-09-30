@@ -2136,58 +2136,85 @@
     ["exam-setup", "exam-run", "exam-review", "exam-result"].forEach(function (x) {
       document.getElementById(x).classList.toggle("hidden", x !== id);
     });
+    // The setup (Exams list) and the run render their own headers, so the
+    // exam tab reads as its own pages.
+    var head = document.getElementById("exam-page-head");
+    if (head) head.classList.toggle("hidden", id === "exam-setup" || id === "exam-run");
     window.scrollTo(0, 0);
   }
 
-  function examHistoryHtml() {
-    var sims = store.get("examSims", []);
-    if (!sims.length) return '<p class="muted">No simulations completed yet.</p>';
-    var html = '<div class="sim-history">';
-    sims.forEach(function (s) {
-      var d = new Date(s.ts);
-      var when = d.toLocaleDateString() + " " + d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-      html += '<div class="sim-row"><span class="sim-date">' + escapeHtml(when) + "</span>" +
-        '<span class="sim-score ' + scoreClass(s.pct) + '">' + s.score + "/" + s.total +
-        " (" + s.pct + "%)</span>" +
-        '<span class="muted">' + fmtClock(s.timeSecs) + " used</span></div>";
-    });
-    html += "</div>";
-    return html;
+  // "Wednesday, September 30, 2026" — for the Exams list cards.
+  function fmtLongDate(ts) {
+    try {
+      return new Date(ts).toLocaleDateString("en-US", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      });
+    } catch (e) { return ""; }
   }
+
+  // (exam history now renders as cards in renderExamSetup)
 
   function renderExamSetup() {
     var el = document.getElementById("exam-setup");
     var saved = store.get("examResume", null);
     var validResume = saved && saved.v === 1 && saved.qids && saved.qids.length;
-    var html = "<h3>Full Exam Simulation</h3>" +
-      '<p class="lede">110 questions · 5 hour 20 minute timer · mark for review · one 25-minute scheduled break.</p>' +
-      '<p class="disclaimer">' + EXAM_NOTE + " Questions follow the NCEES topic blueprint.</p>";
+    var sims = store.get("examSims", []);
+    var html = '<h2 class="exams-title">Exams</h2>' +
+      '<p class="lede">Full 110-question simulations · 5h20m timer · timed, exam-style.</p>';
     if (validResume) {
-      html += '<div class="resume-banner"><div><strong>Simulation in progress</strong><br>' +
-        '<span class="muted">Question ' + ((saved.idx || 0) + 1) + " of " + saved.qids.length +
-        " · " + fmtClock(saved.timeLeft) + " left</span></div>" +
-        '<div class="resume-actions"><button id="exam-resume-btn" class="btn primary">Resume</button>' +
-        '<button id="exam-discard-btn" class="btn text">Discard</button></div></div>';
+      var answered = saved.chosen ? Object.keys(saved.chosen).length : 0;
+      html += '<div class="exam-card in-progress" id="exam-current-card" role="button" tabindex="0">' +
+        "<div><div class=\"exam-card-label\">Started On</div>" +
+        '<div class="exam-card-date">' + escapeHtml(fmtLongDate(saved.startedAt)) + "</div></div>" +
+        '<div><div class="exam-card-label">Progress</div>' +
+        '<div class="exam-card-progress">' + answered + "/" + saved.qids.length + "</div></div>" +
+        "</div>";
     }
-    html += '<div class="form-row"><button id="exam-start-btn" class="btn primary">' +
-      (validResume ? "Start a new simulation" : "Start full exam simulation") + "</button></div>" +
-      "<h3>Past simulations</h3>" + examHistoryHtml();
+    html += '<div class="form-row"><button id="exam-start-btn" class="btn primary btn-block">' +
+      (validResume ? "Start a new exam" : "Start full exam") + "</button></div>";
+    if (validResume) {
+      html += '<div class="quiz-nav-sub"><button id="exam-discard-btn" class="btn text">Discard in-progress exam</button></div>';
+    }
+    sims.slice().reverse().forEach(function (s) {
+      var pct = (typeof s.pct === "number") ? s.pct.toFixed(1) : s.pct;
+      html += '<div class="exam-card completed">' +
+        '<div><span class="exam-card-label">Completed On</span> ' +
+        '<span class="exam-card-date-blue">' + escapeHtml(fmtLongDate(s.ts)) + "</span>" +
+        '<div class="exam-stats">' +
+        '<div><div class="exam-stat-label">Total</div><div class="exam-stat-num">' + s.total + "</div></div>" +
+        '<div><div class="exam-stat-label">Correct</div><div class="exam-stat-num">' + s.score + "</div></div>" +
+        '<div><div class="exam-stat-label">% Correct</div><div class="exam-stat-num pct">' + pct + "%</div></div>" +
+        "</div></div></div>";
+    });
+    if (!validResume && !sims.length) {
+      html += '<p class="muted">No exams yet — start your first full simulation above.</p>';
+    }
     el.innerHTML = html;
-    var rb = document.getElementById("exam-resume-btn");
-    if (rb) rb.addEventListener("click", function () { resumeExam(store.get("examResume", null)); });
+    var cc = document.getElementById("exam-current-card");
+    if (cc) {
+      var resume = function () { resumeExam(store.get("examResume", null)); };
+      cc.addEventListener("click", resume);
+      cc.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); resume(); }
+      });
+    }
     var db = document.getElementById("exam-discard-btn");
     if (db) db.addEventListener("click", function () { clearExamResume(); renderExamSetup(); });
     document.getElementById("exam-start-btn").addEventListener("click", startExam);
   }
 
   function initExam() {
-    if (exam && !exam.submitted) {
-      // Returning to a live sim (e.g. after visiting another view).
-      showExamScreen("exam-run");
-      renderExamRun();
-      startExamTimer();
-      return;
-    }
+    // The Exams list is always the landing screen; an in-progress exam
+    // resumes by tapping its card.
+    showExamScreen("exam-setup");
+    renderExamSetup();
+  }
+
+  // Back out of a live exam to the Exams list. The attempt is saved first,
+  // so it stays resumable from its card.
+  function examGoBack() {
+    pauseExamTimer();
+    saveExamProgress();
     showExamScreen("exam-setup");
     renderExamSetup();
   }
@@ -2244,9 +2271,12 @@
 
   function renderExamRun() {
     var box = document.getElementById("exam-run");
-    var html = '<div class="exam-bar">' +
-      '<div><div class="exam-timer" id="exam-timer">' + fmtClock(exam.timeLeft) + "</div>" +
-      '<div class="exam-count" id="exam-count"></div></div>' +
+    var html = '<div class="quiz-head">' +
+      '<button class="quiz-back" id="exam-back" aria-label="Back to exams">‹</button>' +
+      ' <span class="timer-pill">⏱ <b id="exam-timer">' + fmtClock(exam.timeLeft) + "</b></span></div>" +
+      '<h2 class="quiz-title">Exam Simulation</h2>' +
+      '<div class="exam-bar">' +
+      '<div><div class="exam-count" id="exam-count"></div></div>' +
       '<div class="exam-actions">' +
       '<button id="exam-flag-btn" class="btn">Flag</button>' +
       (exam.breakUsed ? "" : '<button id="exam-break-btn" class="btn">Take break</button>') +
@@ -2262,6 +2292,7 @@
       '<div class="exam-timer" id="exam-break-timer">' + fmtClock(exam.breakLeft) + "</div>" +
       '<button id="exam-endbreak-btn" class="btn primary">End break early</button></div></div>';
     box.innerHTML = html;
+    document.getElementById("exam-back").addEventListener("click", examGoBack);
     document.getElementById("exam-flag-btn").addEventListener("click", examToggleFlag);
     var bb = document.getElementById("exam-break-btn");
     if (bb) bb.addEventListener("click", startBreak);
