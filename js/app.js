@@ -229,16 +229,17 @@
       aStart.addEventListener("click", startAdaptiveQuiz);
     }
     renderAdaptivePanel();
-    // Randomized practice card: only shown when the generator library
-    // (js/generators_math.js) loaded with at least one generator.
+    // Randomized practice card: only shown when at least one generator
+    // library (js/generators_math.js and/or js/generators_econ.js) loaded
+    // with at least one generator.
     var rCard = document.getElementById("randomized-setup");
-    var gens = randomizedGenerators();
+    var gens = randomizedGeneratorsAll();
     if (rCard) {
       if (gens) {
         rCard.classList.remove("hidden");
-        var rCount = document.getElementById("randomized-count");
-        if (rCount) rCount.textContent = gens.length + " generator" +
-          (gens.length === 1 ? "" : "s") + " loaded — every question has fresh numbers.";
+        updateRandomizedChapters();
+        updateRandomizedCount();
+        wireRandomizedChapters();
       } else {
         rCard.classList.add("hidden");
       }
@@ -1663,10 +1664,14 @@
   // ---- randomized practice -------------------------------------------------
   // Infinite generated variants. js/generators_math.js (loaded before this
   // file) defines window.MATH_GENERATORS; each entry exposes generate()
-  // returning a bank-shaped question. The mode card is hidden when the
-  // library is missing or empty. Sessions are open-ended: after each answer
-  // the user can re-roll the same generator ("New numbers") or take a
-  // fresh random generator ("Next"); "Finish & results" reuses the
+  // returning a bank-shaped question. js/generators_econ.js (also loaded
+  // before this file) defines window.ECON_GENERATORS with the identical
+  // contract and topic "Engineering Economics". The econ library is
+  // optional: the chapter picker is hidden and the mode stays math-only
+  // when it is missing or empty. The mode card is hidden when both
+  // libraries are missing or empty. Sessions are open-ended: after each
+  // answer the user can re-roll the same generator ("New numbers") or
+  // take a fresh random generator ("Next"); "Finish & results" reuses the
   // standard results screen.
   //
   // Progress logging: the shared answerCurrent/logAttempt path is reused
@@ -1677,9 +1682,76 @@
   // to per-topic mastery/readiness through the attempt's topic field, and
   // missed variant ids are silently filtered from the study list.
   // saveProgress skips randomized sessions: variants are not resumable.
+  // The chapter picker ("mixed" | "math" | "econ") filters the combined
+  // pool; "Next" draws a different generator from the active (filtered)
+  // pool, "New numbers" re-rolls the same generator as before.
+  var randomizedChapterSel = "mixed";
+
+  // Unfiltered combined pool (math + econ), or null when both are missing.
+  function randomizedGeneratorsAll() {
+    var all = [];
+    var m = window.MATH_GENERATORS;
+    if (Array.isArray(m) && m.length) all = all.concat(m);
+    var e = window.ECON_GENERATORS;
+    if (Array.isArray(e) && e.length) all = all.concat(e);
+    return all.length ? all : null;
+  }
+
+  function randomizedChapter() { return randomizedChapterSel; }
+
+  // Active pool: the combined library filtered by the chapter picker, or
+  // null when the selected pool is empty.
   function randomizedGenerators() {
-    var g = window.MATH_GENERATORS;
-    return (Array.isArray(g) && g.length) ? g : null;
+    var ch = randomizedChapter();
+    var m = window.MATH_GENERATORS;
+    var e = window.ECON_GENERATORS;
+    var okM = Array.isArray(m) && m.length;
+    var okE = Array.isArray(e) && e.length;
+    if (ch === "econ") return okE ? e.slice() : null;
+    if (ch === "math") return okM ? m.slice() : null;
+    var all = [];
+    if (okM) all = all.concat(m);
+    if (okE) all = all.concat(e);
+    return all.length ? all : null;
+  }
+
+  // Chapter picker wiring (setup view only): the picker is shown only when
+  // the econ library loaded; the count line always reflects the ACTIVE
+  // pool and refreshes whenever the picker changes.
+  function updateRandomizedCount() {
+    var rCount = document.getElementById("randomized-count");
+    if (!rCount) return;
+    var gens = randomizedGenerators();
+    var n = gens ? gens.length : 0;
+    rCount.textContent = n + " generator" + (n === 1 ? "" : "s") +
+      " loaded — every question has fresh numbers.";
+  }
+
+  function updateRandomizedChapters() {
+    var picker = document.getElementById("randomized-chapters");
+    if (!picker) return;
+    var okE = Array.isArray(window.ECON_GENERATORS) && window.ECON_GENERATORS.length;
+    picker.classList.toggle("hidden", !okE);
+    if (!okE && randomizedChapterSel === "econ") randomizedChapterSel = "mixed";
+    picker.querySelectorAll(".length-btn").forEach(function (b) {
+      b.classList.toggle("selected", (b.dataset.chapter || "mixed") === randomizedChapterSel);
+    });
+  }
+
+  function wireRandomizedChapters() {
+    var picker = document.getElementById("randomized-chapters");
+    if (!picker) return;
+    picker.querySelectorAll(".length-btn").forEach(function (btn) {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = "1";
+      btn.addEventListener("click", function () {
+        randomizedChapterSel = btn.dataset.chapter || "mixed";
+        picker.querySelectorAll(".length-btn").forEach(function (b) {
+          b.classList.toggle("selected", b === btn);
+        });
+        updateRandomizedCount();
+      });
+    });
   }
 
   function pickRandomGenerator(prevGen) {
