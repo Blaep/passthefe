@@ -178,6 +178,70 @@
     quizTick = setInterval(updateTimerChip, 500);
   }
 
+  // Quizzes list — the practice tab's landing screen, mirroring the Exams
+  // list: an in-progress card (tap to resume) plus completed quiz cards.
+  function quizScopeLabel(saved) {
+    if (saved.topic) return saved.topic;
+    if (saved.mode === "adaptive") return "Adaptive Practice";
+    return "Quiz";
+  }
+
+  function renderQuizList() {
+    var el = document.getElementById("quiz-list");
+    if (!el) return;
+    var saved = store.get("resume", null);
+    var valid = saved && saved.v === 1 && saved.qids && saved.qids.length &&
+      (saved.idx || 0) < saved.qids.length;
+    var sessions = store.get("sessions", []);
+    var html = '<h2 class="exams-title">Quizzes</h2>' +
+      '<p class="lede">Practice sets, adaptive review, and randomized drills.</p>';
+    if (valid) {
+      html += '<div class="exam-card in-progress" id="quiz-current-card" role="button" tabindex="0">' +
+        "<div><div class=\"exam-card-label\">" + escapeHtml(quizScopeLabel(saved)) + "</div>" +
+        '<div class="exam-card-date">Started ' + escapeHtml(fmtLongDate(saved.startedAt || saved.savedAt)) + "</div></div>" +
+        '<div><div class="exam-card-label">Progress</div>' +
+        '<div class="exam-card-progress">' + (saved.idx || 0) + "/" + saved.qids.length + "</div></div>" +
+        "</div>";
+    }
+    html += '<div class="form-row"><button id="quiz-new-btn" class="btn primary btn-block">Start new quiz</button></div>';
+    if (valid) {
+      html += '<div class="quiz-nav-sub"><button id="quiz-list-discard-btn" class="btn text">Discard in-progress quiz</button></div>';
+    }
+    sessions.slice().reverse().forEach(function (s) {
+      html += '<div class="exam-card completed">' +
+        '<div><span class="exam-card-label">Completed On</span> ' +
+        '<span class="exam-card-date-blue">' + escapeHtml(fmtLongDate(s.ts)) + "</span>" +
+        (s.scope ? '<div class="exam-card-date">' + escapeHtml(s.scope) + "</div>" : "") +
+        '<div class="exam-stats">' +
+        '<div><div class="exam-stat-label">Total</div><div class="exam-stat-num">' + s.total + "</div></div>" +
+        '<div><div class="exam-stat-label">Correct</div><div class="exam-stat-num">' + s.correct + "</div></div>" +
+        '<div><div class="exam-stat-label">% Correct</div><div class="exam-stat-num pct">' + s.pct + "%</div></div>" +
+        "</div></div></div>";
+    });
+    if (!valid && !sessions.length) {
+      html += '<p class="muted">No quizzes yet — start your first practice set above.</p>';
+    }
+    el.innerHTML = html;
+    var cc = document.getElementById("quiz-current-card");
+    if (cc) {
+      var resume = function () { resumeQuiz(store.get("resume", null)); };
+      cc.addEventListener("click", resume);
+      cc.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); resume(); }
+      });
+    }
+    var db = document.getElementById("quiz-list-discard-btn");
+    if (db) db.addEventListener("click", function () { clearResume(); renderQuizList(); });
+    document.getElementById("quiz-new-btn").addEventListener("click", openQuizSetup);
+  }
+
+  // The setup page: chapter picker, adaptive, and randomized cards.
+  function openQuizSetup() {
+    renderResumeBanner();
+    showOnly("quiz-setup-page");
+    window.scrollTo(0, 0);
+  }
+
   function initPractice() {
     loadQuestions(function (qs) {
       loadChapters(function (chapters) {
@@ -202,6 +266,7 @@
       });
     });
     renderResumeBanner();
+    renderQuizList();
     // Restore the right sub-card: navigating here from #/portable (or a tab
     // reload) must not leave the other device's screens showing.
     var pend = store.get("portableOut", null);
@@ -213,9 +278,18 @@
     if (pend && pend.code) {
       renderCodeScreen(pend.code, pend.topic); // parked: show the code again
     } else if (!quiz || quiz.portable) {
-      showOnly("quiz-setup");
+      showOnly("quiz-list");
     }
     // else: a live phone quiz is in progress — leave its card alone.
+    var qsb = document.getElementById("quiz-setup-back");
+    if (qsb && !qsb.dataset.bound) {
+      qsb.dataset.bound = "1";
+      qsb.addEventListener("click", function () {
+        renderQuizList();
+        showOnly("quiz-list");
+        window.scrollTo(0, 0);
+      });
+    }
     bindLengthRow("quiz-lengths");
     bindLengthRow("adaptive-lengths");
     var start = document.getElementById("quiz-start");
@@ -598,6 +672,7 @@
     // Portable quizzes (other device) never touch the tracker's storage:
     // they persist only in this tab's sessionStorage, gone on tab close.
     if (quiz.portable) { writePortableSave(); return; }
+    var prev = store.get("resume", null);
     store.set("resume", {
       v: 1,
       qids: quiz.list.map(function (q) { return q.id; }),
@@ -610,6 +685,7 @@
       masteryBefore: quiz.masteryBefore || null,
       answers: quiz.answers,
       elapsedSecs: Math.round(totalQuizSecs()),
+      startedAt: (prev && prev.startedAt) || quiz.t0 || Date.now(),
       savedAt: Date.now()
     });
   }
@@ -692,9 +768,14 @@
   }
 
   function showOnly(id) {
-    ["quiz-setup", "quiz-run", "quiz-result", "portable-entry"].forEach(function (x) {
-      document.getElementById(x).classList.toggle("hidden", x !== id);
+    ["quiz-list", "quiz-setup-page", "quiz-run", "quiz-result", "portable-entry"].forEach(function (x) {
+      var el = document.getElementById(x);
+      if (el) el.classList.toggle("hidden", x !== id);
     });
+    // The Quizzes list and the quiz run render their own headers, so the
+    // practice tab reads as its own pages.
+    var head = document.getElementById("practice-page-head");
+    if (head) head.classList.toggle("hidden", id === "quiz-list" || id === "quiz-run");
   }
 
   // ---- diagrams --------------------------------------------------------
@@ -723,8 +804,8 @@
   // #/practice, so changing the hash to itself fires no event.
   function quizGoBack() {
     stopQuizTimer();
-    initPractice();
-    showOnly("quiz-setup");
+    renderQuizList();
+    showOnly("quiz-list");
     window.scrollTo(0, 0);
   }
 
@@ -902,8 +983,7 @@
       quiz = null;
       clearResume();
       document.getElementById("quiz-run").dataset.answered = "";
-      showOnly("quiz-setup");
-      initPractice();
+      openQuizSetup();
     });
     document.getElementById("quiz-share").addEventListener("click", shareScore);
     showOnly("quiz-result");
@@ -995,7 +1075,7 @@
       renderQuestion();
       showOnly("quiz-run");
     } else {
-      showOnly("quiz-setup");
+      showOnly("quiz-setup-page");
       renderResumeBanner();
     }
   }

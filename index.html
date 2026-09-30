@@ -77,8 +77,15 @@
     </section>
 
     <section id="view-practice" class="view hidden">
-      <h2>Practice</h2>
-      <p class="lede">Pick a handbook chapter and a quiz length. Answers are checked instantly, with full solutions.</p>
+      <div id="practice-page-head">
+        <h2>Practice</h2>
+        <p class="lede">Pick a handbook chapter and a quiz length. Answers are checked instantly, with full solutions.</p>
+      </div>
+      <div id="quiz-list" class="card hidden"></div>
+      <div id="quiz-setup-page" class="hidden">
+      <div class="quiz-head">
+        <button class="quiz-back" id="quiz-setup-back" aria-label="Back to quizzes">‹</button>
+      </div>
       <div id="quiz-setup" class="card">
         <div id="quiz-resume" class="hidden"></div>
         <div class="form-row">
@@ -132,6 +139,7 @@
           <span id="randomized-count" class="muted"></span>
         </div>
         <p class="disclaimer">Timed, exam-style practice — not the real NCEES exam. Not affiliated with or endorsed by NCEES.</p>
+      </div>
       </div>
       <div id="quiz-run" class="card hidden"></div>
       <div id="quiz-result" class="card hidden"></div>
@@ -269,6 +277,6 @@
   <script src="js/generators_econ.js?v=1"></script>
   <script src="js/generators_stats.js?v=1"></script>
   <script src="js/generators_materials.js?v=1"></script>
-  <script src="js/app.js?v=19"></script>
+  <script src="js/app.js?v=20"></script>
 </body>
 </html>
