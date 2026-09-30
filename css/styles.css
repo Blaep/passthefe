@@ -588,3 +588,14 @@ span.bad { color: var(--error); font-weight: 700; }
 .exam-stat-num { font-size: 2rem; font-weight: 500; line-height: 1.2; }
 .exam-stat-num.pct { color: #22b07d; font-weight: 700; }
 #exam-timer.low { color: var(--error); }
+
+/* ---- NCEES-style exam diagnostic (Sep 2026) ---- */
+.diag-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.82rem; }
+.diag-table th, .diag-table td { padding: 8px 6px; border-bottom: 1px solid #e8e8ec; }
+.diag-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6e6e73; text-align: center; }
+.diag-table th:first-child { text-align: left; }
+.diag-table td { text-align: center; }
+.diag-table td:first-child { text-align: left; font-weight: 600; }
+.diag-table td.good { color: var(--success); font-weight: 700; }
+.diag-table td.mid { color: var(--warning); font-weight: 700; }
+.diag-table td.bad { color: var(--error); font-weight: 700; }

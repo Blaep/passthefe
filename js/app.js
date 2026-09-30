@@ -1600,29 +1600,46 @@
   }
 
   // ---- adaptive practice ---------------------------------------------------
-  // NCEES FE Civil CBT Exam Specifications (effective July 2020, 110
-  // questions): midpoints of the official per-section question ranges.
-  // "Mathematics and Statistics" (8-12) is split 6.5 / 3.5 across the
-  // bank's separate Mathematics and Statistics topics; "Water Resources and
-  // Environmental Engineering" (8-12) counts fully toward the bank's Water
-  // Resources topic. Midpoints sum to 120 (ranges are approximate), so
-  // weights are normalized against the sum below.
+  // NCEES FE Civil knowledge areas with the scored item counts from an
+  // official NCEES diagnostic report (the "Number of Items" column). These
+  // 14 areas sum to 100 — the real 110-question exam adds ~10 unscored
+  // pretest items on top, whose areas NCEES doesn't publish.
+  // "Mathematics and Statistics" (8) is split 5 / 3 across the bank's
+  // separate Mathematics and Statistics topics; "Water Resources and
+  // Environmental Engineering" (10) counts fully toward the bank's Water
+  // Resources topic.
+  var EXAM_AREAS = [
+    { area: "Mathematics and Statistics", n: 8, topics: ["Mathematics", "Statistics and Probability"] },
+    { area: "Ethics and Professional Practice", n: 4, topics: ["Ethics and Professional Practice"] },
+    { area: "Engineering Economics", n: 5, topics: ["Engineering Economics"] },
+    { area: "Statics", n: 8, topics: ["Statics"] },
+    { area: "Dynamics", n: 4, topics: ["Dynamics"] },
+    { area: "Mechanics of Materials", n: 7, topics: ["Mechanics of Materials"] },
+    { area: "Materials", n: 5, topics: ["Materials"] },
+    { area: "Fluid Mechanics", n: 6, topics: ["Fluid Mechanics"] },
+    { area: "Surveying", n: 6, topics: ["Surveying"] },
+    { area: "Water Resources and Environmental Engineering", n: 10, topics: ["Water Resources"] },
+    { area: "Structural Engineering", n: 10, topics: ["Structural Engineering"] },
+    { area: "Geotechnical Engineering", n: 10, topics: ["Geotechnical Engineering"] },
+    { area: "Transportation Engineering", n: 9, topics: ["Transportation Engineering"] },
+    { area: "Construction Engineering", n: 8, topics: ["Construction Engineering"] }
+  ];
   var BLUEPRINT = [
-    { topic: "Mathematics", w: 6.5 },
-    { topic: "Statistics and Probability", w: 3.5 },
-    { topic: "Ethics and Professional Practice", w: 5 },
-    { topic: "Engineering Economics", w: 6.5 },
-    { topic: "Statics", w: 10 },
-    { topic: "Dynamics", w: 5 },
-    { topic: "Mechanics of Materials", w: 9 },
-    { topic: "Materials", w: 6.5 },
-    { topic: "Fluid Mechanics", w: 9 },
-    { topic: "Surveying", w: 7.5 },
+    { topic: "Mathematics", w: 5 },
+    { topic: "Statistics and Probability", w: 3 },
+    { topic: "Ethics and Professional Practice", w: 4 },
+    { topic: "Engineering Economics", w: 5 },
+    { topic: "Statics", w: 8 },
+    { topic: "Dynamics", w: 4 },
+    { topic: "Mechanics of Materials", w: 7 },
+    { topic: "Materials", w: 5 },
+    { topic: "Fluid Mechanics", w: 6 },
+    { topic: "Surveying", w: 6 },
     { topic: "Water Resources", w: 10 },
     { topic: "Structural Engineering", w: 10 },
-    { topic: "Geotechnical Engineering", w: 11.5 },
-    { topic: "Transportation Engineering", w: 10 },
-    { topic: "Construction Engineering", w: 10 }
+    { topic: "Geotechnical Engineering", w: 10 },
+    { topic: "Transportation Engineering", w: 9 },
+    { topic: "Construction Engineering", w: 8 }
   ];
 
   // Adaptive mastery: recency-weighted accuracy with exponential decay.
@@ -2078,13 +2095,13 @@
   }
 
   // ---- exam simulator ------------------------------------------------------
-  // Full 110-question timed simulation, apportioned across the 15 topics by
-  // the NCEES FE Civil blueprint (reuses BLUEPRINT from adaptive practice).
+  // Full 100-question timed simulation: each of the 14 NCEES knowledge
+  // areas appears with exactly its official scored item count (EXAM_AREAS).
   // No backend, no account — state lives in localStorage like everything
   // else. Answers are NOT revealed during the sim; grading happens once at
   // submit, like the real exam.
-  var EXAM_N = 110;
-  var EXAM_SECS = 5 * 3600 + 20 * 60; // 5h20m — the real FE testing time
+  var EXAM_N = 100;
+  var EXAM_SECS = 100 * 175; // same ~2:55/question pace as the real 5h20m exam
   var EXAM_BREAK_SECS = 25 * 60;      // one optional scheduled break
   var EXAM_NOTE = "Timed, exam-style practice — not the real NCEES exam.";
   var exam = null; // live sim: {list, idx, chosen, flagged, timeLeft,
@@ -2097,40 +2114,21 @@
     return h + ":" + (m < 10 ? "0" : "") + m + ":" + (ss < 10 ? "0" : "") + ss;
   }
 
-  // Largest-remainder apportionment of 110 questions over BLUEPRINT weights.
-  function examTopicCounts() {
-    var wSum = 0;
-    BLUEPRINT.forEach(function (b) { wSum += b.w; });
-    var rows = BLUEPRINT.map(function (b) {
-      var exact = b.w / wSum * EXAM_N;
-      return { topic: b.topic, n: Math.floor(exact), rem: exact - Math.floor(exact) };
-    });
-    var total = 0;
-    rows.forEach(function (r) { total += r.n; });
-    rows.sort(function (a, b) { return b.rem - a.rem; });
-    var i = 0;
-    while (total < EXAM_N) { rows[i % rows.length].n++; total++; i++; }
-    var out = {};
-    rows.forEach(function (r) { out[r.topic] = r.n; });
-    return out;
-  }
-
-  // Sample 110 questions across topics. Prefers questions not used in recent
-  // sims so consecutive sims don't repeat; once the 345-question bank is
-  // exhausted, the rotation starts over.
+  // Sample exactly EXAM_AREAS item counts per knowledge area (8/4/5/8/4/7/5
+  // /6/6/10/10/10/9/8). Prefers questions not used in recent sims so
+  // consecutive sims don't repeat; once the 500-question bank is exhausted,
+  // the rotation starts over.
   function buildExamSim(qs) {
-    var counts = examTopicCounts();
     var usedSet = {};
     store.get("examUsed", []).forEach(function (id) { usedSet[id] = 1; });
-    var picked = [], pickedSet = {};
-    TOPICS.forEach(function (t) {
-      var need = counts[t] || 0;
-      if (!need) return;
-      var pool = qs.filter(function (q) { return q.topic === t; });
+    var picked = [];
+    EXAM_AREAS.forEach(function (a) {
+      var need = a.n;
+      var pool = qs.filter(function (q) { return a.topics.indexOf(q.topic) !== -1; });
       var fresh = shuffle(pool.filter(function (q) { return !usedSet[q.id]; }));
       var stale = shuffle(pool.filter(function (q) { return usedSet[q.id]; }));
-      while (need > 0 && fresh.length) { var q = fresh.pop(); picked.push(q); pickedSet[q.id] = 1; need--; }
-      while (need > 0 && stale.length) { var q2 = stale.pop(); picked.push(q2); pickedSet[q2.id] = 1; need--; }
+      while (need > 0 && fresh.length) { picked.push(fresh.pop()); need--; }
+      while (need > 0 && stale.length) { picked.push(stale.pop()); need--; }
     });
     // Rotation bookkeeping: if this sim covers every bank question, reset.
     var bankIds = {};
@@ -2240,7 +2238,7 @@
     var validResume = saved && saved.v === 1 && saved.qids && saved.qids.length;
     var sims = store.get("examSims", []);
     var html = '<h2 class="exams-title">Exams</h2>' +
-      '<p class="lede">Full 110-question simulations · 5h20m timer · timed, exam-style.</p>';
+      '<p class="lede">Full 100-question simulations · 4h51m timer · per-area counts match the NCEES blueprint.</p>';
     if (validResume) {
       var answered = saved.chosen ? Object.keys(saved.chosen).length : 0;
       html += '<div class="exam-card in-progress" id="exam-current-card" role="button" tabindex="0">' +
@@ -2542,16 +2540,22 @@
     exam.submitted = true;
     var timeUsed = EXAM_SECS - Math.max(0, exam.timeLeft);
     var correct = 0;
-    var perTopic = {};
-    TOPICS.forEach(function (t) { perTopic[t] = { correct: 0, total: 0 }; });
+    var topicToArea = {};
+    EXAM_AREAS.forEach(function (a, i) {
+      a.topics.forEach(function (t) { topicToArea[t] = i; });
+    });
+    var perArea = EXAM_AREAS.map(function (a) {
+      return { area: a.area, items: a.n, correct: 0, total: 0 };
+    });
     var attempts = store.get("attempts", []);
     var now = Date.now();
     exam.list.forEach(function (q) {
-      perTopic[q.topic].total++;
+      var ai = topicToArea[q.topic];
+      if (typeof ai === "number") perArea[ai].total++;
       var chosen = exam.chosen[q.id];
       if (typeof chosen === "number") {
         var ok = chosen === q.answerIndex;
-        if (ok) { correct++; perTopic[q.topic].correct++; }
+        if (ok) { correct++; if (typeof ai === "number") perArea[ai].correct++; }
         attempts.push({ qid: q.id, topic: q.topic, correct: ok, ts: now });
       }
     });
@@ -2563,9 +2567,7 @@
       total: exam.list.length,
       pct: Math.round(100 * correct / exam.list.length),
       timeSecs: Math.round(timeUsed),
-      perTopic: TOPICS.map(function (t) {
-        return { topic: t, correct: perTopic[t].correct, total: perTopic[t].total };
-      }),
+      perArea: perArea,
       qids: exam.list.map(function (q) { return q.id; }),
       answers: exam.list.map(function (q) {
         return (typeof exam.chosen[q.id] === "number") ? exam.chosen[q.id] : -1;
@@ -2579,24 +2581,30 @@
   }
 
   // ---- results ---------------------------------------------------------------
+  // NCEES-style diagnostic: per-knowledge-area table mirroring the official
+  // score report. NCEES never publishes a passing score, so we don't invent
+  // one — and the 0–15 column is a transparent linear map of % correct,
+  // labeled as the unofficial estimate it is.
   function renderExamResult(rec) {
     var box = document.getElementById("exam-result");
-    var counts = examTopicCounts();
-    var html = "<h3>Simulation complete</h3>" +
+    var perArea = rec.perArea || [];
+    var html = "<h3>Exam diagnostic</h3>" +
       '<p class="result-score">' + rec.score + "/" + rec.total +
       " <span>(" + rec.pct + "%)</span></p>" +
-      '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) + " of 5:20:00</p>" +
-      '<p class="disclaimer">' + EXAM_NOTE + "</p>" +
-      "<h4>Score by topic</h4>" + '<div class="exam-topics">';
-    rec.perTopic.forEach(function (p) {
+      '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) + " of " + fmtClock(EXAM_SECS) + "</p>" +
+      '<table class="diag-table"><thead><tr><th>Knowledge area</th>' +
+      "<th>Items</th><th>Correct</th><th>%</th><th>0–15*</th></tr></thead><tbody>";
+    perArea.forEach(function (p) {
       var pct = p.total ? Math.round(100 * p.correct / p.total) : 0;
-      html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(p.topic) +
-        " <small>(" + p.correct + "/" + p.total + " · ≈" + (counts[p.topic] || 0) + " on the real exam)</small></span>" +
-        '<span class="bar"><span class="fill ' + scoreClass(pct) +
-        '" style="width:' + pct + '%"></span></span>' +
-        '<span class="mastery-level ' + scoreClass(pct) + '">' + pct + "%</span></div>";
+      var scaled = p.total ? (15 * p.correct / p.total).toFixed(1) : "0.0";
+      html += "<tr><td>" + escapeHtml(p.area) + "</td><td>" + p.total +
+        "</td><td>" + p.correct + '</td><td class="' + scoreClass(pct) + '">' + pct +
+        "%</td><td>" + scaled + "</td></tr>";
     });
-    html += "</div>" +
+    html += "</tbody></table>" +
+      '<p class="disclaimer">* NCEES reports each area on a 0–15 scale but publishes neither the formula nor a passing score. ' +
+      "This column maps your % correct linearly — an unofficial practice estimate, not a pass/fail prediction. " +
+      EXAM_NOTE + "</p>" +
       '<div class="quiz-nav"><button id="exam-review-answers" class="btn primary">Review answers</button> ' +
       '<button id="exam-again" class="btn">New simulation</button> ' +
       '<a class="btn" href="#/practice">Back to practice</a></div>' +
