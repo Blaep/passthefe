@@ -229,6 +229,25 @@
       aStart.addEventListener("click", startAdaptiveQuiz);
     }
     renderAdaptivePanel();
+    // Randomized practice card: only shown when the generator library
+    // (js/generators_math.js) loaded with at least one generator.
+    var rCard = document.getElementById("randomized-setup");
+    var gens = randomizedGenerators();
+    if (rCard) {
+      if (gens) {
+        rCard.classList.remove("hidden");
+        var rCount = document.getElementById("randomized-count");
+        if (rCount) rCount.textContent = gens.length + " generator" +
+          (gens.length === 1 ? "" : "s") + " loaded — every question has fresh numbers.";
+      } else {
+        rCard.classList.add("hidden");
+      }
+    }
+    var rStart = document.getElementById("randomized-start");
+    if (rStart && !rStart.dataset.bound) {
+      rStart.dataset.bound = "1";
+      rStart.addEventListener("click", startRandomizedQuiz);
+    }
   }
 
   function bindLengthRow(id) {
@@ -571,6 +590,10 @@
   // every question advance, so closing the tab mid-quiz loses nothing.
   function saveProgress() {
     if (!quiz || !quiz.list.length) { store.set("resume", null); return; }
+    // Randomized variants are ephemeral — their ids resolve to nothing in
+    // the bank, so a saved session could never resume. Keep the session
+    // in-memory only and never touch an unrelated saved resume.
+    if (quiz.mode === "randomized") return;
     // Portable quizzes (other device) never touch the tracker's storage:
     // they persist only in this tab's sessionStorage, gone on tab close.
     if (quiz.portable) { writePortableSave(); return; }
@@ -1635,6 +1658,142 @@
       '<span class="readiness-label">Updated exam readiness</span></div>' +
       '<p class="disclaimer">' + READINESS_NOTE + "</p></div>";
     return html;
+  }
+
+  // ---- randomized practice -------------------------------------------------
+  // Infinite generated variants. js/generators_math.js (loaded before this
+  // file) defines window.MATH_GENERATORS; each entry exposes generate()
+  // returning a bank-shaped question. The mode card is hidden when the
+  // library is missing or empty. Sessions are open-ended: after each answer
+  // the user can re-roll the same generator ("New numbers") or take a
+  // fresh random generator ("Next"); "Finish & results" reuses the
+  // standard results screen.
+  //
+  // Progress logging: the shared answerCurrent/logAttempt path is reused
+  // with mode:"randomized", but each variant is stamped with
+  // id = baseId + ":" + variantKey. Every bank-driven consumer keyed by
+  // question id (adaptive lastSeen, study list via findQuestion, exam
+  // rotation) therefore never sees a variant id — variants contribute only
+  // to per-topic mastery/readiness through the attempt's topic field, and
+  // missed variant ids are silently filtered from the study list.
+  // saveProgress skips randomized sessions: variants are not resumable.
+  function randomizedGenerators() {
+    var g = window.MATH_GENERATORS;
+    return (Array.isArray(g) && g.length) ? g : null;
+  }
+
+  function pickRandomGenerator(prevGen) {
+    var gens = randomizedGenerators();
+    if (!gens) return null;
+    if (gens.length === 1) return gens[0];
+    var g = gens[Math.floor(Math.random() * gens.length)];
+    if (g === prevGen) g = gens[Math.floor(Math.random() * gens.length)];
+    return g;
+  }
+
+  // Roll one variant from a generator and stamp it with a globally-unique
+  // variant id so per-question stats keyed by qid never merge with a bank
+  // entry. The generator reference rides on _gen (never serialized).
+  function rollVariant(gen) {
+    var v = gen.generate();
+    var vk = v.variantKey ||
+      ("v" + Math.floor(Math.random() * 60466176).toString(36));
+    v.variantKey = vk;
+    v.baseId = v.baseId || gen.baseId || "random";
+    v.id = v.baseId + ":" + vk;
+    v.topic = v.topic || gen.topic || "Mathematics";
+    v._gen = gen;
+    return v;
+  }
+
+  function startRandomizedQuiz() {
+    var gen = pickRandomGenerator(null);
+    if (!gen) {
+      toast("The generator library didn't load — check your connection and try again.");
+      return;
+    }
+    // A fresh session retires any session code still waiting.
+    if (store.get("portableOut", null)) {
+      store.set("portableOut", null);
+      toast("The old session code stopped working — you started a new session.");
+    }
+    var v;
+    try { v = rollVariant(gen); }
+    catch (e) { toast("That generator failed — try again."); return; }
+    quiz = {
+      list: [v], idx: 0, correct: 0, topic: "Randomized Practice", mode: "randomized",
+      answers: [],
+      t0: Date.now(), elapsedBase: 0, qStart: null,
+      seed: null, // variants can't be regenerated elsewhere, so portable
+      topicSel: 15 // sessions stay off for this mode
+    };
+    renderRandomQuestion();
+    showOnly("quiz-run");
+  }
+
+  // Same shape as renderQuestion (stem, shuffled choices, instant feedback,
+  // KaTeX solution through revealAnswer), but open-ended: the progress line
+  // counts answered questions instead of "N of M", and the post-answer nav
+  // offers New numbers / Next / Finish & results.
+  function renderRandomQuestion() {
+    var q = quiz.list[quiz.idx];
+    var box = document.getElementById("quiz-run");
+    box.dataset.answered = "";
+    var html = '<p class="quiz-progress">Randomized practice · question ' +
+      (quiz.answers.length + 1) + " · " + quiz.correct + " correct so far" +
+      ' <span class="timer-chip" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b> total</span></p>';
+    html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
+      escapeHtml(q.subtopic || "") + " · " + escapeHtml(q.difficulty || "") + "</p>";
+    html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
+    html += diagramHtml(q);
+    html += '<ul class="choices" id="quiz-choices">';
+    shuffle(q.choices.map(function (c, i) { return i; })).forEach(function (i) {
+      html += '<li data-i="' + i + '">' + inlineMath(q.choices[i]) + "</li>";
+    });
+    html += "</ul>";
+    html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
+    html += '<div class="quiz-nav" id="random-nav" style="display:none">' +
+      '<button id="quiz-next" class="btn primary">Next</button> ' +
+      '<button id="quiz-newnums" class="btn">New numbers</button> ' +
+      '<button id="quiz-finish" class="btn text">Finish &amp; results</button></div>';
+    box.innerHTML = html;
+    box.querySelectorAll("#quiz-choices li").forEach(function (li) {
+      li.addEventListener("click", function () { answerRandom(parseInt(li.dataset.i, 10)); });
+    });
+    document.getElementById("quiz-next").addEventListener("click", function () {
+      // "Next": a fresh variant from a different random generator.
+      var gen = pickRandomGenerator(q._gen);
+      if (!gen) { toast("The generator library didn't load — finish up and check your connection."); return; }
+      var nv;
+      try { nv = rollVariant(gen); }
+      catch (e) { toast("That generator failed — try again."); return; }
+      quiz.list.push(nv);
+      quiz.idx++;
+      renderRandomQuestion();
+    });
+    document.getElementById("quiz-newnums").addEventListener("click", function () {
+      // "New numbers": re-roll the SAME generator — a fresh variant of the
+      // same skill to drill again.
+      var nv;
+      try { nv = rollVariant(q._gen); }
+      catch (e) { toast("That generator failed — try again."); return; }
+      quiz.list.push(nv);
+      quiz.idx++;
+      renderRandomQuestion();
+    });
+    document.getElementById("quiz-finish").addEventListener("click", function () {
+      showResult(); // standard results screen; skips the adaptive-only block
+    });
+    startQuizTimer();
+  }
+
+  // Answering reuses the shared path verbatim (scoring, logAttempt with
+  // mode:"randomized", instant feedback via revealAnswer); afterwards the
+  // randomized nav is revealed instead of the single Next button.
+  function answerRandom(i) {
+    answerCurrent(i);
+    var nav = document.getElementById("random-nav");
+    if (nav) nav.style.display = "";
   }
 
   // ---- exam simulator ------------------------------------------------------

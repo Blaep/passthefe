@@ -8962,6 +8962,101 @@
    "solution": "Refer to the Population Modeling section in the Water Resources chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_t\\). The handbook prints, for geometric (log) growth:\n\n$$P_t = P_0e^{k\\Delta t}$$\n\nSubstituting \\(P_0 = 10{,}000\\), \\(k = 0.02\\text{/yr}\\), and \\(\\Delta t = 10\\text{ yr}\\):\n\n$$P_t = 10{,}000e^{0.02(10)} = 10{,}000e^{0.2}$$\n\n$$P_t = 10{,}000(1.22140) = 12{,}214$$\n",
    "subtopic": "Population projection (geometric growth)",
    "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1.20 m",
+    "1.60 m",
+    "1.90 m",
+    "2.40 m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The resultant is 31.62 N at 71.6°, and the system makes a 60 N·m moment about O. A single force can only reproduce that moment if its line of action is offset by d = M/F_R = 1.90 m. Using only the force magnitudes (e.g. 60/50) misses that the moment must be divided by the resultant.",
+   "id": "statics-033",
+   "question": "Three coplanar forces act on a plate, measured from an origin O at (0, 0): a 50 N force acting in the +x direction at O itself, a 40 N force acting in the −x direction at point B(2, 0) m, and a 30 N force acting in the +y direction at point C(2, 3) m. This system can be reduced to a single resultant force. What is the perpendicular distance from O to the line of action of that resultant?",
+   "solution": "Refer to the Resultant (Two Dimensions), Systems of Forces, and Moments (Couples) sections in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the perpendicular distance \\(d\\) from \\(O\\) to the line of action of the single resultant. The handbook prints:\n\n$$F_R = \\sqrt{\\left(\\sum F_{x,i}\\right)^2 + \\left(\\sum F_{y,i}\\right)^2}$$\n\nand, for systems of forces, \\(\\mathbf{M} = \\sum (\\mathbf{r}_n \\times \\mathbf{F}_n)\\).\n\nSum the components:\n\n$$\\sum F_x = 50 - 40 = 10\\text{ N}$$\n\n$$\\sum F_y = 30\\text{ N}$$\n\n$$F_R = \\sqrt{10^2 + 30^2} = \\sqrt{1000} = 31.62\\text{ N}$$\n\nSum moments about \\(O\\) (counterclockwise positive):\n\n$$M_O = (2\\text{ m})(-40\\text{ N})\\text{ gives }0 + (2\\text{ m})(30\\text{ N}) = 60\\text{ N}\\cdot\\text{m}$$\n\n(The 40 N force acts along the x-axis through \\(y = 0\\), so its moment about \\(O\\) is zero; the 50 N force acts at \\(O\\).)\n\nThe single resultant reproduces this moment only if:\n\n$$M_O = F_R \\cdot d \\rightarrow d = \\frac{60}{31.62} = 1.90\\text{ m}$$",
+   "subtopic": "Resultant of a general coplanar force system",
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=R5NVwAb94Yo",
+   "videoTitle": "How to Find the Resultant of Three Force Vectors – Statics Components and Resultants Problem 18"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "(3.00 m, 0.75 m)",
+    "(2.86 m, 0.64 m)",
+    "(3.14 m, 0.86 m)",
+    "(2.50 m, 0.50 m)"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 120,
+   "explanation": "For lines the weight is each segment's length: (2.86, 0.64) m. The 4 m bottom segment outweighs the 3 m vertical one, so the centroid sits below and left of the unweighted average (3.00, 0.75) m — averaging the two segment centroids without weighting is the classic trap.",
+   "id": "statics-034",
+   "question": "A thin uniform wire is bent into an L-shape: one straight segment runs from (0, 0) to (4, 0) m, and a second straight segment runs from (4, 0) to (4, 3) m. What are the coordinates \\((x_c, y_c)\\) of the centroid of the wire?",
+   "solution": "Refer to the Centroids of Masses, Areas, Lengths, and Volumes section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\((x_c, y_c)\\). The handbook prints, for discrete elements:\n\n$$\\mathbf{r}_c = \\frac{\\sum m_n \\mathbf{r}_n}{\\sum m_n}$$\n\nFor a uniform wire, mass is proportional to segment length, so:\n\n$$x_c = \\frac{\\sum L_n x_n}{\\sum L_n}, \\qquad y_c = \\frac{\\sum L_n y_n}{\\sum L_n}$$\n\nList each segment and its own centroid:\n\n$$L_1 = 4\\text{ m}, \\quad (x_1, y_1) = (2, 0)\\text{ m}$$\n\n$$L_2 = 3\\text{ m}, \\quad (x_2, y_2) = (4, 1.5)\\text{ m}$$\n\nTotal length:\n\n$$L = 4 + 3 = 7\\text{ m}$$\n\n$$x_c = \\frac{4(2) + 3(4)}{7} = \\frac{20}{7} = 2.86\\text{ m}$$\n\n$$y_c = \\frac{4(0) + 3(1.5)}{7} = \\frac{4.5}{7} = 0.64\\text{ m}$$",
+   "subtopic": "Centroid of a composite line (wire)",
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=B6UBikXkAqk",
+   "videoTitle": "Centroid & Centre of Gravity"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "33 N",
+    "40 N",
+    "50 N",
+    "67 N"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Taking moments about A eliminates the three ball-and-socket reactions at once. The weight's 100 N·m moment about each in-plane axis is balanced by the cable and the link at their 2 m lever arms, giving 50 N in the cable (and 50 N in the link, with zero vertical reaction at A). Guessing one-third of the weight assumes symmetric sharing, which the support layout does not give.",
+   "id": "statics-035",
+   "question": "A 2 m × 2 m square plate of weight 100 N lies in the xy-plane with corner A at the origin and sides along the positive x- and y-axes. It is held in horizontal equilibrium by a ball-and-socket support at A, a vertical cable attached at corner D(0, 2, 0) m, and a vertical two-force link at corner B(2, 0, 0) m. The plate's weight acts at its centroid. What is the tension in the cable?",
+   "solution": "Refer to the Equilibrium Requirements and Moments (Couples) sections in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the cable tension \\(T\\). The handbook prints:\n\n$$\\sum \\mathbf{F}_n = 0, \\qquad \\sum \\mathbf{M}_n = 0$$\n\nwith \\(\\mathbf{M} = \\mathbf{r} \\times \\mathbf{F}\\).\n\nTake moments about \\(A\\); the ball-and-socket reactions then contribute nothing. Let the cable pull \\(T\\) upward at \\(D(0, 2, 0)\\), the link push \\(F_B\\) upward at \\(B(2, 0, 0)\\), and the weight \\(W = 100\\text{ N}\\) act downward at the centroid \\((1, 1, 0)\\).\n\nFor a vertical force \\(F\\) at \\((x, y)\\): \\((x\\mathbf{i} + y\\mathbf{j}) \\times F\\mathbf{k} = yF\\,\\mathbf{i} - xF\\,\\mathbf{j}\\).\n\nSum of \\(x\\)-components of moment about \\(A\\):\n\n$$-y_W W + y_D T + y_B F_B = -(1)(100) + (2)T + (0)F_B = 0$$\n\n$$T = 50\\text{ N}$$\n\n(For completeness, the \\(y\\)-components give \\(-x_W W - x_B F_B = 0\\), i.e. \\(F_B = 50\\text{ N}\\), and then \\(A_z = 0\\) from \\(\\sum F_z = 0\\).)",
+   "subtopic": "3D rigid-body equilibrium (moment about axes)",
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=4LXDkhqfn1g",
+   "videoTitle": "How to Find the Reactions at the Supports – Static Equilibrium of Rigid Bodies– Reaction Problem 4"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "28.4 ft",
+    "38.8 ft",
+    "45.2 ft",
+    "52.6 ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "HSO = R[1 − cos(28.65·S/R)] = 800[1 − cos(17.91°)] = 38.8 ft. The 28.65 factor converts the arc-length ratio to degrees — dropping it (or using radians directly) is the standard way to get this wrong.",
+   "id": "surveying-033",
+   "question": "A horizontal curve has a radius of 800 ft. A sight-distance analysis requires a minimum sight distance of 500 ft along the curve. What is the minimum horizontal sightline offset (HSO) that must be kept clear of obstructions on the inside of the curve?",
+   "solution": "Refer to the Sight Distance (to see around obstruction) subsection of Horizontal Curves in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(HSO\\). The handbook prints:\n\n$$HSO = R\\left[1 - \\cos\\left(\\frac{28.65\\,S}{R}\\right)\\right]$$\n\nwhere \\(HSO\\) = horizontal sight line offset, \\(R\\) = radius, \\(S\\) = sight distance (ft).\n\nSubstitute:\n\n$$\\frac{28.65\\,S}{R} = \\frac{28.65(500)}{800} = 17.906^\\circ$$\n\n$$HSO = 800\\left[1 - \\cos(17.906^\\circ)\\right]$$\n\n$$HSO = 800(1 - 0.95156) = 800(0.04844) = 38.8\\text{ ft}$$",
+   "subtopic": "Horizontal curve sight distance (HSO)",
+   "topic": "Surveying",
+   "videoUrl": "https://www.youtube.com/watch?v=zT7pYjX_ly0",
+   "videoTitle": "Horizontal Curves Elements Part 1 of 2"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3.6%",
+    "4.8%",
+    "6.0%",
+    "7.2%"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "From 0.01e + f = V²/(15R): e = 100(55²/(15·1200) − 0.12) = 4.8%. The 0.01 converts the percent superelevation to a decimal before it adds to f — solving without it inflates the answer toward 6%.",
+   "id": "surveying-034",
+   "question": "A horizontal curve of radius 1,200 ft is designed for a speed of 55 mph. If the side friction factor is 0.12, what superelevation rate \\(e\\) (in percent) is required?",
+   "solution": "Refer to the Side friction factor (based on superelevation) subsection of Horizontal Curves in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(e\\). The handbook prints:\n\n$$0.01e + f = \\frac{V^2}{15R}$$\n\nwhere \\(e\\) = superelevation (%), \\(f\\) = side friction factor, \\(V\\) = design speed (mph), \\(R\\) = radius (ft).\n\nRearrange:\n\n$$e = 100\\left(\\frac{V^2}{15R} - f\\right)$$\n\nSubstitute:\n\n$$\\frac{V^2}{15R} = \\frac{55^2}{15(1200)} = \\frac{3025}{18000} = 0.16806$$\n\n$$e = 100(0.16806 - 0.12) = 100(0.04806) = 4.8\\%$$",
+   "subtopic": "Superelevation on a horizontal curve",
+   "topic": "Surveying",
+   "videoUrl": "https://www.youtube.com/watch?v=zT7pYjX_ly0",
+   "videoTitle": "Horizontal Curves Elements Part 1 of 2"
   }
  ]
 }
