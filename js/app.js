@@ -2637,9 +2637,11 @@
       // Bank attempts and randomized variants merge on the shared baseId,
       // so this names the specific skill (not just the chapter).
       var weakSkills = skillStats(3).sort(function (a, b) { return a.pct - b.pct; }).slice(0, 5);
-      if (weakSkills.length) {
-        html += '<div class="card"><h3>Skills to Focus On</h3>' +
-          '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Your weakest specific skills — tap Drill to practice one with fresh numbers.</p>';
+      html += '<div class="card"><h3>Skills to Focus On</h3>';
+      if (!weakSkills.length) {
+        html += '<p class="muted">Answer a few questions and your weakest specific skills will appear here, each with a Drill button.</p>';
+      } else {
+        html += '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Your weakest specific skills — tap Drill to practice one with fresh numbers.</p>';
         weakSkills.forEach(function (s) {
           html += '<div class="cat-row"><span>' + escapeHtml(s.subtopic) +
             " <small>(" + escapeHtml(s.topic) + " · " + s.n + ")</small></span><span>" +
@@ -2649,8 +2651,8 @@
           }
           html += "</span></div>";
         });
-        html += "</div>";
       }
+      html += "</div>";
 
       body.innerHTML = html;
 
