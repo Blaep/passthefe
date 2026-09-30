@@ -2095,13 +2095,16 @@
   }
 
   // ---- exam simulator ------------------------------------------------------
-  // Full 100-question timed simulation: each of the 14 NCEES knowledge
-  // areas appears with exactly its official scored item count (EXAM_AREAS).
-  // No backend, no account — state lives in localStorage like everything
-  // else. Answers are NOT revealed during the sim; grading happens once at
-  // submit, like the real exam.
-  var EXAM_N = 100;
-  var EXAM_SECS = 100 * 175; // same ~2:55/question pace as the real 5h20m exam
+  // Full 110-question timed simulation, like the real FE: 100 scored
+  // questions with exactly the NCEES per-area item counts (EXAM_AREAS), plus
+  // 10 pretest-style questions mixed in invisibly and excluded from scoring
+  // — NCEES doesn't publish which areas its pretest items come from, so ours
+  // go one each to the 10 largest areas. No backend, no account — state
+  // lives in localStorage like everything else. Answers are NOT revealed
+  // during the sim; grading happens once at submit, like the real exam.
+  var EXAM_N = 110;
+  var EXAM_SCORED = 100;
+  var EXAM_SECS = 5 * 3600 + 20 * 60; // 5h20m — the real FE testing time
   var EXAM_BREAK_SECS = 25 * 60;      // one optional scheduled break
   var EXAM_NOTE = "Timed, exam-style practice — not the real NCEES exam.";
   var exam = null; // live sim: {list, idx, chosen, flagged, timeLeft,
@@ -2115,20 +2118,30 @@
   }
 
   // Sample exactly EXAM_AREAS item counts per knowledge area (8/4/5/8/4/7/5
-  // /6/6/10/10/10/9/8). Prefers questions not used in recent sims so
-  // consecutive sims don't repeat; once the 500-question bank is exhausted,
-  // the rotation starts over.
+  // Sample the exam: per area, the exact NCEES scored count plus one
+  // pretest-style extra for the 10 largest areas. Returns
+  // { list, pretest } where pretest maps question id -> true. Prefers
+  // questions not used in recent sims so consecutive sims don't repeat;
+  // once the 500-question bank is exhausted, the rotation starts over.
   function buildExamSim(qs) {
     var usedSet = {};
     store.get("examUsed", []).forEach(function (id) { usedSet[id] = 1; });
-    var picked = [];
-    EXAM_AREAS.forEach(function (a) {
-      var need = a.n;
+    var pretestAreas = EXAM_AREAS.map(function (a, i) { return i; })
+      .sort(function (x, y) { return EXAM_AREAS[y].n - EXAM_AREAS[x].n; })
+      .slice(0, EXAM_N - EXAM_SCORED);
+    var picked = [], pretest = {};
+    EXAM_AREAS.forEach(function (a, i) {
+      var need = a.n + (pretestAreas.indexOf(i) !== -1 ? 1 : 0);
       var pool = qs.filter(function (q) { return a.topics.indexOf(q.topic) !== -1; });
       var fresh = shuffle(pool.filter(function (q) { return !usedSet[q.id]; }));
       var stale = shuffle(pool.filter(function (q) { return usedSet[q.id]; }));
-      while (need > 0 && fresh.length) { picked.push(fresh.pop()); need--; }
-      while (need > 0 && stale.length) { picked.push(stale.pop()); need--; }
+      var got = [];
+      while (need > 0 && fresh.length) { got.push(fresh.pop()); need--; }
+      while (need > 0 && stale.length) { got.push(stale.pop()); need--; }
+      got.forEach(function (q, gi) {
+        picked.push(q);
+        if (gi >= a.n) pretest[q.id] = true; // the extras are pretest
+      });
     });
     // Rotation bookkeeping: if this sim covers every bank question, reset.
     var bankIds = {};
@@ -2140,7 +2153,7 @@
     store.set("examUsed", coversAll
       ? picked.map(function (q) { return q.id; })
       : nextUsed);
-    return shuffle(picked);
+    return { list: shuffle(picked), pretest: pretest };
   }
 
   function examAnsweredCount() {
@@ -2163,6 +2176,7 @@
     store.set("examResume", {
       v: 1,
       qids: exam.list.map(function (q) { return q.id; }),
+      pretest: Object.keys(exam.pretest || {}),
       chosen: exam.chosen,
       flagged: exam.flagged,
       idx: exam.idx,
@@ -2192,6 +2206,11 @@
       }
       exam = {
         list: list,
+        pretest: (function () {
+          var s = {};
+          (saved.pretest || []).forEach(function (id) { s[id] = true; });
+          return s;
+        })(),
         idx: Math.min(saved.idx || 0, list.length - 1),
         chosen: saved.chosen || {},
         flagged: saved.flagged || {},
@@ -2238,7 +2257,7 @@
     var validResume = saved && saved.v === 1 && saved.qids && saved.qids.length;
     var sims = store.get("examSims", []);
     var html = '<h2 class="exams-title">Exams</h2>' +
-      '<p class="lede">Full 100-question simulations · 4h51m timer · per-area counts match the NCEES blueprint.</p>';
+      '<p class="lede">Full 110-question simulations · 5h20m timer · 100 scored per the NCEES blueprint, like the real exam.</p>';
     if (validResume) {
       var answered = saved.chosen ? Object.keys(saved.chosen).length : 0;
       html += '<div class="exam-card in-progress" id="exam-current-card" role="button" tabindex="0">' +
@@ -2300,13 +2319,14 @@
   // ---- exam run ------------------------------------------------------------
   function startExam() {
     loadQuestions(function (qs) {
-      var list = buildExamSim(qs);
+      var built = buildExamSim(qs);
+      var list = built.list;
       if (list.length < EXAM_N) {
         toast("The question bank failed to load — check your connection and try again.");
         return;
       }
       exam = {
-        list: list, idx: 0, chosen: {}, flagged: {},
+        list: list, pretest: built.pretest, idx: 0, chosen: {}, flagged: {},
         timeLeft: EXAM_SECS,
         breakUsed: false, breakActive: false, breakLeft: EXAM_BREAK_SECS,
         tick: null, submitted: false,
@@ -2547,25 +2567,31 @@
     var perArea = EXAM_AREAS.map(function (a) {
       return { area: a.area, items: a.n, correct: 0, total: 0 };
     });
+    var pretest = exam.pretest || {};
     var attempts = store.get("attempts", []);
     var now = Date.now();
     exam.list.forEach(function (q) {
+      var isPretest = !!pretest[q.id];
       var ai = topicToArea[q.topic];
-      if (typeof ai === "number") perArea[ai].total++;
+      // Pretest-style questions are never scored — like the real exam —
+      // but attempts still feed practice analytics.
+      if (!isPretest && typeof ai === "number") perArea[ai].total++;
       var chosen = exam.chosen[q.id];
       if (typeof chosen === "number") {
         var ok = chosen === q.answerIndex;
-        if (ok) { correct++; if (typeof ai === "number") perArea[ai].correct++; }
+        if (!isPretest && ok) { correct++; if (typeof ai === "number") perArea[ai].correct++; }
         attempts.push({ qid: q.id, topic: q.topic, correct: ok, ts: now });
       }
     });
     store.set("attempts", attempts.slice(-2000));
     bumpStreak();
+    var scoredTotal = exam.list.filter(function (q) { return !pretest[q.id]; }).length;
     var rec = {
       ts: now,
       score: correct,
-      total: exam.list.length,
-      pct: Math.round(100 * correct / exam.list.length),
+      total: scoredTotal,
+      pct: scoredTotal ? Math.round(100 * correct / scoredTotal) : 0,
+      pretestN: exam.list.length - scoredTotal,
       timeSecs: Math.round(timeUsed),
       perArea: perArea,
       qids: exam.list.map(function (q) { return q.id; }),
@@ -2590,8 +2616,10 @@
     var perArea = rec.perArea || [];
     var html = "<h3>Exam diagnostic</h3>" +
       '<p class="result-score">' + rec.score + "/" + rec.total +
-      " <span>(" + rec.pct + "%)</span></p>" +
+      " <span>(" + rec.pct + "% of scored questions)</span></p>" +
       '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) + " of " + fmtClock(EXAM_SECS) + "</p>" +
+      (rec.pretestN ? '<p class="muted">110 questions · 100 scored · ' + rec.pretestN +
+        " pretest-style excluded from scoring, like the real exam.</p>" : "") +
       '<table class="diag-table"><thead><tr><th>Knowledge area</th>' +
       "<th>Items</th><th>Correct</th><th>%</th><th>0–15*</th></tr></thead><tbody>";
     perArea.forEach(function (p) {
