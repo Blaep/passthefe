@@ -706,36 +706,57 @@
       '" loading="lazy">';
   }
 
+  // Difficulty pill for the clean quiz header (easy/medium/hard).
+  function diffBadge(d) {
+    var k = (d || "").toLowerCase();
+    var cls = k === "hard" ? "hard" : (k === "medium" ? "medium" : "easy");
+    return '<span class="badge badge-diff ' + cls + '">' + escapeHtml(d || "") + "</span>";
+  }
+
+  // Back chevron shared by the quiz headers — hash routing keeps it safe.
+  function quizBackHtml() {
+    return '<button class="quiz-back" id="quiz-back" aria-label="Back to practice">‹</button>';
+  }
+
   function renderQuestion() {
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
-    var html = '<p class="quiz-progress">Question ' + (quiz.idx + 1) + " of " +
-      quiz.list.length + " · " + escapeHtml(quiz.topic) +
-      ' <span class="timer-chip" title="Time on this question · total quiz time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b> total</span></p>';
-    html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
-      escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
+    var modeTitle = quiz.mode === "adaptive" ? "Adaptive Practice" : "Practice";
+    var letters = "ABCDEFGH";
+    var html = '<div class="quiz-head">' + quizBackHtml() +
+      ' <span class="timer-pill" title="Time on this question · total quiz time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span></div>';
+    html += '<h2 class="quiz-title">' + escapeHtml(modeTitle) + "</h2>";
+    html += '<div class="quiz-badges"><span class="badge badge-topic">' + escapeHtml(q.topic) + "</span>" +
+      diffBadge(q.difficulty) + "</div>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
     html += '<ul class="choices" id="quiz-choices">';
-    shuffle(q.choices.map(function (c, i) { return i; })).forEach(function (i) {
-      html += '<li data-i="' + i + '">' + inlineMath(q.choices[i]) + "</li>";
+    var order = shuffle(q.choices.map(function (c, i) { return i; }));
+    order.forEach(function (i, pos) {
+      html += '<li data-i="' + i + '"><span class="choice-letter">' + letters[pos] +
+        '</span><span class="choice-text">' + inlineMath(q.choices[i]) + "</span></li>";
     });
     html += "</ul>";
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
-    html += '<div class="quiz-nav"><button id="quiz-next" class="btn primary" style="display:none">' +
+    html += '<div class="quiz-bottom"><div class="qcount-wrap"><span class="qcount-pill">Question ' +
+      (quiz.idx + 1) + " of " + quiz.list.length + "</span></div>";
+    html += '<button id="quiz-next" class="btn primary btn-block" style="display:none">' +
       (quiz.idx + 1 === quiz.list.length ? "See results" : "Next question") + "</button>";
     if (quiz.portable) {
       // Other device: offer the result code once at least one answer was
       // given here. The phone imports it back into its tracker.
       if (quiz.answers.length > quiz.handoff) {
-        html += ' <button id="quiz-resultcode-btn" class="btn">Get result code</button>';
+        html += '<div class="quiz-nav-sub"><button id="quiz-resultcode-btn" class="btn">Get result code</button></div>';
       }
     } else if (typeof quiz.seed === "number" && quiz.answers.length < quiz.list.length) {
-      html += ' <button id="quiz-portable-btn" class="btn">Continue on another device</button>';
+      html += '<div class="quiz-nav-sub"><button id="quiz-portable-btn" class="btn">Continue on another device</button></div>';
     }
     html += "</div>";
     box.innerHTML = html;
+    document.getElementById("quiz-back").addEventListener("click", function () {
+      location.hash = "#/practice";
+    });
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { answerCurrent(parseInt(li.dataset.i, 10)); });
     });
@@ -796,8 +817,15 @@
     box.dataset.answered = "1";
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       var liI = parseInt(li.dataset.i, 10);
-      if (liI === q.answerIndex) { li.style.borderColor = "#34C759"; li.style.background = "#e9f9ee"; }
-      else if (liI === chosenI) { li.style.borderColor = "#FF3B30"; li.style.background = "#fdeceb"; }
+      var letter = li.querySelector(".choice-letter");
+      if (liI === q.answerIndex) {
+        li.style.background = "#e9f9ee";
+        if (letter) { letter.style.borderColor = "#34C759"; letter.style.background = "#34C759"; letter.style.color = "#fff"; }
+      }
+      else if (liI === chosenI) {
+        li.style.background = "#fdeceb";
+        if (letter) { letter.style.borderColor = "#FF3B30"; letter.style.background = "#FF3B30"; letter.style.color = "#fff"; }
+      }
       li.style.cursor = "default";
     });
     var sol = document.getElementById("quiz-solution");
@@ -807,7 +835,7 @@
       (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
       videoLinkHtml(q);
     sol.style.display = "block";
-    document.getElementById("quiz-next").style.display = "inline-block";
+    document.getElementById("quiz-next").style.display = "";
   }
 
   function logAttempt(q, ok) {
@@ -1895,25 +1923,34 @@
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
     var modeLabel = (quiz.drillBaseId && q._gen && q._gen.subtopic)
-      ? "Drilling " + q._gen.subtopic : "Randomized practice";
-    var html = '<p class="quiz-progress">' + escapeHtml(modeLabel) + " · question " +
-      (quiz.answers.length + 1) + " · " + quiz.correct + " correct so far" +
-      ' <span class="timer-chip" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b> total</span></p>';
-    html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
-      escapeHtml(q.subtopic || "") + " · " + escapeHtml(q.difficulty || "") + "</p>";
+      ? "Drilling " + q._gen.subtopic : "Randomized Practice";
+    var letters = "ABCDEFGH";
+    var html = '<div class="quiz-head">' + quizBackHtml() +
+      ' <span class="timer-pill" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span></div>';
+    html += '<h2 class="quiz-title">' + escapeHtml(modeLabel) + "</h2>";
+    html += '<div class="quiz-badges"><span class="badge badge-topic">' + escapeHtml(q.topic) + "</span>" +
+      diffBadge(q.difficulty) + "</div>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
     html += '<ul class="choices" id="quiz-choices">';
-    shuffle(q.choices.map(function (c, i) { return i; })).forEach(function (i) {
-      html += '<li data-i="' + i + '">' + inlineMath(q.choices[i]) + "</li>";
+    var order = shuffle(q.choices.map(function (c, i) { return i; }));
+    order.forEach(function (i, pos) {
+      html += '<li data-i="' + i + '"><span class="choice-letter">' + letters[pos] +
+        '</span><span class="choice-text">' + inlineMath(q.choices[i]) + "</span></li>";
     });
     html += "</ul>";
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
-    html += '<div class="quiz-nav" id="random-nav" style="display:none">' +
-      '<button id="quiz-next" class="btn primary">Next</button> ' +
-      '<button id="quiz-newnums" class="btn">New numbers</button> ' +
+    html += '<div class="quiz-bottom"><div class="qcount-wrap"><span class="qcount-pill">Question ' +
+      (quiz.answers.length + 1) + " · " + quiz.correct + ' correct</span></div>';
+    html += '<div id="random-nav" style="display:none">';
+    html += '<button id="quiz-next" class="btn primary btn-block">Next</button>';
+    html += '<div class="quiz-nav-sub"><button id="quiz-newnums" class="btn">New numbers</button> ' +
       '<button id="quiz-finish" class="btn text">Finish &amp; results</button></div>';
+    html += "</div></div>";
     box.innerHTML = html;
+    document.getElementById("quiz-back").addEventListener("click", function () {
+      location.hash = "#/practice";
+    });
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { answerRandom(parseInt(li.dataset.i, 10)); });
     });
@@ -2253,15 +2290,17 @@
   function renderExamQuestion() {
     var q = exam.list[exam.idx];
     var card = document.getElementById("exam-qcard");
+    var letters = "ABCDE";
     var html = '<p class="quiz-progress">Question ' + (exam.idx + 1) + " of " + exam.list.length + "</p>";
-    html += '<p class="quiz-meta">' + escapeHtml(q.topic) + " · " +
-      escapeHtml(q.subtopic) + " · " + escapeHtml(q.difficulty) + "</p>";
+    html += '<div class="quiz-badges"><span class="badge badge-topic">' + escapeHtml(q.topic) + "</span>" +
+      diffBadge(q.difficulty) + "</div>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
     html += '<ul class="choices" id="exam-choices">';
     q.choices.forEach(function (c, i) {
       var cls = (exam.chosen[q.id] === i) ? ' class="sel"' : "";
-      html += "<li" + cls + ' data-i="' + i + '">' + inlineMath(c) + "</li>";
+      html += "<li" + cls + ' data-i="' + i + '"><span class="choice-letter">' + letters[i] +
+        '</span><span class="choice-text">' + inlineMath(c) + "</span></li>";
     });
     html += "</ul>";
     card.innerHTML = html;
