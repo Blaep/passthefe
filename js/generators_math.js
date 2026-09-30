@@ -553,7 +553,7 @@
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
     videoTitle: "FE Civil Exam Mathematics: Integrals Problem 3 a,3 b &3 c (Easy, Medium & Hard)"
   }, function () {
-    var k = ri(2, 5);
+    var k = pick([2, 3, 4, 5, 7, 8, 9]); // k=6 makes two distractors collide (2k^2 = 2*ans)
     var ans = k * k * k / 6;
     var k2 = k * k, k3 = k2 * k;
     var solution =
@@ -626,7 +626,7 @@
     videoUrl: "https://www.youtube.com/watch?v=cjPoEZ0I5wQ",
     videoTitle: "Taylor and Maclaurin Series - Example 1"
   }, function () {
-    var kk = ri(1, 4), x = kk / 10;
+    var kk = ri(1, 9), x = kk / 10;
     var t3 = x * x * x / 6;
     var f5 = function (v) { return v.toFixed(5); };
     var xs = x.toFixed(1);
@@ -724,13 +724,13 @@
   var G018 = buildGenerator({
     baseId: "math-018", subtopic: "Definite integrals (trigonometric)", difficulty: "easy",
     estimatedTimeSeconds: 75,
-    explanation: "The u-substitution brings a 1/2 factor from du = 2dx — skipping it doubles the answer to the 2 trap.",
+    explanation: "The u-substitution brings a 1/k factor from du = k\u00b7dx — dropping it is the unscaled trap; also watch the substituted bounds and the +cos(0) term.",
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
     videoTitle: "FE Civil Exam Mathematics: Integrals Problem 3 a,3 b &3 c (Easy, Medium & Hard)"
   }, function () {
-    var k = pick([2, 3, 5, 6]);
+    var k = pick([2, 3, 5, 6, 7, 9, 10]); // k=1/k=4 make a distractor equal the answer
     var c = Math.round(Math.cos(k * Math.PI / 2)); // -1, 0, or 1
-    var uUpper = k === 2 ? "\\pi" : (k === 6 ? "3\\pi" : k + "\\pi/2");
+    var uUpper = (k % 2 === 0) ? (k === 2 ? "\\pi" : (k / 2) + "\\pi") : k + "\\pi/2";
     var solution =
       "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\n" +
       "Ultimately, we must solve for the definite integral. Substitute \\(u = " + k + "x\\) so that \\(du = " + k + "\\,dx\\):\n\n" +
@@ -800,7 +800,7 @@
     videoUrl: null,
     videoTitle: null
   }, function () {
-    var c = pick([3, 5, 6, 7]); // c = 4 would give f(2) = 0 and no step at all
+    var c = pick([2, 3, 5, 6, 7, 8, 9]); // c = 4 would give f(2) = 0 and no step at all
     var f2 = 4 - c, fp2 = 10, corr = f2 / fp2, x1 = 2 - corr;
     var solution =
       "Refer to the Newton's Method for Root Extraction section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
@@ -836,7 +836,7 @@
     videoUrl: null,
     videoTitle: null
   }, function () {
-    var b = ri(1, 3), E = Math.E;
+    var b = ri(1, 6), E = Math.E;
     var eb = Math.pow(E, b);
     var ans = (b - 1) * eb + 1;
     var solution =
