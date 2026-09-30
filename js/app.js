@@ -230,8 +230,8 @@
     }
     renderAdaptivePanel();
     // Randomized practice card: only shown when at least one generator
-    // library (js/generators_math.js and/or js/generators_econ.js) loaded
-    // with at least one generator.
+    // library (js/generators_math.js, js/generators_econ.js and/or
+    // js/generators_stats.js) loaded with at least one generator.
     var rCard = document.getElementById("randomized-setup");
     var gens = randomizedGeneratorsAll();
     if (rCard) {
@@ -1666,13 +1666,15 @@
   // file) defines window.MATH_GENERATORS; each entry exposes generate()
   // returning a bank-shaped question. js/generators_econ.js (also loaded
   // before this file) defines window.ECON_GENERATORS with the identical
-  // contract and topic "Engineering Economics". The econ library is
-  // optional: the chapter picker is hidden and the mode stays math-only
-  // when it is missing or empty. The mode card is hidden when both
-  // libraries are missing or empty. Sessions are open-ended: after each
-  // answer the user can re-roll the same generator ("New numbers") or
-  // take a fresh random generator ("Next"); "Finish & results" reuses the
-  // standard results screen.
+  // contract and topic "Engineering Economics". js/generators_stats.js
+  // (also loaded before this file) defines window.STATS_GENERATORS with the
+  // identical contract and topic "Statistics and Probability". The econ and
+  // stats libraries are optional: a missing library's picker button is
+  // hidden and the mode falls back to the libraries that are present.
+  // The mode card is hidden when all libraries are missing or empty.
+  // Sessions are open-ended: after each answer the user can re-roll the
+  // same generator ("New numbers") or take a fresh random generator
+  // ("Next"); "Finish & results" reuses the standard results screen.
   //
   // Progress logging: the shared answerCurrent/logAttempt path is reused
   // with mode:"randomized", but each variant is stamped with
@@ -1682,18 +1684,20 @@
   // to per-topic mastery/readiness through the attempt's topic field, and
   // missed variant ids are silently filtered from the study list.
   // saveProgress skips randomized sessions: variants are not resumable.
-  // The chapter picker ("mixed" | "math" | "econ") filters the combined
-  // pool; "Next" draws a different generator from the active (filtered)
-  // pool, "New numbers" re-rolls the same generator as before.
+  // The chapter picker ("mixed" | "math" | "econ" | "stats") filters the
+  // combined pool; "Next" draws a different generator from the active
+  // (filtered) pool, "New numbers" re-rolls the same generator as before.
   var randomizedChapterSel = "mixed";
 
-  // Unfiltered combined pool (math + econ), or null when both are missing.
+  // Unfiltered combined pool (math + econ + stats), or null when all are missing.
   function randomizedGeneratorsAll() {
     var all = [];
     var m = window.MATH_GENERATORS;
     if (Array.isArray(m) && m.length) all = all.concat(m);
     var e = window.ECON_GENERATORS;
     if (Array.isArray(e) && e.length) all = all.concat(e);
+    var s = window.STATS_GENERATORS;
+    if (Array.isArray(s) && s.length) all = all.concat(s);
     return all.length ? all : null;
   }
 
@@ -1705,19 +1709,24 @@
     var ch = randomizedChapter();
     var m = window.MATH_GENERATORS;
     var e = window.ECON_GENERATORS;
+    var s = window.STATS_GENERATORS;
     var okM = Array.isArray(m) && m.length;
     var okE = Array.isArray(e) && e.length;
+    var okS = Array.isArray(s) && s.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
+    if (ch === "stats") return okS ? s.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
+    if (okS) all = all.concat(s);
     return all.length ? all : null;
   }
 
-  // Chapter picker wiring (setup view only): the picker is shown only when
-  // the econ library loaded; the count line always reflects the ACTIVE
-  // pool and refreshes whenever the picker changes.
+  // Chapter picker wiring (setup view only): a chapter button is hidden
+  // when its library failed to load; the whole picker is hidden when fewer
+  // than two libraries are present. The count line always reflects the
+  // ACTIVE pool and refreshes whenever the picker changes.
   function updateRandomizedCount() {
     var rCount = document.getElementById("randomized-count");
     if (!rCount) return;
@@ -1730,9 +1739,18 @@
   function updateRandomizedChapters() {
     var picker = document.getElementById("randomized-chapters");
     if (!picker) return;
+    var okM = Array.isArray(window.MATH_GENERATORS) && window.MATH_GENERATORS.length;
     var okE = Array.isArray(window.ECON_GENERATORS) && window.ECON_GENERATORS.length;
-    picker.classList.toggle("hidden", !okE);
-    if (!okE && randomizedChapterSel === "econ") randomizedChapterSel = "mixed";
+    var okS = Array.isArray(window.STATS_GENERATORS) && window.STATS_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0);
+    picker.classList.toggle("hidden", present < 2);
+    picker.querySelectorAll(".length-btn").forEach(function (b) {
+      var ch = b.dataset.chapter || "mixed";
+      if (ch !== "mixed" && !okMap[ch]) b.classList.add("hidden");
+      else b.classList.remove("hidden");
+    });
+    if (randomizedChapterSel !== "mixed" && !okMap[randomizedChapterSel]) randomizedChapterSel = "mixed";
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       b.classList.toggle("selected", (b.dataset.chapter || "mixed") === randomizedChapterSel);
     });
