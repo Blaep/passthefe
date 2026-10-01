@@ -321,7 +321,7 @@
     var rStart = document.getElementById("randomized-start");
     if (rStart && !rStart.dataset.bound) {
       rStart.dataset.bound = "1";
-      rStart.addEventListener("click", startRandomizedQuiz);
+      rStart.addEventListener("click", function () { startRandomizedQuiz(null); });
     }
   }
 
