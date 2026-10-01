@@ -944,17 +944,20 @@
     var pct = Math.round(100 * quiz.correct / quiz.list.length);
     var timed = quiz.answers.filter(function (a) { return typeof a.secs === "number"; });
     var totalSecs = Math.round(totalQuizSecs());
-    var avgSecs = timed.length
-      ? Math.round(timed.reduce(function (s, a) { return s + a.secs; }, 0) / timed.length)
-      : 0;
+    var solvingSecs = timed.reduce(function (s, a) { return s + a.secs; }, 0);
+    var avgSecs = timed.length ? Math.round(solvingSecs / timed.length) : 0;
     quiz.totalSecs = totalSecs;
+    quiz.solvingSecs = solvingSecs;
     quiz.avgSecs = avgSecs;
     var html = "<h3>Quiz complete</h3>";
     html += '<p class="result-score">' + quiz.correct + "/" + quiz.list.length +
       " <span>(" + pct + "%)</span></p>";
     // Timing summary vs real FE exam pace (110 questions in 5h20m ≈ 2:55 each).
+    // "Solving" = sum of per-question answer times; "Elapsed" = wall clock
+    // including explanation review and pauses.
     var FE_PACE_SECS = 175;
-    html += '<p class="time-summary">⏱ Total ' + fmtSecs(totalSecs) +
+    html += '<p class="time-summary">⏱ Solving ' + fmtSecs(solvingSecs) +
+      " · Elapsed " + fmtSecs(totalSecs) +
       " · avg " + fmtSecs(avgSecs) + " per question</p>";
     if (avgSecs > 0) {
       var onPace = avgSecs <= FE_PACE_SECS;
@@ -1561,7 +1564,7 @@
   function findGeneratorByBaseId(baseId) {
     var libs = [window.MATH_GENERATORS, window.ECON_GENERATORS,
                 window.STATS_GENERATORS, window.MATERIALS_GENERATORS,
-                window.STATICS_GENERATORS];
+                window.STATICS_GENERATORS, window.MECHMAT_GENERATORS];
     for (var i = 0; i < libs.length; i++) {
       var lib = libs[i];
       if (!Array.isArray(lib)) continue;
@@ -1857,9 +1860,11 @@
   // identical contract and topic "Statistics and Probability".
   // js/generators_materials.js (also loaded before this file) defines
   // window.MATERIALS_GENERATORS with the identical contract and topic
-  // "Materials". The econ, stats and materials libraries are optional: a
-  // missing library's picker button is hidden and the mode falls back to
-  // the libraries that are present.
+  // "Materials". js/generators_mechmat.js (also loaded before this file)
+  // defines window.MECHMAT_GENERATORS with the identical contract and topic
+  // "Mechanics of Materials". The econ, stats, materials, statics and
+  // mechmat libraries are optional: a missing library's picker button is
+  // hidden and the mode falls back to the libraries that are present.
   // The mode card is hidden when all libraries are missing or empty.
   // Sessions are open-ended: after each answer the user can re-roll the
   // same generator ("New numbers") or take a fresh random generator
@@ -1891,6 +1896,8 @@
     if (Array.isArray(mt) && mt.length) all = all.concat(mt);
     var st = window.STATICS_GENERATORS;
     if (Array.isArray(st) && st.length) all = all.concat(st);
+    var mm = window.MECHMAT_GENERATORS;
+    if (Array.isArray(mm) && mm.length) all = all.concat(mm);
     return all.length ? all : null;
   }
 
@@ -1905,22 +1912,26 @@
     var s = window.STATS_GENERATORS;
     var mt = window.MATERIALS_GENERATORS;
     var st = window.STATICS_GENERATORS;
+    var mm = window.MECHMAT_GENERATORS;
     var okM = Array.isArray(m) && m.length;
     var okE = Array.isArray(e) && e.length;
     var okS = Array.isArray(s) && s.length;
     var okMt = Array.isArray(mt) && mt.length;
     var okSt = Array.isArray(st) && st.length;
+    var okMm = Array.isArray(mm) && mm.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
     if (ch === "stats") return okS ? s.slice() : null;
     if (ch === "mat") return okMt ? mt.slice() : null;
     if (ch === "stat") return okSt ? st.slice() : null;
+    if (ch === "mechmat") return okMm ? mm.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
     if (okS) all = all.concat(s);
     if (okMt) all = all.concat(mt);
     if (okSt) all = all.concat(st);
+    if (okMm) all = all.concat(mm);
     return all.length ? all : null;
   }
 
@@ -1945,8 +1956,9 @@
     var okS = Array.isArray(window.STATS_GENERATORS) && window.STATS_GENERATORS.length;
     var okMt = Array.isArray(window.MATERIALS_GENERATORS) && window.MATERIALS_GENERATORS.length;
     var okSt = Array.isArray(window.STATICS_GENERATORS) && window.STATICS_GENERATORS.length;
-    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt };
-    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0);
+    var okMm = Array.isArray(window.MECHMAT_GENERATORS) && window.MECHMAT_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt, mechmat: okMm };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0) + (okMm ? 1 : 0);
     picker.classList.toggle("hidden", present < 2);
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       var ch = b.dataset.chapter || "mixed";
@@ -2722,6 +2734,7 @@
       scope: quiz.topic,
       missed: missed,
       totalSecs: quiz.totalSecs || 0,
+      solvingSecs: quiz.solvingSecs || 0,
       avgSecs: quiz.avgSecs || 0
     });
     store.set("sessions", sessions.slice(-100));
