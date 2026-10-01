@@ -1560,7 +1560,8 @@
 
   function findGeneratorByBaseId(baseId) {
     var libs = [window.MATH_GENERATORS, window.ECON_GENERATORS,
-                window.STATS_GENERATORS, window.MATERIALS_GENERATORS];
+                window.STATS_GENERATORS, window.MATERIALS_GENERATORS,
+                window.STATICS_GENERATORS];
     for (var i = 0; i < libs.length; i++) {
       var lib = libs[i];
       if (!Array.isArray(lib)) continue;
@@ -1888,6 +1889,8 @@
     if (Array.isArray(s) && s.length) all = all.concat(s);
     var mt = window.MATERIALS_GENERATORS;
     if (Array.isArray(mt) && mt.length) all = all.concat(mt);
+    var st = window.STATICS_GENERATORS;
+    if (Array.isArray(st) && st.length) all = all.concat(st);
     return all.length ? all : null;
   }
 
@@ -1901,19 +1904,23 @@
     var e = window.ECON_GENERATORS;
     var s = window.STATS_GENERATORS;
     var mt = window.MATERIALS_GENERATORS;
+    var st = window.STATICS_GENERATORS;
     var okM = Array.isArray(m) && m.length;
     var okE = Array.isArray(e) && e.length;
     var okS = Array.isArray(s) && s.length;
     var okMt = Array.isArray(mt) && mt.length;
+    var okSt = Array.isArray(st) && st.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
     if (ch === "stats") return okS ? s.slice() : null;
     if (ch === "mat") return okMt ? mt.slice() : null;
+    if (ch === "stat") return okSt ? st.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
     if (okS) all = all.concat(s);
     if (okMt) all = all.concat(mt);
+    if (okSt) all = all.concat(st);
     return all.length ? all : null;
   }
 
@@ -1937,8 +1944,9 @@
     var okE = Array.isArray(window.ECON_GENERATORS) && window.ECON_GENERATORS.length;
     var okS = Array.isArray(window.STATS_GENERATORS) && window.STATS_GENERATORS.length;
     var okMt = Array.isArray(window.MATERIALS_GENERATORS) && window.MATERIALS_GENERATORS.length;
-    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt };
-    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0);
+    var okSt = Array.isArray(window.STATICS_GENERATORS) && window.STATICS_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0);
     picker.classList.toggle("hidden", present < 2);
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       var ch = b.dataset.chapter || "mixed";
