@@ -1375,8 +1375,8 @@ PART.push(buildGenerator({
   var wrong = shuffle(pool).slice(0, 3);
   var two = v.side === "two-sided";
   var question = two
-    ? "A two-sided " + v.level + "% confidence interval for a population mean is constructed using the standard normal distribution. What is the value of \\(z_{\\alpha/2}\\)?"
-    : "A one-sided " + v.level + "% upper confidence bound for a population mean is constructed using the standard normal distribution. What is the value of \\(z_{\\alpha}\\)?";
+    ? "A two-sided " + v.level + "% confidence interval for a population mean is constructed using the standard normal distribution. What is the value of \\(Z_{\\alpha/2}\\)?"
+    : "A one-sided " + v.level + "% upper confidence bound for a population mean is constructed using the standard normal distribution. What is the value of \\(Z_{\\alpha}\\)?";
   var rows = two
     ? ["80\\% &\\to 1.2816", "90\\% &\\to 1.6449", "95\\% &\\to 1.9600", "96\\% &\\to 2.0537", "98\\% &\\to 2.3263", "99\\% &\\to 2.5758"]
     : ["80\\% &\\to 0.8416", "90\\% &\\to 1.2816", "95\\% &\\to 1.6449", "96\\% &\\to 1.7507", "98\\% &\\to 2.0537", "99\\% &\\to 2.3263"];
