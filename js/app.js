@@ -813,6 +813,7 @@
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
+    box.dataset.selected = "";
     var modeTitle = quiz.mode === "adaptive" ? "Adaptive Practice" : "Practice";
     var letters = "ABCDEFGH";
     var html = '<div class="quiz-head">' + quizBackHtml() +
@@ -832,6 +833,7 @@
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
     html += '<div class="quiz-bottom"><div class="qcount-wrap"><span class="qcount-pill">Question ' +
       (quiz.idx + 1) + " of " + quiz.list.length + "</span></div>";
+    html += '<button id="quiz-confirm" class="btn primary btn-block" style="display:none">Confirm answer</button>';
     html += '<button id="quiz-next" class="btn primary btn-block" style="display:none">' +
       (quiz.idx + 1 === quiz.list.length ? "See results" : "Next question") + "</button>";
     if (quiz.portable) {
@@ -847,7 +849,12 @@
     box.innerHTML = html;
     document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
-      li.addEventListener("click", function () { answerCurrent(parseInt(li.dataset.i, 10)); });
+      li.addEventListener("click", function () { selectQuizChoice(li, parseInt(li.dataset.i, 10)); });
+    });
+    document.getElementById("quiz-confirm").addEventListener("click", function () {
+      var b = document.getElementById("quiz-run");
+      if (!b || b.dataset.answered || b.dataset.selected === "" || b.dataset.selected === undefined) return;
+      answerCurrent(parseInt(b.dataset.selected, 10));
     });
     document.getElementById("quiz-next").addEventListener("click", function () {
       if (quiz.idx + 1 < quiz.list.length) {
@@ -878,6 +885,19 @@
     }
   }
 
+  // Two-step answering: a tap only SELECTS a choice (highlighted, changeable).
+  // The Confirm button then locks it in via answerCurrent/answerRandom.
+  // This guards against accidental taps on touch screens.
+  function selectQuizChoice(li, i) {
+    var box = document.getElementById("quiz-run");
+    if (!box || box.dataset.answered) return;
+    box.querySelectorAll("#quiz-choices li").forEach(function (el) { el.classList.remove("sel"); });
+    li.classList.add("sel");
+    box.dataset.selected = String(i);
+    var c = document.getElementById("quiz-confirm");
+    if (c) c.style.display = "";
+  }
+
   function answerCurrent(i) {
     var box = document.getElementById("quiz-run");
     if (box.dataset.answered) return;
@@ -904,7 +924,11 @@
   function revealAnswer(q, chosenI, ok) {
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "1";
+    box.dataset.selected = "";
+    var cf = document.getElementById("quiz-confirm");
+    if (cf) cf.style.display = "none";
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
+      li.classList.remove("sel");
       var liI = parseInt(li.dataset.i, 10);
       var letter = li.querySelector(".choice-letter");
       if (liI === q.answerIndex) {
@@ -2047,6 +2071,7 @@
     var q = quiz.list[quiz.idx];
     var box = document.getElementById("quiz-run");
     box.dataset.answered = "";
+    box.dataset.selected = "";
     var modeLabel = (quiz.drillBaseId && q._gen && q._gen.subtopic)
       ? "Drilling " + q._gen.subtopic : "Randomized Practice";
     var letters = "ABCDEFGH";
@@ -2067,6 +2092,7 @@
     html += '<div class="solution" id="quiz-solution" style="display:none"></div>';
     html += '<div class="quiz-bottom"><div class="qcount-wrap"><span class="qcount-pill">Question ' +
       (quiz.answers.length + 1) + " · " + quiz.correct + ' correct</span></div>';
+    html += '<button id="quiz-confirm" class="btn primary btn-block" style="display:none">Confirm answer</button>';
     html += '<div id="random-nav" style="display:none">';
     html += '<button id="quiz-next" class="btn primary btn-block">Next</button>';
     html += '<div class="quiz-nav-sub"><button id="quiz-newnums" class="btn">New numbers</button> ' +
@@ -2075,7 +2101,12 @@
     box.innerHTML = html;
     document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
-      li.addEventListener("click", function () { answerRandom(parseInt(li.dataset.i, 10)); });
+      li.addEventListener("click", function () { selectQuizChoice(li, parseInt(li.dataset.i, 10)); });
+    });
+    document.getElementById("quiz-confirm").addEventListener("click", function () {
+      var b = document.getElementById("quiz-run");
+      if (!b || b.dataset.answered || b.dataset.selected === "" || b.dataset.selected === undefined) return;
+      answerRandom(parseInt(b.dataset.selected, 10));
     });
     document.getElementById("quiz-next").addEventListener("click", function () {
       // "Next": a fresh variant from a different random generator — unless
