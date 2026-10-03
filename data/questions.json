@@ -758,7 +758,7 @@
     "Charging a higher fee for a complex project than for a simple one"
    ],
    "answerIndex": 1,
-   "solution": "Bid rigging \\u2014 agreeing in advance which firm will submit the lowest bid \\u2014 is collusion: a per se violation of antitrust law and of professional ethics.\n\nThe governing principle is honest competition. Submitting individual competitive bids based on each firm's own cost estimate is lawful price competition (the old NSPE ban on competitive bidding was struck down in 1972), truthful advertising is permitted, and fees may vary with project complexity.\n\nTherefore, the practice that violates both ethics and the law is agreeing among the firms in advance which firm will submit the lowest bid.",
+   "solution": "Bid rigging — agreeing in advance which firm will submit the lowest bid — is collusion: a per se violation of antitrust law and of professional ethics.\n\nThe governing principle is honest competition. Submitting individual competitive bids based on each firm's own cost estimate is lawful price competition (the old NSPE ban on competitive bidding was struck down in 1972), truthful advertising is permitted, and fees may vary with project complexity.\n\nTherefore, the practice that violates both ethics and the law is agreeing among the firms in advance which firm will submit the lowest bid.",
    "explanation": "FE exams love the twist that competitive bidding itself is NOT unethical; what is prohibited is collusion among bidders. Distinguish lawful price competition from bid rigging.",
    "conceptual": true
   },
@@ -1237,7 +1237,7 @@
    "explanation": "Students often confuse yield strength with ultimate strength. Yield governs serviceability and the start of permanent set; ultimate is the peak of the curve. Design of steel members is typically based on yield, not ultimate.",
    "id": "materials-003",
    "question": "On a typical engineering stress-strain curve for structural steel, the yield strength is best described as:",
-   "solution": "On a typical engineering stress-strain curve for structural steel, the governing definitions are:\n\n- Yield strength: the stress at which plastic (permanent) deformation begins \\u2014 beyond this point the steel will not return to its original shape when unloaded.\n- Ultimate (tensile) strength: the maximum stress on the curve.\n- Fracture stress: the stress at which the specimen breaks.\n- Modulus of elasticity: the slope of the initial linear portion.\n\nTherefore, yield strength is best described as the stress at which plastic (permanent) deformation begins. Steel member design is typically based on yield, not ultimate.",
+   "solution": "On a typical engineering stress-strain curve for structural steel, the governing definitions are:\n\n- Yield strength: the stress at which plastic (permanent) deformation begins — beyond this point the steel will not return to its original shape when unloaded.\n- Ultimate (tensile) strength: the maximum stress on the curve.\n- Fracture stress: the stress at which the specimen breaks.\n- Modulus of elasticity: the slope of the initial linear portion.\n\nTherefore, yield strength is best described as the stress at which plastic (permanent) deformation begins. Steel member design is typically based on yield, not ultimate.",
    "subtopic": "Steel stress-strain behavior",
    "topic": "Materials",
    "conceptual": true
@@ -1308,7 +1308,7 @@
    "explanation": "NDT methods estimate properties indirectly: rebound hammer estimates compressive strength via surface hardness, while ultrasonic pulse velocity detects internal voids and cracking. Neither replaces a direct compression test for acceptance.",
    "id": "materials-007",
    "question": "The rebound hammer (Schmidt hammer) test performed on hardened concrete in the field is used to estimate the concrete's:",
-   "solution": "The rebound (Schmidt) hammer measures the surface hardness of hardened concrete as a rebound number.\n\nThe governing principle is correlation, not direct measurement: the rebound number is empirically correlated with the in-place compressive strength of the concrete, typically calibrated against core or cylinder tests.\n\nTherefore, the test is used to estimate the concrete's compressive strength. It remains an index test \\u2014 like ultrasonic pulse velocity for detecting voids \\u2014 and does not replace a direct compression test for acceptance.",
+   "solution": "The rebound (Schmidt) hammer measures the surface hardness of hardened concrete as a rebound number.\n\nThe governing principle is correlation, not direct measurement: the rebound number is empirically correlated with the in-place compressive strength of the concrete, typically calibrated against core or cylinder tests.\n\nTherefore, the test is used to estimate the concrete's compressive strength. It remains an index test — like ultrasonic pulse velocity for detecting voids — and does not replace a direct compression test for acceptance.",
    "subtopic": "Non-destructive testing",
    "topic": "Materials",
    "conceptual": true
@@ -2188,7 +2188,7 @@
    "explanation": "Production problems chain three adjustments: cycle rate, efficiency factor (50-min hour), and swell. Omitting swell gives 200 BCY/hr; omitting the efficiency factor gives 240 BCY/hr.",
    "id": "construction-004",
    "question": "An excavator has a 2-CY bucket, a 30-second cycle time, and works a 50-minute hour. The soil swells 20%. What is the hourly production rate in bank cubic yards per hour?",
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the hourly production in bank cubic yards. Chain the three adjustments \\u2014 cycle rate, efficiency, swell:\n\n$$\\text{Production} = \\frac{3600}{\\text{cycle time}} \\times \\text{bucket} \\times \\text{efficiency} \\div (1 + \\text{swell})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{bucket} &= 2\\ \\text{CY} \\\\\n\\text{cycle time} &= 30\\ \\text{s} \\\\\n\\text{efficiency} &= \\frac{50}{60} \\\\\n\\text{swell} &= 20\\% = 0.20 \\\\\n\\text{production} &= ?\\ \\text{BCY/hr}\n\\end{aligned}$$\n\n$$(\\text{cycles/hr}) = \\frac{3600}{30} = 120$$\n\n$$(\\text{loose}) = (120)(2)\\left(\\frac{50}{60}\\right) = 200\\ \\text{LCY/hr}$$\n\n$$(\\text{bank}) = \\frac{200}{1.20} = 166.7\\ \\text{BCY/hr} \\approx 167\\ \\text{BCY/hr}$$",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the hourly production in bank cubic yards. Chain the three adjustments — cycle rate, efficiency, swell:\n\n$$\\text{Production} = \\frac{3600}{\\text{cycle time}} \\times \\text{bucket} \\times \\text{efficiency} \\div (1 + \\text{swell})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{bucket} &= 2\\ \\text{CY} \\\\\n\\text{cycle time} &= 30\\ \\text{s} \\\\\n\\text{efficiency} &= \\frac{50}{60} \\\\\n\\text{swell} &= 20\\% = 0.20 \\\\\n\\text{production} &= ?\\ \\text{BCY/hr}\n\\end{aligned}$$\n\n$$(\\text{cycles/hr}) = \\frac{3600}{30} = 120$$\n\n$$(\\text{loose}) = (120)(2)\\left(\\frac{50}{60}\\right) = 200\\ \\text{LCY/hr}$$\n\n$$(\\text{bank}) = \\frac{200}{1.20} = 166.7\\ \\text{BCY/hr} \\approx 167\\ \\text{BCY/hr}$$",
    "subtopic": "Equipment production",
    "topic": "Construction Engineering",
    "videoUrl": "https://www.youtube.com/watch?v=4jTqgEReYjc",
@@ -2260,7 +2260,7 @@
    "explanation": "Risk allocation is the heart of contract-type questions: lump sum shifts quantity and price risk to the contractor, while unit price keeps quantity risk with the owner. Design-build is a delivery method, not a payment-risk distinction.",
    "id": "construction-008",
    "question": "Under which contract type does the owner bear the risk of quantity overruns, because the contractor is paid for each measured unit of work actually performed?",
-   "solution": "The governing principle is risk allocation: in a unit price contract, the owner pays the contractor for each measured unit of work actually performed.\n\nApplied to the facts: if quantities overrun the estimate, the owner pays for the extra units \\u2014 so the risk of quantity overruns stays with the owner.\n\nBy contrast, a lump sum contract shifts quantity and price risk to the contractor, and design-build is a delivery method, not a payment-risk distinction.\n\nTherefore, the owner bears quantity-overrun risk under a unit price contract.",
+   "solution": "The governing principle is risk allocation: in a unit price contract, the owner pays the contractor for each measured unit of work actually performed.\n\nApplied to the facts: if quantities overrun the estimate, the owner pays for the extra units — so the risk of quantity overruns stays with the owner.\n\nBy contrast, a lump sum contract shifts quantity and price risk to the contractor, and design-build is a delivery method, not a payment-risk distinction.\n\nTherefore, the owner bears quantity-overrun risk under a unit price contract.",
    "subtopic": "Contracts and bidding",
    "topic": "Construction Engineering",
    "conceptual": true
@@ -2766,7 +2766,7 @@
     "None of the members"
    ],
    "answerIndex": 0,
-   "solution": "The governing principle is joint equilibrium: \\(\\sum F_x = 0\\) and \\(\\sum F_y = 0\\) must both hold at every truss joint.\n\nSumming forces perpendicular to the collinear pair, the only force component in that direction comes from the perpendicular member \\u2014 and with no external load at the joint, that component must be zero. Hence the perpendicular member is a zero-force member.\n\nThe two collinear members, by contrast, can still carry equal and opposite forces that balance each other, so they are not necessarily zero-force. Therefore only the perpendicular member must be a zero-force member.",
+   "solution": "The governing principle is joint equilibrium: \\(\\sum F_x = 0\\) and \\(\\sum F_y = 0\\) must both hold at every truss joint.\n\nSumming forces perpendicular to the collinear pair, the only force component in that direction comes from the perpendicular member — and with no external load at the joint, that component must be zero. Hence the perpendicular member is a zero-force member.\n\nThe two collinear members, by contrast, can still carry equal and opposite forces that balance each other, so they are not necessarily zero-force. Therefore only the perpendicular member must be a zero-force member.",
    "explanation": "The trap is 'all three' — the two collinear members can carry equal and opposite forces that cancel; only the perpendicular member has nothing to balance it.",
    "diagram": "diagrams/statics-014.svg",
    "conceptual": true
