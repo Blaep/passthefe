@@ -447,7 +447,9 @@
    "question": "What is the largest eigenvalue of the matrix [[5, 2], [2, 2]]?",
    "solution": "Refer to the Matrices section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the eigenvalues \\(\\lambda\\) of \\(A = \\begin{bmatrix} 5 & 2 \\\\ 2 & 2 \\end{bmatrix}\\). They are the roots of the characteristic equation:\n\n$$\\det(A - \\lambda I) = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\lambda &= ?\n\\end{aligned}$$\n\n$$((5-\\lambda)(2-\\lambda) - (2)(2)) = 0 \\rightarrow (\\lambda^2 - 7\\lambda + 6) = 0$$\n\nFactoring gives \\((\\lambda - 6)(\\lambda - 1) = 0\\), so \\(\\lambda = 6\\) or \\(\\lambda = 1\\):\n\n$$(\\lambda_{\\max}) = 6$$",
    "subtopic": "Eigenvalues",
-   "topic": "Mathematics"
+   "topic": "Mathematics",
+   "videoUrl": "https://www.youtube.com/watch?v=vMfwDxG-4jU",
+   "videoTitle": "This Matrix Destroys Every Vector Except Two | Eigenvalues | Eigenvectors | Linear Algebra | Dgmathc"
   },
   {
    "answerIndex": 1,
@@ -688,7 +690,9 @@
    "question": "A project requires an initial investment of $5,000 and returns $2,000 per year for 3 years. Approximately what is the internal rate of return (IRR) of this project?",
    "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
    "subtopic": "Rate of return (IRR)",
-   "topic": "Engineering Economics"
+   "topic": "Engineering Economics",
+   "videoUrl": "https://www.youtube.com/watch?v=Fw5-wccViOM",
+   "videoTitle": "NPV and IRR explained"
   },
   {
    "id": "ethics-002",
@@ -814,7 +818,9 @@
    "answerIndex": 2,
    "solution": "The NSPE Code of Ethics establishes a hierarchy of duties, headed by the paramount obligation to safeguard the life, health, property, and welfare of the public. Confidentiality to a client is a genuine duty, but it is subordinate to public safety.\n\nHere a toxic emission poses a serious health risk to the surrounding community and the client refuses to act. The duty to protect the public therefore overrides confidentiality, and the obligation is to disclose the hazard to appropriate authorities — not to remain silent, not to wait for the client's written permission, and not to go to the news media first.\n\nThe engineer must disclose the hazard to appropriate authorities.",
    "explanation": "This tests the hierarchy of duties: public safety > confidentiality. On the FE, when two duties collide, the answer is almost always the one that protects public health and safety.",
-   "conceptual": true
+   "conceptual": true,
+   "videoUrl": "https://www.youtube.com/watch?v=oANQsyBvOlY",
+   "videoTitle": "Codes, Standards, and Ethics in Civil Engineering | CVL 398 Lecture 3 Summary"
   },
   {
    "id": "statics-002",
@@ -1446,7 +1452,9 @@
    "question": "A horizontal water jet with diameter 50 mm and velocity 10 m/s strikes a stationary flat plate perpendicular to the jet. Neglecting friction and splash losses, what is the force exerted on the plate?",
    "solution": "Refer to the Impulse-Momentum Principle section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). The jet is brought to zero x-velocity against the stationary plate:\n\n$$F = \\rho A V^2$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\n\\rho &= 1000\\ \\text{kg/m}^3 \\\\\nA &= \\frac{\\pi(0.05)^2}{4} = 0.0019635\\ \\text{m}^2 \\\\\nV &= 10\\ \\text{m/s} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (1000)(0.0019635)(10)^2$$\n\n$$(F) = 196.35 = 196\\ \\text{N}$$",
    "subtopic": "Momentum equation",
-   "topic": "Fluid Mechanics"
+   "topic": "Fluid Mechanics",
+   "videoUrl": "https://www.youtube.com/watch?v=EWSD6E586Ko",
+   "videoTitle": "ME 4I FMM 4.1 Force Exerted by Jet on stationary plate"
   },
   {
    "answerIndex": 3,
@@ -2003,7 +2011,9 @@
    "solution": "The AASHTO load equivalency factors convert mixed traffic to 18-kip equivalent single axle loads (ESALs) using the fourth-power law: the pavement damage caused by an axle is proportional to the fourth power of the ratio of its load to the 18-kip reference load, \\((\\text{axle load}/18\\ \\text{kips})^4\\).\n\nConsequences: doubling an axle load causes roughly \\(2^4 = 16\\) times the damage — which is why overloaded trucks dominate pavement deterioration and why ESAL counts, not vehicle counts, drive pavement thickness design. A linear damage assumption would drastically underestimate heavy-axle effects.\n\nThe factors are based on the fourth-power law relating axle load to pavement damage.",
    "subtopic": "Pavement design",
    "topic": "Transportation Engineering",
-   "conceptual": true
+   "conceptual": true,
+   "videoUrl": "https://www.youtube.com/watch?v=jY4oGqfMKI0",
+   "videoTitle": "What is ESAL? Guide to equivalent single axle loads"
   },
   {
    "answerIndex": 2,
@@ -2750,7 +2760,9 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Belt Friction section in the Statics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(T_2/T_1\\). We can determine it from the capstan equation:\n\n$$\\frac{T_2}{T_1} = e^{\\mu \\beta}$$\n\nList the known and unknown parameters in order to solve for \\(T_2/T_1\\):\n\n$$\\begin{aligned} \\mu &= 0.30 \\\\ \\beta &= 1.5(2\\pi) = 9.42\\ \\text{rad} \\\\ T_2/T_1 &= ? \\end{aligned}$$\n\n$$\\left(\\frac{T_2}{T_1}\\right) = e^{(0.30)(9.42)} \\rightarrow e^{2.83}$$\n\n$$\\left(\\frac{T_2}{T_1}\\right) = 16.9$$",
-   "explanation": "The trap is plugging 1.5 straight in for β — the capstan equation needs the contact angle in radians, so 1.5 turns must become 3π radians first."
+   "explanation": "The trap is plugging 1.5 straight in for β — the capstan equation needs the contact angle in radians, so 1.5 turns must become 3π radians first.",
+   "videoUrl": "https://www.youtube.com/watch?v=r8Uo1E0dJcA",
+   "videoTitle": "Tug of War Rope Friction Problem | Capstan Equation & Belt Friction | Statics Full Solution"
   },
   {
    "id": "statics-014",
@@ -3142,7 +3154,9 @@
    "answerIndex": 0,
    "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta p\\). We can determine \\(\\Delta p\\) from the following equation:\n\n$$\\Delta p = \\frac{32\\mu L V}{D^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\n\\mu &= 0.10\\ \\text{Pa}\\cdot\\text{s} \\\\\nL &= 100\\ \\text{m} \\\\\nV &= 0.50\\ \\text{m/s} \\\\\nD &= 0.05\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = \\frac{32\\mu L V}{D^2} \\rightarrow (\\Delta p) = \\frac{32(0.10)(100)(0.50)}{(0.05)^2}$$\n\n$$(\\Delta p) = 64{,}000\\ \\text{Pa} = 64.0\\ \\text{kPa}$$",
    "explanation": "In the velocity form the diameter is squared (D-squared), not raised to the fourth power — D-to-the-fourth belongs to the discharge form. Plugging the radius in as D quadruples the answer to 256 kPa.",
-   "diagram": "diagrams/fluid-011.svg"
+   "diagram": "diagrams/fluid-011.svg",
+   "videoUrl": "https://www.youtube.com/watch?v=nzzJkNeT8Zc",
+   "videoTitle": "Hagen-Pouseuille's Law: Fluid Transport in a Tube | Fluid Mechanics"
   },
   {
    "id": "fluid-012",
@@ -4282,7 +4296,9 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Shear and torsion section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(V_c\\). The nominal one-way shear strength provided by the concrete is:\n\n$$V_c = 0.17\\lambda\\sqrt{f'_c}\\,b_w d$$\n\nList the known and unknown parameters in order to solve for \\(V_c\\):\n\n$$\\begin{aligned}\n\\lambda &= 1.0 \\\\\nf'_c &= 28\\ \\text{MPa} \\\\\nb_w &= 300\\ \\text{mm} \\\\\nd &= 540\\ \\text{mm} \\\\\nV_c &= ?\n\\end{aligned}$$\n\n$$(V_c) = 0.17(1.0)\\sqrt{28}(300)(540) \\rightarrow (V_c) = (0.900)(162000)$$\n\n$$(V_c) = 145700\\ \\text{N} = 146\\ \\text{kN}$$",
-   "explanation": "This is the nominal strength — the 109 kN trap multiplies by φ = 0.75, which gives the design strength, not the nominal strength asked for."
+   "explanation": "This is the nominal strength — the 109 kN trap multiplies by φ = 0.75, which gives the design strength, not the nominal strength asked for.",
+   "videoUrl": "https://www.youtube.com/watch?v=UiY_baG8MQY",
+   "videoTitle": "Shear Design Example - Reinforced Concrete Beams using ACI 318-19"
   },
   {
    "id": "structural-018",
@@ -5681,7 +5697,9 @@
    "answerIndex": 3,
    "solution": "Refer to the Centroids of Masses, Areas, Lengths, and Volumes section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(x_c\\). The handbook gives, for an area bounded by the axes and the function \\(y = f(x)\\):\n\n$$x_c = \\frac{\\int x\\,dA}{A}, \\qquad A = \\int f(x)\\,dx, \\qquad dA = f(x)\\,dx$$\n\nList the known and unknown parameters in order to compute \\(x_c\\):\n\n$$\\begin{aligned}\nf(x) &= x^2 \\\\\ndA &= x^2\\,dx \\\\\nA &= \\int_0^2 x^2\\,dx \\\\\n\\int x\\,dA &= \\int_0^2 x \\cdot x^2\\,dx = \\int_0^2 x^3\\,dx \\\\\nx_c &= ?\n\\end{aligned}$$\n\nCompute the area on its own line:\n\n$$(A) = \\left[\\frac{x^3}{3}\\right]_0^2 = \\frac{8}{3} - 0 = \\frac{8}{3}$$\n\nCompute the first moment with respect to the y-axis on its own line:\n\n$$\\left(\\int x\\,dA\\right) = \\left[\\frac{x^4}{4}\\right]_0^2 = \\frac{16}{4} - 0 = 4$$\n\nDivide the moment by the area:\n\n$$(x_c) = \\frac{(4)}{(8/3)} \\rightarrow (4)\\left(\\frac{3}{8}\\right) = \\frac{12}{8} = 1.5$$\n\n$$x_c = 1.5$$",
    "explanation": "The x-centroid weights each vertical strip by its distance x from the y-axis; the taller strips on the right pull the centroid right of the midpoint.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=F1OKFbVSWxk",
+   "videoTitle": "Coordinates of the Centroid by Integration | Integral Calculus Application"
   },
   {
    "id": "stats-021",
@@ -5732,7 +5750,9 @@
    "answerIndex": 2,
    "solution": "Refer to the Expected Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(E[X^2]\\). The handbook gives the expected value of a function \\(Y = g(X)\\) of a continuous random variable:\n\n$$E[Y] = E[g(X)] = \\int_{-\\infty}^{\\infty} g(x)\\,f(x)\\,dx$$\n\nList the known and unknown parameters in order to compute \\(E[X^2]\\):\n\n$$\\begin{aligned}\ng(x) &= x^2 \\\\\nf(x) &= \\frac{1}{10}, \\quad 0 \\le x \\le 10 \\\\\nE[X^2] &= ?\n\\end{aligned}$$\n\nSubstitute into the expected-value formula, noting the density is zero outside \\([0, 10]\\):\n\n$$(E[X^2]) = \\int_0^{10} x^2 \\left(\\frac{1}{10}\\right)\\,dx = \\frac{1}{10}\\int_0^{10} x^2\\,dx$$\n\nEvaluate the integral on its own line:\n\n$$\\left(\\int_0^{10} x^2\\,dx\\right) = \\left[\\frac{x^3}{3}\\right]_0^{10} = \\frac{1000}{3} - 0 = \\frac{1000}{3}$$\n\nMultiply by the constant factor:\n\n$$(E[X^2]) = \\left(\\frac{1}{10}\\right)\\left(\\frac{1000}{3}\\right) = \\frac{100}{3} \\approx 33.33$$\n\n$$E[X^2] = 33.33$$",
    "explanation": "E[X²] is not the square of E[X]. Integrate x² against the density directly — the variance is the difference between the two.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=mfexJkcdXow",
+   "videoTitle": "Continuous Variables: Probability & Expected Value"
   },
   {
    "id": "ethics-021",
@@ -5783,7 +5803,9 @@
    "answerIndex": 1,
    "solution": "Refer to the Obligations of Licensees to Other Licensees section in the Ethics and Professional Practice chapter of the FE Reference Handbook.\n\nThe Model Rules provide that licensees shall not offer, give, solicit, or receive, either directly or indirectly, any commission, or gift, or other valuable consideration in order to secure work, and shall not make any political contribution with the intent to influence the award of a contract by public authority.\n\nThe engineer's contribution was made with the stated intent of influencing the award of a public contract, which is exactly what this rule prohibits. That the money went to a campaign rather than directly to an official does not change the intent, and the violation is complete when the contribution is made — whether or not the firm wins the contract is irrelevant.\n\nA violation of the political-contribution rule is the correct choice.",
    "explanation": "The intent to influence the award is what triggers the rule, whether or not the contract is actually won.",
-   "estimatedTimeSeconds": 90
+   "estimatedTimeSeconds": 90,
+   "videoUrl": "https://www.youtube.com/watch?v=5KZx81crb48",
+   "videoTitle": "Engineering Ethics: Crash Course Engineering #27"
   },
   {
    "id": "econ-021",
@@ -5834,7 +5856,9 @@
    "answerIndex": 1,
    "solution": "Refer to the Uniform Series and Single Payment sections in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\). A deferred annuity is priced as an ordinary annuity at the start of its first payment year, then discounted back through the deferral period:\n\n$$P = A(P/A, i\\%, n)(P/F, i\\%, k)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, k) = (1+i)^{-k}$$\n\nList the known and unknown parameters in order to compute \\(P\\):\n\n$$\\begin{aligned}\nA &= \\$4{,}000 \\\\\ni &= 10\\% = 0.10 \\\\\nn &= 6 \\\\\nk &= 2 \\\\\nP &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 10\\%, 6)) = \\frac{(1.10)^6 - 1}{(0.10)(1.10)^6} = \\frac{0.771561}{0.177156} = 4.3553$$\n\nCompute the deferral (single-payment) factor on its own line:\n\n$$((P/F, 10\\%, 2)) = (1.10)^{-2} = 0.8264$$\n\nSubstitute both factors:\n\n$$(P) = (4000)(4.3553)(0.8264) \\rightarrow (4000)(3.5994) = 14{,}397.56$$\n\n$$P = \\$14{,}398$$",
    "explanation": "Deferral is handled by discounting the whole annuity back through the gap years with a P/F factor — forgetting that step prices the annuity as if it started today.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=ZBr1AZtvMCw",
+   "videoTitle": "Calculating Deferred Annuities"
   },
   {
    "answerIndex": 0,
@@ -5888,7 +5912,9 @@
    "question": "A 500 N rectangular crate is 0.9 m wide and 1.4 m tall. It rests on a horizontal surface with coefficient of static friction \\(\\mu_s = 0.40\\). A horizontal force P is applied at the top edge of the crate and slowly increased. Does the crate tip or slip first, and at what value of P does motion impend?",
    "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook.\nVertical equilibrium gives the normal force: \\(N = 500\\ \\mathrm{N}\\).\nThe limiting friction is \\(F \\le \\mu_s N\\).\n\\(F_{\\max} = (0.40)(500\\ \\mathrm{N}) = 200\\ \\mathrm{N}\\).\nSo slipping would impend at \\(P = 200\\ \\mathrm{N}\\).\nRefer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook.\nFor tipping, take moments about the bottom corner on the side toward which P pushes, at the instant the normal force acts at that corner:\n\\(\\sum M = 0 \\Rightarrow P(1.4\\ \\mathrm{m}) - (500\\ \\mathrm{N})(0.45\\ \\mathrm{m}) = 0\\).\n\\(P = \\dfrac{(500)(0.45)}{1.4} = 160.7\\ \\mathrm{N}\\).\nSince \\(160.7\\ \\mathrm{N} < 200\\ \\mathrm{N}\\), tipping impends first at \\(P \\approx 161\\ \\mathrm{N}\\).",
    "subtopic": "Tipping versus slipping",
-   "topic": "Statics"
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=QsWeEPaX4Vw",
+   "videoTitle": "FRICTION in 10 Minutes! (Statics/Physics)"
   },
   {
    "answerIndex": 2,
@@ -5939,7 +5965,9 @@
    "question": "A 3.0 kg ball A moving at 8.0 m/s strikes head-on a 5.0 kg ball B moving at 3.0 m/s in the opposite direction. The coefficient of restitution is e = 0.70. Determine the velocity of ball A just after impact (positive in A's original direction).",
    "solution": "Refer to the Impact section in the Dynamics chapter of the FE Reference Handbook.\nMomentum is conserved: \\(m_A v_A + m_B v_B = m_A v_A' + m_B v_B'\\).\nTake A's original direction as positive, so \\(v_B = -3.0\\ \\mathrm{m/s}\\).\n\\((3.0)(8.0) + (5.0)(-3.0) = 3.0\\,v_A' + 5.0\\,v_B'\\).\n\\(9.0 = 3.0\\,v_A' + 5.0\\,v_B'\\).\nThe coefficient of restitution: \\(e = \\dfrac{v_B' - v_A'}{v_A - v_B} = 0.70\\).\n\\(v_B' - v_A' = 0.70[8.0 - (-3.0)] = 7.70\\ \\mathrm{m/s}\\).\nSubstitute \\(v_B' = v_A' + 7.70\\) into the momentum equation:\n\\(3.0\\,v_A' + 5.0(v_A' + 7.70) = 9.0\\).\n\\(8.0\\,v_A' = 9.0 - 38.5 = -29.5\\).\n\\(v_A' = -3.69\\ \\mathrm{m/s}\\).",
    "subtopic": "Direct central impact (coefficient of restitution)",
-   "topic": "Dynamics"
+   "topic": "Dynamics",
+   "videoUrl": "https://www.youtube.com/watch?v=t-jOyKCHUTU",
+   "videoTitle": "Impact - ENG 212 Dynamics - Lesson 17"
   },
   {
    "answerIndex": 2,
@@ -5990,7 +6018,9 @@
    "question": "A round tensile specimen has an original diameter of 12.0 mm. At a certain point during the test, the applied load is 45.0 kN and the instantaneous (actual) diameter of the specimen is 11.1 mm. What is the true stress in the specimen at that instant?",
    "solution": "Refer to the True stress section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook.\nThe printed relation is \\(\\sigma_T = \\dfrac{F}{A}\\), where \\(A\\) is the actual (instantaneous) cross-sectional area.\n\\(A = \\dfrac{\\pi d^2}{4} = \\dfrac{\\pi (11.1\\ \\mathrm{mm})^2}{4}\\).\n\\(A = 96.8\\ \\mathrm{mm^2}\\).\n\\(\\sigma_T = \\dfrac{45.0 \\times 10^3\\ \\mathrm{N}}{96.8\\ \\mathrm{mm^2}}\\).\n\\(\\sigma_T = 465\\ \\mathrm{N/mm^2} = 465\\ \\mathrm{MPa}\\).",
    "subtopic": "True stress",
-   "topic": "Materials"
+   "topic": "Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=q7g4MTSzESc",
+   "videoTitle": "Metals 101-8 Engineering Stress vs True Stress"
   },
   {
    "answerIndex": 3,
@@ -6043,7 +6073,9 @@
    "question": "A solid circular shaft of diameter 50 mm is subjected to a bending moment of 800 N·m and a torque of 1200 N·m acting simultaneously. Determine the maximum shear stress in the shaft (Tresca/maximum-shear-stress basis).",
    "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook.\nBending produces \\(\\sigma_x = \\pm Mc/I\\); for a solid circle this becomes \\(\\sigma_x = 32M/(\\pi d^3)\\).\n\\(\\sigma_x = \\dfrac{32(800\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\sigma_x = 6.52 \\times 10^7\\ \\mathrm{Pa} = 65.2\\ \\mathrm{MPa}\\).\nRefer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook.\nTorsion produces \\(\\tau_{xy} = T\\rho/J\\); for a solid circle \\(\\tau_{xy} = 16T/(\\pi d^3)\\).\n\\(\\tau_{xy} = \\dfrac{16(1200\\ \\mathrm{N{\\cdot}m})}{\\pi (0.050\\ \\mathrm{m})^3}\\).\n\\(\\tau_{xy} = 4.89 \\times 10^7\\ \\mathrm{Pa} = 48.9\\ \\mathrm{MPa}\\).\nRefer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\\(\\sigma_{1,2} = \\dfrac{\\sigma_x}{2} \\pm \\sqrt{\\left(\\dfrac{\\sigma_x}{2}\\right)^2 + \\tau_{xy}^2}\\).\n\\(\\sigma_{1,2} = 32.6 \\pm \\sqrt{(32.6)^2 + (48.9)^2} = 32.6 \\pm 58.8\\).\n\\(\\sigma_1 = 91.4\\ \\mathrm{MPa},\\quad \\sigma_2 = -26.2\\ \\mathrm{MPa}\\).\nRefer to the Mohr's Circle—Stress, 2D section in the Mechanics of Materials chapter of the FE Reference Handbook.\nThe circle's radius is the maximum shear stress; with principal stresses of opposite sign this equals \\(\\tau_{\\max} = \\dfrac{\\sigma_1 - \\sigma_2}{2}\\) (Tresca basis).\n\\(\\tau_{\\max} = \\dfrac{91.4 - (-26.2)}{2}\\).\n\\(\\tau_{\\max} = 58.8\\ \\mathrm{MPa}\\).",
    "subtopic": "Combined bending and torsion (maximum shear stress)",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=tZl27Htjg8Q",
+   "videoTitle": "Understanding Mechanics of Materials-Combined load cases-Examples-Circular Sections"
   },
   {
    "answerIndex": 2,
@@ -6096,7 +6128,9 @@
    "question": "A rectangular concrete channel (Manning's n = 0.013) is 3.0 m wide and carries water 1.2 m deep on a longitudinal slope of 0.0010. Estimate the discharge in the channel using Manning's equation (SI units).",
    "solution": "Refer to the Manning's Equation section in the Fluid Mechanics chapter of the FE Reference Handbook.\nThe printed SI form is \\(Q = \\dfrac{K}{n} A R_H^{2/3} S^{1/2}\\) with \\(K = 1.0\\).\nFlow area: \\(A = (3.0\\ \\mathrm{m})(1.2\\ \\mathrm{m}) = 3.60\\ \\mathrm{m^2}\\).\nWetted perimeter: \\(P = 3.0 + 2(1.2) = 5.40\\ \\mathrm{m}\\).\nHydraulic radius: \\(R_H = A/P = 3.60/5.40 = 0.6667\\ \\mathrm{m}\\).\n\\(Q = \\dfrac{1.0}{0.013}(3.60)(0.6667)^{2/3}(0.0010)^{1/2}\\).\n\\((0.6667)^{2/3} = 0.763\\); \\((0.0010)^{1/2} = 0.03162\\).\n\\(Q = (76.92)(3.60)(0.763)(0.03162)\\).\n\\(Q = 6.68\\ \\mathrm{m^3/s}\\).",
    "subtopic": "Manning's equation (open-channel flow)",
-   "topic": "Fluid Mechanics"
+   "topic": "Fluid Mechanics",
+   "videoUrl": "https://www.youtube.com/watch?v=REFGl9TTZ3s",
+   "videoTitle": "Manning's Equation Explained — Open Channel Flow for Irrigation Design"
   },
   {
    "id": "surveying-021",
@@ -6202,7 +6236,9 @@
    "answerIndex": 1,
    "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the flexural stiffness \\(k_{AB}\\). The handbook prints:\n\n$$k_{AB} = \\frac{4EI}{L}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= 50 \\times 10^6\\ \\text{mm}^4 = 50 \\times 10^6 \\times 10^{-12}\\ \\text{m}^4 \\\\\nL &= 4\\ \\text{m} \\\\\nk_{AB} &= ?\n\\end{aligned}$$\n\nFirst convert \\(EI\\) to consistent units:\n\n$$(EI) = (200 \\times 10^9)(50 \\times 10^6 \\times 10^{-12})$$\n\n$$(EI) = (200 \\times 10^9)(50 \\times 10^{-6}) = 10 \\times 10^6\\ \\text{N-m}^2$$\n\n$$(EI) = 10{,}000\\ \\text{kN-m}^2$$\n\n$$(k_{AB}) = \\frac{4 \\cdot 10{,}000}{4}$$\n\n$$(k_{AB}) = 10{,}000\\ \\text{kN-m/rad}$$\n\nThe flexural stiffness factor is \\(10{,}000\\ \\text{kN-m/rad}\\).",
    "explanation": "The mm^4 to m^4 conversion (x10^-12) is where this problem is usually lost. Skipping it inflates EI by a factor of 10^12.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=Xo7XFu3UmxQ",
+   "videoTitle": "Mastering the Slope Deflection Method | Indeterminate Continuous Beams Made Easy!"
   },
   {
    "id": "geotech-021",
@@ -6254,7 +6290,9 @@
    "answerIndex": 2,
    "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the factor of safety against seepage liquefaction \\(FS_s\\). The handbook prints:\n\n$$FS_s = \\frac{i_c}{i_e}, \\qquad i_c = \\frac{\\gamma_{sat} - \\gamma_w}{\\gamma_w}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ni_e &= 0.35 \\\\\n\\gamma_{sat} &= 20.0\\ \\text{kN/m}^3 \\\\\n\\gamma_w &= 9.81\\ \\text{kN/m}^3 \\\\\ni_c &= ? \\\\\nFS_s &= ?\n\\end{aligned}$$\n\nFirst find the critical (quick) gradient:\n\n$$(i_c) = \\frac{20.0 - 9.81}{9.81}$$\n\n$$(i_c) = \\frac{10.19}{9.81} = 1.039$$\n\nThen the factor of safety:\n\n$$(FS_s) = \\frac{1.039}{0.35}$$\n\n$$(FS_s) = 2.97$$\n\nThe factor of safety against seepage liquefaction is \\(2.97\\).",
    "explanation": "Quicksand initiates when the upward seepage gradient reaches the critical gradient ic (about 1.0 for most sands). Dividing ie by ic instead gives 0.34, the inverse of the factor of safety.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=ZzO-e5XKAY0",
+   "videoTitle": "Seepage Pressure and Quicksand"
   },
   {
    "id": "transportation-021",
@@ -6306,7 +6344,9 @@
    "answerIndex": 1,
    "solution": "Refer to the Highway Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the structural number \\(SN\\). The handbook prints the AASHTO Structural Number Equation:\n\n$$SN = a_1D_1 + a_2D_2m_2 + a_3D_3m_3$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_1 &= 0.44,\\quad D_1 = 3\\ \\text{in.} \\\\\na_2 &= 0.14,\\quad D_2 = 8\\ \\text{in.},\\quad m_2 = 1.0 \\\\\na_3 &= 0.11,\\quad D_3 = 12\\ \\text{in.},\\quad m_3 = 0.9 \\\\\nSN &= ?\n\\end{aligned}$$\n\n$$(SN) = (0.44)(3) + (0.14)(8)(1.0) + (0.11)(12)(0.9)$$\n\n$$(SN) = 1.32 + 1.12 + 1.188$$\n\n$$(SN) = 3.628 \\approx 3.63$$\n\nThe structural number is \\(3.63\\).",
    "explanation": "Drainage coefficients (m) apply to the base and subbase but never to the surface layer. Forgetting the subbase drainage factor (using m3 = 1.0) gives 3.76.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=QM1EbcMiCcM",
+   "videoTitle": "Structural Number of a flexible pavement,"
   },
   {
    "id": "water-021",
@@ -6411,7 +6451,9 @@
    "answerIndex": 2,
    "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the late start \\(LS_B\\). The handbook prints \\(LF =\\) earliest \\(LS\\) of successors and \\(LS = LF - D\\). First run the forward pass to find the project duration:\n\n$$\\begin{aligned}\n\\text{Path A-B-D} &= 4 + 5 + 3 = 12\\ \\text{days} \\\\\n\\text{Path A-C-D} &= 4 + 6 + 3 = 13\\ \\text{days}\n\\end{aligned}$$\n\nThe critical path is A-C-D, so the project duration is 13 days. Now run the backward pass from D:\n\n$$(LF_D) = 13, \\qquad (LS_D) = 13 - 3 = 10$$\n\nActivity B's only successor is D, so:\n\n$$(LF_B) = LS_D = 10$$\n\n$$(LS_B) = LF_B - D_B$$\n\n$$(LS_B) = 10 - 5 = 5$$\n\nThe late start of activity B is day \\(5\\).",
    "explanation": "Backward pass: B inherits its late finish from D's late start (day 10), then subtracts its own 5-day duration. Day 10 is the late finish, not the late start, and day 4 is the late start of C.",
-   "estimatedTimeSeconds": 150
+   "estimatedTimeSeconds": 150,
+   "videoUrl": "https://www.youtube.com/watch?v=4oDLMs11Exs",
+   "videoTitle": "Use forward and backward pass to determine project duration and critical path"
   },
   {
    "answerIndex": 2,
@@ -6496,7 +6538,9 @@
    "question": "A compound beam has segment AB with a pin support at A (x = 0 m) and a roller at B (x = 6 m). Segment BD is connected by an internal hinge at B, rests on a roller at C (x = 10 m), and carries a 10 kN downward load at D (x = 12 m). Segment AB carries a uniform load of 2 kN/m over its full length. What is the vertical reaction at the pin support A?",
    "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(A_y\\). Start with the free-body diagram of the secondary segment BD (hinge at B, roller at C, 10 kN at D):\n\n$$\\sum M_B = 0: \\quad C_y(4) - 10(6) = 0$$\n\n$$(C_y) = \\frac{60}{4} = 15 \\text{ kN (upward)}$$\n\n$$\\sum F_y = 0: \\quad B_y + 15 - 10 = 0$$\n\n$$(B_y) = -5 \\text{ kN}$$\n\nThe hinge pulls downward on segment BD with 5 kN, so it pushes upward on segment AB with 5 kN.\n\nNow draw segment AB: pin at A, roller at B, uniform load \\((2 \\text{ kN/m})(6 \\text{ m}) = 12 \\text{ kN}\\) at \\(x = 3 \\text{ m}\\), and the 5 kN hinge force upward at B.\n\n$$\\sum M_A = 0: \\quad R_B(6) + 5(6) - 12(3) = 0$$\n\n$$(R_B) = \\frac{36 - 30}{6} = 1 \\text{ kN (upward)}$$\n\n$$\\sum F_y = 0: \\quad A_y + 1 + 5 - 12 = 0$$\n\n$$(A_y) = 6 \\text{ kN (upward)}$$",
    "subtopic": "Compound beam (Gerber beam)",
-   "topic": "Statics"
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=lZwXCIoLPVk",
+   "videoTitle": "B13 Beam Analysis Beams with Intermediate hinges"
   },
   {
    "answerIndex": 1,
@@ -6530,7 +6574,9 @@
    "question": "A rigid bar AB, 2 m long, has end A constrained to horizontal motion and end B constrained to vertical motion. At the instant the bar makes 60 degrees with the horizontal, end A moves to the right at 6 m/s. Using the instantaneous center method, what is the velocity of end B?",
    "solution": "Refer to the Instantaneous Center of Rotation section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(v_B\\). Place A at the origin: \\(A = (0, 0)\\), so \\(B = (2\\cos 60^\\circ, 2\\sin 60^\\circ) = (1, 1.732) \\text{ m}\\).\n\nThe perpendicular to \\(v_A\\) (horizontal) through A is the vertical line \\(x = 0\\); the perpendicular to \\(v_B\\) (vertical) through B is the horizontal line \\(y = 1.732 \\text{ m}\\).\n\n$$(IC) = (0, 1.732) \\text{ m}$$\n\nThe angular velocity about the instant center is:\n\n$$\\omega = \\frac{v_A}{d_{IC \\to A}} = \\frac{6}{1.732} = 3.464 \\text{ rad/s}$$\n\nThe speed of B is:\n\n$$(v_B) = \\omega \\, d_{IC \\to B} = (3.464)(1) = 3.46 \\text{ m/s}$$\n\nPoint A moves right while directly below the IC, so the rotation is clockwise; point B, to the right of the IC, therefore moves downward.\n\n$$(v_B) = 3.46 \\text{ m/s downward}$$",
    "subtopic": "Instantaneous center of rotation",
-   "topic": "Dynamics"
+   "topic": "Dynamics",
+   "videoUrl": "https://www.youtube.com/watch?v=9jDYZfV4JYE",
+   "videoTitle": "Dynamics: Lesson 30- Intro to Instantaneous Centers with Relative Motion"
   },
   {
    "answerIndex": 1,
@@ -6632,7 +6678,9 @@
    "question": "A triangular channel with side slopes 2H:1V carries 3.0 m^3/s on a bed slope of 0.001. Manning's n is 0.013. What is the normal depth?",
    "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(y_n\\). The handbook prints (SI units):\n\n$$Q = \\frac{1}{n} A R^{2/3} S^{1/2}$$\n\nFor a triangular channel with side slope \\(m = 2\\):\n\n$$\\begin{aligned}\nA &= m y^2 = 2y^2 \\\\\nP &= 2y\\sqrt{1 + m^2} = 2y\\sqrt{5} \\\\\nR &= \\frac{A}{P} = \\frac{2y^2}{2y\\sqrt{5}} = \\frac{y}{\\sqrt{5}}\n\\end{aligned}$$\n\nSubstitute into Manning's equation:\n\n$$3.0 = \\frac{1}{0.013} (2y^2) \\left(\\frac{y}{\\sqrt{5}}\\right)^{2/3} (0.001)^{1/2}$$\n\n$$3.0 = \\left(\\frac{2\\sqrt{0.001}}{0.013 \\times 5^{1/3}}\\right) y^{8/3} = 2.841 \\, y^{8/3}$$\n\n$$(y^{8/3}) = \\frac{3.0}{2.841} = 1.056$$\n\n$$(y_n) = 1.056^{3/8} = 1.02 \\text{ m}$$",
    "subtopic": "Normal depth (triangular channel)",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "videoUrl": "https://www.youtube.com/watch?v=zPAT7R0uoI8",
+   "videoTitle": "Advanced Hydraulics (Prof. Suresh A. Kartha, IIT Guwahati): Lecture 11 - Manning's Equation and Normal Depth"
   },
   {
    "answerIndex": 1,
@@ -6649,7 +6697,9 @@
    "question": "A rectangular channel 3.0 m wide carries 9.0 m^3/s with Manning's n = 0.015. What is the critical slope?",
    "solution": "Refer to the Manning's Equation and Specific Energy sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(S_c\\). First find the critical depth for a rectangular channel:\n\n$$y_c = \\left(\\frac{q^2}{g}\\right)^{1/3}$$\n\n$$q = \\frac{9.0}{3.0} = 3.0 \\text{ m}^2\\text{/s}$$\n\n$$(y_c) = \\left(\\frac{3.0^2}{9.81}\\right)^{1/3} = (0.9174)^{1/3} = 0.9717 \\text{ m}$$\n\nAt critical depth:\n\n$$\\begin{aligned}\nA_c &= (3.0)(0.9717) = 2.915 \\text{ m}^2 \\\\\nP_c &= 3.0 + 2(0.9717) = 4.943 \\text{ m} \\\\\nR_c &= \\frac{2.915}{4.943} = 0.5897 \\text{ m}\n\\end{aligned}$$\n\nNow set Manning's equation equal to the discharge and solve for the slope:\n\n$$9.0 = \\frac{1}{0.015} (2.915)(0.5897)^{2/3} S_c^{1/2}$$\n\n$$(S_c^{1/2}) = \\frac{9.0 \\times 0.015}{2.915 \\times 0.7025} = 0.06593$$\n\n$$(S_c) = (0.06593)^2 = 0.00434$$",
    "subtopic": "Critical slope",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "videoUrl": "https://www.youtube.com/watch?v=4NqoLy1WBKI",
+   "videoTitle": "Critical Parameters (Depth, Velocity and Flow) | Open Channel Flow | Hydraulics and Fluid Mechanics"
   },
   {
    "answerIndex": 1,
@@ -6700,7 +6750,9 @@
    "question": "A truss has joints A(0,0) pinned, B(6,0) on a roller, and C(3,4) carrying a 200 kN downward load. Members AC and BC are each 5 m long, and member AB is 6 m long. All members have AE = 100 MN. Using the unit load method, what is the vertical deflection at C?",
    "solution": "Refer to the Truss Deflection by Unit Load Method section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\Delta_C\\). The handbook prints:\n\n$$\\Delta = \\sum \\frac{nNL}{AE}$$\n\nReactions for the real 200 kN load: \\(A_y = B_y = 100 \\text{ kN}\\).\n\nMember forces \\(N\\) (tension positive) by joint equilibrium:\n\n$$\\begin{aligned}\nN_{AC} &= -\\frac{100}{\\sin 53.13^\\circ} = -125 \\text{ kN} \\\\\nN_{BC} &= -125 \\text{ kN (by symmetry)} \\\\\nN_{AB} &= 125\\cos 53.13^\\circ = 75 \\text{ kN}\n\\end{aligned}$$\n\nApply a dummy 1 kN downward load at C; the virtual forces \\(n\\) scale by \\(1/200\\):\n\n$$\\begin{aligned}\nn_{AC} &= n_{BC} = -\\frac{125}{200} = -0.625 \\\\\nn_{AB} &= \\frac{75}{200} = 0.375\n\\end{aligned}$$\n\n$$(\\Delta_C) = \\frac{2(-0.625)(-125)(5) + (0.375)(75)(6)}{100{,}000} = \\frac{781.25 + 168.75}{100{,}000}$$\n\n$$(\\Delta_C) = \\frac{950}{100{,}000} = 0.0095 \\text{ m} = 9.50 \\text{ mm (downward)}$$",
    "subtopic": "Truss deflection (unit load method)",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=GnJoP22Xd7I",
+   "videoTitle": "Virtual Work Method for Truss"
   },
   {
    "answerIndex": 1,
@@ -6853,7 +6905,9 @@
    "question": "The vector field is given by F = (x*z, y^2, x*y). What is the curl of F at the point (1, 2, 3)?",
    "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\nabla \\times \\mathbf{F}\\). The handbook prints:\n\n$$\\nabla \\times \\mathbf{F} = \\left(\\frac{\\partial R}{\\partial y} - \\frac{\\partial Q}{\\partial z}\\right)\\mathbf{i} + \\left(\\frac{\\partial P}{\\partial z} - \\frac{\\partial R}{\\partial x}\\right)\\mathbf{j} + \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right)\\mathbf{k}$$\n\nIdentify the components:\n\n$$\\begin{aligned}\nP &= xz \\\\\nQ &= y^2 \\\\\nR &= xy\n\\end{aligned}$$\n\nCompute the six partial derivatives:\n\n$$\\begin{aligned}\n\\frac{\\partial R}{\\partial y} &= x, & \\frac{\\partial Q}{\\partial z} &= 0 \\\\\n\\frac{\\partial P}{\\partial z} &= x, & \\frac{\\partial R}{\\partial x} &= y \\\\\n\\frac{\\partial Q}{\\partial x} &= 0, & \\frac{\\partial P}{\\partial y} &= 0\n\\end{aligned}$$\n\nEvaluate at \\((1, 2, 3)\\):\n\n$$\\begin{aligned}\n(\\nabla \\times \\mathbf{F})_x &= 1 - 0 = 1 \\\\\n(\\nabla \\times \\mathbf{F})_y &= 1 - 2 = -1 \\\\\n(\\nabla \\times \\mathbf{F})_z &= 0 - 0 = 0\n\\end{aligned}$$\n\n$$(\\nabla \\times \\mathbf{F}) = (1, -1, 0)$$",
    "subtopic": "Curl of a vector field",
-   "topic": "Mathematics"
+   "topic": "Mathematics",
+   "videoUrl": "https://www.youtube.com/watch?v=EhDVGRAamxg",
+   "videoTitle": "Curl of a Vector Field Examples | Calculus 3 - JK Math"
   },
   {
    "answerIndex": 2,
@@ -6955,7 +7009,9 @@
    "question": "A particle's position is described in polar coordinates by r = 0.5t^2 m and theta = 0.4t rad, with t in seconds. At t = 3 s, what is the transverse component of velocity?",
    "solution": "Refer to the Radial and Transverse Components for Planar Motion section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(v_\\theta\\). The handbook prints:\n\n$$\\mathbf{v} = \\dot{r}\\,\\mathbf{e}_r + r\\dot{\\theta}\\,\\mathbf{e}_\\theta$$\n\nDifferentiate the given position functions:\n\n$$\\begin{aligned}\n\\dot{r} &= \\frac{d}{dt}(0.5t^2) = t \\\\\n\\dot{\\theta} &= \\frac{d}{dt}(0.4t) = 0.4 \\text{ rad/s}\n\\end{aligned}$$\n\nAt \\(t = 3 \\text{ s}\\):\n\n$$\\begin{aligned}\nr &= 0.5(3)^2 = 4.5 \\text{ m} \\\\\n\\dot{\\theta} &= 0.4 \\text{ rad/s}\n\\end{aligned}$$\n\n$$(v_\\theta) = r\\dot{\\theta} = (4.5)(0.4) = 1.8 \\text{ m/s}$$",
    "subtopic": "Polar coordinates (transverse velocity)",
-   "topic": "Dynamics"
+   "topic": "Dynamics",
+   "videoUrl": "https://www.youtube.com/watch?v=zLmt5tgYNCI",
+   "videoTitle": "Dynamics: Transverse and Radial Components of Velocity and Acceleration"
   },
   {
    "answerIndex": 1,
@@ -7006,7 +7062,9 @@
    "question": "A thick-walled steel cylinder has an inner radius of 60 mm and an outer radius of 120 mm. It is subjected to an internal pressure of 30 MPa with zero external pressure. What is the tangential (hoop) stress at the inner wall?",
    "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma_t\\) at the inner wall. The handbook prints, for internal pressure only:\n\n$$\\sigma_t = P_i\\frac{r_o^2 + r_i^2}{r_o^2 - r_i^2}$$\n\n$$\\begin{aligned}\nr_i^2 &= (60)^2 = 3{,}600 \\text{ mm}^2 \\\\\nr_o^2 &= (120)^2 = 14{,}400 \\text{ mm}^2\n\\end{aligned}$$\n\n$$(\\sigma_t) = 30\\frac{14{,}400 + 3{,}600}{14{,}400 - 3{,}600} = 30\\frac{18{,}000}{10{,}800}$$\n\n$$(\\sigma_t) = 30(1.6667) = 50 \\text{ MPa}$$",
    "subtopic": "Thick-walled cylinder (Lame equations)",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=DLpJSolLTOE",
+   "videoTitle": "Pipe & Pressure-Vessel Stress — PE Mechanical TFS Week 6 (Lesson 05 of 09)"
   },
   {
    "answerIndex": 2,
@@ -7193,7 +7251,9 @@
    "question": "A steel plate contains an edge crack 4.0 mm long (geometry factor Y = 1.1). The plate is subjected to a tensile stress of 250 MPa. What is the mode-I stress intensity factor?",
    "solution": "Refer to the Fracture Toughness section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(K\\). The handbook relates the stress intensity to applied stress, crack length, and geometry factor:\n\n$$K = Y\\sigma\\sqrt{\\pi a}$$\n\nConvert the crack length to meters:\n\n$$(a) = 4.0 \\text{ mm} = 0.004 \\text{ m}$$\n\n$$(K) = (1.1)(250)\\sqrt{\\pi(0.004)} = (275)(0.11210)$$\n\n$$(K) = 30.8 \\text{ MPa-m}^{1/2}$$",
    "subtopic": "Fracture toughness (edge crack)",
-   "topic": "Materials"
+   "topic": "Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=3CPRRov7DRk",
+   "videoTitle": "FRACTURE TOUGHNESS and Crack Modes in Under 10 Minutes!"
   },
   {
    "answerIndex": 1,
@@ -7261,7 +7321,9 @@
    "question": "Zone i produces 5,000 trips. Two destination zones have attractions and friction factors of (A1 = 3,000, F_i1 = 0.5) and (A2 = 2,000, F_i2 = 0.8). Using the gravity model with all K_ij = 1, how many trips are distributed from zone i to zone 1?",
    "solution": "Refer to the Gravity Model section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(T_{i1}\\). The handbook prints:\n\n$$T_{ij} = P_i\\frac{A_j F_{ij} K_{ij}}{\\sum_j A_j F_{ij} K_{ij}}$$\n\nCompute the denominator (sum over both destinations):\n\n$$\\sum = (3{,}000)(0.5)(1) + (2{,}000)(0.8)(1) = 1{,}500 + 1{,}600 = 3{,}100$$\n\n$$(T_{i1}) = 5{,}000\\frac{1{,}500}{3{,}100} = 5{,}000(0.48387) = 2{,}419$$",
    "subtopic": "Gravity model (trip distribution)",
-   "topic": "Transportation Engineering"
+   "topic": "Transportation Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=ov5GEv72P6g",
+   "videoTitle": "[Lec. # 07] Trip Distribution"
   },
   {
    "answerIndex": 1,
@@ -7278,7 +7340,9 @@
    "question": "An assembly task follows a 90% learning curve. The first unit takes 8.0 hours to complete. How long will the 8th unit take?",
    "solution": "Refer to the Learning Curves section in the Industrial and Systems Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(T_8\\). The handbook prints:\n\n$$T_N = K N^s$$\n\nwhere \\(s = \\ln(\\text{learning rate})/\\ln 2\\).\n\nCompute the exponent:\n\n$$(s) = \\frac{\\ln(0.90)}{\\ln 2} = \\frac{-0.10536}{0.69315} = -0.1520$$\n\n$$(T_8) = (8.0)(8)^{-0.1520} = (8.0)(0.7290) = 5.83 \\text{ hr}$$",
    "subtopic": "Learning curve (repetition time)",
-   "topic": "Construction Engineering"
+   "topic": "Construction Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=cMxFXUSrUgM",
+   "videoTitle": "Operations Management: Learning Curves Basics"
   },
   {
    "answerIndex": 0,
@@ -7431,7 +7495,9 @@
    "question": "A soil has 65% passing the No. 200 sieve, a liquid limit of 50, and a plasticity index of 22. What is its AASHTO group index?",
    "solution": "Refer to the AASHTO Soil Classification section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(GI\\). The handbook prints:\n\n$$GI = (F - 35)[0.2 + 0.005(LL - 40)] + 0.01(F - 15)(PI - 10)$$\n\n$$(GI) = (65 - 35)[0.2 + 0.005(50 - 40)] + 0.01(65 - 15)(22 - 10)$$\n\n$$(GI) = (30)(0.25) + 0.01(50)(12) = 7.5 + 6.0 = 13.5 \\approx 14$$",
    "subtopic": "AASHTO group index",
-   "topic": "Geotechnical Engineering"
+   "topic": "Geotechnical Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=OlXZNqYwamQ",
+   "videoTitle": "Classify Soils using AASHTO Soil Classification System|Group Index"
   },
   {
    "answerIndex": 2,
@@ -7465,7 +7531,9 @@
    "question": "Carbon diffuses through a steel plate. The diffusion coefficient is 2.5 x 10^-11 m^2/s. The carbon concentration drops from 1.2 kg/m^3 to 0.4 kg/m^3 across the 2-mm plate thickness. What is the steady-state diffusion flux?",
    "solution": "Refer to the Diffusion (Fick's First Law) section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(J\\). The handbook prints:\n\n$$J = -D\\frac{dC}{dx}$$\n\nThe concentration gradient across the plate is:\n\n$$\\left(\\frac{dC}{dx}\\right) = \\frac{0.4 - 1.2}{0.002} = -400 \\text{ kg/m}^4$$\n\n$$(J) = -(2.5 \\times 10^{-11})(-400) = 1.0 \\times 10^{-8} \\text{ kg/(m}^2\\text{-s)}$$",
    "subtopic": "Fick's first law (diffusion flux)",
-   "topic": "Materials"
+   "topic": "Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=deMv7Ep3YJ0",
+   "videoTitle": "Fick's Law FULL Derivation Explained | Most Tutorials Skip This..."
   },
   {
    "answerIndex": 2,
@@ -7567,7 +7635,9 @@
    "question": "Two moving concentrated loads, 30 kN and 50 kN spaced 6 m apart, cross a 24-m simply supported beam. For the absolute maximum moment under the 50-kN load, where should the 50-kN load be positioned?",
    "solution": "Refer to the Moving Concentrated Load Sets section in the Structural Analysis chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must position the load set. The handbook prints that the absolute maximum moment occurs when the resultant of the load set and the adjacent load are equidistant from the beam centerline.\n\nLocate the resultant relative to the 50-kN load:\n\n$$(\\bar{x}) = \\frac{(30)(6)}{30 + 50} = 2.25 \\text{ m from the 50-kN load}$$\n\nEach sits half this distance from midspan (12 m):\n\n$$(x_{50}) = 12 + \\frac{2.25}{2} = 13.13 \\text{ m from the left support}$$",
    "subtopic": "Moving concentrated loads (absolute maximum moment)",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=_SQInJidumc",
+   "videoTitle": "Application of Influence Lines - Absolute Maximum Bending Moment (Series of Concentrated Loads)"
   },
   {
    "answerIndex": 3,
@@ -7635,7 +7705,9 @@
    "question": "A traveler's utility for driving is 1.5 and for transit is 0.5. Using a binary logit model, what is the probability the traveler chooses to drive?",
    "solution": "Refer to the Logit Models section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_{auto}\\). The handbook prints:\n\n$$(P_A) = \\frac{e^{U_A}}{e^{U_A} + e^{U_T}}$$\n\n$$(P_A) = \\frac{e^{1.5}}{e^{1.5} + e^{0.5}} = \\frac{4.4817}{4.4817 + 1.6487}$$\n\n$$(P_A) = \\frac{4.4817}{6.1304} = 0.731$$",
    "subtopic": "Logit model (mode split)",
-   "topic": "Transportation Engineering"
+   "topic": "Transportation Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=lvTyO2vt-yU",
+   "videoTitle": "Lecture 16 - Modal Split Analysis: Logit Model of Mode Choice"
   },
   {
    "answerIndex": 2,
@@ -7822,7 +7894,9 @@
    "question": "An undamped single-degree-of-freedom system has a natural frequency of 5 rad/s. It is released from rest with an initial displacement of 0.1 m. What is the displacement at t = 0.2 s?",
    "solution": "Refer to the Free and Forced Vibration section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(x(0.2)\\). The handbook prints:\n\n$$x(t) = x_0 \\cos(\\omega_n t) + \\frac{\\dot{x}_0}{\\omega_n}\\sin(\\omega_n t)$$\n\nReleased from rest means \\(\\dot{x}_0 = 0\\):\n\n$$(x(t)) = 0.1\\cos(5t)$$\n\nAt \\(t = 0.2\\) s (angle in radians):\n\n$$(x(0.2)) = 0.1\\cos(1.0) = 0.1(0.5403) = 0.054 \\text{ m}$$",
    "subtopic": "Free vibration response (undamped)",
-   "topic": "Dynamics"
+   "topic": "Dynamics",
+   "videoUrl": "https://www.youtube.com/watch?v=kuPMsjLeczY",
+   "videoTitle": "Solution for Free Vibration of an Undamped SDOF System"
   },
   {
    "answerIndex": 1,
@@ -7839,7 +7913,9 @@
    "question": "A composite beam bonds Material 1 (E₁ = 200 GPa) to Material 2 (E₂ = 100 GPa). The transformed section (all Material 2) has I_T = 40×10⁶ mm⁴. Under a bending moment of 50 kN·m, what is the bending stress in Material 1 at a fiber 100 mm from the neutral axis?",
    "solution": "Refer to the Composite Sections section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma_1\\). The handbook prints:\n\n$$\\sigma_1 = -\\frac{nMy}{I_T}, \\quad n = \\frac{E_1}{E_2}$$\n\nModular ratio:\n\n$$(n) = \\frac{200}{100} = 2$$\n\nConvert units: \\(M = 50{,}000\\) N·m, \\(y = 0.1\\) m, \\(I_T = 40 \\times 10^6(10^{-3})^4 = 4 \\times 10^{-5}\\) m⁴.\n\n$$(\\sigma_1) = \\frac{(2)(50{,}000)(0.1)}{4 \\times 10^{-5}} = \\frac{10{,}000}{4 \\times 10^{-5}}$$\n\n$$(\\sigma_1) = 2.5 \\times 10^8 \\text{ Pa} = 250 \\text{ MPa (magnitude)}$$",
    "subtopic": "Composite beam (transformed section)",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=FB1TP5YC8Wo",
+   "videoTitle": "Mechanics of Materials: Lesson 35 - Composite Beam Bending Example Problem"
   },
   {
    "answerIndex": 2,
@@ -7890,7 +7966,9 @@
    "question": "A vertical rectangular plate 2.0 m tall and 1.0 m wide is submerged with its top edge at the water surface. How far below the free surface is the center of pressure?",
    "solution": "Refer to the Forces on Submerged Surfaces and the Center of Pressure section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(y_{CP}\\). The handbook prints:\n\n$$y_{CP} = y_C + \\frac{I_{xC}}{y_C A}$$\n\nCentroid depth (plate vertical, so slant distance equals vertical depth):\n\n$$(y_C) = 1.0 \\text{ m}, \\quad (A) = (2.0)(1.0) = 2.0 \\text{ m}^2$$\n\nCentroidal moment of inertia:\n\n$$(I_{xC}) = \\frac{bh^3}{12} = \\frac{(1.0)(2.0)^3}{12} = 0.6667 \\text{ m}^4$$\n\n$$(y_{CP}) = 1.0 + \\frac{0.6667}{(1.0)(2.0)} = 1.0 + 0.3333 = 1.33 \\text{ m}$$",
    "subtopic": "Center of pressure (vertical plate)",
-   "topic": "Fluid Mechanics"
+   "topic": "Fluid Mechanics",
+   "videoUrl": "https://www.youtube.com/watch?v=B0p4NTlP3MU",
+   "videoTitle": "Fluid Mechanics Lesson 03A: Submerged Vertical Plate"
   },
   {
    "answerIndex": 1,
@@ -7907,7 +7985,9 @@
    "question": "Flow enters a hydraulic jump at a depth of 0.5 m with a Froude number of 4.0. What is the sequent (downstream) depth?",
    "solution": "Refer to the Hydraulic Jump section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(y_2\\). The handbook prints:\n\n$$y_2 = \\frac{y_1}{2}\\left(-1 + \\sqrt{1 + 8Fr_1^2}\\right)$$\n\nSubstituting:\n\n$$(y_2) = \\frac{0.5}{2}\\left(-1 + \\sqrt{1 + 8(4.0)^2}\\right)$$\n\n$$(y_2) = 0.25\\left(-1 + \\sqrt{129}\\right) = 0.25(-1 + 11.358)$$\n\n$$(y_2) = 0.25(10.358) = 2.59 \\text{ m}$$",
    "subtopic": "Hydraulic jump (sequent depth)",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "videoUrl": "https://www.youtube.com/watch?v=eAjApbk4NhA",
+   "videoTitle": "Open Channel Flow 38 - {How to calculate sequent depth and energy loss in hydraulic jump problem]"
   },
   {
    "answerIndex": 2,
@@ -7992,7 +8072,9 @@
    "question": "A tension connection has A_gv = 4.0 in², A_nv = 3.0 in², and A_nt = 1.5 in². With F_y = 50 ksi, F_u = 65 ksi, and U_bs = 1.0, what is the LRFD block shear design strength?",
    "solution": "Refer to the Block Shear provisions in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi R_n\\). The handbook prints \\(R_n\\) as the smaller of:\n\n$$R_n = 0.6F_u A_{nv} + U_{bs}F_u A_{nt}$$\n$$R_n = 0.6F_y A_{gv} + U_{bs}F_u A_{nt}$$\n\nPath 1:\n\n$$(R_n) = 0.6(65)(3.0) + (1.0)(65)(1.5) = 117 + 97.5 = 214.5 \\text{ kips}$$\n\nPath 2:\n\n$$(R_n) = 0.6(50)(4.0) + (1.0)(65)(1.5) = 120 + 97.5 = 217.5 \\text{ kips}$$\n\nThe smaller value controls:\n\n$$(\\phi R_n) = 0.75(214.5) = 160.9 \\text{ kips} \\approx 161 \\text{ kips}$$",
    "subtopic": "Steel tension member (block shear)",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=DaCoVbHG9i8",
+   "videoTitle": "Block Shear Strength of Welded Tension Members using AISC/ANSI-360|Block Shear Failure"
   },
   {
    "answerIndex": 2,
@@ -8332,7 +8414,9 @@
    "question": "A square-thread screw jack supports an axial load of 8,000 N. The mean thread radius is 25 mm, the pitch angle is 5°, and the coefficient of thread friction is 0.06. What moment must be applied to loosen the screw?",
    "solution": "Refer to the Screw Thread section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M\\). The handbook prints, for a square-thread screw jack:\n\n$$M = Pr\\tan(\\alpha \\pm \\phi)$$\n\nwhere the minus sign is for screw loosening, \\(\\mu = \\tan\\phi\\), \\(P\\) is the axial load, and \\(r\\) is the mean thread radius.\n\nThe friction angle:\n\n$$(\\phi) = \\arctan(0.06) = 3.43^\\circ$$\n\nLoosening uses \\(\\alpha - \\phi\\):\n\n$$(M) = (8{,}000)(0.025)\\tan(5^\\circ - 3.43^\\circ)$$\n\n$$(M) = 200\\tan(1.57^\\circ) = 200(0.02735) = 5.47\\\\ \\mathrm{N\\!\\cdot\\! m}$$",
    "subtopic": "Screw jack (loosening moment)",
-   "topic": "Statics"
+   "topic": "Statics",
+   "videoUrl": "https://www.youtube.com/watch?v=9aEcfZkvHn0",
+   "videoTitle": "Threads & Bolted Joints II: Power Screws"
   },
   {
    "answerIndex": 0,
@@ -8417,7 +8501,9 @@
    "question": "A machine part experiences an alternating stress of 120 MPa and a mean stress of 80 MPa. The material has an endurance limit of 300 MPa and an ultimate tensile strength of 600 MPa. What is the factor of safety against fatigue failure according to the Modified Goodman criterion?",
    "solution": "Refer to the Variable Loading Failure Theories section in the Mechanical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(n\\). The handbook prints the Modified Goodman criterion (with a factor of safety):\n\n$$\\frac{\\sigma_a}{S_e} + \\frac{\\sigma_m}{S_{ut}} = \\frac{1}{n}$$\n\nwhere \\(\\sigma_a\\) is the alternating stress, \\(\\sigma_m\\) is the mean stress, \\(S_e\\) is the endurance limit, and \\(S_{ut}\\) is the ultimate strength.\n\nSubstituting:\n\n$$\\frac{120}{300} + \\frac{80}{600} = \\frac{1}{n}$$\n\n$$0.400 + 0.133 = \\frac{1}{n}$$\n\n$$\\frac{1}{n} = 0.533$$\n\n$$(n) = \\frac{1}{0.533} = 1.88$$",
    "subtopic": "Modified Goodman fatigue criterion",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=UnpGdrW1FiE",
+   "videoTitle": "04 Mean Stress Effects and Goodman Example"
   },
   {
    "answerIndex": 0,
@@ -8468,7 +8554,9 @@
    "question": "Air (\\(c_p = 1{,}005\\) J/(kg·K)) at a static temperature of 300 K flows at 200 m/s. What is the stagnation temperature?",
    "solution": "Refer to the Isentropic Flow Relationships section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(T_0\\). The handbook prints:\n\n$$T_0 = T + \\frac{V^2}{2c_p}$$\n\nSubstituting \\((T = 300\\\\ \\mathrm{K}\\), \\(V = 200\\\\ \\mathrm{m/s}\\), \\(c_p = 1{,}005\\\\ \\mathrm{J/(kg\\!\\cdot\\!K)}\\):\n\n$$(T_0) = 300 + \\frac{200^2}{2(1{,}005)}$$\n\n$$(T_0) = 300 + \\frac{40{,}000}{2{,}010}$$\n\n$$(T_0) = 300 + 19.9 = 319.9\\\\ \\mathrm{K} \\approx 320\\\\ \\mathrm{K}$$",
    "subtopic": "Stagnation temperature",
-   "topic": "Fluid Mechanics"
+   "topic": "Fluid Mechanics",
+   "videoUrl": "https://www.youtube.com/watch?v=RdaLIRBcXJk",
+   "videoTitle": "Compressible Flow — Mach Number & Choked Nozzles — Fluid Mechanics | PE Mechanical TFS Exam Prep"
   },
   {
    "answerIndex": 1,
@@ -8485,7 +8573,9 @@
    "question": "For a building in open terrain (Exposure C), the velocity pressure exposure coefficient at the roof height is \\(K_z = 0.90\\). The basic wind speed is 130 mph, the topographic factor \\(K_{zt} = 1.0\\), and the wind directionality factor \\(K_d = 0.85\\). What is the velocity pressure \\(q_z\\) at the roof?",
    "solution": "Refer to the Wind Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(q_z\\). The handbook prints:\n\n$$q_z = 0.00256\\,K_z K_{zt} K_d V^2\\\\ \\mathrm{(lb/ft^2)}$$\n\nwhere \\(V\\) is the basic wind speed in mph.\n\nSubstituting:\n\n$$(q_z) = 0.00256(0.90)(1.0)(0.85)(130)^2$$\n\n$$(q_z) = 0.00256(0.765)(16{,}900)$$\n\n$$(q_z) = 33.1\\\\ \\mathrm{psf}$$",
    "subtopic": "Wind velocity pressure",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=DAFrp__nr0s",
+   "videoTitle": "How to Calculate Wind Load Using ASCE 7 | Step-by-Step Full Solved Example"
   },
   {
    "answerIndex": 0,
@@ -8519,7 +8609,9 @@
    "question": "A decision node offers two alternatives. Alternative A: a 60% chance of an $80,000 profit and a 40% chance of a $20,000 loss. Alternative B: a 50% chance of a $100,000 profit and a 50% chance of a $10,000 loss. On an expected-value basis, which alternative should the decision maker choose?",
    "solution": "Refer to the Economic Decision Trees section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values. The handbook prints:\n\n$$EV = (C_1)(p_1) + (C_2)(p_2) + \\cdots$$\n\nFor Alternative A:\n\n$$(EV_A) = (80{,}000)(0.60) + (-20{,}000)(0.40)$$\n\n$$(EV_A) = 48{,}000 - 8{,}000 = \\$40{,}000$$\n\nFor Alternative B:\n\n$$(EV_B) = (100{,}000)(0.50) + (-10{,}000)(0.50)$$\n\n$$(EV_B) = 50{,}000 - 5{,}000 = \\$45{,}000$$\n\nSince \\(EV_B > EV_A\\), the decision maker should choose Alternative B.",
    "subtopic": "Decision tree expected value",
-   "topic": "Engineering Economics"
+   "topic": "Engineering Economics",
+   "videoUrl": "https://www.youtube.com/watch?v=QkMQITRwEz8",
+   "videoTitle": "Decision Tree Analysis | PMP Math Mastery"
   },
   {
    "answerIndex": 1,
@@ -8553,7 +8645,9 @@
    "question": "A commercial building project has a budget at completion (BAC) of $500,000. At the status date, the budgeted cost of work scheduled (BCWS) is $200,000, the budgeted cost of work performed (BCWP) is $180,000, and the actual cost of work performed (ACWP) is $210,000. Using the handbook's forecasting equations, what is the estimate at completion (EAC)?",
    "solution": "Refer to the Earned-Value Analysis (Forecasting) section in the Construction chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(EAC\\). The handbook prints:\n\n$$ETC = \\frac{BAC - BCWP}{CPI} \\qquad EAC = ACWP + ETC$$\n\nwhere \\(CPI = BCWP/ACWP\\).\n\nComputing the cost performance index:\n\n$$CPI = \\frac{180{,}000}{210{,}000} = 0.8571$$\n\nEstimating the cost to complete:\n\n$$ETC = \\frac{500{,}000 - 180{,}000}{0.8571} = \\frac{320{,}000}{0.8571} = 373{,}333$$\n\nAdding the cost incurred to date:\n\n$$EAC = 210{,}000 + 373{,}333 = 583{,}333 \\approx \\$583{,}000$$\n",
    "subtopic": "Earned value (estimate at completion)",
-   "topic": "Construction Engineering"
+   "topic": "Construction Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=Hc1UYUGhDGk",
+   "videoTitle": "Your Project Is Already Over Budget (You Just Don't Know) | EAC, ETC & VAC Explained"
   },
   {
    "answerIndex": 0,
@@ -8774,7 +8868,9 @@
    "question": "A point in a steel component is subjected to \\(\\sigma_x = 60\\text{ MPa}\\), \\(\\sigma_y = -20\\text{ MPa}\\), and \\(\\tau_{xy} = 30\\text{ MPa}\\). What is the von Mises effective stress at the point?",
    "solution": "Refer to the Distortion-Energy Theory section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma'\\). The handbook prints, for a biaxial stress state:\n\n$$\\sigma' = \\sqrt{\\sigma_A^2 - \\sigma_A\\sigma_B + \\sigma_B^2}$$\n\nwhere \\(\\sigma_A\\) and \\(\\sigma_B\\) are the two nonzero principal stresses.\n\nFinding the in-plane principal stresses:\n\n$$\\sigma_{A,B} = \\frac{60 + (-20)}{2} \\pm \\sqrt{\\left(\\frac{60 - (-20)}{2}\\right)^2 + 30^2}$$\n\n$$\\sigma_{A,B} = 20 \\pm \\sqrt{1{,}600 + 900} = 20 \\pm 50$$\n\n$$\\sigma_A = 70\\text{ MPa} \\qquad \\sigma_B = -30\\text{ MPa}$$\n\nSubstituting into the effective stress:\n\n$$\\sigma' = \\sqrt{70^2 - (70)(-30) + (-30)^2} = \\sqrt{4{,}900 + 2{,}100 + 900}$$\n\n$$\\sigma' = \\sqrt{7{,}900} = 88.9\\text{ MPa}$$\n",
    "subtopic": "Von Mises effective stress",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "videoUrl": "https://www.youtube.com/watch?v=w481K014HLA",
+   "videoTitle": "10.76 Determine if failure (yielding) has occurred on the basis of maximum distortion energy theory"
   },
   {
    "answerIndex": 0,
@@ -8808,7 +8904,9 @@
    "question": "A one-way ANOVA compares 4 treatments using 24 total observations. The sum of squares between treatments is 150 and the sum of squares for error is 400. What is the F-statistic for testing whether the treatment means differ?",
    "solution": "Refer to the One-Way Analysis of Variance (ANOVA) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(F\\). The handbook's ANOVA table prints:\n\n$$F = \\frac{MST}{MSE} \\qquad MST = \\frac{SS_{treatments}}{k-1} \\qquad MSE = \\frac{SS_{error}}{N-k}$$\n\nComputing the mean squares:\n\n$$MST = \\frac{150}{4-1} = \\frac{150}{3} = 50$$\n\n$$MSE = \\frac{400}{24-4} = \\frac{400}{20} = 20$$\n\nForming the ratio:\n\n$$F = \\frac{50}{20} = 2.50$$\n",
    "subtopic": "One-way ANOVA (F-statistic)",
-   "topic": "Statistics and Probability"
+   "topic": "Statistics and Probability",
+   "videoUrl": "https://www.youtube.com/watch?v=eSoyCkL1xHs",
+   "videoTitle": "ANOVA (Analysis of Variance) | Definition, Formula & Computation"
   },
   {
    "answerIndex": 0,
@@ -8859,7 +8957,9 @@
    "question": "A steel tension connection has a gross shear area \\(A_{gv} = 2.5\\text{ in}^2\\), net shear area \\(A_{nv} = 2.0\\text{ in}^2\\), net tension area \\(A_{nt} = 1.2\\text{ in}^2\\), \\(F_y = 36\\text{ ksi}\\), \\(F_u = 58\\text{ ksi}\\), and \\(U_{bs} = 1.0\\). What is the nominal block shear rupture strength \\(R_n\\)?",
    "solution": "Refer to the Steel Design (Block Shear) section in the Structural Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(R_n\\). The handbook prints:\n\n$$R_n = \\text{smaller of } \\begin{cases} 0.6F_u A_{nv} + U_{bs}F_u A_{nt} \\\\ 0.6F_y A_{gv} + U_{bs}F_u A_{nt} \\end{cases}$$\n\nEvaluating the first expression (rupture on both planes):\n\n$$R_{n1} = 0.6(58)(2.0) + 1.0(58)(1.2) = 69.6 + 69.6 = 139.2\\text{ kips}$$\n\nEvaluating the second expression (yield on shear, rupture on tension):\n\n$$R_{n2} = 0.6(36)(2.5) + 1.0(58)(1.2) = 54.0 + 69.6 = 123.6\\text{ kips}$$\n\nTaking the smaller:\n\n$$R_n = 123.6 \\approx 124\\text{ kips}$$\n",
    "subtopic": "Block shear rupture strength",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "videoUrl": "https://www.youtube.com/watch?v=DaCoVbHG9i8",
+   "videoTitle": "Block Shear Strength of Welded Tension Members using AISC/ANSI-360|Block Shear Failure"
   },
   {
    "answerIndex": 0,
@@ -9243,7 +9343,9 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "Rational method: Q = CiA = 12 cfs. Manning's for a full circular pipe gives D^8/3 = 3.37, so D = 1.58 ft ≈ 19 in.",
-   "solution": "Refer to the Rational Method and Manning's Equation sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the pipe diameter. First find the peak runoff with the rational method:\n\n$$Q = CiA$$\n\n$$\\\\begin{aligned}\nC &= 0.60 \\\\\\\\\\\ni &= 4.0\\\\ \\\\text{in/hr} \\\\\\\\\\\nA &= 5\\\\ \\\\text{ac}\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(4.0)(5) = 12\\\\ \\\\text{cfs}$$\n\nFor a circular pipe flowing full, A = \\\\pi D^2/4 and R = D/4. Manning's equation (USCS) becomes:\n\n$$(Q) = \\\\frac{1.486}{n}\\\\left(\\\\frac{\\\\pi D^2}{4}\\\\right)\\\\left(\\\\frac{D}{4}\\\\right)^{2/3}S^{1/2}$$\n\n$$(12) = \\\\frac{1.486}{0.013}\\\\left(\\\\frac{\\\\pi}{4}\\\\right)\\\\left(\\\\frac{1}{4}\\\\right)^{2/3}(0.01)^{1/2} D^{8/3}$$\n\n$$(12) = (3.5636)D^{8/3}$$\n\n$$(D^{8/3}) = 3.367 \\\\rightarrow (D) = 1.58\\\\ \\\\text{ft}$$\n\n$$(D) = (1.58)(12) = 19\\\\ \\\\text{in}$$"
+   "solution": "Refer to the Rational Method and Manning's Equation sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the pipe diameter. First find the peak runoff with the rational method:\n\n$$Q = CiA$$\n\n$$\\\\begin{aligned}\nC &= 0.60 \\\\\\\\\\\ni &= 4.0\\\\ \\\\text{in/hr} \\\\\\\\\\\nA &= 5\\\\ \\\\text{ac}\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(4.0)(5) = 12\\\\ \\\\text{cfs}$$\n\nFor a circular pipe flowing full, A = \\\\pi D^2/4 and R = D/4. Manning's equation (USCS) becomes:\n\n$$(Q) = \\\\frac{1.486}{n}\\\\left(\\\\frac{\\\\pi D^2}{4}\\\\right)\\\\left(\\\\frac{D}{4}\\\\right)^{2/3}S^{1/2}$$\n\n$$(12) = \\\\frac{1.486}{0.013}\\\\left(\\\\frac{\\\\pi}{4}\\\\right)\\\\left(\\\\frac{1}{4}\\\\right)^{2/3}(0.01)^{1/2} D^{8/3}$$\n\n$$(12) = (3.5636)D^{8/3}$$\n\n$$(D^{8/3}) = 3.367 \\\\rightarrow (D) = 1.58\\\\ \\\\text{ft}$$\n\n$$(D) = (1.58)(12) = 19\\\\ \\\\text{in}$$",
+   "videoUrl": "https://www.youtube.com/watch?v=0knMc_tkIo4",
+   "videoTitle": "How to Design Storm Water Drainage System_ Full Design Process with Calculations"
   },
   {
    "id": "water-041",
@@ -9923,7 +10025,9 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "σ1 = σ3·tan²(45+φ/2) + 2c·tan(45+φ/2) = 100(3) + 40(1.732) = 370 kPa. The 300 kPa answer drops the cohesion term.",
-   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\\\sigma_1 = \\\\sigma_3\\\\tan^2\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right) + 2c\\\\tan\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\sigma_3 &= 100\\\\ \\\\text{kPa} \\\\\\\\\\\nc &= 20\\\\ \\\\text{kPa}, \\\\quad \\\\phi = 30^{\\\\circ} \\\\\\\\\\\n\\\\tan(60^{\\\\circ}) &= 1.732\n\\\\end{aligned}$$\n\n$$(\\\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\\\sigma_1) = 300 + 69.3$$\n\n$$(\\\\sigma_1) = 370\\\\ \\\\text{kPa}$$"
+   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\\\sigma_1 = \\\\sigma_3\\\\tan^2\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right) + 2c\\\\tan\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\sigma_3 &= 100\\\\ \\\\text{kPa} \\\\\\\\\\\nc &= 20\\\\ \\\\text{kPa}, \\\\quad \\\\phi = 30^{\\\\circ} \\\\\\\\\\\n\\\\tan(60^{\\\\circ}) &= 1.732\n\\\\end{aligned}$$\n\n$$(\\\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\\\sigma_1) = 300 + 69.3$$\n\n$$(\\\\sigma_1) = 370\\\\ \\\\text{kPa}$$",
+   "videoUrl": "https://www.youtube.com/watch?v=RSo5eq6aOKI",
+   "videoTitle": "Use of Mohr's Circle in Geotechnical Engineering | Shear Strength of Soil"
   },
   {
    "id": "geotech-045",
@@ -9957,7 +10061,9 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "Seepage cuts FS by γ'/γ_sat: (62.6/125)(1.59) = 0.79. The slope that was stable dry now fails — the classic seepage lesson.",
-   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\\\left(\\\\frac{\\\\gamma'}{\\\\gamma_{sat}}\\\\right)\\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\gamma_{sat} &= 125\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\gamma' &= 125 - 62.4 = 62.6\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})} &= 1.586\n\\\\end{aligned}$$\n\n$$(FS) = \\\\left(\\\\frac{62.6}{125}\\\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$"
+   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\\\left(\\\\frac{\\\\gamma'}{\\\\gamma_{sat}}\\\\right)\\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\gamma_{sat} &= 125\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\gamma' &= 125 - 62.4 = 62.6\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})} &= 1.586\n\\\\end{aligned}$$\n\n$$(FS) = \\\\left(\\\\frac{62.6}{125}\\\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$",
+   "videoUrl": "https://www.youtube.com/watch?v=BJYcNLJX8-s",
+   "videoTitle": "Numerical 4 on Infinite Slopes | Stability of Slopes | Geotechnical Engineering - GATE"
   },
   {
    "id": "geotech-047",
