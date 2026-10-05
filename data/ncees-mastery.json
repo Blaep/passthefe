@@ -12,7 +12,7 @@
     {
      "code": "1A",
      "label": "Analytic geometry",
-     "count": 1
+     "count": 4
     },
     {
      "code": "1B",
@@ -77,7 +77,7 @@
     {
      "code": "3B",
      "label": "Cost (e.g., fixed, variable, direct and indirect labor, incremental, average, sunk)",
-     "count": 1
+     "count": 4
     },
     {
      "code": "3C",
@@ -87,7 +87,7 @@
     {
      "code": "3D",
      "label": "Uncertainty (e.g., expected value and risk)",
-     "count": 1
+     "count": 4
     }
    ]
   },
@@ -207,7 +207,7 @@
     {
      "code": "7A",
      "label": "Mix design of concrete and asphalt",
-     "count": 1
+     "count": 4
     },
     {
      "code": "7B",
@@ -322,7 +322,7 @@
     {
      "code": "10F",
      "label": "Stormwater (e.g., detention, routing, quality)",
-     "count": 1
+     "count": 4
     },
     {
      "code": "10G",
@@ -337,17 +337,17 @@
     {
      "code": "10I",
      "label": "Water quality (e.g., ground and surface, basic water chemistry)",
-     "count": 1
+     "count": 4
     },
     {
      "code": "10J",
      "label": "Testing and standards (e.g., water, wastewater, air, noise)",
-     "count": 1
+     "count": 4
     },
     {
      "code": "10K",
      "label": "Water and wastewater treatment (e.g., biological processes, softening, drinking water treatment)",
-     "count": 1
+     "count": 4
     }
    ]
   },
@@ -437,7 +437,7 @@
     {
      "code": "12F",
      "label": "Shear strength",
-     "count": 1
+     "count": 4
     },
     {
      "code": "12G",
@@ -457,7 +457,7 @@
     {
      "code": "12J",
      "label": "Slope stability (e.g., fills, embankments, cuts, dams)",
-     "count": 1
+     "count": 4
     },
     {
      "code": "12K",
@@ -1061,7 +1061,37 @@
   "construction-034": "14E",
   "construction-035": "14E",
   "construction-036": "14E",
-  "construction-037": "14E"
+  "construction-037": "14E",
+  "math-034": "1A",
+  "math-035": "1A",
+  "math-036": "1A",
+  "econ-034": "3B",
+  "econ-035": "3B",
+  "econ-036": "3B",
+  "econ-037": "3D",
+  "econ-038": "3D",
+  "econ-039": "3D",
+  "materials-034": "7A",
+  "materials-035": "7A",
+  "materials-036": "7A",
+  "water-042": "10F",
+  "water-043": "10F",
+  "water-044": "10F",
+  "water-045": "10I",
+  "water-046": "10I",
+  "water-047": "10I",
+  "water-048": "10J",
+  "water-049": "10J",
+  "water-050": "10J",
+  "water-051": "10K",
+  "water-052": "10K",
+  "water-053": "10K",
+  "geotech-042": "12F",
+  "geotech-043": "12F",
+  "geotech-044": "12F",
+  "geotech-045": "12J",
+  "geotech-046": "12J",
+  "geotech-047": "12J"
  },
  "offspec": [
   "math-003",

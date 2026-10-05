@@ -9465,6 +9465,516 @@
    "estimatedTimeSeconds": 60,
    "explanation": "Profile = elevations along the alignment (vertical alignment). Plan = bird's-eye layout. Cross-section = transverse slice at one station.",
    "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe three principal views each answer a different question:\n\n$$\\\\begin{aligned}\n\\\\text{Plan} &\\\\rightarrow \\\\text{horizontal layout (bird's eye)} \\\\\\\\\\\n\\\\text{Profile} &\\\\rightarrow \\\\text{elevations along the alignment} \\\\\\\\\\\n\\\\text{Cross-section} &\\\\rightarrow \\\\text{transverse slice at one station}\n\\\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
+  },
+  {
+   "id": "math-034",
+   "topic": "Mathematics",
+   "subtopic": "Distance between two points",
+   "question": "What is the distance between the points (2, 3) and (7, 15)?",
+   "choices": [
+    "13",
+    "12",
+    "17",
+    "10"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "d = √[(7−2)² + (15−3)²] = √(25+144) = 13. A 5-12-13 triangle hiding in plain sight.",
+   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the distance between two points:\n\n$$d = \\\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n(x_1, y_1) &= (2, 3) \\\\\\\\\\\n(x_2, y_2) &= (7, 15)\n\\\\end{aligned}$$\n\n$$(d) = \\\\sqrt{(7 - 2)^2 + (15 - 3)^2}$$\n\n$$(d) = \\\\sqrt{25 + 144}$$\n\n$$(d) = \\\\sqrt{169} = 13$$"
+  },
+  {
+   "id": "math-035",
+   "topic": "Mathematics",
+   "subtopic": "Line through two points (slope-intercept)",
+   "question": "What is the equation of the line passing through (1, 2) and (5, 10)?",
+   "choices": [
+    "y = 2x",
+    "y = 2x + 1",
+    "y = x + 2",
+    "y = 3x − 1"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Slope m = (10−2)/(5−1) = 2; using point (1,2): 2 = 2(1) + b gives b = 0, so y = 2x.",
+   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the line y = mx + b through both points. First the slope:\n\n$$m = \\\\frac{y_2 - y_1}{x_2 - x_1}$$\n\n$$(m) = \\\\frac{10 - 2}{5 - 1} = \\\\frac{8}{4} = 2$$\n\nInsert one point to solve for the intercept:\n\n$$(2) = (2)(1) + b \\\\rightarrow (b) = 0$$\n\n$$(y) = 2x$$"
+  },
+  {
+   "id": "math-036",
+   "topic": "Mathematics",
+   "subtopic": "Circle equation (center and radius)",
+   "question": "What is the equation of the circle with center (3, −2) and radius 5?",
+   "choices": [
+    "(x − 3)² + (y + 2)² = 25",
+    "(x + 3)² + (y − 2)² = 25",
+    "(x − 3)² + (y + 2)² = 5",
+    "x² + y² = 25"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "(x − h)² + (y − k)² = r² with (h,k) = (3,−2): the signs flip inside the parentheses and the radius is squared.",
+   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must write the standard circle equation:\n\n$$(x - h)^2 + (y - k)^2 = r^2$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n(h, k) &= (3, -2) \\\\\\\\\\\nr &= 5\n\\\\end{aligned}$$\n\n$$((x - 3)^2 + (y - (-2))^2) = (5)^2$$\n\n$$((x - 3)^2 + (y + 2)^2) = 25$$"
+  },
+  {
+   "id": "econ-034",
+   "topic": "Engineering Economics",
+   "subtopic": "Fixed and variable cost",
+   "question": "A contractor's total cost is $10,000 when producing 500 units and $16,000 when producing 1,000 units. Assuming cost is linear in quantity, what is the fixed cost?",
+   "choices": [
+    "$4,000",
+    "$6,000",
+    "$10,000",
+    "$12,000"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Variable cost = (16,000 − 10,000)/500 = $12/unit. Fixed = 10,000 − 12(500) = $4,000. The $6,000 answer is the variable-cost difference, not the fixed cost.",
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must separate fixed from variable cost. Total cost is linear in quantity:\n\n$$TC = FC + (VC_{unit})(Q)$$\n\nFirst find the unit variable cost from the two data points:\n\n$$(VC_{unit}) = \\\\frac{16{,}000 - 10{,}000}{1{,}000 - 500} = \\\\frac{6{,}000}{500} = 12\\\\ \\\\text{dollars/unit}$$\n\nThen back out the fixed cost:\n\n$$(FC) = 10{,}000 - (12)(500)$$\n\n$$(FC) = 10{,}000 - 6{,}000 = 4{,}000\\\\ \\\\text{dollars}$$"
+  },
+  {
+   "id": "econ-035",
+   "topic": "Engineering Economics",
+   "subtopic": "Average cost",
+   "question": "A precast plant spends $48,000 total to produce 3,000 identical concrete panels. What is the average cost per panel?",
+   "choices": [
+    "$16",
+    "$12",
+    "$20",
+    "$48"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Average cost = total cost / quantity = 48,000/3,000 = $16 per panel.",
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the average (unit) cost:\n\n$$AC = \\\\frac{TC}{Q}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nTC &= 48{,}000\\\\ \\\\text{dollars} \\\\\\\\\\\nQ &= 3{,}000\\\\ \\\\text{panels}\n\\\\end{aligned}$$\n\n$$(AC) = \\\\frac{48{,}000}{3{,}000}$$\n\n$$(AC) = 16\\\\ \\\\text{dollars/panel}$$"
+  },
+  {
+   "id": "econ-036",
+   "topic": "Engineering Economics",
+   "subtopic": "Sunk cost",
+   "question": "A firm spent $200,000 developing a prototype that failed testing. It is now evaluating a redesigned product. How should the $200,000 be treated in the economic analysis?",
+   "choices": [
+    "Ignore it — it is a sunk cost",
+    "Add it to the redesign's cost",
+    "Subtract it from the redesign's benefits",
+    "Depreciate it over the new product's life"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Sunk costs are unrecoverable regardless of the decision, so they are excluded from forward-looking analyses. Only incremental future costs and benefits matter.",
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nCosts are classified by their relevance to the decision:\n\n$$\\\\begin{aligned}\n\\\\text{Sunk cost} &\\\\rightarrow \\\\text{already incurred, unrecoverable} \\\\\\\\\\\n\\\\text{Decision rule} &\\\\rightarrow \\\\text{ignore sunk costs}\n\\\\end{aligned}$$\n\nThe $200,000 was spent whether or not the redesign proceeds, so it cannot change the ranking of alternatives. Only the incremental costs and benefits of the redesign itself enter the analysis."
+  },
+  {
+   "id": "econ-037",
+   "topic": "Engineering Economics",
+   "subtopic": "Expected value of a project",
+   "question": "A project has a 60% chance of earning $100,000 and a 40% chance of losing $20,000. What is its expected monetary value?",
+   "choices": [
+    "$52,000",
+    "$68,000",
+    "$40,000",
+    "$80,000"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "explanation": "EMV = 0.6(100,000) + 0.4(−20,000) = 60,000 − 8,000 = $52,000. Forgetting the minus sign on the loss gives $68,000.",
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the expected monetary value:\n\n$$EMV = \\\\sum p_i x_i$$\n\nList the outcomes:\n\n$$\\\\begin{aligned}\np_1 &= 0.60, \\\\quad x_1 = 100{,}000\\\\ \\\\text{dollars} \\\\\\\\\\\np_2 &= 0.40, \\\\quad x_2 = -20{,}000\\\\ \\\\text{dollars}\n\\\\end{aligned}$$\n\n$$(EMV) = (0.60)(100{,}000) + (0.40)(-20{,}000)$$\n\n$$(EMV) = 60{,}000 - 8{,}000$$\n\n$$(EMV) = 52{,}000\\\\ \\\\text{dollars}$$"
+  },
+  {
+   "id": "econ-038",
+   "topic": "Engineering Economics",
+   "subtopic": "Expected value decision",
+   "question": "Alternative A has an expected value of $50,000. Alternative B has a 50% chance of $120,000 and a 50% chance of −$10,000. Using expected value, which should be selected?",
+   "choices": [
+    "Alternative B ($55,000)",
+    "Alternative A ($50,000)",
+    "Either — they are equal",
+    "Neither — both are negative"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "explanation": "EMV(B) = 0.5(120,000) + 0.5(−10,000) = $55,000 > $50,000, so B wins on expected value.",
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values and select the larger:\n\n$$(EMV_B) = (0.50)(120{,}000) + (0.50)(-10{,}000)$$\n\n$$(EMV_B) = 60{,}000 - 5{,}000 = 55{,}000\\\\ \\\\text{dollars}$$\n\n$$(EMV_A) = 50{,}000\\\\ \\\\text{dollars}$$\n\n$$(55{,}000) > (50{,}000) \\\\rightarrow \\\\text{select Alternative B}$$"
+  },
+  {
+   "id": "econ-039",
+   "topic": "Engineering Economics",
+   "subtopic": "Risk in engineering economy",
+   "question": "In an engineering economic analysis under uncertainty, the term “risk” is best described as which of the following?",
+   "choices": [
+    "Variability of outcomes around the expected value",
+    "The guaranteed worst-case loss",
+    "The interest rate used for discounting",
+    "The probability the project breaks even"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Risk is the spread of possible outcomes — two projects can share an expected value while carrying very different risk. Expected value alone does not capture it.",
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUnder uncertainty, a decision is characterized by two things:\n\n$$\\\\begin{aligned}\n\\\\text{Expected value} &\\\\rightarrow \\\\text{probability-weighted mean outcome} \\\\\\\\\\\n\\\\text{Risk} &\\\\rightarrow \\\\text{variability of outcomes about that mean}\n\\\\end{aligned}$$\n\nThis is why analyses pair expected value with risk measures (range, variance, or probability of loss) rather than reporting the mean alone."
+  },
+  {
+   "id": "materials-034",
+   "topic": "Materials",
+   "subtopic": "Concrete absolute volume method",
+   "question": "A concrete mix uses 350 kg of cement with a specific gravity of 3.15. What volume does the cement occupy per cubic meter of concrete by the absolute volume method?",
+   "choices": [
+    "0.111 m³",
+    "0.350 m³",
+    "1.103 m³",
+    "0.089 m³"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "V = mass/(SG × density of water) = 350/(3.15 × 1000) = 0.111 m³. Dividing by SG alone forgets the water-density conversion.",
+   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the absolute volume of cement:\n\n$$V = \\\\frac{M}{(SG)(\\\\rho_w)}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nM &= 350\\\\ \\\\text{kg} \\\\\\\\\\\nSG &= 3.15 \\\\\\\\\\\n\\\\rho_w &= 1{,}000\\\\ \\\\text{kg/m}^3\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{350}{(3.15)(1{,}000)}$$\n\n$$(V) = \\\\frac{350}{3{,}150}$$\n\n$$(V) = 0.111\\\\ \\\\text{m}^3$$"
+  },
+  {
+   "id": "materials-035",
+   "topic": "Materials",
+   "subtopic": "Water-cement ratio",
+   "question": "A concrete batch contains 160 kg of water and 400 kg of cement. What is the water-cement ratio?",
+   "choices": [
+    "0.40",
+    "0.50",
+    "2.50",
+    "0.25"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "w/c = 160/400 = 0.40. Lower ratios give higher strength; the 2.50 answer inverts the fraction.",
+   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the water-cement ratio, the single most important predictor of concrete strength:\n\n$$w/c = \\\\frac{M_{water}}{M_{cement}}$$\n\n$$(w/c) = \\\\frac{160}{400}$$\n\n$$(w/c) = 0.40$$"
+  },
+  {
+   "id": "materials-036",
+   "topic": "Materials",
+   "subtopic": "VMA in asphalt mix design",
+   "question": "In asphalt mix design, providing adequate voids in the mineral aggregate (VMA) is important primarily to ensure which of the following?",
+   "choices": [
+    "Enough room for the binder film that gives durability",
+    "Maximum possible aggregate interlock",
+    "Zero air voids in the compacted mix",
+    "Minimum asphalt binder content"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "VMA is the space available for binder plus air voids; too little VMA starves the mix of binder and the pavement ravels. Mixes are designed for 3–5% air voids, not zero.",
+   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nAn asphalt mixture's volume is split three ways:\n\n$$VMA = (\\\\text{air voids}) + (\\\\text{effective binder volume})$$\n\nIf VMA is too small, there is no room for an adequate binder film around each aggregate particle, and the pavement loses durability and ravels under traffic. This is why specifications set minimum VMA values by nominal aggregate size."
+  },
+  {
+   "id": "water-042",
+   "topic": "Water Resources",
+   "subtopic": "Detention basin storage volume",
+   "question": "A triangular inflow hydrograph peaks at 80 cfs with a 4-hour base. The basin outlet releases a constant 25 cfs. What detention storage volume is required?",
+   "choices": [
+    "5.0 acre-ft",
+    "3.2 acre-ft",
+    "8.1 acre-ft",
+    "13.2 acre-ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Storage = inflow volume − outflow volume = ½(80)(14,400) − 25(14,400) = 216,000 ft³ = 5.0 acre-ft.",
+   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the required storage as the difference between inflow and outflow volumes:\n\n$$S = V_{in} - V_{out}$$\n\nThe inflow hydrograph is triangular; the outflow is constant over the same base time.\n\n$$\\\\begin{aligned}\nV_{in} &= \\\\tfrac{1}{2}(80)(4 \\\\times 3{,}600) = 576{,}000\\\\ \\\\text{ft}^3 \\\\\\\\\\\nV_{out} &= (25)(4 \\\\times 3{,}600) = 360{,}000\\\\ \\\\text{ft}^3\n\\\\end{aligned}$$\n\n$$(S) = 576{,}000 - 360{,}000 = 216{,}000\\\\ \\\\text{ft}^3$$\n\n$$(S) = \\\\frac{216{,}000}{43{,}560} = 5.0\\\\ \\\\text{acre-ft}$$"
+  },
+  {
+   "id": "water-043",
+   "topic": "Water Resources",
+   "subtopic": "Detention outlet (orifice)",
+   "question": "A detention basin outlet is a 6-inch-diameter orifice with discharge coefficient 0.60. With 4 ft of head above the orifice centerline, what is the outflow?",
+   "choices": [
+    "1.9 cfs",
+    "3.2 cfs",
+    "0.9 cfs",
+    "2.8 cfs"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Q = Cd·A√(2gh) = 0.60 × 0.196 × √(257.6) = 1.9 cfs. Using the diameter instead of the area is the common error.",
+   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the orifice outflow:\n\n$$Q = C_d A\\\\sqrt{2gh}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nd &= 6\\\\ \\\\text{in} = 0.5\\\\ \\\\text{ft} \\\\\\\\\\\nA &= \\\\frac{\\\\pi(0.5)^2}{4} = 0.1963\\\\ \\\\text{ft}^2 \\\\\\\\\\\nC_d &= 0.60, \\\\quad h = 4\\\\ \\\\text{ft}, \\\\quad g = 32.2\\\\ \\\\text{ft/s}^2\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(0.1963)\\\\sqrt{2(32.2)(4)}$$\n\n$$(Q) = (0.1178)(16.05)$$\n\n$$(Q) = 1.9\\\\ \\\\text{cfs}$$"
+  },
+  {
+   "id": "water-044",
+   "topic": "Water Resources",
+   "subtopic": "Water quality volume (first flush)",
+   "question": "A 2-acre parking lot (fully impervious) must capture the first 1 inch of runoff for water quality treatment. What storage volume is required?",
+   "choices": [
+    "7,260 ft³",
+    "3,630 ft³",
+    "14,520 ft³",
+    "87,120 ft³"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "V = area × depth = 2(43,560)(1/12) = 7,260 ft³. The 87,120 answer forgets to convert inches to feet.",
+   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the water-quality capture volume:\n\n$$V = (\\\\text{area})(\\\\text{design depth})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nA &= 2\\\\ \\\\text{ac} = 87{,}120\\\\ \\\\text{ft}^2 \\\\\\\\\\\nd &= 1\\\\ \\\\text{in} = \\\\frac{1}{12}\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(V) = (87{,}120)\\\\left(\\\\frac{1}{12}\\\\right)$$\n\n$$(V) = 7{,}260\\\\ \\\\text{ft}^3$$"
+  },
+  {
+   "id": "water-045",
+   "topic": "Water Resources",
+   "subtopic": "BOD mixing (dilution)",
+   "question": "A stream flowing 10 cfs with BOD of 2 mg/L receives a 2-cfs wastewater discharge with BOD of 250 mg/L. Assuming complete mixing, what is the BOD just below the outfall?",
+   "choices": [
+    "43.3 mg/L",
+    "52.0 mg/L",
+    "21.0 mg/L",
+    "86.7 mg/L"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Flow-weighted average: (10×2 + 2×250)/12 = 43.3 mg/L. Averaging the concentrations without flow-weighting gives 126 mg/L — not among the choices for a reason.",
+   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the completely mixed concentration:\n\n$$C_{mix} = \\\\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ_s &= 10\\\\ \\\\text{cfs}, \\\\quad C_s = 2\\\\ \\\\text{mg/L} \\\\\\\\\\\nQ_w &= 2\\\\ \\\\text{cfs}, \\\\quad C_w = 250\\\\ \\\\text{mg/L}\n\\\\end{aligned}$$\n\n$$(C_{mix}) = \\\\frac{(10)(2) + (2)(250)}{10 + 2}$$\n\n$$(C_{mix}) = \\\\frac{520}{12}$$\n\n$$(C_{mix}) = 43.3\\\\ \\\\text{mg/L}$$"
+  },
+  {
+   "id": "water-046",
+   "topic": "Water Resources",
+   "subtopic": "Ultimate BOD from BOD5",
+   "question": "A wastewater sample has a 5-day BOD of 200 mg/L with a deoxygenation rate k = 0.23/day (base e). What is the ultimate BOD?",
+   "choices": [
+    "293 mg/L",
+    "200 mg/L",
+    "340 mg/L",
+    "250 mg/L"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "BOD5 = L(1 − e^−kt), so L = 200/(1 − e^−1.15) = 293 mg/L. BOD5 is always less than ultimate BOD — the 200 answer confuses the two.",
+   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the ultimate (carbonaceous) BOD. The handbook gives the BOD exerted at time t:\n\n$$BOD_t = L(1 - e^{-kt})$$\n\nSolving for L:\n\n$$(L) = \\\\frac{BOD_t}{1 - e^{-kt}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nBOD_5 &= 200\\\\ \\\\text{mg/L} \\\\\\\\\\\nk &= 0.23\\\\ \\\\text{/day}, \\\\quad t = 5\\\\ \\\\text{days}\n\\\\end{aligned}$$\n\n$$(L) = \\\\frac{200}{1 - e^{-(0.23)(5)}}$$\n\n$$(L) = \\\\frac{200}{1 - 0.3166}$$\n\n$$(L) = \\\\frac{200}{0.6834} = 293\\\\ \\\\text{mg/L}$$"
+  },
+  {
+   "id": "water-047",
+   "topic": "Water Resources",
+   "subtopic": "Critical dissolved oxygen deficit",
+   "question": "After a wastewater discharge, the dissolved oxygen sag curve reaches its minimum (critical deficit) at the point where which condition holds?",
+   "choices": [
+    "Deoxygenation rate equals reaeration rate",
+    "BOD is completely exerted",
+    "Stream velocity is maximum",
+    "Photosynthesis exceeds respiration"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The sag minimum is where the falling limb flattens: oxygen consumed by BOD exactly balances oxygen absorbed from the atmosphere. Downstream of that point, reaeration wins and DO recovers.",
+   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe Streeter-Phelps oxygen sag is governed by two competing rates:\n\n$$\\\\begin{aligned}\n\\\\text{Deoxygenation} &\\\\rightarrow \\\\text{oxygen consumed by BOD} \\\\\\\\\\\n\\\\text{Reaeration} &\\\\rightarrow \\\\text{oxygen absorbed from air}\n\\\\end{aligned}$$\n\nThe dissolved oxygen deficit grows while deoxygenation outpaces reaeration, peaks, then shrinks. At the minimum DO point the deficit stops growing:\n\n$$(\\\\text{deoxygenation rate}) = (\\\\text{reaeration rate}) \\\\text{ at the critical deficit}$$"
+  },
+  {
+   "id": "water-048",
+   "topic": "Water Resources",
+   "subtopic": "Combined noise level (unequal sources)",
+   "question": "Two machines produce 85 dB and 79 dB individually at a property line. What is their combined noise level?",
+   "choices": [
+    "86.0 dB",
+    "87.5 dB",
+    "82.0 dB",
+    "164.0 dB"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Decibels add logarithmically: 10·log(10^8.5 + 10^7.9) = 86.0 dB. Adding them arithmetically (164 dB) ignores the log scale entirely.",
+   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must combine two sound levels on the logarithmic decibel scale:\n\n$$L_{total} = 10\\\\log_{10}(10^{L_1/10} + 10^{L_2/10})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nL_1 &= 85\\\\ \\\\text{dB} \\\\\\\\\\\nL_2 &= 79\\\\ \\\\text{dB}\n\\\\end{aligned}$$\n\n$$(L_{total}) = 10\\\\log_{10}(10^{8.5} + 10^{7.9})$$\n\n$$(L_{total}) = 10\\\\log_{10}(3.162 \\\\times 10^8 + 7.943 \\\\times 10^7)$$\n\n$$(L_{total}) = 10(8.597) = 86.0\\\\ \\\\text{dB}$$"
+  },
+  {
+   "id": "water-049",
+   "topic": "Water Resources",
+   "subtopic": "NAAQS criteria pollutants",
+   "question": "The National Ambient Air Quality Standards (NAAQS) set limits for criteria pollutants. Which of the following is a criteria pollutant with a NAAQS?",
+   "choices": [
+    "Fine particulate matter (PM2.5)",
+    "Methane",
+    "Radon",
+    "Asbestos"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The six criteria pollutants are PM, ozone, CO, NO2, SO2, and lead — PM2.5 has an annual NAAQS of 12 µg/m³. Methane, radon, and asbestos are regulated under other programs.",
+   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe Clean Air Act directs EPA to set NAAQS for criteria pollutants — widespread pollutants judged harmful to health and welfare:\n\n$$\\\\text{Criteria pollutants} = \\\\{PM, O_3, CO, NO_2, SO_2, Pb\\\\}$$\n\nFine particulate matter (PM2.5) is one of the six, with both annual and 24-hour standards. Methane is a greenhouse gas, radon is handled under indoor-air guidance, and asbestos under NESHAP — none carries a NAAQS."
+  },
+  {
+   "id": "water-050",
+   "topic": "Water Resources",
+   "subtopic": "Drinking water MCL (nitrate)",
+   "question": "What is the EPA maximum contaminant level (MCL) for nitrate in drinking water, expressed as nitrogen?",
+   "choices": [
+    "10 mg/L",
+    "1 mg/L",
+    "45 mg/L",
+    "100 mg/L"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The nitrate MCL is 10 mg/L as N (equivalent to 45 mg/L as NO3). It protects infants against methemoglobinemia (blue-baby syndrome).",
+   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUnder the Safe Drinking Water Act, EPA sets maximum contaminant levels for public water systems:\n\n$$(MCL_{nitrate}) = 10\\\\ \\\\text{mg/L as N}$$\n\nNitrate above this level risks methemoglobinemia in infants, so it is one of the primary standards every community system must meet. (Expressed as nitrate ion rather than nitrogen, the same limit is 45 mg/L.)"
+  },
+  {
+   "id": "water-051",
+   "topic": "Water Resources",
+   "subtopic": "Sedimentation overflow rate",
+   "question": "A rectangular sedimentation basin is 80 ft by 40 ft and treats 2 MGD. What is the surface overflow rate?",
+   "choices": [
+    "625 gpd/ft²",
+    "1,250 gpd/ft²",
+    "313 gpd/ft²",
+    "2,500 gpd/ft²"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "SOR = Q/A = 2,000,000/3,200 = 625 gpd/ft². Typical design values run 500–1,000 gpd/ft², so this basin is reasonably sized.",
+   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the surface overflow rate, the key sedimentation design parameter:\n\n$$SOR = \\\\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ &= 2\\\\ \\\\text{MGD} = 2{,}000{,}000\\\\ \\\\text{gpd} \\\\\\\\\\\nA &= (80)(40) = 3{,}200\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(SOR) = \\\\frac{2{,}000{,}000}{3{,}200}$$\n\n$$(SOR) = 625\\\\ \\\\text{gpd/ft}^2$$"
+  },
+  {
+   "id": "water-052",
+   "topic": "Water Resources",
+   "subtopic": "Coagulation purpose",
+   "question": "In drinking water treatment, coagulants such as alum are added primarily to accomplish which of the following?",
+   "choices": [
+    "Destabilize colloidal particles so they can be removed",
+    "Disinfect pathogens",
+    "Soften the water by removing hardness",
+    "Oxidize dissolved iron and manganese"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Colloids carry like charges that keep them suspended; coagulant neutralizes the charge so particles agglomerate into settleable floc. Disinfection and softening are separate unit processes.",
+   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nConventional treatment follows a fixed sequence:\n\n$$\\\\text{Coagulation} \\\\rightarrow \\\\text{flocculation} \\\\rightarrow \\\\text{sedimentation} \\\\rightarrow \\\\text{filtration} \\\\rightarrow \\\\text{disinfection}$$\n\nColloidal turbidity particles repel each other electrostatically and will never settle on their own. Coagulant neutralizes that charge:\n\n$$(\\\\text{coagulant}) \\\\rightarrow \\\\text{charge neutralization} \\\\rightarrow \\\\text{floc formation} \\\\rightarrow \\\\text{settling}$$"
+  },
+  {
+   "id": "water-053",
+   "topic": "Water Resources",
+   "subtopic": "Chlorine contact time (CT)",
+   "question": "A clearwell provides 30 minutes of contact time at a free chlorine residual of 2 mg/L. What is the CT value?",
+   "choices": [
+    "60 mg·min/L",
+    "15 mg·min/L",
+    "32 mg·min/L",
+    "120 mg·min/L"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "CT = concentration × time = 2 × 30 = 60 mg·min/L. Disinfection credit is awarded on this product, not on either factor alone.",
+   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the disinfection CT, the regulatory basis for pathogen inactivation credit:\n\n$$CT = (C)(T)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 2\\\\ \\\\text{mg/L} \\\\\\\\\\\nT &= 30\\\\ \\\\text{min}\n\\\\end{aligned}$$\n\n$$(CT) = (2)(30)$$\n\n$$(CT) = 60\\\\ \\\\text{mg}\\\\cdot\\\\text{min/L}$$"
+  },
+  {
+   "id": "geotech-042",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Direct shear (Mohr-Coulomb)",
+   "question": "A direct shear test on a sand gives c = 200 psf and φ = 25°. What is the shear strength at a normal stress of 1,000 psf?",
+   "choices": [
+    "666 psf",
+    "466 psf",
+    "1,200 psf",
+    "866 psf"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "τ = c + σ·tanφ = 200 + 1,000(0.466) = 666 psf. Dropping the cohesion term gives 466 psf.",
+   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must apply the Mohr-Coulomb failure criterion:\n\n$$\\\\tau = c + \\\\sigma\\\\tan\\\\phi$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nc &= 200\\\\ \\\\text{psf} \\\\\\\\\\\n\\\\phi &= 25^{\\\\circ} \\\\\\\\\\\n\\\\sigma &= 1{,}000\\\\ \\\\text{psf}\n\\\\end{aligned}$$\n\n$$(\\\\tau) = 200 + (1{,}000)\\\\tan(25^{\\\\circ})$$\n\n$$(\\\\tau) = 200 + (1{,}000)(0.4663)$$\n\n$$(\\\\tau) = 666\\\\ \\\\text{psf}$$"
+  },
+  {
+   "id": "geotech-043",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Unconfined compression (cohesion)",
+   "question": "An unconfined compression test on a saturated clay gives qu = 1,800 psf. What is the undrained shear strength (cohesion)?",
+   "choices": [
+    "900 psf",
+    "1,800 psf",
+    "450 psf",
+    "3,600 psf"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "For φ = 0, the Mohr circle passes through the origin and qu, so su = c = qu/2 = 900 psf.",
+   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nIn an unconfined compression test the confining stress is zero and a saturated clay behaves with \\\\phi = 0. The Mohr circle then has diameter qu:\n\n$$s_u = c = \\\\frac{q_u}{2}$$\n\n$$(s_u) = \\\\frac{1{,}800}{2}$$\n\n$$(s_u) = 900\\\\ \\\\text{psf}$$"
+  },
+  {
+   "id": "geotech-044",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Triaxial principal stress",
+   "question": "A consolidated-drained triaxial test is run at confining stress 100 kPa on a soil with c = 20 kPa and φ = 30°. What is the major principal stress at failure?",
+   "choices": [
+    "370 kPa",
+    "300 kPa",
+    "430 kPa",
+    "200 kPa"
+   ],
+   "answerIndex": 0,
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "σ1 = σ3·tan²(45+φ/2) + 2c·tan(45+φ/2) = 100(3) + 40(1.732) = 370 kPa. The 300 kPa answer drops the cohesion term.",
+   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\\\sigma_1 = \\\\sigma_3\\\\tan^2\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right) + 2c\\\\tan\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\sigma_3 &= 100\\\\ \\\\text{kPa} \\\\\\\\\\\nc &= 20\\\\ \\\\text{kPa}, \\\\quad \\\\phi = 30^{\\\\circ} \\\\\\\\\\\n\\\\tan(60^{\\\\circ}) &= 1.732\n\\\\end{aligned}$$\n\n$$(\\\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\\\sigma_1) = 300 + 69.3$$\n\n$$(\\\\sigma_1) = 370\\\\ \\\\text{kPa}$$"
+  },
+  {
+   "id": "geotech-045",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Infinite slope (dry)",
+   "question": "A dry infinite slope of cohesionless soil has φ = 30° and a slope angle of 20°. What is the factor of safety against sliding?",
+   "choices": [
+    "1.59",
+    "1.20",
+    "2.00",
+    "0.63"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "FS = tanφ/tanβ = 0.577/0.364 = 1.59. Inverting the ratio gives 0.63 — always check that FS > 1 for a standing slope.",
+   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the factor of safety of a dry infinite slope in cohesionless soil:\n\n$$FS = \\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\phi &= 30^{\\\\circ} \\\\\\\\\\\n\\\\beta &= 20^{\\\\circ}\n\\\\end{aligned}$$\n\n$$(FS) = \\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})}$$\n\n$$(FS) = \\\\frac{0.5774}{0.3640}$$\n\n$$(FS) = 1.59$$"
+  },
+  {
+   "id": "geotech-046",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Infinite slope with seepage",
+   "question": "The same slope (φ = 30°, β = 20°) now has seepage parallel to the surface. If γ_sat = 125 pcf, what is the factor of safety?",
+   "choices": [
+    "0.79",
+    "1.59",
+    "1.20",
+    "0.50"
+   ],
+   "answerIndex": 0,
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Seepage cuts FS by γ'/γ_sat: (62.6/125)(1.59) = 0.79. The slope that was stable dry now fails — the classic seepage lesson.",
+   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\\\left(\\\\frac{\\\\gamma'}{\\\\gamma_{sat}}\\\\right)\\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\gamma_{sat} &= 125\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\gamma' &= 125 - 62.4 = 62.6\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})} &= 1.586\n\\\\end{aligned}$$\n\n$$(FS) = \\\\left(\\\\frac{62.6}{125}\\\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$"
+  },
+  {
+   "id": "geotech-047",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Method of slices concept",
+   "question": "The ordinary method of slices (Fellenius) for slope stability analysis is based on which key assumption?",
+   "choices": [
+    "Circular slip surface with interslice forces neglected",
+    "Planar slip surface with full interslice equilibrium",
+    "Log-spiral slip surface with seepage ignored",
+    "Infinite slope with cohesion only"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Fellenius slices a circular slip mass and neglects interslice forces — simple and conservative. Bishop's simplified method keeps the circular surface but satisfies moment equilibrium including interslice normals.",
+   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\\\begin{aligned}\n\\\\text{Ordinary (Fellenius)} &\\\\rightarrow \\\\text{circular surface, interslice forces neglected} \\\\\\\\\\\n\\\\text{Bishop simplified} &\\\\rightarrow \\\\text{circular surface, moment equilibrium with interslice normals}\n\\\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
   }
  ]
 }

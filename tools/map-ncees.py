@@ -123,7 +123,7 @@ def map_question(q):
         if has(s, "determinant", "eigenvalue", "matrix inverse", "linear independence", "systems of linear equations"): return OFFSPEC
         if has(s, "differential equation", "laplace"): return OFFSPEC
         if has(s, "newton's method", "simpson", "trapezoidal", "numerical integration", "euler forward"): return OFFSPEC
-        if has(s, "law of cosines"): return "1A"
+        if has(s, "law of cosines", "distance between two points", "circle equation", "through two points", "slope-intercept"): return "1A"
         if has(s, "integral", "derivative", "differentiation", "l'hôpital", "l'hopital", "taylor", "maclaurin", "u-substitution", "integration by parts", "area between curves", "tangent line"): return "1B"
         return OFFSPEC
     if t == "Statistics and Probability":
@@ -136,8 +136,8 @@ def map_question(q):
     if t == "Engineering Economics":
         if has(s, "depreciation", "book value", "macrs", "bond valuation", "taxable income"): return OFFSPEC
         if has(s, "break-even", "benefit-cost", "payback"): return "3C"
-        if has(s, "decision tree", "expected value"): return "3D"
-        if has(s, "cost index"): return "3B"
+        if has(s, "decision tree", "expected value", "risk"): return "3D"
+        if has(s, "cost index", "fixed cost", "variable cost", "average cost", "sunk"): return "3B"
         return "3A"
     if t == "Statics":
         if has(s, "resultant"): return "4A"
@@ -166,7 +166,7 @@ def map_question(q):
         if has(s, "thermal stress"): return "6B"
         if has(s, "fick", "fourier", "lever rule", "grain size", "electrical resistivity", "rule of mixtures"): return OFFSPEC
         if has(s, "thermal expansion"): return "7C"
-        if has(s, "mix design", "absolute volume"): return "7A"
+        if has(s, "mix design", "absolute volume", "water-cement"): return "7A"
         if has(s, "fineness modulus"): return "7B"
         if has(s, "charpy", "non-destructive", "testing"): return "7B"
         return "7C"
@@ -197,10 +197,12 @@ def map_question(q):
         if has(s, "weir"): return "10B"
         if has(s, "pump"): return "10C"
         if has(s, "hazen-williams", "head loss", "distribution", "population projection"): return "10D"
-        if has(s, "detention"): return "10F"
+        if has(s, "detention", "first flush"): return "10F"
         if has(s, "thiem", "dupuit", "darcy", "aquifer", "seepage velocity", "well", "groundwater", "confined"): return "10H"
+        if has(s, "dissolved oxygen"): return "10I"
         if has(s, "bod"): return "10I"
-        if has(s, "disinfection", "ct ", "treatment"): return "10K"
+        if has(s, "noise", "naaqs", "mcl"): return "10J"
+        if has(s, "disinfection", "ct ", "treatment", "sedimentation", "coagulation", "flocculation", "chlorine"): return "10K"
         return "10B"
     if t == "Structural Engineering":
         if has(s, "shear and moment"): return "6A"
@@ -221,13 +223,13 @@ def map_question(q):
         if has(s, "atterberg", "plasticity", "uscs", "aashto", "group index", "gradation", "uniformity", "curvature", "classification"): return "12A"
         if has(s, "phase", "void ratio", "saturation", "unit weight"): return "12B"
         if has(s, "proctor", "compaction", "relative compaction", "relative density", "optimum water"): return "12C"
+        if has(s, "slope stability", "infinite slope", "slices"): return "12J"
         if has(s, "permeability", "flow net", "seepage", "quicksand", "liquefaction"): return "12D"
         if has(s, "effective stress"): return "12D"
         if has(s, "rankine", "at-rest", "overconsolidated", "retaining wall", "overturning", "earth pressure"): return "12E"
-        if has(s, "shear strength", "mohr-coulomb"): return "12F"
+        if has(s, "shear strength", "mohr-coulomb", "unconfined", "triaxial", "direct shear"): return "12F"
         if has(s, "bearing capacity", "terzaghi"): return "12G"
         if has(s, "consolidation", "settlement", "time factor"): return "12I"
-        if has(s, "slope stability", "infinite slope"): return "12J"
         return "12D"
     if t == "Transportation Engineering":
         if has(s, "curve", "superelevation", "sight distance", "geometric", "intersection sight"): return "13A"
