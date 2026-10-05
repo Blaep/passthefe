@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["home", "practice", "exam", "formulas", "reference", "flashcards", "analytics", "privacy"];
+  var VIEWS = ["home", "practice", "mastery", "exam", "formulas", "reference", "flashcards", "analytics", "privacy"];
   var TOPICS = [
     "Mathematics", "Statistics and Probability", "Engineering Economics",
     "Ethics and Professional Practice", "Statics", "Dynamics",
@@ -96,6 +96,7 @@
     });
     if (name === "home") renderStats();
     if (name === "practice") initPractice();
+    if (name === "mastery") renderMastery();
     if (name === "exam") initExam();
     if (name === "formulas") initFormulas();
     if (name === "flashcards") initFlashcards();
@@ -1564,6 +1565,155 @@
       var pct = n ? Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n) : 0;
       var mastery = n ? Math.round(pct * Math.min(1, n / 10)) : 0;
       return { topic: t, n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
+    });
+  }
+
+  // ---- NCEES subtopic mastery --------------------------------------------
+  // data/ncees-mastery.json holds the 14 official NCEES FE Civil areas with
+  // their lettered subtopics (July 2020 specs), plus a qid -> subtopic-code
+  // map for every bank question ("OFFSPEC" when the question isn't in the
+  // FE Civil specs). Attempts already log qid, so subtopic stats join
+  // through the map — no logging changes needed.
+  var MASTERY = null;
+  function loadMastery(cb) {
+    if (MASTERY) { cb(MASTERY); return; }
+    fetch("data/ncees-mastery.json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var byCode = {};
+        Object.keys(d.map || {}).forEach(function (id) {
+          var c = d.map[id];
+          if (!c || c === "OFFSPEC") return;
+          (byCode[c] = byCode[c] || []).push(id);
+        });
+        d.byCode = byCode;
+        MASTERY = d;
+        cb(d);
+      })
+      .catch(function () { cb(null); });
+  }
+
+  // Per-subtopic stats keyed by code: { n, pct, mastery, level }.
+  // Same accuracy x confidence formula as topic mastery (~10 attempts fills it).
+  function subtopicStats() {
+    var attempts = store.get("attempts", []);
+    var map = (MASTERY && MASTERY.map) || {};
+    var byCode = {};
+    attempts.forEach(function (a) {
+      var c = map[a.qid];
+      if (!c || c === "OFFSPEC") return;
+      (byCode[c] = byCode[c] || []).push(a);
+    });
+    var out = {};
+    Object.keys(byCode).forEach(function (c) {
+      var ts = byCode[c], n = ts.length;
+      var pct = Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n);
+      var mastery = Math.round(pct * Math.min(1, n / 10));
+      out[c] = { n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
+    });
+    return out;
+  }
+
+  function masteryCodeShort(code, M) {
+    for (var i = 0; i < M.areas.length; i++) {
+      var subs = M.areas[i].subtopics;
+      for (var j = 0; j < subs.length; j++) {
+        if (subs[j].code === code) return code + " " + subs[j].label.split(" (")[0];
+      }
+    }
+    return code;
+  }
+
+  function renderMastery() {
+    var body = document.getElementById("mastery-body");
+    loadMastery(function (M) {
+      if (!M) {
+        body.innerHTML = '<div class="card"><p>Could not load the mastery map. Check your connection and try again.</p></div>';
+        return;
+      }
+      var stats = subtopicStats();
+      var html = "";
+      var grandSum = 0, grandN = 0, withQ = 0;
+      M.areas.forEach(function (area) {
+        var areaSum = 0;
+        var subsHtml = "";
+        area.subtopics.forEach(function (st) {
+          grandN++;
+          var s = stats[st.code] || { n: 0, pct: 0, mastery: 0, level: "Not started" };
+          grandSum += s.mastery;
+          areaSum += s.mastery;
+          var nQ = (M.byCode[st.code] || []).length;
+          if (nQ) withQ++;
+          var cls = s.n ? scoreClass(s.mastery) : "";
+          var quizBtn = nQ
+            ? '<button class="btn drill-btn" data-mquiz="' + escapeHtml(st.code) + '">Quiz</button>'
+            : '<span class="muted" style="font-size:0.78rem;white-space:nowrap">No questions yet</span>';
+          subsHtml += '<div class="topic-row mastery-sub">' +
+            '<span class="topic-name"><strong>' + escapeHtml(st.code) + '</strong> ' +
+            escapeHtml(st.label) + ' <small>(' + nQ + "Q" +
+            (s.n ? " · " + s.n + " tried · " + s.pct + "%" : "") + ")</small></span>" +
+            '<span class="bar"><span class="fill ' + cls + '" style="width:' + s.mastery + '%"></span></span>' +
+            '<span class="mastery-level ' + cls + '">' + s.level + "</span>" +
+            quizBtn + "</div>";
+        });
+        var areaMastery = Math.round(areaSum / area.subtopics.length);
+        var acls = areaSum ? scoreClass(areaMastery) : "";
+        html += '<details class="card mastery-area"><summary>' +
+          '<span class="topic-name"><strong>' + area.n + ". " + escapeHtml(area.name) + "</strong>" +
+          ' <small>(' + escapeHtml(area.questions) + " exam questions)</small></span>" +
+          '<span class="bar"><span class="fill ' + acls + '" style="width:' + areaMastery + '%"></span></span>' +
+          '<span class="mastery-level ' + acls + '">' + areaMastery + "%</span>" +
+          "</summary>" + subsHtml + "</details>";
+      });
+      var overall = grandN ? Math.round(grandSum / grandN) : 0;
+      var banner = '<div class="card"><h3>Overall subsection mastery</h3>' +
+        '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">' + overall +
+        "% across " + grandN + " official subsections · " + withQ +
+        " have bank questions · meters fill with accuracy and practice (about 10 answered questions per subsection for full confidence).</p>" +
+        '<div class="topic-row"><span class="topic-name"><strong>All subsections</strong></span>' +
+        '<span class="bar"><span class="fill ' + (grandSum ? scoreClass(overall) : "") +
+        '" style="width:' + overall + '%"></span></span>' +
+        '<span class="mastery-level">' + overall + "%</span></div></div>";
+      body.innerHTML = banner + html;
+      // Quiz buttons: start a bank-question quiz for one NCEES subtopic.
+      body.querySelectorAll("[data-mquiz]").forEach(function (btn) {
+        btn.addEventListener("click", function () { startMasteryQuiz(btn.dataset.mquiz); });
+      });
+    });
+  }
+
+  // A mastery quiz draws only the bank questions mapped to one NCEES
+  // subtopic, then runs them through the standard quiz runner (which lives
+  // in the practice view). Attempts log the bank topic as usual, so
+  // analytics stay consistent; subtopic meters join attempts via qid.
+  function startMasteryQuiz(code) {
+    loadQuestions(function () {
+      loadMastery(function (M) {
+        if (!M) { toast("Mastery data failed to load — try again."); return; }
+        var pool = (M.byCode[code] || []).map(findQuestion).filter(Boolean);
+        if (!pool.length) { toast("No bank questions mapped to this subtopic yet."); return; }
+        if (store.get("portableOut", null)) {
+          store.set("portableOut", null);
+          toast("The old session code stopped working — you started a new quiz.");
+        }
+        var n = Math.min(10, pool.length);
+        var seed = Math.floor(Math.random() * 1048576);
+        quiz = {
+          list: seededShuffle(pool, seed).slice(0, n),
+          idx: 0, correct: 0, topic: "Mastery · " + masteryCodeShort(code, M),
+          answers: [], t0: Date.now(), elapsedBase: 0, qStart: null,
+          seed: seed, topicSel: 15, masteryCode: code
+        };
+        saveProgress();
+        VIEWS.forEach(function (v) {
+          var el = document.getElementById("view-" + v);
+          if (el) el.classList.toggle("hidden", v !== "practice");
+        });
+        if ((location.hash || "") !== "#/practice") history.replaceState(null, "", "#/practice");
+        renderQuestion();
+        showOnly("quiz-run");
+        window.scrollTo(0, 0);
+      });
     });
   }
 

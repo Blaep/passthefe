@@ -156,6 +156,21 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .topic-name small { color: var(--text-2); font-weight: 400; }
 .bar { flex: 1; height: 10px; background: #eef0f6; border-radius: 5px; overflow: hidden; }
 .bar .fill { display: block; height: 100%; background: var(--primary); border-radius: 5px; }
+
+/* Mastery view: expandable NCEES area cards with per-subsection rows */
+details.mastery-area { padding: 0; }
+details.mastery-area summary { display: flex; align-items: center; gap: 12px; padding: 16px 18px; cursor: pointer; list-style: none; }
+details.mastery-area summary::-webkit-details-marker { display: none; }
+details.mastery-area summary::before { content: "›"; font-weight: 800; color: var(--text-2); transition: transform 0.15s; }
+details.mastery-area[open] summary::before { transform: rotate(90deg); }
+details.mastery-area summary .topic-name { flex: 0 1 260px; }
+details.mastery-area .mastery-sub { padding: 4px 18px 4px 30px; }
+details.mastery-area .mastery-sub .topic-name { flex: 0 1 300px; font-weight: 400; font-size: 0.88rem; }
+details.mastery-area .mastery-sub .topic-name strong { font-weight: 700; }
+details.mastery-area .mastery-sub .drill-btn { flex: 0 0 auto; }
+@media (max-width: 640px) {
+  details.mastery-area summary .topic-name, details.mastery-area .mastery-sub .topic-name { flex-basis: 150px; font-size: 0.8rem; }
+}
 .topic-pct { flex: 0 0 48px; text-align: right; font-weight: 700; }
 .mastery-level { flex: 0 0 92px; text-align: right; font-weight: 700; font-size: 0.8rem; color: var(--text-2); }
 .mastery-level.good { color: var(--success); }

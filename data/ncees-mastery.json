@@ -1,0 +1,1091 @@
+{
+ "areas": [
+  {
+   "n": 1,
+   "name": "Mathematics and Statistics",
+   "questions": "8\u201312",
+   "bankTopics": [
+    "Mathematics",
+    "Statistics and Probability"
+   ],
+   "subtopics": [
+    {
+     "code": "1A",
+     "label": "Analytic geometry",
+     "count": 1
+    },
+    {
+     "code": "1B",
+     "label": "Single-variable calculus",
+     "count": 10
+    },
+    {
+     "code": "1C",
+     "label": "Vector operations",
+     "count": 2
+    },
+    {
+     "code": "1D",
+     "label": "Statistics (e.g., distributions, mean, mode, standard deviation, confidence interval, regression and curve fitting)",
+     "count": 34
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "name": "Ethics and Professional Practice",
+   "questions": "4\u20136",
+   "bankTopics": [
+    "Ethics and Professional Practice"
+   ],
+   "subtopics": [
+    {
+     "code": "2A",
+     "label": "Codes of ethics (professional and technical societies)",
+     "count": 23
+    },
+    {
+     "code": "2B",
+     "label": "Professional liability",
+     "count": 2
+    },
+    {
+     "code": "2C",
+     "label": "Licensure",
+     "count": 6
+    },
+    {
+     "code": "2D",
+     "label": "Contracts and contract law",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "name": "Engineering Economics",
+   "questions": "5\u20138",
+   "bankTopics": [
+    "Engineering Economics"
+   ],
+   "subtopics": [
+    {
+     "code": "3A",
+     "label": "Time value of money (e.g., equivalence, present worth, equivalent annual worth, future worth, rate of return)",
+     "count": 21
+    },
+    {
+     "code": "3B",
+     "label": "Cost (e.g., fixed, variable, direct and indirect labor, incremental, average, sunk)",
+     "count": 1
+    },
+    {
+     "code": "3C",
+     "label": "Analyses (e.g., break-even, benefit-cost, life cycle, sustainability, renewable energy)",
+     "count": 4
+    },
+    {
+     "code": "3D",
+     "label": "Uncertainty (e.g., expected value and risk)",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "name": "Statics",
+   "questions": "8\u201312",
+   "bankTopics": [
+    "Statics"
+   ],
+   "subtopics": [
+    {
+     "code": "4A",
+     "label": "Resultants of force systems",
+     "count": 5
+    },
+    {
+     "code": "4B",
+     "label": "Equivalent force systems",
+     "count": 2
+    },
+    {
+     "code": "4C",
+     "label": "Equilibrium of rigid bodies",
+     "count": 9
+    },
+    {
+     "code": "4D",
+     "label": "Frames and trusses",
+     "count": 5
+    },
+    {
+     "code": "4E",
+     "label": "Centroid of area",
+     "count": 5
+    },
+    {
+     "code": "4F",
+     "label": "Area moments of inertia",
+     "count": 4
+    },
+    {
+     "code": "4G",
+     "label": "Static friction",
+     "count": 6
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "name": "Dynamics",
+   "questions": "4\u20136",
+   "bankTopics": [
+    "Dynamics"
+   ],
+   "subtopics": [
+    {
+     "code": "5A",
+     "label": "Kinematics (e.g., particles, rigid bodies)",
+     "count": 11
+    },
+    {
+     "code": "5B",
+     "label": "Mass moments of inertia",
+     "count": 2
+    },
+    {
+     "code": "5C",
+     "label": "Force acceleration (e.g., particles, rigid bodies)",
+     "count": 5
+    },
+    {
+     "code": "5D",
+     "label": "Work, energy, and power (e.g., particles, rigid bodies)",
+     "count": 10
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "name": "Mechanics of Materials",
+   "questions": "7\u201311",
+   "bankTopics": [
+    "Mechanics of Materials"
+   ],
+   "subtopics": [
+    {
+     "code": "6A",
+     "label": "Shear and moment diagrams",
+     "count": 1
+    },
+    {
+     "code": "6B",
+     "label": "Stresses and strains (e.g., diagrams, axial, torsion, bending, shear, thermal)",
+     "count": 19
+    },
+    {
+     "code": "6C",
+     "label": "Deformations (e.g., axial, torsion, bending, thermal)",
+     "count": 7
+    },
+    {
+     "code": "6D",
+     "label": "Combined stresses, principal stresses, and Mohr's circle",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "name": "Materials",
+   "questions": "5\u20138",
+   "bankTopics": [
+    "Materials"
+   ],
+   "subtopics": [
+    {
+     "code": "7A",
+     "label": "Mix design of concrete and asphalt",
+     "count": 1
+    },
+    {
+     "code": "7B",
+     "label": "Test methods and specifications of metals, concrete, aggregates, asphalt, and wood",
+     "count": 3
+    },
+    {
+     "code": "7C",
+     "label": "Physical and mechanical properties of metals, concrete, aggregates, asphalt, and wood",
+     "count": 21
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "name": "Fluid Mechanics",
+   "questions": "6\u20139",
+   "bankTopics": [
+    "Fluid Mechanics"
+   ],
+   "subtopics": [
+    {
+     "code": "8A",
+     "label": "Flow measurement",
+     "count": 2
+    },
+    {
+     "code": "8B",
+     "label": "Fluid properties",
+     "count": 4
+    },
+    {
+     "code": "8C",
+     "label": "Fluid statics",
+     "count": 8
+    },
+    {
+     "code": "8D",
+     "label": "Energy, impulse, and momentum of fluids",
+     "count": 13
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "name": "Surveying",
+   "questions": "6\u20139",
+   "bankTopics": [
+    "Surveying"
+   ],
+   "subtopics": [
+    {
+     "code": "9A",
+     "label": "Angles, distances, and trigonometry",
+     "count": 6
+    },
+    {
+     "code": "9B",
+     "label": "Area computations",
+     "count": 3
+    },
+    {
+     "code": "9C",
+     "label": "Earthwork and volume computations",
+     "count": 5
+    },
+    {
+     "code": "9D",
+     "label": "Coordinate systems (e.g., state plane, latitude/longitude)",
+     "count": 0
+    },
+    {
+     "code": "9E",
+     "label": "Leveling (e.g., differential, elevations, percent grades)",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "name": "Water Resources and Environmental Engineering",
+   "questions": "10\u201315",
+   "bankTopics": [
+    "Water Resources"
+   ],
+   "subtopics": [
+    {
+     "code": "10A",
+     "label": "Basic hydrology (e.g., infiltration, rainfall, runoff, watersheds)",
+     "count": 4
+    },
+    {
+     "code": "10B",
+     "label": "Basic hydraulics (e.g., Manning equation, Bernoulli theorem, open-channel flow)",
+     "count": 14
+    },
+    {
+     "code": "10C",
+     "label": "Pumps",
+     "count": 4
+    },
+    {
+     "code": "10D",
+     "label": "Water distribution systems",
+     "count": 3
+    },
+    {
+     "code": "10E",
+     "label": "Flood control (e.g., dams, routing, spillways)",
+     "count": 0
+    },
+    {
+     "code": "10F",
+     "label": "Stormwater (e.g., detention, routing, quality)",
+     "count": 1
+    },
+    {
+     "code": "10G",
+     "label": "Collection systems (e.g., wastewater, stormwater)",
+     "count": 0
+    },
+    {
+     "code": "10H",
+     "label": "Groundwater (e.g., flow, wells, drawdown)",
+     "count": 5
+    },
+    {
+     "code": "10I",
+     "label": "Water quality (e.g., ground and surface, basic water chemistry)",
+     "count": 1
+    },
+    {
+     "code": "10J",
+     "label": "Testing and standards (e.g., water, wastewater, air, noise)",
+     "count": 1
+    },
+    {
+     "code": "10K",
+     "label": "Water and wastewater treatment (e.g., biological processes, softening, drinking water treatment)",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "name": "Structural Engineering",
+   "questions": "10\u201315",
+   "bankTopics": [
+    "Structural Engineering"
+   ],
+   "subtopics": [
+    {
+     "code": "11A",
+     "label": "Analysis of statically determinant beams, columns, trusses, and frames",
+     "count": 6
+    },
+    {
+     "code": "11B",
+     "label": "Deflection of statically determinant beams, trusses, and frames",
+     "count": 4
+    },
+    {
+     "code": "11C",
+     "label": "Column analysis (e.g., buckling, boundary conditions)",
+     "count": 5
+    },
+    {
+     "code": "11D",
+     "label": "Structural determinacy and stability analysis of beams, trusses, and frames",
+     "count": 2
+    },
+    {
+     "code": "11E",
+     "label": "Elementary statically indeterminate structures",
+     "count": 5
+    },
+    {
+     "code": "11F",
+     "label": "Loads, load combinations, and load paths (e.g., dead, live, lateral, influence lines and moving loads, tributary areas)",
+     "count": 5
+    },
+    {
+     "code": "11G",
+     "label": "Design of steel components (e.g., codes and design philosophies, beams, columns, tension members, connections)",
+     "count": 3
+    },
+    {
+     "code": "11H",
+     "label": "Design of reinforced concrete components (e.g., codes and design philosophies, beams, columns)",
+     "count": 4
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "name": "Geotechnical Engineering",
+   "questions": "10\u201315",
+   "bankTopics": [
+    "Geotechnical Engineering"
+   ],
+   "subtopics": [
+    {
+     "code": "12A",
+     "label": "Index properties and soil classifications",
+     "count": 5
+    },
+    {
+     "code": "12B",
+     "label": "Phase relations",
+     "count": 3
+    },
+    {
+     "code": "12C",
+     "label": "Laboratory and field tests",
+     "count": 4
+    },
+    {
+     "code": "12D",
+     "label": "Effective stress",
+     "count": 7
+    },
+    {
+     "code": "12E",
+     "label": "Stability of retaining structures (e.g., active/passive/at-rest pressure)",
+     "count": 7
+    },
+    {
+     "code": "12F",
+     "label": "Shear strength",
+     "count": 1
+    },
+    {
+     "code": "12G",
+     "label": "Bearing capacity",
+     "count": 2
+    },
+    {
+     "code": "12H",
+     "label": "Foundation types (e.g., spread footings, deep foundations, wall footings, mats)",
+     "count": 0
+    },
+    {
+     "code": "12I",
+     "label": "Consolidation and differential settlement",
+     "count": 3
+    },
+    {
+     "code": "12J",
+     "label": "Slope stability (e.g., fills, embankments, cuts, dams)",
+     "count": 1
+    },
+    {
+     "code": "12K",
+     "label": "Soil stabilization (e.g., chemical additives, geosynthetics)",
+     "count": 0
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "name": "Transportation Engineering",
+   "questions": "9\u201314",
+   "bankTopics": [
+    "Transportation Engineering"
+   ],
+   "subtopics": [
+    {
+     "code": "13A",
+     "label": "Geometric design (e.g., streets, highways, intersections)",
+     "count": 27
+    },
+    {
+     "code": "13B",
+     "label": "Pavement system design (e.g., thickness, subgrade, drainage, rehabilitation)",
+     "count": 3
+    },
+    {
+     "code": "13C",
+     "label": "Traffic capacity and flow theory",
+     "count": 10
+    },
+    {
+     "code": "13D",
+     "label": "Traffic control devices",
+     "count": 4
+    },
+    {
+     "code": "13E",
+     "label": "Transportation planning (e.g., travel forecast modeling, safety, trip generation)",
+     "count": 5
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "name": "Construction Engineering",
+   "questions": "8\u201312",
+   "bankTopics": [
+    "Construction Engineering"
+   ],
+   "subtopics": [
+    {
+     "code": "14A",
+     "label": "Project administration (e.g., documents, management, procurement, project delivery methods)",
+     "count": 2
+    },
+    {
+     "code": "14B",
+     "label": "Construction operations and methods (e.g., safety, equipment, productivity analysis, temporary erosion control)",
+     "count": 11
+    },
+    {
+     "code": "14C",
+     "label": "Project controls (e.g., earned value, scheduling, allocation of resources, activity relationships)",
+     "count": 14
+    },
+    {
+     "code": "14D",
+     "label": "Construction estimating",
+     "count": 3
+    },
+    {
+     "code": "14E",
+     "label": "Interpretation of engineering drawings",
+     "count": 0
+    }
+   ]
+  }
+ ],
+ "map": {
+  "math-001": "1B",
+  "statics-001": "4A",
+  "fluid-001": "8C",
+  "econ-001": "3A",
+  "mechmat-001": "6B",
+  "ethics-001": "2A",
+  "dynamics-001": "5C",
+  "materials-001": "7C",
+  "surveying-001": "9E",
+  "structural-001": "11A",
+  "geotech-001": "12D",
+  "transportation-001": "13A",
+  "water-001": "8D",
+  "construction-001": "14C",
+  "stats-001": "1D",
+  "math-002": "1B",
+  "econ-002": "3A",
+  "mechmat-002": "6C",
+  "math-003": "OFFSPEC",
+  "math-004": "OFFSPEC",
+  "math-005": "OFFSPEC",
+  "math-006": "OFFSPEC",
+  "math-007": "1C",
+  "math-008": "OFFSPEC",
+  "stats-002": "1D",
+  "stats-003": "1D",
+  "stats-004": "1D",
+  "stats-005": "1D",
+  "stats-006": "1D",
+  "stats-007": "1D",
+  "stats-008": "1D",
+  "econ-003": "3A",
+  "econ-004": "3A",
+  "econ-005": "OFFSPEC",
+  "econ-006": "3C",
+  "econ-007": "3C",
+  "econ-008": "3A",
+  "ethics-002": "2A",
+  "ethics-003": "2A",
+  "ethics-004": "2C",
+  "ethics-005": "2D",
+  "ethics-006": "2A",
+  "ethics-007": "2B",
+  "ethics-008": "2A",
+  "statics-002": "4C",
+  "statics-003": "4D",
+  "statics-004": "4E",
+  "statics-005": "4G",
+  "statics-006": "4A",
+  "statics-007": "4C",
+  "statics-008": "4C",
+  "dynamics-002": "5A",
+  "dynamics-003": "5D",
+  "dynamics-004": "5D",
+  "dynamics-005": "5A",
+  "dynamics-006": "5A",
+  "dynamics-007": "OFFSPEC",
+  "dynamics-008": "5A",
+  "mechmat-003": "6B",
+  "mechmat-004": "6B",
+  "mechmat-005": "6B",
+  "mechmat-006": "11C",
+  "mechmat-007": "6B",
+  "mechmat-008": "6B",
+  "materials-002": "7C",
+  "materials-003": "7C",
+  "materials-004": "7C",
+  "materials-005": "7C",
+  "materials-006": "7C",
+  "materials-007": "7B",
+  "materials-008": "7C",
+  "fluid-002": "8D",
+  "fluid-003": "8B",
+  "fluid-004": "8D",
+  "fluid-005": "8C",
+  "fluid-006": "8C",
+  "fluid-007": "8D",
+  "fluid-008": "8B",
+  "surveying-002": "9A",
+  "surveying-003": "9A",
+  "surveying-004": "9A",
+  "surveying-005": "9B",
+  "surveying-006": "9C",
+  "surveying-007": "13A",
+  "surveying-008": "13A",
+  "structural-002": "6A",
+  "structural-003": "11D",
+  "structural-004": "11B",
+  "structural-005": "11C",
+  "structural-006": "11H",
+  "structural-007": "11A",
+  "structural-008": "11F",
+  "geotech-002": "12B",
+  "geotech-003": "12D",
+  "geotech-004": "12E",
+  "geotech-005": "12A",
+  "geotech-006": "12B",
+  "geotech-007": "12F",
+  "geotech-008": "12C",
+  "transportation-002": "13A",
+  "transportation-003": "13A",
+  "transportation-004": "13C",
+  "transportation-005": "13C",
+  "transportation-006": "13A",
+  "transportation-007": "13A",
+  "transportation-008": "13B",
+  "water-002": "8D",
+  "water-003": "10B",
+  "water-004": "10A",
+  "water-005": "10C",
+  "water-006": "10B",
+  "water-007": "10D",
+  "water-008": "10A",
+  "construction-002": "14C",
+  "construction-003": "14D",
+  "construction-004": "14B",
+  "construction-005": "14D",
+  "construction-006": "14D",
+  "construction-007": "14B",
+  "construction-008": "14A",
+  "math-009": "1B",
+  "math-010": "1B",
+  "math-011": "1C",
+  "math-012": "OFFSPEC",
+  "math-013": "1B",
+  "math-014": "OFFSPEC",
+  "stats-009": "1D",
+  "stats-010": "1D",
+  "stats-011": "1D",
+  "stats-012": "1D",
+  "stats-013": "1D",
+  "econ-009": "3A",
+  "econ-010": "OFFSPEC",
+  "econ-011": "3A",
+  "econ-012": "3A",
+  "econ-013": "3A",
+  "ethics-009": "2A",
+  "ethics-010": "2C",
+  "ethics-011": "2A",
+  "ethics-012": "2A",
+  "ethics-013": "2D",
+  "statics-009": "4D",
+  "statics-010": "4C",
+  "statics-011": "4B",
+  "statics-012": "4E",
+  "statics-013": "4G",
+  "statics-014": "4D",
+  "dynamics-009": "5D",
+  "dynamics-010": "5A",
+  "dynamics-011": "5D",
+  "dynamics-012": "5A",
+  "dynamics-013": "5A",
+  "dynamics-014": "5D",
+  "mechmat-009": "6D",
+  "mechmat-010": "6C",
+  "mechmat-011": "6D",
+  "mechmat-012": "6B",
+  "mechmat-013": "6B",
+  "mechmat-014": "6C",
+  "materials-009": "7B",
+  "materials-010": "7C",
+  "materials-011": "OFFSPEC",
+  "materials-012": "7C",
+  "materials-013": "7C",
+  "fluid-009": "8A",
+  "fluid-010": "8A",
+  "fluid-011": "8D",
+  "fluid-012": "8C",
+  "fluid-013": "8D",
+  "surveying-009": "9E",
+  "surveying-010": "9A",
+  "surveying-011": "13A",
+  "surveying-012": "13A",
+  "surveying-013": "9C",
+  "structural-009": "11A",
+  "structural-010": "11A",
+  "structural-011": "11H",
+  "structural-012": "11C",
+  "structural-013": "11B",
+  "structural-014": "11E",
+  "geotech-009": "12I",
+  "geotech-010": "12D",
+  "geotech-011": "12J",
+  "geotech-012": "12G",
+  "geotech-013": "12D",
+  "transportation-009": "13A",
+  "transportation-010": "13C",
+  "transportation-011": "13A",
+  "transportation-012": "13B",
+  "transportation-013": "13C",
+  "water-009": "10D",
+  "water-010": "8C",
+  "water-011": "10B",
+  "water-012": "10B",
+  "water-013": "10A",
+  "construction-009": "14B",
+  "construction-010": "14B",
+  "construction-011": "14C",
+  "construction-012": "14B",
+  "construction-013": "OFFSPEC",
+  "math-015": "1B",
+  "math-016": "1B",
+  "math-017": "OFFSPEC",
+  "math-018": "1B",
+  "math-019": "OFFSPEC",
+  "math-020": "OFFSPEC",
+  "statics-015": "4A",
+  "statics-016": "4C",
+  "statics-017": "4B",
+  "statics-018": "4D",
+  "statics-019": "4F",
+  "statics-020": "4D",
+  "dynamics-015": "OFFSPEC",
+  "dynamics-016": "5A",
+  "dynamics-017": "5B",
+  "dynamics-018": "5C",
+  "dynamics-019": "5C",
+  "dynamics-020": "5D",
+  "mechmat-015": "6B",
+  "mechmat-016": "6D",
+  "mechmat-017": "6B",
+  "mechmat-018": "6C",
+  "mechmat-019": "6B",
+  "mechmat-020": "OFFSPEC",
+  "structural-015": "11F",
+  "structural-016": "11D",
+  "structural-017": "11H",
+  "structural-018": "11C",
+  "structural-019": "11E",
+  "structural-020": "11H",
+  "materials-014": "6C",
+  "materials-015": "7C",
+  "materials-016": "6B",
+  "materials-017": "7C",
+  "materials-018": "7C",
+  "materials-019": "7C",
+  "materials-020": "7A",
+  "fluid-014": "8C",
+  "fluid-015": "8D",
+  "fluid-016": "10C",
+  "fluid-017": "OFFSPEC",
+  "fluid-018": "8B",
+  "fluid-019": "8D",
+  "fluid-020": "8B",
+  "surveying-014": "9E",
+  "surveying-015": "13A",
+  "surveying-016": "9C",
+  "surveying-017": "9A",
+  "surveying-018": "9E",
+  "surveying-019": "9A",
+  "surveying-020": "13A",
+  "water-014": "10B",
+  "water-015": "10H",
+  "water-016": "10B",
+  "water-017": "10B",
+  "water-018": "10F",
+  "water-019": "10B",
+  "water-020": "10C",
+  "geotech-014": "12A",
+  "geotech-015": "12B",
+  "geotech-016": "12E",
+  "geotech-017": "12D",
+  "geotech-018": "12I",
+  "geotech-019": "12G",
+  "geotech-020": "12C",
+  "transportation-014": "13A",
+  "transportation-015": "13A",
+  "transportation-016": "13A",
+  "transportation-017": "13C",
+  "transportation-018": "13D",
+  "transportation-019": "13C",
+  "transportation-020": "13A",
+  "construction-014": "14C",
+  "construction-015": "14C",
+  "construction-016": "14C",
+  "construction-017": "14A",
+  "construction-018": "14B",
+  "construction-019": "14B",
+  "construction-020": "14B",
+  "econ-014": "3A",
+  "econ-015": "3A",
+  "econ-016": "3A",
+  "econ-017": "3C",
+  "econ-018": "OFFSPEC",
+  "econ-019": "3C",
+  "econ-020": "3A",
+  "stats-014": "1D",
+  "stats-015": "1D",
+  "stats-016": "1D",
+  "stats-017": "1D",
+  "stats-018": "1D",
+  "stats-019": "1D",
+  "stats-020": "1D",
+  "ethics-014": "2A",
+  "ethics-015": "2A",
+  "ethics-016": "2A",
+  "ethics-017": "2C",
+  "ethics-018": "2A",
+  "ethics-019": "2A",
+  "ethics-020": "2A",
+  "math-021": "OFFSPEC",
+  "math-022": "1B",
+  "math-023": "4E",
+  "stats-021": "1D",
+  "stats-022": "1D",
+  "stats-023": "1D",
+  "ethics-021": "2A",
+  "ethics-022": "2A",
+  "ethics-023": "2A",
+  "econ-021": "3A",
+  "econ-022": "OFFSPEC",
+  "econ-023": "3A",
+  "statics-021": "4C",
+  "statics-022": "4C",
+  "statics-023": "4G",
+  "dynamics-021": "5D",
+  "dynamics-022": "5A",
+  "dynamics-023": "5D",
+  "materials-021": "7C",
+  "materials-022": "OFFSPEC",
+  "materials-023": "7C",
+  "mechmat-021": "11C",
+  "mechmat-022": "6B",
+  "mechmat-023": "6D",
+  "fluid-021": "10C",
+  "fluid-022": "8C",
+  "fluid-023": "10B",
+  "surveying-021": "9B",
+  "surveying-022": "13A",
+  "surveying-023": "9E",
+  "structural-021": "11E",
+  "structural-022": "11E",
+  "structural-023": "11B",
+  "geotech-021": "12C",
+  "geotech-022": "12E",
+  "geotech-023": "12D",
+  "transportation-021": "13C",
+  "transportation-022": "13D",
+  "transportation-023": "13B",
+  "water-021": "10B",
+  "water-022": "10H",
+  "water-023": "10B",
+  "construction-021": "14C",
+  "construction-022": "14C",
+  "construction-023": "14C",
+  "math-024": "OFFSPEC",
+  "math-025": "OFFSPEC",
+  "stats-024": "1D",
+  "stats-025": "1D",
+  "statics-024": "4C",
+  "statics-025": "4A",
+  "dynamics-024": "5A",
+  "dynamics-025": "5D",
+  "mechmat-024": "6B",
+  "mechmat-025": "6C",
+  "fluid-024": "OFFSPEC",
+  "fluid-025": "8D",
+  "water-024": "10B",
+  "water-025": "10B",
+  "geotech-024": "12A",
+  "geotech-025": "12E",
+  "structural-024": "11B",
+  "structural-025": "11E",
+  "econ-024": "3A",
+  "econ-025": "OFFSPEC",
+  "materials-024": "7C",
+  "surveying-024": "13A",
+  "construction-024": "OFFSPEC",
+  "transportation-024": "13D",
+  "ethics-024": "2C",
+  "math-026": "OFFSPEC",
+  "math-027": "OFFSPEC",
+  "stats-026": "1D",
+  "stats-027": "1D",
+  "statics-026": "4G",
+  "statics-027": "4G",
+  "dynamics-026": "5A",
+  "dynamics-027": "5C",
+  "mechmat-026": "6B",
+  "mechmat-027": "6B",
+  "fluid-026": "8D",
+  "water-026": "10H",
+  "geotech-026": "12A",
+  "structural-026": "11A",
+  "econ-026": "3A",
+  "construction-025": "14C",
+  "construction-026": "14C",
+  "ethics-025": "2A",
+  "ethics-026": "2A",
+  "materials-025": "7C",
+  "materials-026": "7C",
+  "surveying-025": "13A",
+  "surveying-026": "13A",
+  "transportation-025": "13E",
+  "transportation-026": "13E",
+  "construction-027": "14B",
+  "construction-028": "14C",
+  "dynamics-028": "5C",
+  "econ-027": "3A",
+  "econ-028": "OFFSPEC",
+  "ethics-027": "2A",
+  "ethics-028": "2A",
+  "fluid-027": "8D",
+  "fluid-028": "8D",
+  "geotech-027": "12A",
+  "geotech-028": "12E",
+  "materials-027": "OFFSPEC",
+  "materials-028": "OFFSPEC",
+  "math-028": "OFFSPEC",
+  "mechmat-028": "6B",
+  "statics-028": "4F",
+  "stats-028": "1D",
+  "structural-027": "11A",
+  "structural-028": "11F",
+  "surveying-027": "13A",
+  "surveying-028": "13A",
+  "transportation-027": "13E",
+  "transportation-028": "13E",
+  "water-027": "10A",
+  "water-028": "10H",
+  "math-029": "OFFSPEC",
+  "math-030": "1A",
+  "stats-029": "1D",
+  "stats-030": "1D",
+  "statics-029": "4F",
+  "statics-030": "4E",
+  "dynamics-029": "OFFSPEC",
+  "dynamics-030": "OFFSPEC",
+  "mechmat-029": "6B",
+  "mechmat-030": "6C",
+  "fluid-029": "OFFSPEC",
+  "fluid-030": "8C",
+  "water-029": "10B",
+  "water-030": "10H",
+  "geotech-029": "12I",
+  "geotech-030": "12C",
+  "structural-029": "11G",
+  "structural-030": "11G",
+  "econ-029": "3B",
+  "econ-030": "3A",
+  "materials-029": "7C",
+  "surveying-029": "13A",
+  "construction-029": "14C",
+  "transportation-029": "13A",
+  "ethics-029": "2A",
+  "construction-030": "14B",
+  "construction-031": "14B",
+  "ethics-030": "2C",
+  "ethics-031": "2A",
+  "materials-030": "7C",
+  "materials-031": "7B",
+  "surveying-030": "9C",
+  "surveying-031": "9C",
+  "transportation-030": "13C",
+  "transportation-031": "13E",
+  "math-031": "OFFSPEC",
+  "stats-031": "1D",
+  "statics-031": "4G",
+  "geotech-031": "12E",
+  "water-031": "10K",
+  "dynamics-031": "OFFSPEC",
+  "dynamics-032": "5B",
+  "mechmat-031": "OFFSPEC",
+  "mechmat-032": "6B",
+  "fluid-031": "OFFSPEC",
+  "fluid-032": "OFFSPEC",
+  "structural-031": "11F",
+  "structural-032": "11F",
+  "econ-031": "3D",
+  "econ-032": "3A",
+  "construction-032": "14C",
+  "construction-033": "10J",
+  "dynamics-033": "5D",
+  "econ-033": "3A",
+  "ethics-032": "2C",
+  "ethics-033": "2B",
+  "fluid-033": "OFFSPEC",
+  "geotech-032": "12D",
+  "geotech-033": "12E",
+  "materials-032": "OFFSPEC",
+  "materials-033": "OFFSPEC",
+  "math-032": "1B",
+  "math-033": "OFFSPEC",
+  "mechmat-033": "6D",
+  "statics-032": "4F",
+  "stats-032": "1D",
+  "stats-033": "1D",
+  "stats-034": "1D",
+  "structural-033": "11G",
+  "surveying-032": "9B",
+  "transportation-032": "13D",
+  "transportation-033": "13C",
+  "transportation-034": "13C",
+  "water-032": "10I",
+  "water-033": "10D",
+  "statics-033": "4A",
+  "statics-034": "4E",
+  "statics-035": "4C",
+  "surveying-033": "13A",
+  "surveying-034": "13A"
+ },
+ "offspec": [
+  "math-003",
+  "math-004",
+  "math-005",
+  "math-006",
+  "math-008",
+  "econ-005",
+  "dynamics-007",
+  "math-012",
+  "math-014",
+  "econ-010",
+  "materials-011",
+  "construction-013",
+  "math-017",
+  "math-019",
+  "math-020",
+  "dynamics-015",
+  "mechmat-020",
+  "fluid-017",
+  "econ-018",
+  "math-021",
+  "econ-022",
+  "materials-022",
+  "math-024",
+  "math-025",
+  "fluid-024",
+  "econ-025",
+  "construction-024",
+  "math-026",
+  "math-027",
+  "econ-028",
+  "materials-027",
+  "materials-028",
+  "math-028",
+  "math-029",
+  "dynamics-029",
+  "dynamics-030",
+  "fluid-029",
+  "math-031",
+  "dynamics-031",
+  "mechmat-031",
+  "fluid-031",
+  "fluid-032",
+  "fluid-033",
+  "materials-032",
+  "materials-033",
+  "math-033"
+ ],
+ "spec": "NCEES FE Civil CBT Exam Specifications, effective July 2020"
+}
