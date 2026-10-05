@@ -9057,6 +9057,414 @@
    "topic": "Surveying",
    "videoUrl": "https://www.youtube.com/watch?v=zT7pYjX_ly0",
    "videoTitle": "Horizontal Curves Elements Part 1 of 2"
+  },
+  {
+   "id": "surveying-035",
+   "topic": "Surveying",
+   "subtopic": "Latitude and longitude (DMS to decimal)",
+   "question": "A project benchmark is listed at latitude 40°45'30\" N. What is this latitude in decimal degrees?",
+   "choices": [
+    "40.7583°",
+    "40.4530°",
+    "40.7500°",
+    "41.0833°"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Decimal degrees = degrees + minutes/60 + seconds/3600 = 40 + 0.75 + 0.0083 = 40.7583°. Writing 40.4530° just drops the symbols without converting.",
+   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert degrees-minutes-seconds to decimal degrees:\n\n$$Decimal = D + \\\\frac{M}{60} + \\\\frac{S}{3600}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nD &= 40 \\\\\\\\\\\nM &= 45 \\\\\\\\\\\nS &= 30\n\\\\end{aligned}$$\n\n$$(Decimal) = 40 + \\\\frac{45}{60} + \\\\frac{30}{3600}$$\n\n$$(Decimal) = 40 + 0.75 + 0.0083$$\n\n$$(Decimal) = 40.7583^{\\\\circ}$$"
+  },
+  {
+   "id": "surveying-036",
+   "topic": "Surveying",
+   "subtopic": "Grid azimuth from state plane coordinates",
+   "question": "Two control points have state plane coordinates (N, E): A = (1,000.00 ft, 2,000.00 ft) and B = (1,300.00 ft, 2,400.00 ft). What is the grid azimuth from A to B?",
+   "choices": [
+    "53.13°",
+    "36.87°",
+    "126.87°",
+    "306.87°"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Azimuth is measured clockwise from north: tan(az) = ΔE/ΔN = 400/300, so az = 53.13°. The 36.87° answer is the angle from east, not from north.",
+   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the grid azimuth, measured clockwise from grid north:\n\n$$\\\\tan(az) = \\\\frac{\\\\Delta E}{\\\\Delta N}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\Delta N &= 1{,}300.00 - 1{,}000.00 = 300.00\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\Delta E &= 2{,}400.00 - 2{,}000.00 = 400.00\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(az) = \\\\tan^{-1}\\\\left(\\\\frac{400.00}{300.00}\\\\right)$$\n\n$$(az) = \\\\tan^{-1}(1.3333)$$\n\n$$(az) = 53.13^{\\\\circ}$$\n\nBoth departures are positive (northeast quadrant), so no 180° correction is needed."
+  },
+  {
+   "id": "surveying-037",
+   "topic": "Surveying",
+   "subtopic": "Convergence angle (grid to true azimuth)",
+   "question": "A line has a grid azimuth of 125°30' based on state plane coordinates. The convergence angle at the project site is 1°15', meaning true north lies 1°15' east of grid north. What is the line's true azimuth?",
+   "choices": [
+    "126°45'",
+    "124°15'",
+    "125°30'",
+    "127°00'"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "True azimuth = grid azimuth + convergence when true north is east of grid north: 125°30' + 1°15' = 126°45'. Subtracting applies when true north lies west of grid north.",
+   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the grid azimuth to a true (geographic) azimuth using the convergence angle:\n\n$$az_{true} = az_{grid} + \\\\text{(convergence)}$$\n\nThe convergence is added because true north lies east of grid north at this site.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\naz_{grid} &= 125^{\\\\circ}30' \\\\\\\\\\\n\\\\text{convergence} &= 1^{\\\\circ}15'\n\\\\end{aligned}$$\n\n$$(az_{true}) = 125^{\\\\circ}30' + 1^{\\\\circ}15'$$\n\n$$(az_{true}) = 126^{\\\\circ}45'$$"
+  },
+  {
+   "id": "surveying-038",
+   "topic": "Surveying",
+   "subtopic": "State plane projection (Lambert conformal conic)",
+   "question": "A highway project spans a state whose extent is much greater east-west than north-south. Which map projection does that state's State Plane Coordinate System most likely use?",
+   "choices": [
+    "Lambert conformal conic",
+    "Transverse Mercator",
+    "Azimuthal equidistant",
+    "Oblique Mercator"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The Lambert conformal conic projection suits zones that are wide east-west; transverse Mercator suits zones that are tall north-south. States are assigned one or the other based on their shape.",
+   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nState Plane Coordinate System zones use one of two conformal projections, chosen by the shape of the zone:\n\n$$\\\\begin{aligned}\n\\\\text{East-west extent} &\\\\rightarrow \\\\text{Lambert conformal conic} \\\\\\\\\\\n\\\\text{North-south extent} &\\\\rightarrow \\\\text{Transverse Mercator}\n\\\\end{aligned}$$\n\nA state much wider east-west than north-south falls in the first case.\n\n$$(\\\\text{projection}) = \\\\text{Lambert conformal conic}$$"
+  },
+  {
+   "id": "water-034",
+   "topic": "Water Resources",
+   "subtopic": "Spillway discharge (rectangular weir)",
+   "question": "An uncontrolled spillway acts as a rectangular weir with free discharge. The crest length is 40 ft and the head over the crest is 2.5 ft. Using the handbook weir coefficient for USCS units, what is the spillway discharge?",
+   "choices": [
+    "527 cfs",
+    "333 cfs",
+    "421 cfs",
+    "663 cfs"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Q = CLH^1.5 = 3.33 × 40 × 2.5^1.5 = 527 cfs. The 333 cfs answer uses H instead of H^1.5.",
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge:\n\n$$Q = CLH^{3/2}$$\n\nwith C = 3.33 for USCS units.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 3.33 \\\\\\\\\\\nL &= 40\\\\ \\\\text{ft} \\\\\\\\\\\nH &= 2.5\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(Q) = (3.33)(40)(2.5)^{3/2}$$\n\n$$(Q) = (3.33)(40)(3.9528)$$\n\n$$(Q) = 527\\\\ \\\\text{cfs}$$"
+  },
+  {
+   "id": "water-035",
+   "topic": "Water Resources",
+   "subtopic": "Spillway discharge (contracted weir)",
+   "question": "A contracted rectangular weir (C = 3.33, USCS) has a crest length of 10 ft. If the head over the crest is 2.0 ft, what is the discharge accounting for end contractions?",
+   "choices": [
+    "90 cfs",
+    "94 cfs",
+    "85 cfs",
+    "99 cfs"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Contracted weir: Q = C(L − 0.2H)H^1.5 = 3.33 × 9.6 × 2.828 = 90 cfs. Skipping the 0.2H contraction correction gives 94 cfs.",
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge and end contractions:\n\n$$Q = C(L - 0.2H)H^{3/2}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 3.33 \\\\\\\\\\\nL &= 10\\\\ \\\\text{ft} \\\\\\\\\\\nH &= 2.0\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(Q) = (3.33)(10 - 0.2 \\\\times 2.0)(2.0)^{3/2}$$\n\n$$(Q) = (3.33)(9.6)(2.828)$$\n\n$$(Q) = 90\\\\ \\\\text{cfs}$$"
+  },
+  {
+   "id": "water-036",
+   "topic": "Water Resources",
+   "subtopic": "Flood routing (peak attenuation)",
+   "question": "A flood wave is routed through a reservoir with an uncontrolled spillway using level-pool routing. How does the peak outflow compare to the peak inflow?",
+   "choices": [
+    "Peak outflow is less than peak inflow",
+    "Peak outflow equals peak inflow",
+    "Peak outflow is greater than peak inflow",
+    "Peak outflow is twice peak inflow"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Reservoir storage attenuates the flood wave: water stored on the rising limb is released later, so the outflow peak is always lower than the inflow peak for level-pool routing.",
+   "solution": "Refer to the Flood Control section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nLevel-pool routing is governed by the continuity equation applied to reservoir storage:\n\n$$\\\\frac{dS}{dt} = I - O$$\n\nOn the rising limb of the flood, inflow exceeds outflow (I > O), so storage increases. That stored volume is released on the falling limb. Because part of the flood volume is temporarily held in storage, the outflow hydrograph is flattened:\n\n$$(O_{peak}) < (I_{peak})$$\n\nThis attenuation is the entire purpose of flood-control storage."
+  },
+  {
+   "id": "water-037",
+   "topic": "Water Resources",
+   "subtopic": "Flood storage volume",
+   "question": "During a 6-hour storm, the average inflow to a flood-control reservoir is 800 cfs and the average spillway outflow is 500 cfs. What volume of flood storage is used?",
+   "choices": [
+    "149 acre-ft",
+    "99 acre-ft",
+    "207 acre-ft",
+    "74 acre-ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "ΔS = (800 − 500) × 6 × 3600 = 6.48×10^6 ft³ = 149 acre-ft. Forgetting the 3600 s/hr conversion is the classic error here.",
+   "solution": "Refer to the Flood Control section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the change in storage from continuity:\n\n$$\\\\Delta S = (I_{avg} - O_{avg})\\\\Delta t$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nI_{avg} &= 800\\\\ \\\\text{cfs} \\\\\\\\\\\nO_{avg} &= 500\\\\ \\\\text{cfs} \\\\\\\\\\\n\\\\Delta t &= 6\\\\ \\\\text{hr} = 21{,}600\\\\ \\\\text{s}\n\\\\end{aligned}$$\n\n$$(\\\\Delta S) = (800 - 500)(21{,}600)$$\n\n$$(\\\\Delta S) = 6{,}480{,}000\\\\ \\\\text{ft}^3$$\n\nConvert to acre-feet (1 acre-ft = 43,560 ft^3):\n\n$$(\\\\Delta S) = \\\\frac{6{,}480{,}000}{43{,}560} = 149\\\\ \\\\text{acre-ft}$$"
+  },
+  {
+   "id": "water-038",
+   "topic": "Water Resources",
+   "subtopic": "Sanitary sewer capacity (Manning's)",
+   "question": "A 12-inch concrete sanitary sewer (n = 0.013) is laid on a slope of 0.005 ft/ft. What is its full-flow capacity using Manning's equation in USCS units?",
+   "choices": [
+    "2.52 cfs",
+    "1.89 cfs",
+    "3.40 cfs",
+    "5.05 cfs"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Full pipe: A = 0.785 ft², R = 0.25 ft. Q = (1.486/0.013)(0.785)(0.25)^2/3(0.005)^1/2 = 2.52 cfs. Using the diameter instead of the hydraulic radius is the common slip.",
+   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the full-flow discharge. The handbook prints (USCS):\n\n$$Q = \\\\frac{1.486}{n}AR^{2/3}S^{1/2}$$\n\nFor a circular pipe flowing full, the hydraulic radius is R = D/4.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nD &= 12\\\\ \\\\text{in} = 1.0\\\\ \\\\text{ft} \\\\\\\\\\\nA &= \\\\frac{\\\\pi(1.0)^2}{4} = 0.7854\\\\ \\\\text{ft}^2 \\\\\\\\\\\nR &= \\\\frac{1.0}{4} = 0.25\\\\ \\\\text{ft} \\\\\\\\\\\nn &= 0.013, \\\\quad S = 0.005\n\\\\end{aligned}$$\n\n$$(Q) = \\\\frac{1.486}{0.013}(0.7854)(0.25)^{2/3}(0.005)^{1/2}$$\n\n$$(Q) = (114.31)(0.7854)(0.3969)(0.0707)$$\n\n$$(Q) = 2.52\\\\ \\\\text{cfs}$$"
+  },
+  {
+   "id": "water-039",
+   "topic": "Water Resources",
+   "subtopic": "Sewer self-cleansing velocity",
+   "question": "The 12-inch sewer in the previous question carries its full-flow discharge of 2.52 cfs. Does it satisfy the typical minimum self-cleansing velocity of 2 ft/s?",
+   "choices": [
+    "Yes — velocity is 3.21 ft/s",
+    "No — velocity is 1.61 ft/s",
+    "Yes — velocity is 2.00 ft/s exactly",
+    "No — velocity is 0.80 ft/s"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "V = Q/A = 2.52/0.785 = 3.21 ft/s, which exceeds the 2 ft/s self-cleansing minimum that keeps solids from depositing.",
+   "solution": "Refer to the Collection Systems section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSanitary sewers are designed so the flowing-full velocity stays above the self-cleansing minimum (typically 2 ft/s) to prevent solids deposition:\n\n$$V = \\\\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ &= 2.52\\\\ \\\\text{cfs} \\\\\\\\\\\nA &= 0.7854\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{2.52}{0.7854}$$\n\n$$(V) = 3.21\\\\ \\\\text{ft/s}$$\n\n$$(3.21\\\\ \\\\text{ft/s}) > (2\\\\ \\\\text{ft/s}) \\\\rightarrow \\\\text{requirement met}$$"
+  },
+  {
+   "id": "water-040",
+   "topic": "Water Resources",
+   "subtopic": "Storm sewer sizing (rational method)",
+   "question": "A 5-acre commercial area with runoff coefficient 0.60 drains to a storm sewer. The design rainfall intensity is 4.0 in/hr. What diameter concrete pipe (n = 0.013) on a 0.01 ft/ft slope is required to carry the peak flow flowing full?",
+   "choices": [
+    "15 in",
+    "19 in",
+    "24 in",
+    "30 in"
+   ],
+   "answerIndex": 1,
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Rational method: Q = CiA = 12 cfs. Manning's for a full circular pipe gives D^8/3 = 3.37, so D = 1.58 ft ≈ 19 in.",
+   "solution": "Refer to the Rational Method and Manning's Equation sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the pipe diameter. First find the peak runoff with the rational method:\n\n$$Q = CiA$$\n\n$$\\\\begin{aligned}\nC &= 0.60 \\\\\\\\\\\ni &= 4.0\\\\ \\\\text{in/hr} \\\\\\\\\\\nA &= 5\\\\ \\\\text{ac}\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(4.0)(5) = 12\\\\ \\\\text{cfs}$$\n\nFor a circular pipe flowing full, A = \\\\pi D^2/4 and R = D/4. Manning's equation (USCS) becomes:\n\n$$(Q) = \\\\frac{1.486}{n}\\\\left(\\\\frac{\\\\pi D^2}{4}\\\\right)\\\\left(\\\\frac{D}{4}\\\\right)^{2/3}S^{1/2}$$\n\n$$(12) = \\\\frac{1.486}{0.013}\\\\left(\\\\frac{\\\\pi}{4}\\\\right)\\\\left(\\\\frac{1}{4}\\\\right)^{2/3}(0.01)^{1/2} D^{8/3}$$\n\n$$(12) = (3.5636)D^{8/3}$$\n\n$$(D^{8/3}) = 3.367 \\\\rightarrow (D) = 1.58\\\\ \\\\text{ft}$$\n\n$$(D) = (1.58)(12) = 19\\\\ \\\\text{in}$$"
+  },
+  {
+   "id": "water-041",
+   "topic": "Water Resources",
+   "subtopic": "Minimum sewer velocity",
+   "question": "A sanitary sewer is being designed for a new subdivision. What minimum flowing-full velocity is typically required to prevent deposition of solids?",
+   "choices": [
+    "2 ft/s",
+    "5 ft/s",
+    "1 ft/s",
+    "10 ft/s"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "The standard self-cleansing minimum is 2 ft/s (about 0.6 m/s) flowing full. Higher velocities risk scour of the pipe; lower velocities let solids settle.",
+   "solution": "Refer to the Collection Systems section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSanitary sewers must maintain a self-cleansing velocity so suspended solids do not settle and clog the pipe. The long-standing design standard, used on the FE exam, is:\n\n$$(V_{min}) = 2\\\\ \\\\text{ft/s} \\\\text{ (flowing full)}$$\n\nSlopes are then selected so that the design flow produces at least this velocity, while staying below the maximum (typically 10 ft/s) that would scour the pipe."
+  },
+  {
+   "id": "geotech-034",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Spread footing contact pressure",
+   "question": "A 5-ft by 5-ft square spread footing carries a concentric column load of 180 kips (ignore the footing weight). What is the contact pressure at the base?",
+   "choices": [
+    "7.2 ksf",
+    "9.0 ksf",
+    "5.8 ksf",
+    "36.0 ksf"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "q = P/A = 180/25 = 7.2 ksf. The 36.0 ksf answer divides by the side length instead of the area.",
+   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the contact pressure under a concentrically loaded footing:\n\n$$q = \\\\frac{P}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 180\\\\ \\\\text{kips} \\\\\\\\\\\nA &= (5)(5) = 25\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(q) = \\\\frac{180}{25}$$\n\n$$(q) = 7.2\\\\ \\\\text{ksf}$$"
+  },
+  {
+   "id": "geotech-035",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Eccentric footing pressure",
+   "question": "A 6-ft by 6-ft square footing carries a 150-kip load with an eccentricity of 0.5 ft from the centroid. What is the maximum contact pressure?",
+   "choices": [
+    "6.25 ksf",
+    "4.17 ksf",
+    "8.33 ksf",
+    "5.21 ksf"
+   ],
+   "answerIndex": 0,
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "q_max = (P/A)(1 + 6e/B) = (150/36)(1 + 3/6) = 6.25 ksf. The 4.17 ksf answer ignores the eccentricity.",
+   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the maximum contact pressure under eccentric loading. The handbook gives:\n\n$$q_{max} = \\\\frac{P}{A}\\\\left(1 + \\\\frac{6e}{B}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 150\\\\ \\\\text{kips} \\\\\\\\\\\nA &= (6)(6) = 36\\\\ \\\\text{ft}^2 \\\\\\\\\\\ne &= 0.5\\\\ \\\\text{ft}, \\\\quad B = 6\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(q_{max}) = \\\\frac{150}{36}\\\\left(1 + \\\\frac{6(0.5)}{6}\\\\right)$$\n\n$$(q_{max}) = (4.167)(1.5)$$\n\n$$(q_{max}) = 6.25\\\\ \\\\text{ksf}$$"
+  },
+  {
+   "id": "geotech-036",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Wall footing width",
+   "question": "A bearing wall imposes 8 kips per linear foot on a continuous wall footing. If the allowable soil bearing pressure is 4 ksf, what footing width is required (ignore footing weight)?",
+   "choices": [
+    "2.0 ft",
+    "1.5 ft",
+    "2.5 ft",
+    "4.0 ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "For a 1-ft strip: B = P/q_allow = 8/4 = 2.0 ft. The footing width is set so the contact pressure just reaches the allowable.",
+   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must size the footing so the contact pressure equals the allowable bearing pressure. For a 1-ft-long strip of wall footing:\n\n$$B = \\\\frac{P}{q_{allow}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 8\\\\ \\\\text{kips/ft} \\\\\\\\\\\nq_{allow} &= 4\\\\ \\\\text{ksf}\n\\\\end{aligned}$$\n\n$$(B) = \\\\frac{8}{4}$$\n\n$$(B) = 2.0\\\\ \\\\text{ft}$$"
+  },
+  {
+   "id": "geotech-037",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Mat foundation selection",
+   "question": "A mat (raft) foundation is most appropriate for a building when which condition holds?",
+   "choices": [
+    "Individual footings would cover more than about half the building footprint",
+    "The soil is dense sand with high bearing capacity",
+    "Column loads are light and widely spaced",
+    "Bedrock is within 3 ft of the surface"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "When footings grow so large they would cover over ~50% of the footprint, a single mat becomes more economical and settles more uniformly. Dense sand, light loads, or shallow bedrock all favor simple spread footings instead.",
+   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nFoundation type follows the soil and the loading:\n\n$$\\\\begin{aligned}\n\\\\text{Spread footings} &\\\\rightarrow \\\\text{competent soil, moderate loads} \\\\\\\\\\\n\\\\text{Mat foundation} &\\\\rightarrow \\\\text{footings would cover } > \\\\sim 50\\\\% \\\\text{ of footprint} \\\\\\\\\\\n\\\\text{Deep foundations} &\\\\rightarrow \\\\text{weak near-surface soil}\n\\\\end{aligned}$$\n\nA mat spreads the building load over the entire footprint, cutting the contact pressure and bridging soft spots so the building settles as one unit."
+  },
+  {
+   "id": "geotech-038",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Lime stabilization of clay",
+   "question": "Quicklime is mixed into a highly plastic clay subgrade. What is the primary engineering purpose?",
+   "choices": [
+    "Reduce plasticity and increase strength and workability",
+    "Increase the clay's liquid limit",
+    "Make the clay more compressible",
+    "Raise the optimum water content"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Lime causes cation exchange and pozzolanic reactions that drop the plasticity index, raise strength, and make wet clay workable. It does the opposite of the other three choices.",
+   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nChemical stabilization with lime treats the cause of poor subgrade behavior in plastic clays:\n\n$$\\\\text{lime} + \\\\text{clay} \\\\rightarrow \\\\text{cation exchange} + \\\\text{pozzolanic cementing}$$\n\nThe practical effects are:\n\n$$\\\\begin{aligned}\n\\\\text{Plasticity index} &\\\\downarrow \\\\\\\\\\\n\\\\text{Strength / stiffness} &\\\\uparrow \\\\\\\\\\\n\\\\text{Workability of wet clay} &\\\\uparrow\n\\\\end{aligned}$$\n\nThis is why lime is the standard treatment for highly plastic (fat clay) subgrades."
+  },
+  {
+   "id": "geotech-039",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Geosynthetic separation function",
+   "question": "A geotextile is placed between a soft clay subgrade and a granular base course before paving. Which geosynthetic function is it primarily serving?",
+   "choices": [
+    "Separation",
+    "Reinforcement",
+    "Filtration",
+    "Drainage"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Between dissimilar materials, the geotextile's job is separation — keeping the aggregate from punching into the clay and the clay from pumping up. Filtration passes water while retaining soil; reinforcement carries tension.",
+   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nGeosynthetics are specified by function:\n\n$$\\\\begin{aligned}\n\\\\text{Separation} &\\\\rightarrow \\\\text{keep dissimilar layers from mixing} \\\\\\\\\\\n\\\\text{Filtration} &\\\\rightarrow \\\\text{pass water, retain soil} \\\\\\\\\\\n\\\\text{Reinforcement} &\\\\rightarrow \\\\text{carry tensile load} \\\\\\\\\\\n\\\\text{Drainage} &\\\\rightarrow \\\\text{transmit water in-plane}\n\\\\end{aligned}$$\n\nA geotextile sandwiched between clay and aggregate blocks intermixing (which would destroy the base's strength), so its primary function here is separation."
+  },
+  {
+   "id": "geotech-040",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Geosynthetic filtration function",
+   "question": "A geotextile wrapped around a subsurface drain must let groundwater in while keeping soil particles out. Which function is being specified?",
+   "choices": [
+    "Filtration",
+    "Separation",
+    "Reinforcement",
+    "Erosion control"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Passing water while retaining soil is the textbook definition of filtration. The key design property is the apparent opening size (AOS) relative to the soil gradation.",
+   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nThe geosynthetic functions are distinguished by what they move or hold:\n\n$$\\\\text{Filtration} = \\\\text{transmit water across the plane } + \\\\text{ retain soil particles}$$\n\nAround a drain, the geotextile must do exactly this: admit groundwater into the drain while preventing soil migration that would clog it. Separation keeps layers apart (no flow requirement); reinforcement carries load."
+  },
+  {
+   "id": "geotech-041",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Cement stabilization",
+   "question": "Portland cement is mixed into a granular base material. What is the primary engineering effect?",
+   "choices": [
+    "Increased strength and stiffness of the stabilized layer",
+    "Reduced permeability to zero",
+    "Elimination of all volume change",
+    "Lowered optimum moisture content"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Cement hydration cements the particles together, raising the layer's strength and stiffness (measured by unconfined compressive strength). It reduces — but does not eliminate — permeability and volume change.",
+   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nSoil-cement works through hydration of the cement:\n\n$$\\\\text{cement} + \\\\text{water} \\\\rightarrow \\\\text{hydration products binding soil particles}$$\n\nThe design property is the unconfined compressive strength of the stabilized mixture:\n\n$$(\\\\text{strength}_{stabilized}) \\\\gg (\\\\text{strength}_{untreated})$$\n\nThe stabilized layer behaves as a semi-rigid slab, spreading wheel loads over a wider area of the subgrade."
+  },
+  {
+   "id": "construction-034",
+   "topic": "Construction Engineering",
+   "subtopic": "Drawing scale",
+   "question": "A site plan is drawn at a scale of 1 inch = 40 ft. A proposed driveway scales 3.25 inches on the drawing. How long is the driveway?",
+   "choices": [
+    "130 ft",
+    "97.5 ft",
+    "162.5 ft",
+    "3.25 ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Real length = 3.25 × 40 = 130 ft. Dividing by the scale factor instead of multiplying gives 0.08 ft — always check that the answer is bigger than the paper measurement.",
+   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\\\times (\\\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\\\text{in} \\\\\\\\\\\n\\\\text{scale} &= 40\\\\ \\\\text{ft/in}\n\\\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\\\text{ft}$$"
+  },
+  {
+   "id": "construction-035",
+   "topic": "Construction Engineering",
+   "subtopic": "Stationing",
+   "question": "A water main runs from Sta 24+00 to Sta 27+50 along the alignment. What is its length?",
+   "choices": [
+    "350 ft",
+    "325 ft",
+    "375 ft",
+    "2,750 ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Station 27+50 = 2,750 ft and 24+00 = 2,400 ft from the origin, so the length is 350 ft. The '+' separates hundreds of feet from tens and ones.",
+   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\\\begin{aligned}\n\\\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\\\text{ft}$$"
+  },
+  {
+   "id": "construction-036",
+   "topic": "Construction Engineering",
+   "subtopic": "Contour interval",
+   "question": "On a grading plan, two labeled contours read 98 ft and 108 ft, with four unlabeled contours between them. What is the contour interval?",
+   "choices": [
+    "2 ft",
+    "2.5 ft",
+    "10 ft",
+    "5 ft"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Six contours span 10 ft of elevation, creating 5 intervals: 10/5 = 2 ft. Counting contours instead of intervals gives 10/6, a classic trap.",
+   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\\\text{interval} = \\\\frac{\\\\Delta Elev}{\\\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\Delta Elev &= 108 - 98 = 10\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\text{intervals} &= 5\\\\ \\\\(6\\\\ \\\\text{contours make } 5\\\\ \\\\text{ gaps})\n\\\\end{aligned}$$\n\n$$(\\\\text{interval}) = \\\\frac{10}{5}$$\n\n$$(\\\\text{interval}) = 2\\\\ \\\\text{ft}$$"
+  },
+  {
+   "id": "construction-037",
+   "topic": "Construction Engineering",
+   "subtopic": "Plan versus profile views",
+   "question": "On a highway plan set, which view shows the roadway elevations along the centerline alignment?",
+   "choices": [
+    "The profile view",
+    "The plan view",
+    "The cross-section view",
+    "The detail sheet"
+   ],
+   "answerIndex": 0,
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "explanation": "Profile = elevations along the alignment (vertical alignment). Plan = bird's-eye layout. Cross-section = transverse slice at one station.",
+   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe three principal views each answer a different question:\n\n$$\\\\begin{aligned}\n\\\\text{Plan} &\\\\rightarrow \\\\text{horizontal layout (bird's eye)} \\\\\\\\\\\n\\\\text{Profile} &\\\\rightarrow \\\\text{elevations along the alignment} \\\\\\\\\\\n\\\\text{Cross-section} &\\\\rightarrow \\\\text{transverse slice at one station}\n\\\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
   }
  ]
 }

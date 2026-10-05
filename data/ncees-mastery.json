@@ -277,7 +277,7 @@
     {
      "code": "9D",
      "label": "Coordinate systems (e.g., state plane, latitude/longitude)",
-     "count": 0
+     "count": 4
     },
     {
      "code": "9E",
@@ -317,7 +317,7 @@
     {
      "code": "10E",
      "label": "Flood control (e.g., dams, routing, spillways)",
-     "count": 0
+     "count": 4
     },
     {
      "code": "10F",
@@ -327,7 +327,7 @@
     {
      "code": "10G",
      "label": "Collection systems (e.g., wastewater, stormwater)",
-     "count": 0
+     "count": 4
     },
     {
      "code": "10H",
@@ -447,7 +447,7 @@
     {
      "code": "12H",
      "label": "Foundation types (e.g., spread footings, deep foundations, wall footings, mats)",
-     "count": 0
+     "count": 4
     },
     {
      "code": "12I",
@@ -462,7 +462,7 @@
     {
      "code": "12K",
      "label": "Soil stabilization (e.g., chemical additives, geosynthetics)",
-     "count": 0
+     "count": 4
     }
    ]
   },
@@ -532,7 +532,7 @@
     {
      "code": "14E",
      "label": "Interpretation of engineering drawings",
-     "count": 0
+     "count": 4
     }
    ]
   }
@@ -1037,7 +1037,31 @@
   "statics-034": "4E",
   "statics-035": "4C",
   "surveying-033": "13A",
-  "surveying-034": "13A"
+  "surveying-034": "13A",
+  "surveying-035": "9D",
+  "surveying-036": "9D",
+  "surveying-037": "9D",
+  "surveying-038": "9D",
+  "water-034": "10E",
+  "water-035": "10E",
+  "water-036": "10E",
+  "water-037": "10E",
+  "water-038": "10G",
+  "water-039": "10G",
+  "water-040": "10G",
+  "water-041": "10G",
+  "geotech-034": "12H",
+  "geotech-035": "12H",
+  "geotech-036": "12H",
+  "geotech-037": "12H",
+  "geotech-038": "12K",
+  "geotech-039": "12K",
+  "geotech-040": "12K",
+  "geotech-041": "12K",
+  "construction-034": "14E",
+  "construction-035": "14E",
+  "construction-036": "14E",
+  "construction-037": "14E"
  },
  "offspec": [
   "math-003",

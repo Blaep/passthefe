@@ -179,6 +179,7 @@ def map_question(q):
         if has(s, "manometer", "hydrostatic", "buoyancy", "floating", "center of pressure"): return "8C"
         return "8D"
     if t == "Surveying":
+        if has(s, "state plane", "latitude and longitude", "convergence", "grid azimuth", "decimal degrees", "lambert"): return "9D"
         if has(s, "curve", "superelevation", "sight distance", "stopping sight"): return "13A"
         if has(s, "area by", "coordinate method"): return "9B"
         if has(s, "earthwork", "volume", "borrow", "shrinkage", "mass haul", "stockpile"): return "9C"
@@ -189,6 +190,8 @@ def map_question(q):
         if has(s, "bernoulli"): return "8D"
         if has(s, "continuity equation"): return "8D"
         if has(s, "hydrostatic"): return "8C"
+        if has(s, "sewer", "collection system"): return "10G"
+        if has(s, "spillway", "flood routing", "flood storage", "dam", "reservoir"): return "10E"
         if has(s, "rational method", "scs", "curve number", "unit hydrograph", "runoff", "evaporation", "watershed"): return "10A"
         if has(s, "manning", "critical depth", "critical slope", "specific energy", "hydraulic jump", "sequent depth", "open channel", "froude number", "normal depth", "trapezoidal channel"): return "10B"
         if has(s, "weir"): return "10B"
@@ -213,6 +216,8 @@ def map_question(q):
         if has(s, "frame"): return "11A"
         return "11A"
     if t == "Geotechnical Engineering":
+        if has(s, "spread footing", "wall footing", "mat foundation", "pile", "footing pressure", "footing width", "footing contact"): return "12H"
+        if has(s, "lime stabilization", "cement stabilization", "geosynthetic", "soil stabilization"): return "12K"
         if has(s, "atterberg", "plasticity", "uscs", "aashto", "group index", "gradation", "uniformity", "curvature", "classification"): return "12A"
         if has(s, "phase", "void ratio", "saturation", "unit weight"): return "12B"
         if has(s, "proctor", "compaction", "relative compaction", "relative density", "optimum water"): return "12C"
@@ -232,6 +237,7 @@ def map_question(q):
         return "13C"
     if t == "Construction Engineering":
         if has(s, "depreciation", "book value"): return OFFSPEC
+        if has(s, "drawing scale", "stationing", "contour interval", "plan versus profile", "engineering drawing"): return "14E"
         if has(s, "noise"): return "10J"
         if has(s, "cpm", "float", "critical path", "precedence", "crashing"): return "14C"
         if has(s, "earned value", "cost performance", "schedule performance", "estimate at completion", "estimate to complete", "variance"): return "14C"
