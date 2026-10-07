@@ -688,6 +688,71 @@
     return out;
   }
 
+  // ---- portable exam codes (version 5): seeded, short -----------------------
+  // Same exam transfer as v3, but the question list is rebuilt from a seed
+  // instead of packing 110 bank indices: buildExamSim is deterministic
+  // from (seed, seed history, bank), so the code carries the 32-bit build
+  // seed plus the <=5 historical seeds needed to replay the anti-repeat
+  // rotation's used-set. Pretest marking rebuilds deterministically too
+  // (the per-area extras), so only answers and flags ride per question.
+  // Layout (big-endian, MSB first):
+  //   4b version=5, 16b bankHash, 11b genMin, 1b timed,
+  //   15b clock (timeLeft when timed, elapsed when untimed),
+  //   7b idx, 32b seed, 3b histN, histN x 32b histSeeds,
+  //   then per question: 3b chosen (0-3 = A-D, 4 = unanswered), 1b flagged.
+  // Then CRC-8. ~148 chars vs ~340 for v3.
+  function encodeExamCodeV5(f) {
+    var bits = [];
+    bwWrite(bits, 5, 4);
+    bwWrite(bits, f.bankHash & 0xFFFF, 16);
+    bwWrite(bits, f.genMin & 2047, 11);
+    bwWrite(bits, f.timed ? 1 : 0, 1);
+    bwWrite(bits, Math.min(32767, (f.timed ? f.timeLeft : f.elapsed) || 0) & 32767, 15);
+    bwWrite(bits, (f.idx || 0) & 127, 7);
+    bwWrite(bits, f.seed >>> 0, 32);
+    var hist = f.histSeeds || [];
+    bwWrite(bits, hist.length & 7, 3);
+    var h;
+    for (h = 0; h < hist.length; h++) bwWrite(bits, hist[h] >>> 0, 32);
+    var i;
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.chosen[i] & 7, 3);
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.flagged[i] ? 1 : 0, 1);
+    var payload = bitsToBytes(bits);
+    payload.push(crc8(payload));
+    return chunkCode(b32encodeBytes(payload));
+  }
+
+  function decodeExamCodeV5(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || bytes.length < 2) return { error: "checksum" };
+    var crc = bytes[bytes.length - 1];
+    var payload = bytes.slice(0, -1);
+    if (crc8(payload) !== crc) return { error: "checksum" };
+    var r = bitReader(payload);
+    if (r.read(4) !== 5) return { error: "wrongtype", actual: 0 };
+    var out = {
+      bankHash: r.read(16), genMin: r.read(11),
+      timed: !!r.read(1), clock: r.read(15), idx: r.read(7),
+      seed: r.read(32) >>> 0, histSeeds: [], chosen: [], flagged: []
+    };
+    var histN = r.read(3);
+    if (histN > 5) return { error: "checksum" };
+    // Payload length must match the header exactly (bitsToBytes pads up).
+    var expectBits = 89 + histN * 32 + EXAM_N * 4;
+    if (payload.length !== Math.ceil(expectBits / 8)) return { error: "checksum" };
+    var h;
+    for (h = 0; h < histN; h++) out.histSeeds.push(r.read(32) >>> 0);
+    var i;
+    for (i = 0; i < EXAM_N; i++) out.chosen.push(r.read(3));
+    for (i = 0; i < EXAM_N; i++) out.flagged.push(r.read(1));
+    if (out.idx >= EXAM_N) return { error: "checksum" };
+    for (i = 0; i < EXAM_N; i++) if (out.chosen[i] > 4) return { error: "checksum" };
+    var nowMin = Math.floor(Date.now() / 60000) % 2048;
+    var age = (nowMin - out.genMin + 2048) % 2048;
+    if (age > PORTABLE_TTL_MIN) return { error: "expired" };
+    return out;
+  }
+
   // Exposed for automated tests (harmless in the browser).
   window.PortableCodes = {
     encodeSessionCode: encodeSessionCode,
@@ -696,6 +761,8 @@
     decodeResultCode: decodeResultCode,
     encodeExamCode: encodeExamCode,
     decodeExamCode: decodeExamCode,
+    encodeExamCodeV5: encodeExamCodeV5,
+    decodeExamCodeV5: decodeExamCodeV5,
     peekCodeVersion: peekCodeVersion,
     bankHash: portableBankHash,
     seededShuffle: seededShuffle,
@@ -1315,11 +1382,12 @@
     });
   }
 
-  // Version 1/2/4 codes are practice quizzes; version 3 codes are exam sims.
+  // Version 1/2/4 codes are practice quizzes; version 3/5 codes are exam sims.
   function submitPortableCode() {
     var input = document.getElementById("pe-code");
     var str = input ? input.value : "";
-    if (PortableCodes.peekCodeVersion(str) === 3) startPortableExamSession(str);
+    var v = PortableCodes.peekCodeVersion(str);
+    if (v === 3 || v === 5) startPortableExamSession(str);
     else startPortableSession(str);
   }
 
@@ -1374,7 +1442,7 @@
   }
 
   // ---- portable exam codes: receiving-device side --------------------------
-  // A version-3 code is adopted as this device's own in-progress exam: it is
+  // A version-3/5 code is adopted as this device's own in-progress exam: it is
   // written to localStorage in the exact examResume shape, so the Exams tab
   // shows the in-progress card and the exam resumes from there. The source
   // device keeps its copy until the exam is submitted or discarded there.
@@ -1383,6 +1451,9 @@
     var errEl = document.getElementById("pe-error");
     function fail(msg) {
       if (errEl) { errEl.textContent = msg; errEl.classList.remove("hidden"); }
+    }
+    if (PortableCodes.peekCodeVersion(codeStr) === 5) {
+      return startPortableExamSessionV5(codeStr, fail);
     }
     var d = PortableCodes.decodeExamCode(codeStr);
     if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
@@ -1421,6 +1492,54 @@
         startedAt: Date.now(),
         savedAt: Date.now()
       });
+      location.hash = "#/exam";
+      toast("Exam transferred — tap your in-progress exam to continue.");
+    });
+  }
+
+  // Version-5 (seeded) code: rebuild the exam list from the seed + history
+  // instead of reading packed bank indices, then adopt it with the same
+  // semantics as v3 (this device's own in-progress exam in localStorage).
+  // The seed rides along in examResume so the next hop stays short, and it
+  // joins this device's rotation history so future sims avoid repeats.
+  function startPortableExamSessionV5(codeStr, fail) {
+    var d = PortableCodes.decodeExamCodeV5(codeStr);
+    if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
+    if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one where the exam is.");
+    if (d.error) return fail("That code didn't work — try typing it again.");
+    loadQuestions(function (qs) {
+      if (PortableCodes.bankHash(qs.map(function (q) { return q.id; })) !== d.bankHash) {
+        return fail("The question bank changed since this code was made. Make a fresh code where the exam is.");
+      }
+      var built = buildExamSimCore(qs, d.seed, replayUsedSet(qs, d.histSeeds));
+      var list = built.list;
+      if (list.length !== EXAM_N) return fail("Couldn't rebuild that exam — make a fresh code where the exam is.");
+      var chosen = {}, flagged = {};
+      for (var j = 0; j < list.length; j++) {
+        var qid = list[j].id;
+        if (d.chosen[j] <= 3) chosen[qid] = d.chosen[j];
+        if (d.flagged[j]) flagged[qid] = 1;
+      }
+      exam = null; // drop any stale in-memory exam so it can't overwrite the transfer
+      store.set("examResume", {
+        v: 1,
+        qids: list.map(function (qq) { return qq.id; }),
+        pretest: Object.keys(built.pretest || {}),
+        chosen: chosen,
+        flagged: flagged,
+        idx: Math.min(d.idx, list.length - 1),
+        timeLeft: d.timed ? Math.min(32767, d.clock) : EXAM_SECS,
+        timed: d.timed,
+        elapsed: d.timed ? 0 : Math.min(32767, d.clock),
+        breakUsed: false,
+        startedAt: Date.now(),
+        savedAt: Date.now(),
+        seed: d.seed,
+        seedPrior: d.histSeeds
+      });
+      // Fold the adopted exam into this device's rotation history.
+      var seeds = store.get("examSeeds", []);
+      if (seeds.indexOf(d.seed) === -1) store.set("examSeeds", seeds.concat([d.seed]).slice(-5));
       location.hash = "#/exam";
       toast("Exam transferred — tap your in-progress exam to continue.");
     });
@@ -2459,9 +2578,22 @@
   // { list, pretest } where pretest maps question id -> true. Prefers
   // questions not used in recent sims so consecutive sims don't repeat;
   // once the 500-question bank is exhausted, the rotation starts over.
-  function buildExamSim(qs) {
-    var usedSet = {};
-    store.get("examUsed", []).forEach(function (id) { usedSet[id] = 1; });
+  // Pure exam-list builder: deterministic from (qs, seed, usedSet). ALL
+  // randomness flows through mulberry32(seed), so any device holding the
+  // same bank, seed, and used-set rebuilds the byte-identical question
+  // list — this is what makes short portable exam codes possible. No
+  // storage access here; callers supply the used-set (see replayUsedSet).
+  // Pretest marking (the per-area extras beyond a.n) is deterministic too.
+  function buildExamSimCore(qs, seed, usedSet) {
+    var rng = mulberry32(seed >>> 0);
+    function rshuffle(a) {
+      a = a.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(rng() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
     var pretestAreas = EXAM_AREAS.map(function (a, i) { return i; })
       .sort(function (x, y) { return EXAM_AREAS[y].n - EXAM_AREAS[x].n; })
       .slice(0, EXAM_N - EXAM_SCORED);
@@ -2469,8 +2601,8 @@
     EXAM_AREAS.forEach(function (a, i) {
       var need = a.n + (pretestAreas.indexOf(i) !== -1 ? 1 : 0);
       var pool = qs.filter(function (q) { return a.topics.indexOf(q.topic) !== -1; });
-      var fresh = shuffle(pool.filter(function (q) { return !usedSet[q.id]; }));
-      var stale = shuffle(pool.filter(function (q) { return usedSet[q.id]; }));
+      var fresh = rshuffle(pool.filter(function (q) { return !usedSet[q.id]; }));
+      var stale = rshuffle(pool.filter(function (q) { return usedSet[q.id]; }));
       var got = [];
       while (need > 0 && fresh.length) { got.push(fresh.pop()); need--; }
       while (need > 0 && stale.length) { got.push(stale.pop()); need--; }
@@ -2479,17 +2611,48 @@
         if (gi >= a.n) pretest[q.id] = true; // the extras are pretest
       });
     });
+    return { list: rshuffle(picked), pretest: pretest };
+  }
+
+  // Rebuild the exact used-set a build saw, from the seed history alone:
+  // replay each historical build in order, accumulating its questions, so
+  // every replayed build sees the same used-set the original did.
+  // recentSeeds must be oldest-first (as stored in examSeeds).
+  function replayUsedSet(qs, recentSeeds) {
+    var usedSet = {};
+    (recentSeeds || []).forEach(function (s) {
+      buildExamSimCore(qs, s, usedSet).list.forEach(function (q) { usedSet[q.id] = 1; });
+    });
+    return usedSet;
+  }
+
+  // Exam-sim construction with the anti-repeat rotation. New exams pass a
+  // 32-bit seed plus the seed history (oldest-first); the history is
+  // replayed to derive the used-set, keeping the build reproducible from
+  // (seed, history, bank). Without a seed (legacy callers), falls back to
+  // the old examUsed list with an unseeded draw.
+  function buildExamSim(qs, seed, recentSeeds) {
+    if (typeof seed === "number") {
+      var usedSet = replayUsedSet(qs, recentSeeds);
+      var built = buildExamSimCore(qs, seed, usedSet);
+      var seeds = (recentSeeds || []).concat([seed >>> 0]).slice(-5);
+      store.set("examSeeds", seeds);
+      return built;
+    }
+    var legacyUsed = {};
+    store.get("examUsed", []).forEach(function (id) { legacyUsed[id] = 1; });
+    var legacy = buildExamSimCore(qs, Math.floor(Math.random() * 4294967296), legacyUsed);
     // Rotation bookkeeping: if this sim covers every bank question, reset.
     var bankIds = {};
     qs.forEach(function (q) { bankIds[q.id] = 1; });
-    var nextUsed = store.get("examUsed", []).concat(picked.map(function (q) { return q.id; }));
+    var nextUsed = store.get("examUsed", []).concat(legacy.list.map(function (q) { return q.id; }));
     var coversAll = Object.keys(bankIds).every(function (id) {
       return nextUsed.indexOf(id) !== -1;
     });
     store.set("examUsed", coversAll
-      ? picked.map(function (q) { return q.id; })
+      ? legacy.list.map(function (q) { return q.id; })
       : nextUsed);
-    return { list: shuffle(picked), pretest: pretest };
+    return legacy;
   }
 
   function examAnsweredCount() {
@@ -2521,7 +2684,9 @@
       elapsed: Math.round(exam.elapsed || 0),
       breakUsed: exam.breakUsed,
       startedAt: exam.startedAt,
-      savedAt: Date.now()
+      savedAt: Date.now(),
+      seed: exam.seed, // additive: old saves lack it and fall back to v3 codes
+      seedPrior: exam.seedPrior
     });
   }
 
@@ -2560,7 +2725,9 @@
         breakLeft: EXAM_BREAK_SECS,
         tick: null, submitted: false,
         startedAt: saved.startedAt || Date.now(),
-        saveTick: 0
+        saveTick: 0,
+        seed: saved.seed, // carried through so code-gen keeps working
+        seedPrior: saved.seedPrior
       };
       showExamScreen("exam-run");
       renderExamRun();
@@ -2569,11 +2736,11 @@
   }
 
   // ---- portable exam codes: source-device side ------------------------------
-  // Builds a version-3 session code from the saved in-progress exam. Reads
-  // the existing examResume format (v1) as-is — the save format is not
-  // changed. The receiving device adopts the exam as its own; this copy
-  // stays until submitted or discarded, so discard it here after a
-  // successful transfer to avoid ending up with two versions.
+  // Builds a session code from the saved in-progress exam. Exams created
+  // with a build seed (new format) get a short version-5 code: the list is
+  // rebuilt from the seed and verified byte-identical before encoding.
+  // Older saves without a seed (including exams already in progress) fall
+  // back to the version-3 long code. The save format itself is unchanged.
   function openExamCodeScreen() {
     var saved = store.get("examResume", null);
     if (!saved || saved.v !== 1 || !saved.qids || !saved.qids.length) {
@@ -2587,30 +2754,62 @@
     loadQuestions(function (qs) {
       var idToIdx = {};
       qs.forEach(function (q, i) { idToIdx[q.id] = i; });
-      var pretestIds = {};
-      (saved.pretest || []).forEach(function (id) { pretestIds[id] = 1; });
-      var bankIdx = [], chosen = [], flagged = [], pretest = [];
-      for (var i = 0; i < saved.qids.length; i++) {
-        var qid = saved.qids[i];
-        if (!(qid in idToIdx)) {
+      var i, qid;
+      for (i = 0; i < saved.qids.length; i++) {
+        if (!(saved.qids[i] in idToIdx)) {
           toast("The question bank changed — can't make a code for this exam.");
           return;
         }
-        bankIdx.push(idToIdx[qid]);
-        var c = saved.chosen ? saved.chosen[qid] : undefined;
-        chosen.push(typeof c === "number" && c >= 0 && c <= 3 ? c : 4);
-        flagged.push(saved.flagged && saved.flagged[qid] ? 1 : 0);
-        pretest.push(pretestIds[qid] ? 1 : 0);
       }
-      var code = PortableCodes.encodeExamCode({
-        bankHash: PortableCodes.bankHash(qs.map(function (q) { return q.id; })),
-        genMin: Math.floor(Date.now() / 60000) % 2048,
-        timed: saved.timed !== false,
-        timeLeft: typeof saved.timeLeft === "number" ? saved.timeLeft : EXAM_SECS,
-        elapsed: saved.elapsed || 0,
-        idx: saved.idx || 0,
-        bankIdx: bankIdx, chosen: chosen, flagged: flagged, pretest: pretest
-      });
+      var bankHash = PortableCodes.bankHash(qs.map(function (q) { return q.id; }));
+      var genMin = Math.floor(Date.now() / 60000) % 2048;
+      var timed = saved.timed !== false;
+      var code = null;
+      if (typeof saved.seed === "number") {
+        var hist = saved.seedPrior || [];
+        var rebuilt = buildExamSimCore(qs, saved.seed, replayUsedSet(qs, hist));
+        var same = rebuilt.list.length === saved.qids.length;
+        for (i = 0; same && i < saved.qids.length; i++) {
+          if (rebuilt.list[i].id !== saved.qids[i]) same = false;
+        }
+        if (same) {
+          var chosen5 = [], flagged5 = [];
+          for (i = 0; i < saved.qids.length; i++) {
+            qid = saved.qids[i];
+            var c5 = saved.chosen ? saved.chosen[qid] : undefined;
+            chosen5.push(typeof c5 === "number" && c5 >= 0 && c5 <= 3 ? c5 : 4);
+            flagged5.push(saved.flagged && saved.flagged[qid] ? 1 : 0);
+          }
+          code = PortableCodes.encodeExamCodeV5({
+            bankHash: bankHash, genMin: genMin, timed: timed,
+            timeLeft: typeof saved.timeLeft === "number" ? saved.timeLeft : EXAM_SECS,
+            elapsed: saved.elapsed || 0,
+            idx: saved.idx || 0,
+            seed: saved.seed, histSeeds: hist,
+            chosen: chosen5, flagged: flagged5
+          });
+        }
+      }
+      if (!code) {
+        var pretestIds = {};
+        (saved.pretest || []).forEach(function (id) { pretestIds[id] = 1; });
+        var bankIdx = [], chosen = [], flagged = [], pretest = [];
+        for (i = 0; i < saved.qids.length; i++) {
+          qid = saved.qids[i];
+          bankIdx.push(idToIdx[qid]);
+          var c = saved.chosen ? saved.chosen[qid] : undefined;
+          chosen.push(typeof c === "number" && c >= 0 && c <= 3 ? c : 4);
+          flagged.push(saved.flagged && saved.flagged[qid] ? 1 : 0);
+          pretest.push(pretestIds[qid] ? 1 : 0);
+        }
+        code = PortableCodes.encodeExamCode({
+          bankHash: bankHash, genMin: genMin, timed: timed,
+          timeLeft: typeof saved.timeLeft === "number" ? saved.timeLeft : EXAM_SECS,
+          elapsed: saved.elapsed || 0,
+          idx: saved.idx || 0,
+          bankIdx: bankIdx, chosen: chosen, flagged: flagged, pretest: pretest
+        });
+      }
       renderExamCodeScreen(code);
     });
   }
@@ -2759,7 +2958,12 @@
   // ---- exam run ------------------------------------------------------------
   function startExam(timed) {
     loadQuestions(function (qs) {
-      var built = buildExamSim(qs);
+      // 32-bit build seed: makes the question list reproducible from
+      // (seed, history, bank) so portable exam codes can stay short.
+      // priorSeeds is snapshotted BEFORE buildExamSim appends the new seed.
+      var seed = (Math.floor(Math.random() * 4294967296)) >>> 0;
+      var priorSeeds = store.get("examSeeds", []).slice(-5);
+      var built = buildExamSim(qs, seed, priorSeeds);
       var list = built.list;
       if (list.length < EXAM_N) {
         toast("The question bank failed to load — check your connection and try again.");
@@ -2771,7 +2975,8 @@
         timeLeft: EXAM_SECS,
         breakUsed: false, breakActive: false, breakLeft: EXAM_BREAK_SECS,
         tick: null, submitted: false,
-        startedAt: Date.now(), saveTick: 0
+        startedAt: Date.now(), saveTick: 0,
+        seed: seed, seedPrior: priorSeeds
       };
       saveExamProgress();
       showExamScreen("exam-run");
