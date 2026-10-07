@@ -78,6 +78,15 @@
     var parts = (location.hash || "#/").replace("#/", "").split("#");
     var name = parts[0] || "home";
     var anchor = parts[1] || "";
+    // #/portable/<CODE> deep link: the session code rides in the URL
+    // fragment. Fragments are never sent over the network, so the code
+    // stays client-side. Pull it out here for auto-submit; the manual
+    // type-in input remains as fallback.
+    var embeddedCode = "";
+    if (name.indexOf("portable/") === 0) {
+      embeddedCode = name.slice(9);
+      name = "portable";
+    }
     // Footer label follows context: "exam" on the Exam Sim view, "quiz" elsewhere.
     var portableLink = document.getElementById("portable-footer-link");
     if (portableLink) portableLink.textContent = (name === "exam") ? "Continue an exam on another device" : "Continue a quiz on another device";
@@ -88,7 +97,7 @@
         var el = document.getElementById("view-" + v);
         if (el) el.classList.toggle("hidden", v !== "practice");
       });
-      initPortableEntry();
+      initPortableEntry(embeddedCode);
       window.scrollTo(0, 0);
       return;
     }
@@ -753,6 +762,121 @@
     return out;
   }
 
+  // ---- portable exam codes (version 6): sparse, short -----------------------
+  // Same seeded transfer as v5, but the per-question section is sparse:
+  // mid-exam states usually have many unanswered questions and few flags.
+  // Layout: the v5 header (4b ver=6, 16b bankHash, 11b genMin, 1b timed,
+  // 15b clock, 7b idx, 32b seed, 3b histN, histN x 32b histSeeds), then:
+  //   1b allAnswered; if set: 110 x 2b chosen (0-3 = A-D);
+  //     else 110b answered-bitmap + 2b chosen per set bit, in order.
+  //   1b allFlagged; if set: done;
+  //     else 7b fcount; if fcount <= 15: fcount x 7b flagged indices
+  //     (ascending); else 110b flag bitmap.
+  // Then CRC-8. The decoder output has the same shape as v5 (chosen as
+  // 0-3/4=blank, flagged as 0/1), so both share the adoption path.
+  // Worst case (110 answered, 110 flagged) is 339 question-section bits
+  // vs 440 for v5 — provably never worse; a typical mid-exam state is
+  // ~247 bits (~84 raw chars vs ~122 for v5).
+  function encodeExamCodeV6(f) {
+    var bits = [];
+    bwWrite(bits, 6, 4);
+    bwWrite(bits, f.bankHash & 0xFFFF, 16);
+    bwWrite(bits, f.genMin & 2047, 11);
+    bwWrite(bits, f.timed ? 1 : 0, 1);
+    bwWrite(bits, Math.min(32767, (f.timed ? f.timeLeft : f.elapsed) || 0) & 32767, 15);
+    bwWrite(bits, (f.idx || 0) & 127, 7);
+    bwWrite(bits, f.seed >>> 0, 32);
+    var hist = f.histSeeds || [];
+    bwWrite(bits, hist.length & 7, 3);
+    var h, i;
+    for (h = 0; h < hist.length; h++) bwWrite(bits, hist[h] >>> 0, 32);
+    var k = 0;
+    for (i = 0; i < EXAM_N; i++) if ((f.chosen[i] & 7) <= 3) k++;
+    if (k === EXAM_N) {
+      bwWrite(bits, 1, 1);
+      for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.chosen[i] & 3, 2);
+    } else {
+      bwWrite(bits, 0, 1);
+      for (i = 0; i < EXAM_N; i++) bwWrite(bits, (f.chosen[i] & 7) <= 3 ? 1 : 0, 1);
+      for (i = 0; i < EXAM_N; i++) if ((f.chosen[i] & 7) <= 3) bwWrite(bits, f.chosen[i] & 3, 2);
+    }
+    var find = [];
+    for (i = 0; i < EXAM_N; i++) if (f.flagged[i]) find.push(i);
+    if (find.length === EXAM_N) {
+      bwWrite(bits, 1, 1);
+    } else {
+      bwWrite(bits, 0, 1);
+      bwWrite(bits, find.length & 127, 7);
+      if (find.length <= 15) {
+        for (i = 0; i < find.length; i++) bwWrite(bits, find[i] & 127, 7);
+      } else {
+        for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.flagged[i] ? 1 : 0, 1);
+      }
+    }
+    var payload = bitsToBytes(bits);
+    payload.push(crc8(payload));
+    return chunkCode(b32encodeBytes(payload));
+  }
+
+  function decodeExamCodeV6(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || bytes.length < 2) return { error: "checksum" };
+    var crc = bytes[bytes.length - 1];
+    var payload = bytes.slice(0, -1);
+    if (crc8(payload) !== crc) return { error: "checksum" };
+    var r = bitReader(payload);
+    if (r.read(4) !== 6) return { error: "wrongtype", actual: 0 };
+    var out = {
+      bankHash: r.read(16), genMin: r.read(11),
+      timed: !!r.read(1), clock: r.read(15), idx: r.read(7),
+      seed: r.read(32) >>> 0, histSeeds: [], chosen: [], flagged: []
+    };
+    var histN = r.read(3);
+    if (histN > 5) return { error: "checksum" };
+    var h, i;
+    for (h = 0; h < histN; h++) out.histSeeds.push(r.read(32) >>> 0);
+    // Answers: 1b allAnswered, then either 110 x 2b or a 110b bitmap
+    // followed by 2b per set bit.
+    var allA = r.read(1), k = 0, abm = null;
+    if (allA) {
+      for (i = 0; i < EXAM_N; i++) out.chosen.push(r.read(2));
+    } else {
+      abm = [];
+      for (i = 0; i < EXAM_N; i++) { abm.push(r.read(1)); if (abm[i]) k++; }
+      for (i = 0; i < EXAM_N; i++) out.chosen.push(abm[i] ? r.read(2) : 4);
+    }
+    // Flags: 1b allFlagged, then 7b count + sparse indices or a bitmap.
+    var allF = r.read(1), fc = 0, sparseF = false;
+    if (allF) {
+      for (i = 0; i < EXAM_N; i++) out.flagged.push(1);
+    } else {
+      fc = r.read(7);
+      if (fc <= 15) {
+        sparseF = true;
+        var fset = {};
+        for (i = 0; i < fc; i++) {
+          var fi = r.read(7);
+          if (fi >= EXAM_N) return { error: "checksum" };
+          fset[fi] = 1;
+        }
+        for (i = 0; i < EXAM_N; i++) out.flagged.push(fset[i] ? 1 : 0);
+      } else {
+        for (i = 0; i < EXAM_N; i++) out.flagged.push(r.read(1));
+      }
+    }
+    // Payload length must match the parsed layout exactly (bitsToBytes
+    // pads the tail up to a full byte).
+    var expectBits = 89 + histN * 32 + 1 + (allA ? EXAM_N * 2 : EXAM_N + k * 2) +
+      1 + (allF ? 0 : 7 + (sparseF ? fc * 7 : EXAM_N));
+    if (payload.length !== Math.ceil(expectBits / 8)) return { error: "checksum" };
+    if (out.idx >= EXAM_N) return { error: "checksum" };
+    for (i = 0; i < EXAM_N; i++) if (out.chosen[i] > 4) return { error: "checksum" };
+    var nowMin = Math.floor(Date.now() / 60000) % 2048;
+    var age = (nowMin - out.genMin + 2048) % 2048;
+    if (age > PORTABLE_TTL_MIN) return { error: "expired" };
+    return out;
+  }
+
   // Exposed for automated tests (harmless in the browser).
   window.PortableCodes = {
     encodeSessionCode: encodeSessionCode,
@@ -763,6 +887,8 @@
     decodeExamCode: decodeExamCode,
     encodeExamCodeV5: encodeExamCodeV5,
     decodeExamCodeV5: decodeExamCodeV5,
+    encodeExamCodeV6: encodeExamCodeV6,
+    decodeExamCodeV6: decodeExamCodeV6,
     peekCodeVersion: peekCodeVersion,
     bankHash: portableBankHash,
     seededShuffle: seededShuffle,
@@ -1216,6 +1342,11 @@
     html += '<div class="code-display" id="sc-code" title="Tap to copy">' + escapeHtml(code) + "</div>";
     html += '<p style="margin-top:12px">On the other computer, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact quiz — same questions, right where you left off.</p>';
     html += '<p class="muted">The code works for 24 hours and only once. Nothing about you stays on the other computer.</p>';
+    var scLink = portableLinkFor(code);
+    html += '<div class="quiz-nav"><button id="sc-copylink" class="btn">Copy link</button>';
+    if (typeof navigator !== "undefined" && navigator.share) html += ' <button id="sc-share" class="btn">Share…</button>';
+    html += '</div>';
+    html += '<p class="muted">The link opens this quiz on the other device with nothing to type — the code rides inside it. It carries your answers in plain text, so only send it to yourself.</p>';
     html += '<div class="quiz-nav"><button id="sc-import-toggle" class="btn primary">Enter result code</button> ';
     html += '<button id="sc-cancel" class="btn text">Cancel session</button></div>';
     html += '<div id="sc-import" class="hidden" style="margin-top:12px">';
@@ -1228,6 +1359,11 @@
     document.getElementById("sc-code").addEventListener("click", function () {
       copyText(code, function () { toast("Code copied."); });
     });
+    document.getElementById("sc-copylink").addEventListener("click", function () {
+      copyText(scLink, function () { toast("Link copied — send it to yourself and tap it on the other device."); });
+    });
+    var scShare = document.getElementById("sc-share");
+    if (scShare) scShare.addEventListener("click", function () { sharePortableLink(scLink); });
     document.getElementById("sc-import-toggle").addEventListener("click", function () {
       document.getElementById("sc-import").classList.toggle("hidden");
     });
@@ -1348,12 +1484,25 @@
     try { sessionStorage.removeItem("fecp:portableQuiz"); } catch (e) {}
   }
 
-  function initPortableEntry() {
+  function initPortableEntry(embeddedCode) {
     quiz = null; // the tab's sessionStorage copy is authoritative from here
     stopQuizTimer();
     showOnly("portable-entry");
     var main = document.getElementById("pe-main");
     if (!main) return;
+    if (embeddedCode) {
+      // A tapped deep link is an explicit handoff: it wins over any saved
+      // session already on this device.
+      main.innerHTML = renderPortableFormHtml();
+      wirePortableForm();
+      var input = document.getElementById("pe-code");
+      if (input) input.value = embeddedCode;
+      submitPortableCode(embeddedCode);
+      // Clean the URL so a reload doesn't re-submit and clobber progress
+      // made on this device afterwards.
+      try { history.replaceState(null, "", location.pathname + location.search + "#/portable"); } catch (e) {}
+      return;
+    }
     var saved = readPortableSave();
     if (saved) {
       var doneHere = saved.answers.length - (saved.handoff || 0);
@@ -1371,23 +1520,30 @@
       });
       return;
     }
-    main.innerHTML =
-      '<label for="pe-code"><strong>Session code from your phone</strong></label>' +
+    main.innerHTML = renderPortableFormHtml();
+    wirePortableForm();
+  }
+
+  function renderPortableFormHtml() {
+    return '<label for="pe-code"><strong>Session code from your phone</strong></label>' +
       '<input id="pe-code" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX">' +
       '<p class="form-error hidden" id="pe-error"></p>' +
       '<div class="quiz-nav"><button id="pe-start" class="btn primary">Open my quiz</button></div>';
-    document.getElementById("pe-start").addEventListener("click", submitPortableCode);
+  }
+
+  function wirePortableForm() {
+    document.getElementById("pe-start").addEventListener("click", function () { submitPortableCode(); });
     document.getElementById("pe-code").addEventListener("keydown", function (e) {
       if (e.key === "Enter") submitPortableCode();
     });
   }
 
-  // Version 1/2/4 codes are practice quizzes; version 3/5 codes are exam sims.
-  function submitPortableCode() {
+  // Version 1/2/4 codes are practice quizzes; version 3/5/6 codes are exam sims.
+  function submitPortableCode(codeStr) {
     var input = document.getElementById("pe-code");
-    var str = input ? input.value : "";
+    var str = codeStr || (input ? input.value : "");
     var v = PortableCodes.peekCodeVersion(str);
-    if (v === 3 || v === 5) startPortableExamSession(str);
+    if (v === 3 || v === 5 || v === 6) startPortableExamSession(str);
     else startPortableSession(str);
   }
 
@@ -1452,9 +1608,9 @@
     function fail(msg) {
       if (errEl) { errEl.textContent = msg; errEl.classList.remove("hidden"); }
     }
-    if (PortableCodes.peekCodeVersion(codeStr) === 5) {
-      return startPortableExamSessionV5(codeStr, fail);
-    }
+    var pv = PortableCodes.peekCodeVersion(codeStr);
+    if (pv === 5) return startPortableExamSessionV5(codeStr, fail);
+    if (pv === 6) return startPortableExamSessionV6(codeStr, fail);
     var d = PortableCodes.decodeExamCode(codeStr);
     if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
     if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one where the exam is.");
@@ -1497,16 +1653,29 @@
     });
   }
 
-  // Version-5 (seeded) code: rebuild the exam list from the seed + history
-  // instead of reading packed bank indices, then adopt it with the same
-  // semantics as v3 (this device's own in-progress exam in localStorage).
-  // The seed rides along in examResume so the next hop stays short, and it
-  // joins this device's rotation history so future sims avoid repeats.
+  // Version-5/6 (seeded) codes share one adoption path: rebuild the exam
+  // list from the seed + history instead of reading packed bank indices,
+  // then adopt it with the same semantics as v3 (this device's own
+  // in-progress exam in localStorage). The seed rides along in examResume
+  // so the next hop stays short, and it joins this device's rotation
+  // history so future sims avoid repeats.
   function startPortableExamSessionV5(codeStr, fail) {
     var d = PortableCodes.decodeExamCodeV5(codeStr);
     if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
     if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one where the exam is.");
     if (d.error) return fail("That code didn't work — try typing it again.");
+    adoptSeededPortableExam(d, fail);
+  }
+
+  function startPortableExamSessionV6(codeStr, fail) {
+    var d = PortableCodes.decodeExamCodeV6(codeStr);
+    if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
+    if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one where the exam is.");
+    if (d.error) return fail("That code didn't work — try typing it again.");
+    adoptSeededPortableExam(d, fail);
+  }
+
+  function adoptSeededPortableExam(d, fail) {
     loadQuestions(function (qs) {
       if (PortableCodes.bankHash(qs.map(function (q) { return q.id; })) !== d.bankHash) {
         return fail("The question bank changed since this code was made. Make a fresh code where the exam is.");
@@ -1720,6 +1889,27 @@
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(t).then(done, fallback);
     } else { fallback(); }
+  }
+
+  // Deep link carrying a session code in the URL fragment. Fragments are
+  // never sent over the network, so the code stays client-side — but it
+  // still holds answers in plain text, so it should only ever be sent to
+  // yourself. Built from the current location so it works on any domain
+  // the app is served from.
+  function portableLinkFor(code) {
+    return String(location.href).split("#")[0] + "#/portable/" + code;
+  }
+
+  // One-tap share of a portable link. Feature-detected by the caller;
+  // the user tapping the button is the required user gesture. A rejected
+  // promise just means the user dismissed the share sheet.
+  function sharePortableLink(link) {
+    if (typeof navigator === "undefined" || !navigator.share) return false;
+    try {
+      var p = navigator.share({ title: "PassTheFE session", text: "Tap to continue my PassTheFE session:", url: link });
+      if (p && p.catch) p.catch(function () {});
+      return true;
+    } catch (e) { return false; }
   }
 
   function toast(msg) {
@@ -2780,7 +2970,7 @@
             chosen5.push(typeof c5 === "number" && c5 >= 0 && c5 <= 3 ? c5 : 4);
             flagged5.push(saved.flagged && saved.flagged[qid] ? 1 : 0);
           }
-          code = PortableCodes.encodeExamCodeV5({
+          code = PortableCodes.encodeExamCodeV6({
             bankHash: bankHash, genMin: genMin, timed: timed,
             timeLeft: typeof saved.timeLeft === "number" ? saved.timeLeft : EXAM_SECS,
             elapsed: saved.elapsed || 0,
@@ -2817,11 +3007,16 @@
   function renderExamCodeScreen(code) {
     var el = document.getElementById("exam-setup");
     if (!el) return;
+    var excLink = portableLinkFor(code);
     var html = '<p class="quiz-progress">Session code · Exam simulation</p>' +
       "<h3>Continue on another device</h3>" +
       '<div class="code-display" id="exc-code" title="Tap to copy">' + escapeHtml(code) + "</div>" +
       '<p style="margin-top:12px">On the other device, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact exam — same 110 questions, your answers, flags, and timer carry over.</p>' +
       '<p class="muted">The code works for 24 hours. After opening it on the other device, discard this copy here so you don\'t end up with two versions of the same exam.</p>' +
+      '<div class="quiz-nav"><button id="exc-copylink" class="btn">Copy link</button>';
+    if (typeof navigator !== "undefined" && navigator.share) html += ' <button id="exc-share" class="btn">Share…</button>';
+    html += '</div>' +
+      '<p class="muted">The link opens this exam on the other device with nothing to type — the code rides inside it. It carries your exam in plain text, so only send it to yourself.</p>' +
       '<div class="quiz-nav"><button id="exc-back" class="btn primary">Back to exams</button> ' +
       '<button id="exc-discard" class="btn text">Discard this exam</button></div>';
     el.innerHTML = html;
@@ -2829,6 +3024,11 @@
     document.getElementById("exc-code").addEventListener("click", function () {
       copyText(code, function () { toast("Code copied."); });
     });
+    document.getElementById("exc-copylink").addEventListener("click", function () {
+      copyText(excLink, function () { toast("Link copied — send it to yourself and tap it on the other device."); });
+    });
+    var excShare = document.getElementById("exc-share");
+    if (excShare) excShare.addEventListener("click", function () { sharePortableLink(excLink); });
     document.getElementById("exc-back").addEventListener("click", renderExamSetup);
     document.getElementById("exc-discard").addEventListener("click", function () {
       clearExamResume();
