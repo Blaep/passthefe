@@ -2310,7 +2310,8 @@
   var EXAM_NOTE = "Timed, exam-style practice — not the real NCEES exam.";
   var exam = null; // live sim: {list, idx, chosen, flagged, timeLeft,
                    //  breakUsed, breakActive, breakLeft, tick, submitted,
-                   //  startedAt, saveTick}
+                   //  startedAt, saveTick, timed, elapsed}
+  var examMode = "timed"; // setup-screen choice: "timed" | "untimed"
 
   function fmtClock(s) {
     s = Math.max(0, Math.round(s));
@@ -2382,6 +2383,8 @@
       flagged: exam.flagged,
       idx: exam.idx,
       timeLeft: Math.round(exam.timeLeft),
+      timed: !!exam.timed,
+      elapsed: Math.round(exam.elapsed || 0),
       breakUsed: exam.breakUsed,
       startedAt: exam.startedAt,
       savedAt: Date.now()
@@ -2416,6 +2419,8 @@
         chosen: saved.chosen || {},
         flagged: saved.flagged || {},
         timeLeft: (typeof saved.timeLeft === "number") ? saved.timeLeft : EXAM_SECS,
+        timed: (typeof saved.timed === "boolean") ? saved.timed : true,
+        elapsed: (typeof saved.elapsed === "number") ? saved.elapsed : 0,
         breakUsed: !!saved.breakUsed,
         breakActive: false, // a reload forfeits an in-progress break
         breakLeft: EXAM_BREAK_SECS,
@@ -2430,6 +2435,13 @@
   }
 
   // ---- exam setup ----------------------------------------------------------
+  // "Timed (5h20m)" vs "Untimed" mode choice. Defaults to Timed so the
+  // long-standing behavior is unchanged unless the user picks Untimed.
+  function examModeNote() {
+    return examMode === "timed"
+      ? "Like test day: 5h20m countdown, auto-submits at zero."
+      : "No countdown, no auto-submit — elapsed time is shown instead. Same 110 questions, same scoring.";
+  }
   function showExamScreen(id) {
     ["exam-setup", "exam-run", "exam-review", "exam-result"].forEach(function (x) {
       document.getElementById(x).classList.toggle("hidden", x !== id);
@@ -2458,12 +2470,18 @@
     var validResume = saved && saved.v === 1 && saved.qids && saved.qids.length;
     var sims = store.get("examSims", []);
     var html = '<h2 class="exams-title">Exams</h2>' +
-      '<p class="lede">Full 110-question simulations · 5h20m timer · 100 scored per the NCEES blueprint, like the real exam.</p>';
+      '<p class="lede">Full 110-question simulations · 100 scored per the NCEES blueprint, like the real exam.</p>' +
+      '<div class="form-row"><label>Mode</label><div class="exam-mode-row">' +
+      '<button id="exam-mode-timed" class="btn mode-btn' + (examMode === "timed" ? " active" : "") + '">⏱ Timed · 5h20m</button>' +
+      '<button id="exam-mode-untimed" class="btn mode-btn' + (examMode === "untimed" ? " active" : "") + '">Untimed</button>' +
+      '</div><p class="muted" id="exam-mode-note">' + escapeHtml(examModeNote()) + "</p></div>";
     if (validResume) {
       var answered = saved.chosen ? Object.keys(saved.chosen).length : 0;
       html += '<div class="exam-card in-progress" id="exam-current-card" role="button" tabindex="0">' +
         "<div><div class=\"exam-card-label\">Started On</div>" +
         '<div class="exam-card-date">' + escapeHtml(fmtLongDate(saved.startedAt)) + "</div></div>" +
+        '<div><div class="exam-card-label">Mode</div>' +
+        '<div class="exam-card-progress">' + (saved.timed === false ? "Untimed" : "Timed") + "</div></div>" +
         '<div><div class="exam-card-label">Progress</div>' +
         '<div class="exam-card-progress">' + answered + "/" + saved.qids.length + "</div></div>" +
         "</div>";
@@ -2478,6 +2496,7 @@
       html += '<div class="exam-card completed">' +
         '<div><span class="exam-card-label">Completed On</span> ' +
         '<span class="exam-card-date-blue">' + escapeHtml(fmtLongDate(s.ts)) + "</span>" +
+        (s.timed === false ? ' <span class="muted">· untimed</span>' : "") +
         '<div class="exam-stats">' +
         '<div><div class="exam-stat-label">Total</div><div class="exam-stat-num">' + s.total + "</div></div>" +
         '<div><div class="exam-stat-label">Correct</div><div class="exam-stat-num">' + s.score + "</div></div>" +
@@ -2498,7 +2517,20 @@
     }
     var db = document.getElementById("exam-discard-btn");
     if (db) db.addEventListener("click", function () { clearExamResume(); renderExamSetup(); });
-    document.getElementById("exam-start-btn").addEventListener("click", startExam);
+    var mt = document.getElementById("exam-mode-timed");
+    var mu = document.getElementById("exam-mode-untimed");
+    function setExamMode(m) {
+      examMode = m;
+      mt.classList.toggle("active", m === "timed");
+      mu.classList.toggle("active", m === "untimed");
+      var note = document.getElementById("exam-mode-note");
+      if (note) note.textContent = examModeNote();
+    }
+    mt.addEventListener("click", function () { setExamMode("timed"); });
+    mu.addEventListener("click", function () { setExamMode("untimed"); });
+    document.getElementById("exam-start-btn").addEventListener("click", function () {
+      startExam(examMode === "timed");
+    });
   }
 
   function initExam() {
@@ -2518,7 +2550,7 @@
   }
 
   // ---- exam run ------------------------------------------------------------
-  function startExam() {
+  function startExam(timed) {
     loadQuestions(function (qs) {
       var built = buildExamSim(qs);
       var list = built.list;
@@ -2528,6 +2560,7 @@
       }
       exam = {
         list: list, pretest: built.pretest, idx: 0, chosen: {}, flagged: {},
+        timed: timed !== false, elapsed: 0,
         timeLeft: EXAM_SECS,
         breakUsed: false, breakActive: false, breakLeft: EXAM_BREAK_SECS,
         tick: null, submitted: false,
@@ -2554,25 +2587,34 @@
       if (exam.breakLeft <= 0) endBreak();
       return;
     }
-    exam.timeLeft--;
     var tEl = document.getElementById("exam-timer");
-    if (tEl) {
-      tEl.textContent = fmtClock(exam.timeLeft);
-      tEl.classList.toggle("low", exam.timeLeft <= 600);
+    if (exam.timed) {
+      exam.timeLeft--;
+      if (tEl) {
+        tEl.textContent = fmtClock(exam.timeLeft);
+        tEl.classList.toggle("low", exam.timeLeft <= 600);
+      }
+      if (exam.timeLeft <= 0) {
+        toast("Time expired — submitting your exam.");
+        submitExam(true);
+        return;
+      }
+    } else {
+      // Untimed mode: count elapsed time up, no countdown, no auto-submit.
+      exam.elapsed++;
+      if (tEl) tEl.textContent = fmtClock(exam.elapsed);
     }
     exam.saveTick++;
     if (exam.saveTick % 15 === 0) saveExamProgress();
-    if (exam.timeLeft <= 0) {
-      toast("Time expired — submitting your exam.");
-      submitExam(true);
-    }
   }
 
   function renderExamRun() {
     var box = document.getElementById("exam-run");
     var html = '<div class="quiz-head">' +
       '<button class="quiz-back" id="exam-back" aria-label="Back to exams">‹</button>' +
-      ' <span class="timer-pill">⏱ <b id="exam-timer">' + fmtClock(exam.timeLeft) + "</b></span></div>" +
+      ' <span class="timer-pill">⏱ <b id="exam-timer">' +
+      fmtClock(exam.timed ? exam.timeLeft : exam.elapsed) + "</b>" +
+      (exam.timed ? "" : ' <span class="muted">elapsed</span>') + "</span></div>" +
       '<h2 class="quiz-title">Exam Simulation</h2>' +
       '<div class="exam-bar">' +
       '<div><div class="exam-count" id="exam-count"></div></div>' +
@@ -2726,7 +2768,9 @@
     }
     var html = "<h3>Review before submitting</h3>" +
       '<p class="lede">' + examAnsweredCount() + " of " + exam.list.length + " answered · " +
-      flagged.length + " flagged · " + fmtClock(exam.timeLeft) + " left on the clock.</p>" +
+      flagged.length + " flagged · " +
+      (exam.timed ? fmtClock(exam.timeLeft) + " left on the clock."
+                  : fmtClock(exam.elapsed) + " elapsed (untimed).") + "</p>" +
       "<h4>Flagged for review</h4>" + rowList(flagged, "flagged") +
       "<h4>Unanswered</h4>" + rowList(unanswered, "unanswered") +
       '<div class="quiz-nav"><button id="exam-back-btn" class="btn">Back to exam</button> ' +
@@ -2759,7 +2803,8 @@
     if (!exam || exam.submitted) return;
     if (exam.tick) { clearInterval(exam.tick); exam.tick = null; }
     exam.submitted = true;
-    var timeUsed = EXAM_SECS - Math.max(0, exam.timeLeft);
+    var timeUsed = exam.timed ? EXAM_SECS - Math.max(0, exam.timeLeft)
+                             : Math.round(exam.elapsed || 0);
     var correct = 0;
     var topicToArea = {};
     EXAM_AREAS.forEach(function (a, i) {
@@ -2794,6 +2839,7 @@
       pct: scoredTotal ? Math.round(100 * correct / scoredTotal) : 0,
       pretestN: exam.list.length - scoredTotal,
       timeSecs: Math.round(timeUsed),
+      timed: !!exam.timed,
       perArea: perArea,
       qids: exam.list.map(function (q) { return q.id; }),
       answers: exam.list.map(function (q) {
@@ -2815,10 +2861,14 @@
   function renderExamResult(rec) {
     var box = document.getElementById("exam-result");
     var perArea = rec.perArea || [];
+    var resultNote = rec.timed === false
+      ? "Untimed practice — not the real NCEES exam."
+      : EXAM_NOTE;
     var html = "<h3>Exam diagnostic</h3>" +
       '<p class="result-score">' + rec.score + "/" + rec.total +
       " <span>(" + rec.pct + "% of scored questions)</span></p>" +
-      '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) + " of " + fmtClock(EXAM_SECS) + "</p>" +
+      '<p class="time-summary">⏱ Time used: ' + fmtClock(rec.timeSecs) +
+      (rec.timed === false ? " (untimed)" : " of " + fmtClock(EXAM_SECS)) + "</p>" +
       (rec.pretestN ? '<p class="muted">110 questions · 100 scored · ' + rec.pretestN +
         " pretest-style excluded from scoring, like the real exam.</p>" : "") +
       '<table class="diag-table"><thead><tr><th>Knowledge area</th>' +
@@ -2833,7 +2883,7 @@
     html += "</tbody></table>" +
       '<p class="disclaimer">* NCEES reports each area on a 0–15 scale but publishes neither the formula nor a passing score. ' +
       "This column maps your % correct linearly — an unofficial practice estimate, not a pass/fail prediction. " +
-      EXAM_NOTE + "</p>" +
+      resultNote + "</p>" +
       '<div class="quiz-nav"><button id="exam-review-answers" class="btn primary">Review answers</button> ' +
       '<button id="exam-again" class="btn">New simulation</button> ' +
       '<a class="btn" href="#/practice">Back to practice</a></div>' +

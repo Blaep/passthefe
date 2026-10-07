@@ -300,6 +300,9 @@ details.card summary + div { margin-top: 16px; }
 .btn.learning { border-color: var(--warning); color: var(--warning); }
 .btn.know.active { background: var(--success); border-color: var(--success); color: #fff; }
 .btn.learning.active { background: var(--warning); border-color: var(--warning); color: #fff; }
+.exam-mode-row { display: flex; gap: 12px; }
+.exam-mode-row .btn { flex: 1; padding: 12px 8px; }
+.btn.mode-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 .fc-card.flipped { touch-action: pan-y; }
 .fc-card.dragging { transition: none; cursor: grabbing; }
 .fc-stamp { position: absolute; top: 18px; padding: 6px 14px; border: 3px solid; border-radius: 8px; font-weight: 800; font-size: 1.25rem; letter-spacing: .06em; opacity: 0; pointer-events: none; z-index: 5; background: rgba(255,253,248,.85); }
