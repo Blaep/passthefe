@@ -540,16 +540,19 @@
     return h & 0xFFFF;
   }
 
-  // Session code (phone -> other device), version 1.
+  // Session code (phone -> other device), version 4. Same layout as v1
+  // except genMin is 11 bits (mod 2048) so the 24h TTL is actually
+  // enforceable — with 10 bits the code age could never exceed 1023 < 1440.
+  // v1 codes still decode with their original 10-bit genMin behavior.
   function encodeSessionCode(f) {
     var bits = [];
-    bwWrite(bits, 1, 4);
+    bwWrite(bits, 4, 4);
     bwWrite(bits, f.bankHash & 0xFFFF, 16);
     bwWrite(bits, f.seed & 0xFFFFF, 20);
     bwWrite(bits, f.topicSel & 15, 4);
     bwWrite(bits, f.count & 63, 6);
     bwWrite(bits, f.numAnswered & 63, 6);
-    bwWrite(bits, f.genMin & 1023, 10);
+    bwWrite(bits, f.genMin & 2047, 11);
     bwWrite(bits, Math.min(4095, f.elapsed) & 4095, 12);
     for (var i = 0; i < f.chosen.length; i++) bwWrite(bits, f.chosen[i] & 3, 2);
     var payload = bitsToBytes(bits);
@@ -566,20 +569,23 @@
     var r = bitReader(payload);
     var version = r.read(4);
     if (version === 2) return { error: "wrongtype", actual: 2 };
-    if (version !== 1) return { error: "checksum" };
-    // Shortest valid session code: 78 payload bits + CRC = 11 bytes.
+    if (version !== 1 && version !== 4) return { error: "checksum" };
+    // Shortest valid session code: 78 payload bits + CRC = 11 bytes
+    // (v4 adds one genMin bit: 79 + CRC still fits in 11 bytes).
     if (bytes.length < 11) return { error: "checksum" };
+    var genBits = version === 1 ? 10 : 11;
+    var genMod = version === 1 ? 1024 : 2048;
     var out = {
       bankHash: r.read(16), seed: r.read(20), topicSel: r.read(4),
-      count: r.read(6), numAnswered: r.read(6), genMin: r.read(10),
+      count: r.read(6), numAnswered: r.read(6), genMin: r.read(genBits),
       elapsed: r.read(12), chosen: []
     };
     if (out.topicSel > 15 || out.count < 1 || out.count > 50 ||
         out.numAnswered > out.count) return { error: "checksum" };
     if (out.numAnswered >= out.count) return { error: "finished" };
     for (var i = 0; i < out.numAnswered; i++) out.chosen.push(r.read(2));
-    var nowMin = Math.floor(Date.now() / 60000) % 1024;
-    var age = (nowMin - out.genMin + 1024) % 1024;
+    var nowMin = Math.floor(Date.now() / 60000) % genMod;
+    var age = (nowMin - out.genMin + genMod) % genMod;
     if (age > PORTABLE_TTL_MIN) return { error: "expired" };
     return out;
   }
@@ -1112,7 +1118,7 @@
       topicSel: quiz.topicSel,
       count: quiz.list.length,
       numAnswered: quiz.answers.length,
-      genMin: Math.floor(Date.now() / 60000) % 1024,
+      genMin: Math.floor(Date.now() / 60000) % 2048,
       elapsed: Math.round(totalQuizSecs()),
       chosen: quiz.answers.map(function (a) { return a.chosen; })
     });
@@ -1309,7 +1315,7 @@
     });
   }
 
-  // Version 1/2 codes are practice quizzes; version 3 codes are exam sims.
+  // Version 1/2/4 codes are practice quizzes; version 3 codes are exam sims.
   function submitPortableCode() {
     var input = document.getElementById("pe-code");
     var str = input ? input.value : "";
