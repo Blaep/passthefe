@@ -272,7 +272,7 @@
     // reload) must not leave the other device's screens showing.
     var pend = store.get("portableOut", null);
     if (pend && pend.createdAt && Date.now() - pend.createdAt > 60 * 60 * 1000) {
-      store.set("portableOut", null); // the code outlived its 60 minutes
+      store.set("portableOut", null); // the code outlived its 24 hours
       toast("The old session code expired — start a fresh quiz to make a new one.");
       pend = null;
     }
@@ -426,7 +426,7 @@
   // keeps its session only in sessionStorage (gone when the tab closes),
   // never writes the tracker's storage, and wipes itself on demand.
   var B32_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
-  var PORTABLE_TTL_MIN = 60;
+  var PORTABLE_TTL_MIN = 1440;
 
   function mulberry32(a) {
     return function () {
@@ -1073,7 +1073,7 @@
     html += "<h3>Continue on another device</h3>";
     html += '<div class="code-display" id="sc-code" title="Tap to copy">' + escapeHtml(code) + "</div>";
     html += '<p style="margin-top:12px">On the other computer, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact quiz — same questions, right where you left off.</p>';
-    html += '<p class="muted">The code works for 60 minutes and only once. Nothing about you stays on the other computer.</p>';
+    html += '<p class="muted">The code works for 24 hours and only once. Nothing about you stays on the other computer.</p>';
     html += '<div class="quiz-nav"><button id="sc-import-toggle" class="btn primary">Enter result code</button> ';
     html += '<button id="sc-cancel" class="btn text">Cancel session</button></div>';
     html += '<div id="sc-import" class="hidden" style="margin-top:12px">';
@@ -1250,7 +1250,7 @@
     var d = PortableCodes.decodeSessionCode(codeStr);
     if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
     if (d.error === "wrongtype") return fail("That's a result code — it goes on your phone, not here.");
-    if (d.error === "expired") return fail("That code expired — codes last 60 minutes. Make a fresh one on your phone.");
+    if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one on your phone.");
     if (d.error === "finished") return fail("That quiz was already finished on your phone — there's nothing to continue here.");
     if (d.error) return fail("That code didn't work — try typing it again.");
     loadQuestions(function (qs) {
