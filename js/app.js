@@ -78,6 +78,9 @@
     var parts = (location.hash || "#/").replace("#/", "").split("#");
     var name = parts[0] || "home";
     var anchor = parts[1] || "";
+    // Footer label follows context: "exam" on the Exam Sim view, "quiz" elsewhere.
+    var portableLink = document.getElementById("portable-footer-link");
+    if (portableLink) portableLink.textContent = (name === "exam") ? "Continue an exam on another device" : "Continue a quiz on another device";
     // #/portable reuses the practice section as its host: the other device
     // types its session code here and runs the quiz with the same cards.
     if (name === "portable") {
