@@ -619,12 +619,78 @@
     return { seed: seed, answers: answers, pcActiveSecs: r.read(12) };
   }
 
+  // ---- portable exam codes (version 3) -------------------------------------
+  // Same idea as quiz session codes, but for a full EXAM_N-question exam
+  // sim. The exam list is blueprint-built (not seeded), so the code carries
+  // the bank index of every question (10 bits each; the bankHash guards
+  // against the bank order changing), plus answer/flag/pretest bitmaps and
+  // the timer state. Layout (big-endian, MSB first):
+  //   4b version=3, 16b bankHash, 11b genMin, 1b timed,
+  //   15b clock (timeLeft when timed, elapsed when untimed),
+  //   7b idx, then per question: 10b bank index,
+  //   3b chosen (0-3 = A-D, 4 = unanswered), 1b flagged, 1b pretest.
+  // Then CRC-8. genMin is 11 bits (mod 2048) so the 24h TTL is actually
+  // enforceable — with 10 bits the age could never exceed 1023 < 1440.
+  // Total: 1704 payload bits = 213 bytes + 1 CRC byte.
+  function peekCodeVersion(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || !bytes.length) return 0;
+    return (bytes[0] >> 4) & 15;
+  }
+
+  function encodeExamCode(f) {
+    var bits = [];
+    bwWrite(bits, 3, 4);
+    bwWrite(bits, f.bankHash & 0xFFFF, 16);
+    bwWrite(bits, f.genMin & 2047, 11);
+    bwWrite(bits, f.timed ? 1 : 0, 1);
+    bwWrite(bits, Math.min(32767, (f.timed ? f.timeLeft : f.elapsed) || 0) & 32767, 15);
+    bwWrite(bits, (f.idx || 0) & 127, 7);
+    var i;
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.bankIdx[i] & 1023, 10);
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.chosen[i] & 7, 3);
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.flagged[i] ? 1 : 0, 1);
+    for (i = 0; i < EXAM_N; i++) bwWrite(bits, f.pretest[i] ? 1 : 0, 1);
+    var payload = bitsToBytes(bits);
+    payload.push(crc8(payload));
+    return chunkCode(b32encodeBytes(payload));
+  }
+
+  function decodeExamCode(s) {
+    var bytes = b32decodeToBytes(s);
+    if (!bytes || bytes.length !== 214) return { error: "checksum" };
+    var crc = bytes[bytes.length - 1];
+    var payload = bytes.slice(0, -1);
+    if (crc8(payload) !== crc) return { error: "checksum" };
+    var r = bitReader(payload);
+    if (r.read(4) !== 3) return { error: "wrongtype", actual: 0 };
+    var out = {
+      bankHash: r.read(16), genMin: r.read(11),
+      timed: !!r.read(1), clock: r.read(15), idx: r.read(7),
+      bankIdx: [], chosen: [], flagged: [], pretest: []
+    };
+    var i;
+    for (i = 0; i < EXAM_N; i++) out.bankIdx.push(r.read(10));
+    for (i = 0; i < EXAM_N; i++) out.chosen.push(r.read(3));
+    for (i = 0; i < EXAM_N; i++) out.flagged.push(r.read(1));
+    for (i = 0; i < EXAM_N; i++) out.pretest.push(r.read(1));
+    if (out.idx >= EXAM_N) return { error: "checksum" };
+    for (i = 0; i < EXAM_N; i++) if (out.chosen[i] > 4) return { error: "checksum" };
+    var nowMin = Math.floor(Date.now() / 60000) % 2048;
+    var age = (nowMin - out.genMin + 2048) % 2048;
+    if (age > PORTABLE_TTL_MIN) return { error: "expired" };
+    return out;
+  }
+
   // Exposed for automated tests (harmless in the browser).
   window.PortableCodes = {
     encodeSessionCode: encodeSessionCode,
     decodeSessionCode: decodeSessionCode,
     encodeResultCode: encodeResultCode,
     decodeResultCode: decodeResultCode,
+    encodeExamCode: encodeExamCode,
+    decodeExamCode: decodeExamCode,
+    peekCodeVersion: peekCodeVersion,
     bankHash: portableBankHash,
     seededShuffle: seededShuffle,
     TTL_MIN: PORTABLE_TTL_MIN
@@ -1237,12 +1303,18 @@
       '<input id="pe-code" class="code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX">' +
       '<p class="form-error hidden" id="pe-error"></p>' +
       '<div class="quiz-nav"><button id="pe-start" class="btn primary">Open my quiz</button></div>';
-    document.getElementById("pe-start").addEventListener("click", function () {
-      startPortableSession(document.getElementById("pe-code").value);
-    });
+    document.getElementById("pe-start").addEventListener("click", submitPortableCode);
     document.getElementById("pe-code").addEventListener("keydown", function (e) {
-      if (e.key === "Enter") startPortableSession(e.target.value);
+      if (e.key === "Enter") submitPortableCode();
     });
+  }
+
+  // Version 1/2 codes are practice quizzes; version 3 codes are exam sims.
+  function submitPortableCode() {
+    var input = document.getElementById("pe-code");
+    var str = input ? input.value : "";
+    if (PortableCodes.peekCodeVersion(str) === 3) startPortableExamSession(str);
+    else startPortableSession(str);
   }
 
   function startPortableSession(codeStr) {
@@ -1292,6 +1364,59 @@
       writePortableSave();
       showOnly("quiz-run");
       renderQuestion();
+    });
+  }
+
+  // ---- portable exam codes: receiving-device side --------------------------
+  // A version-3 code is adopted as this device's own in-progress exam: it is
+  // written to localStorage in the exact examResume shape, so the Exams tab
+  // shows the in-progress card and the exam resumes from there. The source
+  // device keeps its copy until the exam is submitted or discarded there.
+  // (If this device already had an in-progress exam, it is replaced.)
+  function startPortableExamSession(codeStr) {
+    var errEl = document.getElementById("pe-error");
+    function fail(msg) {
+      if (errEl) { errEl.textContent = msg; errEl.classList.remove("hidden"); }
+    }
+    var d = PortableCodes.decodeExamCode(codeStr);
+    if (d.error === "checksum") return fail("That code doesn't look right — check it for typos and try again.");
+    if (d.error === "expired") return fail("That code expired — codes last 24 hours. Make a fresh one where the exam is.");
+    if (d.error) return fail("That code didn't work — try typing it again.");
+    loadQuestions(function (qs) {
+      if (PortableCodes.bankHash(qs.map(function (q) { return q.id; })) !== d.bankHash) {
+        return fail("The question bank changed since this code was made. Make a fresh code where the exam is.");
+      }
+      var list = [];
+      for (var i = 0; i < d.bankIdx.length; i++) {
+        var q = qs[d.bankIdx[i]];
+        if (!q) return fail("Couldn't rebuild that exam — make a fresh code where the exam is.");
+        list.push(q);
+      }
+      if (list.length !== EXAM_N) return fail("Couldn't rebuild that exam — make a fresh code where the exam is.");
+      var chosen = {}, flagged = {}, pretestIds = [];
+      for (var j = 0; j < list.length; j++) {
+        var qid = list[j].id;
+        if (d.chosen[j] <= 3) chosen[qid] = d.chosen[j];
+        if (d.flagged[j]) flagged[qid] = 1;
+        if (d.pretest[j]) pretestIds.push(qid);
+      }
+      exam = null; // drop any stale in-memory exam so it can't overwrite the transfer
+      store.set("examResume", {
+        v: 1,
+        qids: list.map(function (qq) { return qq.id; }),
+        pretest: pretestIds,
+        chosen: chosen,
+        flagged: flagged,
+        idx: Math.min(d.idx, list.length - 1),
+        timeLeft: d.timed ? Math.min(32767, d.clock) : EXAM_SECS,
+        timed: d.timed,
+        elapsed: d.timed ? 0 : Math.min(32767, d.clock),
+        breakUsed: false,
+        startedAt: Date.now(),
+        savedAt: Date.now()
+      });
+      location.hash = "#/exam";
+      toast("Exam transferred — tap your in-progress exam to continue.");
     });
   }
 
@@ -2437,6 +2562,76 @@
     });
   }
 
+  // ---- portable exam codes: source-device side ------------------------------
+  // Builds a version-3 session code from the saved in-progress exam. Reads
+  // the existing examResume format (v1) as-is — the save format is not
+  // changed. The receiving device adopts the exam as its own; this copy
+  // stays until submitted or discarded, so discard it here after a
+  // successful transfer to avoid ending up with two versions.
+  function openExamCodeScreen() {
+    var saved = store.get("examResume", null);
+    if (!saved || saved.v !== 1 || !saved.qids || !saved.qids.length) {
+      toast("No in-progress exam to share.");
+      return;
+    }
+    if (saved.qids.length !== EXAM_N) {
+      toast("This exam doesn't match the current format — can't make a code for it.");
+      return;
+    }
+    loadQuestions(function (qs) {
+      var idToIdx = {};
+      qs.forEach(function (q, i) { idToIdx[q.id] = i; });
+      var pretestIds = {};
+      (saved.pretest || []).forEach(function (id) { pretestIds[id] = 1; });
+      var bankIdx = [], chosen = [], flagged = [], pretest = [];
+      for (var i = 0; i < saved.qids.length; i++) {
+        var qid = saved.qids[i];
+        if (!(qid in idToIdx)) {
+          toast("The question bank changed — can't make a code for this exam.");
+          return;
+        }
+        bankIdx.push(idToIdx[qid]);
+        var c = saved.chosen ? saved.chosen[qid] : undefined;
+        chosen.push(typeof c === "number" && c >= 0 && c <= 3 ? c : 4);
+        flagged.push(saved.flagged && saved.flagged[qid] ? 1 : 0);
+        pretest.push(pretestIds[qid] ? 1 : 0);
+      }
+      var code = PortableCodes.encodeExamCode({
+        bankHash: PortableCodes.bankHash(qs.map(function (q) { return q.id; })),
+        genMin: Math.floor(Date.now() / 60000) % 2048,
+        timed: saved.timed !== false,
+        timeLeft: typeof saved.timeLeft === "number" ? saved.timeLeft : EXAM_SECS,
+        elapsed: saved.elapsed || 0,
+        idx: saved.idx || 0,
+        bankIdx: bankIdx, chosen: chosen, flagged: flagged, pretest: pretest
+      });
+      renderExamCodeScreen(code);
+    });
+  }
+
+  function renderExamCodeScreen(code) {
+    var el = document.getElementById("exam-setup");
+    if (!el) return;
+    var html = '<p class="quiz-progress">Session code · Exam simulation</p>' +
+      "<h3>Continue on another device</h3>" +
+      '<div class="code-display" id="exc-code" title="Tap to copy">' + escapeHtml(code) + "</div>" +
+      '<p style="margin-top:12px">On the other device, go to<br><strong>passthefe.pages.dev/#/portable</strong><br>and type in this code. It opens this exact exam — same 110 questions, your answers, flags, and timer carry over.</p>' +
+      '<p class="muted">The code works for 24 hours. After opening it on the other device, discard this copy here so you don\'t end up with two versions of the same exam.</p>' +
+      '<div class="quiz-nav"><button id="exc-back" class="btn primary">Back to exams</button> ' +
+      '<button id="exc-discard" class="btn text">Discard this exam</button></div>';
+    el.innerHTML = html;
+    showExamScreen("exam-setup");
+    document.getElementById("exc-code").addEventListener("click", function () {
+      copyText(code, function () { toast("Code copied."); });
+    });
+    document.getElementById("exc-back").addEventListener("click", renderExamSetup);
+    document.getElementById("exc-discard").addEventListener("click", function () {
+      clearExamResume();
+      renderExamSetup();
+      toast("In-progress exam discarded.");
+    });
+  }
+
   // ---- exam setup ----------------------------------------------------------
   // "Timed (5h20m)" vs "Untimed" mode choice. Defaults to Timed so the
   // long-standing behavior is unchanged unless the user picks Untimed.
@@ -2492,7 +2687,8 @@
     html += '<div class="form-row"><button id="exam-start-btn" class="btn primary btn-block">' +
       (validResume ? "Start a new exam" : "Start full exam") + "</button></div>";
     if (validResume) {
-      html += '<div class="quiz-nav-sub"><button id="exam-discard-btn" class="btn text">Discard in-progress exam</button></div>';
+      html += '<div class="quiz-nav-sub"><button id="exam-portable-btn" class="btn">Continue on another device</button> ' +
+        '<button id="exam-discard-btn" class="btn text">Discard in-progress exam</button></div>';
     }
     sims.slice().reverse().forEach(function (s) {
       var pct = (typeof s.pct === "number") ? s.pct.toFixed(1) : s.pct;
@@ -2520,6 +2716,8 @@
     }
     var db = document.getElementById("exam-discard-btn");
     if (db) db.addEventListener("click", function () { clearExamResume(); renderExamSetup(); });
+    var epb = document.getElementById("exam-portable-btn");
+    if (epb) epb.addEventListener("click", openExamCodeScreen);
     var mt = document.getElementById("exam-mode-timed");
     var mu = document.getElementById("exam-mode-untimed");
     function setExamMode(m) {
