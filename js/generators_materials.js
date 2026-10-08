@@ -530,7 +530,7 @@ reg(buildGenerator({
     ". The mix also contains " + CA + " kg of coarse aggregate (specific gravity " + fmt(sgCA) +
     ") and " + fmt(air) + "% entrapped air. What is the required mass of fine aggregate (specific gravity " +
     fmt(sgFA) + ") per cubic meter of concrete? (Specific gravity of cement = 3.15; unit weight of water = 1000 kg/m^3)";
-  var sol = "Refer to the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\n" +
+  var sol = "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\n" +
     "Ultimately, we must solve for the mass of fine aggregate. By the absolute volume method, the volumes of all ingredients plus air sum to 1 m\u00b3, so the fine aggregate occupies whatever volume remains:\n\n" +
     "$$V_{\\text{FA}} = 1 - (V_w + V_c + V_{CA} + V_{\\text{air}})$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(m_{FA}\\):\n\n" +

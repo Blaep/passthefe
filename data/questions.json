@@ -4477,7 +4477,7 @@
     "1001 kg"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the mass of fine aggregate. By the absolute volume method, the volumes of all ingredients plus air sum to 1 m³, so the fine aggregate occupies whatever volume remains:\n\n$$V_{\\text{FA}} = 1 - (V_w + V_c + V_{CA} + V_{\\text{air}})$$\n\nList the known and unknown parameters in order to solve for \\(m_{FA}\\):\n\n$$\\begin{aligned}\nm_w &= 175\\ \\text{kg/m}^3 \\\\\n\\text{w/c} &= 0.50 \\rightarrow m_c = \\frac{175}{0.50} = 350\\ \\text{kg/m}^3 \\\\\nV_w &= \\frac{175}{1000} = 0.175\\ \\text{m}^3 \\\\\nV_c &= \\frac{350}{(3.15)(1000)} = 0.111\\ \\text{m}^3 \\\\\nV_{CA} &= \\frac{1100}{(2.65)(1000)} = 0.415\\ \\text{m}^3 \\\\\nV_{\\text{air}} &= 0.020\\ \\text{m}^3 \\\\\nV_{FA} &= 1 - (0.175 + 0.111 + 0.415 + 0.020) = 0.279\\ \\text{m}^3 \\\\\nm_{FA} &= ?\n\\end{aligned}$$\n\n$$(m_{FA}) = (V_{FA})(SG_{FA})(\\gamma_w) \\rightarrow (m_{FA}) = (0.279)(2.62)(1000)$$\n\n$$(m_{FA}) = 730\\ \\text{kg/m}^3$$",
+   "solution": "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\nUltimately, we must solve for the mass of fine aggregate. By the absolute volume method, the volumes of all ingredients plus air sum to 1 m³, so the fine aggregate occupies whatever volume remains:\n\n$$V_{\\text{FA}} = 1 - (V_w + V_c + V_{CA} + V_{\\text{air}})$$\n\nList the known and unknown parameters in order to solve for \\(m_{FA}\\):\n\n$$\\begin{aligned}\nm_w &= 175\\ \\text{kg/m}^3 \\\\\n\\text{w/c} &= 0.50 \\rightarrow m_c = \\frac{175}{0.50} = 350\\ \\text{kg/m}^3 \\\\\nV_w &= \\frac{175}{1000} = 0.175\\ \\text{m}^3 \\\\\nV_c &= \\frac{350}{(3.15)(1000)} = 0.111\\ \\text{m}^3 \\\\\nV_{CA} &= \\frac{1100}{(2.65)(1000)} = 0.415\\ \\text{m}^3 \\\\\nV_{\\text{air}} &= 0.020\\ \\text{m}^3 \\\\\nV_{FA} &= 1 - (0.175 + 0.111 + 0.415 + 0.020) = 0.279\\ \\text{m}^3 \\\\\nm_{FA} &= ?\n\\end{aligned}$$\n\n$$(m_{FA}) = (V_{FA})(SG_{FA})(\\gamma_w) \\rightarrow (m_{FA}) = (0.279)(2.62)(1000)$$\n\n$$(m_{FA}) = 730\\ \\text{kg/m}^3$$",
    "explanation": "Absolute volume: everything must total exactly 1 m^3. The two classic slips are forgetting the entrapped air (783 kg) and inverting the w/c ratio when finding cement content (949 kg).",
    "videoUrl": "https://www.youtube.com/watch?v=GTULnsreop8",
    "videoTitle": "Concrete Mix Design M40 Grade"
@@ -9724,8 +9724,8 @@
   {
    "id": "materials-034",
    "topic": "Materials",
-   "subtopic": "Concrete absolute volume method",
-   "question": "A concrete mix uses 350 kg of cement with a specific gravity of 3.15. What volume does the cement occupy per cubic meter of concrete by the absolute volume method?",
+   "subtopic": "Specific gravity",
+   "question": "A concrete mix contains 350 kg of cement with a specific gravity of 3.15. What volume does the cement occupy? (Density of water = 1000 kg/m³)",
    "choices": [
     "0.111 m³",
     "0.350 m³",
@@ -9736,7 +9736,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "V = mass/(SG × density of water) = 350/(3.15 × 1000) = 0.111 m³. Dividing by SG alone forgets the water-density conversion.",
-   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the absolute volume of cement:\n\n$$V = \\\\frac{M}{(SG)(\\\\rho_w)}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nM &= 350\\\\ \\\\text{kg} \\\\\\\\\\\nSG &= 3.15 \\\\\\\\\\\n\\\\rho_w &= 1{,}000\\\\ \\\\text{kg/m}^3\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{350}{(3.15)(1{,}000)}$$\n\n$$(V) = \\\\frac{350}{3{,}150}$$\n\n$$(V) = 0.111\\\\ \\\\text{m}^3$$"
+   "solution": "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\nUltimately, we must solve for the volume of cement:\n\n$$V = \\\\frac{M}{(SG)(\\\\rho_w)}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nM &= 350\\\\ \\\\text{kg} \\\\\\\\\\\nSG &= 3.15 \\\\\\\\\\\n\\\\rho_w &= 1{,}000\\\\ \\\\text{kg/m}^3\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{350}{(3.15)(1{,}000)}$$\n\n$$(V) = \\\\frac{350}{3{,}150}$$\n\n$$(V) = 0.111\\\\ \\\\text{m}^3$$"
   },
   {
    "id": "materials-035",
@@ -9753,7 +9753,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "w/c = 160/400 = 0.40. Lower ratios give higher strength; the 2.50 answer inverts the fraction.",
-   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the water-cement ratio, the single most important predictor of concrete strength:\n\n$$w/c = \\\\frac{M_{water}}{M_{cement}}$$\n\n$$(w/c) = \\\\frac{160}{400}$$\n\n$$(w/c) = 0.40$$"
+   "solution": "Refer to the water-cement ratio discussion in the Materials chapter of the FE Reference Handbook (v10.6, p. 126).\n\nUltimately, we must solve for the water-cement ratio, the single most important predictor of concrete strength:\n\n$$w/c = \\\\frac{M_{water}}{M_{cement}}$$\n\n$$(w/c) = \\\\frac{160}{400}$$\n\n$$(w/c) = 0.40$$"
   },
   {
    "id": "materials-036",
@@ -9770,7 +9770,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "VMA is the space available for binder plus air voids; too little VMA starves the mix of binder and the pavement ravels. Mixes are designed for 3–5% air voids, not zero.",
-   "solution": "Refer to the Mix Design section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nAn asphalt mixture's volume is split three ways:\n\n$$VMA = (\\\\text{air voids}) + (\\\\text{effective binder volume})$$\n\nIf VMA is too small, there is no room for an adequate binder film around each aggregate particle, and the pavement loses durability and ravels under traffic. This is why specifications set minimum VMA values by nominal aggregate size."
+   "solution": "VMA is not tabulated in the FE Reference Handbook (v10.6); use the definition stated here.\n\nAn asphalt mixture's volume is split three ways:\n\n$$VMA = (\\\\text{air voids}) + (\\\\text{effective binder volume})$$\n\nIf VMA is too small, there is no room for an adequate binder film around each aggregate particle, and the pavement loses durability and ravels under traffic. This is why specifications set minimum VMA values by nominal aggregate size."
   },
   {
    "id": "water-042",
