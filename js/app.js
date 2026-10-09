@@ -2181,7 +2181,8 @@
   function findGeneratorByBaseId(baseId) {
     var libs = [window.MATH_GENERATORS, window.ECON_GENERATORS,
                 window.STATS_GENERATORS, window.MATERIALS_GENERATORS,
-                window.STATICS_GENERATORS, window.MECHMAT_GENERATORS];
+                window.STATICS_GENERATORS, window.MECHMAT_GENERATORS,
+                window.FLUID_GENERATORS];
     for (var i = 0; i < libs.length; i++) {
       var lib = libs[i];
       if (!Array.isArray(lib)) continue;
@@ -2479,7 +2480,9 @@
   // window.MATERIALS_GENERATORS with the identical contract and topic
   // "Materials". js/generators_mechmat.js (also loaded before this file)
   // defines window.MECHMAT_GENERATORS with the identical contract and topic
-  // "Mechanics of Materials". The econ, stats, materials, statics and
+  // "Mechanics of Materials". js/generators_fluid.js (also loaded before
+  // this file) defines window.FLUID_GENERATORS with the identical contract
+  // and topic "Fluid Mechanics". The econ, stats, materials, statics and
   // mechmat libraries are optional: a missing library's picker button is
   // hidden and the mode falls back to the libraries that are present.
   // The mode card is hidden when all libraries are missing or empty.
@@ -2515,6 +2518,8 @@
     if (Array.isArray(st) && st.length) all = all.concat(st);
     var mm = window.MECHMAT_GENERATORS;
     if (Array.isArray(mm) && mm.length) all = all.concat(mm);
+    var f = window.FLUID_GENERATORS;
+    if (Array.isArray(f) && f.length) all = all.concat(f);
     return all.length ? all : null;
   }
 
@@ -2536,12 +2541,15 @@
     var okMt = Array.isArray(mt) && mt.length;
     var okSt = Array.isArray(st) && st.length;
     var okMm = Array.isArray(mm) && mm.length;
+    var fl = window.FLUID_GENERATORS;
+    var okFl = Array.isArray(fl) && fl.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
     if (ch === "stats") return okS ? s.slice() : null;
     if (ch === "mat") return okMt ? mt.slice() : null;
     if (ch === "stat") return okSt ? st.slice() : null;
     if (ch === "mechmat") return okMm ? mm.slice() : null;
+    if (ch === "fluid") return okFl ? fl.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
@@ -2549,6 +2557,7 @@
     if (okMt) all = all.concat(mt);
     if (okSt) all = all.concat(st);
     if (okMm) all = all.concat(mm);
+    if (okFl) all = all.concat(fl);
     return all.length ? all : null;
   }
 
@@ -2574,8 +2583,9 @@
     var okMt = Array.isArray(window.MATERIALS_GENERATORS) && window.MATERIALS_GENERATORS.length;
     var okSt = Array.isArray(window.STATICS_GENERATORS) && window.STATICS_GENERATORS.length;
     var okMm = Array.isArray(window.MECHMAT_GENERATORS) && window.MECHMAT_GENERATORS.length;
-    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt, mechmat: okMm };
-    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0) + (okMm ? 1 : 0);
+    var okFl = Array.isArray(window.FLUID_GENERATORS) && window.FLUID_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt, mechmat: okMm, fluid: okFl };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0) + (okMm ? 1 : 0) + (okFl ? 1 : 0);
     picker.classList.toggle("hidden", present < 2);
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       var ch = b.dataset.chapter || "mixed";
