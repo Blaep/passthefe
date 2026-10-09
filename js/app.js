@@ -2644,6 +2644,10 @@
     var v;
     try { v = rollVariant(gen); }
     catch (e) { toast("That generator failed — try again."); return; }
+    if (!v || !Array.isArray(v.choices) || !v.choices.length) {
+      toast("That generator failed — try again.");
+      return;
+    }
     quiz = {
       list: [v], idx: 0, correct: 0, topic: "Randomized Practice", mode: "randomized",
       answers: [],
@@ -3728,6 +3732,11 @@
       }
 
       // Drill buttons: start a randomized session pinned to one generator.
+      // The drill renders into #quiz-run inside #view-practice, so switch to
+      // the practice view first — otherwise the quiz builds invisibly behind
+      // the analytics view and the button appears to do nothing.
+      // (Same pattern as startMasteryQuiz; replaceState keeps the hash in
+      // sync without firing the router, which would stop the quiz timer.)
       body.querySelectorAll(".drill-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
           var gen = findGeneratorByBaseId(btn.dataset.baseid);
@@ -3735,6 +3744,11 @@
             toast("That skill's generator didn't load — check your connection and try again.");
             return;
           }
+          VIEWS.forEach(function (v) {
+            var el = document.getElementById("view-" + v);
+            if (el) el.classList.toggle("hidden", v !== "practice");
+          });
+          if ((location.hash || "") !== "#/practice") history.replaceState(null, "", "#/practice");
           startRandomizedQuiz(gen);
         });
       });
