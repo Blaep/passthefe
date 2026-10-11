@@ -976,7 +976,7 @@
     "20.4 m"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Particle Kinematics section in the Dynamics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the horizontal range \\(R\\):\n\n$$R = \\frac{v_0^2 \\sin 2\\theta}{g}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nv_0 &= 20\\ \\text{m/s} \\\\\n\\theta &= 30^\\circ \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nR &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{(20)^2 \\sin 60^\\circ}{9.81} \\rightarrow (R) = \\frac{(400)(0.8660)}{9.81}$$\n\n$$(R) = \\frac{346.4}{9.81} = 35.3\\ \\text{m}$$",
+   "solution": "Refer to the Particle Kinematics section in the Dynamics chapter of the FE Reference Handbook (v10.6, p. 102). The handbook gives the general constant-acceleration equations, not a special-case range formula, so we solve the projectile motion one component at a time.\n\nIn the \\(x\\)-direction there is no acceleration (\\(a_x = 0\\)):\n\n$$x = x_0 + (v_0\\cos\\theta)\\,t$$\n\nIn the \\(y\\)-direction the acceleration is \\(-g\\):\n\n$$y = y_0 + (v_0\\sin\\theta)\\,t - \\tfrac{1}{2}gt^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nv_0 &= 20\\ \\text{m/s} \\\\\n\\theta &= 30^\\circ \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nt_{\\text{flight}} &= ? \\\\\nR &= ?\n\\end{aligned}$$\n\nThe projectile lands when it returns to launch height (\\(y = 0\\)):\n\n$$(0) = (20\\sin30^\\circ)\\,t - \\tfrac{1}{2}(9.81)\\,t^2 \\rightarrow t\\left(10 - 4.905\\,t\\right) = 0$$\n\nTaking the nonzero root:\n\n$$(t_{\\text{flight}}) = \\frac{10}{4.905} = 2.04\\ \\text{s}$$\n\nThe range is the horizontal distance covered in that time:\n\n$$(R) = (v_0\\cos\\theta)\\,t_{\\text{flight}} = (20\\cos30^\\circ)(2.04) = (17.32)(2.04)$$\n\n$$(R) = 35.3\\ \\text{m}$$",
    "explanation": "The range formula uses sin(2*theta), not sin(theta) - using sin(30 deg) gives the 20.4 m trap answer. Maximum range occurs at 45 degrees.",
    "diagram": "diagrams/dynamics-002.svg",
    "videoUrl": "https://www.youtube.com/watch?v=tfItlGfPHyo",
@@ -1072,7 +1072,7 @@
     "0.796 Hz"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Free and Forced Vibration section in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the cyclic natural frequency \\(f_n\\). The undamped circular natural frequency is:\n\n$$\\omega_n = \\sqrt{\\frac{k}{m}} \\qquad f_n = \\frac{\\omega_n}{2\\pi}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nm &= 4\\ \\text{kg} \\\\\nk &= 100\\ \\text{N/m} \\\\\n\\omega_n &= ? \\\\\nf_n &= ?\n\\end{aligned}$$\n\n$$(\\omega_n) = \\sqrt{\\frac{100}{4}} = \\sqrt{25} = 5.00\\ \\text{rad/s}$$\n\n$$(f_n) = \\frac{5.00}{2\\pi} = 0.796\\ \\text{Hz}$$",
+   "solution": "Refer to the Free and Forced Vibration section in the Dynamics chapter of the FE Reference Handbook (v10.6). The undamped circular natural frequency ω_n = √(k/m) is defined on p. 113, and the undamped natural period τ_n = 2π/ω_n is given on p. 115 — since f_n = 1/τ_n, it follows that f_n = ω_n/(2π).\n\nUltimately, we must solve for the cyclic natural frequency \\(f_n\\). The undamped circular natural frequency is:\n\n$$\\omega_n = \\sqrt{\\frac{k}{m}} \\qquad f_n = \\frac{\\omega_n}{2\\pi}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nm &= 4\\ \\text{kg} \\\\\nk &= 100\\ \\text{N/m} \\\\\n\\omega_n &= ? \\\\\nf_n &= ?\n\\end{aligned}$$\n\n$$(\\omega_n) = \\sqrt{\\frac{100}{4}} = \\sqrt{25} = 5.00\\ \\text{rad/s}$$\n\n$$(f_n) = \\frac{5.00}{2\\pi} = 0.796\\ \\text{Hz}$$",
    "explanation": "omega_n is in rad/s; the FE frequently asks for Hz, requiring division by 2*pi. The 5.00 Hz trap skips that conversion.",
    "videoUrl": "https://www.youtube.com/watch?v=kuPMsjLeczY",
    "videoTitle": "Solution for Free Vibration of an Undamped SDOF System"
@@ -1390,7 +1390,7 @@
    "explanation": "Head loss scales with V^2, so doubling velocity quadruples loss. Watch the 2g denominator: using V^2/g instead doubles the answer (6.12 m). Also confirm D is in meters so L/D is dimensionless.",
    "id": "fluid-004",
    "question": "Water flows at 1.5 m/s through a 150-mm-diameter pipe that is 200 m long. If the Darcy friction factor is f = 0.020, what is the friction head loss in the pipe?",
-   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the following equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 200\\ \\text{m} \\\\\nD &= 0.15\\ \\text{m} \\\\\nV &= 1.5\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nf &= 0.020\\ (\\text{given})\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{200}{0.15}\\frac{(1.5)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(1333.3)(0.1147) = 3.06\\ \\text{m}$$",
+   "solution": "Refer to the Head Loss Due to Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the following equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 200\\ \\text{m} \\\\\nD &= 0.15\\ \\text{m} \\\\\nV &= 1.5\\ \\text{m/s} \\\\\ng &= 9.81\\ \\text{m/s}^2 \\\\\nf &= 0.020\\ (\\text{given})\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.020)\\frac{200}{0.15}\\frac{(1.5)^2}{2(9.81)}$$\n\n$$(h_f) = (0.020)(1333.3)(0.1147) = 3.06\\ \\text{m}$$",
    "subtopic": "Head loss",
    "topic": "Fluid Mechanics",
    "diagram": "diagrams/fluid-004.svg",
@@ -1743,7 +1743,7 @@
     "1.2D + 1.0L gives 14.8 kN/m"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the ASCE 7 Load Combinations in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the controlling factored load. Every applicable combination is checked, and the largest governs.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD &= 4\\ \\text{kN/m} \\\\\nL_r &= 10\\ \\text{kN/m (roof live)} \\\\\nw_u &= ?\n\\end{aligned}$$\n\nEvaluate each relevant combination:\n\n$$\\begin{aligned}\n1.4D &= 1.4(4) = 5.6\\ \\text{kN/m} \\\\\n1.2D + 1.6L_r &= 1.2(4) + 1.6(10) = 4.8 + 16.0 = 20.8\\ \\text{kN/m} \\\\\n0.9D &= 0.9(4) = 3.6\\ \\text{kN/m}\n\\end{aligned}$$\n\nThe largest value controls:\n\n$$(w_u) = 1.2D + 1.6L_r = 20.8\\ \\text{kN/m}$$",
+   "solution": "Refer to the Load Combinations using Strength Design (LRFD) section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the controlling factored load. Every applicable combination is checked, and the largest governs.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD &= 4\\ \\text{kN/m} \\\\\nL_r &= 10\\ \\text{kN/m (roof live)} \\\\\nw_u &= ?\n\\end{aligned}$$\n\nEvaluate each relevant combination:\n\n$$\\begin{aligned}\n1.4D &= 1.4(4) = 5.6\\ \\text{kN/m} \\\\\n1.2D + 1.6L_r &= 1.2(4) + 1.6(10) = 4.8 + 16.0 = 20.8\\ \\text{kN/m} \\\\\n0.9D &= 0.9(4) = 3.6\\ \\text{kN/m}\n\\end{aligned}$$\n\nThe largest value controls:\n\n$$(w_u) = 1.2D + 1.6L_r = 20.8\\ \\text{kN/m}$$",
    "explanation": "Load combinations must all be checked and the maximum governs; with heavy live load, 1.2D + 1.6L almost always controls over 1.4D. A common mistake is designing to 1.4D alone or forgetting that the 1.6 factor applies to the live load.",
    "diagram": "diagrams/structural-008.svg",
    "videoUrl": "https://www.youtube.com/watch?v=vh8JmHjhECk",
@@ -2124,7 +2124,7 @@
    "explanation": "The velocity head term is V^2/(2g); forgetting the 2 in the denominator doubles the answer to 9.94 ft, and forgetting the friction factor entirely gives the absurd 248 ft.",
    "id": "water-007",
    "question": "Water flows at 4 ft/s through a 1,000-ft-long pipe with a diameter of 1 ft. If the Darcy friction factor is 0.02, what is the head loss due to friction? (g = 32.2 ft/s^2)",
-   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the Darcy\\u2013Weisbach equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 1000\\ \\text{ft} \\\\\nD &= 1\\ \\text{ft} \\\\\nV &= 4\\ \\text{ft/s} \\\\\ng &= 32.2\\ \\text{ft/s}^2 \\\\\nf &= 0.02 \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.02)\\frac{1000}{1}\\frac{(4)^2}{2(32.2)}$$\n\n$$(h_f) = (20)(0.24845) = 4.97\\ \\text{ft}$$",
+   "solution": "Refer to the Head Loss Due to Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(h_f\\). We can determine \\(h_f\\) from the Darcy\\u2013Weisbach equation:\n\n$$h_f = f \\frac{L}{D} \\frac{V^2}{2g}$$\n\nList the known and unknown parameters in order to solve for \\(h_f\\):\n\n$$\\begin{aligned}\nL &= 1000\\ \\text{ft} \\\\\nD &= 1\\ \\text{ft} \\\\\nV &= 4\\ \\text{ft/s} \\\\\ng &= 32.2\\ \\text{ft/s}^2 \\\\\nf &= 0.02 \\\\\nh_f &= ?\n\\end{aligned}$$\n\n$$(h_f) = (f)\\frac{L}{D}\\frac{V^2}{2g} \\rightarrow (h_f) = (0.02)\\frac{1000}{1}\\frac{(4)^2}{2(32.2)}$$\n\n$$(h_f) = (20)(0.24845) = 4.97\\ \\text{ft}$$",
    "subtopic": "Head loss",
    "topic": "Water Resources",
    "diagram": "diagrams/water-007.svg"
@@ -3152,7 +3152,7 @@
     "4.00 kPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Pressure Drop for a Fluid of Constant Density section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta p\\). We can determine \\(\\Delta p\\) from the following equation:\n\n$$\\Delta p = \\frac{32\\mu L V}{D^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\n\\mu &= 0.10\\ \\text{Pa}\\cdot\\text{s} \\\\\nL &= 100\\ \\text{m} \\\\\nV &= 0.50\\ \\text{m/s} \\\\\nD &= 0.05\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = \\frac{32\\mu L V}{D^2} \\rightarrow (\\Delta p) = \\frac{32(0.10)(100)(0.50)}{(0.05)^2}$$\n\n$$(\\Delta p) = 64{,}000\\ \\text{Pa} = 64.0\\ \\text{kPa}$$",
+   "solution": "Refer to the Head Loss Due to Flow section in the Fluid Mechanics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\Delta p\\). We can determine \\(\\Delta p\\) from the following equation:\n\n$$\\Delta p = \\frac{32\\mu L V}{D^2}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta p\\):\n\n$$\\begin{aligned}\n\\mu &= 0.10\\ \\text{Pa}\\cdot\\text{s} \\\\\nL &= 100\\ \\text{m} \\\\\nV &= 0.50\\ \\text{m/s} \\\\\nD &= 0.05\\ \\text{m} \\\\\n\\Delta p &= ?\n\\end{aligned}$$\n\n$$(\\Delta p) = \\frac{32\\mu L V}{D^2} \\rightarrow (\\Delta p) = \\frac{32(0.10)(100)(0.50)}{(0.05)^2}$$\n\n$$(\\Delta p) = 64{,}000\\ \\text{Pa} = 64.0\\ \\text{kPa}$$",
    "explanation": "In the velocity form the diameter is squared (D-squared), not raised to the fourth power — D-to-the-fourth belongs to the discharge form. Plugging the radius in as D quadruples the answer to 256 kPa.",
    "diagram": "diagrams/fluid-011.svg",
    "videoUrl": "https://www.youtube.com/watch?v=nzzJkNeT8Zc",
@@ -3502,7 +3502,7 @@
     "The degree of saturation drops below 100%"
    ],
    "answerIndex": 0,
-   "solution": "The governing principle is the critical hydraulic gradient from the Seepage section of the Geotechnical Engineering chapter of the FE Reference Handbook: upward seepage reduces effective stress, and quicksand occurs when \\(i = i_c = \\gamma'/\\gamma_w\\), at which point \\(\\sigma' = 0\\).\n\nApplying this to the choices: only upward seepage at the critical gradient wipes out intergranular contact stress. Downward seepage increases effective stress, void ratio limits are unrelated, and quicksand requires full saturation.\n\nTherefore the quicksand condition is the upward gradient reaching the critical gradient with zero effective stress.",
+   "solution": "Refer to the Factor of safety against seepage liquefaction section in the Civil Engineering chapter of the FE Reference Handbook (v10.6), which defines the critical hydraulic gradient. upward seepage reduces effective stress, and quicksand occurs when \\(i = i_c = \\gamma'/\\gamma_w\\), at which point \\(\\sigma' = 0\\).\n\nApplying this to the choices: only upward seepage at the critical gradient wipes out intergranular contact stress. Downward seepage increases effective stress, void ratio limits are unrelated, and quicksand requires full saturation.\n\nTherefore the quicksand condition is the upward gradient reaching the critical gradient with zero effective stress.",
    "explanation": "Quicksand is a zero-effective-stress condition, not a “soil type” — the trap answers describe downward seepage (which strengthens soil) or unrelated index properties.",
    "conceptual": true
   },
@@ -3759,7 +3759,7 @@
     "15 ft"
    ],
    "answerIndex": 0,
-   "solution": "The governing rule is OSHA 29 CFR 1926 Subpart M (Fall Protection), covered in the Safety chapter of the FE Reference Handbook (v10.6): each employee on a walking/working surface with an unprotected edge 6 feet or more above a lower level must be protected.\n\nApplying this to the choices: 4 ft is the general-industry trigger, while 10 ft and 15 ft have no basis in the construction standard.\n\nTherefore fall protection is required above 6 ft.",
+   "solution": "OSHA fall-protection rules are not printed in the FE Reference Handbook; under OSHA Subpart M, each employee on a walking/working surface with an unprotected edge 6 feet or more above a lower level must be protected.\n\nApplying this to the choices: 4 ft is the general-industry trigger, while 10 ft and 15 ft have no basis in the construction standard.\n\nTherefore fall protection is required above 6 ft.",
    "explanation": "Construction = 6 ft is the number to memorize — 4 ft is the GENERAL INDUSTRY trigger and the classic cross-contamination trap.",
    "conceptual": true
   },
@@ -4276,7 +4276,7 @@
     "Indeterminate to the third degree"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Determinacy and Stability section in the Civil Engineering chapter of the FE Reference Handbook.\n\nCount the reaction components: the fixed support supplies 3 (two force components plus a moment) and each roller supplies 1, so \\(r = 3 + 1 + 1 = 5\\). A planar beam has 3 equilibrium equations and no internal hinges, so the degree of external indeterminacy is \\(r - 3 = 5 - 3 = 2\\).\n\nThe beam is indeterminate to the second degree.",
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook.\n\nCount the reaction components: the fixed support supplies 3 (two force components plus a moment) and each roller supplies 1, so \\(r = 3 + 1 + 1 = 5\\). A planar beam has 3 equilibrium equations and no internal hinges, so the degree of external indeterminacy is \\(r - 3 = 5 - 3 = 2\\).\n\nThe beam is indeterminate to the second degree.",
    "explanation": "Fixed = 3 reactions, roller = 1 each, minus 3 equilibrium equations: 5 − 3 = 2nd-degree indeterminate.",
    "videoUrl": "https://www.youtube.com/watch?v=DoCNnRlz_0Y",
    "videoTitle": "Statically Indeterminate Beam Solved using Superposition - Find Reaction Forces"
@@ -5243,7 +5243,7 @@
     "100 ft"
    ],
    "answerIndex": 0,
-   "solution": "The governing rule is OSHA 29 CFR 1926 Subpart P (Excavations), covered in the Safety section of the Construction Engineering chapter of the FE Reference Handbook: trench excavations 4 ft or deeper require a stairway, ladder, ramp, or other safe means of egress, located so that no worker must travel more than 25 ft laterally to reach it.\n\nThe 25-ft limit is the correct choice — 50 ft and 100 ft are too lax, and 10 ft is stricter than the standard.",
+   "solution": "OSHA excavation standards are not printed in the FE Reference Handbook; under OSHA, trench excavations 4 ft or deeper require a stairway, ladder, ramp, or other safe means of egress, located so that no worker must travel more than 25 ft laterally to reach it.\n\nThe 25-ft limit is the correct choice — 50 ft and 100 ft are too lax, and 10 ft is stricter than the standard.",
    "explanation": "Trench egress: 4 ft deep triggers the requirement, and no worker may be more than 25 ft of lateral travel from a ladder, stairway, or ramp."
   },
   {
@@ -5837,7 +5837,7 @@
     "$1,463.19"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Uniform Series and Single Payment sections in the Engineering Economics chapter of the FE Reference Handbook.\n\nThe Bonds section defines the bond value as the present worth of the payments the holder receives at interest rate \\(i\\). Ultimately, we must solve for the bond value \\(V\\):\n\n$$V = C(P/A, i\\%, n) + F(P/F, i\\%, n)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, n) = (1+i)^{-n}$$\n\nList the known and unknown parameters in order to compute \\(V\\):\n\n$$\\begin{aligned}\nC &= (0.06)(1000) = \\$60 \\\\\nF &= \\$1{,}000 \\\\\ni &= 8\\% = 0.08 \\\\\nn &= 10 \\\\\nV &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 8\\%, 10)) = \\frac{(1.08)^{10} - 1}{(0.08)(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\nCompute the single-payment present worth factor on its own line:\n\n$$((P/F, 8\\%, 10)) = (1.08)^{-10} = 0.4632$$\n\nSubstitute both factors into the bond-value equation:\n\n$$(V) = (60)(6.7101) + (1000)(0.4632) \\rightarrow 402.61 + 463.19 = 865.80$$\n\n$$V = \\$865.80$$",
+   "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nThe Bonds section defines the bond value as the present worth of the payments the holder receives at interest rate \\(i\\). Ultimately, we must solve for the bond value \\(V\\):\n\n$$V = C(P/A, i\\%, n) + F(P/F, i\\%, n)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, n) = (1+i)^{-n}$$\n\nList the known and unknown parameters in order to compute \\(V\\):\n\n$$\\begin{aligned}\nC &= (0.06)(1000) = \\$60 \\\\\nF &= \\$1{,}000 \\\\\ni &= 8\\% = 0.08 \\\\\nn &= 10 \\\\\nV &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 8\\%, 10)) = \\frac{(1.08)^{10} - 1}{(0.08)(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\nCompute the single-payment present worth factor on its own line:\n\n$$((P/F, 8\\%, 10)) = (1.08)^{-10} = 0.4632$$\n\nSubstitute both factors into the bond-value equation:\n\n$$(V) = (60)(6.7101) + (1000)(0.4632) \\rightarrow 402.61 + 463.19 = 865.80$$\n\n$$V = \\$865.80$$",
    "explanation": "A bond is worth the present worth of its coupon stream plus the discounted face value. When the market rate exceeds the coupon rate, the bond sells at a discount (below face value).",
    "estimatedTimeSeconds": 150
   },
@@ -5854,7 +5854,7 @@
     "$13,089"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Uniform Series and Single Payment sections in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\). A deferred annuity is priced as an ordinary annuity at the start of its first payment year, then discounted back through the deferral period:\n\n$$P = A(P/A, i\\%, n)(P/F, i\\%, k)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, k) = (1+i)^{-k}$$\n\nList the known and unknown parameters in order to compute \\(P\\):\n\n$$\\begin{aligned}\nA &= \\$4{,}000 \\\\\ni &= 10\\% = 0.10 \\\\\nn &= 6 \\\\\nk &= 2 \\\\\nP &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 10\\%, 6)) = \\frac{(1.10)^6 - 1}{(0.10)(1.10)^6} = \\frac{0.771561}{0.177156} = 4.3553$$\n\nCompute the deferral (single-payment) factor on its own line:\n\n$$((P/F, 10\\%, 2)) = (1.10)^{-2} = 0.8264$$\n\nSubstitute both factors:\n\n$$(P) = (4000)(4.3553)(0.8264) \\rightarrow (4000)(3.5994) = 14{,}397.56$$\n\n$$P = \\$14{,}398$$",
+   "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\). A deferred annuity is priced as an ordinary annuity at the start of its first payment year, then discounted back through the deferral period:\n\n$$P = A(P/A, i\\%, n)(P/F, i\\%, k)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, k) = (1+i)^{-k}$$\n\nList the known and unknown parameters in order to compute \\(P\\):\n\n$$\\begin{aligned}\nA &= \\$4{,}000 \\\\\ni &= 10\\% = 0.10 \\\\\nn &= 6 \\\\\nk &= 2 \\\\\nP &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 10\\%, 6)) = \\frac{(1.10)^6 - 1}{(0.10)(1.10)^6} = \\frac{0.771561}{0.177156} = 4.3553$$\n\nCompute the deferral (single-payment) factor on its own line:\n\n$$((P/F, 10\\%, 2)) = (1.10)^{-2} = 0.8264$$\n\nSubstitute both factors:\n\n$$(P) = (4000)(4.3553)(0.8264) \\rightarrow (4000)(3.5994) = 14{,}397.56$$\n\n$$P = \\$14{,}398$$",
    "explanation": "Deferral is handled by discounting the whole annuity back through the gap years with a P/F factor — forgetting that step prices the annuity as if it started today.",
    "estimatedTimeSeconds": 150,
    "videoUrl": "https://www.youtube.com/watch?v=ZBr1AZtvMCw",
@@ -6731,7 +6731,7 @@
    "explanation": "At-rest pressure applies when the soil cannot strain laterally -- the natural state of a flat ground surface. For normally consolidated soils the handbook gives K0 directly from the friction angle.",
    "id": "geotech-025",
    "question": "A 5-m-thick deposit of normally consolidated clean sand has a total unit weight of 18 kN/m^3 and an effective friction angle of 30 degrees. The water table is below the deposit. What is the horizontal effective stress at 5 m depth?",
-   "solution": "Refer to the At-Rest Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma'_h\\). The handbook prints, for normally consolidated soil:\n\n$$K_0 \\approx 1 - \\sin\\phi'$$\n\n$$(K_0) = 1 - \\sin 30^\\circ = 1 - 0.5 = 0.5$$\n\nThe vertical effective stress at 5 m (no pore pressure, water table below):\n\n$$(\\sigma'_v) = (18)(5) = 90 \\text{ kPa}$$\n\n$$(\\sigma'_h) = K_0 \\, \\sigma'_v = (0.5)(90) = 45 \\text{ kPa}$$",
+   "solution": "Refer to the Retaining Walls section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\sigma'_h\\). The handbook prints, for normally consolidated soil:\n\n$$K_0 \\approx 1 - \\sin\\phi'$$\n\n$$(K_0) = 1 - \\sin 30^\\circ = 1 - 0.5 = 0.5$$\n\nThe vertical effective stress at 5 m (no pore pressure, water table below):\n\n$$(\\sigma'_v) = (18)(5) = 90 \\text{ kPa}$$\n\n$$(\\sigma'_h) = K_0 \\, \\sigma'_v = (0.5)(90) = 45 \\text{ kPa}$$",
    "subtopic": "At-rest earth pressure",
    "topic": "Geotechnical Engineering"
   },
@@ -7232,7 +7232,7 @@
    "explanation": "With free ends there is no stress -- the bar simply grows. Thermal strain is alpha times the temperature change, and elongation is strain times original length.",
    "id": "materials-025",
    "question": "A 2.0-m aluminum bar with free ends is heated from 20 C to 80 C. The coefficient of thermal expansion is 23 x 10^-6 per C. How much does the bar elongate?",
-   "solution": "Refer to the Thermal Expansion section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the elongation \\(\\delta\\). The handbook prints:\n\n$$\\varepsilon = \\alpha\\,\\Delta T$$\n\nCompute the thermal strain:\n\n$$(\\varepsilon) = (23 \\times 10^{-6})(80 - 20) = (23 \\times 10^{-6})(60) = 1.38 \\times 10^{-3}$$\n\n$$(\\delta) = \\varepsilon L = (1.38 \\times 10^{-3})(2.0) = 2.76 \\times 10^{-3} \\text{ m} = 2.76 \\text{ mm}$$",
+   "solution": "Refer to the Thermal Properties section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the elongation \\(\\delta\\). The handbook prints:\n\n$$\\varepsilon = \\alpha\\,\\Delta T$$\n\nCompute the thermal strain:\n\n$$(\\varepsilon) = (23 \\times 10^{-6})(80 - 20) = (23 \\times 10^{-6})(60) = 1.38 \\times 10^{-3}$$\n\n$$(\\delta) = \\varepsilon L = (1.38 \\times 10^{-3})(2.0) = 2.76 \\times 10^{-3} \\text{ m} = 2.76 \\text{ mm}$$",
    "subtopic": "Thermal expansion (free elongation)",
    "topic": "Materials"
   },
@@ -7633,7 +7633,7 @@
    "explanation": "The absolute maximum moment falls under the load nearest the resultant when the resultant and that load sit equidistant from midspan. The 10.88 m choice is where the resultant sits -- a different question.",
    "id": "structural-027",
    "question": "Two moving concentrated loads, 30 kN and 50 kN spaced 6 m apart, cross a 24-m simply supported beam. For the absolute maximum moment under the 50-kN load, where should the 50-kN load be positioned?",
-   "solution": "Refer to the Moving Concentrated Load Sets section in the Structural Analysis chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must position the load set. The handbook prints that the absolute maximum moment occurs when the resultant of the load set and the adjacent load are equidistant from the beam centerline.\n\nLocate the resultant relative to the 50-kN load:\n\n$$(\\bar{x}) = \\frac{(30)(6)}{30 + 50} = 2.25 \\text{ m from the 50-kN load}$$\n\nEach sits half this distance from midspan (12 m):\n\n$$(x_{50}) = 12 + \\frac{2.25}{2} = 13.13 \\text{ m from the left support}$$",
+   "solution": "Refer to the Moving Concentrated Load Sets section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must position the load set. The handbook prints that the absolute maximum moment occurs when the resultant of the load set and the adjacent load are equidistant from the beam centerline.\n\nLocate the resultant relative to the 50-kN load:\n\n$$(\\bar{x}) = \\frac{(30)(6)}{30 + 50} = 2.25 \\text{ m from the 50-kN load}$$\n\nEach sits half this distance from midspan (12 m):\n\n$$(x_{50}) = 12 + \\frac{2.25}{2} = 13.13 \\text{ m from the left support}$$",
    "subtopic": "Moving concentrated loads (absolute maximum moment)",
    "topic": "Structural Engineering",
    "videoUrl": "https://www.youtube.com/watch?v=_SQInJidumc",
@@ -7652,7 +7652,7 @@
    "explanation": "Check every applicable combination -- the winner is not always the one with the biggest live load. Here the wind combination edges out the gravity-only case.",
    "id": "structural-028",
    "question": "A beam carries a dead load of 60 kips, a live load of 90 kips, and a wind load of 70 kips. What is the controlling LRFD factored load?",
-   "solution": "Refer to the Load Combinations using Strength Design (LRFD) section in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the largest factored load. The handbook prints:\n\n$$\\begin{aligned}\n1.4D &= 1.4(60) = 84 \\text{ kips} \\\\\n1.2D + 1.6L &= 1.2(60) + 1.6(90) = 216 \\text{ kips} \\\\\n1.2D + 1.0W + L &= 1.2(60) + 70 + 90 = 232 \\text{ kips} \\\\\n0.9D + 1.0W &= 0.9(60) + 70 = 124 \\text{ kips}\n\\end{aligned}$$\n\nThe controlling factored load is 232 kips.",
+   "solution": "Refer to the Load Combinations using Strength Design (LRFD) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the largest factored load. The handbook prints:\n\n$$\\begin{aligned}\n1.4D &= 1.4(60) = 84 \\text{ kips} \\\\\n1.2D + 1.6L &= 1.2(60) + 1.6(90) = 216 \\text{ kips} \\\\\n1.2D + 1.0W + L &= 1.2(60) + 70 + 90 = 232 \\text{ kips} \\\\\n0.9D + 1.0W &= 0.9(60) + 70 = 124 \\text{ kips}\n\\end{aligned}$$\n\nThe controlling factored load is 232 kips.",
    "subtopic": "LRFD load combination (controlling factored load)",
    "topic": "Structural Engineering"
   },
@@ -7807,7 +7807,7 @@
    "explanation": "The standard error is s divided by the square root of n, not s -- forgetting the square root of the sample size is the most common mistake. The negative sign reflects that the sample mean fell below the hypothesized value.",
    "id": "stats-029",
    "question": "A random sample of 25 measurements has a sample mean of 48.2 and a sample standard deviation of 10.0. What is the value of the t-statistic for testing the hypothesis that the population mean is 50?",
-   "solution": "Refer to the t-Distribution section in the Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(t\\). The handbook prints:\n\n$$t = \\frac{\\bar{x} - \\mu}{s/\\sqrt{n}}$$\n\nSubstituting:\n\n$$(t) = \\frac{48.2 - 50}{10/\\sqrt{25}}$$\n\n$$(t) = \\frac{-1.8}{2.0} = -0.90$$",
+   "solution": "Refer to the t-Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(t\\). The handbook prints:\n\n$$t = \\frac{\\bar{x} - \\mu}{s/\\sqrt{n}}$$\n\nSubstituting:\n\n$$(t) = \\frac{48.2 - 50}{10/\\sqrt{25}}$$\n\n$$(t) = \\frac{-1.8}{2.0} = -0.90$$",
    "subtopic": "t-statistic for a mean",
    "topic": "Statistics and Probability"
   },
@@ -7824,7 +7824,7 @@
    "explanation": "The offices are distinct, so order matters -- this is a permutation, not a combination. Dividing by the factorial of the offices (the 210 answer) treats the distinct offices as interchangeable.",
    "id": "stats-030",
    "question": "A club must elect a president, a vice president, a secretary, and a treasurer from 10 members. No member may hold more than one office. How many different slates of officers are possible?",
-   "solution": "Refer to the Permutations and Combinations section in the Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute \\(P(10, 4)\\). The handbook prints:\n\n$$P(n, r) = \\frac{n!}{(n - r)!}$$\n\nSubstituting:\n\n$$(P(10,4)) = \\frac{10!}{6!} = 10 \\times 9 \\times 8 \\times 7 = 5{,}040$$",
+   "solution": "Refer to the Permutations and Combinations section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute \\(P(10, 4)\\). The handbook prints:\n\n$$P(n, r) = \\frac{n!}{(n - r)!}$$\n\nSubstituting:\n\n$$(P(10,4)) = \\frac{10!}{6!} = 10 \\times 9 \\times 8 \\times 7 = 5{,}040$$",
    "subtopic": "Permutations (officer election)",
    "topic": "Statistics and Probability"
   },
@@ -8019,7 +8019,7 @@
    "explanation": "OCR is the preconsolidation pressure divided by the current effective stress. Values above 1 mean the soil has been loaded more heavily in the past -- the inverse ratio (0.5) is the slip.",
    "id": "geotech-029",
    "question": "A clay layer has a preconsolidation pressure of 300 kPa and a current vertical effective stress of 150 kPa. What is the overconsolidation ratio?",
-   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for OCR. The handbook defines:\n\n$$OCR = \\frac{\\text{preconsolidation pressure}}{\\text{current effective stress}}$$\n\n$$(OCR) = \\frac{300}{150} = 2.0$$",
+   "solution": "Refer to the Retaining Walls section in the Civil Engineering chapter of the FE Reference Handbook (v10.6), which defines the overconsolidation ratio (OCR) alongside the at-rest earth pressure coefficient.\n\nUltimately, we must solve for OCR. The handbook defines:\n\n$$OCR = \\frac{\\text{preconsolidation pressure}}{\\text{current effective stress}}$$\n\n$$(OCR) = \\frac{300}{150} = 2.0$$",
    "subtopic": "Overconsolidation ratio",
    "topic": "Geotechnical Engineering"
   },
@@ -8053,7 +8053,7 @@
    "explanation": "The handbook adds 1/8 in. to the bolt diameter for the effective hole -- using the bolt diameter alone overstates the net area. The gross area (4.00 in²) ignores the holes entirely.",
    "id": "structural-029",
    "question": "A flat steel bar 8 in. wide and 1/2 in. thick has two 3/4-in.-diameter bolts in a single cross-section (parallel holes). What is the net area?",
-   "solution": "Refer to the Tension Members section in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(A_n\\). The handbook prints (parallel holes):\n\n$$A_n = \\left[b_g - \\sum\\left(d_b + \\frac{1}{8}\\text{''}\\right)\\right]t$$\n\nSubstituting:\n\n$$(A_n) = \\left[8 - 2\\left(0.75 + 0.125\\right)\\right](0.5)$$\n\n$$(A_n) = [8 - 1.75](0.5) = (6.25)(0.5) = 3.125 \\text{ in}^2 \\approx 3.13 \\text{ in}^2$$",
+   "solution": "Refer to the Tension Members section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(A_n\\). The handbook prints (parallel holes):\n\n$$A_n = \\left[b_g - \\sum\\left(d_b + \\frac{1}{8}\\text{''}\\right)\\right]t$$\n\nSubstituting:\n\n$$(A_n) = \\left[8 - 2\\left(0.75 + 0.125\\right)\\right](0.5)$$\n\n$$(A_n) = [8 - 1.75](0.5) = (6.25)(0.5) = 3.125 \\text{ in}^2 \\approx 3.13 \\text{ in}^2$$",
    "subtopic": "Steel tension member (net area)",
    "topic": "Structural Engineering"
   },
@@ -8070,7 +8070,7 @@
    "explanation": "Block shear takes the SMALLER of the rupture-controlled and yield-controlled paths, then applies phi = 0.75. The 163-kip answer uses the larger path; the 215-kip answer forgets the resistance factor.",
    "id": "structural-030",
    "question": "A tension connection has A_gv = 4.0 in², A_nv = 3.0 in², and A_nt = 1.5 in². With F_y = 50 ksi, F_u = 65 ksi, and U_bs = 1.0, what is the LRFD block shear design strength?",
-   "solution": "Refer to the Block Shear provisions in the Structural Design chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi R_n\\). The handbook prints \\(R_n\\) as the smaller of:\n\n$$R_n = 0.6F_u A_{nv} + U_{bs}F_u A_{nt}$$\n$$R_n = 0.6F_y A_{gv} + U_{bs}F_u A_{nt}$$\n\nPath 1:\n\n$$(R_n) = 0.6(65)(3.0) + (1.0)(65)(1.5) = 117 + 97.5 = 214.5 \\text{ kips}$$\n\nPath 2:\n\n$$(R_n) = 0.6(50)(4.0) + (1.0)(65)(1.5) = 120 + 97.5 = 217.5 \\text{ kips}$$\n\nThe smaller value controls:\n\n$$(\\phi R_n) = 0.75(214.5) = 160.9 \\text{ kips} \\approx 161 \\text{ kips}$$",
+   "solution": "Refer to the Tension Members section (block shear provisions) in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi R_n\\). The handbook prints \\(R_n\\) as the smaller of:\n\n$$R_n = 0.6F_u A_{nv} + U_{bs}F_u A_{nt}$$\n$$R_n = 0.6F_y A_{gv} + U_{bs}F_u A_{nt}$$\n\nPath 1:\n\n$$(R_n) = 0.6(65)(3.0) + (1.0)(65)(1.5) = 117 + 97.5 = 214.5 \\text{ kips}$$\n\nPath 2:\n\n$$(R_n) = 0.6(50)(4.0) + (1.0)(65)(1.5) = 120 + 97.5 = 217.5 \\text{ kips}$$\n\nThe smaller value controls:\n\n$$(\\phi R_n) = 0.75(214.5) = 160.9 \\text{ kips} \\approx 161 \\text{ kips}$$",
    "subtopic": "Steel tension member (block shear)",
    "topic": "Structural Engineering",
    "videoUrl": "https://www.youtube.com/watch?v=DaCoVbHG9i8",
@@ -8123,7 +8123,7 @@
    "explanation": "The handbook's empirical relation multiplies the Brinell number by 3.5 for the tensile strength in MPa. The 200-MPa answer confuses the hardness number itself for a stress.",
    "id": "materials-029",
    "question": "A plain carbon steel has a Brinell hardness number of 200. What is the approximate tensile strength in MPa?",
-   "solution": "Refer to the Relationship Between Hardness and Tensile Strength section in the Materials Science chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must estimate TS. The handbook prints:\n\n$$TS(\\text{MPa}) = 3.5 \\times BHN$$\n\n$$(TS) = 3.5(200) = 700 \\text{ MPa}$$",
+   "solution": "Refer to the Relationship Between Hardness and Tensile Strength section in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must estimate TS. The handbook prints:\n\n$$TS(\\text{MPa}) = 3.5 \\times BHN$$\n\n$$(TS) = 3.5(200) = 700 \\text{ MPa}$$",
    "subtopic": "Hardness-tensile strength relation",
    "topic": "Materials"
   },
@@ -8344,7 +8344,7 @@
    "explanation": "The formula uses (E_T - 1), not E_T -- the equivalent counts the truck as one passenger car already, so only the excess matters. Forgetting the minus one understates the factor, and entering the 10% share as 10 instead of 0.10 collapses it to 0.091.",
    "id": "transportation-030",
    "question": "A level-terrain freeway segment carries 10% single-unit trucks and tractor-trailers. The handbook table gives a passenger-car equivalent \\(E_T = 2.0\\) for level terrain. What is the heavy-vehicle adjustment factor \\(f_{HV}\\)?",
-   "solution": "Refer to the Highway Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(f_{HV}\\). The handbook prints:\n\n$$f_{HV} = \\frac{1}{1 + P_T (E_T - 1)}$$\n\nwhere \\(P_T\\) is the proportion of single-unit trucks and tractor trailers and \\(E_T\\) is the passenger-car equivalent.\n\nSubstituting \\((P_T = 0.10\\), \\(E_T = 2.0)\\):\n\n$$(f_{HV}) = \\frac{1}{1 + 0.10(2.0 - 1)}$$\n\n$$(f_{HV}) = \\frac{1}{1.10} = 0.909$$",
+   "solution": "Refer to the Basic Freeway Segment Highway Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(f_{HV}\\). The handbook prints:\n\n$$f_{HV} = \\frac{1}{1 + P_T (E_T - 1)}$$\n\nwhere \\(P_T\\) is the proportion of single-unit trucks and tractor trailers and \\(E_T\\) is the passenger-car equivalent.\n\nSubstituting \\((P_T = 0.10\\), \\(E_T = 2.0)\\):\n\n$$(f_{HV}) = \\frac{1}{1 + 0.10(2.0 - 1)}$$\n\n$$(f_{HV}) = \\frac{1}{1.10} = 0.909$$",
    "subtopic": "Heavy-vehicle adjustment factor",
    "topic": "Transportation Engineering"
   },
@@ -8431,7 +8431,7 @@
    "explanation": "For overconsolidated soil the normally-consolidated value (1 - sin phi) is multiplied by OCR raised to sin phi -- using the NC formula alone ignores the stress history.",
    "id": "geotech-031",
    "question": "A sand deposit has an effective friction angle of 30° and an overconsolidation ratio of 4. What is the at-rest earth pressure coefficient \\(K_0\\)?",
-   "solution": "Refer to the At-Rest Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(K_0\\). The handbook prints, for overconsolidated soil:\n\n$$K_0 = (1 - \\sin\\phi)\\,OCR^{\\sin\\phi}$$\n\nSubstituting \\(\\phi = 30^\\circ\\) and \\(OCR = 4\\):\n\n$$(K_0) = (1 - \\sin 30^\\circ)(4^{\\sin 30^\\circ})$$\n\n$$(K_0) = (1 - 0.5)(4^{0.5}) = (0.5)(2) = 1.00$$",
+   "solution": "Refer to the Retaining Walls section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(K_0\\). The handbook prints, for overconsolidated soil:\n\n$$K_0 = (1 - \\sin\\phi)\\,OCR^{\\sin\\phi}$$\n\nSubstituting \\(\\phi = 30^\\circ\\) and \\(OCR = 4\\):\n\n$$(K_0) = (1 - \\sin 30^\\circ)(4^{\\sin 30^\\circ})$$\n\n$$(K_0) = (1 - 0.5)(4^{0.5}) = (0.5)(2) = 1.00$$",
    "subtopic": "At-rest earth pressure (overconsolidated)",
    "topic": "Geotechnical Engineering"
   },
@@ -8590,7 +8590,7 @@
    "explanation": "The 0.7 converts ground snow to roof snow; the exposure, thermal, and importance factors then adjust it. Using the ground load directly skips the 0.7 entirely.",
    "id": "structural-032",
    "question": "A flat roof has a ground snow load \\(P_g = 30\\) psf, exposure factor \\(C_e = 1.0\\), thermal factor \\(C_t = 1.1\\), and importance factor \\(I_s = 1.0\\). What is the flat roof snow load \\(P_f\\)?",
-   "solution": "Refer to the Snow Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_f\\). The handbook prints:\n\n$$P_f = 0.7\\,C_e C_t I_s P_g$$\n\nSubstituting:\n\n$$(P_f) = 0.7(1.0)(1.1)(1.0)(30)$$\n\n$$(P_f) = 0.7(33) = 23.1\\\\ \\mathrm{psf}$$",
+   "solution": "Refer to the Flat Roof Snow Loads provisions in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_f\\). The handbook prints:\n\n$$P_f = 0.7\\,C_e C_t I_s P_g$$\n\nSubstituting:\n\n$$(P_f) = 0.7(1.0)(1.1)(1.0)(30)$$\n\n$$(P_f) = 0.7(33) = 23.1\\\\ \\mathrm{psf}$$",
    "subtopic": "Flat roof snow load",
    "topic": "Structural Engineering"
   },
@@ -8643,7 +8643,7 @@
    "explanation": "EAC = ACWP + ETC with ETC = (BAC − BCWP)/CPI. CPI = 180/210 = 0.857, so the current cost overrun projects a $583,000 final cost. Adding the bare cost variance to BAC ($530,000) skips the forecasting step.",
    "id": "construction-032",
    "question": "A commercial building project has a budget at completion (BAC) of $500,000. At the status date, the budgeted cost of work scheduled (BCWS) is $200,000, the budgeted cost of work performed (BCWP) is $180,000, and the actual cost of work performed (ACWP) is $210,000. Using the handbook's forecasting equations, what is the estimate at completion (EAC)?",
-   "solution": "Refer to the Earned-Value Analysis (Forecasting) section in the Construction chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(EAC\\). The handbook prints:\n\n$$ETC = \\frac{BAC - BCWP}{CPI} \\qquad EAC = ACWP + ETC$$\n\nwhere \\(CPI = BCWP/ACWP\\).\n\nComputing the cost performance index:\n\n$$CPI = \\frac{180{,}000}{210{,}000} = 0.8571$$\n\nEstimating the cost to complete:\n\n$$ETC = \\frac{500{,}000 - 180{,}000}{0.8571} = \\frac{320{,}000}{0.8571} = 373{,}333$$\n\nAdding the cost incurred to date:\n\n$$EAC = 210{,}000 + 373{,}333 = 583{,}333 \\approx \\$583{,}000$$\n",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(EAC\\). The handbook prints:\n\n$$ETC = \\frac{BAC - BCWP}{CPI} \\qquad EAC = ACWP + ETC$$\n\nwhere \\(CPI = BCWP/ACWP\\).\n\nComputing the cost performance index:\n\n$$CPI = \\frac{180{,}000}{210{,}000} = 0.8571$$\n\nEstimating the cost to complete:\n\n$$ETC = \\frac{500{,}000 - 180{,}000}{0.8571} = \\frac{320{,}000}{0.8571} = 373{,}333$$\n\nAdding the cost incurred to date:\n\n$$EAC = 210{,}000 + 373{,}333 = 583{,}333 \\approx \\$583{,}000$$\n",
    "subtopic": "Earned value (estimate at completion)",
    "topic": "Construction Engineering",
    "videoUrl": "https://www.youtube.com/watch?v=Hc1UYUGhDGk",
@@ -8696,7 +8696,7 @@
    "explanation": "EUAC = \\(P(A/P,i,n) - S(A/F,i,n)\\). The salvage value is a future receipt, so it is subtracted as an \\(A/F\\) amount. Ignoring salvage gives $7,451.",
    "id": "econ-033",
    "question": "A machine costs $50,000 new, has an estimated salvage value of $5,000 after 10 years, and the interest rate is 8% per year. What is the equivalent uniform annual cost (EUAC) of owning the machine?",
-   "solution": "Refer to the Capital Recovery and Sinking Fund sections in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the \\(EUAC\\). The handbook prints:\n\n$$(A/P,i,n) = \\frac{i(1+i)^n}{(1+i)^n-1} \\qquad (A/F,i,n) = (A/P,i,n) - i$$\n\nThe equivalent uniform annual cost spreads the first cost and recovers the salvage value:\n\n$$EUAC = P(A/P,8\\%,10) - S(A/F,8\\%,10)$$\n\nComputing the factors:\n\n$$(A/P,8\\%,10) = \\frac{0.08(1.08)^{10}}{(1.08)^{10}-1} = \\frac{0.172714}{1.158925} = 0.14903$$\n\n$$(A/F,8\\%,10) = 0.14903 - 0.08 = 0.06903$$\n\nSubstituting:\n\n$$EUAC = 50{,}000(0.14903) - 5{,}000(0.06903)$$\n\n$$EUAC = 7{,}451.5 - 345.2 = 7{,}106.3 \\approx \\$7{,}106$$\n",
+   "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the \\(EUAC\\). The handbook prints:\n\n$$(A/P,i,n) = \\frac{i(1+i)^n}{(1+i)^n-1} \\qquad (A/F,i,n) = (A/P,i,n) - i$$\n\nThe equivalent uniform annual cost spreads the first cost and recovers the salvage value:\n\n$$EUAC = P(A/P,8\\%,10) - S(A/F,8\\%,10)$$\n\nComputing the factors:\n\n$$(A/P,8\\%,10) = \\frac{0.08(1.08)^{10}}{(1.08)^{10}-1} = \\frac{0.172714}{1.158925} = 0.14903$$\n\n$$(A/F,8\\%,10) = 0.14903 - 0.08 = 0.06903$$\n\nSubstituting:\n\n$$EUAC = 50{,}000(0.14903) - 5{,}000(0.06903)$$\n\n$$EUAC = 7{,}451.5 - 345.2 = 7{,}106.3 \\approx \\$7{,}106$$\n",
    "subtopic": "Equivalent uniform annual cost",
    "topic": "Engineering Economics"
   },
@@ -8764,7 +8764,7 @@
    "explanation": "\\(FS_s = i_c/i_e\\) with \\(i_c = (\\gamma_{sat} - \\gamma_w)/\\gamma_w\\). Quicksand initiates when the exit gradient reaches \\(i_c\\); reporting \\(i_c\\) alone (1.04) misses the division by the exit gradient.",
    "id": "geotech-032",
    "question": "Upward seepage occurs through a saturated sand with a saturated unit weight of 20.0 kN/m³. The seepage exit gradient is 0.50. Using \\(\\gamma_w = 9.81\\text{ kN/m}^3\\), what is the factor of safety against seepage liquefaction?",
-   "solution": "Refer to the Seepage section in the Geotechnical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(FS_s\\). The handbook prints:\n\n$$FS_s = \\frac{i_c}{i_e} \\qquad i_c = \\frac{\\gamma_{sat} - \\gamma_w}{\\gamma_w}$$\n\nComputing the critical gradient:\n\n$$i_c = \\frac{20.0 - 9.81}{9.81} = \\frac{10.19}{9.81} = 1.039$$\n\nDividing by the exit gradient:\n\n$$FS_s = \\frac{1.039}{0.50} = 2.078 \\approx 2.08$$\n",
+   "solution": "Refer to the Factor of safety against seepage liquefaction section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(FS_s\\). The handbook prints:\n\n$$FS_s = \\frac{i_c}{i_e} \\qquad i_c = \\frac{\\gamma_{sat} - \\gamma_w}{\\gamma_w}$$\n\nComputing the critical gradient:\n\n$$i_c = \\frac{20.0 - 9.81}{9.81} = \\frac{10.19}{9.81} = 1.039$$\n\nDividing by the exit gradient:\n\n$$FS_s = \\frac{1.039}{0.50} = 2.078 \\approx 2.08$$\n",
    "subtopic": "Factor of safety against seepage liquefaction",
    "topic": "Geotechnical Engineering"
   },
@@ -8781,7 +8781,7 @@
    "explanation": "Because the final stress stays below the preconsolidation stress, the clay recompresses along \\(C_R = C_C/6\\). Using \\(C_C\\) directly overestimates the settlement sixfold (64.8 mm).",
    "id": "geotech-033",
    "question": "A 3.0-m-thick overconsolidated clay layer has an initial void ratio of 0.90 and a compression index of 0.36. The initial vertical effective stress is 100 kPa, the preconsolidation stress is 150 kPa, and construction raises the effective stress to 130 kPa. Using the handbook correlation \\(C_R = C_C/6\\), what is the consolidation settlement?",
-   "solution": "Refer to the Soil Consolidation section in the Geotechnical Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\Delta H\\). The handbook prints, for \\(\\sigma'_0 < \\sigma'_c\\) and \\(\\sigma'_f < \\sigma'_c\\):\n\n$$\\Delta H = \\frac{H_0}{1+e_0} C_R \\log_{10}\\frac{\\sigma'_f}{\\sigma'_0}$$\n\nwith the correlation \\(C_R = C_C/6\\).\n\nComputing the recompression index:\n\n$$C_R = \\frac{0.36}{6} = 0.06$$\n\nChecking the stress condition: \\(100\\text{ kPa} < 150\\text{ kPa}\\) and \\(130\\text{ kPa} < 150\\text{ kPa}\\), so the recompression equation applies.\n\nSubstituting:\n\n$$\\Delta H = \\frac{3.0}{1+0.90}(0.06)\\log_{10}\\frac{130}{100}$$\n\n$$\\Delta H = (1.5789)(0.06)(0.11394) = 0.010795\\text{ m} = 10.8\\text{ mm}$$\n",
+   "solution": "Refer to the Ultimate consolidation settlement in soil layer section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\Delta H\\). The handbook prints, for \\(\\sigma'_0 < \\sigma'_c\\) and \\(\\sigma'_f < \\sigma'_c\\):\n\n$$\\Delta H = \\frac{H_0}{1+e_0} C_R \\log_{10}\\frac{\\sigma'_f}{\\sigma'_0}$$\n\nwith the correlation \\(C_R = C_C/6\\).\n\nComputing the recompression index:\n\n$$C_R = \\frac{0.36}{6} = 0.06$$\n\nChecking the stress condition: \\(100\\text{ kPa} < 150\\text{ kPa}\\) and \\(130\\text{ kPa} < 150\\text{ kPa}\\), so the recompression equation applies.\n\nSubstituting:\n\n$$\\Delta H = \\frac{3.0}{1+0.90}(0.06)\\log_{10}\\frac{130}{100}$$\n\n$$\\Delta H = (1.5789)(0.06)(0.11394) = 0.010795\\text{ m} = 10.8\\text{ mm}$$\n",
    "subtopic": "Recompression settlement of overconsolidated clay",
    "topic": "Geotechnical Engineering"
   },
@@ -8798,7 +8798,7 @@
    "explanation": "Fourier's law \\(Q = kA\\Delta T/L\\) with \\(L\\) in meters (0.020 m). Forgetting the mm-to-m conversion throws the answer off by a factor of 1,000.",
    "id": "materials-032",
    "question": "Heat flows steadily through a steel plate 20 mm thick with thermal conductivity 50 W/(m·K). The plate area perpendicular to the heat flow is 0.50 m² and the temperature drop across the plate is 100 K. What is the rate of heat transfer?",
-   "solution": "Refer to Fourier's Law of Conduction in the Heat Transfer section of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\dot{Q}\\). The handbook prints:\n\n$$\\dot{Q} = -kA\\frac{dT}{dx}$$\n\nFor a plane wall with a linear temperature drop this becomes:\n\n$$\\dot{Q} = \\frac{kA\\Delta T}{L}$$\n\nConverting the thickness to meters: \\(L = 20\\text{ mm} = 0.020\\text{ m}\\).\n\nSubstituting:\n\n$$\\dot{Q} = \\frac{50(0.50)(100)}{0.020} = \\frac{2{,}500}{0.020} = 125{,}000\\text{ W} = 125\\text{ kW}$$\n",
+   "solution": "Refer to Fourier's Law of Conduction in the Heat Transfer chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\dot{Q}\\). The handbook prints:\n\n$$\\dot{Q} = -kA\\frac{dT}{dx}$$\n\nFor a plane wall with a linear temperature drop this becomes:\n\n$$\\dot{Q} = \\frac{kA\\Delta T}{L}$$\n\nConverting the thickness to meters: \\(L = 20\\text{ mm} = 0.020\\text{ m}\\).\n\nSubstituting:\n\n$$\\dot{Q} = \\frac{50(0.50)(100)}{0.020} = \\frac{2{,}500}{0.020} = 125{,}000\\text{ W} = 125\\text{ kW}$$\n",
    "subtopic": "Fourier's law of heat conduction",
    "topic": "Materials"
   },
@@ -8815,7 +8815,7 @@
    "explanation": "\\(\\rho = RA/L\\). The area must be converted from mm² to m² (\\(2.0 \\times 10^{-6}\\text{ m}^2\\)); skipping the conversion gives \\(10^{-5}\\).",
    "id": "materials-033",
    "question": "A copper wire 10 m long with a cross-sectional area of 2.0 mm² has a measured resistance of 0.50 Ω. What is the resistivity of the copper?",
-   "solution": "Refer to the Resistivity section in the Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\rho\\). The handbook prints:\n\n$$\\rho = \\frac{RA}{L}$$\n\nConverting the area: \\(A = 2.0\\text{ mm}^2 = 2.0 \\times 10^{-6}\\text{ m}^2\\).\n\nSubstituting:\n\n$$\\rho = \\frac{0.50(2.0 \\times 10^{-6})}{10} = \\frac{1.0 \\times 10^{-6}}{10} = 1.0 \\times 10^{-7}\\text{ }\\Omega\\cdot\\text{m}$$\n",
+   "solution": "Refer to the discussion of resistivity in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6, p. 118).\n\nUltimately, we must solve for \\(\\rho\\). The handbook prints:\n\n$$\\rho = \\frac{RA}{L}$$\n\nConverting the area: \\(A = 2.0\\text{ mm}^2 = 2.0 \\times 10^{-6}\\text{ m}^2\\).\n\nSubstituting:\n\n$$\\rho = \\frac{0.50(2.0 \\times 10^{-6})}{10} = \\frac{1.0 \\times 10^{-6}}{10} = 1.0 \\times 10^{-7}\\text{ }\\Omega\\cdot\\text{m}$$\n",
    "subtopic": "Electrical resistivity",
    "topic": "Materials"
   },
@@ -8832,7 +8832,7 @@
    "explanation": "Direct substitution gives the indeterminate form 0/0, so L'Hôpital's rule applies: the limit equals \\(\\lim_{x\\to 0} 3\\cos(3x) = 3\\).",
    "id": "math-032",
    "question": "Evaluate \\(\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}\\).",
-   "solution": "Refer to L'Hôpital's Rule in the Calculus section of the FE Reference Handbook (v10.6).\n\nUltimately, we must evaluate the limit. Direct substitution gives \\(0/0\\), an indeterminate form, so the handbook's rule applies:\n\n$$\\lim_{x \\to a}\\frac{f(x)}{g(x)} = \\lim_{x \\to a}\\frac{f'(x)}{g'(x)}$$\n\nDifferentiating numerator and denominator:\n\n$$\\lim_{x \\to 0}\\frac{\\sin(3x)}{x} = \\lim_{x \\to 0}\\frac{3\\cos(3x)}{1}$$\n\nEvaluating at \\(x = 0\\):\n\n$$3\\cos(0) = 3(1) = 3$$\n",
+   "solution": "Refer to L'Hôpital's Rule in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must evaluate the limit. Direct substitution gives \\(0/0\\), an indeterminate form, so the handbook's rule applies:\n\n$$\\lim_{x \\to a}\\frac{f(x)}{g(x)} = \\lim_{x \\to a}\\frac{f'(x)}{g'(x)}$$\n\nDifferentiating numerator and denominator:\n\n$$\\lim_{x \\to 0}\\frac{\\sin(3x)}{x} = \\lim_{x \\to 0}\\frac{3\\cos(3x)}{1}$$\n\nEvaluating at \\(x = 0\\):\n\n$$3\\cos(0) = 3(1) = 3$$\n",
    "subtopic": "L'Hôpital's rule",
    "topic": "Mathematics"
   },
@@ -8938,7 +8938,7 @@
    "explanation": "The handbook defines the chi-square distribution with \\(n\\) degrees of freedom as the sum of squares of \\(n\\) independent unit normal variables.",
    "id": "stats-034",
    "question": "Let \\(Z_1, Z_2, Z_3, Z_4, Z_5\\) be independent standard normal random variables. What is the distribution of \\(W = Z_1^2 + Z_2^2 + Z_3^2 + Z_4^2 + Z_5^2\\)?",
-   "solution": "Refer to the Chi-Square Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify the distribution of \\(W\\). The handbook prints:\n\n\"If \\(Z_1, Z_2, \\ldots, Z_n\\) are independent unit normal random variables, then \\(\\chi^2 = Z_1^2 + Z_2^2 + \\cdots + Z_n^2\\) is said to have a chi-square distribution with \\(n\\) degrees of freedom.\"\n\nHere \\(n = 5\\).\n\nTherefore \\(W\\) has a chi-square distribution with 5 degrees of freedom.\n",
+   "solution": "Refer to the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify the distribution of \\(W\\). The handbook prints:\n\n\"If \\(Z_1, Z_2, \\ldots, Z_n\\) are independent unit normal random variables, then \\(\\chi^2 = Z_1^2 + Z_2^2 + \\cdots + Z_n^2\\) is said to have a chi-square distribution with \\(n\\) degrees of freedom.\"\n\nHere \\(n = 5\\).\n\nTherefore \\(W\\) has a chi-square distribution with 5 degrees of freedom.\n",
    "subtopic": "Chi-square distribution",
    "topic": "Statistics and Probability"
   },
@@ -8955,7 +8955,7 @@
    "explanation": "Block shear \\(R_n\\) is the smaller of the rupture-on-both-planes and yield-on-shear-plus-rupture-on-tension values. The 104-kip and 92.7-kip choices apply the \\(\\phi = 0.75\\) factor, but the question asks for nominal strength.",
    "id": "structural-033",
    "question": "A steel tension connection has a gross shear area \\(A_{gv} = 2.5\\text{ in}^2\\), net shear area \\(A_{nv} = 2.0\\text{ in}^2\\), net tension area \\(A_{nt} = 1.2\\text{ in}^2\\), \\(F_y = 36\\text{ ksi}\\), \\(F_u = 58\\text{ ksi}\\), and \\(U_{bs} = 1.0\\). What is the nominal block shear rupture strength \\(R_n\\)?",
-   "solution": "Refer to the Steel Design (Block Shear) section in the Structural Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(R_n\\). The handbook prints:\n\n$$R_n = \\text{smaller of } \\begin{cases} 0.6F_u A_{nv} + U_{bs}F_u A_{nt} \\\\ 0.6F_y A_{gv} + U_{bs}F_u A_{nt} \\end{cases}$$\n\nEvaluating the first expression (rupture on both planes):\n\n$$R_{n1} = 0.6(58)(2.0) + 1.0(58)(1.2) = 69.6 + 69.6 = 139.2\\text{ kips}$$\n\nEvaluating the second expression (yield on shear, rupture on tension):\n\n$$R_{n2} = 0.6(36)(2.5) + 1.0(58)(1.2) = 54.0 + 69.6 = 123.6\\text{ kips}$$\n\nTaking the smaller:\n\n$$R_n = 123.6 \\approx 124\\text{ kips}$$\n",
+   "solution": "Refer to the Tension Members section (block shear provisions) in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(R_n\\). The handbook prints:\n\n$$R_n = \\text{smaller of } \\begin{cases} 0.6F_u A_{nv} + U_{bs}F_u A_{nt} \\\\ 0.6F_y A_{gv} + U_{bs}F_u A_{nt} \\end{cases}$$\n\nEvaluating the first expression (rupture on both planes):\n\n$$R_{n1} = 0.6(58)(2.0) + 1.0(58)(1.2) = 69.6 + 69.6 = 139.2\\text{ kips}$$\n\nEvaluating the second expression (yield on shear, rupture on tension):\n\n$$R_{n2} = 0.6(36)(2.5) + 1.0(58)(1.2) = 54.0 + 69.6 = 123.6\\text{ kips}$$\n\nTaking the smaller:\n\n$$R_n = 123.6 \\approx 124\\text{ kips}$$\n",
    "subtopic": "Block shear rupture strength",
    "topic": "Structural Engineering",
    "videoUrl": "https://www.youtube.com/watch?v=DaCoVbHG9i8",
@@ -8974,7 +8974,7 @@
    "explanation": "Trapezoidal rule: \\(w[(h_1+h_n)/2 + \\text{interior sum}]\\). Only the end offsets are halved; halving none of them gives 230 ft².",
    "id": "surveying-032",
    "question": "Offsets taken at 10-ft intervals across a lot are 0, 4, 6, 8, and 5 ft. Using the trapezoidal rule from the handbook's Area Formulas section, what is the area of the lot?",
-   "solution": "Refer to the Area Formulas section in the Surveying chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the area. The handbook prints the Trapezoidal Rule:\n\n$$A = w\\left[\\frac{h_1 + h_n}{2} + h_2 + h_3 + \\cdots + h_{n-1}\\right]$$\n\nSubstituting \\(w = 10\\text{ ft}\\) and the five offsets:\n\n$$A = 10\\left[\\frac{0 + 5}{2} + 4 + 6 + 8\\right]$$\n\n$$A = 10[2.5 + 18] = 10(20.5) = 205\\text{ ft}^2$$\n",
+   "solution": "Refer to the Area Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the area. The handbook prints the Trapezoidal Rule:\n\n$$A = w\\left[\\frac{h_1 + h_n}{2} + h_2 + h_3 + \\cdots + h_{n-1}\\right]$$\n\nSubstituting \\(w = 10\\text{ ft}\\) and the five offsets:\n\n$$A = 10\\left[\\frac{0 + 5}{2} + 4 + 6 + 8\\right]$$\n\n$$A = 10[2.5 + 18] = 10(20.5) = 205\\text{ ft}^2$$\n",
    "subtopic": "Area by trapezoidal rule",
    "topic": "Surveying"
   },
@@ -8991,7 +8991,7 @@
    "explanation": "\\(G_p = 3.2 + L/S_p + 0.27N_{ped}\\) accounts for start-up time, crossing time, and pedestrian volume. Omitting the start-up and volume terms gives 17.1 s.",
    "id": "transportation-032",
    "question": "A signalized crosswalk is 60 ft long, the assumed pedestrian walking speed is 3.5 ft/s, and 20 pedestrians use the crosswalk during the interval. What is the minimum pedestrian green time \\(G_p\\)?",
-   "solution": "Refer to the Traffic Signal Timing section in the Transportation chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(G_p\\). The handbook prints:\n\n$$G_p = 3.2 + \\frac{L}{S_p} + 0.27N_{ped}$$\n\nSubstituting \\(L = 60\\text{ ft}\\), \\(S_p = 3.5\\text{ ft/s}\\), and \\(N_{ped} = 20\\):\n\n$$G_p = 3.2 + \\frac{60}{3.5} + 0.27(20)$$\n\n$$G_p = 3.2 + 17.143 + 5.4 = 25.743 \\approx 25.7\\text{ s}$$\n",
+   "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(G_p\\). The handbook prints:\n\n$$G_p = 3.2 + \\frac{L}{S_p} + 0.27N_{ped}$$\n\nSubstituting \\(L = 60\\text{ ft}\\), \\(S_p = 3.5\\text{ ft/s}\\), and \\(N_{ped} = 20\\):\n\n$$G_p = 3.2 + \\frac{60}{3.5} + 0.27(20)$$\n\n$$G_p = 3.2 + 17.143 + 5.4 = 25.743 \\approx 25.7\\text{ s}$$\n",
    "subtopic": "Pedestrian green time",
    "topic": "Transportation Engineering"
   },
@@ -9008,7 +9008,7 @@
    "explanation": "The table gives a 6.6-mph reduction for lanes in the 10-to-11-ft band. Using the 11-to-12-ft reduction (1.9 mph) gives 63.1 mph.",
    "id": "transportation-033",
    "question": "A basic freeway segment has a base free-flow speed of 65 mph and 10.5-ft lanes. Using the handbook's HCM adjustment table for average lane width, what is the adjusted free-flow speed?",
-   "solution": "Refer to the Basic Freeway Segment Highway Capacity section in the Transportation chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must adjust the free-flow speed. The handbook's HCM table prints, for average lane width:\n\n- \\(\\geq 12\\) ft: 0.0 mph reduction\n- \\(\\geq 11\\)--12 ft: 1.9 mph reduction\n- \\(\\geq 10\\)--11 ft: 6.6 mph reduction\n\nA 10.5-ft lane falls in the \\(\\geq 10\\)--11 ft band, so \\(f_{LW} = 6.6\\text{ mph}\\).\n\n$$FFS_{adj} = 65 - 6.6 = 58.4\\text{ mph}$$\n",
+   "solution": "Refer to the Basic Freeway Segment Highway Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must adjust the free-flow speed. The handbook's HCM table prints, for average lane width:\n\n- \\(\\geq 12\\) ft: 0.0 mph reduction\n- \\(\\geq 11\\)--12 ft: 1.9 mph reduction\n- \\(\\geq 10\\)--11 ft: 6.6 mph reduction\n\nA 10.5-ft lane falls in the \\(\\geq 10\\)--11 ft band, so \\(f_{LW} = 6.6\\text{ mph}\\).\n\n$$FFS_{adj} = 65 - 6.6 = 58.4\\text{ mph}$$\n",
    "subtopic": "Lane-width adjustment to free-flow speed",
    "topic": "Transportation Engineering"
   },
@@ -9025,7 +9025,7 @@
    "explanation": "For a single-server queue, \\(L = \\lambda/(\\mu - \\lambda)\\). The 0.80 choice is the utilization \\(\\rho = \\lambda/\\mu\\), not the expected number in the system.",
    "id": "transportation-034",
    "question": "Vehicles arrive at a single toll booth at 400 veh/hr (Poisson arrivals) and the booth serves 500 veh/hr (exponential service times). What is the expected number of vehicles in the system?",
-   "solution": "Refer to the Queueing Models section in the Industrial Engineering chapter of the FE Reference Handbook (v10.6) -- the Transportation chapter explicitly directs queueing questions there.\n\nUltimately, we must solve for \\(L\\). The handbook prints, for single-server Poisson-input/exponential-service models:\n\n$$L = \\frac{\\lambda}{\\mu - \\lambda}$$\n\nSubstituting \\(\\lambda = 400\\text{ veh/hr}\\) and \\(\\mu = 500\\text{ veh/hr}\\):\n\n$$L = \\frac{400}{500 - 400} = \\frac{400}{100} = 4.0\\text{ vehicles}$$\n",
+   "solution": "Refer to the Queueing Models section in the Industrial and Systems Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(L\\). The handbook prints, for single-server Poisson-input/exponential-service models:\n\n$$L = \\frac{\\lambda}{\\mu - \\lambda}$$\n\nSubstituting \\(\\lambda = 400\\text{ veh/hr}\\) and \\(\\mu = 500\\text{ veh/hr}\\):\n\n$$L = \\frac{400}{500 - 400} = \\frac{400}{100} = 4.0\\text{ vehicles}$$\n",
    "subtopic": "Toll plaza queueing (M/M/1)",
    "topic": "Transportation Engineering"
   },
@@ -9042,7 +9042,7 @@
    "explanation": "\\(BOD_t = L_0(1 - e^{-kt})\\) gives the oxygen consumed through day \\(t\\); the 79 mg/L choice is the BOD remaining to be exerted after day 5.",
    "id": "water-032",
    "question": "A wastewater sample has an ultimate BOD (\\(L_0\\)) of 250 mg/L and a deoxygenation rate \\(k = 0.23\\text{ day}^{-1}\\) (base \\(e\\)). What is the 5-day BOD (\\(BOD_5\\))?",
-   "solution": "Refer to the BOD Exertion section in the Water Resources chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(BOD_5\\). The handbook prints:\n\n$$BOD_t = L_0\\left(1 - e^{-kt}\\right)$$\n\nSubstituting \\(L_0 = 250\\text{ mg/L}\\), \\(k = 0.23\\text{ day}^{-1}\\), and \\(t = 5\\text{ days}\\):\n\n$$BOD_5 = 250\\left(1 - e^{-0.23(5)}\\right) = 250\\left(1 - e^{-1.15}\\right)$$\n\n$$BOD_5 = 250(1 - 0.31664) = 250(0.68336) = 170.84 \\approx 171\\text{ mg/L}$$\n",
+   "solution": "Refer to the BOD Exertion section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(BOD_5\\). The handbook prints:\n\n$$BOD_t = L_0\\left(1 - e^{-kt}\\right)$$\n\nSubstituting \\(L_0 = 250\\text{ mg/L}\\), \\(k = 0.23\\text{ day}^{-1}\\), and \\(t = 5\\text{ days}\\):\n\n$$BOD_5 = 250\\left(1 - e^{-0.23(5)}\\right) = 250\\left(1 - e^{-1.15}\\right)$$\n\n$$BOD_5 = 250(1 - 0.31664) = 250(0.68336) = 170.84 \\approx 171\\text{ mg/L}$$\n",
    "subtopic": "BOD exertion",
    "topic": "Water Resources"
   },
@@ -9059,7 +9059,7 @@
    "explanation": "Geometric growth: \\(P_t = P_0e^{k\\Delta t}\\). The linear projection (12,000) underestimates the compounding.",
    "id": "water-033",
    "question": "A town's current population is 10,000 and it is growing geometrically at 2% per year. What is the projected population in 10 years?",
-   "solution": "Refer to the Population Modeling section in the Water Resources chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_t\\). The handbook prints, for geometric (log) growth:\n\n$$P_t = P_0e^{k\\Delta t}$$\n\nSubstituting \\(P_0 = 10{,}000\\), \\(k = 0.02\\text{/yr}\\), and \\(\\Delta t = 10\\text{ yr}\\):\n\n$$P_t = 10{,}000e^{0.02(10)} = 10{,}000e^{0.2}$$\n\n$$P_t = 10{,}000(1.22140) = 12{,}214$$\n",
+   "solution": "Refer to the Population Modeling section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P_t\\). The handbook prints, for geometric (log) growth:\n\n$$P_t = P_0e^{k\\Delta t}$$\n\nSubstituting \\(P_0 = 10{,}000\\), \\(k = 0.02\\text{/yr}\\), and \\(\\Delta t = 10\\text{ yr}\\):\n\n$$P_t = 10{,}000e^{0.02(10)} = 10{,}000e^{0.2}$$\n\n$$P_t = 10{,}000(1.22140) = 12{,}214$$\n",
    "subtopic": "Population projection (geometric growth)",
    "topic": "Water Resources"
   },
@@ -9173,7 +9173,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Decimal degrees = degrees + minutes/60 + seconds/3600 = 40 + 0.75 + 0.0083 = 40.7583°. Writing 40.4530° just drops the symbols without converting.",
-   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert degrees-minutes-seconds to decimal degrees:\n\n$$Decimal = D + \\\\frac{M}{60} + \\\\frac{S}{3600}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nD &= 40 \\\\\\\\\\\nM &= 45 \\\\\\\\\\\nS &= 30\n\\\\end{aligned}$$\n\n$$(Decimal) = 40 + \\\\frac{45}{60} + \\\\frac{30}{3600}$$\n\n$$(Decimal) = 40 + 0.75 + 0.0083$$\n\n$$(Decimal) = 40.7583^{\\\\circ}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated surveying section; latitude/longitude conversion is standard surveying practice:\n\nUltimately, we must convert degrees-minutes-seconds to decimal degrees:\n\n$$Decimal = D + \\frac{M}{60} + \\frac{S}{3600}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nD &= 40 \\\\\nM &= 45 \\\\\nS &= 30\n\\end{aligned}$$\n\n$$(Decimal) = 40 + \\frac{45}{60} + \\frac{30}{3600}$$\n\n$$(Decimal) = 40 + 0.75 + 0.0083$$\n\n$$(Decimal) = 40.7583^{\\circ}$$"
   },
   {
    "id": "surveying-036",
@@ -9190,7 +9190,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Azimuth is measured clockwise from north: tan(az) = ΔE/ΔN = 400/300, so az = 53.13°. The 36.87° answer is the angle from east, not from north.",
-   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the grid azimuth, measured clockwise from grid north:\n\n$$\\\\tan(az) = \\\\frac{\\\\Delta E}{\\\\Delta N}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\Delta N &= 1{,}300.00 - 1{,}000.00 = 300.00\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\Delta E &= 2{,}400.00 - 2{,}000.00 = 400.00\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(az) = \\\\tan^{-1}\\\\left(\\\\frac{400.00}{300.00}\\\\right)$$\n\n$$(az) = \\\\tan^{-1}(1.3333)$$\n\n$$(az) = 53.13^{\\\\circ}$$\n\nBoth departures are positive (northeast quadrant), so no 180° correction is needed."
+   "solution": "The FE Reference Handbook does not print a dedicated surveying section; state plane coordinates are standard surveying practice:\n\nUltimately, we must solve for the grid azimuth, measured clockwise from grid north:\n\n$$\\tan(az) = \\frac{\\Delta E}{\\Delta N}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta N &= 1{,}300.00 - 1{,}000.00 = 300.00\\\\ \\text{ft} \\\\\n\\Delta E &= 2{,}400.00 - 2{,}000.00 = 400.00\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(az) = \\tan^{-1}\\left(\\frac{400.00}{300.00}\\right)$$\n\n$$(az) = \\tan^{-1}(1.3333)$$\n\n$$(az) = 53.13^{\\circ}$$\n\nBoth departures are positive (northeast quadrant), so no 180° correction is needed."
   },
   {
    "id": "surveying-037",
@@ -9207,7 +9207,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "True azimuth = grid azimuth + convergence when true north is east of grid north: 125°30' + 1°15' = 126°45'. Subtracting applies when true north lies west of grid north.",
-   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the grid azimuth to a true (geographic) azimuth using the convergence angle:\n\n$$az_{true} = az_{grid} + \\\\text{(convergence)}$$\n\nThe convergence is added because true north lies east of grid north at this site.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\naz_{grid} &= 125^{\\\\circ}30' \\\\\\\\\\\n\\\\text{convergence} &= 1^{\\\\circ}15'\n\\\\end{aligned}$$\n\n$$(az_{true}) = 125^{\\\\circ}30' + 1^{\\\\circ}15'$$\n\n$$(az_{true}) = 126^{\\\\circ}45'$$"
+   "solution": "The FE Reference Handbook does not print a dedicated surveying section; grid azimuth and convergence are standard surveying practice:\n\nUltimately, we must correct the grid azimuth to a true (geographic) azimuth using the convergence angle:\n\n$$az_{true} = az_{grid} + \\text{(convergence)}$$\n\nThe convergence is added because true north lies east of grid north at this site.\n\nList the known parameters:\n\n$$\\begin{aligned}\naz_{grid} &= 125^{\\circ}30' \\\\\n\\text{convergence} &= 1^{\\circ}15'\n\\end{aligned}$$\n\n$$(az_{true}) = 125^{\\circ}30' + 1^{\\circ}15'$$\n\n$$(az_{true}) = 126^{\\circ}45'$$"
   },
   {
    "id": "surveying-038",
@@ -9224,7 +9224,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The Lambert conformal conic projection suits zones that are wide east-west; transverse Mercator suits zones that are tall north-south. States are assigned one or the other based on their shape.",
-   "solution": "Refer to the Surveying section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nState Plane Coordinate System zones use one of two conformal projections, chosen by the shape of the zone:\n\n$$\\\\begin{aligned}\n\\\\text{East-west extent} &\\\\rightarrow \\\\text{Lambert conformal conic} \\\\\\\\\\\n\\\\text{North-south extent} &\\\\rightarrow \\\\text{Transverse Mercator}\n\\\\end{aligned}$$\n\nA state much wider east-west than north-south falls in the first case.\n\n$$(\\\\text{projection}) = \\\\text{Lambert conformal conic}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated surveying section; map projection selection is standard surveying practice:\n\nState Plane Coordinate System zones use one of two conformal projections, chosen by the shape of the zone:\n\n$$\\begin{aligned}\n\\text{East-west extent} &\\rightarrow \\text{Lambert conformal conic} \\\\\n\\text{North-south extent} &\\rightarrow \\text{Transverse Mercator}\n\\end{aligned}$$\n\nA state much wider east-west than north-south falls in the first case.\n\n$$(\\text{projection}) = \\text{Lambert conformal conic}$$"
   },
   {
    "id": "water-034",
@@ -9241,7 +9241,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Q = CLH^1.5 = 3.33 × 40 × 2.5^1.5 = 527 cfs. The 333 cfs answer uses H instead of H^1.5.",
-   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge:\n\n$$Q = CLH^{3/2}$$\n\nwith C = 3.33 for USCS units.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 3.33 \\\\\\\\\\\nL &= 40\\\\ \\\\text{ft} \\\\\\\\\\\nH &= 2.5\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(Q) = (3.33)(40)(2.5)^{3/2}$$\n\n$$(Q) = (3.33)(40)(3.9528)$$\n\n$$(Q) = 527\\\\ \\\\text{cfs}$$"
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge:\n\n$$Q = CLH^{3/2}$$\n\nwith C = 3.33 for USCS units.\n\nList the known parameters:\n\n$$\\begin{aligned}\nC &= 3.33 \\\\\nL &= 40\\\\ \\text{ft} \\\\\nH &= 2.5\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(Q) = (3.33)(40)(2.5)^{3/2}$$\n\n$$(Q) = (3.33)(40)(3.9528)$$\n\n$$(Q) = 527\\\\ \\text{cfs}$$"
   },
   {
    "id": "water-035",
@@ -9258,7 +9258,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Contracted weir: Q = C(L − 0.2H)H^1.5 = 3.33 × 9.6 × 2.828 = 90 cfs. Skipping the 0.2H contraction correction gives 94 cfs.",
-   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge and end contractions:\n\n$$Q = C(L - 0.2H)H^{3/2}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 3.33 \\\\\\\\\\\nL &= 10\\\\ \\\\text{ft} \\\\\\\\\\\nH &= 2.0\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(Q) = (3.33)(10 - 0.2 \\\\times 2.0)(2.0)^{3/2}$$\n\n$$(Q) = (3.33)(9.6)(2.828)$$\n\n$$(Q) = 90\\\\ \\\\text{cfs}$$"
+   "solution": "Refer to the Weir Formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the discharge. The handbook prints for a rectangular weir with free discharge and end contractions:\n\n$$Q = C(L - 0.2H)H^{3/2}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nC &= 3.33 \\\\\nL &= 10\\\\ \\text{ft} \\\\\nH &= 2.0\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(Q) = (3.33)(10 - 0.2 \\times 2.0)(2.0)^{3/2}$$\n\n$$(Q) = (3.33)(9.6)(2.828)$$\n\n$$(Q) = 90\\\\ \\text{cfs}$$"
   },
   {
    "id": "water-036",
@@ -9275,7 +9275,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Reservoir storage attenuates the flood wave: water stored on the rising limb is released later, so the outflow peak is always lower than the inflow peak for level-pool routing.",
-   "solution": "Refer to the Flood Control section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nLevel-pool routing is governed by the continuity equation applied to reservoir storage:\n\n$$\\\\frac{dS}{dt} = I - O$$\n\nOn the rising limb of the flood, inflow exceeds outflow (I > O), so storage increases. That stored volume is released on the falling limb. Because part of the flood volume is temporarily held in storage, the outflow hydrograph is flattened:\n\n$$(O_{peak}) < (I_{peak})$$\n\nThis attenuation is the entire purpose of flood-control storage."
+   "solution": "The FE Reference Handbook does not print a dedicated flood-control section; level-pool reservoir routing is standard hydrology:\n\nLevel-pool routing is governed by the continuity equation applied to reservoir storage:\n\n$$\\frac{dS}{dt} = I - O$$\n\nOn the rising limb of the flood, inflow exceeds outflow (I > O), so storage increases. That stored volume is released on the falling limb. Because part of the flood volume is temporarily held in storage, the outflow hydrograph is flattened:\n\n$$(O_{peak}) < (I_{peak})$$\n\nThis attenuation is the entire purpose of flood-control storage."
   },
   {
    "id": "water-037",
@@ -9292,7 +9292,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "ΔS = (800 − 500) × 6 × 3600 = 6.48×10^6 ft³ = 149 acre-ft. Forgetting the 3600 s/hr conversion is the classic error here.",
-   "solution": "Refer to the Flood Control section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the change in storage from continuity:\n\n$$\\\\Delta S = (I_{avg} - O_{avg})\\\\Delta t$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nI_{avg} &= 800\\\\ \\\\text{cfs} \\\\\\\\\\\nO_{avg} &= 500\\\\ \\\\text{cfs} \\\\\\\\\\\n\\\\Delta t &= 6\\\\ \\\\text{hr} = 21{,}600\\\\ \\\\text{s}\n\\\\end{aligned}$$\n\n$$(\\\\Delta S) = (800 - 500)(21{,}600)$$\n\n$$(\\\\Delta S) = 6{,}480{,}000\\\\ \\\\text{ft}^3$$\n\nConvert to acre-feet (1 acre-ft = 43,560 ft^3):\n\n$$(\\\\Delta S) = \\\\frac{6{,}480{,}000}{43{,}560} = 149\\\\ \\\\text{acre-ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated flood-control section; level-pool reservoir routing is standard hydrology:\n\nUltimately, we must solve for the change in storage from continuity:\n\n$$\\Delta S = (I_{avg} - O_{avg})\\Delta t$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nI_{avg} &= 800\\\\ \\text{cfs} \\\\\nO_{avg} &= 500\\\\ \\text{cfs} \\\\\n\\Delta t &= 6\\\\ \\text{hr} = 21{,}600\\\\ \\text{s}\n\\end{aligned}$$\n\n$$(\\Delta S) = (800 - 500)(21{,}600)$$\n\n$$(\\Delta S) = 6{,}480{,}000\\\\ \\text{ft}^3$$\n\nConvert to acre-feet (1 acre-ft = 43,560 ft^3):\n\n$$(\\Delta S) = \\frac{6{,}480{,}000}{43{,}560} = 149\\\\ \\text{acre-ft}$$"
   },
   {
    "id": "water-038",
@@ -9309,7 +9309,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Full pipe: A = 0.785 ft², R = 0.25 ft. Q = (1.486/0.013)(0.785)(0.25)^2/3(0.005)^1/2 = 2.52 cfs. Using the diameter instead of the hydraulic radius is the common slip.",
-   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the full-flow discharge. The handbook prints (USCS):\n\n$$Q = \\\\frac{1.486}{n}AR^{2/3}S^{1/2}$$\n\nFor a circular pipe flowing full, the hydraulic radius is R = D/4.\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nD &= 12\\\\ \\\\text{in} = 1.0\\\\ \\\\text{ft} \\\\\\\\\\\nA &= \\\\frac{\\\\pi(1.0)^2}{4} = 0.7854\\\\ \\\\text{ft}^2 \\\\\\\\\\\nR &= \\\\frac{1.0}{4} = 0.25\\\\ \\\\text{ft} \\\\\\\\\\\nn &= 0.013, \\\\quad S = 0.005\n\\\\end{aligned}$$\n\n$$(Q) = \\\\frac{1.486}{0.013}(0.7854)(0.25)^{2/3}(0.005)^{1/2}$$\n\n$$(Q) = (114.31)(0.7854)(0.3969)(0.0707)$$\n\n$$(Q) = 2.52\\\\ \\\\text{cfs}$$"
+   "solution": "Refer to the Manning's Equation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the full-flow discharge. The handbook prints (USCS):\n\n$$Q = \\frac{1.486}{n}AR^{2/3}S^{1/2}$$\n\nFor a circular pipe flowing full, the hydraulic radius is R = D/4.\n\nList the known parameters:\n\n$$\\begin{aligned}\nD &= 12\\\\ \\text{in} = 1.0\\\\ \\text{ft} \\\\\nA &= \\frac{\\pi(1.0)^2}{4} = 0.7854\\\\ \\text{ft}^2 \\\\\nR &= \\frac{1.0}{4} = 0.25\\\\ \\text{ft} \\\\\nn &= 0.013, \\quad S = 0.005\n\\end{aligned}$$\n\n$$(Q) = \\frac{1.486}{0.013}(0.7854)(0.25)^{2/3}(0.005)^{1/2}$$\n\n$$(Q) = (114.31)(0.7854)(0.3969)(0.0707)$$\n\n$$(Q) = 2.52\\\\ \\text{cfs}$$"
   },
   {
    "id": "water-039",
@@ -9326,7 +9326,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "V = Q/A = 2.52/0.785 = 3.21 ft/s, which exceeds the 2 ft/s self-cleansing minimum that keeps solids from depositing.",
-   "solution": "Refer to the Collection Systems section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSanitary sewers are designed so the flowing-full velocity stays above the self-cleansing minimum (typically 2 ft/s) to prevent solids deposition:\n\n$$V = \\\\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ &= 2.52\\\\ \\\\text{cfs} \\\\\\\\\\\nA &= 0.7854\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{2.52}{0.7854}$$\n\n$$(V) = 3.21\\\\ \\\\text{ft/s}$$\n\n$$(3.21\\\\ \\\\text{ft/s}) > (2\\\\ \\\\text{ft/s}) \\\\rightarrow \\\\text{requirement met}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated collection-systems section; the velocity-discharge relation is standard practice:\n\nSanitary sewers are designed so the flowing-full velocity stays above the self-cleansing minimum (typically 2 ft/s) to prevent solids deposition:\n\n$$V = \\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ &= 2.52\\\\ \\text{cfs} \\\\\nA &= 0.7854\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(V) = \\frac{2.52}{0.7854}$$\n\n$$(V) = 3.21\\\\ \\text{ft/s}$$\n\n$$(3.21\\\\ \\text{ft/s}) > (2\\\\ \\text{ft/s}) \\rightarrow \\text{requirement met}$$"
   },
   {
    "id": "water-040",
@@ -9343,7 +9343,7 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "Rational method: Q = CiA = 12 cfs. Manning's for a full circular pipe gives D^8/3 = 3.37, so D = 1.58 ft ≈ 19 in.",
-   "solution": "Refer to the Rational Method and Manning's Equation sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the pipe diameter. First find the peak runoff with the rational method:\n\n$$Q = CiA$$\n\n$$\\\\begin{aligned}\nC &= 0.60 \\\\\\\\\\\ni &= 4.0\\\\ \\\\text{in/hr} \\\\\\\\\\\nA &= 5\\\\ \\\\text{ac}\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(4.0)(5) = 12\\\\ \\\\text{cfs}$$\n\nFor a circular pipe flowing full, A = \\\\pi D^2/4 and R = D/4. Manning's equation (USCS) becomes:\n\n$$(Q) = \\\\frac{1.486}{n}\\\\left(\\\\frac{\\\\pi D^2}{4}\\\\right)\\\\left(\\\\frac{D}{4}\\\\right)^{2/3}S^{1/2}$$\n\n$$(12) = \\\\frac{1.486}{0.013}\\\\left(\\\\frac{\\\\pi}{4}\\\\right)\\\\left(\\\\frac{1}{4}\\\\right)^{2/3}(0.01)^{1/2} D^{8/3}$$\n\n$$(12) = (3.5636)D^{8/3}$$\n\n$$(D^{8/3}) = 3.367 \\\\rightarrow (D) = 1.58\\\\ \\\\text{ft}$$\n\n$$(D) = (1.58)(12) = 19\\\\ \\\\text{in}$$",
+   "solution": "Refer to the Rational Formula and Manning's Equation sections in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the pipe diameter. First find the peak runoff with the rational method:\n\n$$Q = CiA$$\n\n$$\\begin{aligned}\nC &= 0.60 \\\\\ni &= 4.0\\\\ \\text{in/hr} \\\\\nA &= 5\\\\ \\text{ac}\n\\end{aligned}$$\n\n$$(Q) = (0.60)(4.0)(5) = 12\\\\ \\text{cfs}$$\n\nFor a circular pipe flowing full, A = \\pi D^2/4 and R = D/4. Manning's equation (USCS) becomes:\n\n$$(Q) = \\frac{1.486}{n}\\left(\\frac{\\pi D^2}{4}\\right)\\left(\\frac{D}{4}\\right)^{2/3}S^{1/2}$$\n\n$$(12) = \\frac{1.486}{0.013}\\left(\\frac{\\pi}{4}\\right)\\left(\\frac{1}{4}\\right)^{2/3}(0.01)^{1/2} D^{8/3}$$\n\n$$(12) = (3.5636)D^{8/3}$$\n\n$$(D^{8/3}) = 3.367 \\rightarrow (D) = 1.58\\\\ \\text{ft}$$\n\n$$(D) = (1.58)(12) = 19\\\\ \\text{in}$$",
    "videoUrl": "https://www.youtube.com/watch?v=0knMc_tkIo4",
    "videoTitle": "How to Design Storm Water Drainage System_ Full Design Process with Calculations"
   },
@@ -9362,7 +9362,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The standard self-cleansing minimum is 2 ft/s (about 0.6 m/s) flowing full. Higher velocities risk scour of the pipe; lower velocities let solids settle.",
-   "solution": "Refer to the Collection Systems section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSanitary sewers must maintain a self-cleansing velocity so suspended solids do not settle and clog the pipe. The long-standing design standard, used on the FE exam, is:\n\n$$(V_{min}) = 2\\\\ \\\\text{ft/s} \\\\text{ (flowing full)}$$\n\nSlopes are then selected so that the design flow produces at least this velocity, while staying below the maximum (typically 10 ft/s) that would scour the pipe."
+   "solution": "The FE Reference Handbook does not print a dedicated collection-systems section; the velocity-discharge relation is standard practice:\n\nSanitary sewers must maintain a self-cleansing velocity so suspended solids do not settle and clog the pipe. The long-standing design standard, used on the FE exam, is:\n\n$$(V_{min}) = 2\\\\ \\text{ft/s} \\text{ (flowing full)}$$\n\nSlopes are then selected so that the design flow produces at least this velocity, while staying below the maximum (typically 10 ft/s) that would scour the pipe."
   },
   {
    "id": "geotech-034",
@@ -9379,7 +9379,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "q = P/A = 180/25 = 7.2 ksf. The 36.0 ksf answer divides by the side length instead of the area.",
-   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the contact pressure under a concentrically loaded footing:\n\n$$q = \\\\frac{P}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 180\\\\ \\\\text{kips} \\\\\\\\\\\nA &= (5)(5) = 25\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(q) = \\\\frac{180}{25}$$\n\n$$(q) = 7.2\\\\ \\\\text{ksf}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must solve for the contact pressure under a concentrically loaded footing:\n\n$$q = \\frac{P}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 180\\\\ \\text{kips} \\\\\nA &= (5)(5) = 25\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(q) = \\frac{180}{25}$$\n\n$$(q) = 7.2\\\\ \\text{ksf}$$"
   },
   {
    "id": "geotech-035",
@@ -9396,7 +9396,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "q_max = (P/A)(1 + 6e/B) = (150/36)(1 + 3/6) = 6.25 ksf. The 4.17 ksf answer ignores the eccentricity.",
-   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the maximum contact pressure under eccentric loading. The handbook gives:\n\n$$q_{max} = \\\\frac{P}{A}\\\\left(1 + \\\\frac{6e}{B}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 150\\\\ \\\\text{kips} \\\\\\\\\\\nA &= (6)(6) = 36\\\\ \\\\text{ft}^2 \\\\\\\\\\\ne &= 0.5\\\\ \\\\text{ft}, \\\\quad B = 6\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(q_{max}) = \\\\frac{150}{36}\\\\left(1 + \\\\frac{6(0.5)}{6}\\\\right)$$\n\n$$(q_{max}) = (4.167)(1.5)$$\n\n$$(q_{max}) = 6.25\\\\ \\\\text{ksf}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must solve for the maximum contact pressure under eccentric loading. The handbook gives:\n\n$$q_{max} = \\frac{P}{A}\\left(1 + \\frac{6e}{B}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 150\\\\ \\text{kips} \\\\\nA &= (6)(6) = 36\\\\ \\text{ft}^2 \\\\\ne &= 0.5\\\\ \\text{ft}, \\quad B = 6\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(q_{max}) = \\frac{150}{36}\\left(1 + \\frac{6(0.5)}{6}\\right)$$\n\n$$(q_{max}) = (4.167)(1.5)$$\n\n$$(q_{max}) = 6.25\\\\ \\text{ksf}$$"
   },
   {
    "id": "geotech-036",
@@ -9413,7 +9413,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "For a 1-ft strip: B = P/q_allow = 8/4 = 2.0 ft. The footing width is set so the contact pressure just reaches the allowable.",
-   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must size the footing so the contact pressure equals the allowable bearing pressure. For a 1-ft-long strip of wall footing:\n\n$$B = \\\\frac{P}{q_{allow}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nP &= 8\\\\ \\\\text{kips/ft} \\\\\\\\\\\nq_{allow} &= 4\\\\ \\\\text{ksf}\n\\\\end{aligned}$$\n\n$$(B) = \\\\frac{8}{4}$$\n\n$$(B) = 2.0\\\\ \\\\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must size the footing so the contact pressure equals the allowable bearing pressure. For a 1-ft-long strip of wall footing:\n\n$$B = \\frac{P}{q_{allow}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 8\\\\ \\text{kips/ft} \\\\\nq_{allow} &= 4\\\\ \\text{ksf}\n\\end{aligned}$$\n\n$$(B) = \\frac{8}{4}$$\n\n$$(B) = 2.0\\\\ \\text{ft}$$"
   },
   {
    "id": "geotech-037",
@@ -9430,7 +9430,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "When footings grow so large they would cover over ~50% of the footprint, a single mat becomes more economical and settles more uniformly. Dense sand, light loads, or shallow bedrock all favor simple spread footings instead.",
-   "solution": "Refer to the Foundation Types section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nFoundation type follows the soil and the loading:\n\n$$\\\\begin{aligned}\n\\\\text{Spread footings} &\\\\rightarrow \\\\text{competent soil, moderate loads} \\\\\\\\\\\n\\\\text{Mat foundation} &\\\\rightarrow \\\\text{footings would cover } > \\\\sim 50\\\\% \\\\text{ of footprint} \\\\\\\\\\\n\\\\text{Deep foundations} &\\\\rightarrow \\\\text{weak near-surface soil}\n\\\\end{aligned}$$\n\nA mat spreads the building load over the entire footprint, cutting the contact pressure and bridging soft spots so the building settles as one unit."
+   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nFoundation type follows the soil and the loading:\n\n$$\\begin{aligned}\n\\text{Spread footings} &\\rightarrow \\text{competent soil, moderate loads} \\\\\n\\text{Mat foundation} &\\rightarrow \\text{footings would cover } > \\sim 50\\\\% \\text{ of footprint} \\\\\n\\text{Deep foundations} &\\rightarrow \\text{weak near-surface soil}\n\\end{aligned}$$\n\nA mat spreads the building load over the entire footprint, cutting the contact pressure and bridging soft spots so the building settles as one unit."
   },
   {
    "id": "geotech-038",
@@ -9447,7 +9447,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Lime causes cation exchange and pozzolanic reactions that drop the plasticity index, raise strength, and make wet clay workable. It does the opposite of the other three choices.",
-   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nChemical stabilization with lime treats the cause of poor subgrade behavior in plastic clays:\n\n$$\\\\text{lime} + \\\\text{clay} \\\\rightarrow \\\\text{cation exchange} + \\\\text{pozzolanic cementing}$$\n\nThe practical effects are:\n\n$$\\\\begin{aligned}\n\\\\text{Plasticity index} &\\\\downarrow \\\\\\\\\\\n\\\\text{Strength / stiffness} &\\\\uparrow \\\\\\\\\\\n\\\\text{Workability of wet clay} &\\\\uparrow\n\\\\end{aligned}$$\n\nThis is why lime is the standard treatment for highly plastic (fat clay) subgrades."
+   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nChemical stabilization with lime treats the cause of poor subgrade behavior in plastic clays:\n\n$$\\text{lime} + \\text{clay} \\rightarrow \\text{cation exchange} + \\text{pozzolanic cementing}$$\n\nThe practical effects are:\n\n$$\\begin{aligned}\n\\text{Plasticity index} &\\downarrow \\\\\n\\text{Strength / stiffness} &\\uparrow \\\\\n\\text{Workability of wet clay} &\\uparrow\n\\end{aligned}$$\n\nThis is why lime is the standard treatment for highly plastic (fat clay) subgrades."
   },
   {
    "id": "geotech-039",
@@ -9464,7 +9464,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Between dissimilar materials, the geotextile's job is separation — keeping the aggregate from punching into the clay and the clay from pumping up. Filtration passes water while retaining soil; reinforcement carries tension.",
-   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nGeosynthetics are specified by function:\n\n$$\\\\begin{aligned}\n\\\\text{Separation} &\\\\rightarrow \\\\text{keep dissimilar layers from mixing} \\\\\\\\\\\n\\\\text{Filtration} &\\\\rightarrow \\\\text{pass water, retain soil} \\\\\\\\\\\n\\\\text{Reinforcement} &\\\\rightarrow \\\\text{carry tensile load} \\\\\\\\\\\n\\\\text{Drainage} &\\\\rightarrow \\\\text{transmit water in-plane}\n\\\\end{aligned}$$\n\nA geotextile sandwiched between clay and aggregate blocks intermixing (which would destroy the base's strength), so its primary function here is separation."
+   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nGeosynthetics are specified by function:\n\n$$\\begin{aligned}\n\\text{Separation} &\\rightarrow \\text{keep dissimilar layers from mixing} \\\\\n\\text{Filtration} &\\rightarrow \\text{pass water, retain soil} \\\\\n\\text{Reinforcement} &\\rightarrow \\text{carry tensile load} \\\\\n\\text{Drainage} &\\rightarrow \\text{transmit water in-plane}\n\\end{aligned}$$\n\nA geotextile sandwiched between clay and aggregate blocks intermixing (which would destroy the base's strength), so its primary function here is separation."
   },
   {
    "id": "geotech-040",
@@ -9481,7 +9481,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Passing water while retaining soil is the textbook definition of filtration. The key design property is the apparent opening size (AOS) relative to the soil gradation.",
-   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nThe geosynthetic functions are distinguished by what they move or hold:\n\n$$\\\\text{Filtration} = \\\\text{transmit water across the plane } + \\\\text{ retain soil particles}$$\n\nAround a drain, the geotextile must do exactly this: admit groundwater into the drain while preventing soil migration that would clog it. Separation keeps layers apart (no flow requirement); reinforcement carries load."
+   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nThe geosynthetic functions are distinguished by what they move or hold:\n\n$$\\text{Filtration} = \\text{transmit water across the plane } + \\text{ retain soil particles}$$\n\nAround a drain, the geotextile must do exactly this: admit groundwater into the drain while preventing soil migration that would clog it. Separation keeps layers apart (no flow requirement); reinforcement carries load."
   },
   {
    "id": "geotech-041",
@@ -9498,7 +9498,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Cement hydration cements the particles together, raising the layer's strength and stiffness (measured by unconfined compressive strength). It reduces — but does not eliminate — permeability and volume change.",
-   "solution": "Refer to the Soil Stabilization section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nSoil-cement works through hydration of the cement:\n\n$$\\\\text{cement} + \\\\text{water} \\\\rightarrow \\\\text{hydration products binding soil particles}$$\n\nThe design property is the unconfined compressive strength of the stabilized mixture:\n\n$$(\\\\text{strength}_{stabilized}) \\\\gg (\\\\text{strength}_{untreated})$$\n\nThe stabilized layer behaves as a semi-rigid slab, spreading wheel loads over a wider area of the subgrade."
+   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nSoil-cement works through hydration of the cement:\n\n$$\\text{cement} + \\text{water} \\rightarrow \\text{hydration products binding soil particles}$$\n\nThe design property is the unconfined compressive strength of the stabilized mixture:\n\n$$(\\text{strength}_{stabilized}) \\gg (\\text{strength}_{untreated})$$\n\nThe stabilized layer behaves as a semi-rigid slab, spreading wheel loads over a wider area of the subgrade."
   },
   {
    "id": "construction-034",
@@ -9515,7 +9515,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Real length = 3.25 × 40 = 130 ft. Dividing by the scale factor instead of multiplying gives 0.08 ft — always check that the answer is bigger than the paper measurement.",
-   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\\\times (\\\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\\\text{in} \\\\\\\\\\\n\\\\text{scale} &= 40\\\\ \\\\text{ft/in}\n\\\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\\\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\times (\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\text{in} \\\\\n\\text{scale} &= 40\\\\ \\text{ft/in}\n\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\text{ft}$$"
   },
   {
    "id": "construction-035",
@@ -9532,7 +9532,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Station 27+50 = 2,750 ft and 24+00 = 2,400 ft from the origin, so the length is 350 ft. The '+' separates hundreds of feet from tens and ones.",
-   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\\\begin{aligned}\n\\\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\\\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\begin{aligned}\n\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\text{ft} \\\\\n\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\text{ft}$$"
   },
   {
    "id": "construction-036",
@@ -9549,7 +9549,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Six contours span 10 ft of elevation, creating 5 intervals: 10/5 = 2 ft. Counting contours instead of intervals gives 10/6, a classic trap.",
-   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\\\text{interval} = \\\\frac{\\\\Delta Elev}{\\\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\Delta Elev &= 108 - 98 = 10\\\\ \\\\text{ft} \\\\\\\\\\\n\\\\text{intervals} &= 5\\\\ \\\\(6\\\\ \\\\text{contours make } 5\\\\ \\\\text{ gaps})\n\\\\end{aligned}$$\n\n$$(\\\\text{interval}) = \\\\frac{10}{5}$$\n\n$$(\\\\text{interval}) = 2\\\\ \\\\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\text{interval} = \\frac{\\Delta Elev}{\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta Elev &= 108 - 98 = 10\\\\ \\text{ft} \\\\\n\\text{intervals} &= 5\\\\ \\\\(6\\\\ \\text{contours make } 5\\\\ \\text{ gaps})\n\\end{aligned}$$\n\n$$(\\text{interval}) = \\frac{10}{5}$$\n\n$$(\\text{interval}) = 2\\\\ \\text{ft}$$"
   },
   {
    "id": "construction-037",
@@ -9566,7 +9566,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Profile = elevations along the alignment (vertical alignment). Plan = bird's-eye layout. Cross-section = transverse slice at one station.",
-   "solution": "Refer to the Interpretation of Engineering Drawings section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe three principal views each answer a different question:\n\n$$\\\\begin{aligned}\n\\\\text{Plan} &\\\\rightarrow \\\\text{horizontal layout (bird's eye)} \\\\\\\\\\\n\\\\text{Profile} &\\\\rightarrow \\\\text{elevations along the alignment} \\\\\\\\\\\n\\\\text{Cross-section} &\\\\rightarrow \\\\text{transverse slice at one station}\n\\\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nThe three principal views each answer a different question:\n\n$$\\begin{aligned}\n\\text{Plan} &\\rightarrow \\text{horizontal layout (bird's eye)} \\\\\n\\text{Profile} &\\rightarrow \\text{elevations along the alignment} \\\\\n\\text{Cross-section} &\\rightarrow \\text{transverse slice at one station}\n\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
   },
   {
    "id": "math-034",
@@ -9583,7 +9583,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "d = √[(7−2)² + (15−3)²] = √(25+144) = 13. A 5-12-13 triangle hiding in plain sight.",
-   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the distance between two points:\n\n$$d = \\\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n(x_1, y_1) &= (2, 3) \\\\\\\\\\\n(x_2, y_2) &= (7, 15)\n\\\\end{aligned}$$\n\n$$(d) = \\\\sqrt{(7 - 2)^2 + (15 - 3)^2}$$\n\n$$(d) = \\\\sqrt{25 + 144}$$\n\n$$(d) = \\\\sqrt{169} = 13$$"
+   "solution": "Refer to the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the distance between two points:\n\n$$d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n(x_1, y_1) &= (2, 3) \\\\\n(x_2, y_2) &= (7, 15)\n\\end{aligned}$$\n\n$$(d) = \\sqrt{(7 - 2)^2 + (15 - 3)^2}$$\n\n$$(d) = \\sqrt{25 + 144}$$\n\n$$(d) = \\sqrt{169} = 13$$"
   },
   {
    "id": "math-035",
@@ -9600,7 +9600,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "Slope m = (10−2)/(5−1) = 2; using point (1,2): 2 = 2(1) + b gives b = 0, so y = 2x.",
-   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the line y = mx + b through both points. First the slope:\n\n$$m = \\\\frac{y_2 - y_1}{x_2 - x_1}$$\n\n$$(m) = \\\\frac{10 - 2}{5 - 1} = \\\\frac{8}{4} = 2$$\n\nInsert one point to solve for the intercept:\n\n$$(2) = (2)(1) + b \\\\rightarrow (b) = 0$$\n\n$$(y) = 2x$$"
+   "solution": "Refer to the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find the line y = mx + b through both points. First the slope:\n\n$$m = \\frac{y_2 - y_1}{x_2 - x_1}$$\n\n$$(m) = \\frac{10 - 2}{5 - 1} = \\frac{8}{4} = 2$$\n\nInsert one point to solve for the intercept:\n\n$$(2) = (2)(1) + b \\rightarrow (b) = 0$$\n\n$$(y) = 2x$$"
   },
   {
    "id": "math-036",
@@ -9617,7 +9617,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "(x − h)² + (y − k)² = r² with (h,k) = (3,−2): the signs flip inside the parentheses and the radius is squared.",
-   "solution": "Refer to the Analytic Geometry section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must write the standard circle equation:\n\n$$(x - h)^2 + (y - k)^2 = r^2$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n(h, k) &= (3, -2) \\\\\\\\\\\nr &= 5\n\\\\end{aligned}$$\n\n$$((x - 3)^2 + (y - (-2))^2) = (5)^2$$\n\n$$((x - 3)^2 + (y + 2)^2) = 25$$"
+   "solution": "Refer to the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must write the standard circle equation:\n\n$$(x - h)^2 + (y - k)^2 = r^2$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n(h, k) &= (3, -2) \\\\\nr &= 5\n\\end{aligned}$$\n\n$$((x - 3)^2 + (y - (-2))^2) = (5)^2$$\n\n$$((x - 3)^2 + (y + 2)^2) = 25$$"
   },
   {
    "id": "econ-034",
@@ -9634,7 +9634,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Variable cost = (16,000 − 10,000)/500 = $12/unit. Fixed = 10,000 − 12(500) = $4,000. The $6,000 answer is the variable-cost difference, not the fixed cost.",
-   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must separate fixed from variable cost. Total cost is linear in quantity:\n\n$$TC = FC + (VC_{unit})(Q)$$\n\nFirst find the unit variable cost from the two data points:\n\n$$(VC_{unit}) = \\\\frac{16{,}000 - 10{,}000}{1{,}000 - 500} = \\\\frac{6{,}000}{500} = 12\\\\ \\\\text{dollars/unit}$$\n\nThen back out the fixed cost:\n\n$$(FC) = 10{,}000 - (12)(500)$$\n\n$$(FC) = 10{,}000 - 6{,}000 = 4{,}000\\\\ \\\\text{dollars}$$"
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must separate fixed from variable cost. Total cost is linear in quantity:\n\n$$TC = FC + (VC_{unit})(Q)$$\n\nFirst find the unit variable cost from the two data points:\n\n$$(VC_{unit}) = \\frac{16{,}000 - 10{,}000}{1{,}000 - 500} = \\frac{6{,}000}{500} = 12\\\\ \\text{dollars/unit}$$\n\nThen back out the fixed cost:\n\n$$(FC) = 10{,}000 - (12)(500)$$\n\n$$(FC) = 10{,}000 - 6{,}000 = 4{,}000\\\\ \\text{dollars}$$"
   },
   {
    "id": "econ-035",
@@ -9651,7 +9651,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Average cost = total cost / quantity = 48,000/3,000 = $16 per panel.",
-   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the average (unit) cost:\n\n$$AC = \\\\frac{TC}{Q}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nTC &= 48{,}000\\\\ \\\\text{dollars} \\\\\\\\\\\nQ &= 3{,}000\\\\ \\\\text{panels}\n\\\\end{aligned}$$\n\n$$(AC) = \\\\frac{48{,}000}{3{,}000}$$\n\n$$(AC) = 16\\\\ \\\\text{dollars/panel}$$"
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the average (unit) cost:\n\n$$AC = \\frac{TC}{Q}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nTC &= 48{,}000\\\\ \\text{dollars} \\\\\nQ &= 3{,}000\\\\ \\text{panels}\n\\end{aligned}$$\n\n$$(AC) = \\frac{48{,}000}{3{,}000}$$\n\n$$(AC) = 16\\\\ \\text{dollars/panel}$$"
   },
   {
    "id": "econ-036",
@@ -9668,7 +9668,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Sunk costs are unrecoverable regardless of the decision, so they are excluded from forward-looking analyses. Only incremental future costs and benefits matter.",
-   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nCosts are classified by their relevance to the decision:\n\n$$\\\\begin{aligned}\n\\\\text{Sunk cost} &\\\\rightarrow \\\\text{already incurred, unrecoverable} \\\\\\\\\\\n\\\\text{Decision rule} &\\\\rightarrow \\\\text{ignore sunk costs}\n\\\\end{aligned}$$\n\nThe $200,000 was spent whether or not the redesign proceeds, so it cannot change the ranking of alternatives. Only the incremental costs and benefits of the redesign itself enter the analysis."
+   "solution": "Refer to the Cost section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nCosts are classified by their relevance to the decision:\n\n$$\\begin{aligned}\n\\text{Sunk cost} &\\rightarrow \\text{already incurred, unrecoverable} \\\\\n\\text{Decision rule} &\\rightarrow \\text{ignore sunk costs}\n\\end{aligned}$$\n\nThe $200,000 was spent whether or not the redesign proceeds, so it cannot change the ranking of alternatives. Only the incremental costs and benefits of the redesign itself enter the analysis."
   },
   {
    "id": "econ-037",
@@ -9685,7 +9685,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
    "explanation": "EMV = 0.6(100,000) + 0.4(−20,000) = 60,000 − 8,000 = $52,000. Forgetting the minus sign on the loss gives $68,000.",
-   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the expected monetary value:\n\n$$EMV = \\\\sum p_i x_i$$\n\nList the outcomes:\n\n$$\\\\begin{aligned}\np_1 &= 0.60, \\\\quad x_1 = 100{,}000\\\\ \\\\text{dollars} \\\\\\\\\\\np_2 &= 0.40, \\\\quad x_2 = -20{,}000\\\\ \\\\text{dollars}\n\\\\end{aligned}$$\n\n$$(EMV) = (0.60)(100{,}000) + (0.40)(-20{,}000)$$\n\n$$(EMV) = 60{,}000 - 8{,}000$$\n\n$$(EMV) = 52{,}000\\\\ \\\\text{dollars}$$"
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the expected monetary value:\n\n$$EMV = \\sum p_i x_i$$\n\nList the outcomes:\n\n$$\\begin{aligned}\np_1 &= 0.60, \\quad x_1 = 100{,}000\\\\ \\text{dollars} \\\\\np_2 &= 0.40, \\quad x_2 = -20{,}000\\\\ \\text{dollars}\n\\end{aligned}$$\n\n$$(EMV) = (0.60)(100{,}000) + (0.40)(-20{,}000)$$\n\n$$(EMV) = 60{,}000 - 8{,}000$$\n\n$$(EMV) = 52{,}000\\\\ \\text{dollars}$$"
   },
   {
    "id": "econ-038",
@@ -9702,7 +9702,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
    "explanation": "EMV(B) = 0.5(120,000) + 0.5(−10,000) = $55,000 > $50,000, so B wins on expected value.",
-   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values and select the larger:\n\n$$(EMV_B) = (0.50)(120{,}000) + (0.50)(-10{,}000)$$\n\n$$(EMV_B) = 60{,}000 - 5{,}000 = 55{,}000\\\\ \\\\text{dollars}$$\n\n$$(EMV_A) = 50{,}000\\\\ \\\\text{dollars}$$\n\n$$(55{,}000) > (50{,}000) \\\\rightarrow \\\\text{select Alternative B}$$"
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values and select the larger:\n\n$$(EMV_B) = (0.50)(120{,}000) + (0.50)(-10{,}000)$$\n\n$$(EMV_B) = 60{,}000 - 5{,}000 = 55{,}000\\\\ \\text{dollars}$$\n\n$$(EMV_A) = 50{,}000\\\\ \\text{dollars}$$\n\n$$(55{,}000) > (50{,}000) \\rightarrow \\text{select Alternative B}$$"
   },
   {
    "id": "econ-039",
@@ -9719,7 +9719,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Risk is the spread of possible outcomes — two projects can share an expected value while carrying very different risk. Expected value alone does not capture it.",
-   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUnder uncertainty, a decision is characterized by two things:\n\n$$\\\\begin{aligned}\n\\\\text{Expected value} &\\\\rightarrow \\\\text{probability-weighted mean outcome} \\\\\\\\\\\n\\\\text{Risk} &\\\\rightarrow \\\\text{variability of outcomes about that mean}\n\\\\end{aligned}$$\n\nThis is why analyses pair expected value with risk measures (range, variance, or probability of loss) rather than reporting the mean alone."
+   "solution": "Refer to the Uncertainty section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUnder uncertainty, a decision is characterized by two things:\n\n$$\\begin{aligned}\n\\text{Expected value} &\\rightarrow \\text{probability-weighted mean outcome} \\\\\n\\text{Risk} &\\rightarrow \\text{variability of outcomes about that mean}\n\\end{aligned}$$\n\nThis is why analyses pair expected value with risk measures (range, variance, or probability of loss) rather than reporting the mean alone."
   },
   {
    "id": "materials-034",
@@ -9736,7 +9736,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "V = mass/(SG × density of water) = 350/(3.15 × 1000) = 0.111 m³. Dividing by SG alone forgets the water-density conversion.",
-   "solution": "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\nUltimately, we must solve for the volume of cement:\n\n$$V = \\\\frac{M}{(SG)(\\\\rho_w)}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nM &= 350\\\\ \\\\text{kg} \\\\\\\\\\\nSG &= 3.15 \\\\\\\\\\\n\\\\rho_w &= 1{,}000\\\\ \\\\text{kg/m}^3\n\\\\end{aligned}$$\n\n$$(V) = \\\\frac{350}{(3.15)(1{,}000)}$$\n\n$$(V) = \\\\frac{350}{3{,}150}$$\n\n$$(V) = 0.111\\\\ \\\\text{m}^3$$"
+   "solution": "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\nUltimately, we must solve for the volume of cement:\n\n$$V = \\frac{M}{(SG)(\\rho_w)}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nM &= 350\\\\ \\text{kg} \\\\\nSG &= 3.15 \\\\\n\\rho_w &= 1{,}000\\\\ \\text{kg/m}^3\n\\end{aligned}$$\n\n$$(V) = \\frac{350}{(3.15)(1{,}000)}$$\n\n$$(V) = \\frac{350}{3{,}150}$$\n\n$$(V) = 0.111\\\\ \\text{m}^3$$"
   },
   {
    "id": "materials-035",
@@ -9753,7 +9753,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "w/c = 160/400 = 0.40. Lower ratios give higher strength; the 2.50 answer inverts the fraction.",
-   "solution": "Refer to the water-cement ratio discussion in the Materials chapter of the FE Reference Handbook (v10.6, p. 126).\n\nUltimately, we must solve for the water-cement ratio, the single most important predictor of concrete strength:\n\n$$w/c = \\\\frac{M_{water}}{M_{cement}}$$\n\n$$(w/c) = \\\\frac{160}{400}$$\n\n$$(w/c) = 0.40$$"
+   "solution": "Refer to the water-cement ratio discussion in the Materials Science/Structure of Matter chapter of the FE Reference Handbook (v10.6, p. 126).\n\nUltimately, we must solve for the water-cement ratio, the single most important predictor of concrete strength:\n\n$$w/c = \\frac{M_{water}}{M_{cement}}$$\n\n$$(w/c) = \\frac{160}{400}$$\n\n$$(w/c) = 0.40$$"
   },
   {
    "id": "materials-036",
@@ -9770,7 +9770,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "VMA is the space available for binder plus air voids; too little VMA starves the mix of binder and the pavement ravels. Mixes are designed for 3–5% air voids, not zero.",
-   "solution": "VMA is not tabulated in the FE Reference Handbook (v10.6); use the definition stated here.\n\nAn asphalt mixture's volume is split three ways:\n\n$$VMA = (\\\\text{air voids}) + (\\\\text{effective binder volume})$$\n\nIf VMA is too small, there is no room for an adequate binder film around each aggregate particle, and the pavement loses durability and ravels under traffic. This is why specifications set minimum VMA values by nominal aggregate size."
+   "solution": "VMA is not tabulated in the FE Reference Handbook (v10.6); use the definition stated here.\n\nAn asphalt mixture's volume is split three ways:\n\n$$VMA = (\\text{air voids}) + (\\text{effective binder volume})$$\n\nIf VMA is too small, there is no room for an adequate binder film around each aggregate particle, and the pavement loses durability and ravels under traffic. This is why specifications set minimum VMA values by nominal aggregate size."
   },
   {
    "id": "water-042",
@@ -9787,7 +9787,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Storage = inflow volume − outflow volume = ½(80)(14,400) − 25(14,400) = 216,000 ft³ = 5.0 acre-ft.",
-   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the required storage as the difference between inflow and outflow volumes:\n\n$$S = V_{in} - V_{out}$$\n\nThe inflow hydrograph is triangular; the outflow is constant over the same base time.\n\n$$\\\\begin{aligned}\nV_{in} &= \\\\tfrac{1}{2}(80)(4 \\\\times 3{,}600) = 576{,}000\\\\ \\\\text{ft}^3 \\\\\\\\\\\nV_{out} &= (25)(4 \\\\times 3{,}600) = 360{,}000\\\\ \\\\text{ft}^3\n\\\\end{aligned}$$\n\n$$(S) = 576{,}000 - 360{,}000 = 216{,}000\\\\ \\\\text{ft}^3$$\n\n$$(S) = \\\\frac{216{,}000}{43{,}560} = 5.0\\\\ \\\\text{acre-ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nUltimately, we must solve for the required storage as the difference between inflow and outflow volumes:\n\n$$S = V_{in} - V_{out}$$\n\nThe inflow hydrograph is triangular; the outflow is constant over the same base time.\n\n$$\\begin{aligned}\nV_{in} &= \\tfrac{1}{2}(80)(4 \\times 3{,}600) = 576{,}000\\\\ \\text{ft}^3 \\\\\nV_{out} &= (25)(4 \\times 3{,}600) = 360{,}000\\\\ \\text{ft}^3\n\\end{aligned}$$\n\n$$(S) = 576{,}000 - 360{,}000 = 216{,}000\\\\ \\text{ft}^3$$\n\n$$(S) = \\frac{216{,}000}{43{,}560} = 5.0\\\\ \\text{acre-ft}$$"
   },
   {
    "id": "water-043",
@@ -9804,7 +9804,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Q = Cd·A√(2gh) = 0.60 × 0.196 × √(257.6) = 1.9 cfs. Using the diameter instead of the area is the common error.",
-   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the orifice outflow:\n\n$$Q = C_d A\\\\sqrt{2gh}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nd &= 6\\\\ \\\\text{in} = 0.5\\\\ \\\\text{ft} \\\\\\\\\\\nA &= \\\\frac{\\\\pi(0.5)^2}{4} = 0.1963\\\\ \\\\text{ft}^2 \\\\\\\\\\\nC_d &= 0.60, \\\\quad h = 4\\\\ \\\\text{ft}, \\\\quad g = 32.2\\\\ \\\\text{ft/s}^2\n\\\\end{aligned}$$\n\n$$(Q) = (0.60)(0.1963)\\\\sqrt{2(32.2)(4)}$$\n\n$$(Q) = (0.1178)(16.05)$$\n\n$$(Q) = 1.9\\\\ \\\\text{cfs}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nUltimately, we must solve for the orifice outflow:\n\n$$Q = C_d A\\sqrt{2gh}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nd &= 6\\\\ \\text{in} = 0.5\\\\ \\text{ft} \\\\\nA &= \\frac{\\pi(0.5)^2}{4} = 0.1963\\\\ \\text{ft}^2 \\\\\nC_d &= 0.60, \\quad h = 4\\\\ \\text{ft}, \\quad g = 32.2\\\\ \\text{ft/s}^2\n\\end{aligned}$$\n\n$$(Q) = (0.60)(0.1963)\\sqrt{2(32.2)(4)}$$\n\n$$(Q) = (0.1178)(16.05)$$\n\n$$(Q) = 1.9\\\\ \\text{cfs}$$"
   },
   {
    "id": "water-044",
@@ -9821,7 +9821,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "V = area × depth = 2(43,560)(1/12) = 7,260 ft³. The 87,120 answer forgets to convert inches to feet.",
-   "solution": "Refer to the Stormwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the water-quality capture volume:\n\n$$V = (\\\\text{area})(\\\\text{design depth})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nA &= 2\\\\ \\\\text{ac} = 87{,}120\\\\ \\\\text{ft}^2 \\\\\\\\\\\nd &= 1\\\\ \\\\text{in} = \\\\frac{1}{12}\\\\ \\\\text{ft}\n\\\\end{aligned}$$\n\n$$(V) = (87{,}120)\\\\left(\\\\frac{1}{12}\\\\right)$$\n\n$$(V) = 7{,}260\\\\ \\\\text{ft}^3$$"
+   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nUltimately, we must solve for the water-quality capture volume:\n\n$$V = (\\text{area})(\\text{design depth})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nA &= 2\\\\ \\text{ac} = 87{,}120\\\\ \\text{ft}^2 \\\\\nd &= 1\\\\ \\text{in} = \\frac{1}{12}\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(V) = (87{,}120)\\left(\\frac{1}{12}\\right)$$\n\n$$(V) = 7{,}260\\\\ \\text{ft}^3$$"
   },
   {
    "id": "water-045",
@@ -9838,7 +9838,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Flow-weighted average: (10×2 + 2×250)/12 = 43.3 mg/L. Averaging the concentrations without flow-weighting gives 126 mg/L — not among the choices for a reason.",
-   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the completely mixed concentration:\n\n$$C_{mix} = \\\\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ_s &= 10\\\\ \\\\text{cfs}, \\\\quad C_s = 2\\\\ \\\\text{mg/L} \\\\\\\\\\\nQ_w &= 2\\\\ \\\\text{cfs}, \\\\quad C_w = 250\\\\ \\\\text{mg/L}\n\\\\end{aligned}$$\n\n$$(C_{mix}) = \\\\frac{(10)(2) + (2)(250)}{10 + 2}$$\n\n$$(C_{mix}) = \\\\frac{520}{12}$$\n\n$$(C_{mix}) = 43.3\\\\ \\\\text{mg/L}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nUltimately, we must solve for the completely mixed concentration:\n\n$$C_{mix} = \\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ_s &= 10\\\\ \\text{cfs}, \\quad C_s = 2\\\\ \\text{mg/L} \\\\\nQ_w &= 2\\\\ \\text{cfs}, \\quad C_w = 250\\\\ \\text{mg/L}\n\\end{aligned}$$\n\n$$(C_{mix}) = \\frac{(10)(2) + (2)(250)}{10 + 2}$$\n\n$$(C_{mix}) = \\frac{520}{12}$$\n\n$$(C_{mix}) = 43.3\\\\ \\text{mg/L}$$"
   },
   {
    "id": "water-046",
@@ -9855,7 +9855,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "BOD5 = L(1 − e^−kt), so L = 200/(1 − e^−1.15) = 293 mg/L. BOD5 is always less than ultimate BOD — the 200 answer confuses the two.",
-   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the ultimate (carbonaceous) BOD. The handbook gives the BOD exerted at time t:\n\n$$BOD_t = L(1 - e^{-kt})$$\n\nSolving for L:\n\n$$(L) = \\\\frac{BOD_t}{1 - e^{-kt}}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nBOD_5 &= 200\\\\ \\\\text{mg/L} \\\\\\\\\\\nk &= 0.23\\\\ \\\\text{/day}, \\\\quad t = 5\\\\ \\\\text{days}\n\\\\end{aligned}$$\n\n$$(L) = \\\\frac{200}{1 - e^{-(0.23)(5)}}$$\n\n$$(L) = \\\\frac{200}{1 - 0.3166}$$\n\n$$(L) = \\\\frac{200}{0.6834} = 293\\\\ \\\\text{mg/L}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nUltimately, we must solve for the ultimate (carbonaceous) BOD. The handbook gives the BOD exerted at time t:\n\n$$BOD_t = L(1 - e^{-kt})$$\n\nSolving for L:\n\n$$(L) = \\frac{BOD_t}{1 - e^{-kt}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nBOD_5 &= 200\\\\ \\text{mg/L} \\\\\nk &= 0.23\\\\ \\text{/day}, \\quad t = 5\\\\ \\text{days}\n\\end{aligned}$$\n\n$$(L) = \\frac{200}{1 - e^{-(0.23)(5)}}$$\n\n$$(L) = \\frac{200}{1 - 0.3166}$$\n\n$$(L) = \\frac{200}{0.6834} = 293\\\\ \\text{mg/L}$$"
   },
   {
    "id": "water-047",
@@ -9872,7 +9872,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "The sag minimum is where the falling limb flattens: oxygen consumed by BOD exactly balances oxygen absorbed from the atmosphere. Downstream of that point, reaeration wins and DO recovers.",
-   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe Streeter-Phelps oxygen sag is governed by two competing rates:\n\n$$\\\\begin{aligned}\n\\\\text{Deoxygenation} &\\\\rightarrow \\\\text{oxygen consumed by BOD} \\\\\\\\\\\n\\\\text{Reaeration} &\\\\rightarrow \\\\text{oxygen absorbed from air}\n\\\\end{aligned}$$\n\nThe dissolved oxygen deficit grows while deoxygenation outpaces reaeration, peaks, then shrinks. At the minimum DO point the deficit stops growing:\n\n$$(\\\\text{deoxygenation rate}) = (\\\\text{reaeration rate}) \\\\text{ at the critical deficit}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nThe Streeter-Phelps oxygen sag is governed by two competing rates:\n\n$$\\begin{aligned}\n\\text{Deoxygenation} &\\rightarrow \\text{oxygen consumed by BOD} \\\\\n\\text{Reaeration} &\\rightarrow \\text{oxygen absorbed from air}\n\\end{aligned}$$\n\nThe dissolved oxygen deficit grows while deoxygenation outpaces reaeration, peaks, then shrinks. At the minimum DO point the deficit stops growing:\n\n$$(\\text{deoxygenation rate}) = (\\text{reaeration rate}) \\text{ at the critical deficit}$$"
   },
   {
    "id": "water-048",
@@ -9889,7 +9889,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Decibels add logarithmically: 10·log(10^8.5 + 10^7.9) = 86.0 dB. Adding them arithmetically (164 dB) ignores the log scale entirely.",
-   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must combine two sound levels on the logarithmic decibel scale:\n\n$$L_{total} = 10\\\\log_{10}(10^{L_1/10} + 10^{L_2/10})$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nL_1 &= 85\\\\ \\\\text{dB} \\\\\\\\\\\nL_2 &= 79\\\\ \\\\text{dB}\n\\\\end{aligned}$$\n\n$$(L_{total}) = 10\\\\log_{10}(10^{8.5} + 10^{7.9})$$\n\n$$(L_{total}) = 10\\\\log_{10}(3.162 \\\\times 10^8 + 7.943 \\\\times 10^7)$$\n\n$$(L_{total}) = 10(8.597) = 86.0\\\\ \\\\text{dB}$$"
+   "solution": "Refer to the Noise Pollution section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must combine two sound levels on the logarithmic decibel scale:\n\n$$L_{total} = 10\\log_{10}(10^{L_1/10} + 10^{L_2/10})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_1 &= 85\\\\ \\text{dB} \\\\\nL_2 &= 79\\\\ \\text{dB}\n\\end{aligned}$$\n\n$$(L_{total}) = 10\\log_{10}(10^{8.5} + 10^{7.9})$$\n\n$$(L_{total}) = 10\\log_{10}(3.162 \\times 10^8 + 7.943 \\times 10^7)$$\n\n$$(L_{total}) = 10(8.597) = 86.0\\\\ \\text{dB}$$"
   },
   {
    "id": "water-049",
@@ -9906,7 +9906,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The six criteria pollutants are PM, ozone, CO, NO2, SO2, and lead — PM2.5 has an annual NAAQS of 12 µg/m³. Methane, radon, and asbestos are regulated under other programs.",
-   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe Clean Air Act directs EPA to set NAAQS for criteria pollutants — widespread pollutants judged harmful to health and welfare:\n\n$$\\\\text{Criteria pollutants} = \\\\{PM, O_3, CO, NO_2, SO_2, Pb\\\\}$$\n\nFine particulate matter (PM2.5) is one of the six, with both annual and 24-hour standards. Methane is a greenhouse gas, radon is handled under indoor-air guidance, and asbestos under NESHAP — none carries a NAAQS."
+   "solution": "Refer to the Noise Pollution section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nThe Clean Air Act directs EPA to set NAAQS for criteria pollutants — widespread pollutants judged harmful to health and welfare:\n\n$$\\text{Criteria pollutants} = \\\\{PM, O_3, CO, NO_2, SO_2, Pb\\\\}$$\n\nFine particulate matter (PM2.5) is one of the six, with both annual and 24-hour standards. Methane is a greenhouse gas, radon is handled under indoor-air guidance, and asbestos under NESHAP — none carries a NAAQS."
   },
   {
    "id": "water-050",
@@ -9923,7 +9923,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The nitrate MCL is 10 mg/L as N (equivalent to 45 mg/L as NO3). It protects infants against methemoglobinemia (blue-baby syndrome).",
-   "solution": "Refer to the Testing and Standards section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUnder the Safe Drinking Water Act, EPA sets maximum contaminant levels for public water systems:\n\n$$(MCL_{nitrate}) = 10\\\\ \\\\text{mg/L as N}$$\n\nNitrate above this level risks methemoglobinemia in infants, so it is one of the primary standards every community system must meet. (Expressed as nitrate ion rather than nitrogen, the same limit is 45 mg/L.)"
+   "solution": "Refer to the Noise Pollution section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nUnder the Safe Drinking Water Act, EPA sets maximum contaminant levels for public water systems:\n\n$$(MCL_{nitrate}) = 10\\\\ \\text{mg/L as N}$$\n\nNitrate above this level risks methemoglobinemia in infants, so it is one of the primary standards every community system must meet. (Expressed as nitrate ion rather than nitrogen, the same limit is 45 mg/L.)"
   },
   {
    "id": "water-051",
@@ -9940,7 +9940,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "SOR = Q/A = 2,000,000/3,200 = 625 gpd/ft². Typical design values run 500–1,000 gpd/ft², so this basin is reasonably sized.",
-   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the surface overflow rate, the key sedimentation design parameter:\n\n$$SOR = \\\\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nQ &= 2\\\\ \\\\text{MGD} = 2{,}000{,}000\\\\ \\\\text{gpd} \\\\\\\\\\\nA &= (80)(40) = 3{,}200\\\\ \\\\text{ft}^2\n\\\\end{aligned}$$\n\n$$(SOR) = \\\\frac{2{,}000{,}000}{3{,}200}$$\n\n$$(SOR) = 625\\\\ \\\\text{gpd/ft}^2$$"
+   "solution": "Refer to the Clarifier section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the surface overflow rate, the key sedimentation design parameter:\n\n$$SOR = \\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ &= 2\\\\ \\text{MGD} = 2{,}000{,}000\\\\ \\text{gpd} \\\\\nA &= (80)(40) = 3{,}200\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(SOR) = \\frac{2{,}000{,}000}{3{,}200}$$\n\n$$(SOR) = 625\\\\ \\text{gpd/ft}^2$$"
   },
   {
    "id": "water-052",
@@ -9957,7 +9957,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Colloids carry like charges that keep them suspended; coagulant neutralizes the charge so particles agglomerate into settleable floc. Disinfection and softening are separate unit processes.",
-   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nConventional treatment follows a fixed sequence:\n\n$$\\\\text{Coagulation} \\\\rightarrow \\\\text{flocculation} \\\\rightarrow \\\\text{sedimentation} \\\\rightarrow \\\\text{filtration} \\\\rightarrow \\\\text{disinfection}$$\n\nColloidal turbidity particles repel each other electrostatically and will never settle on their own. Coagulant neutralizes that charge:\n\n$$(\\\\text{coagulant}) \\\\rightarrow \\\\text{charge neutralization} \\\\rightarrow \\\\text{floc formation} \\\\rightarrow \\\\text{settling}$$"
+   "solution": "Refer to the Clarifier section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nConventional treatment follows a fixed sequence:\n\n$$\\text{Coagulation} \\rightarrow \\text{flocculation} \\rightarrow \\text{sedimentation} \\rightarrow \\text{filtration} \\rightarrow \\text{disinfection}$$\n\nColloidal turbidity particles repel each other electrostatically and will never settle on their own. Coagulant neutralizes that charge:\n\n$$(\\text{coagulant}) \\rightarrow \\text{charge neutralization} \\rightarrow \\text{floc formation} \\rightarrow \\text{settling}$$"
   },
   {
    "id": "water-053",
@@ -9974,7 +9974,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "CT = concentration × time = 2 × 30 = 60 mg·min/L. Disinfection credit is awarded on this product, not on either factor alone.",
-   "solution": "Refer to the Water and Wastewater Treatment section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the disinfection CT, the regulatory basis for pathogen inactivation credit:\n\n$$CT = (C)(T)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nC &= 2\\\\ \\\\text{mg/L} \\\\\\\\\\\nT &= 30\\\\ \\\\text{min}\n\\\\end{aligned}$$\n\n$$(CT) = (2)(30)$$\n\n$$(CT) = 60\\\\ \\\\text{mg}\\\\cdot\\\\text{min/L}$$"
+   "solution": "Refer to the Clarifier section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute the disinfection CT, the regulatory basis for pathogen inactivation credit:\n\n$$CT = (C)(T)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nC &= 2\\\\ \\text{mg/L} \\\\\nT &= 30\\\\ \\text{min}\n\\end{aligned}$$\n\n$$(CT) = (2)(30)$$\n\n$$(CT) = 60\\\\ \\text{mg}\\cdot\\text{min/L}$$"
   },
   {
    "id": "geotech-042",
@@ -9991,7 +9991,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "τ = c + σ·tanφ = 200 + 1,000(0.466) = 666 psf. Dropping the cohesion term gives 466 psf.",
-   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must apply the Mohr-Coulomb failure criterion:\n\n$$\\\\tau = c + \\\\sigma\\\\tan\\\\phi$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\nc &= 200\\\\ \\\\text{psf} \\\\\\\\\\\n\\\\phi &= 25^{\\\\circ} \\\\\\\\\\\n\\\\sigma &= 1{,}000\\\\ \\\\text{psf}\n\\\\end{aligned}$$\n\n$$(\\\\tau) = 200 + (1{,}000)\\\\tan(25^{\\\\circ})$$\n\n$$(\\\\tau) = 200 + (1{,}000)(0.4663)$$\n\n$$(\\\\tau) = 666\\\\ \\\\text{psf}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nUltimately, we must apply the Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma\\tan\\phi$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nc &= 200\\\\ \\text{psf} \\\\\n\\phi &= 25^{\\circ} \\\\\n\\sigma &= 1{,}000\\\\ \\text{psf}\n\\end{aligned}$$\n\n$$(\\tau) = 200 + (1{,}000)\\tan(25^{\\circ})$$\n\n$$(\\tau) = 200 + (1{,}000)(0.4663)$$\n\n$$(\\tau) = 666\\\\ \\text{psf}$$"
   },
   {
    "id": "geotech-043",
@@ -10008,7 +10008,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "For φ = 0, the Mohr circle passes through the origin and qu, so su = c = qu/2 = 900 psf.",
-   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nIn an unconfined compression test the confining stress is zero and a saturated clay behaves with \\\\phi = 0. The Mohr circle then has diameter qu:\n\n$$s_u = c = \\\\frac{q_u}{2}$$\n\n$$(s_u) = \\\\frac{1{,}800}{2}$$\n\n$$(s_u) = 900\\\\ \\\\text{psf}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nIn an unconfined compression test the confining stress is zero and a saturated clay behaves with \\phi = 0. The Mohr circle then has diameter qu:\n\n$$s_u = c = \\frac{q_u}{2}$$\n\n$$(s_u) = \\frac{1{,}800}{2}$$\n\n$$(s_u) = 900\\\\ \\text{psf}$$"
   },
   {
    "id": "geotech-044",
@@ -10025,7 +10025,7 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "σ1 = σ3·tan²(45+φ/2) + 2c·tan(45+φ/2) = 100(3) + 40(1.732) = 370 kPa. The 300 kPa answer drops the cohesion term.",
-   "solution": "Refer to the Shear Strength section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\\\sigma_1 = \\\\sigma_3\\\\tan^2\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right) + 2c\\\\tan\\\\left(45 + \\\\frac{\\\\phi}{2}\\\\right)$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\sigma_3 &= 100\\\\ \\\\text{kPa} \\\\\\\\\\\nc &= 20\\\\ \\\\text{kPa}, \\\\quad \\\\phi = 30^{\\\\circ} \\\\\\\\\\\n\\\\tan(60^{\\\\circ}) &= 1.732\n\\\\end{aligned}$$\n\n$$(\\\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\\\sigma_1) = 300 + 69.3$$\n\n$$(\\\\sigma_1) = 370\\\\ \\\\text{kPa}$$",
+   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\sigma_1 = \\sigma_3\\tan^2\\left(45 + \\frac{\\phi}{2}\\right) + 2c\\tan\\left(45 + \\frac{\\phi}{2}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\sigma_3 &= 100\\\\ \\text{kPa} \\\\\nc &= 20\\\\ \\text{kPa}, \\quad \\phi = 30^{\\circ} \\\\\n\\tan(60^{\\circ}) &= 1.732\n\\end{aligned}$$\n\n$$(\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\sigma_1) = 300 + 69.3$$\n\n$$(\\sigma_1) = 370\\\\ \\text{kPa}$$",
    "videoUrl": "https://www.youtube.com/watch?v=RSo5eq6aOKI",
    "videoTitle": "Use of Mohr's Circle in Geotechnical Engineering | Shear Strength of Soil"
   },
@@ -10044,7 +10044,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "FS = tanφ/tanβ = 0.577/0.364 = 1.59. Inverting the ratio gives 0.63 — always check that FS > 1 for a standing slope.",
-   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the factor of safety of a dry infinite slope in cohesionless soil:\n\n$$FS = \\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\phi &= 30^{\\\\circ} \\\\\\\\\\\n\\\\beta &= 20^{\\\\circ}\n\\\\end{aligned}$$\n\n$$(FS) = \\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})}$$\n\n$$(FS) = \\\\frac{0.5774}{0.3640}$$\n\n$$(FS) = 1.59$$"
+   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nUltimately, we must solve for the factor of safety of a dry infinite slope in cohesionless soil:\n\n$$FS = \\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\phi &= 30^{\\circ} \\\\\n\\beta &= 20^{\\circ}\n\\end{aligned}$$\n\n$$(FS) = \\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})}$$\n\n$$(FS) = \\frac{0.5774}{0.3640}$$\n\n$$(FS) = 1.59$$"
   },
   {
    "id": "geotech-046",
@@ -10061,7 +10061,7 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "Seepage cuts FS by γ'/γ_sat: (62.6/125)(1.59) = 0.79. The slope that was stable dry now fails — the classic seepage lesson.",
-   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\\\left(\\\\frac{\\\\gamma'}{\\\\gamma_{sat}}\\\\right)\\\\frac{\\\\tan\\\\phi}{\\\\tan\\\\beta}$$\n\nList the known parameters:\n\n$$\\\\begin{aligned}\n\\\\gamma_{sat} &= 125\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\gamma' &= 125 - 62.4 = 62.6\\\\ \\\\text{pcf} \\\\\\\\\\\n\\\\frac{\\\\tan(30^{\\\\circ})}{\\\\tan(20^{\\\\circ})} &= 1.586\n\\\\end{aligned}$$\n\n$$(FS) = \\\\left(\\\\frac{62.6}{125}\\\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$",
+   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\left(\\frac{\\gamma'}{\\gamma_{sat}}\\right)\\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\gamma_{sat} &= 125\\\\ \\text{pcf} \\\\\n\\gamma' &= 125 - 62.4 = 62.6\\\\ \\text{pcf} \\\\\n\\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})} &= 1.586\n\\end{aligned}$$\n\n$$(FS) = \\left(\\frac{62.6}{125}\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$",
    "videoUrl": "https://www.youtube.com/watch?v=BJYcNLJX8-s",
    "videoTitle": "Numerical 4 on Infinite Slopes | Stability of Slopes | Geotechnical Engineering - GATE"
   },
@@ -10080,7 +10080,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "Fellenius slices a circular slip mass and neglects interslice forces — simple and conservative. Bishop's simplified method keeps the circular surface but satisfies moment equilibrium including interslice normals.",
-   "solution": "Refer to the Slope Stability section in the Geotechnical chapter of the FE Reference Handbook (v10.6).\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\\\begin{aligned}\n\\\\text{Ordinary (Fellenius)} &\\\\rightarrow \\\\text{circular surface, interslice forces neglected} \\\\\\\\\\\n\\\\text{Bishop simplified} &\\\\rightarrow \\\\text{circular surface, moment equilibrium with interslice normals}\n\\\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
+   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\begin{aligned}\n\\text{Ordinary (Fellenius)} &\\rightarrow \\text{circular surface, interslice forces neglected} \\\\\n\\text{Bishop simplified} &\\rightarrow \\text{circular surface, moment equilibrium with interslice normals}\n\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
   }
  ]
 }

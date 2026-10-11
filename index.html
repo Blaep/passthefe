@@ -170,12 +170,42 @@
     <section id="view-formulas" class="view hidden">
       <h2>Formula Library</h2>
       <p class="lede">Key FE Reference Handbook formulas, searchable and filterable by topic.</p>
+      <div class="chip-row" role="tablist" aria-label="Formula view mode">
+        <button id="formula-mode-library" class="chip selected">Library</button>
+        <button id="formula-mode-drill" class="chip">Drill</button>
+      </div>
+      <div id="formula-library">
       <div class="form-row">
         <label for="formula-search">Search</label>
         <input id="formula-search" type="search" placeholder="e.g. manning, bernoulli, stress">
       </div>
       <div id="formula-filters" class="chip-row"></div>
       <div id="formula-list"></div>
+      </div>
+      <div id="formula-drill" class="hidden">
+        <p class="lede">Recall each handbook equation from memory, then reveal it. Missed ones come back at the end of the round.</p>
+        <div class="form-row">
+          <label for="eqdrill-chapter">Chapter</label>
+          <select id="eqdrill-chapter"></select>
+          <button id="eqdrill-start" class="btn primary">Start drill</button>
+        </div>
+        <p id="eqdrill-progress" class="muted"></p>
+        <div id="eqdrill-card" class="card hidden" tabindex="0" aria-live="polite">
+          <p id="eqdrill-crumb" class="crumb"></p>
+          <p id="eqdrill-prompt" class="drill-prompt"></p>
+          <div id="eqdrill-answer" class="hidden">
+            <div id="eqdrill-equation" class="drill-equation"></div>
+            <div id="eqdrill-symbols" class="drill-symbols"></div>
+            <p id="eqdrill-page" class="muted"></p>
+          </div>
+        </div>
+        <div id="eqdrill-controls" class="form-row hidden">
+          <button id="eqdrill-reveal" class="btn">Reveal equation</button>
+          <button id="eqdrill-know" class="btn primary hidden">I knew it</button>
+          <button id="eqdrill-missed" class="btn hidden">Missed it</button>
+        </div>
+        <div id="eqdrill-done" class="card hidden"></div>
+      </div>
       <p class="disclaimer">Reference only — confirm against the current NCEES FE Reference Handbook before exam day.</p>
     </section>
 

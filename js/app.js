@@ -3798,6 +3798,12 @@
         search.dataset.bound = "1";
         search.addEventListener("input", renderFormulas);
       }
+      var modeLib = document.getElementById("formula-mode-library");
+      if (modeLib && !modeLib.dataset.bound) {
+        modeLib.dataset.bound = "1";
+        modeLib.addEventListener("click", function () { setFormulaMode("library"); });
+        document.getElementById("formula-mode-drill").addEventListener("click", function () { setFormulaMode("drill"); });
+      }
       renderFormulas();
     });
   }
@@ -4085,6 +4091,135 @@
         }
         return match;
       });
+  }
+
+  // ---- equation recall drill (formulas view) ----------------------------------
+  // Prompt-first recall over data/equations.json: the card shows chapter,
+  // section and the equation's title; the user writes it from memory, reveals,
+  // then self-grades. Missed cards are re-queued once at the end of the round.
+  // Ratings persist in localStorage (eqDrillRatings: id -> {k, m}).
+  var eqDrillDeck = [], eqDrillIndex = 0, eqDrillRevealed = false;
+  var eqDrillChapter = "", eqDrillKnew = 0, eqDrillMissed = 0, eqDrillRequeued = {};
+  var eqDrillRatings = store.get("eqDrillRatings", {});
+
+  function prettyChapter(slug) {
+    return String(slug).split("-").map(function (w) {
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(" ");
+  }
+
+  function setFormulaMode(mode) {
+    var drill = mode === "drill";
+    document.getElementById("formula-library").classList.toggle("hidden", drill);
+    document.getElementById("formula-drill").classList.toggle("hidden", !drill);
+    document.getElementById("formula-mode-library").classList.toggle("selected", !drill);
+    document.getElementById("formula-mode-drill").classList.toggle("selected", drill);
+    if (drill) initEqDrill();
+  }
+
+  function initEqDrill() {
+    loadEquations(function (eqs) {
+      var sel = document.getElementById("eqdrill-chapter");
+      if (sel && !sel.dataset.bound) {
+        sel.dataset.bound = "1";
+        var chapters = [];
+        eqs.forEach(function (e) { if (chapters.indexOf(e.chapter) < 0) chapters.push(e.chapter); });
+        chapters.sort();
+        var opt0 = document.createElement("option");
+        opt0.value = ""; opt0.textContent = "All chapters (" + eqs.length + ")";
+        sel.appendChild(opt0);
+        chapters.forEach(function (c) {
+          var n = eqs.filter(function (e) { return e.chapter === c; }).length;
+          var o = document.createElement("option");
+          o.value = c; o.textContent = prettyChapter(c) + " (" + n + ")";
+          sel.appendChild(o);
+        });
+        sel.addEventListener("change", function () { eqDrillChapter = sel.value; });
+        document.getElementById("eqdrill-start").addEventListener("click", startEqDrill);
+        document.getElementById("eqdrill-reveal").addEventListener("click", revealEqCard);
+        document.getElementById("eqdrill-know").addEventListener("click", function () { rateEqCard(true); });
+        document.getElementById("eqdrill-missed").addEventListener("click", function () { rateEqCard(false); });
+        var card = document.getElementById("eqdrill-card");
+        card.addEventListener("click", function () { if (!eqDrillRevealed) revealEqCard(); });
+        card.addEventListener("keydown", function (e) {
+          if ((e.key === "Enter" || e.key === " ") && !eqDrillRevealed) { e.preventDefault(); revealEqCard(); }
+        });
+      }
+      if (!eqs.length) {
+        document.getElementById("eqdrill-progress").textContent = "Equation bank failed to load.";
+      }
+    });
+  }
+
+  function startEqDrill() {
+    loadEquations(function (eqs) {
+      eqDrillDeck = eqs.filter(function (e) { return !eqDrillChapter || e.chapter === eqDrillChapter; });
+      shuffle(eqDrillDeck);
+      eqDrillIndex = 0; eqDrillKnew = 0; eqDrillMissed = 0; eqDrillRequeued = {};
+      document.getElementById("eqdrill-done").classList.add("hidden");
+      document.getElementById("eqdrill-card").classList.remove("hidden");
+      document.getElementById("eqdrill-controls").classList.remove("hidden");
+      renderEqCard();
+    });
+  }
+
+  function renderEqCard() {
+    var e = eqDrillDeck[eqDrillIndex];
+    if (!e) { finishEqDrill(); return; }
+    eqDrillRevealed = false;
+    document.getElementById("eqdrill-crumb").textContent = prettyChapter(e.chapter) + " \u2192 " + e.section;
+    document.getElementById("eqdrill-prompt").textContent = "Write the equation for: " + e.title;
+    document.getElementById("eqdrill-answer").classList.add("hidden");
+    document.getElementById("eqdrill-reveal").classList.remove("hidden");
+    document.getElementById("eqdrill-know").classList.add("hidden");
+    document.getElementById("eqdrill-missed").classList.add("hidden");
+    document.getElementById("eqdrill-progress").textContent =
+      "Card " + (eqDrillIndex + 1) + " of " + eqDrillDeck.length;
+  }
+
+  function revealEqCard() {
+    var e = eqDrillDeck[eqDrillIndex];
+    if (!e || eqDrillRevealed) return;
+    eqDrillRevealed = true;
+    document.getElementById("eqdrill-equation").innerHTML = displayMath(e.equation || "");
+    var sym = e.symbols || {}, keys = Object.keys(sym);
+    document.getElementById("eqdrill-symbols").innerHTML = keys.length
+      ? "<ul>" + keys.map(function (k) {
+          return "<li>" + displayMath("\\(" + k + "\\)") + " \u2014 " + escapeHtml(sym[k]) + "</li>";
+        }).join("") + "</ul>"
+      : "";
+    document.getElementById("eqdrill-page").textContent = e.page ? "FE Handbook p. " + e.page : "";
+    document.getElementById("eqdrill-answer").classList.remove("hidden");
+    document.getElementById("eqdrill-reveal").classList.add("hidden");
+    document.getElementById("eqdrill-know").classList.remove("hidden");
+    document.getElementById("eqdrill-missed").classList.remove("hidden");
+  }
+
+  function rateEqCard(knew) {
+    var e = eqDrillDeck[eqDrillIndex];
+    if (!e || !eqDrillRevealed) return;
+    var r = eqDrillRatings[e.id] || (eqDrillRatings[e.id] = { k: 0, m: 0 });
+    if (knew) { r.k++; eqDrillKnew++; }
+    else {
+      r.m++; eqDrillMissed++;
+      if (!eqDrillRequeued[e.id]) { eqDrillRequeued[e.id] = 1; eqDrillDeck.push(e); }
+    }
+    store.set("eqDrillRatings", eqDrillRatings);
+    eqDrillIndex++;
+    renderEqCard();
+  }
+
+  function finishEqDrill() {
+    document.getElementById("eqdrill-card").classList.add("hidden");
+    document.getElementById("eqdrill-controls").classList.add("hidden");
+    document.getElementById("eqdrill-progress").textContent = "";
+    var done = document.getElementById("eqdrill-done");
+    done.classList.remove("hidden");
+    done.innerHTML =
+      "<h3>Round complete</h3>" +
+      "<p>" + eqDrillKnew + " knew &middot; " + eqDrillMissed + " missed</p>" +
+      "<button id=\"eqdrill-again\" class=\"btn primary\">Drill again</button>";
+    document.getElementById("eqdrill-again").addEventListener("click", startEqDrill);
   }
 
   // ---- reference (handbook equations) ------------------------------------
