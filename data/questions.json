@@ -12,7 +12,7 @@
    "estimatedTimeSeconds": 60,
    "explanation": "Power rule: integral of x^n dx = x^(n+1)/(n+1). Always evaluate upper minus lower bound.",
    "id": "math-001",
-   "question": "Evaluate the definite integral from 0 to 3 of 2x dx.",
+   "question": "Evaluate \\(\\int_0^3 2x\\,dx\\).",
    "solution": "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^3 2x\\,dx\\). The power rule gives the antiderivative:\n\n$$\\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to evaluate the definite integral:\n\n$$\\begin{aligned}\nF(x) &= x^2 \\\\\na &= 0 \\\\\nb &= 3\n\\end{aligned}$$\n\n$$\\left(\\int_0^3 2x\\,dx\\right) = F(3) - F(0) \\rightarrow (3)^2 - (0)^2 = 9 - 0$$\n\n$$\\int_0^3 2x\\,dx = 9$$",
    "subtopic": "Definite integrals",
    "topic": "Mathematics",
@@ -6484,7 +6484,7 @@
    "estimatedTimeSeconds": 120,
    "explanation": "Simpson's rule fits a parabola through each pair of subintervals, so it is exact for polynomials up to degree 3. With n = 2 there is a single parabola through the three points.",
    "id": "math-025",
-   "question": "Use Simpson's rule with n = 2 to approximate the integral of (1/x) dx from x = 1 to x = 3. What is the approximate value?",
+   "question": "Use Simpson's rule with \\(n = 2\\) to approximate \\(\\int_1^3 \\frac{1}{x}\\,dx\\). What is the approximate value?",
    "solution": "Refer to the Simpson's Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(I\\). For \\(n = 2\\), the handbook prints:\n\n$$\\int_{a}^{b} f(x) \\, dx \\approx \\frac{h}{3}\\,[f(x_0) + 4f(x_1) + f(x_2)]$$\n\nCompute the step size:\n\n$$h = \\frac{b - a}{n} = \\frac{3 - 1}{2} = 1$$\n\nEvaluate the function at the three nodes:\n\n$$\\begin{aligned}\nf(x_0) &= f(1) = \\frac{1}{1} = 1 \\\\\nf(x_1) &= f(2) = \\frac{1}{2} = 0.5 \\\\\nf(x_2) &= f(3) = \\frac{1}{3} \\approx 0.3333\n\\end{aligned}$$\n\nApply Simpson's rule:\n\n$$(I) \\approx \\frac{1}{3}\\,[1 + 4(0.5) + 0.3333]$$\n\n$$(I) \\approx \\frac{1}{3}(3.3333) \\approx 1.111$$",
    "subtopic": "Simpson's rule",
    "topic": "Mathematics"
@@ -7564,7 +7564,7 @@
    "estimatedTimeSeconds": 120,
    "explanation": "The trapezoidal rule averages the endpoint heights of each subinterval. For a convex-up function it overestimates -- the exact value 2.67 is the trap answer here, not the trapezoidal estimate.",
    "id": "math-028",
-   "question": "Use the trapezoidal rule with n = 2 subintervals to approximate the integral from 0 to 2 of x^2 dx.",
+   "question": "Use the trapezoidal rule with \\(n = 2\\) subintervals to approximate \\(\\int_0^2 x^2\\,dx\\).",
    "solution": "Refer to the Trapezoidal Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the trapezoidal estimate. The handbook prints, with \\(h = (b-a)/n\\):\n\n$$\\int_a^b f(x)\\,dx \\approx \\frac{h}{2}[f(x_0) + 2f(x_1) + f(x_2)]$$\n\n$$(h) = \\frac{2 - 0}{2} = 1$$\n\n$$\\approx \\frac{1}{2}[(0)^2 + 2(1)^2 + (2)^2] = \\frac{1}{2}(6) = 3.00$$",
    "subtopic": "Trapezoidal rule",
    "topic": "Mathematics"
