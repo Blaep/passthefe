@@ -1217,6 +1217,7 @@
       '<p class="explain-head">Explanation</p>' +
       '<div class="explain-body">' + linkifyCitations(renderRich(q.solution)) + "</div>" +
       (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
+      (q.tiTip ? '<div class="ti-callout"><strong>TI-36X Pro:</strong> ' + escapeHtml(q.tiTip) + "</div>" : "") +
       videoLinkHtml(q);
     sol.style.display = "block";
     document.getElementById("quiz-next").style.display = "";
@@ -2650,6 +2651,7 @@
     v.baseId = v.baseId || gen.baseId || "random";
     v.id = v.baseId + ":" + vk;
     v.topic = v.topic || gen.topic || "Mathematics";
+    if (gen.tiTip) v.tiTip = gen.tiTip;
     v._gen = gen;
     return v;
   }

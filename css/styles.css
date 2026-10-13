@@ -114,6 +114,12 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .explain-head { font-weight: 800; font-size: 1.05rem; margin: 14px 0 4px; }
 .explain-body p { margin: 0 0 10px; }
 .explain-body p:last-child { margin-bottom: 0; }
+.ti-callout {
+  margin: 12px 0 4px; padding: 10px 12px; border-radius: 10px;
+  background: #f0f4ff; border: 1px solid #d4defc;
+  font-size: 0.92rem; color: var(--text);
+}
+.ti-callout strong { color: var(--primary); }
 .video-link {
   display: inline-flex; align-items: center; gap: 7px;
   margin-top: 12px; padding: 7px 14px;

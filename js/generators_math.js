@@ -77,6 +77,7 @@
       explanation: meta.explanation,
       videoUrl: meta.videoUrl,
       videoTitle: meta.videoTitle,
+      tiTip: meta.tiTip,
       generate: function () {
         for (var attempt = 0; attempt < 300; attempt++) {
           var r = roll();
@@ -124,6 +125,7 @@
   // Definite integral of kx from 0 to b. Answer k*b^2/2.
   var G001 = buildGenerator({
     baseId: "math-001", subtopic: "Definite integrals", difficulty: "easy",
+    tiTip: "Yes — punch it straight into the numeric integral template.",
     estimatedTimeSeconds: 60,
     explanation: "Power rule: integral of x^n dx = x^(n+1)/(n+1). Always evaluate upper minus lower bound.",
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
@@ -158,6 +160,7 @@
   // Derivative of a*x^n. Answer (a*n) x^(n-1).
   var G002 = buildGenerator({
     baseId: "math-002", subtopic: "Derivatives", difficulty: "easy",
+    tiTip: "Not symbolically — but check your answer with the numeric derivative: d/dx of the function at x = 1 should match your result.",
     estimatedTimeSeconds: 60,
     explanation: "Power rule: bring the exponent down, subtract one. It's the inverse of the power rule for integration — know both directions.",
     videoUrl: "https://www.youtube.com/watch?v=9I6a6qYFS8U",
@@ -192,6 +195,7 @@
   // System a*x + y = c, b*x - y = d with integer solution (x, y).
   var G003 = buildGenerator({
     baseId: "math-003", subtopic: "Systems of linear equations", difficulty: "easy",
+    tiTip: "Yes — system solver: 2nd → sys-solv (above tan), then enter the coefficients.",
     estimatedTimeSeconds: 60,
     explanation: "Systems of two equations appear across statics, fluids, and circuits. The common pitfall is solving for only one variable and forgetting to back-substitute for the other.",
     videoUrl: "https://www.youtube.com/watch?v=8CuOxEAn9hY",
@@ -234,6 +238,7 @@
   // Determinant of an upper-triangular 3x3 = product of the diagonal.
   var G004 = buildGenerator({
     baseId: "math-004", subtopic: "Determinants", difficulty: "medium",
+    tiTip: "Yes — matrix menu: enter the matrix, then take its determinant.",
     estimatedTimeSeconds: 120,
     explanation: "Recognizing special matrix forms saves time on the FE. The determinant of any triangular matrix is just the product of its diagonal - a full cofactor expansion is wasted work here.",
     videoUrl: null,
@@ -267,6 +272,7 @@
   // Partial derivative of a*x^2*y + b*x*y^2 wrt x at (x0, y0).
   var G005 = buildGenerator({
     baseId: "math-005", subtopic: "Partial derivatives", difficulty: "medium",
+    tiTip: "No symbolic partials — do it by hand. Optional check: hold y fixed at a number and use the numeric d/dx on the resulting single-variable function.",
     estimatedTimeSeconds: 120,
     explanation: "Partial derivatives underpin multivariable optimization and sensitivity analysis. The typical slip is accidentally differentiating with respect to the wrong variable or forgetting to treat the other variable as a constant.",
     videoUrl: "https://www.youtube.com/watch?v=9I6a6qYFS8U",
@@ -302,6 +308,7 @@
   // dy/dx = k*x, y(0) = y0  =>  y(x1) = k*x1^2/2 + y0.
   var G006 = buildGenerator({
     baseId: "math-006", subtopic: "First-order differential equations", difficulty: "medium",
+    tiTip: "The solve is by hand (integrate), but verify with the numeric integral: the integral of the right-hand side from 0 to x should equal y(x) − y(0).",
     estimatedTimeSeconds: 90,
     explanation: "Separable ODEs model simple rate processes (e.g., a velocity that grows linearly with time). The common mistake is dropping the constant of integration or failing to use the initial condition to find it.",
     videoUrl: "https://www.youtube.com/watch?v=9dy9flZC8q4",
@@ -336,6 +343,7 @@
   // Dot product of two integer 3-vectors.
   var G007 = buildGenerator({
     baseId: "math-007", subtopic: "Vectors and dot product", difficulty: "easy",
+    tiTip: "Yes — vector menu: enter both vectors, dot product.",
     estimatedTimeSeconds: 60,
     explanation: "Dot products test orthogonality and compute work (force dot displacement) in statics and dynamics. Watch the signs - a single missed negative flips the answer, which is why -2 and 10 are tempting traps.",
     videoUrl: "https://www.youtube.com/watch?v=VzX8KJKFhlM",
@@ -370,6 +378,7 @@
   // a Pythagorean triple so the characteristic polynomial factors cleanly.
   var G008 = buildGenerator({
     baseId: "math-008", subtopic: "Eigenvalues", difficulty: "hard",
+    tiTip: "No eigenvalue key — write det(A − λI) = 0 by hand, then run the quadratic through poly-solv (2nd → cos); the roots are the eigenvalues.",
     estimatedTimeSeconds: 180,
     explanation: "Eigenvalues show up in vibration analysis, stability, and principal stresses. A frequent error is forgetting to subtract the off-diagonal product (ad - bc term), which changes the characteristic equation entirely.",
     videoUrl: null,
@@ -407,6 +416,7 @@
   // Slope of the tangent to y = x^3 - k*x at x0: 3*x0^2 - k.
   var G009 = buildGenerator({
     baseId: "math-009", subtopic: "Tangent line slope", difficulty: "easy",
+    tiTip: "Yes — numeric derivative d/dx of the function at the given x.",
     estimatedTimeSeconds: 60,
     explanation: "The slope is the derivative evaluated at the point — 12 comes from differentiating only the x³ term and forgetting the −4x term.",
     videoUrl: "https://www.youtube.com/watch?v=9I6a6qYFS8U",
@@ -439,6 +449,7 @@
   // U-substitution: integral_0^1 k*x^(n-1) e^(x^n) dx = (k/n)(e - 1), k = n*j.
   var G010 = buildGenerator({
     baseId: "math-010", subtopic: "U-substitution integration", difficulty: "medium",
+    tiTip: "Yes — numeric integral template, straight in.",
     estimatedTimeSeconds: 120,
     explanation: "With u-substitution the bounds map 0→0 and 1→1 — e comes from forgetting to evaluate the lower bound, and 1 − e from swapping the bounds.",
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
@@ -474,6 +485,7 @@
   // Cross product of two integer 3-vectors with nonzero components.
   var G011 = buildGenerator({
     baseId: "math-011", subtopic: "Cross product", difficulty: "medium",
+    tiTip: "Yes — vector menu: cross product.",
     estimatedTimeSeconds: 120,
     explanation: "Cross products are anti-commutative — (−5, 7, −3) is b × a, the most common trap, and the j-component carries a minus sign that is easy to drop.",
     videoUrl: null,
@@ -516,6 +528,7 @@
   // y'' + k^2 y = 0, y(0) = 0, y'(0) = k*j  =>  y(pi/2k) = j.
   var G012 = buildGenerator({
     baseId: "math-012", subtopic: "Second-order ODE", difficulty: "hard",
+    tiTip: "The ODE setup is by hand, but get the characteristic roots fast: poly-solv (2nd → cos) on the characteristic equation.",
     estimatedTimeSeconds: 150,
     explanation: "The argument is 3x, not x — evaluating sin(π/6) = 1/2 instead of sin(3·π/6) is the designed trap.",
     videoUrl: "https://www.youtube.com/watch?v=9dy9flZC8q4",
@@ -548,6 +561,7 @@
   // Area between y = x^2 and y = k*x: intersections 0 and k, area k^3/6.
   var G013 = buildGenerator({
     baseId: "math-013", subtopic: "Area between curves", difficulty: "medium",
+    tiTip: "Half yes — find the intersection points with num-solv (2nd → sin), then take the numeric integral of (top − bottom) between them.",
     estimatedTimeSeconds: 120,
     explanation: "Always integrate upper curve minus lower curve — integrating x² − 4x and dropping the sign, or doubling the region, produces the 64/3 and 32 traps.",
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
@@ -581,6 +595,7 @@
   // Complex multiplication (a + b*i)(c - d*i).
   var G014 = buildGenerator({
     baseId: "math-014", subtopic: "Complex multiplication", difficulty: "medium",
+    tiTip: "Yes — complex mode, punch it straight in.",
     estimatedTimeSeconds: 90,
     explanation: "The entire problem turns on i² = −1 — forgetting it gives −5 − 2i, the most common wrong answer on complex-number questions.",
     videoUrl: "https://www.youtube.com/watch?v=NigazjhxQvI",
@@ -621,6 +636,7 @@
   // Maclaurin sin: sin(x) ~= x - x^3/6 at x = k/10.
   var G015 = buildGenerator({
     baseId: "math-015", subtopic: "Taylor and Maclaurin series", difficulty: "medium",
+    tiTip: "The series is by hand — but check your approximation by evaluating the function directly and comparing.",
     estimatedTimeSeconds: 150,
     explanation: "The Maclaurin series for sine alternates signs — adding the x³/6 term instead of subtracting it gives the 0.20133 trap.",
     videoUrl: "https://www.youtube.com/watch?v=cjPoEZ0I5wQ",
@@ -655,6 +671,7 @@
   // Implicit differentiation of x^2 + y^2 = r^2 at a Pythagorean point: -a/b.
   var G016 = buildGenerator({
     baseId: "math-016", subtopic: "Implicit differentiation", difficulty: "easy",
+    tiTip: "By hand — implicit differentiation first, then it is plain arithmetic at the point.",
     estimatedTimeSeconds: 60,
     explanation: "Implicit differentiation gives dy/dx = −x/y; the 3/4 trap drops the negative sign from moving the 2x term across the equals sign.",
     videoUrl: "https://www.youtube.com/watch?v=9I6a6qYFS8U",
@@ -687,6 +704,7 @@
   // Gradient of f = a*x^2*y + b*x*y^2 at (x0, y0).
   var G017 = buildGenerator({
     baseId: "math-017", subtopic: "Gradient of a scalar field", difficulty: "medium",
+    tiTip: "Partials by hand; optionally verify one component numerically (hold the other variable fixed, numeric d/dx).",
     estimatedTimeSeconds: 120,
     explanation: "Each component needs both product-rule terms — the (4, 4) trap differentiates only one term of each product.",
     videoUrl: "https://www.youtube.com/watch?v=9I6a6qYFS8U",
@@ -723,6 +741,7 @@
   // Integral_0^{pi/2} sin(k*x) dx = (1 - cos(k*pi/2))/k.
   var G018 = buildGenerator({
     baseId: "math-018", subtopic: "Definite integrals (trigonometric)", difficulty: "easy",
+    tiTip: "Yes — numeric integral template. Check you are in radian mode first.",
     estimatedTimeSeconds: 75,
     explanation: "The u-substitution brings a 1/k factor from du = k\u00b7dx — dropping it is the unscaled trap; also watch the substituted bounds and the +cos(0) term.",
     videoUrl: "https://www.youtube.com/watch?v=YfROMP7UYjg",
@@ -756,6 +775,7 @@
   // (1,2) entry of the inverse of [[a,b],[c,d]]: -b/(ad-bc).
   var G019 = buildGenerator({
     baseId: "math-019", subtopic: "Matrix inverse", difficulty: "medium",
+    tiTip: "Yes — matrix menu: invert the matrix, read the entry.",
     estimatedTimeSeconds: 120,
     explanation: "The adjugate swaps a and d and negates b and c, then everything is divided by the determinant — the −3 trap skips that final division.",
     videoUrl: null,
@@ -795,6 +815,7 @@
   // One Newton iteration for f(x) = x^3 - 2x - c from x0 = 2.
   var G021 = buildGenerator({
     baseId: "math-021", subtopic: "Newton's method for root extraction", difficulty: "medium",
+    tiTip: "The iteration is arithmetic by hand — use the numeric d/dx to get f′(x₀) if you do not want to differentiate.",
     estimatedTimeSeconds: 120,
     explanation: "Newton's method improves each guess by subtracting f/f'. Watch the sign: a negative f value moves the guess upward.",
     videoUrl: null,
@@ -831,6 +852,7 @@
   // Integration by parts: integral_0^b x*e^x dx = (b-1)*e^b + 1.
   var G022 = buildGenerator({
     baseId: "math-022", subtopic: "Integration by parts", difficulty: "easy",
+    tiTip: "Yes — numeric integral template, straight in.",
     estimatedTimeSeconds: 90,
     explanation: "Integration by parts splits the integrand into u (the part that simplifies when differentiated) and dv (the part that is easy to integrate).",
     videoUrl: null,
@@ -871,6 +893,7 @@
   // x-centroid of the area under y = x^2 on [0, b]: 3b/4.
   var G023 = buildGenerator({
     baseId: "math-023", subtopic: "Centroid of area", difficulty: "hard",
+    tiTip: "Setup by hand; use the numeric integral for the area and first-moment pieces.",
     estimatedTimeSeconds: 150,
     explanation: "The x-centroid weights each vertical strip by its distance x from the y-axis; the taller strips on the right pull the centroid right of the midpoint.",
     videoUrl: null,
@@ -908,6 +931,7 @@
   // Divergence of F = (a*x^2*y, b*y*z^2, c*x*z) at (x0, y0, z0).
   var G024 = buildGenerator({
     baseId: "math-024", subtopic: "Divergence of a vector field", difficulty: "medium",
+    tiTip: "Partials by hand, then arithmetic at the point — or numerically check each partial there.",
     estimatedTimeSeconds: 120,
     explanation: "Divergence measures the net outflow of a vector field at a point. It is the sum of three partial derivatives, each taken with respect to its own coordinate -- a common slip is differentiating a component with respect to the wrong variable.",
     videoUrl: null,
@@ -945,6 +969,7 @@
   // Simpson's rule, n = 2, for integral_a^b (k/x) dx.
   var G025 = buildGenerator({
     baseId: "math-025", subtopic: "Simpson's rule", difficulty: "medium",
+    tiTip: "Simpson itself is by hand (that is what is tested) — then verify with the numeric integral.",
     estimatedTimeSeconds: 120,
     explanation: "Simpson's rule fits a parabola through each pair of subintervals, so it is exact for polynomials up to degree 3. With n = 2 there is a single parabola through the three points.",
     videoUrl: null,
@@ -983,6 +1008,7 @@
   // Curl of F = (a*x*z, b*y^2, c*x*y) at (x0, y0, z0).
   var G026 = buildGenerator({
     baseId: "math-026", subtopic: "Curl of a vector field", difficulty: "hard",
+    tiTip: "By hand — build the curl determinant, differentiate, then plug in the point.",
     estimatedTimeSeconds: 180,
     explanation: "The curl measures the rotation of a vector field at a point. Each component is a difference of two cross-partial derivatives -- the most common slip is swapping the subtraction order, which flips the sign.",
     videoUrl: null,
@@ -1025,6 +1051,7 @@
   // One Newton iteration for f(x) = x^2 - c from x0 = 2: x1 = (4 + c)/4.
   var G027 = buildGenerator({
     baseId: "math-027", subtopic: "Newton's method (one iteration)", difficulty: "medium",
+    tiTip: "One step by hand — then check yourself: the root is the square root of the constant, just compute it directly.",
     estimatedTimeSeconds: 120,
     explanation: "Newton's method replaces the function with its tangent line at the current estimate and takes the tangent's root as the next estimate. The most common slips are subtracting the correction term instead of adding it (which gives 1.75) and miscomputing the derivative.",
     videoUrl: null,
@@ -1058,6 +1085,7 @@
   // Trapezoidal rule, n = 2, for integral_0^b x^2 dx: 3b^3/8.
   var G028 = buildGenerator({
     baseId: "math-028", subtopic: "Trapezoidal rule", difficulty: "medium",
+    tiTip: "By hand (method tested) — verify with the numeric integral.",
     estimatedTimeSeconds: 120,
     explanation: "The trapezoidal rule averages the endpoint heights of each subinterval. For a convex-up function it overestimates -- the exact value 2.67 is the trap answer here, not the trapezoidal estimate.",
     videoUrl: null,
@@ -1089,6 +1117,7 @@
   // Laplace transform of e^(-a*t): 1/(s + a).
   var G029 = buildGenerator({
     baseId: "math-029", subtopic: "Laplace transform of an exponential", difficulty: "medium",
+    tiTip: "No — Laplace pairs are handbook-table memory: L{e^( −at)} = 1/(s+a).",
     estimatedTimeSeconds: 120,
     explanation: "The handbook's Laplace transform table lists transforms by form. The decaying exponential \\(e^{-at}\\) maps to \\(1/(s + a)\\) -- the sign in the exponent flips in the denominator, which is where most sign errors come from.",
     videoUrl: null,
@@ -1118,6 +1147,7 @@
   // Law of cosines: c = sqrt(a^2 + b^2 - 2ab*cos(C)).
   var G030 = buildGenerator({
     baseId: "math-030", subtopic: "Law of cosines", difficulty: "medium",
+    tiTip: "Yes — punch in the law of cosines directly. Check degree mode.",
     estimatedTimeSeconds: 120,
     explanation: "The included angle goes with the two known sides in the law of cosines. The minus sign in front of the 2bc cos A term matters -- flipping it to a plus is the classic error.",
     videoUrl: null,
@@ -1152,6 +1182,7 @@
   // Euler's forward rectangular rule, n = 4, for integral_0^b x^2 dx: 7b^3/32.
   var G031 = buildGenerator({
     baseId: "math-031", subtopic: "Numerical integration (Euler forward rectangular rule)", difficulty: "medium",
+    tiTip: "By hand (method tested) — verify with the numeric integral.",
     estimatedTimeSeconds: 150,
     explanation: "The forward rule evaluates the function at the LEFT endpoint of each subinterval -- including x = 0 and excluding x = 2. Shifting the evaluation points right gives the backward-rectangular (or trapezoidal) value instead.",
     videoUrl: null,
@@ -1191,6 +1222,7 @@
   // L'Hopital: lim_{x->0} sin(kx)/x = k.
   var G032 = buildGenerator({
     baseId: "math-032", subtopic: "L'Hôpital's rule", difficulty: "easy",
+    tiTip: "L’Hôpital by hand — or sniff it: evaluate the expression at x = 0.001.",
     estimatedTimeSeconds: 60,
     explanation: "Direct substitution gives the indeterminate form 0/0, so L'Hôpital's rule applies: the limit equals \\(\\lim_{x\\to 0} 3\\cos(3x) = 3\\).",
     videoUrl: null,
@@ -1222,6 +1254,7 @@
   // Laplace transform of e^(-a*t): 1/(s + a) (plain-text choice style).
   var G033 = buildGenerator({
     baseId: "math-033", subtopic: "Laplace transform of exponential function", difficulty: "easy",
+    tiTip: "No — handbook-table memory: L{e^( −at)} = 1/(s+a).",
     estimatedTimeSeconds: 60,
     explanation: "The handbook's Laplace Transform Pairs table gives \\(L\\{e^{-at}\\} = 1/(s + a)\\). The minus sign in the exponent becomes a plus sign in the denominator.",
     videoUrl: null,

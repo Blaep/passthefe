@@ -15,6 +15,7 @@
    "question": "Evaluate \\(\\int_0^3 2x\\,dx\\).",
    "solution": "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\int_0^3 2x\\,dx\\). The power rule gives the antiderivative:\n\n$$\\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to evaluate the definite integral:\n\n$$\\begin{aligned}\nF(x) &= x^2 \\\\\na &= 0 \\\\\nb &= 3\n\\end{aligned}$$\n\n$$\\left(\\int_0^3 2x\\,dx\\right) = F(3) - F(0) \\rightarrow (3)^2 - (0)^2 = 9 - 0$$\n\n$$\\int_0^3 2x\\,dx = 9$$",
    "subtopic": "Definite integrals",
+   "tiTip": "Yes — punch it straight into the numeric integral template.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=YfROMP7UYjg",
    "videoTitle": "FE Civil Exam Mathematics: Integrals Problem 3 a,3 b &3 c (Easy, Medium & Hard)"
@@ -286,6 +287,7 @@
    "id": "math-002",
    "topic": "Mathematics",
    "subtopic": "Derivatives",
+   "tiTip": "Not symbolically — but check your answer with the numeric derivative: d/dx of the function at x = 1 should match your result.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "What is the derivative of f(x) = 3x² with respect to x?",
@@ -354,6 +356,7 @@
    "question": "Solve the system of equations: 2x + y = 7 and x - y = -1. What is the solution?",
    "solution": "Refer to the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(x\\) and \\(y\\):\n\n$$\\begin{aligned}\n2x + y &= 7 \\\\\nx - y &= -1\n\\end{aligned}$$\n\nAdding the equations eliminates \\(y\\):\n\n$$(2x + y) + (x - y) = 7 + (-1) \\rightarrow 3x = 6 \\rightarrow x = 2$$\n\nBack-substitute \\(x = 2\\) into \\(2x + y = 7\\):\n\n$$(y) = 7 - 2(2) = 3$$\n\nCheck in the second equation: \\(x - y = 2 - 3 = -1\\). Correct.\n\n$$x = 2, \\quad y = 3$$",
    "subtopic": "Systems of linear equations",
+   "tiTip": "Yes — system solver: 2nd → sys-solv (above tan), then enter the coefficients.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=8CuOxEAn9hY",
    "videoTitle": "Cramer's Rule"
@@ -373,6 +376,7 @@
    "question": "What is the determinant of the matrix [[2, 1, 3], [0, 4, 1], [0, 0, 5]]?",
    "solution": "Refer to the Determinants section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\det(A)\\). The matrix is upper triangular — every entry below the main diagonal is zero — so its determinant is the product of the diagonal entries:\n\n$$\\det(A) = a_{11}a_{22}a_{33}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na_{11} &= 2 \\\\\na_{22} &= 4 \\\\\na_{33} &= 5 \\\\\n\\det(A) &= ?\n\\end{aligned}$$\n\n$$(\\det A) = (2)(4)(5)$$\n\n$$(\\det A) = 40$$",
    "subtopic": "Determinants",
+   "tiTip": "Yes — matrix menu: enter the matrix, then take its determinant.",
    "topic": "Mathematics"
   },
   {
@@ -390,6 +394,7 @@
    "question": "For the function \\(f(x, y) = x^2y + 3xy^2\\), what is the partial derivative of \\(f\\) with respect to \\(x\\), evaluated at the point \\((2, 1)\\)?",
    "solution": "Refer to the The Partial Derivative section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\frac{\\partial f}{\\partial x}\\) at the point \\((2, 1)\\). Differentiate term by term, treating \\(y\\) as a constant:\n\n$$\\frac{\\partial f}{\\partial x} = 2xy + 3y^2$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nx &= 2 \\\\\ny &= 1 \\\\\n\\frac{\\partial f}{\\partial x} &= ?\n\\end{aligned}$$\n\n$$\\left(\\frac{\\partial f}{\\partial x}\\right) = 2(2)(1) + 3(1)^2 \\rightarrow \\left(\\frac{\\partial f}{\\partial x}\\right) = 4 + 3$$\n\n$$\\frac{\\partial f}{\\partial x} = 7$$",
    "subtopic": "Partial derivatives",
+   "tiTip": "No symbolic partials — do it by hand. Optional check: hold y fixed at a number and use the numeric d/dx on the resulting single-variable function.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=9I6a6qYFS8U",
    "videoTitle": "Civil FEexam review: Mathematics - derivatives and double derivatives"
@@ -409,6 +414,7 @@
    "question": "Solve the differential equation \\(\\frac{dy}{dx} = 2x\\) with the initial condition \\(y(0) = 1\\). What is \\(y(2)\\)?",
    "solution": "Refer to the Differential Equations section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(y(2)\\). This is a separable first-order equation:\n\n$$\\frac{dy}{dx} = 2x \\quad\\Rightarrow\\quad dy = 2x\\,dx$$\n\nIntegrating both sides:\n\n$$y = \\int 2x\\,dx = x^2 + C$$\n\nList the known and unknown parameters in order to solve for \\(y(2)\\):\n\n$$\\begin{aligned}\ny(0) &= 1 \\\\\nC &= ? \\\\\ny(2) &= ?\n\\end{aligned}$$\n\nApply the initial condition: \\(y(0) = 0^2 + C = 1\\), so \\(C = 1\\) and \\(y = x^2 + 1\\).\n\n$$(y(2)) = (2)^2 + 1 = 5$$",
    "subtopic": "First-order differential equations",
+   "tiTip": "The solve is by hand (integrate), but verify with the numeric integral: the integral of the right-hand side from 0 to x should equal y(x) − y(0).",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=9dy9flZC8q4",
    "videoTitle": "Separable Differential Equations - Fundamentals of Engineering FE EIT Exam Review"
@@ -428,6 +434,7 @@
    "question": "What is the dot product of vectors a = (3, -1, 2) and b = (2, 4, 1)?",
    "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\mathbf{a} \\cdot \\mathbf{b}\\). The dot product sums the products of corresponding components:\n\n$$\\mathbf{a} \\cdot \\mathbf{b} = a_x b_x + a_y b_y + a_z b_z$$\n\nList the known components:\n\n$$\\begin{aligned}\n\\mathbf{a} &= (3, -1, 2) \\\\\n\\mathbf{b} &= (2, 4, 1)\n\\end{aligned}$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = (3)(2) + (-1)(4) + (2)(1) \\rightarrow 6 - 4 + 2$$\n\n$$(\\mathbf{a} \\cdot \\mathbf{b}) = 4$$",
    "subtopic": "Vectors and dot product",
+   "tiTip": "Yes — vector menu: enter both vectors, dot product.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=VzX8KJKFhlM",
    "videoTitle": "Dot Product of Two Vectors"
@@ -447,6 +454,7 @@
    "question": "What is the largest eigenvalue of the matrix [[5, 2], [2, 2]]?",
    "solution": "Refer to the Matrices section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the eigenvalues \\(\\lambda\\) of \\(A = \\begin{bmatrix} 5 & 2 \\\\ 2 & 2 \\end{bmatrix}\\). They are the roots of the characteristic equation:\n\n$$\\det(A - \\lambda I) = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\lambda &= ?\n\\end{aligned}$$\n\n$$((5-\\lambda)(2-\\lambda) - (2)(2)) = 0 \\rightarrow (\\lambda^2 - 7\\lambda + 6) = 0$$\n\nFactoring gives \\((\\lambda - 6)(\\lambda - 1) = 0\\), so \\(\\lambda = 6\\) or \\(\\lambda = 1\\):\n\n$$(\\lambda_{\\max}) = 6$$",
    "subtopic": "Eigenvalues",
+   "tiTip": "No eigenvalue key — write det(A − λI) = 0 by hand, then run the quadratic through poly-solv (2nd → cos); the roots are the eigenvalues.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=vMfwDxG-4jU",
    "videoTitle": "This Matrix Destroys Every Vector Except Two | Eigenvalues | Eigenvectors | Linear Algebra | Dgmathc"
@@ -2279,6 +2287,7 @@
    "id": "math-009",
    "topic": "Mathematics",
    "subtopic": "Tangent line slope",
+   "tiTip": "Yes — numeric derivative d/dx of the function at the given x.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "What is the slope of the tangent line to the curve y = x³ − 4x at x = 2?",
@@ -2298,6 +2307,7 @@
    "id": "math-010",
    "topic": "Mathematics",
    "subtopic": "U-substitution integration",
+   "tiTip": "Yes — numeric integral template, straight in.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "Evaluate the definite integral \\(\\displaystyle\\int_0^1 3x^2 e^{x^3}\\,dx\\).",
@@ -2317,6 +2327,7 @@
    "id": "math-011",
    "topic": "Mathematics",
    "subtopic": "Cross product",
+   "tiTip": "Yes — vector menu: cross product.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "What is the cross product a × b for vectors a = (2, 1, −1) and b = (1, 2, 3)?",
@@ -2334,6 +2345,7 @@
    "id": "math-012",
    "topic": "Mathematics",
    "subtopic": "Second-order ODE",
+   "tiTip": "The ODE setup is by hand, but get the characteristic roots fast: poly-solv (2nd → cos) on the characteristic equation.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
    "question": "Solve the differential equation \\(y'' + 9y = 0\\) with initial conditions \\(y(0) = 0\\) and \\(y'(0) = 3\\). What is \\(y(\\pi/6)\\)?",
@@ -2353,6 +2365,7 @@
    "id": "math-013",
    "topic": "Mathematics",
    "subtopic": "Area between curves",
+   "tiTip": "Half yes — find the intersection points with num-solv (2nd → sin), then take the numeric integral of (top − bottom) between them.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "What is the area of the region enclosed by the curves y = x² and y = 4x?",
@@ -2372,6 +2385,7 @@
    "id": "math-014",
    "topic": "Mathematics",
    "subtopic": "Complex multiplication",
+   "tiTip": "Yes — complex mode, punch it straight in.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
    "question": "What is the product (3 + 4i)(1 − 2i)?",
@@ -3786,6 +3800,7 @@
    "id": "math-015",
    "topic": "Mathematics",
    "subtopic": "Taylor and Maclaurin series",
+   "tiTip": "The series is by hand — but check your approximation by evaluating the function directly and comparing.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "question": "Use the first two nonzero terms of the Maclaurin series for \\(\\sin x\\) to approximate \\(\\sin(0.2)\\). What is the approximate value?",
@@ -3805,6 +3820,7 @@
    "id": "math-016",
    "topic": "Mathematics",
    "subtopic": "Implicit differentiation",
+   "tiTip": "By hand — implicit differentiation first, then it is plain arithmetic at the point.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "If \\(x^2 + y^2 = 25\\), what is \\(\\frac{dy}{dx}\\) at the point \\((3, 4)\\)?",
@@ -3824,6 +3840,7 @@
    "id": "math-017",
    "topic": "Mathematics",
    "subtopic": "Gradient of a scalar field",
+   "tiTip": "Partials by hand; optionally verify one component numerically (hold the other variable fixed, numeric d/dx).",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "For the scalar field \\(f(x, y) = x^2y + xy^2\\), what is the gradient \\(\\nabla f\\) evaluated at the point \\((1, 2)\\)?",
@@ -3843,6 +3860,7 @@
    "id": "math-018",
    "topic": "Mathematics",
    "subtopic": "Definite integrals (trigonometric)",
+   "tiTip": "Yes — numeric integral template. Check you are in radian mode first.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 75,
    "question": "Evaluate the definite integral \\(\\int_{0}^{\\pi/2} \\sin(2x)\\,dx\\).",
@@ -3862,6 +3880,7 @@
    "id": "math-019",
    "topic": "Mathematics",
    "subtopic": "Matrix inverse",
+   "tiTip": "Yes — matrix menu: invert the matrix, read the entry.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "For the matrix \\(A = \\begin{bmatrix} 2 & 3 \\\\ 1 & 4 \\end{bmatrix}\\), what is the \\((1, 2)\\) entry of \\(A^{-1}\\)?",
@@ -3879,6 +3898,7 @@
    "id": "math-020",
    "topic": "Mathematics",
    "subtopic": "Linear independence",
+   "tiTip": "No — pure definition. Memorize it; no calculator involved.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "Which of the following is the correct definition of a linearly independent set of vectors?",
@@ -5652,6 +5672,7 @@
    "id": "math-021",
    "topic": "Mathematics",
    "subtopic": "Newton's method for root extraction",
+   "tiTip": "The iteration is arithmetic by hand — use the numeric d/dx to get f′(x₀) if you do not want to differentiate.",
    "difficulty": "medium",
    "question": "Use one iteration of Newton's method for root extraction to estimate the root of \\(f(x) = x^3 - 2x - 5\\), starting from the initial estimate \\(x_0 = 2\\). What is \\(x_1\\)?",
    "choices": [
@@ -5669,6 +5690,7 @@
    "id": "math-022",
    "topic": "Mathematics",
    "subtopic": "Integration by parts",
+   "tiTip": "Yes — numeric integral template, straight in.",
    "difficulty": "easy",
    "question": "Evaluate the definite integral \\(\\displaystyle\\int_0^1 x e^x\\,dx\\).",
    "choices": [
@@ -5686,6 +5708,7 @@
    "id": "math-023",
    "topic": "Mathematics",
    "subtopic": "Centroid of area",
+   "tiTip": "Setup by hand; use the numeric integral for the area and first-moment pieces.",
    "difficulty": "hard",
    "question": "Consider the region bounded by the curve \\(y = x^2\\), the x-axis, and the vertical lines \\(x = 0\\) and \\(x = 2\\). What is the x-coordinate of the centroid of this region?",
    "choices": [
@@ -6470,6 +6493,7 @@
    "question": "The vector field is given by F = (x^2 * y, y * z^2, x * z). What is the divergence of F at the point (1, 2, 3)?",
    "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\nabla \\cdot \\mathbf{F}\\). The handbook prints:\n\n$$\\nabla \\cdot \\mathbf{F} = \\frac{\\partial P}{\\partial x} + \\frac{\\partial Q}{\\partial y} + \\frac{\\partial R}{\\partial z}$$\n\nIdentify the components:\n\n$$\\begin{aligned}\nP &= x^2 y \\\\\nQ &= y z^2 \\\\\nR &= x z\n\\end{aligned}$$\n\nDifferentiate each component with respect to its own variable:\n\n$$\\begin{aligned}\n\\frac{\\partial P}{\\partial x} &= 2xy \\\\\n\\frac{\\partial Q}{\\partial y} &= z^2 \\\\\n\\frac{\\partial R}{\\partial z} &= x\n\\end{aligned}$$\n\nEvaluate at \\((1, 2, 3)\\):\n\n$$\\begin{aligned}\n2xy &= 2(1)(2) = 4 \\\\\nz^2 &= (3)^2 = 9 \\\\\nx &= 1\n\\end{aligned}$$\n\n$$(\\nabla \\cdot \\mathbf{F}) = 4 + 9 + 1 = 14$$",
    "subtopic": "Divergence of a vector field",
+   "tiTip": "Partials by hand, then arithmetic at the point — or numerically check each partial there.",
    "topic": "Mathematics"
   },
   {
@@ -6487,6 +6511,7 @@
    "question": "Use Simpson's rule with \\(n = 2\\) to approximate \\(\\int_1^3 \\frac{1}{x}\\,dx\\). What is the approximate value?",
    "solution": "Refer to the Simpson's Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(I\\). For \\(n = 2\\), the handbook prints:\n\n$$\\int_{a}^{b} f(x) \\, dx \\approx \\frac{h}{3}\\,[f(x_0) + 4f(x_1) + f(x_2)]$$\n\nCompute the step size:\n\n$$h = \\frac{b - a}{n} = \\frac{3 - 1}{2} = 1$$\n\nEvaluate the function at the three nodes:\n\n$$\\begin{aligned}\nf(x_0) &= f(1) = \\frac{1}{1} = 1 \\\\\nf(x_1) &= f(2) = \\frac{1}{2} = 0.5 \\\\\nf(x_2) &= f(3) = \\frac{1}{3} \\approx 0.3333\n\\end{aligned}$$\n\nApply Simpson's rule:\n\n$$(I) \\approx \\frac{1}{3}\\,[1 + 4(0.5) + 0.3333]$$\n\n$$(I) \\approx \\frac{1}{3}(3.3333) \\approx 1.111$$",
    "subtopic": "Simpson's rule",
+   "tiTip": "Simpson itself is by hand (that is what is tested) — then verify with the numeric integral.",
    "topic": "Mathematics"
   },
   {
@@ -6905,6 +6930,7 @@
    "question": "The vector field is given by F = (x*z, y^2, x*y). What is the curl of F at the point (1, 2, 3)?",
    "solution": "Refer to the Gradient, Divergence, and Curl section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\nabla \\times \\mathbf{F}\\). The handbook prints:\n\n$$\\nabla \\times \\mathbf{F} = \\left(\\frac{\\partial R}{\\partial y} - \\frac{\\partial Q}{\\partial z}\\right)\\mathbf{i} + \\left(\\frac{\\partial P}{\\partial z} - \\frac{\\partial R}{\\partial x}\\right)\\mathbf{j} + \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right)\\mathbf{k}$$\n\nIdentify the components:\n\n$$\\begin{aligned}\nP &= xz \\\\\nQ &= y^2 \\\\\nR &= xy\n\\end{aligned}$$\n\nCompute the six partial derivatives:\n\n$$\\begin{aligned}\n\\frac{\\partial R}{\\partial y} &= x, & \\frac{\\partial Q}{\\partial z} &= 0 \\\\\n\\frac{\\partial P}{\\partial z} &= x, & \\frac{\\partial R}{\\partial x} &= y \\\\\n\\frac{\\partial Q}{\\partial x} &= 0, & \\frac{\\partial P}{\\partial y} &= 0\n\\end{aligned}$$\n\nEvaluate at \\((1, 2, 3)\\):\n\n$$\\begin{aligned}\n(\\nabla \\times \\mathbf{F})_x &= 1 - 0 = 1 \\\\\n(\\nabla \\times \\mathbf{F})_y &= 1 - 2 = -1 \\\\\n(\\nabla \\times \\mathbf{F})_z &= 0 - 0 = 0\n\\end{aligned}$$\n\n$$(\\nabla \\times \\mathbf{F}) = (1, -1, 0)$$",
    "subtopic": "Curl of a vector field",
+   "tiTip": "By hand — build the curl determinant, differentiate, then plug in the point.",
    "topic": "Mathematics",
    "videoUrl": "https://www.youtube.com/watch?v=EhDVGRAamxg",
    "videoTitle": "Curl of a Vector Field Examples | Calculus 3 - JK Math"
@@ -6924,6 +6950,7 @@
    "question": "Use one iteration of Newton's method to approximate the positive root of f(x) = x^2 - 5, starting from the initial estimate x0 = 2. What is x1?",
    "solution": "Refer to the Newton's Method for Root Extraction section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(x_1\\). The handbook prints the update:\n\n$$x_{j+1} = x_j - \\frac{f(x_j)}{f'(x_j)}$$\n\nFor \\(f(x) = x^2 - 5\\):\n\n$$(f'(x)) = 2x$$\n\nEvaluate at \\(x_0 = 2\\):\n\n$$\\begin{aligned}\nf(2) &= 4 - 5 = -1 \\\\\nf'(2) &= 4\n\\end{aligned}$$\n\n$$(x_1) = 2 - \\frac{-1}{4} = 2 + 0.25 = 2.25$$",
    "subtopic": "Newton's method (one iteration)",
+   "tiTip": "One step by hand — then check yourself: the root is the square root of the constant, just compute it directly.",
    "topic": "Mathematics"
   },
   {
@@ -7567,6 +7594,7 @@
    "question": "Use the trapezoidal rule with \\(n = 2\\) subintervals to approximate \\(\\int_0^2 x^2\\,dx\\).",
    "solution": "Refer to the Trapezoidal Rule section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the trapezoidal estimate. The handbook prints, with \\(h = (b-a)/n\\):\n\n$$\\int_a^b f(x)\\,dx \\approx \\frac{h}{2}[f(x_0) + 2f(x_1) + f(x_2)]$$\n\n$$(h) = \\frac{2 - 0}{2} = 1$$\n\n$$\\approx \\frac{1}{2}[(0)^2 + 2(1)^2 + (2)^2] = \\frac{1}{2}(6) = 3.00$$",
    "subtopic": "Trapezoidal rule",
+   "tiTip": "By hand (method tested) — verify with the numeric integral.",
    "topic": "Mathematics"
   },
   {
@@ -7775,6 +7803,7 @@
    "question": "What is the Laplace transform of \\(f(t) = e^{-3t}\\), for \\(t \\ge 0\\)?",
    "solution": "Refer to the Laplace Transforms section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify \\(\\mathcal{L}\\{e^{-3t}\\}\\). The handbook prints:\n\n$$\\mathcal{L}\\{e^{-at}\\} = \\frac{1}{s + a}$$\n\nWith \\(a = 3\\):\n\n$$\\mathcal{L}\\{e^{-3t}\\} = \\frac{1}{s + 3}$$",
    "subtopic": "Laplace transform of an exponential",
+   "tiTip": "No — Laplace pairs are handbook-table memory: L{e^( −at)} = 1/(s+a).",
    "topic": "Mathematics"
   },
   {
@@ -7792,6 +7821,7 @@
    "question": "A triangle has sides of length 5 and 7 with an included angle of 60°. What is the length of the third side?",
    "solution": "Refer to the Trigonometry (Law of Cosines) section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(c\\). The handbook prints:\n\n$$c^2 = a^2 + b^2 - 2ab\\cos C$$\n\nSubstituting:\n\n$$(c^2) = 5^2 + 7^2 - 2(5)(7)\\cos 60^\\circ$$\n\n$$(c^2) = 25 + 49 - 70(0.5) = 39$$\n\n$$(c) = \\sqrt{39} = 6.24$$",
    "subtopic": "Law of cosines",
+   "tiTip": "Yes — punch in the law of cosines directly. Check degree mode.",
    "topic": "Mathematics"
   },
   {
@@ -8380,6 +8410,7 @@
    "question": "Use Euler's forward rectangular rule with \\(n = 4\\) subintervals to estimate \\(\\int_0^2 x^2 \\, dx\\).",
    "solution": "Refer to the Numerical Integration section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must estimate the integral. The handbook prints Euler's (forward rectangular) rule:\n\n$$\\int_a^b f(x)\\,dx \\approx \\Delta x \\sum_{k=0}^{n-1} f(a + k\\Delta x)$$\n\nThe subinterval width:\n\n$$(\\Delta x) = \\frac{2 - 0}{4} = 0.5$$\n\nThe function values at the left endpoints \\(0, 0.5, 1.0, 1.5\\):\n\n$$(f) = 0^2,\\\\ 0.5^2,\\\\ 1.0^2,\\\\ 1.5^2 = 0,\\\\ 0.25,\\\\ 1.00,\\\\ 2.25$$\n\nSumming and multiplying:\n\n$$(I) \\approx 0.5 \\times (0 + 0.25 + 1.00 + 2.25)$$\n\n$$(I) \\approx 0.5 \\times 3.50 = 1.75$$",
    "subtopic": "Numerical integration (Euler forward rectangular rule)",
+   "tiTip": "By hand (method tested) — verify with the numeric integral.",
    "topic": "Mathematics"
   },
   {
@@ -8834,6 +8865,7 @@
    "question": "Evaluate \\(\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}\\).",
    "solution": "Refer to L'Hôpital's Rule in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must evaluate the limit. Direct substitution gives \\(0/0\\), an indeterminate form, so the handbook's rule applies:\n\n$$\\lim_{x \\to a}\\frac{f(x)}{g(x)} = \\lim_{x \\to a}\\frac{f'(x)}{g'(x)}$$\n\nDifferentiating numerator and denominator:\n\n$$\\lim_{x \\to 0}\\frac{\\sin(3x)}{x} = \\lim_{x \\to 0}\\frac{3\\cos(3x)}{1}$$\n\nEvaluating at \\(x = 0\\):\n\n$$3\\cos(0) = 3(1) = 3$$\n",
    "subtopic": "L'Hôpital's rule",
+   "tiTip": "L’Hôpital by hand — or sniff it: evaluate the expression at x = 0.001.",
    "topic": "Mathematics"
   },
   {
@@ -8851,6 +8883,7 @@
    "question": "What is the Laplace transform of \\(f(t) = e^{-3t}\\) for \\(t \\geq 0\\)?",
    "solution": "Refer to the Laplace Transform Pairs table in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\(F(s)\\). The handbook's table prints:\n\n$$e^{-at} \\quad\\Longleftrightarrow\\quad \\frac{1}{s+a}$$\n\nHere \\(a = 3\\), so:\n\n$$L\\{e^{-3t}\\} = \\frac{1}{s+3}$$\n",
    "subtopic": "Laplace transform of exponential function",
+   "tiTip": "No — handbook-table memory: L{e^( −at)} = 1/(s+a).",
    "topic": "Mathematics"
   },
   {
@@ -9549,7 +9582,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Six contours span 10 ft of elevation, creating 5 intervals: 10/5 = 2 ft. Counting contours instead of intervals gives 10/6, a classic trap.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\text{interval} = \\frac{\\Delta Elev}{\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta Elev &= 108 - 98 = 10\\\\ \\text{ft} \\\\\n\\text{intervals} &= 5\\\\ \\\\(6\\\\ \\text{contours make } 5\\\\ \\text{ gaps})\n\\end{aligned}$$\n\n$$(\\text{interval}) = \\frac{10}{5}$$\n\n$$(\\text{interval}) = 2\\\\ \\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\text{interval} = \\frac{\\Delta Elev}{\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta Elev &= 108 - 98 = 10\\\\ \\text{ft} \\\\\n\\text{intervals} &= 5\\\\ \\ (6\\\\ \\text{contours make } 5\\\\ \\text{ gaps})\n\\end{aligned}$$\n\n$$(\\text{interval}) = \\frac{10}{5}$$\n\n$$(\\text{interval}) = 2\\\\ \\text{ft}$$"
   },
   {
    "id": "construction-037",
@@ -9572,6 +9605,7 @@
    "id": "math-034",
    "topic": "Mathematics",
    "subtopic": "Distance between two points",
+   "tiTip": "Yes — the distance formula, straight in.",
    "question": "What is the distance between the points (2, 3) and (7, 15)?",
    "choices": [
     "13",
@@ -9589,6 +9623,7 @@
    "id": "math-035",
    "topic": "Mathematics",
    "subtopic": "Line through two points (slope-intercept)",
+   "tiTip": "Slope is quick arithmetic — punch in (y₂−y₁)/(x₂−x₁), then point-slope form.",
    "question": "What is the equation of the line passing through (1, 2) and (5, 10)?",
    "choices": [
     "y = 2x",
@@ -9606,6 +9641,7 @@
    "id": "math-036",
    "topic": "Mathematics",
    "subtopic": "Circle equation (center and radius)",
+   "tiTip": "By hand — center-radius form (x−h)² + (y−k)² = r² straight from memory.",
    "question": "What is the equation of the circle with center (3, −2) and radius 5?",
    "choices": [
     "(x − 3)² + (y + 2)² = 25",
