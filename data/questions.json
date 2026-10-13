@@ -597,7 +597,7 @@
    "question": "A grab bag contains 5 red and 3 blue soil sample tags. Two tags are drawn at random without replacement. What is the probability that both are red?",
    "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
    "subtopic": "Conditional probability without replacement",
-   "tiTip": "Yes — PROB menu: nCr(5,2) ÷ nCr(8,2).",
+   "tiTip": "Yes — direct solve: tap the probability key 2× to reach nCr (! → nCr), then enter 5 nCr 2 ÷ 8 nCr 2.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=SkidyDQuupA",
    "videoTitle": "Introduction to Probability, Basic Overview - Sample Space, & Tree Diagrams"
@@ -5768,7 +5768,7 @@
    "id": "stats-021",
    "topic": "Statistics and Probability",
    "subtopic": "Combinations",
-   "tiTip": "Yes — PROB menu: nCr(8,3).",
+   "tiTip": "Yes — direct solve: tap the probability key 2× to reach nCr (! → nCr), then enter 8 nCr 3.",
    "difficulty": "easy",
    "question": "An engineering firm must select 3 engineers from a team of 8 to form a design review panel. How many distinct panels are possible?",
    "choices": [
@@ -7913,7 +7913,7 @@
    "question": "A club must elect a president, a vice president, a secretary, and a treasurer from 10 members. No member may hold more than one office. How many different slates of officers are possible?",
    "solution": "Refer to the Permutations and Combinations section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute \\(P(10, 4)\\). The handbook prints:\n\n$$P(n, r) = \\frac{n!}{(n - r)!}$$\n\nSubstituting:\n\n$$(P(10,4)) = \\frac{10!}{6!} = 10 \\times 9 \\times 8 \\times 7 = 5{,}040$$",
    "subtopic": "Permutations (officer election)",
-   "tiTip": "Yes — PROB menu: nPr(10,4).",
+   "tiTip": "Yes — direct solve: tap the probability key 3× to reach nPr (! → nCr → nPr), then enter 10 nPr 4.",
    "topic": "Statistics and Probability"
   },
   {

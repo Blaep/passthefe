@@ -521,7 +521,8 @@ PART.push(buildGenerator({ baseId: "stats-008", subtopic: "Conditional probabili
       { label: fmt(dOne), num: dOne },
       { label: fmt(dExactlyOne), num: dExactlyOne }
     ],
-    solution: solution
+    solution: solution,
+    tiTip: "Yes — direct solve: tap the probability key 2× to reach nCr (! → nCr), then enter " + R + " nCr 2 ÷ " + N + " nCr 2."
   };
 }));
 
@@ -1073,7 +1074,8 @@ PART.push(buildGenerator({ baseId: "stats-021", subtopic: "Combinations", diffic
       { label: fmt(dPow), num: dPow },
       { label: fmt(dProd), num: dProd }
     ],
-    solution: solution
+    solution: solution,
+    tiTip: "Yes — direct solve: tap the probability key 2× to reach nCr (! → nCr), then enter " + n + " nCr " + r + "."
   };
 }));
 
@@ -1584,7 +1586,8 @@ PART.push(buildGenerator({
       { label: fmt(Math.pow(n, r)), num: Math.pow(n, r), correct: false }, // allowed repeat office-holding
       { label: fmt(fact(n)), num: fact(n), correct: false }            // permuted all members
     ],
-    solution: solution
+    solution: solution,
+    tiTip: "Yes — direct solve: tap the probability key 3× to reach nPr (! → nCr → nPr), then enter " + n + " nPr " + r + "."
   };
 }));
 
