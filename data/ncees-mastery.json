@@ -307,7 +307,7 @@
     {
      "code": "10C",
      "label": "Pumps",
-     "count": 4
+     "count": 0
     },
     {
      "code": "10D",
@@ -647,7 +647,7 @@
   "water-002": "8D",
   "water-003": "10B",
   "water-004": "10A",
-  "water-005": "10C",
+  "water-005": "OFFSPEC",
   "water-006": "10B",
   "water-007": "10D",
   "water-008": "10A",
@@ -777,7 +777,7 @@
   "materials-020": "7A",
   "fluid-014": "8C",
   "fluid-015": "8D",
-  "fluid-016": "10C",
+  "fluid-016": "OFFSPEC",
   "fluid-017": "OFFSPEC",
   "fluid-018": "8B",
   "fluid-019": "8D",
@@ -795,7 +795,7 @@
   "water-017": "10B",
   "water-018": "10F",
   "water-019": "10B",
-  "water-020": "10C",
+  "water-020": "OFFSPEC",
   "geotech-014": "12A",
   "geotech-015": "12B",
   "geotech-016": "12E",
@@ -862,7 +862,7 @@
   "mechmat-021": "11C",
   "mechmat-022": "6B",
   "mechmat-023": "6D",
-  "fluid-021": "10C",
+  "fluid-021": "OFFSPEC",
   "fluid-022": "8C",
   "fluid-023": "10B",
   "surveying-021": "9B",
@@ -1145,7 +1145,11 @@
   "materials-032",
   "materials-033",
   "math-033",
-  "math-040"
+  "math-040",
+  "water-005",
+  "fluid-016",
+  "water-020",
+  "fluid-021"
  ],
  "spec": "NCEES FE Civil CBT Exam Specifications, effective July 2020"
 }
