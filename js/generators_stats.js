@@ -385,7 +385,7 @@ PART.push(buildGenerator({ baseId: "stats-005", subtopic: "Bayes' theorem", diff
   var dFpr = pct1(fpr);   // false-positive rate
   var dPrev = pct1(pr);   // base rate
   var solution =
-    "Refer to Bayes' Theorem in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to Bayes' Theorem in the Engineering Probability and Statistics chapter of the FE Reference Handbook (p. 66).\n\n" +
     "Ultimately, we must solve for \\(P(\\text{crack} \\mid \\text{positive})\\):\n\n" +
     "$$P(A \\mid B) = \\frac{P(B \\mid A)P(A)}{P(B)}$$\n\n" +
     "List the known and unknown parameters:\n\n" +
