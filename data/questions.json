@@ -73,6 +73,7 @@
    "question": "$1,000 is invested at 5% annual interest, compounded annually. What is the future worth after 2 years?",
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(F\\). We can determine \\(F\\) from the single-payment compound amount factor:\n\n$$F = P(1+i)^n$$\n\nList the known and unknown parameters in order to solve for \\(F\\):\n\n$$\\begin{aligned}\nP &= \\$1{,}000 \\\\\ni &= 5\\% = 0.05 \\\\\nn &= 2\\ \\text{years} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$(F) = (P)(1+i)^n \\rightarrow (F) = (1{,}000)(1.05)^2$$\n\n$$(F) = (1{,}000)(1.1025) = \\$1{,}102.50$$",
    "subtopic": "Compound interest",
+   "tiTip": "No — plug F = P(1+i)^n in by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=bd86wfNRPvo",
    "videoTitle": "Simple and Compound Interest Explained"
@@ -308,6 +309,7 @@
    "id": "econ-002",
    "topic": "Engineering Economics",
    "subtopic": "Present worth",
+   "tiTip": "No — plug P = F/(1+i)^n in by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "question": "What is the present worth of $1,102.50 to be received 2 years from now, at 5% annual interest compounded annually?",
@@ -615,6 +617,7 @@
    "question": "A credit card charges a nominal annual interest rate of 12%, compounded monthly. What is the effective annual interest rate?",
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the effective annual rate \\(i_{\\text{eff}}\\). A nominal rate compounded \\(m\\) times per year converts by:\n\n$$i_{\\text{eff}} = \\left(1 + \\frac{r}{m}\\right)^m - 1$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nr &= 12\\% = 0.12 \\\\\nm &= 12\\ \\text{(monthly)} \\\\\ni_{\\text{eff}} &= ?\n\\end{aligned}$$\n\n$$(i_{\\text{eff}}) = \\left(1 + \\frac{0.12}{12}\\right)^{12} - 1 \\rightarrow (i_{\\text{eff}}) = (1.01)^{12} - 1$$\n\n$$(i_{\\text{eff}}) = 1.126825 - 1 = 0.126825 = 12.68\\%$$",
    "subtopic": "Effective annual interest rate",
+   "tiTip": "No — compute (1+r/m)^m − 1 by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=9Vg-aAt5NtM",
    "videoTitle": "Interest Rate Explained — Nominal, Period, Effective"
@@ -634,6 +637,7 @@
    "question": "What is the present worth of a uniform series of $100 per year for 10 years at an interest rate of 8% per year?",
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth, using the uniform series present worth factor:\n\n$$P = A(P/A, i, n) = A\\frac{(1+i)^n - 1}{i(1+i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= 100\\ \\text{/yr} \\\\\ni &= 0.08\\ \\text{/yr} \\\\\nn &= 10\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P/A, 8\\%, 10) = \\frac{(1.08)^{10} - 1}{0.08(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\n$$(P) = (100)(6.7101) = \\$671.01 \\approx \\$671$$",
    "subtopic": "Uniform series present worth",
+   "tiTip": "No — look up (P/A,8%,10) in the handbook interest tables; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -651,6 +655,7 @@
    "question": "A piece of construction equipment costs $50,000, has a salvage value of $5,000, and a useful life of 9 years. Using straight-line depreciation, what is the book value of the equipment at the end of year 4?",
    "solution": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the book value at the end of year 4. Straight-line depreciation charges the same amount each year:\n\n$$D = \\frac{\\text{Cost} - \\text{Salvage}}{\\text{Life}}$$\n\nList the known and unknown parameters in order to solve for the book value:\n\n$$\\begin{aligned}\n\\text{Cost} &= \\$50{,}000 \\\\\n\\text{Salvage} &= \\$5{,}000 \\\\\n\\text{Life} &= 9\\ \\text{years} \\\\\nBV_4 &= ?\n\\end{aligned}$$\n\nAnnual depreciation: \\((D) = (50{,}000 - 5{,}000)/9 = \\$5{,}000\\text{/year}\\).\n\nAccumulated depreciation after 4 years: \\(4 \\times 5{,}000 = \\$20{,}000\\).\n\n$$(BV_4) = 50{,}000 - 20{,}000 = \\$30{,}000$$",
    "subtopic": "Straight-line depreciation",
+   "tiTip": "No — apply the straight-line depreciation formula by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=-MUwUVW9qi4",
    "videoTitle": "Depreciation"
@@ -670,6 +675,7 @@
    "question": "A proposed flood-control project has a present worth of benefits of $450,000 and a present worth of costs of $300,000. What is the benefit-cost ratio, and is the project economically justified?",
    "solution": "Refer to the Benefit-Cost Analysis section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the benefit-cost ratio of the flood-control project:\n\n$$B/C = \\frac{\\text{PW of benefits}}{\\text{PW of costs}}$$\n\nList the known and unknown parameters in order to solve for \\(B/C\\):\n\n$$\\begin{aligned}\n\\text{PW of benefits} &= \\text{\\$450,000} \\\\\n\\text{PW of costs} &= \\text{\\$300,000} \\\\\nB/C &= ?\n\\end{aligned}$$\n\n$$(B/C) = \\frac{450{,}000}{300{,}000} = 1.50$$\n\nSince \\(B/C = 1.50\\) exceeds 1.0, benefits outweigh costs and the project is economically justified.",
    "subtopic": "Benefit-cost ratio",
+   "tiTip": "No — set up the benefit-cost ratio by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=oY94doVEols",
    "videoTitle": "Engineering Economics VI: Benefit–Cost Analysis"
@@ -689,6 +695,7 @@
    "question": "A precast concrete plant has fixed costs of $10,000 per month, variable costs of $4 per unit, and sells each unit for $9. What is the monthly break-even production quantity?",
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the break-even quantity \\(Q\\), where total revenue equals total cost:\n\n$$PQ = FC + (VC)Q \\quad\\Rightarrow\\quad Q = \\frac{FC}{P - VC}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nFC &= \\$10{,}000\\ \\text{per month} \\\\\nVC &= \\$4\\ \\text{per unit} \\\\\nP &= \\$9\\ \\text{per unit} \\\\\nQ &= ?\n\\end{aligned}$$\n\n$$(Q) = \\frac{10{,}000}{9 - 4} \\rightarrow (Q) = \\frac{10{,}000}{5}$$\n\n$$(Q) = 2{,}000\\ \\text{units per month}$$",
    "subtopic": "Break-even analysis",
+   "tiTip": "No — solve Q = FC/(P−VC) by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -706,6 +713,7 @@
    "question": "A project requires an initial investment of $5,000 and returns $2,000 per year for 3 years. Approximately what is the internal rate of return (IRR) of this project?",
    "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
    "subtopic": "Rate of return (IRR)",
+   "tiTip": "Partially — no TVM solver; set up 0 = −5000 + 2000(P/A,i,3) and try the numeric equation solver (40-character limit), or interpolate the handbook interest tables.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=Fw5-wccViOM",
    "videoTitle": "NPV and IRR explained"
@@ -2513,6 +2521,7 @@
    "id": "econ-009",
    "topic": "Engineering Economics",
    "subtopic": "Present worth",
+   "tiTip": "No — plug P = F/(1+i)^n in by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "question": "How much must be deposited today to accumulate $5,000 in 5 years at 6% annual interest, compounded annually?",
@@ -2532,6 +2541,7 @@
    "id": "econ-010",
    "topic": "Engineering Economics",
    "subtopic": "Straight-line depreciation",
+   "tiTip": "No — apply the straight-line depreciation formula by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "A machine costs $20,000, has a salvage value of $2,000, and a useful life of 9 years. Using straight-line depreciation, what is the book value after 4 years?",
@@ -2551,6 +2561,7 @@
    "id": "econ-011",
    "topic": "Engineering Economics",
    "subtopic": "Arithmetic gradient",
+   "tiTip": "No — look up the (P/A) and (P/G) factors by hand; the calculator only does the arithmetic.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
    "question": "Annual maintenance costs are $1,000 in year 1, increasing by $200 each year through year 5. At 8% annual interest, what is the present worth of these costs?",
@@ -2570,6 +2581,7 @@
    "id": "econ-012",
    "topic": "Engineering Economics",
    "subtopic": "Capitalized cost",
+   "tiTip": "No — convert the recurring cost to an annual series and capitalize by hand; the calculator only does the arithmetic.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "question": "A bridge requires a $100,000 initial investment plus $10,000 of major rehabilitation every 5 years, forever. At 6% annual interest, what is the capitalized cost?",
@@ -2589,6 +2601,7 @@
    "id": "econ-013",
    "topic": "Engineering Economics",
    "subtopic": "Capital recovery",
+   "tiTip": "No — look up (A/P,7%,20) in the handbook interest tables; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "What is the equivalent uniform annual cost of a $50,000 present investment over 20 years at 7% annual interest?",
@@ -5300,6 +5313,7 @@
    "id": "econ-014",
    "topic": "Engineering Economics",
    "subtopic": "Sinking fund",
+   "tiTip": "No — look up (A/F,8%,5) in the handbook interest tables; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "question": "What uniform end-of-year deposit is required for 5 years at 8% annual interest to accumulate $50,000?",
@@ -5317,6 +5331,7 @@
    "id": "econ-015",
    "topic": "Engineering Economics",
    "subtopic": "Geometric gradient",
+   "tiTip": "No — apply the geometric-gradient formula by hand; the calculator only does the arithmetic.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "question": "Annual maintenance costs are $1,000 in year 1 and grow at 5% per year through year 5. At 10% annual interest, what is the present worth of these costs?",
@@ -5337,6 +5352,7 @@
    "id": "econ-016",
    "topic": "Engineering Economics",
    "subtopic": "Present worth of uneven cash flows",
+   "tiTip": "No — discount each cash flow by hand; there is no cash-flow register on the calculator.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "A project requires an investment of $8,000 today and returns $3,000, $4,000, and $5,000 at the ends of years 1, 2, and 3. At 10% annual interest, what is the present worth of the project?",
@@ -5357,6 +5373,7 @@
    "id": "econ-017",
    "topic": "Engineering Economics",
    "subtopic": "Payback period",
+   "tiTip": "No — discount each year's cash flow by hand until the investment is recovered; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 135,
    "question": "A project requires an initial investment of $12,000 and generates $4,000 per year. At 10% annual interest, what is the discounted payback period?",
@@ -5374,6 +5391,7 @@
    "id": "econ-018",
    "topic": "Engineering Economics",
    "subtopic": "MACRS depreciation",
+   "tiTip": "No — multiply the cost by the MACRS year-2 rate by hand; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 105,
    "question": "A $100,000 piece of equipment is classified as 5-year property under MACRS. What is the depreciation deduction in year 2?",
@@ -5393,6 +5411,7 @@
    "id": "econ-019",
    "topic": "Engineering Economics",
    "subtopic": "Benefit-cost ratio",
+   "tiTip": "No — set up (benefits − disbenefits)/costs by hand; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 105,
    "question": "A proposed project has benefits of $800,000, disbenefits of $100,000, and costs of $500,000 (all present worths). What is the conventional benefit-cost ratio?",
@@ -5412,6 +5431,7 @@
    "id": "econ-020",
    "topic": "Engineering Economics",
    "subtopic": "Unknown interest rate",
+   "tiTip": "No — rearrange to i = (F/P)^(1/n) − 1 by hand; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 105,
    "question": "An investment of $5,000 grows to $8,000 in 4 years with annual compounding. What is the annual effective interest rate?",
@@ -5857,6 +5877,7 @@
    "id": "econ-021",
    "topic": "Engineering Economics",
    "subtopic": "Inflation-adjusted interest rate",
+   "tiTip": "No — compute d = i + f + if by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "question": "A project cost is estimated in constant (year-0) dollars. If the market interest rate is 8% per year and general inflation is 3% per year, what inflation-adjusted interest rate should be used to compute the present worth of future costs stated in constant dollars?",
    "choices": [
@@ -5874,6 +5895,7 @@
    "id": "econ-022",
    "topic": "Engineering Economics",
    "subtopic": "Bond valuation",
+   "tiTip": "No — price the coupons and face value with (P/A) and (P/F) by hand; the calculator only does the arithmetic.",
    "difficulty": "medium",
    "question": "A 10-year bond with a $1,000 face value pays 6% annual coupons at each year end. If the market interest rate is 8% per year, what is the bond's value?",
    "choices": [
@@ -5891,6 +5913,7 @@
    "id": "econ-023",
    "topic": "Engineering Economics",
    "subtopic": "Deferred uniform series",
+   "tiTip": "No — price the annuity, then discount it through the deferral period by hand; the calculator only does the arithmetic.",
    "difficulty": "hard",
    "question": "A machine upgrade will save $4,000 per year for 6 years, with the first savings occurring at the end of year 3 (the series is deferred 2 years). At 10% annual interest, what is the present worth of the savings?",
    "choices": [
@@ -6836,6 +6859,7 @@
    "question": "A $50,000 loan at 6% annual interest is repaid with 10 equal end-of-year payments. What is the remaining balance immediately after the 4th payment?",
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the balance \\(B_4\\). First find the annual payment with the capital recovery factor:\n\n$$A = P(A/P, i, n) = 50{,}000 \\left[\\frac{0.06(1.06)^{10}}{(1.06)^{10} - 1}\\right]$$\n\n$$(A) = 50{,}000(0.13587) = 6{,}793.36$$\n\nThe balance after 4 payments is the present worth of the 6 remaining payments:\n\n$$B_4 = A(P/A, i, 6) = 6{,}793.36 \\left[\\frac{(1.06)^6 - 1}{0.06(1.06)^6}\\right]$$\n\n$$(B_4) = 6{,}793.36(4.91732) = 33{,}405 \\approx \\$33{,}400$$",
    "subtopic": "Loan balance (remaining principal)",
+   "tiTip": "No — find the annual payment, then price the remaining payments by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -6853,6 +6877,7 @@
    "question": "A $20,000 asset is classified as 5-year MACRS property. What is its book value at the end of year 2?",
    "solution": "Refer to the Depreciation section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(BV_2\\). The handbook's MACRS table gives, for 5-year property:\n\n$$\\begin{aligned}\n\\text{Year 1 rate} &= 20.00\\% \\\\\n\\text{Year 2 rate} &= 32.00\\%\n\\end{aligned}$$\n\nAccumulated depreciation through year 2:\n\n$$(D_{acc}) = 20{,}000(0.2000 + 0.3200) = 20{,}000(0.52) = 10{,}400$$\n\nBook value is cost minus accumulated depreciation:\n\n$$(BV_2) = 20{,}000 - 10{,}400 = 9{,}600$$",
    "subtopic": "MACRS depreciation (book value)",
+   "tiTip": "No — accumulate the MACRS rates by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -7203,6 +7228,7 @@
    "question": "A savings account pays 12% nominal interest compounded monthly. What is the effective interest rate per quarter?",
    "solution": "Refer to the Non-Annual Compounding section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the effective quarterly rate. The handbook prints:\n\n$$i_e = \\left(1 + \\frac{r}{m}\\right)^m - 1$$\n\nThe monthly rate is:\n\n$$(i_{month}) = \\frac{0.12}{12} = 0.01$$\n\nOne quarter contains 3 months:\n\n$$(i_{quarter}) = (1.01)^3 - 1 = 1.030301 - 1 = 0.0303 = 3.03\\%$$",
    "subtopic": "Non-annual compounding (effective quarterly rate)",
+   "tiTip": "No — compute (1.01)^3 − 1 by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -7447,6 +7473,7 @@
    "question": "$2,000 is deposited at the end of each year for 10 years into an account earning 6% annual interest. What is the future worth of the deposits?",
    "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(F\\). The handbook prints the uniform-series compound-amount factor:\n\n$$(F) = A(F/A, i\\%, n)$$\n\n$$\\left(\\frac{F}{A}, 6\\%, 10\\right) = \\frac{(1.06)^{10} - 1}{0.06} = 13.1808$$\n\n$$(F) = (2{,}000)(13.1808) = 26{,}361.60 \\approx \\$26{,}362$$",
    "subtopic": "Uniform series future worth (F/A)",
+   "tiTip": "No — look up (F/A,6%,10) in the handbook interest tables; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -7464,6 +7491,7 @@
    "question": "A company has annual revenue of $800,000, ordinary operating expenses of $520,000, and depreciation of $90,000. What is its taxable income?",
    "solution": "Refer to the Taxation section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for taxable income. The handbook prints:\n\n$$\\text{Taxable income} = \\text{total income} - \\text{depreciation} - \\text{ordinary expenses}$$\n\n$$(\\text{Taxable income}) = 800{,}000 - 90{,}000 - 520{,}000 = \\$190{,}000$$",
    "subtopic": "Taxable income",
+   "tiTip": "No — subtract expenses and depreciation by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -8151,6 +8179,7 @@
    "question": "A pump cost $50,000 in 2015, when the cost index was 550. If the current index is 715, what is the estimated current cost?",
    "solution": "Refer to the Cost Indexes section of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the current cost. The handbook prints:\n\n$$\\text{Current \\$} = (\\text{Cost in year M}) \\times \\frac{\\text{Current Index}}{\\text{Index in year M}}$$\n\nSubstituting:\n\n$$(\\text{Current \\$}) = 50{,}000 \\times \\frac{715}{550} = 50{,}000(1.30)$$\n\n$$(\\text{Current \\$}) = \\$65{,}000$$",
    "subtopic": "Cost index updating",
+   "tiTip": "No — scale by the cost-index ratio by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -8168,6 +8197,7 @@
    "question": "An investment of $37,908 returns $10,000 at the end of each year. If the interest rate is 10% per year, how many years of returns are needed to recover the investment?",
    "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\(n\\). The handbook prints the uniform-series present-worth factor:\n\n$$(P) = A(P/A, i\\%, n)$$\n\n$$(P/A, 10\\%, n) = \\frac{37{,}908}{10{,}000} = 3.7908$$\n\nTesting \\(n = 5\\):\n\n$$(P/A, 10\\%, 5) = \\frac{(1.10)^5 - 1}{0.10(1.10)^5} = \\frac{0.61051}{0.16105} = 3.7908$$\n\nSo \\(n = 5\\) years.",
    "subtopic": "Unknown number of periods (P/A)",
+   "tiTip": "Partially — no TVM solver; solve (P/A,10%,n) = 3.7908 by testing n in the handbook interest tables, or try the numeric equation solver.",
    "topic": "Engineering Economics"
   },
   {
@@ -8671,6 +8701,7 @@
    "question": "A decision node offers two alternatives. Alternative A: a 60% chance of an $80,000 profit and a 40% chance of a $20,000 loss. Alternative B: a 50% chance of a $100,000 profit and a 50% chance of a $10,000 loss. On an expected-value basis, which alternative should the decision maker choose?",
    "solution": "Refer to the Economic Decision Trees section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compare expected values. The handbook prints:\n\n$$EV = (C_1)(p_1) + (C_2)(p_2) + \\cdots$$\n\nFor Alternative A:\n\n$$(EV_A) = (80{,}000)(0.60) + (-20{,}000)(0.40)$$\n\n$$(EV_A) = 48{,}000 - 8{,}000 = \\$40{,}000$$\n\nFor Alternative B:\n\n$$(EV_B) = (100{,}000)(0.50) + (-10{,}000)(0.50)$$\n\n$$(EV_B) = 50{,}000 - 5{,}000 = \\$45{,}000$$\n\nSince \\(EV_B > EV_A\\), the decision maker should choose Alternative B.",
    "subtopic": "Decision tree expected value",
+   "tiTip": "No — weight each outcome by its probability by hand; the calculator only does the arithmetic.",
    "topic": "Engineering Economics",
    "videoUrl": "https://www.youtube.com/watch?v=QkMQITRwEz8",
    "videoTitle": "Decision Tree Analysis | PMP Math Mastery"
@@ -8690,6 +8721,7 @@
    "question": "A proposed investment has a computed rate of return of 9%. The company's minimum acceptable rate of return (MARR) is 12%. Based on the rate-of-return criterion, should the investment be accepted?",
    "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must apply the decision rule. The handbook states:\n\nThe minimum acceptable rate-of-return (MARR) is that interest rate that one is willing to accept. The rate-of-return on an investment is the interest rate that makes the benefits and costs equal.\n\nAn investment is acceptable when its rate of return meets or exceeds the MARR.\n\nHere \\(9\\% < 12\\%\\); the computed return falls short of the hurdle rate.\n\nTherefore the investment should NOT be accepted.",
    "subtopic": "MARR decision rule",
+   "tiTip": "No — this is a decision-rule question; the calculator can't help.",
    "topic": "Engineering Economics"
   },
   {
@@ -8760,6 +8792,7 @@
    "question": "A machine costs $50,000 new, has an estimated salvage value of $5,000 after 10 years, and the interest rate is 8% per year. What is the equivalent uniform annual cost (EUAC) of owning the machine?",
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the \\(EUAC\\). The handbook prints:\n\n$$(A/P,i,n) = \\frac{i(1+i)^n}{(1+i)^n-1} \\qquad (A/F,i,n) = (A/P,i,n) - i$$\n\nThe equivalent uniform annual cost spreads the first cost and recovers the salvage value:\n\n$$EUAC = P(A/P,8\\%,10) - S(A/F,8\\%,10)$$\n\nComputing the factors:\n\n$$(A/P,8\\%,10) = \\frac{0.08(1.08)^{10}}{(1.08)^{10}-1} = \\frac{0.172714}{1.158925} = 0.14903$$\n\n$$(A/F,8\\%,10) = 0.14903 - 0.08 = 0.06903$$\n\nSubstituting:\n\n$$EUAC = 50{,}000(0.14903) - 5{,}000(0.06903)$$\n\n$$EUAC = 7{,}451.5 - 345.2 = 7{,}106.3 \\approx \\$7{,}106$$\n",
    "subtopic": "Equivalent uniform annual cost",
+   "tiTip": "No — look up (A/P) and (A/F) in the handbook interest tables; the calculator only does the arithmetic.",
    "topic": "Engineering Economics"
   },
   {
@@ -9693,6 +9726,7 @@
    "id": "econ-034",
    "topic": "Engineering Economics",
    "subtopic": "Fixed and variable cost",
+   "tiTip": "No — solve the two-point linear system by hand; the calculator only does the arithmetic.",
    "question": "A contractor's total cost is $10,000 when producing 500 units and $16,000 when producing 1,000 units. Assuming cost is linear in quantity, what is the fixed cost?",
    "choices": [
     "$4,000",
@@ -9710,6 +9744,7 @@
    "id": "econ-035",
    "topic": "Engineering Economics",
    "subtopic": "Average cost",
+   "tiTip": "No — divide total cost by quantity; the calculator only does the arithmetic.",
    "question": "A precast plant spends $48,000 total to produce 3,000 identical concrete panels. What is the average cost per panel?",
    "choices": [
     "$16",
@@ -9727,6 +9762,7 @@
    "id": "econ-036",
    "topic": "Engineering Economics",
    "subtopic": "Sunk cost",
+   "tiTip": "No — this is a conceptual question; the calculator can't help.",
    "question": "A firm spent $200,000 developing a prototype that failed testing. It is now evaluating a redesigned product. How should the $200,000 be treated in the economic analysis?",
    "choices": [
     "Ignore it — it is a sunk cost",
@@ -9744,6 +9780,7 @@
    "id": "econ-037",
    "topic": "Engineering Economics",
    "subtopic": "Expected value of a project",
+   "tiTip": "No — weight each outcome by its probability by hand; the calculator only does the arithmetic.",
    "question": "A project has a 60% chance of earning $100,000 and a 40% chance of losing $20,000. What is its expected monetary value?",
    "choices": [
     "$52,000",
@@ -9761,6 +9798,7 @@
    "id": "econ-038",
    "topic": "Engineering Economics",
    "subtopic": "Expected value decision",
+   "tiTip": "No — compare the expected values by hand; the calculator only does the arithmetic.",
    "question": "Alternative A has an expected value of $50,000. Alternative B has a 50% chance of $120,000 and a 50% chance of −$10,000. Using expected value, which should be selected?",
    "choices": [
     "Alternative B ($55,000)",
@@ -9778,6 +9816,7 @@
    "id": "econ-039",
    "topic": "Engineering Economics",
    "subtopic": "Risk in engineering economy",
+   "tiTip": "No — this is a definition question; the calculator can't help.",
    "question": "In an engineering economic analysis under uncertainty, the term “risk” is best described as which of the following?",
    "choices": [
     "Variability of outcomes around the expected value",
