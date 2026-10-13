@@ -107,7 +107,7 @@
     {
      "code": "4B",
      "label": "Equivalent force systems",
-     "count": 2
+     "count": 4
     },
     {
      "code": "4C",
@@ -152,7 +152,7 @@
     {
      "code": "5B",
      "label": "Mass moments of inertia",
-     "count": 2
+     "count": 3
     },
     {
      "code": "5C",
@@ -177,7 +177,7 @@
     {
      "code": "6A",
      "label": "Shear and moment diagrams",
-     "count": 1
+     "count": 4
     },
     {
      "code": "6B",
@@ -232,7 +232,7 @@
     {
      "code": "8A",
      "label": "Flow measurement",
-     "count": 2
+     "count": 4
     },
     {
      "code": "8B",
@@ -377,7 +377,7 @@
     {
      "code": "11D",
      "label": "Structural determinacy and stability analysis of beams, trusses, and frames",
-     "count": 2
+     "count": 4
     },
     {
      "code": "11E",
@@ -442,7 +442,7 @@
     {
      "code": "12G",
      "label": "Bearing capacity",
-     "count": 2
+     "count": 4
     },
     {
      "code": "12H",
@@ -1011,10 +1011,13 @@
   "construction-032": "14C",
   "construction-033": "10J",
   "dynamics-033": "5D",
+  "dynamics-034": "5B",
   "econ-033": "3A",
   "ethics-032": "2C",
   "ethics-033": "2B",
   "fluid-033": "OFFSPEC",
+  "fluid-034": "8A",
+  "fluid-035": "8A",
   "geotech-032": "12D",
   "geotech-033": "12E",
   "materials-032": "OFFSPEC",
@@ -1022,11 +1025,16 @@
   "math-032": "1B",
   "math-033": "OFFSPEC",
   "mechmat-033": "6D",
+  "mechmat-034": "6A",
+  "mechmat-035": "6A",
+  "mechmat-036": "6A",
   "statics-032": "4F",
   "stats-032": "1D",
   "stats-033": "1D",
   "stats-034": "1D",
   "structural-033": "11G",
+  "structural-034": "11D",
+  "structural-035": "11D",
   "surveying-032": "9B",
   "transportation-032": "13D",
   "transportation-033": "13C",
@@ -1036,6 +1044,8 @@
   "statics-033": "4A",
   "statics-034": "4E",
   "statics-035": "4C",
+  "statics-036": "4B",
+  "statics-037": "4B",
   "surveying-033": "13A",
   "surveying-034": "13A",
   "surveying-035": "9D",
@@ -1096,7 +1106,9 @@
   "geotech-044": "12F",
   "geotech-045": "12J",
   "geotech-046": "12J",
-  "geotech-047": "12J"
+  "geotech-047": "12J",
+  "geotech-048": "12G",
+  "geotech-049": "12G"
  },
  "offspec": [
   "math-003",
