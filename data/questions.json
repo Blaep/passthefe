@@ -186,7 +186,7 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_{\\max}\\). For a simply supported beam carrying a uniform load over its full length:\n\n$$M_{\\max} = \\frac{wL^2}{8}$$\n\nList the known and unknown parameters in order to solve for \\(M_{\\max}\\):\n\n$$\\begin{aligned}\nw &= 2\\ \\text{kN/m} \\\\\nL &= 6\\ \\text{m} \\\\\nM_{\\max} &= ?\n\\end{aligned}$$\n\n$$(M_{\\max}) = \\frac{wL^2}{8} \\rightarrow (M_{\\max}) = \\frac{(2)(6)^2}{8}$$\n\n$$(M_{\\max}) = \\frac{72}{8} = 9\\ \\text{kN}\\cdot\\text{m}$$\n\nThe maximum occurs at midspan.",
-   "explanation": "wL²/8 (uniform load) and PL/4 (center point load) on a simply supported beam are the two moment formulas to memorize cold.",
+   "explanation": "wL²/8 (uniform load) and PL/4 (center point load) on a simply supported beam are the two moment formulas to memorize cold. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — read the maximum moment (wL²/8) for the uniform full-span load case instead of deriving it.",
    "diagram": "diagrams/structural-001.svg",
    "videoUrl": "https://www.youtube.com/watch?v=nkynrDINPic",
    "videoTitle": "How to Draw Shear Force and Moment Diagrams"
@@ -490,7 +490,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "Binomial models count successes in fixed trials - bids won, welds passing inspection, etc. The most common error is forgetting the combinatorial coefficient C(n,k); without it you get 0.002, which badly underestimates the probability.",
+   "explanation": "Binomial models count successes in fixed trials - bids won, welds passing inspection, etc. The most common error is forgetting the combinatorial coefficient C(n,k); without it you get 0.002, which badly underestimates the probability. Handbook table: also solvable with the Cumulative Binomial Probabilities table in the Engineering Probability and Statistics chapter — read P(X ≤ 3) and P(X ≤ 2) at n = 10, p = 0.30 and subtract.",
    "id": "stats-003",
    "question": "A construction firm estimates each bid it submits has a 30% chance of being accepted, independently of other bids. If it submits 10 bids, what is the probability that exactly 3 are accepted?",
    "solution": "Refer to the Binomial Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X = 3)\\). Each bid is an independent trial with the same success probability, so the count of acceptances is binomial:\n\n$$P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}$$\n\nList the known and unknown parameters in order to solve for \\(P(X = 3)\\):\n\n$$\\begin{aligned}\nn &= 10 \\\\\np &= 0.30 \\\\\nk &= 3 \\\\\nP(X = 3) &= ?\n\\end{aligned}$$\n\n$$(P) = \\binom{10}{3}(0.3)^3(0.7)^7 \\rightarrow (P) = (120)(0.027)(0.0823543)$$\n\n$$(P) = 0.2668 \\approx 0.267$$",
@@ -510,7 +510,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
-   "explanation": "The normal distribution is the workhorse for quality control and reliability. Mixing up the tail area (15.9%) with the area between the mean and z = 1 (34.1%) is the classic mistake.",
+   "explanation": "The normal distribution is the workhorse for quality control and reliability. Mixing up the tail area (15.9%) with the area between the mean and z = 1 (34.1%) is the classic mistake. Handbook table: also solvable with the unit normal distribution table in the Engineering Probability and Statistics chapter — convert 115 MPa to z = 1.0 and read 1 − Φ(1) ≈ 15.9% exceeding the threshold.",
    "id": "stats-004",
    "question": "Compressive test results for a concrete mix are normally distributed with a mean of 100 MPa and a standard deviation of 15 MPa. Approximately what percentage of samples exceed 115 MPa?",
    "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must find the percentage of samples exceeding 115 MPa. Standardize with the z-score:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned}\n\\mu &= 100\\ \\text{MPa} \\\\\n\\sigma &= 15\\ \\text{MPa} \\\\\nx &= 115\\ \\text{MPa} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{115 - 100}{15} = 1$$\n\nThe area beyond \\(z = 1\\) (one standard deviation above the mean) is \\(1 - \\Phi(1) = 1 - 0.8413 = 0.1587\\):\n\n$$P(x > 115) \\approx 15.9\\%$$",
@@ -629,7 +629,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "The P/A factor converts recurring annual costs (maintenance, operations) to a single present value for comparison. Common errors: using the future worth factor instead, or confusing this with a gradient series.",
+   "explanation": "The P/A factor converts recurring annual costs (maintenance, operations) to a single present value for comparison. Common errors: using the future worth factor instead, or confusing this with a gradient series. Handbook table: also solvable with the compound-interest factor table (i = 8%) in the Engineering Economics chapter — look up (P/A, 8%, 10).",
    "id": "econ-004",
    "question": "What is the present worth of a uniform series of $100 per year for 10 years at an interest rate of 8% per year?",
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P\\), the present worth, using the uniform series present worth factor:\n\n$$P = A(P/A, i, n) = A\\frac{(1+i)^n - 1}{i(1+i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= 100\\ \\text{/yr} \\\\\ni &= 0.08\\ \\text{/yr} \\\\\nn &= 10\\ \\text{yr} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P/A, 8\\%, 10) = \\frac{(1.08)^{10} - 1}{0.08(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\n$$(P) = (100)(6.7101) = \\$671.01 \\approx \\$671$$",
@@ -701,7 +701,7 @@
    ],
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
-   "explanation": "IRR is the discount rate that zeroes the net present worth - the project's own earned rate. On the FE, bracket the unknown factor between two tabulated interest rates and interpolate; guessing from the cash flows alone without setting PW = 0 leads to the wrong neighborhood entirely.",
+   "explanation": "IRR is the discount rate that zeroes the net present worth - the project's own earned rate. On the FE, bracket the unknown factor between two tabulated interest rates and interpolate; guessing from the cash flows alone without setting PW = 0 leads to the wrong neighborhood entirely. Handbook table: also solvable by interpolating between (P/A, 8%, 3) and (P/A, 10%, 3) in the compound-interest factor tables.",
    "id": "econ-008",
    "question": "A project requires an initial investment of $5,000 and returns $2,000 per year for 3 years. Approximately what is the internal rate of return (IRR) of this project?",
    "solution": "Refer to the Rate-of-Return section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the IRR, the rate \\(i\\) at which the present worth equals zero:\n\n$$0 = -5000 + 2000(P/A, i, 3) \\quad\\Rightarrow\\quad (P/A, i, 3) = 2.5$$\n\nBracket the unknown factor between tabulated values:\n\n$$\\begin{aligned}\n(P/A, 9\\%, 3) &= 2.5313 \\\\\n(P/A, 10\\%, 3) &= 2.4869\n\\end{aligned}$$\n\nSince 2.5 falls between them, interpolate:\n\n$$(i) = 9\\% + \\frac{2.5313 - 2.5}{2.5313 - 2.4869}(1\\%) = 9\\% + 0.705\\%$$\n\n$$(i) \\approx 9.7\\%$$",
@@ -1702,7 +1702,7 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(KL\\). The theoretical effective length factor for a fixed-free (cantilever) column is \\(K = 2.0\\):\n\n$$KL = K \\cdot L$$\n\nList the known and unknown parameters in order to solve for \\(KL\\):\n\n$$\\begin{aligned}\nK &= 2.0\\ \\text{(fixed-free)} \\\\\nL &= 4.0\\ \\text{m} \\\\\nKL &= ?\n\\end{aligned}$$\n\n$$(KL) = (2.0)(4.0)$$\n\n$$(KL) = 8.0\\ \\text{m}$$",
-   "explanation": "End restraint controls buckling: a flagpole-type column buckles with an effective length twice its real length, making it the worst common case. Memorizing K = 2.0 (fixed-free), 1.0 (pinned-pinned), 0.7 (fixed-pinned), 0.5 (fixed-fixed) covers most FE questions.",
+   "explanation": "End restraint controls buckling: a flagpole-type column buckles with an effective length twice its real length, making it the worst common case. Memorizing K = 2.0 (fixed-free), 1.0 (pinned-pinned), 0.7 (fixed-pinned), 0.5 (fixed-fixed) covers most FE questions. Handbook table: also solvable with the TABLE C-A-7.1 AISC APPROXIMATE VALUES OF EFFECTIVE LENGTH FACTOR, K table in the Civil Engineering (steel design) chapter — read the theoretical K = 2.0 for fixed-free ends, giving KL = 8.0 m.",
    "diagram": "diagrams/structural-005.svg",
    "videoUrl": "https://www.youtube.com/watch?v=hOX6wdQm8LE",
    "videoTitle": "Buckling Load Theory Explained"
@@ -1740,7 +1740,7 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Beams section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(V_{max}\\) and \\(M_{max}\\). By symmetry each reaction carries half the load:\n\n$$R = \\frac{P}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= 10\\ \\text{kN} \\\\\nL &= 8\\ \\text{m} \\\\\nR &= ? \\\\\nV_{max} &= ? \\\\\nM_{max} &= ?\n\\end{aligned}$$\n\n$$(R) = \\frac{10}{2} = 5\\ \\text{kN}$$\n\nThe shear is constant at \\(\\pm 5\\) kN, so \\(V_{max} = 5\\) kN. The moment peaks under the load:\n\n$$M_{max} = \\frac{PL}{4}$$\n\n$$(M_{max}) = \\frac{(10)(8)}{4} = 20\\ \\text{kN-m}$$",
-   "explanation": "For midspan point loads, reactions split the load in half and the peak moment is PL/4, not PL/2. Mixing up shear (a force) with the reaction value, or using the cantilever formula PL, are the usual errors.",
+   "explanation": "For midspan point loads, reactions split the load in half and the peak moment is PL/4, not PL/2. Mixing up shear (a force) with the reaction value, or using the cantilever formula PL, are the usual errors. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — read the center-point-load case (reactions P/2, maximum moment PL/4) directly.",
    "diagram": "diagrams/structural-007.svg",
    "videoUrl": "https://www.youtube.com/watch?v=nkynrDINPic",
    "videoTitle": "How to Draw Shear Force and Moment Diagrams"
@@ -1839,7 +1839,7 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Soil Classification section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must classify the soil. Compute the plasticity index:\n\n$$PI = LL - PL$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nLL &= 55 \\\\\nPL &= 28 \\\\\nPI &= ?\n\\end{aligned}$$\n\n$$(PI) = 55 - 28 = 27$$\n\nSince \\(LL = 55 > 50\\), the soil is high plasticity (H). Check the A-line:\n\n$$PI_A = 0.73(LL - 20) = 0.73(35) = 25.55$$\n\n\\(PI = 27\\) plots above the A-line, so the fines are clay (C) rather than silt (M).\n\nTherefore the classification is CH (fat clay).",
-   "explanation": "USCS fine-grained classification is a two-step test: LL above/below 50 gives H/L, and position relative to the A-line gives C/M. Skipping the A-line check is how CH gets mislabeled MH.",
+   "explanation": "USCS fine-grained classification is a two-step test: LL above/below 50 gives H/L, and position relative to the A-line gives C/M. Skipping the A-line check is how CH gets mislabeled MH. Handbook table: also solvable with the Unified Soil Classification System table in the Geotechnical chapter — use the group-symbol criteria (LL = 55 > 50 and PI = 27 plotting above the A-line) to classify the soil as CH (fat clay).",
    "conceptual": true
   },
   {
@@ -1964,7 +1964,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
-   "explanation": "Each facility type has its own LOS measure: density for freeways, control delay for signalized intersections, and percent time spent following for two-lane highways. Mixing these up is a classic conceptual trap.",
+   "explanation": "Each facility type has its own LOS measure: density for freeways, control delay for signalized intersections, and percent time spent following for two-lane highways. Mixing these up is a classic conceptual trap. Handbook table: also solvable with the Level of Service (LOS) density table, A–F in the Transportation chapter — the table's measure is density (pc/mi/ln), which is what defines LOS for a basic freeway segment.",
    "id": "transportation-005",
    "question": "According to the Highway Capacity Manual, which measure of effectiveness defines the level of service (LOS) for a basic freeway segment?",
    "solution": "Refer to the Level of Service (LOS) section in the Civil Engineering chapter of the FE Reference Handbook.\n\nThe Highway Capacity Manual assigns each facility type its own measure of effectiveness for level of service. For a basic freeway segment that measure is density in passenger cars per mile per lane (pc/mi/ln) — LOS A at densities of 11 pc/mi/ln or less, LOS F above 45 pc/mi/ln.\n\nAverage travel speed, volume-to-capacity ratio, and percent time spent following govern other facility types (percent time spent following, for example, defines LOS on two-lane highways), not basic freeway segments.\n\nDensity in passenger cars per mile per lane is the correct choice.",
@@ -2445,7 +2445,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Binomial Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X = 2)\\):\n\n$$P(X = k) = \\binom{n}{k} p^{k}(1 - p)^{n-k}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nn &= 5 \\\\\nk &= 2 \\\\\np &= 0.10 \\\\\nP(X = 2) &= ?\n\\end{aligned}$$\n\n$$(P) = \\binom{5}{2}(0.10)^{2}(0.90)^{3} \\rightarrow (P) = (10)(0.01)(0.729)$$\n\n$$(P) = 0.0729$$",
-   "explanation": "Binomial problems require the C(n,k) coefficient — 0.0073 is p²(1−p)³ without it, and 0.5905 is the probability that none fail.",
+   "explanation": "Binomial problems require the C(n,k) coefficient — 0.0073 is p²(1−p)³ without it, and 0.5905 is the probability that none fail. Handbook table: also solvable with the Cumulative Binomial Probabilities table in the Engineering Probability and Statistics chapter — read P(X ≤ 2) and P(X ≤ 1) at n = 5, p = 0.10 and subtract.",
    "videoUrl": "https://www.youtube.com/watch?v=3PWKQiLK41M",
    "videoTitle": "Finding The Probability of a Binomial Distribution Plus Mean & Standard Deviation"
   },
@@ -2465,7 +2465,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X > 51)\\). Standardize to \\(z\\):\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\mu &= 50\\ \\text{mm} \\\\\n\\sigma &= 0.5\\ \\text{mm} \\\\\nx &= 51\\ \\text{mm} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{51 - 50}{0.5} \\rightarrow (z) = 2.0$$\n\nFrom the standard normal table, the upper tail beyond \\(z = 2.0\\) is:\n\n$$(P) = 0.0228 = 2.28\\%$$",
-   "explanation": "A one-sided 'greater than' question wants a single tail — 4.56% doubles it and 97.72% is the complement below 51 mm.",
+   "explanation": "A one-sided 'greater than' question wants a single tail — 4.56% doubles it and 97.72% is the complement below 51 mm. Handbook table: also solvable with the unit normal distribution table in the Engineering Probability and Statistics chapter — convert 51 mm to z = 2.0 and read P(Z > 2) ≈ 2.28%.",
    "videoUrl": "https://www.youtube.com/watch?v=3be6mzCYMRs",
    "videoTitle": "Statistics 6.3 – Finding Probability Using a Normal Distribution"
   },
@@ -2524,7 +2524,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\):\n\n$$P = F(P/F, i, n) = \\frac{F}{(1 + i)^n}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF &= \\$5{,}000 \\\\\ni &= 6\\% = 0.06 \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = \\frac{5000}{(1.06)^{5}} \\rightarrow (P) = \\frac{5000}{1.3382}$$\n\n$$(P) = \\$3{,}736$$",
-   "explanation": "Discounting uses compound interest — $3,846 comes from simple interest and $6,691 compounds in the wrong direction.",
+   "explanation": "Discounting uses compound interest — $3,846 comes from simple interest and $6,691 compounds in the wrong direction. Handbook table: also solvable with the compound-interest factor table (i = 6%) in the Engineering Economics chapter — look up (P/F, 6%, 5).",
    "videoUrl": "https://www.youtube.com/watch?v=bd86wfNRPvo",
    "videoTitle": "Simple and Compound Interest Explained"
   },
@@ -2562,7 +2562,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) of a base series plus an arithmetic gradient:\n\n$$P = A(P/A, i, n) + G(P/G, i, n)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA &= \\$1{,}000 \\\\\nG &= \\$200 \\\\\ni &= 8\\% \\\\\nn &= 5\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n$$(P) = 1000(3.9927) + 200(7.3724) \\rightarrow (P) = 3992.71 + 1474.49$$\n\n$$(P) = \\$5{,}467$$",
-   "explanation": "A gradient series is base amount plus gradient — $3,993 prices only the $1,000 base and $5,000 ignores the time value of money entirely.",
+   "explanation": "A gradient series is base amount plus gradient — $3,993 prices only the $1,000 base and $5,000 ignores the time value of money entirely. Handbook table: also solvable with the compound-interest factor table (i = 8%) in the Engineering Economics chapter — look up (P/A, 8%, 5) and (P/G, 8%, 5).",
    "videoUrl": "https://www.youtube.com/watch?v=3YeDeCawZog",
    "videoTitle": "Engineering Economic Analysis - Gradient Series"
   },
@@ -2581,7 +2581,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Capitalized Costs section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the capitalized cost \\(CC\\). Convert the recurring cost to an equivalent annual amount, then capitalize it:\n\n$$CC = \\text{initial cost} + \\frac{A}{i}, \\quad A = 10000(A/F, i, 5)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{initial cost} &= \\$100{,}000 \\\\\n\\text{rehab} &= \\$10{,}000\\ \\text{every 5 years} \\\\\ni &= 6\\% \\\\\n(A/F, 6\\%, 5) &= 0.1774 \\\\\nCC &= ?\n\\end{aligned}$$\n\n$$(A) = 10000(0.1774) \\rightarrow (A) = \\$1{,}774\\text{/yr}$$\n\n$$(CC) = 100000 + \\frac{1774}{0.06} = \\$129{,}566$$",
-   "explanation": "A cost every 5 years is not an annual cost — $266,667 capitalizes $10,000 as if it were spent every year.",
+   "explanation": "A cost every 5 years is not an annual cost — $266,667 capitalizes $10,000 as if it were spent every year. Handbook table: also solvable with the compound-interest factor table (i = 6%) in the Engineering Economics chapter — look up (A/P, 6%, 5).",
    "videoUrl": "https://www.youtube.com/watch?v=wsj7wC6QFbc",
    "videoTitle": "Capitalized Value - Engineering Economics Lightboard"
   },
@@ -2954,7 +2954,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\delta_{max}\\). For a simply supported beam under uniform load:\n\n$$\\delta_{max} = \\frac{5wL^4}{384EI}$$\n\nList the known and unknown parameters in order to solve for \\(\\delta_{max}\\):\n\n$$\\begin{aligned} w &= 5.00\\ \\text{kN/m} = 5000\\ \\text{N/m} \\\\ L &= 4.00\\ \\text{m} \\\\ E &= 200\\ \\text{GPa} \\\\ I &= 40.0 \\times 10^6\\ \\text{mm}^4 = 40.0 \\times 10^{-6}\\ \\text{m}^4 \\\\ \\delta_{max} &= ? \\end{aligned}$$\n\n$$(\\delta_{max}) = \\frac{5(5000)(4.00)^4}{384(200 \\times 10^9)(40.0 \\times 10^{-6})} \\rightarrow \\frac{6.40 \\times 10^6}{3.07 \\times 10^9}$$\n\n$$(\\delta_{max}) = 2.08 \\times 10^{-3}\\ \\text{m} = 2.08\\ \\text{mm downward}$$",
-   "explanation": "The trap is 3.33 mm — using the point-load formula PL³/48EI with P = wL; the uniform-load formula has its own 5/384 coefficient.",
+   "explanation": "The trap is 3.33 mm — using the point-load formula PL³/48EI with P = wL; the uniform-load formula has its own 5/384 coefficient. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — read the maximum deflection for the uniform full-span load case (5wL⁴/384EI) instead of integrating the elastic curve.",
    "diagram": "diagrams/mechmat-010.svg",
    "videoUrl": "https://www.youtube.com/watch?v=iHaDiQanPlQ",
    "videoTitle": "Problem 12.39 Determine the maximum deflection of the beam"
@@ -3415,7 +3415,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\Delta_{max}\\). We can determine \\(\\Delta_{max}\\) from the following equation:\n\n$$\\Delta_{max} = \\frac{5wL^4}{384EI}$$\n\nList the known and unknown parameters in order to solve for \\(\\Delta_{max}\\):\n\n$$\\begin{aligned}\nw &= 10\\ \\text{kN/m} = 10{,}000\\ \\text{N/m} \\\\\nL &= 6\\ \\text{m} \\\\\nE &= 200\\ \\text{GPa} = 200 \\times 10^9\\ \\text{Pa} \\\\\nI &= 40 \\times 10^6\\ \\text{mm}^4 = 4.0 \\times 10^{-5}\\ \\text{m}^4 \\\\\n\\Delta_{max} &= ?\n\\end{aligned}$$\n\n$$(\\Delta_{max}) = \\frac{5wL^4}{384EI} \\rightarrow (\\Delta_{max}) = \\frac{5(10{,}000)(6)^4}{384(200 \\times 10^9)(4.0 \\times 10^{-5})}$$\n\n$$(\\Delta_{max}) = 0.0211\\ \\text{m} = 21.1\\ \\text{mm downward}$$",
-   "explanation": "Two traps: the mm^4-to-m^4 conversion (10^-12) — botching it shifts the answer by orders of magnitude — and grabbing the cantilever formula wL^4/(8EI), which gives 202 mm for a beam that is simply supported.",
+   "explanation": "Two traps: the mm^4-to-m^4 conversion (10^-12) — botching it shifts the answer by orders of magnitude — and grabbing the cantilever formula wL^4/(8EI), which gives 202 mm for a beam that is simply supported. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — read the maximum deflection (5wL⁴/384EI) for the uniform full-span load case.",
    "diagram": "diagrams/structural-013.svg",
    "videoUrl": "https://www.youtube.com/watch?v=-C6Hk8LUgKM",
    "videoTitle": "Deflection of Beam"
@@ -3510,7 +3510,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). We can determine \\(q_{ult}\\) from the following equation:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\tfrac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 60\\ \\text{kPa} \\\\\n\\phi &= 0^\\circ \\; \\Rightarrow \\; N_c = 5.7,\\ N_q = 1.0,\\ N_{\\gamma} = 0 \\; (\\text{Terzaghi}) \\\\\nB &= 2\\ \\text{m} \\\\\nD_f &= 1\\ \\text{m} \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (60)(5.7) + (18)(1)(1.0) + 0 \\rightarrow (q_{ult}) = 342 + 18$$\n\n$$(q_{ult}) = 360\\ \\text{kPa}$$",
-   "explanation": "For φ = 0, Nγ = 0 so the width term vanishes, but the overburden term γD_fN_q still counts — dropping it gives 342 kPa. Use Terzaghi's N_c = 5.7, not the general 5.14 (which gives 326 kPa).",
+   "explanation": "For φ = 0, Nγ = 0 so the width term vanishes, but the overburden term γD_fN_q still counts — dropping it gives 342 kPa. Use Terzaghi's N_c = 5.7, not the general 5.14 (which gives 326 kPa). Handbook table: also solvable with the Terzaghi bearing-capacity factors table in the Geotechnical chapter — read Nc = 5.7, Nq = 1.0, Nγ = 0 from the φ = 0° row to use in q_ult = cNc + γDfNq + ½γBNγ.",
    "diagram": "diagrams/geotech-012.svg",
    "videoUrl": "https://www.youtube.com/watch?v=J7hdkwijECA",
    "videoTitle": "Bearing Capacity of Soil EXPLAINED: Terzaghi, Meyerhof, Hansen, Vesic, Skempton & IS Code"
@@ -5311,7 +5311,7 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the uniform annual deposit \\(A\\). We can determine \\(A\\) from the sinking fund factor:\n\n$$A = F(A/F, i, n) = F\\frac{i}{(1+i)^n - 1}$$\n\nList the known and unknown parameters in order to solve for \\(A\\):\n\n$$\\begin{aligned} F &= \\$50{,}000 \\\\ i &= 8\\% = 0.08 \\\\ n &= 5\\ \\text{years} \\\\ A &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$A = 50000\\frac{0.08}{(1.08)^5 - 1} = 50000(0.17046)$$\n\n$$A = \\$8{,}523$$",
-   "explanation": "Sinking fund: A = F(A/F, i, n). The $10,000 trap ignores interest entirely; the $34,029 trap discounts instead of accumulating."
+   "explanation": "Sinking fund: A = F(A/F, i, n). The $10,000 trap ignores interest entirely; the $34,029 trap discounts instead of accumulating. Handbook table: also solvable with the compound-interest factor table (i = 8%) in the Engineering Economics chapter — look up (A/F, 8%, 5)."
   },
   {
    "id": "econ-015",
@@ -5348,7 +5348,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\) by discounting each cash flow at its own year:\n\n$$P = \\sum_{t=0}^{n}\\frac{CF_t}{(1+i)^t}$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} CF_0 &= -\\$8{,}000 \\\\ CF_1 &= \\$3{,}000 \\\\ CF_2 &= \\$4{,}000 \\\\ CF_3 &= \\$5{,}000 \\\\ i &= 10\\% = 0.10 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = -8000 + \\frac{3000}{1.10} + \\frac{4000}{1.10^2} + \\frac{5000}{1.10^3} = -8000 + 2727.27 + 3305.79 + 3756.57$$\n\n$$P = \\$1{,}790$$",
-   "explanation": "Discount each cash flow at its own year — averaging the inflows into an annuity gives the $1,947 trap.",
+   "explanation": "Discount each cash flow at its own year — averaging the inflows into an annuity gives the $1,947 trap. Handbook table: also solvable with the compound-interest factor table (i = 10%) in the Engineering Economics chapter — look up (P/F, 10%, 1), (P/F, 10%, 2), and (P/F, 10%, 3).",
    "diagram": "diagrams/econ-016.svg",
    "videoUrl": "https://www.youtube.com/watch?v=bd86wfNRPvo",
    "videoTitle": "Simple and Compound Interest Explained"
@@ -5368,7 +5368,7 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the discounted payback period: the time until the cumulative discounted cash inflows recover the initial investment:\n\n$$\\sum_{t=1}^{n}\\frac{A}{(1+i)^t} \\geq P$$\n\nList the known and unknown parameters in order to solve for \\(n\\):\n\n$$\\begin{aligned} P &= \\$12{,}000 \\\\ A &= \\$4{,}000/\\text{yr} \\\\ i &= 10\\% = 0.10 \\\\ n &= ? \\end{aligned}$$\n\nAccumulate the discounted inflows:\n\n$$\\begin{aligned} \\text{Year 1:} &\\quad 4000/1.10 = 3636.36 \\quad (\\text{cum } 3636.36) \\\\ \\text{Year 2:} &\\quad 4000/1.10^2 = 3305.79 \\quad (\\text{cum } 6942.15) \\\\ \\text{Year 3:} &\\quad 4000/1.10^3 = 3005.26 \\quad (\\text{cum } 9947.41) \\\\ \\text{Year 4:} &\\quad 4000/1.10^4 = 2732.05 \\quad (\\text{cum } 12679.46) \\end{aligned}$$\n\nThe investment is recovered during year 4:\n\n$$n = 3 + \\frac{12000 - 9947.41}{2732.05} = 3 + 0.75$$\n\n$$n = 3.75\\ \\text{years}$$",
-   "explanation": "Discounted payback discounts first, then accumulates; the 3.00-year trap is the simple (undiscounted) payback."
+   "explanation": "Discounted payback discounts first, then accumulates; the 3.00-year trap is the simple (undiscounted) payback. Handbook table: also solvable with the compound-interest factor table (i = 10%) in the Engineering Economics chapter — find the smallest n whose (P/A, 10%, n) covers the investment."
   },
   {
    "id": "econ-018",
@@ -5423,7 +5423,7 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the annual effective interest rate \\(i\\). We can determine \\(i\\) from the single-payment compound amount relationship:\n\n$$F = P(1+i)^n \\quad\\Rightarrow\\quad i = \\left(\\frac{F}{P}\\right)^{1/n} - 1$$\n\nList the known and unknown parameters in order to solve for \\(i\\):\n\n$$\\begin{aligned} P &= \\$5{,}000 \\\\ F &= \\$8{,}000 \\\\ n &= 4\\ \\text{years} \\\\ i &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$i = \\left(\\frac{8000}{5000}\\right)^{1/4} - 1 = (1.6)^{0.25} - 1 = 0.1247$$\n\n$$i = 12.5\\%$$",
-   "explanation": "Solve F = P(1+i)ⁿ for i: (F/P)^(1/n) − 1. Dividing the total 60% gain by 4 years gives the 15.0% trap."
+   "explanation": "Solve F = P(1+i)ⁿ for i: (F/P)^(1/n) − 1. Dividing the total 60% gain by 4 years gives the 15.0% trap. Handbook table: also solvable with the compound-interest factor table (i = 12%) in the Engineering Economics chapter — (F/P, 12%, 4) ≈ 1.5735 brackets the target 1.60, giving i ≈ 12.5%."
   },
   {
    "id": "stats-014",
@@ -5441,7 +5441,7 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the percentile of \\(x = 600\\). Standardize with the z-score, then read the cumulative area from the standard normal table:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned} \\mu &= 500\\ \\text{psi} \\\\ \\sigma &= 100\\ \\text{psi} \\\\ x &= 600\\ \\text{psi} \\\\ z &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$z = \\frac{600 - 500}{100} = 1.00$$\n\nFrom the standard normal table, \\(\\Phi(1.00) = 0.8413\\), so a strength of 600 psi is at the 84.1st percentile.",
-   "explanation": "z = 1.00 → Φ(1) = 0.8413, the 84.1st percentile. The 68.3% trap confuses this with the within-one-sigma empirical-rule band.",
+   "explanation": "z = 1.00 → Φ(1) = 0.8413, the 84.1st percentile. The 68.3% trap confuses this with the within-one-sigma empirical-rule band. Handbook table: also solvable with the unit normal distribution table in the Engineering Probability and Statistics chapter — convert 600 psi to z = 1.0 and read the cumulative area Φ(1) ≈ 84.1%, i.e., the 84.1st percentile.",
    "diagram": "diagrams/stats-014.svg",
    "videoUrl": "https://www.youtube.com/watch?v=3be6mzCYMRs",
    "videoTitle": "Statistics 6.3 – Finding Probability Using a Normal Distribution"
@@ -5884,7 +5884,7 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nThe Bonds section defines the bond value as the present worth of the payments the holder receives at interest rate \\(i\\). Ultimately, we must solve for the bond value \\(V\\):\n\n$$V = C(P/A, i\\%, n) + F(P/F, i\\%, n)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, n) = (1+i)^{-n}$$\n\nList the known and unknown parameters in order to compute \\(V\\):\n\n$$\\begin{aligned}\nC &= (0.06)(1000) = \\$60 \\\\\nF &= \\$1{,}000 \\\\\ni &= 8\\% = 0.08 \\\\\nn &= 10 \\\\\nV &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 8\\%, 10)) = \\frac{(1.08)^{10} - 1}{(0.08)(1.08)^{10}} = \\frac{1.158925}{0.172714} = 6.7101$$\n\nCompute the single-payment present worth factor on its own line:\n\n$$((P/F, 8\\%, 10)) = (1.08)^{-10} = 0.4632$$\n\nSubstitute both factors into the bond-value equation:\n\n$$(V) = (60)(6.7101) + (1000)(0.4632) \\rightarrow 402.61 + 463.19 = 865.80$$\n\n$$V = \\$865.80$$",
-   "explanation": "A bond is worth the present worth of its coupon stream plus the discounted face value. When the market rate exceeds the coupon rate, the bond sells at a discount (below face value).",
+   "explanation": "A bond is worth the present worth of its coupon stream plus the discounted face value. When the market rate exceeds the coupon rate, the bond sells at a discount (below face value). Handbook table: also solvable with the compound-interest factor table (i = 8%) in the Engineering Economics chapter — look up (P/A, 8%, 10) and (P/F, 8%, 10).",
    "estimatedTimeSeconds": 150
   },
   {
@@ -5901,7 +5901,7 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the present worth \\(P\\). A deferred annuity is priced as an ordinary annuity at the start of its first payment year, then discounted back through the deferral period:\n\n$$P = A(P/A, i\\%, n)(P/F, i\\%, k)$$\n\nThe printed factor formulas are:\n\n$$(P/A, i\\%, n) = \\frac{(1+i)^n - 1}{i(1+i)^n}, \\qquad (P/F, i\\%, k) = (1+i)^{-k}$$\n\nList the known and unknown parameters in order to compute \\(P\\):\n\n$$\\begin{aligned}\nA &= \\$4{,}000 \\\\\ni &= 10\\% = 0.10 \\\\\nn &= 6 \\\\\nk &= 2 \\\\\nP &= ?\n\\end{aligned}$$\n\nCompute the uniform-series present worth factor on its own line:\n\n$$((P/A, 10\\%, 6)) = \\frac{(1.10)^6 - 1}{(0.10)(1.10)^6} = \\frac{0.771561}{0.177156} = 4.3553$$\n\nCompute the deferral (single-payment) factor on its own line:\n\n$$((P/F, 10\\%, 2)) = (1.10)^{-2} = 0.8264$$\n\nSubstitute both factors:\n\n$$(P) = (4000)(4.3553)(0.8264) \\rightarrow (4000)(3.5994) = 14{,}397.56$$\n\n$$P = \\$14{,}398$$",
-   "explanation": "Deferral is handled by discounting the whole annuity back through the gap years with a P/F factor — forgetting that step prices the annuity as if it started today.",
+   "explanation": "Deferral is handled by discounting the whole annuity back through the gap years with a P/F factor — forgetting that step prices the annuity as if it started today. Handbook table: also solvable with the compound-interest factor table (i = 10%) in the Engineering Economics chapter — look up (P/A, 10%, 6) and (P/F, 10%, 2).",
    "estimatedTimeSeconds": 150,
    "videoUrl": "https://www.youtube.com/watch?v=ZBr1AZtvMCw",
    "videoTitle": "Calculating Deferred Annuities"
@@ -6078,7 +6078,7 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
-   "explanation": "A flagpole-like column (fixed at the base, free at the top) buckles as if it were twice as long as it really is: K = 2.0, so the effective length is 2.0 × 4.0 = 8.0 m. That's why flagpoles buckle so easily.",
+   "explanation": "A flagpole-like column (fixed at the base, free at the top) buckles as if it were twice as long as it really is: K = 2.0, so the effective length is 2.0 × 4.0 = 8.0 m. That's why flagpoles buckle so easily. Handbook table: also solvable with the TABLE C-A-7.1 AISC APPROXIMATE VALUES OF EFFECTIVE LENGTH FACTOR, K table in the Civil Engineering (steel design) chapter — read the theoretical K = 2.0 for the fixed-free end condition and multiply by the column length to get KL.",
    "id": "mechmat-021",
    "diagram": "diagrams/mechmat-021.svg",
    "question": "A 4.0 m steel column is fixed at its base and free at its top (flagpole condition). What is the effective length \\(KL\\) used in Euler's buckling formula?",
@@ -6831,7 +6831,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "The balance after any payment is the present worth of the payments still owed -- never the original principal minus payments made, because each payment is part interest. Work forward to the payment, then discount the remaining ones.",
+   "explanation": "The balance after any payment is the present worth of the payments still owed -- never the original principal minus payments made, because each payment is part interest. Work forward to the payment, then discount the remaining ones. Handbook table: also solvable with the compound-interest factor table (i = 6%) in the Engineering Economics chapter — look up (A/P, 6%, 10) and (P/A, 6%, 6).",
    "id": "econ-024",
    "question": "A $50,000 loan at 6% annual interest is repaid with 10 equal end-of-year payments. What is the remaining balance immediately after the 4th payment?",
    "solution": "Refer to the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the balance \\(B_4\\). First find the annual payment with the capital recovery factor:\n\n$$A = P(A/P, i, n) = 50{,}000 \\left[\\frac{0.06(1.06)^{10}}{(1.06)^{10} - 1}\\right]$$\n\n$$(A) = 50{,}000(0.13587) = 6{,}793.36$$\n\nThe balance after 4 payments is the present worth of the 6 remaining payments:\n\n$$B_4 = A(P/A, i, 6) = 6{,}793.36 \\left[\\frac{(1.06)^6 - 1}{0.06(1.06)^6}\\right]$$\n\n$$(B_4) = 6{,}793.36(4.91732) = 33{,}405 \\approx \\$33{,}400$$",
@@ -6988,7 +6988,7 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
-   "explanation": "For a two-sided interval, alpha/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed.",
+   "explanation": "For a two-sided interval, alpha/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed. Handbook table: also solvable with the unit normal distribution table in the Engineering Probability and Statistics chapter — find the z with 0.975 cumulative area (0.025 in each tail) for the two-sided 95% interval, giving z = 1.9600.",
    "id": "stats-026",
    "question": "A two-sided 95% confidence interval for a population mean is constructed using the standard normal distribution. What is the critical value Z_{alpha/2}?",
    "solution": "Refer to the Test Statistics section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(Z_{\\alpha/2}\\). The handbook prints the Values of \\(Z_{\\alpha/2}\\) table:\n\n$$\\begin{aligned}\n80\\% &\\to 1.2816 \\\\\n90\\% &\\to 1.6449 \\\\\n95\\% &\\to 1.9600 \\\\\n96\\% &\\to 2.0537\n\\end{aligned}$$\n\nFor a 95% two-sided interval:\n\n$$(Z_{\\alpha/2}) = 1.9600$$",
@@ -7442,7 +7442,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "End-of-period deposits form a uniform series. The (F/A) factor compounds each deposit for its remaining life -- the first deposit earns interest for 9 years, the last earns none.",
+   "explanation": "End-of-period deposits form a uniform series. The (F/A) factor compounds each deposit for its remaining life -- the first deposit earns interest for 9 years, the last earns none. Handbook table: also solvable with the compound-interest factor table (i = 6%) in the Engineering Economics chapter — look up (F/A, 6%, 10).",
    "id": "econ-027",
    "question": "$2,000 is deposited at the end of each year for 10 years into an account earning 6% annual interest. What is the future worth of the deposits?",
    "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(F\\). The handbook prints the uniform-series compound-amount factor:\n\n$$(F) = A(F/A, i\\%, n)$$\n\n$$\\left(\\frac{F}{A}, 6\\%, 10\\right) = \\frac{(1.06)^{10} - 1}{0.06} = 13.1808$$\n\n$$(F) = (2{,}000)(13.1808) = 26{,}361.60 \\approx \\$26{,}362$$",
@@ -8163,7 +8163,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
-   "explanation": "The present-worth factor (P/A, 10%, n) must equal the investment divided by the annual return. Solve by testing integer values of n -- n = 5 makes the factor exactly 3.7908.",
+   "explanation": "The present-worth factor (P/A, 10%, n) must equal the investment divided by the annual return. Solve by testing integer values of n -- n = 5 makes the factor exactly 3.7908. Handbook table: also solvable with the compound-interest factor table (i = 10%) in the Engineering Economics chapter — find 3.7908 in the (P/A, 10%) column, giving n = 5.",
    "id": "econ-030",
    "question": "An investment of $37,908 returns $10,000 at the end of each year. If the interest rate is 10% per year, how many years of returns are needed to recover the investment?",
    "solution": "Refer to the Nomenclature and Definitions section in the Engineering Economics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must find \\(n\\). The handbook prints the uniform-series present-worth factor:\n\n$$(P) = A(P/A, i\\%, n)$$\n\n$$(P/A, 10\\%, n) = \\frac{37{,}908}{10{,}000} = 3.7908$$\n\nTesting \\(n = 5\\):\n\n$$(P/A, 10\\%, 5) = \\frac{(1.10)^5 - 1}{0.10(1.10)^5} = \\frac{0.61051}{0.16105} = 3.7908$$\n\nSo \\(n = 5\\) years.",
@@ -8755,7 +8755,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
-   "explanation": "EUAC = \\(P(A/P,i,n) - S(A/F,i,n)\\). The salvage value is a future receipt, so it is subtracted as an \\(A/F\\) amount. Ignoring salvage gives $7,451.",
+   "explanation": "EUAC = \\(P(A/P,i,n) - S(A/F,i,n)\\). The salvage value is a future receipt, so it is subtracted as an \\(A/F\\) amount. Ignoring salvage gives $7,451. Handbook table: also solvable with the compound-interest factor table (i = 8%) in the Engineering Economics chapter — look up (A/P, 8%, 10) and (A/F, 8%, 10).",
    "id": "econ-033",
    "question": "A machine costs $50,000 new, has an estimated salvage value of $5,000 after 10 years, and the interest rate is 8% per year. What is the equivalent uniform annual cost (EUAC) of owning the machine?",
    "solution": "Refer to the Uniform Series section in the Engineering Economics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the \\(EUAC\\). The handbook prints:\n\n$$(A/P,i,n) = \\frac{i(1+i)^n}{(1+i)^n-1} \\qquad (A/F,i,n) = (A/P,i,n) - i$$\n\nThe equivalent uniform annual cost spreads the first cost and recovers the salvage value:\n\n$$EUAC = P(A/P,8\\%,10) - S(A/F,8\\%,10)$$\n\nComputing the factors:\n\n$$(A/P,8\\%,10) = \\frac{0.08(1.08)^{10}}{(1.08)^{10}-1} = \\frac{0.172714}{1.158925} = 0.14903$$\n\n$$(A/F,8\\%,10) = 0.14903 - 0.08 = 0.06903$$\n\nSubstituting:\n\n$$EUAC = 50{,}000(0.14903) - 5{,}000(0.06903)$$\n\n$$EUAC = 7{,}451.5 - 345.2 = 7{,}106.3 \\approx \\$7{,}106$$\n",
@@ -10270,7 +10270,7 @@
    ],
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "By symmetry the peak is at midspan: add the uniform-load term wL²/8 and the point-load term PL/4. The traps: 48 kN·m drops the point load, 136 kN·m uses wL²/4 for the uniform part, 128 kN·m uses PL/2 for the point load.",
+   "explanation": "By symmetry the peak is at midspan: add the uniform-load term wL²/8 and the point-load term PL/4. The traps: 48 kN·m drops the point load, 136 kN·m uses wL²/4 for the uniform part, 128 kN·m uses PL/2 for the point load. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — superpose the two tabulated cases for full-span uniform load and center point load (wL²/8 + PL/4) to get the maximum moment.",
    "id": "mechmat-034",
    "question": "A simply supported floor beam spans 8 m. It carries a uniformly distributed load of 6 kN/m over its full length, plus a concentrated load of 20 kN at midspan from a partition wall. What is the maximum bending moment in the beam?",
    "solution": "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_{max}\\). By symmetry each reaction is:\n\n$$R = \\frac{wL}{2} + \\frac{P}{2} = \\frac{(6)(8)}{2} + \\frac{20}{2} = 24 + 10 = 34\\text{ kN}$$\n\nThe bending moment peaks at midspan, where the shear is zero:\n\n$$M_{max} = R\\left(\\frac{L}{2}\\right) - w\\frac{(L/2)^2}{2} = (34)(4) - \\frac{(6)(4)^2}{2}$$\n\n$$M_{max} = 136 - 48 = 88\\text{ kN}\\cdot\\text{m}$$\n\nEquivalently, superpose the two standard cases: \\(M_{max} = wL^2/8 + PL/4 = 48 + 40 = 88\\text{ kN}\\cdot\\text{m}\\).",
@@ -10306,7 +10306,7 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
-   "explanation": "For uniform load the moment diagram is a parabola peaking at midspan: wL²/8. Supports carry maximum shear but zero moment — 62.5 kN·m at the support mixes the two up.",
+   "explanation": "For uniform load the moment diagram is a parabola peaking at midspan: wL²/8. Supports carry maximum shear but zero moment — 62.5 kN·m at the support mixes the two up. Handbook table: also solvable with the Simply Supported Beam Slopes and Deflections table in the Mechanics of Materials chapter — read the uniform full-span load case directly: maximum moment wL²/8 occurring at midspan.",
    "id": "mechmat-036",
    "question": "A simply supported warehouse beam spans 10 m and carries a uniformly distributed storage load of 5 kN/m over its full length. What is the maximum bending moment, and where does it occur?",
    "solution": "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_{max}\\) and its location. For a uniform load the shear diagram is linear, crossing zero at midspan — that is where the parabolic moment diagram peaks:\n\n$$M_{max} = \\frac{wL^2}{8} = \\frac{(5)(10)^2}{8} = \\frac{500}{8} = 62.5\\text{ kN}\\cdot\\text{m}$$\n\nat \\(x = L/2 = 5\\text{ m}\\), i.e., at midspan. (At the simple supports the moment is zero and the shear is maximum.)",
@@ -10450,7 +10450,7 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
-   "explanation": "Read the right column AND the right row: 37.2 is Nc, 19.7 is Nγ, and 2.7 is Nq for the wrong friction angle (10°).",
+   "explanation": "Read the right column AND the right row: 37.2 is Nc, 19.7 is Nγ, and 2.7 is Nq for the wrong friction angle (10°). Handbook table: also solvable with the Terzaghi bearing-capacity factors table in the Geotechnical chapter — read Nq = 22.5 directly from the φ = 30° row.",
    "id": "geotech-048",
    "question": "A geotechnical report includes this excerpt from a Terzaghi bearing capacity factor table:\n\nφ = 30°: Nc = 37.2, Nq = 22.5, Nγ = 19.7\n(The table also lists Nq = 2.7 for φ = 10°.)\n\nFor a footing bearing on soil with an internal friction angle of 30°, what is the bearing capacity factor Nq?",
    "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6). where \\(N_q\\) is defined as the bearing capacity factor for depth (it multiplies the overburden term \\(\\gamma' D_f\\) in \\(q_{ULT} = cN_c + \\gamma' D_f N_q + \\tfrac{1}{2}\\gamma' B N_\\gamma\\)).\n\nUltimately, we must read \\(N_q\\) for \\(\\phi = 30^\\circ\\). From the \\(N_q\\) column at the \\(\\phi = 30^\\circ\\) row:\n\n$$N_q = 22.5$$",
