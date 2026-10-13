@@ -2652,6 +2652,7 @@
     v.id = v.baseId + ":" + vk;
     v.topic = v.topic || gen.topic || "Mathematics";
     if (gen.tiTip) v.tiTip = gen.tiTip;
+    else { var bq = findQuestion(v.baseId); if (bq && bq.tiTip) v.tiTip = bq.tiTip; }
     v._gen = gen;
     return v;
   }
