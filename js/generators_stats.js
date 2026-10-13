@@ -214,7 +214,7 @@ PART.push(buildGenerator({ baseId: "stats-001", subtopic: "Independent events", 
   var dDiff = Math.abs(p - q);   // subtraction slip
   var dAvg = (p + q) / 2;        // averaging slip
   var solution =
-    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\n" +
     "Ultimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n" +
     "$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n" +
@@ -504,7 +504,7 @@ PART.push(buildGenerator({ baseId: "stats-008", subtopic: "Conditional probabili
   var dOne = R / N;                               // first draw only
   var dExactlyOne = (2 * R * B) / (N * (N - 1));  // exactly one red
   var solution =
-    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\n" +
     "Ultimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n" +
     "$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\n" +
     "List the known parameters:\n\n" +
@@ -839,7 +839,7 @@ PART.push(buildGenerator({ baseId: "stats-015", subtopic: "Complement rule", dif
   var dNP = n * p;   // added the rates instead of complementing
   var dNone = pNone; // P(none defective): the complement trap
   var solution =
-    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\n" +
     "Ultimately, we must solve for \\(P(\\text{at least one defective})\\). Use the complement rule:\n\n" +
     "$$P(\\text{at least one}) = 1 - P(\\text{none defective}) = 1 - (1 - p)^n$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(P\\):\n\n" +
@@ -970,7 +970,7 @@ PART.push(buildGenerator({ baseId: "stats-019", subtopic: "Variance of linear co
     dKeepSign = a * a * vx - b * b * vy;
   }
   var solution =
-    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\n" +
     "Ultimately, we must solve for \\(Var(" + a + "X - " + b + "Y)\\). For independent random variables, variances add with squared coefficients — the minus sign does not survive squaring:\n\n" +
     "$$Var(aX + bY) = a^2Var(X) + b^2Var(Y)$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(Var(" + a + "X - " + b + "Y)\\):\n\n" +
@@ -1101,7 +1101,7 @@ PART.push(buildGenerator({ baseId: "stats-022", subtopic: "Conditional probabili
   var pfStr = pF.toFixed(2);
   var jStr = String(jointDec);
   var solution =
-    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\n" +
     "Ultimately, we must solve for \\(P(D \\mid F)\\). Property 3 (Law of Compound or Joint Probability) gives:\n\n" +
     "$$P(A, B) = P(A) \\cdot P(B \\mid A)$$\n\n" +
     "Rearranging for the conditional probability:\n\n" +

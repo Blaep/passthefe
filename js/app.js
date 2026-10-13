@@ -31,7 +31,7 @@
   var QUESTIONS = [];
   function loadQuestions(cb) {
     if (QUESTIONS.length) { cb(QUESTIONS); return; }
-    fetch("data/questions.json?v=4")
+    fetch("data/questions.json?v=5")
       .then(function (r) { return r.json(); })
       .then(function (d) { QUESTIONS = d.questions || []; cb(QUESTIONS); })
       .catch(function () { cb([]); });

@@ -280,7 +280,7 @@
     "0.45"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\nList the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n$$\\begin{aligned}\nP(A) &= 0.4 \\\\\nP(B) &= 0.5 \\\\\nP(A \\cap B) &= ?\n\\end{aligned}$$\n\n$$(P) = (0.4)(0.5)$$\n\n$$(P) = 0.2$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\nUltimately, we must solve for \\(P(A \\text{ and } B)\\). For independent events:\n\n$$P(A \\cap B) = P(A) \\cdot P(B)$$\n\nList the known and unknown parameters in order to solve for \\(P(A \\cap B)\\):\n\n$$\\begin{aligned}\nP(A) &= 0.4 \\\\\nP(B) &= 0.5 \\\\\nP(A \\cap B) &= ?\n\\end{aligned}$$\n\n$$(P) = (0.4)(0.5)$$\n\n$$(P) = 0.2$$",
    "explanation": "'And' means multiply (for independent events); 'or' means add (minus the overlap). Confirming independence is the step most people skip.",
    "videoUrl": "https://www.youtube.com/watch?v=SkidyDQuupA",
    "videoTitle": "Introduction to Probability, Basic Overview - Sample Space, & Tree Diagrams"
@@ -595,7 +595,7 @@
    "explanation": "Sampling without replacement (grab samples, inspection lots) changes the denominator on each draw. The distractor 0.391 comes from treating the draws as independent, i.e., (5/8)^2 - with replacement, which is the wrong model here.",
    "id": "stats-008",
    "question": "A grab bag contains 5 red and 3 blue soil sample tags. Two tags are drawn at random without replacement. What is the probability that both are red?",
-   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
    "subtopic": "Conditional probability without replacement",
    "tiTip": "Yes — direct solve: tap the probability key 2× to reach nCr (! → nCr), then enter 5 nCr 2 ÷ 8 nCr 2.",
    "topic": "Statistics and Probability",
@@ -5481,7 +5481,7 @@
     "0.200"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{at least one defective})\\). Use the complement rule:\n\n$$P(\\text{at least one}) = 1 - P(\\text{none defective}) = 1 - (1 - p)^n$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} p &= 5\\% = 0.05 \\\\ n &= 4 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1 - (0.95)^4 = 1 - 0.81451$$\n\n$$P = 0.185$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\nUltimately, we must solve for \\(P(\\text{at least one defective})\\). Use the complement rule:\n\n$$P(\\text{at least one}) = 1 - P(\\text{none defective}) = 1 - (1 - p)^n$$\n\nList the known and unknown parameters in order to solve for \\(P\\):\n\n$$\\begin{aligned} p &= 5\\% = 0.05 \\\\ n &= 4 \\\\ P &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$P = 1 - (0.95)^4 = 1 - 0.81451$$\n\n$$P = 0.185$$",
    "explanation": "“At least one” means use the complement: 1 − (1−p)ⁿ. The 0.815 trap is P(none defective).",
    "videoUrl": "https://www.youtube.com/watch?v=SkidyDQuupA",
    "videoTitle": "Introduction to Probability, Basic Overview - Sample Space, & Tree Diagrams"
@@ -5560,7 +5560,7 @@
     "−18"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(Var(3X - 2Y)\\). For independent random variables, variances add with squared coefficients — the minus sign does not survive squaring:\n\n$$Var(aX + bY) = a^2Var(X) + b^2Var(Y)$$\n\nList the known and unknown parameters in order to solve for \\(Var(3X - 2Y)\\):\n\n$$\\begin{aligned} Var(X) &= 4 \\\\ Var(Y) &= 9 \\\\ a &= 3,\\ b = -2 \\\\ Var(3X - 2Y) &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$Var(3X - 2Y) = (3)^2(4) + (-2)^2(9) = 36 + 36$$\n\n$$Var(3X - 2Y) = 72$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\nUltimately, we must solve for \\(Var(3X - 2Y)\\). For independent random variables, variances add with squared coefficients — the minus sign does not survive squaring:\n\n$$Var(aX + bY) = a^2Var(X) + b^2Var(Y)$$\n\nList the known and unknown parameters in order to solve for \\(Var(3X - 2Y)\\):\n\n$$\\begin{aligned} Var(X) &= 4 \\\\ Var(Y) &= 9 \\\\ a &= 3,\\ b = -2 \\\\ Var(3X - 2Y) &= ? \\end{aligned}$$\n\nSubstituting:\n\n$$Var(3X - 2Y) = (3)^2(4) + (-2)^2(9) = 36 + 36$$\n\n$$Var(3X - 2Y) = 72$$",
    "explanation": "Variance squares the coefficients and the minus sign vanishes: 9(4) + 4(9) = 72. The −18 trap keeps the sign.",
    "videoUrl": "https://www.youtube.com/watch?v=rCcY3fdTwgo",
    "videoTitle": "Expected Value & Variance (Discrete Random Variables)"
@@ -5796,7 +5796,7 @@
     "0.036"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(D \\mid F)\\). Property 3 (Law of Compound or Joint Probability) gives:\n\n$$P(A, B) = P(A) \\cdot P(B \\mid A)$$\n\nRearranging for the conditional probability:\n\n$$P(D \\mid F) = \\frac{P(D, F)}{P(F)}$$\n\nList the known and unknown parameters in order to compute \\(P(D \\mid F)\\):\n\n$$\\begin{aligned}\nP(F) &= 0.30 \\\\\nP(D, F) &= 0.12 \\\\\nP(D \\mid F) &= ?\n\\end{aligned}$$\n\nSubstitute into the rearranged formula:\n\n$$(P(D \\mid F)) = \\frac{(0.12)}{(0.30)}$$\n\nEvaluate the result:\n\n$$P(D \\mid F) = 0.40$$",
+   "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 65-66).\n\nUltimately, we must solve for \\(P(D \\mid F)\\). Property 3 (Law of Compound or Joint Probability) gives:\n\n$$P(A, B) = P(A) \\cdot P(B \\mid A)$$\n\nRearranging for the conditional probability:\n\n$$P(D \\mid F) = \\frac{P(D, F)}{P(F)}$$\n\nList the known and unknown parameters in order to compute \\(P(D \\mid F)\\):\n\n$$\\begin{aligned}\nP(F) &= 0.30 \\\\\nP(D, F) &= 0.12 \\\\\nP(D \\mid F) &= ?\n\\end{aligned}$$\n\nSubstitute into the rearranged formula:\n\n$$(P(D \\mid F)) = \\frac{(0.12)}{(0.30)}$$\n\nEvaluate the result:\n\n$$P(D \\mid F) = 0.40$$",
    "explanation": "Given the condition, divide the 'both' probability by the probability of the condition. The answer must be at least as large as the joint probability.",
    "estimatedTimeSeconds": 90
   },
