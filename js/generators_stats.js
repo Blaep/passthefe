@@ -923,7 +923,7 @@ PART.push(buildGenerator({ baseId: "stats-018", subtopic: "Confidence intervals 
   var dNoSqrt = z * phat * (1 - phat) / n;         // forgot every square root
   var dHalf = ans / 2;                             // halved the margin
   var solution =
-    "Refer to the Confidence Intervals section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\n" +
+    "Refer to the Confidence Intervals section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (pp. 75-76). Note: the handbook prints intervals for the mean, the difference of two means, and the variance -- it does not print a proportion interval, so memorize this one. It follows the same pattern as the handbook's mean interval: margin of error = z x (standard error), with the standard error of a sample proportion equal to \\(\\sqrt{\\hat{p}(1-\\hat{p})/n}\\):\n\n" +
     "Ultimately, we must solve for the margin of error \\(E\\) of a 95% confidence interval for a proportion:\n\n" +
     "$$E = z\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(E\\):\n\n" +
