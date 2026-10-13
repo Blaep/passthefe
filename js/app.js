@@ -938,6 +938,8 @@
     // the bank, so a saved session could never resume. Keep the session
     // in-memory only and never touch an unrelated saved resume.
     if (quiz.mode === "randomized") return;
+    // Rolled variants can't be restored by id — never park a quiz holding them.
+    if (quiz.list.some(function (q) { return q.id && q.id.indexOf(":") >= 0; })) return;
     // Portable quizzes (other device) never touch the tracker's storage:
     // they persist only in this tab's sessionStorage, gone on tab close.
     if (quiz.portable) { writePortableSave(); return; }
@@ -2043,7 +2045,7 @@
     var map = (MASTERY && MASTERY.map) || {};
     var byCode = {};
     attempts.forEach(function (a) {
-      var c = map[a.qid];
+      var c = map[skillKey(a.qid)]; // strip any variant suffix so rolled variants still count
       if (!c || c === "OFFSPEC") return;
       (byCode[c] = byCode[c] || []).push(a);
     });
@@ -2140,12 +2142,26 @@
           toast("The old session code stopped working — you started a new quiz.");
         }
         var n = Math.min(10, pool.length);
-        var seed = Math.floor(Math.random() * 1048576);
+        // Randomize the questions themselves, not just their order: roll a
+        // fresh variant wherever the bank question has a generator, so every
+        // mastery quiz serves new numbers like Randomized Practice does.
+        // Questions with no generator (conceptual ones, or chapters without
+        // a generator library) keep their fixed bank form.
+        var genById = {};
+        var allGens = randomizedGeneratorsAll();
+        if (allGens) allGens.forEach(function (g) { if (g.baseId) genById[g.baseId] = g; });
+        var list = seededShuffle(pool, Math.floor(Math.random() * 1048576)).slice(0, n)
+          .map(function (q) {
+            var g = genById[q.id];
+            if (g) { try { return rollVariant(g); } catch (e) { /* fall through */ } }
+            return q;
+          });
         quiz = {
-          list: seededShuffle(pool, seed).slice(0, n),
+          list: list,
           idx: 0, correct: 0, topic: "Mastery · " + masteryCodeShort(code, M),
           answers: [], t0: Date.now(), elapsedBase: 0, qStart: null,
-          seed: seed, topicSel: 15, masteryCode: code
+          seed: null, // variants can't be regenerated elsewhere — no portable codes, no resume
+          topicSel: 15, masteryCode: code
         };
         saveProgress();
         VIEWS.forEach(function (v) {
