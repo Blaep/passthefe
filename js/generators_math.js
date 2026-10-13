@@ -1280,11 +1280,217 @@
     };
   });
 
+  // ---------------------------------------------------------------- math-037
+  // Magnitude of a 3D vector, drawn from Pythagorean triples (integer answer).
+  var G037 = buildGenerator({
+    baseId: "math-037", subtopic: "Vector magnitude", difficulty: "easy",
+    estimatedTimeSeconds: 60,
+    explanation: "Magnitude is the 3D Pythagorean theorem: square each component, add, then square-root. Never add the components themselves.",
+    tiTip: "Yes — vector menu: magnitude. Or punch in √(x² + y² + z²) directly."
+  }, function () {
+    var trips = [[2, 3, 6, 7], [1, 2, 2, 3], [2, 4, 4, 6], [4, 4, 7, 9], [1, 4, 8, 9], [3, 4, 12, 13]];
+    var t = pick(trips);
+    var x = pick([-1, 1]) * t[0], y = pick([-1, 1]) * t[1], z = pick([-1, 1]) * t[2];
+    var mag = t[3], sumAbs = t[0] + t[1] + t[2], mag2 = mag * mag;
+    var twoD = Math.sqrt(t[0] * t[0] + t[1] * t[1]);
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for \\(|\\mathbf{a}|\\). The handbook gives the length of a vector:\n\n" +
+      "$$|\\mathbf{a}| = \\sqrt{a_x^2 + a_y^2 + a_z^2}$$\n\n" +
+      "List the known components:\n\n" +
+      "$$\\begin{aligned}\na_x &= " + x + " \\\\\na_y &= " + y + " \\\\\na_z &= " + z + "\n\\end{aligned}$$\n\n" +
+      "$$|\\mathbf{a}| = \\sqrt{(" + x + ")^2 + (" + y + ")^2 + (" + z + ")^2} = \\sqrt{" + mag2 + "} = " + mag + "$$";
+    return {
+      variantKey: "m" + x + "_" + y + "_" + z,
+      question: "What is the magnitude of vector \\(\\mathbf{a} = " + vecStr([x, y, z]) + "\\)?",
+      options: [
+        { label: fmt(mag), num: mag, correct: true },
+        { label: fmt(sumAbs), num: sumAbs },   // added the components instead
+        { label: fmt(mag2), num: mag2 },       // forgot the square root
+        { label: fmt(twoD), num: twoD }        // dropped the z-component
+      ],
+      solution: solution
+    };
+  });
+
+  // ---------------------------------------------------------------- math-038
+  // Unit vector in the direction of a: divide each component by the magnitude.
+  var G038 = buildGenerator({
+    baseId: "math-038", subtopic: "Unit vectors", difficulty: "easy",
+    estimatedTimeSeconds: 90,
+    explanation: "A unit vector keeps the direction and scales the length to 1: divide every component by the magnitude.",
+    tiTip: "Yes — vector menu: get the magnitude, then divide each component by it."
+  }, function () {
+    var trips = [[2, 3, 6, 7], [1, 2, 2, 3], [2, 4, 4, 6], [4, 4, 7, 9], [1, 4, 8, 9], [3, 4, 12, 13]];
+    var t = pick(trips);
+    var x = pick([-1, 1]) * t[0], y = pick([-1, 1]) * t[1], z = pick([-1, 1]) * t[2];
+    var mag = t[3], sumAbs = t[0] + t[1] + t[2];
+    function fc(c) { return (c < 0 ? "−" : "") + Math.abs(c) + "/" + mag; }
+    var ans = "(" + fc(x) + ", " + fc(y) + ", " + fc(z) + ")";
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for the unit vector \\(\\hat{\\mathbf{a}}\\). Divide each component by the vector's length:\n\n" +
+      "$$\\hat{\\mathbf{a}} = \\frac{\\mathbf{a}}{|\\mathbf{a}|}, \\qquad |\\mathbf{a}| = \\sqrt{" + t[0] * t[0] + "+" + t[1] * t[1] + "+" + t[2] * t[2] + "} = " + mag + "$$\n\n" +
+      "$$\\hat{\\mathbf{a}} = \\left(\\frac{" + x + "}{" + mag + "}, \\frac{" + y + "}{" + mag + "}, \\frac{" + z + "}{" + mag + "}\\right) = " + ans.replace(/−/g, "-") + "$$";
+    return {
+      variantKey: "u" + x + "_" + y + "_" + z,
+      question: "What is the unit vector in the direction of \\(\\mathbf{a} = " + vecStr([x, y, z]) + "\\)?",
+      options: [
+        { label: ans, correct: true },
+        { label: vecStr([x, y, z]) },                                            // forgot to divide
+        { label: "(1/" + t[0] + ", 1/" + t[1] + ", 1/" + t[2] + ")" },            // took reciprocals
+        { label: "(" + fc(x).replace("/" + mag, "/" + sumAbs) + ", " + fc(y).replace("/" + mag, "/" + sumAbs) + ", " + fc(z).replace("/" + mag, "/" + sumAbs) + ")" } // divided by the component sum
+      ],
+      solution: solution
+    };
+  });
+
+  // ---------------------------------------------------------------- math-039
+  // Angle between two vectors via the dot product: cos θ = a·b / (|a||b|).
+  var G039 = buildGenerator({
+    baseId: "math-039", subtopic: "Angle between vectors", difficulty: "medium",
+    estimatedTimeSeconds: 120,
+    explanation: "The dot product ties directly to the angle: a·b = |a||b|cos θ. Solve for θ with arccos.",
+    tiTip: "Yes — vector menu for the dot product and both magnitudes, then θ = cos⁻¹(a·b / (|a||b|)). Check degree mode."
+  }, function () {
+    var pool = [
+      { a: [1, 1, 0], b: [1, 0, 0], deg: 45, traps: [30, 60, 90] },
+      { a: [3, 3, 0], b: [2, 0, 0], deg: 45, traps: [30, 60, 135] },
+      { a: [1, 0, 0], b: [2, 2, 0], deg: 45, traps: [30, 90, 135] },
+      { a: [1, 0, 0], b: [0, 3, 0], deg: 90, traps: [45, 60, 0] },
+      { a: [2, 3, 0], b: [-3, 2, 0], deg: 90, traps: [45, 0, 180] },
+      { a: [1, 1, 1], b: [1, 1, -2], deg: 90, traps: [45, 60, 120] },
+      { a: [1, 0, 0], b: [-1, 1, 0], deg: 135, traps: [45, 90, 180] },
+      { a: [2, 0, 0], b: [-3, 3, 0], deg: 135, traps: [45, 90, 180] },
+      { a: [1, 2, 3], b: [-2, -4, -6], deg: 180, traps: [90, 0, 135] },
+      { a: [1, 2, 3], b: [2, 4, 6], deg: 0, traps: [90, 180, 45] }
+    ];
+    var p = pick(pool);
+    var dot = p.a[0] * p.b[0] + p.a[1] * p.b[1] + p.a[2] * p.b[2];
+    var ma = Math.sqrt(p.a[0] * p.a[0] + p.a[1] * p.a[1] + p.a[2] * p.a[2]);
+    var mb = Math.sqrt(p.b[0] * p.b[0] + p.b[1] * p.b[1] + p.b[2] * p.b[2]);
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for \\(\\theta\\). The handbook gives the dot product as \\(\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta\\), so:\n\n" +
+      "$$\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|} = \\frac{" + sgn(dot) + "}{" + fmt(ma) + " \\times " + fmt(mb) + "}$$\n\n" +
+      "$$\\theta = \\cos^{-1}\\left(" + fmt(dot / (ma * mb)) + "\\right) = " + p.deg + "^\\circ$$";
+    return {
+      variantKey: "ang" + p.deg + "_" + p.a.join("") + "_" + p.b.join(""),
+      question: "What is the angle between vectors \\(\\mathbf{a} = " + vecStr(p.a) + "\\) and \\(\\mathbf{b} = " + vecStr(p.b) + "\\)?",
+      options: [
+        { label: p.deg + "°", num: p.deg, correct: true },
+        { label: p.traps[0] + "°", num: p.traps[0] },
+        { label: p.traps[1] + "°", num: p.traps[1] },
+        { label: p.traps[2] + "°", num: p.traps[2] }
+      ],
+      solution: solution
+    };
+  });
+
+  // ---------------------------------------------------------------- math-040
+  // Vector projection of a onto b: ((a·b)/|b|²) b.
+  var G040 = buildGenerator({
+    baseId: "math-040", subtopic: "Vector projection", difficulty: "medium",
+    estimatedTimeSeconds: 120,
+    explanation: "Projection = (scalar projection) × (unit vector along b), i.e. ((a·b)/|b|²)b. The |b|² division is the step everyone forgets.",
+    tiTip: "Mostly by hand — get the dot product and |b|² from the vector menu, then multiply. Formula: ((a·b)/|b|²)b."
+  }, function () {
+    var kind = ri(0, 3), a, b, ans;
+    if (kind === 0) { var j = ri(2, 5); a = [2 * j, 0, 0]; b = [1, 1, 0]; ans = [j, j, 0]; }
+    else if (kind === 1) { var j1 = ri(2, 4), k = ri(1, 4), l = ri(1, 4); a = [j1, k, l]; b = [2, 0, 0]; ans = [j1, 0, 0]; }
+    else if (kind === 2) { var k2 = ri(2, 4), j2 = ri(1, 4); a = [j2, k2, 0]; b = [0, 1, 0]; ans = [0, k2, 0]; }
+    else { var j3 = ri(2, 4); a = [3 * j3, 0, 0]; b = [1, 1, 1]; ans = [j3, j3, j3]; }
+    var dot = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    var b2 = b[0] * b[0] + b[1] * b[1] + b[2] * b[2];
+    var noscale = [dot * b[0], dot * b[1], dot * b[2]];   // forgot the |b|² division
+    var diff = [a[0] - b[0], a[1] - b[1], a[2] - b[2]];   // answered a − b instead
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for the projection of \\(\\mathbf{a}\\) onto \\(\\mathbf{b}\\). The handbook notes the dot product represents the projection of one vector onto another; scaling the vector \\(\\mathbf{b}\\):\n\n" +
+      "$$\\mathrm{proj}_{\\mathbf{b}}\\mathbf{a} = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{b}|^2}\\,\\mathbf{b}$$\n\n" +
+      "$$\\mathbf{a} \\cdot \\mathbf{b} = " + sgn(dot) + ", \\qquad |\\mathbf{b}|^2 = " + b2 + "$$\n\n" +
+      "$$\\mathrm{proj}_{\\mathbf{b}}\\mathbf{a} = \\frac{" + sgn(dot) + "}{" + b2 + "}" + vecStr(b) + " = " + vecStr(ans) + "$$";
+    return {
+      variantKey: "p" + a.join("") + "_" + b.join(""),
+      question: "What is the vector projection of \\(\\mathbf{a} = " + vecStr(a) + "\\) onto \\(\\mathbf{b} = " + vecStr(b) + "\\)?",
+      options: [
+        { label: vecStr(ans), correct: true },
+        { label: vecStr(noscale) },   // forgot the |b|² division
+        { label: vecStr(diff) },      // answered a − b instead
+        { label: vecStr(a) }          // answered a itself
+      ],
+      solution: solution
+    };
+  });
+
+  // ---------------------------------------------------------------- math-041
+  // Parallelogram area = |a × b|.
+  var G041 = buildGenerator({
+    baseId: "math-041", subtopic: "Parallelogram area", difficulty: "medium",
+    estimatedTimeSeconds: 120,
+    explanation: "Area = |a × b| = |a||b|sin θ. Half of it is the triangle area — the classic trap.",
+    tiTip: "Yes — vector menu: cross product, then magnitude. (Area = |a × b|.)"
+  }, function () {
+    var k = ri(2, 6), m = ri(1, 5), n = ri(1, 6);
+    var area = k * n, tri = area / 2, ab = k * Math.sqrt(m * m + n * n);
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for the parallelogram area. The handbook gives the cross product a magnitude of \\(|\\mathbf{a}||\\mathbf{b}|\\sin\\theta\\), which is exactly the parallelogram area:\n\n" +
+      "$$\\text{Area} = |\\mathbf{a} \\times \\mathbf{b}|$$\n\n" +
+      "$$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ " + k + " & 0 & 0 \\\\ " + m + " & " + n + " & 0 \\end{vmatrix} = (0, 0, " + (k * n) + ")$$\n\n" +
+      "$$\\text{Area} = \\sqrt{0^2 + 0^2 + " + (k * n) + "^2} = " + area + "$$";
+    return {
+      variantKey: "A" + k + "_" + m + "_" + n,
+      question: "Vectors \\(\\mathbf{a} = (" + k + ", 0, 0)\\) and \\(\\mathbf{b} = (" + m + ", " + n + ", 0)\\) form adjacent sides of a parallelogram. What is its area?",
+      options: [
+        { label: fmt(area), num: area, correct: true },
+        { label: fmt(tri), num: tri },   // triangle area trap
+        { label: fmt(ab), num: ab },      // |a||b|, forgot sin θ
+        { label: fmt(k + m + n), num: k + m + n }
+      ],
+      solution: solution
+    };
+  });
+
+  // ---------------------------------------------------------------- math-042
+  // Linear combination of two vectors: 2a − b, a + 2b, or 3a − b.
+  var G042 = buildGenerator({
+    baseId: "math-042", subtopic: "Vector addition", difficulty: "easy",
+    estimatedTimeSeconds: 60,
+    explanation: "Scale first, then add or subtract component by component. Sign slips are the whole game.",
+    tiTip: "Yes — the vector menu handles scalar multiples and addition/subtraction directly."
+  }, function () {
+    var a = [ri(-4, 4), ri(-4, 4), ri(-4, 4)], b = [ri(-4, 4), ri(-4, 4), ri(-4, 4)];
+    var op = pick([0, 1, 2]);
+    function lin(p, q) { return [p * a[0] + q * b[0], p * a[1] + q * b[1], p * a[2] + q * b[2]]; }
+    var ans, opTex, traps;
+    if (op === 0) { ans = lin(2, -1); opTex = "2\\mathbf{a} - \\mathbf{b}"; traps = [lin(2, 1), lin(1, -1), lin(1, 1)]; }
+    else if (op === 1) { ans = lin(1, 2); opTex = "\\mathbf{a} + 2\\mathbf{b}"; traps = [lin(1, -2), lin(2, 1), lin(-1, 2)]; }
+    else { ans = lin(3, -1); opTex = "3\\mathbf{a} - \\mathbf{b}"; traps = [lin(3, 1), lin(1, -1), lin(1, -3)]; }
+    var pa = op === 0 ? 2 : op === 1 ? 1 : 3, qa = op === 0 ? -1 : op === 1 ? 2 : -1;
+    var solution =
+      "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
+      "Ultimately, we must solve for \\(" + opTex + "\\). The handbook gives scalar multiplication and addition component-wise:\n\n" +
+      "$$" + opTex + " = " + vecStr([pa * a[0], pa * a[1], pa * a[2]]).replace(/\(|\)/g, "") + " + " + vecStr([qa * b[0], qa * b[1], qa * b[2]]).replace(/\(|\)/g, "") + " = " + vecStr(ans) + "$$";
+    return {
+      variantKey: "c" + op + "_" + a.join("") + "_" + b.join(""),
+      question: "For vectors \\(\\mathbf{a} = " + vecStr(a) + "\\) and \\(\\mathbf{b} = " + vecStr(b) + "\\), what is \\(" + opTex + "\\)?",
+      options: [
+        { label: vecStr(ans), correct: true },
+        { label: vecStr(traps[0]) },
+        { label: vecStr(traps[1]) },
+        { label: vecStr(traps[2]) }
+      ],
+      solution: solution
+    };
+  });
+
   window.MATH_GENERATORS = [
     G001, G002, G003, G004, G005, G006, G007, G008, G009, G010,
     G011, G012, G013, G014, G015, G016, G017, G018, G019,
     /* math-020 skipped: purely conceptual, nothing to randomize */
     G021, G022, G023, G024, G025, G026, G027, G028, G029, G030,
-    G031, G032, G033
+    G031, G032, G033,
+    G037, G038, G039, G040, G041, G042
   ];
 })();

@@ -10117,6 +10117,114 @@
    "estimatedTimeSeconds": 90,
    "explanation": "Fellenius slices a circular slip mass and neglects interslice forces — simple and conservative. Bishop's simplified method keeps the circular surface but satisfies moment equilibrium including interslice normals.",
    "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\begin{aligned}\n\\text{Ordinary (Fellenius)} &\\rightarrow \\text{circular surface, interslice forces neglected} \\\\\n\\text{Bishop simplified} &\\rightarrow \\text{circular surface, moment equilibrium with interslice normals}\n\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
-  }
+  },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "7",
+   "11",
+   "√13",
+   "49"
+  ],
+  "difficulty": "easy",
+  "estimatedTimeSeconds": 60,
+  "explanation": "Magnitude is the 3D Pythagorean theorem. The traps: 11 adds the components, 49 forgets the square root, √13 drops a component.",
+  "id": "math-037",
+  "question": "What is the magnitude of vector \\(\\mathbf{a} = (2, 3, 6)\\)?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(|\\mathbf{a}|\\). The handbook gives the length of a vector:\n\n$$|\\mathbf{a}| = \\sqrt{a_x^2 + a_y^2 + a_z^2}$$\n\n$$|\\mathbf{a}| = \\sqrt{2^2 + 3^2 + 6^2} = \\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$$",
+  "subtopic": "Vector magnitude",
+  "tiTip": "Yes — vector menu: magnitude. Or punch in √(x² + y² + z²) directly.",
+  "topic": "Mathematics"
+ },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "(2/7, 3/7, 6/7)",
+   "(2, 3, 6)",
+   "(1/2, 1/3, 1/6)",
+   "(2/11, 3/11, 6/11)"
+  ],
+  "difficulty": "easy",
+  "estimatedTimeSeconds": 90,
+  "explanation": "A unit vector keeps the direction and scales the length to 1: divide every component by the magnitude. (2,3,6) forgot the division; (1/2,1/3,1/6) took reciprocals; the /11 one divided by the component sum instead of the magnitude.",
+  "id": "math-038",
+  "question": "What is the unit vector in the direction of \\(\\mathbf{a} = (2, 3, 6)\\)?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the unit vector \\(\\hat{\\mathbf{a}}\\). Divide each component by the vector's length:\n\n$$\\hat{\\mathbf{a}} = \\frac{\\mathbf{a}}{|\\mathbf{a}|}, \\qquad |\\mathbf{a}| = \\sqrt{4 + 9 + 36} = 7$$\n\n$$\\hat{\\mathbf{a}} = \\left(\\frac{2}{7}, \\frac{3}{7}, \\frac{6}{7}\\right)$$",
+  "subtopic": "Unit vectors",
+  "tiTip": "Yes — vector menu: get the magnitude, then divide each component by it.",
+  "topic": "Mathematics"
+ },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "45°",
+   "30°",
+   "60°",
+   "90°"
+  ],
+  "difficulty": "medium",
+  "estimatedTimeSeconds": 120,
+  "explanation": "The dot product ties directly to the angle: a·b = |a||b|cos θ. 90° is the 'perpendicular guess' trap; 30°/60° are the other familiar angles.",
+  "id": "math-039",
+  "question": "What is the angle between vectors \\(\\mathbf{a} = (1, 1, 0)\\) and \\(\\mathbf{b} = (1, 0, 0)\\)?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(\\theta\\). The handbook gives the dot product as \\(\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta\\), so:\n\n$$\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|} = \\frac{1}{\\sqrt{2} \\times 1}$$\n\n$$\\theta = \\cos^{-1}(0.707) = 45^\\circ$$",
+  "subtopic": "Angle between vectors",
+  "tiTip": "Yes — vector menu for the dot product and both magnitudes, then θ = cos⁻¹(a·b / (|a||b|)). Check degree mode.",
+  "topic": "Mathematics"
+ },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "(2, 2, 0)",
+   "(4, 4, 0)",
+   "(1, 1, 0)",
+   "(4, 0, 0)"
+  ],
+  "difficulty": "medium",
+  "estimatedTimeSeconds": 120,
+  "explanation": "Projection = (scalar projection) × (unit vector along b) = ((a·b)/|b|²)b. (4,4,0) forgot to divide by |b|²; (1,1,0) is just the direction of b; (4,0,0) is a itself.",
+  "id": "math-040",
+  "question": "What is the vector projection of \\(\\mathbf{a} = (4, 0, 0)\\) onto \\(\\mathbf{b} = (1, 1, 0)\\)?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the projection of \\(\\mathbf{a}\\) onto \\(\\mathbf{b}\\). The handbook notes the dot product represents the projection of one vector onto another; scaling the vector \\(\\mathbf{b}\\):\n\n$$\\mathrm{proj}_{\\mathbf{b}}\\mathbf{a} = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{b}|^2}\\,\\mathbf{b}$$\n\n$$\\mathbf{a} \\cdot \\mathbf{b} = 4, \\qquad |\\mathbf{b}|^2 = 2$$\n\n$$\\mathrm{proj}_{\\mathbf{b}}\\mathbf{a} = \\frac{4}{2}(1, 1, 0) = (2, 2, 0)$$",
+  "subtopic": "Vector projection",
+  "tiTip": "Mostly by hand — get the dot product and |b|² from the vector menu, then multiply. Formula: ((a·b)/|b|²)b.",
+  "topic": "Mathematics"
+ },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "6",
+   "3",
+   "10",
+   "2√10"
+  ],
+  "difficulty": "medium",
+  "estimatedTimeSeconds": 120,
+  "explanation": "Area = |a × b| = |a||b|sin θ. Half of it (3) is the triangle area — the classic trap. 2√10 is |a||b| with sin θ forgotten.",
+  "id": "math-041",
+  "question": "Vectors \\(\\mathbf{a} = (2, 0, 0)\\) and \\(\\mathbf{b} = (1, 3, 0)\\) form adjacent sides of a parallelogram. What is its area?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the parallelogram area. The handbook gives the cross product a magnitude of \\(|\\mathbf{a}||\\mathbf{b}|\\sin\\theta\\), which is exactly the parallelogram area:\n\n$$\\text{Area} = |\\mathbf{a} \\times \\mathbf{b}|$$\n\n$$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ 2 & 0 & 0 \\\\ 1 & 3 & 0 \\end{vmatrix} = (0, 0, 6)$$\n\n$$\\text{Area} = \\sqrt{0^2 + 0^2 + 6^2} = 6$$",
+  "subtopic": "Parallelogram area",
+  "tiTip": "Yes — vector menu: cross product, then magnitude. (Area = |a × b|.)",
+  "topic": "Mathematics"
+ },
+ {
+  "answerIndex": 0,
+  "choices": [
+   "(4, −6, 3)",
+   "(8, 2, 5)",
+   "(1, −5, 1)",
+   "(4, −6, 5)"
+  ],
+  "difficulty": "easy",
+  "estimatedTimeSeconds": 60,
+  "explanation": "Scale first, then add or subtract component by component. (8,2,5) added b instead of subtracting; (1,−5,1) is a−b without the 2; watch every sign.",
+  "id": "math-042",
+  "question": "For vectors \\(\\mathbf{a} = (3, -1, 2)\\) and \\(\\mathbf{b} = (2, 4, 1)\\), what is \\(2\\mathbf{a} - \\mathbf{b}\\)?",
+  "solution": "Refer to the Vectors section in the Mathematics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(2\\mathbf{a} - \\mathbf{b}\\). The handbook gives scalar multiplication and addition component-wise:\n\n$$2\\mathbf{a} - \\mathbf{b} = 2(3, -1, 2) - (2, 4, 1) = (6, -2, 4) - (2, 4, 1) = (4, -6, 3)$$",
+  "subtopic": "Vector addition",
+  "tiTip": "Yes — the vector menu handles scalar multiples and addition/subtraction directly.",
+  "topic": "Mathematics"
+ }
  ]
 }
