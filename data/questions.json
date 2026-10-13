@@ -10225,6 +10225,222 @@
   "subtopic": "Vector addition",
   "tiTip": "Yes — the vector menu handles scalar multiples and addition/subtraction directly.",
   "topic": "Mathematics"
- }
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "88 kN·m",
+    "48 kN·m",
+    "136 kN·m",
+    "128 kN·m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "By symmetry the peak is at midspan: add the uniform-load term wL²/8 and the point-load term PL/4. The traps: 48 kN·m drops the point load, 136 kN·m uses wL²/4 for the uniform part, 128 kN·m uses PL/2 for the point load.",
+   "id": "mechmat-034",
+   "question": "A simply supported floor beam spans 8 m. It carries a uniformly distributed load of 6 kN/m over its full length, plus a concentrated load of 20 kN at midspan from a partition wall. What is the maximum bending moment in the beam?",
+   "solution": "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_{max}\\). By symmetry each reaction is:\n\n$$R = \\frac{wL}{2} + \\frac{P}{2} = \\frac{(6)(8)}{2} + \\frac{20}{2} = 24 + 10 = 34\\text{ kN}$$\n\nThe bending moment peaks at midspan, where the shear is zero:\n\n$$M_{max} = R\\left(\\frac{L}{2}\\right) - w\\frac{(L/2)^2}{2} = (34)(4) - \\frac{(6)(4)^2}{2}$$\n\n$$M_{max} = 136 - 48 = 88\\text{ kN}\\cdot\\text{m}$$\n\nEquivalently, superpose the two standard cases: \\(M_{max} = wL^2/8 + PL/4 = 48 + 40 = 88\\text{ kN}\\cdot\\text{m}\\).",
+   "subtopic": "Maximum bending moment, combined loading",
+   "tiTip": "No — set up wL²/8 + PL/4 by hand; the calculator only crunches the arithmetic.",
+   "topic": "Mechanics of Materials"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "12 kN",
+    "36 kN",
+    "6 kN",
+    "24 kN"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Shear is constant at P along the whole cantilever. The 36 kN trap is the maximum moment PL, not shear — watch the units.",
+   "id": "mechmat-035",
+   "question": "A cantilever balcony beam extends 3 m from its fixed support and carries a 12 kN planter load at its free tip. What is the maximum shear force in the beam?",
+   "solution": "Refer to the Cantilever Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(V_{max}\\). With only a tip load \\(P\\), the shear is constant along the entire cantilever:\n\n$$V(x) = P = 12\\text{ kN} \\quad \\text{everywhere}$$\n\nso \\(V_{max} = 12\\text{ kN}\\). (The maximum bending moment is \\(PL = (12)(3) = 36\\text{ kN}\\cdot\\text{m}\\) at the fixed support — that is the 36 kN trap.)",
+   "subtopic": "Cantilever maximum shear",
+   "tiTip": "No — the shear is just P here; use the calculator only to double-check PL for the moment.",
+   "topic": "Mechanics of Materials"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "62.5 kN·m at midspan",
+    "125 kN·m at midspan",
+    "62.5 kN·m at the support",
+    "31.3 kN·m at midspan"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "For uniform load the moment diagram is a parabola peaking at midspan: wL²/8. Supports carry maximum shear but zero moment — 62.5 kN·m at the support mixes the two up.",
+   "id": "mechmat-036",
+   "question": "A simply supported warehouse beam spans 10 m and carries a uniformly distributed storage load of 5 kN/m over its full length. What is the maximum bending moment, and where does it occur?",
+   "solution": "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_{max}\\) and its location. For a uniform load the shear diagram is linear, crossing zero at midspan — that is where the parabolic moment diagram peaks:\n\n$$M_{max} = \\frac{wL^2}{8} = \\frac{(5)(10)^2}{8} = \\frac{500}{8} = 62.5\\text{ kN}\\cdot\\text{m}$$\n\nat \\(x = L/2 = 5\\text{ m}\\), i.e., at midspan. (At the simple supports the moment is zero and the shear is maximum.)",
+   "subtopic": "Uniform load maximum moment and location",
+   "tiTip": "No — memorize wL²/8 at midspan; the calculator only does the arithmetic.",
+   "topic": "Mechanics of Materials"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "89.4 N at 63.4° north of east",
+    "89.4 N at 26.6° north of east",
+    "240 N at 63.4° north of east",
+    "89.4 N at 63.4° south of east"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Add components as vectors, never as scalars: 240 N just adds the magnitudes. The angle is tan⁻¹(Ry/Rx) measured from the larger-adjacent side — 26.6° is the complement, and south of east flips a sign.",
+   "id": "statics-036",
+   "question": "Three tugboat cables pull on a mooring bollard: 100 N due east, 80 N due north, and 60 N due west. What is the magnitude and direction of the single resultant force?",
+   "solution": "Refer to the Resultant (Two Dimensions) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(R\\) and \\(\\theta\\). Sum components (east and north positive):\n\n$$R_x = \\sum F_x = 100 - 60 = 40\\text{ N} \\qquad R_y = \\sum F_y = 80\\text{ N}$$\n\n$$R = \\sqrt{R_x^2 + R_y^2} = \\sqrt{40^2 + 80^2} = \\sqrt{8{,}000} = 89.4\\text{ N}$$\n\n$$\\theta = \\tan^{-1}\\!\\left(\\frac{R_y}{R_x}\\right) = \\tan^{-1}\\!\\left(\\frac{80}{40}\\right) = 63.4^\\circ$$\n\nnorth of east.",
+   "subtopic": "Resultant of concurrent forces",
+   "tiTip": "Partially — vector menu: enter the components and use norm for the magnitude; find the angle with the tan⁻¹ key.",
+   "topic": "Statics"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "200 N →, 3 m above the original line of action",
+    "200 N →, 3 m below the original line of action",
+    "200 N →, 0.33 m above the original line of action",
+    "600 N →, 3 m above the original line of action"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "A couple shifts the line of action without changing the force: d = M/R. The side matters — below the line would give a counterclockwise moment, the wrong sense. 0.33 m inverts the division.",
+   "id": "statics-037",
+   "question": "A 200 N horizontal push acts on a shipping crate. Uneven loading adds a 600 N·m clockwise couple. What single force is equivalent to this force-couple system, and where must its line of action lie?",
+   "solution": "Refer to the Moments (Couples) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the equivalent force and its offset \\(d\\). A couple does not change the force resultant, so:\n\n$$R = 200\\text{ N (horizontal) }$$\n\nShift its line of action a perpendicular distance \\(d\\) so its moment about the original line equals the couple:\n\n$$d = \\frac{M}{R} = \\frac{600}{200} = 3\\text{ m}$$\n\nThe offset must reproduce the clockwise sense: for a rightward force, the line of action lies 3 m above the original line (a force below would give a counterclockwise moment).",
+   "subtopic": "Equivalent single force for a force-couple system",
+   "tiTip": "No — it is one division, d = M/R; the calculator only does the arithmetic.",
+   "topic": "Statics"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Stable and statically determinate",
+    "Stable and statically indeterminate to the first degree",
+    "Unstable (a mechanism)",
+    "Stable and statically indeterminate to the second degree"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "m + r = 2j exactly means determinate. Greater would be indeterminate; less would be unstable. Count carefully — members, reaction components, joints.",
+   "id": "structural-034",
+   "question": "A planar roof truss has 7 joints, 11 members, and 3 reaction components. Using the stability and determinacy check, how is this truss classified?",
+   "solution": "Refer to the Stability, Determinacy, and Classification of Structures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the truss. For a plane truss the handbook gives:\n\n$$m + r < 2j \\;\\rightarrow\\; \\text{unstable} \\qquad m + r = 2j \\;\\rightarrow\\; \\text{stable and statically determinate} \\qquad m + r > 2j \\;\\rightarrow\\; \\text{stable and statically indeterminate}$$\n\nHere \\(m + r = 11 + 3 = 14\\) and \\(2j = 2(7) = 14\\). Since \\(m + r = 2j\\), the truss is stable and statically determinate.",
+   "subtopic": "Truss determinacy classification",
+   "tiTip": "No — it is counting and one comparison; the calculator cannot classify structures.",
+   "topic": "Structural Engineering"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Stable and statically indeterminate to the first degree",
+    "Stable and statically determinate",
+    "Stable and statically indeterminate to the second degree",
+    "Unstable"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Count reaction components, not supports: fixed = 3, roller = 1. 3m + r exceeds 3j + c by exactly one, so indeterminate to the first degree — not the second.",
+   "id": "structural-035",
+   "question": "A planar beam is fixed at support A and roller-supported at support B, with no internal hinges. Using the stability and determinacy check for a plane frame, how is this beam classified?",
+   "solution": "Refer to the Stability, Determinacy, and Classification of Structures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the beam. Treat it as a plane frame with \\(m = 1\\) member and \\(j = 2\\) joints. Reaction components: fixed support \\(A = 3\\), roller \\(B = 1\\), so \\(r = 4\\); no internal hinges, so \\(c = 0\\). The handbook gives:\n\n$$3m + r = 3(1) + 4 = 7 \\qquad 3j + c = 3(2) + 0 = 6$$\n\nSince \\(3m + r > 3j + c\\) by exactly one, the beam (a propped cantilever) is stable and statically indeterminate to the first degree.",
+   "subtopic": "Beam determinacy classification",
+   "tiTip": "No — count and compare; there is no calculation for the calculator to shortcut.",
+   "topic": "Structural Engineering"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "143.5 L/s",
+    "138.9 L/s",
+    "149.0 L/s",
+    "40.4 L/s"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Convert the manometer reading to head of the flowing fluid first: Δh = hm(SGm − 1). The traps: 138.9 L/s skips the (1 − β⁴) area correction, 149.0 L/s forgets the −1, 40.4 L/s uses the mercury head as if it were water head.",
+   "id": "fluid-034",
+   "question": "A horizontal venturi meter is installed in a 30 cm water main. The throat diameter is 15 cm. A mercury manometer (specific gravity 13.6) connected between the inlet and the throat shows a 25 cm difference in the mercury columns. Assuming a discharge coefficient Cv = 1.0, what is most nearly the volumetric flow rate?",
+   "solution": "Refer to the Venturi Meters section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(Q\\). First convert the manometer reading to head of the flowing fluid (water):\n\n$$\\Delta h = h_m(SG_m - 1) = (0.25)(13.6 - 1) = 3.15\\text{ m of water}$$\n\nThe venturi equation (horizontal, so \\(z_1 = z_2\\)):\n\n$$Q = C_v A_2\\sqrt{\\frac{2g\\,\\Delta h}{1 - (D_2/D_1)^4}}$$\n\n$$A_2 = \\frac{\\pi}{4}(0.15)^2 = 0.01767\\text{ m}^2, \\qquad \\left(\\frac{D_2}{D_1}\\right)^4 = \\left(\\frac{15}{30}\\right)^4 = 0.0625$$\n\n$$Q = (1.0)(0.01767)\\sqrt{\\frac{2(9.81)(3.15)}{1 - 0.0625}} = (0.01767)\\sqrt{65.92} = 0.1435\\text{ m}^3\\!/\\!\\text{s}$$\n\n$$Q = 143.5\\text{ L/s}$$",
+   "subtopic": "Venturi meter flow rate",
+   "tiTip": "No — there is no venturi key, and the full equation will not fit the 40-character solver limit; work it in stages and let the calculator grind each step.",
+   "topic": "Fluid Mechanics"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "4.90 m/s",
+    "15.3 m/s",
+    "3.46 m/s",
+    "0.49 m/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Stagnation pressure converts the velocity head back: v = √(2ΔP/ρ). The 15.3 m/s trap multiplies by g as if kPa were meters of head; 3.46 m/s drops the factor of 2.",
+   "id": "fluid-035",
+   "question": "A pitot tube in a water pipeline measures a stagnation pressure 12 kPa above the local static pressure. What is most nearly the flow velocity?",
+   "solution": "Refer to the Pitot Tubes section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(v\\). From the stagnation pressure equation for an incompressible fluid:\n\n$$v = \\sqrt{\\frac{2(P_0 - P_s)}{\\rho}} = \\sqrt{\\frac{2(12{,}000)}{1000}} = \\sqrt{24} = 4.90\\text{ m/s}$$",
+   "subtopic": "Pitot tube velocity",
+   "tiTip": "Partially — no pitot key, but punch √(2ΔP/ρ) straight into the calculator.",
+   "topic": "Fluid Mechanics"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "6.0 kg·m²",
+    "1.5 kg·m²",
+    "18.0 kg·m²",
+    "4.0 kg·m²"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "About the end it is (1/3)mL² — (1/12)mL² is about the center. The traps: 1.5 kg·m² uses the center axis, 18.0 kg·m² drops the 1/3, 4.0 kg·m² forgets to square the length.",
+   "id": "dynamics-034",
+   "question": "A uniform slender rod has a mass of 8 kg and a length of 1.5 m. It is pinned at one end and swings as a pendulum. What is its mass moment of inertia about the pin?",
+   "solution": "Refer to the Mass Moment of Inertia table in the Dynamics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(I_{pin}\\). The table gives, for a slender rod about its end:\n\n$$I = \\frac{1}{3}mL^2 = \\frac{1}{3}(8)(1.5)^2 = \\frac{1}{3}(8)(2.25) = 6.0\\text{ kg}\\cdot\\text{m}^2$$",
+   "subtopic": "Mass moment of inertia of a rod about its end",
+   "tiTip": "No — look up (1/3)mL² and do one multiplication; there is nothing for the calculator to solve.",
+   "topic": "Dynamics"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "22.5",
+    "37.2",
+    "19.7",
+    "2.7"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Read the right column AND the right row: 37.2 is Nc, 19.7 is Nγ, and 2.7 is Nq for the wrong friction angle (10°).",
+   "id": "geotech-048",
+   "question": "A geotechnical report includes this excerpt from a Terzaghi bearing capacity factor table:\n\nφ = 30°: Nc = 37.2, Nq = 22.5, Nγ = 19.7\n(The table also lists Nq = 2.7 for φ = 10°.)\n\nFor a footing bearing on soil with an internal friction angle of 30°, what is the bearing capacity factor Nq?",
+   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6). where \\(N_q\\) is defined as the bearing capacity factor for depth (it multiplies the overburden term \\(\\gamma' D_f\\) in \\(q_{ULT} = cN_c + \\gamma' D_f N_q + \\tfrac{1}{2}\\gamma' B N_\\gamma\\)).\n\nUltimately, we must read \\(N_q\\) for \\(\\phi = 30^\\circ\\). From the \\(N_q\\) column at the \\(\\phi = 30^\\circ\\) row:\n\n$$N_q = 22.5$$",
+   "subtopic": "Terzaghi bearing capacity factor",
+   "tiTip": "No — it is a table lookup; the calculator cannot read tables.",
+   "topic": "Geotechnical Engineering"
+   },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "277 kPa",
+    "2,490 kPa",
+    "827 kPa",
+    "276.7 Pa"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "Allowable = ultimate divided by FS. The 2,490 kPa trap multiplies by the factor of safety instead — FS always reduces the capacity.",
+   "id": "geotech-049",
+   "question": "A strip footing analysis gives an ultimate bearing capacity of 830 kPa. The design requires a factor of safety of 3.0 against bearing failure. What is the allowable bearing capacity?",
+   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(q_{allow}\\). The allowable capacity is the ultimate capacity divided by the factor of safety:\n\n$$q_{allow} = \\frac{q_{ULT}}{FS} = \\frac{830}{3.0} = 276.7 = 277\\text{ kPa}$$",
+   "subtopic": "Allowable bearing capacity",
+   "tiTip": "No — one division; the calculator only does the arithmetic.",
+   "topic": "Geotechnical Engineering"
+   }
  ]
 }

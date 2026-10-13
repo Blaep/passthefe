@@ -127,6 +127,7 @@
       explanation: meta.explanation,
       videoUrl: meta.videoUrl,
       videoTitle: meta.videoTitle,
+      tiTip: meta.tiTip,
       generate: function () {
         for (var attempt = 0; attempt < 300; attempt++) {
           var r = roll();
@@ -1843,6 +1844,110 @@ reg(buildGenerator({
 }));
 
 /* ---- registry export ---- */
+
+/* ---- mechmat-034: max bending moment, uniform + point load ---- */
+reg(buildGenerator({
+  baseId: "mechmat-034",
+  topic: "Mechanics of Materials",
+  subtopic: "Maximum bending moment, combined loading",
+  difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "By symmetry the peak is at midspan: add the uniform-load term wL²/8 and the point-load term PL/4. The traps: dropping the point load, wL²/4, PL/2.",
+  tiTip: "No — set up wL²/8 + PL/4 by hand; the calculator only crunches the arithmetic.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var L = pick([6, 8, 10]);
+  var w = pick([4, 5, 6, 8]);
+  var P = pick([10, 15, 20, 25]);
+  var M = w * L * L / 8 + P * L / 4;
+  var tDrop = w * L * L / 8;          // trap: forgot the point load
+  var tW4 = w * L * L / 4 + P * L / 4; // trap: wL²/4 for the uniform part
+  var tP2 = w * L * L / 8 + P * L / 2;  // trap: PL/2 for the point load
+  var R = w * L / 2 + P / 2;
+  var question = "A simply supported floor beam spans \\(" + L + "\\text{ m}\\). It carries a uniformly distributed load of \\(" + w + "\\text{ kN/m}\\) over its full length, plus a concentrated load of \\(" + P + "\\text{ kN}\\) at midspan from a partition wall. What is the maximum bending moment in the beam?";
+  var solution = "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "By symmetry each reaction is \\(R = wL/2 + P/2 = " + fmt(w * L / 2) + " + " + fmt(P / 2) + " = " + fmt(R) + "\\text{ kN}\\). The moment peaks at midspan:\n\n" +
+    "$$M_{max} = R\\left(\\frac{L}{2}\\right) - w\\frac{(L/2)^2}{2} = (" + fmt(R) + ")(" + fmt(L / 2) + ") - \\frac{(" + w + ")(" + fmt(L / 2) + ")^2}{2} = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}$$\n\n" +
+    "Equivalently \\(M_{max} = wL^2/8 + PL/4 = " + fmt(w * L * L / 8) + " + " + fmt(P * L / 4) + " = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}\\).";
+  return {
+    variantKey: "mmax-w" + w + "-L" + L + "-P" + P,
+    question: question,
+    options: [
+      { label: fmt(M) + " kN·m", num: M, correct: true },
+      { label: fmt(tDrop) + " kN·m", num: tDrop, correct: false },
+      { label: fmt(tW4) + " kN·m", num: tW4, correct: false },
+      { label: fmt(tP2) + " kN·m", num: tP2, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- mechmat-035: cantilever maximum shear ---- */
+reg(buildGenerator({
+  baseId: "mechmat-035",
+  topic: "Mechanics of Materials",
+  subtopic: "Cantilever maximum shear",
+  difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "Shear is constant at P along the whole cantilever. The PL trap is the maximum moment, not shear — watch the units.",
+  tiTip: "No — the shear is just P here; use the calculator only to double-check PL for the moment.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var L = pick([2.5, 3, 3.5, 4]);
+  var P = pick([8, 10, 12, 15, 20]);
+  var question = "A cantilever balcony beam extends \\(" + fmt(L) + "\\text{ m}\\) from its fixed support and carries a \\(" + P + "\\text{ kN}\\) planter load at its free tip. What is the maximum shear force in the beam?";
+  var solution = "Refer to the Cantilever Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "With only a tip load \\(P\\), the shear is constant along the entire cantilever:\n\n" +
+    "$$V(x) = P = " + P + "\\text{ kN} \\quad \\text{everywhere}$$\n\n" +
+    "so \\(V_{max} = " + P + "\\text{ kN}\\). (The maximum bending moment is \\(PL = (" + P + ")(" + fmt(L) + ") = " + fmt(P * L) + "\\text{ kN}\\cdot\\text{m}\\) at the fixed support — that is the " + fmt(P * L) + " kN trap.)";
+  return {
+    variantKey: "cantshear-P" + P + "-L" + pdot(L),
+    question: question,
+    options: [
+      { label: fmt(P) + " kN", num: P, correct: true },
+      { label: fmt(P * L) + " kN", num: P * L, correct: false },
+      { label: fmt(P / 2) + " kN", num: P / 2, correct: false },
+      { label: fmt(2 * P) + " kN", num: 2 * P, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- mechmat-036: uniform load max moment and location ---- */
+reg(buildGenerator({
+  baseId: "mechmat-036",
+  topic: "Mechanics of Materials",
+  subtopic: "Uniform load maximum moment and location",
+  difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "For uniform load the moment diagram is a parabola peaking at midspan: wL²/8. Supports carry maximum shear but zero moment.",
+  tiTip: "No — memorize wL²/8 at midspan; the calculator only does the arithmetic.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var L = pick([6, 8, 10, 12]);
+  var w = pick([3, 4, 5, 6]);
+  var M = w * L * L / 8;
+  var question = "A simply supported warehouse beam spans \\(" + L + "\\text{ m}\\) and carries a uniformly distributed storage load of \\(" + w + "\\text{ kN/m}\\) over its full length. What is the maximum bending moment, and where does it occur?";
+  var solution = "Refer to the Simply Supported Beam tables in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "For a uniform load the shear diagram is linear, crossing zero at midspan — that is where the parabolic moment diagram peaks:\n\n" +
+    "$$M_{max} = \\frac{wL^2}{8} = \\frac{(" + w + ")(" + L + ")^2}{8} = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}$$\n\n" +
+    "at \\(x = L/2 = " + fmt(L / 2) + "\\text{ m}\\), i.e., at midspan. (At the simple supports the moment is zero and the shear is maximum.)";
+  return {
+    variantKey: "mmaxu-w" + w + "-L" + L,
+    question: question,
+    options: [
+      { label: fmt(M) + " kN·m at midspan", num: M, correct: true },
+      { label: fmt(2 * M) + " kN·m at midspan", num: 2 * M, correct: false },
+      { label: fmt(M) + " kN·m at the support", num: null, correct: false },
+      { label: fmt(M / 2) + " kN·m at midspan", num: M / 2, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
 window.MECHMAT_GENERATORS = MM_ENTRIES;
 
 })();

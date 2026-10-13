@@ -127,6 +127,7 @@
       explanation: meta.explanation,
       videoUrl: meta.videoUrl,
       videoTitle: meta.videoTitle,
+      tiTip: meta.tiTip,
       generate: function () {
         for (var attempt = 0; attempt < 300; attempt++) {
           var r = roll();
@@ -1667,6 +1668,84 @@ reg(buildGenerator({
 }));
 
 /* ---- registry export ---- */
+
+/* ---- statics-036: resultant of concurrent forces ---- */
+reg(buildGenerator({
+  baseId: "statics-036",
+  topic: "Statics",
+  subtopic: "Resultant of concurrent forces",
+  difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Add components as vectors, never as scalars. The angle is tan⁻¹(Ry/Rx) — the complement is the classic trap.",
+  tiTip: "Partially — vector menu: enter the components and use norm for the magnitude; find the angle with the tan⁻¹ key.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var a1, c1, b1, Rx, Ry;
+  do {
+    a1 = pick([80, 100, 120]);   // east
+    c1 = pick([30, 40, 60]);     // west
+    b1 = pick([60, 80, 100]);    // north
+  } while (c1 >= a1);
+  Rx = a1 - c1;
+  Ry = b1;
+  var R = r1(Math.sqrt(Rx * Rx + Ry * Ry));
+  var th = r1(Math.atan(Ry / Rx) * 180 / Math.PI);
+  var thC = r1(90 - th);
+  var S = a1 + b1 + c1;          // trap: scalar sum of magnitudes
+  var question = "Three tugboat cables pull on a mooring bollard: \\(" + a1 + "\\text{ N}\\) due east, \\(" + b1 + "\\text{ N}\\) due north, and \\(" + c1 + "\\text{ N}\\) due west. What is the magnitude and direction of the single resultant force?";
+  var solution = "Refer to the Resultant (Two Dimensions) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "Sum components (east and north positive):\n\n" +
+    "$$R_x = \\sum F_x = " + a1 + " - " + c1 + " = " + Rx + "\\text{ N} \\qquad R_y = \\sum F_y = " + Ry + "\\text{ N}$$\n\n" +
+    "$$R = \\sqrt{R_x^2 + R_y^2} = \\sqrt{" + Rx + "^2 + " + Ry + "^2} = " + fmt(R) + "\\text{ N}$$\n\n" +
+    "$$\\theta = \\tan^{-1}\\!\\left(\\frac{R_y}{R_x}\\right) = \\tan^{-1}\\!\\left(\\frac{" + Ry + "}{" + Rx + "}\\right) = " + fmt(th) + "^\\circ$$\n\n" +
+    "north of east.";
+  return {
+    variantKey: "res-a" + a1 + "-c" + c1 + "-b" + b1,
+    question: question,
+    options: [
+      { label: fmt(R) + " N at " + fmt(th) + "° north of east", num: R, correct: true },
+      { label: fmt(R) + " N at " + fmt(thC) + "° north of east", num: null, correct: false },
+      { label: fmt(S) + " N at " + fmt(th) + "° north of east", num: S, correct: false },
+      { label: fmt(R) + " N at " + fmt(th) + "° south of east", num: null, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- statics-037: equivalent single force for a force-couple system ---- */
+reg(buildGenerator({
+  baseId: "statics-037",
+  topic: "Statics",
+  subtopic: "Equivalent single force for a force-couple system",
+  difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "A couple shifts the line of action without changing the force: d = M/R. The side must reproduce the couple's sense.",
+  tiTip: "No — it is one division, d = M/R; the calculator only does the arithmetic.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var F = pick([100, 150, 200, 250]);
+  var dT = pick([2, 3, 4]);
+  var M = F * dT;
+  var question = "A \\(" + F + "\\text{ N}\\) horizontal push acts on a shipping crate. Uneven loading adds a \\(" + M + "\\text{ N}\\cdot\\text{m}\\) clockwise couple. What single force is equivalent to this force-couple system, and where must its line of action lie?";
+  var solution = "Refer to the Moments (Couples) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "A couple does not change the force resultant, so \\(R = " + F + "\\text{ N}\\) (horizontal). Shift its line of action a perpendicular distance \\(d\\) so its moment about the original line equals the couple:\n\n" +
+    "$$d = \\frac{M}{R} = \\frac{" + M + "}{" + F + "} = " + fmt(dT) + "\\text{ m}$$\n\n" +
+    "The offset must reproduce the clockwise sense: for a rightward force, the line of action lies " + fmt(dT) + " m above the original line (a force below would give a counterclockwise moment).";
+  return {
+    variantKey: "fc-F" + F + "-d" + dT,
+    question: question,
+    options: [
+      { label: F + " N →, " + fmt(dT) + " m above the original line of action", num: dT, correct: true },
+      { label: F + " N →, " + fmt(dT) + " m below the original line of action", num: null, correct: false },
+      { label: F + " N →, " + fmt(1 / dT) + " m above the original line of action", num: 1 / dT, correct: false },
+      { label: fmt(M) + " N →, " + fmt(dT) + " m above the original line of action", num: null, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
 window.STATICS_GENERATORS = STAT_ENTRIES;
 
 })();

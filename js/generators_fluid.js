@@ -49,6 +49,7 @@
       explanation: meta.explanation,
       videoUrl: meta.videoUrl,
       videoTitle: meta.videoTitle,
+      tiTip: meta.tiTip,
       generate: function () {
         for (var attempt = 0; attempt < 300; attempt++) {
           var r = roll();
@@ -292,5 +293,89 @@ reg(buildGenerator({
 }));
 
 
-  window.FLUID_GENERATORS = FLUID_ENTRIES;
+  
+/* ---- fluid-034: venturi meter flow rate ---- */
+reg(buildGenerator({
+  baseId: "fluid-034",
+  topic: "Fluid Mechanics",
+  subtopic: "Venturi meter flow rate",
+  difficulty: "hard",
+  estimatedTimeSeconds: 180,
+  explanation: "Convert the manometer reading to head of the flowing fluid first: Δh = hm(SGm − 1). The traps: skipping the (1 − β⁴) area correction, forgetting the −1, using the mercury head as water head.",
+  tiTip: "No — there is no venturi key, and the full equation will not fit the 40-character solver limit; work it in stages and let the calculator grind each step.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var D1, D2;
+  do {
+    D1 = pick([25, 30, 40]);   // cm, main
+    D2 = pick([10, 12, 15]);   // cm, throat
+  } while (D2 / D1 > 0.5);
+  var hm = pick([15, 20, 25, 30]); // cm of mercury
+  var SG = 13.6, Cv = 1.0, g = 9.81;
+  var dh = (hm / 100) * (SG - 1);              // m of water
+  var A2 = Math.PI * Math.pow(D2 / 100, 2) / 4;
+  var b4 = Math.pow(D2 / D1, 4);
+  function r1q(x) { return Math.round(x * 10) / 10; }
+  var Q = r1q(A2 * Math.sqrt(2 * g * dh / (1 - b4)) * 1000);
+  var tNoB4 = r1q(A2 * Math.sqrt(2 * g * dh) * 1000);                    // trap: skipped (1-β⁴)
+  var tNoM1 = r1q(A2 * Math.sqrt(2 * g * (hm / 100) * SG / (1 - b4)) * 1000); // trap: forgot −1
+  var tRawHm = r1q(A2 * Math.sqrt(2 * g * (hm / 100) / (1 - b4)) * 1000);     // trap: mercury head as water
+  var question = "A horizontal venturi meter is installed in a \\(" + D1 + "\\text{ cm}\\) water main. The throat diameter is \\(" + D2 + "\\text{ cm}\\). A mercury manometer (specific gravity 13.6) connected between the inlet and the throat shows a \\(" + hm + "\\text{ cm}\\) difference in the mercury columns. Assuming a discharge coefficient Cv = 1.0, what is most nearly the volumetric flow rate?";
+  var solution = "Refer to the Venturi Meters section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "First convert the manometer reading to head of the flowing fluid (water):\n\n" +
+    "$$\\Delta h = h_m(SG_m - 1) = (" + fmt(hm / 100) + ")(13.6 - 1) = " + fmt(dh) + "\\text{ m of water}$$\n\n" +
+    "The venturi equation (horizontal, so \\(z_1 = z_2\\)):\n\n" +
+    "$$Q = C_v A_2\\sqrt{\\frac{2g\\,\\Delta h}{1 - (D_2/D_1)^4}}$$\n\n" +
+    "$$A_2 = \\frac{\\pi}{4}(" + fmt(D2 / 100) + ")^2 = " + fmt(A2) + "\\text{ m}^2, \\qquad \\left(\\frac{D_2}{D_1}\\right)^4 = " + fmt(b4) + "$$\n\n" +
+    "$$Q = (1.0)(" + fmt(A2) + ")\\sqrt{\\frac{2(" + g + ")(" + fmt(dh) + ")}{" + fmt(1 - b4) + "}} = " + fmt(Q / 1000) + "\\text{ m}^3\\!/\\!\\text{s} = " + fmt(Q) + "\\text{ L/s}$$";
+  return {
+    variantKey: "venturi-D1" + D1 + "-D2" + D2 + "-hm" + hm,
+    question: question,
+    options: [
+      { label: fmt(Q) + " L/s", num: Q, correct: true },
+      { label: fmt(tNoB4) + " L/s", num: tNoB4, correct: false },
+      { label: fmt(tNoM1) + " L/s", num: tNoM1, correct: false },
+      { label: fmt(tRawHm) + " L/s", num: tRawHm, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- fluid-035: pitot tube velocity ---- */
+reg(buildGenerator({
+  baseId: "fluid-035",
+  topic: "Fluid Mechanics",
+  subtopic: "Pitot tube velocity",
+  difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Stagnation pressure converts the velocity head back: v = √(2ΔP/ρ). The big trap multiplies by g as if kPa were meters of head.",
+  tiTip: "Partially — no pitot key, but punch √(2ΔP/ρ) straight into the calculator.",
+  videoUrl: null,
+  videoTitle: null
+}, function () {
+  var dP = pick([8, 10, 12, 15, 20]); // kPa above static
+  function r2q(x) { return Math.round(x * 100) / 100; }
+  var v = r2q(Math.sqrt(2 * dP));            // ΔP in kPa → ×1000 Pa, ρ = 1000
+  var tG = r2q(Math.sqrt(2 * 9.81 * dP));    // trap: treated kPa as head
+  var tNo2 = r2q(Math.sqrt(dP));             // trap: dropped the 2
+  var tDec = r2q(v / 10);                    // trap: decimal slip
+  var question = "A pitot tube in a water pipeline measures a stagnation pressure \\(" + dP + "\\text{ kPa}\\) above the local static pressure. What is most nearly the flow velocity?";
+  var solution = "Refer to the Pitot Tubes section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "From the stagnation pressure equation for an incompressible fluid:\n\n" +
+    "$$v = \\sqrt{\\frac{2(P_0 - P_s)}{\\rho}} = \\sqrt{\\frac{2(" + (dP * 1000) + ")}{1000}} = \\sqrt{" + (2 * dP) + "} = " + fmt(v) + "\\text{ m/s}$$";
+  return {
+    variantKey: "pitot-dP" + dP,
+    question: question,
+    options: [
+      { label: fmt(v) + " m/s", num: v, correct: true },
+      { label: fmt(tG) + " m/s", num: tG, correct: false },
+      { label: fmt(tNo2) + " m/s", num: tNo2, correct: false },
+      { label: fmt(tDec) + " m/s", num: tDec, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+window.FLUID_GENERATORS = FLUID_ENTRIES;
 })();
