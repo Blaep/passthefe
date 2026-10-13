@@ -268,6 +268,7 @@
    "id": "stats-001",
    "topic": "Statistics and Probability",
    "subtopic": "Independent events",
+   "tiTip": "No — multiply by hand: P(A∩B) = P(A)·P(B); the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "Events A and B are independent. If P(A) = 0.4 and P(B) = 0.5, what is P(A and B)?",
@@ -474,6 +475,7 @@
    "question": "The measured strengths (in MPa) of six concrete test cylinders are: 4, 7, 7, 9, 12, 14. What is the median of this dataset?",
    "solution": "Refer to the Dispersion, Mean, Median, and Mode Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the median. With an even number of observations, the median is the average of the two middle values:\n\n$$\\text{median} = \\frac{x_{(n/2)} + x_{(n/2+1)}}{2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nn &= 6 \\\\\nx_{(3)} &= 7\\ \\text{MPa} \\\\\nx_{(4)} &= 9\\ \\text{MPa} \\\\\n\\text{median} &= ?\n\\end{aligned}$$\n\n$$(\\text{median}) = \\frac{7 + 9}{2}$$\n\n$$(\\text{median}) = 8\\ \\text{MPa}$$",
    "subtopic": "Mean, median, and mode",
+   "tiTip": "Yes — STAT 1-var mode: enter the data, then read med.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=Yw2ky0IocfA",
    "videoTitle": "Statistics Basics: Mean, Median, Mode, Range & Standard Deviation Explained!"
@@ -493,6 +495,7 @@
    "question": "A construction firm estimates each bid it submits has a 30% chance of being accepted, independently of other bids. If it submits 10 bids, what is the probability that exactly 3 are accepted?",
    "solution": "Refer to the Binomial Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(X = 3)\\). Each bid is an independent trial with the same success probability, so the count of acceptances is binomial:\n\n$$P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}$$\n\nList the known and unknown parameters in order to solve for \\(P(X = 3)\\):\n\n$$\\begin{aligned}\nn &= 10 \\\\\np &= 0.30 \\\\\nk &= 3 \\\\\nP(X = 3) &= ?\n\\end{aligned}$$\n\n$$(P) = \\binom{10}{3}(0.3)^3(0.7)^7 \\rightarrow (P) = (120)(0.027)(0.0823543)$$\n\n$$(P) = 0.2668 \\approx 0.267$$",
    "subtopic": "Binomial probability",
+   "tiTip": "Yes — DISTR → Binompdf: enter n, p, x.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=3PWKQiLK41M",
    "videoTitle": "Finding The Probability of a Binomial Distribution Plus Mean & Standard Deviation"
@@ -512,6 +515,7 @@
    "question": "Compressive test results for a concrete mix are normally distributed with a mean of 100 MPa and a standard deviation of 15 MPa. Approximately what percentage of samples exceed 115 MPa?",
    "solution": "Refer to the Normal Distribution (Gaussian Distribution) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must find the percentage of samples exceeding 115 MPa. Standardize with the z-score:\n\n$$z = \\frac{x - \\mu}{\\sigma}$$\n\nList the known and unknown parameters in order to solve for \\(z\\):\n\n$$\\begin{aligned}\n\\mu &= 100\\ \\text{MPa} \\\\\n\\sigma &= 15\\ \\text{MPa} \\\\\nx &= 115\\ \\text{MPa} \\\\\nz &= ?\n\\end{aligned}$$\n\n$$(z) = \\frac{115 - 100}{15} = 1$$\n\nThe area beyond \\(z = 1\\) (one standard deviation above the mean) is \\(1 - \\Phi(1) = 1 - 0.8413 = 0.1587\\):\n\n$$P(x > 115) \\approx 15.9\\%$$",
    "subtopic": "Normal distribution and z-scores",
+   "tiTip": "Yes — DISTR → Normalcdf: enter 115, 1E99, 100, 15.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=3be6mzCYMRs",
    "videoTitle": "Statistics 6.3 – Finding Probability Using a Normal Distribution"
@@ -531,6 +535,7 @@
    "question": "A bridge inspection test detects cracks with 99% sensitivity (P(positive | crack) = 0.99) and 95% specificity (P(negative | no crack) = 0.95). If 1% of inspected members actually have cracks, what is the probability a member has a crack given a positive test result?",
    "solution": "Refer to Bayes' Theorem in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{crack} \\mid \\text{positive})\\):\n\n$$P(A \\mid B) = \\frac{P(B \\mid A)P(A)}{P(B)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP(\\text{positive} \\mid \\text{crack}) &= 0.99 \\\\\nP(\\text{positive} \\mid \\text{no crack}) &= 1 - 0.95 = 0.05 \\\\\nP(\\text{crack}) &= 0.01 \\\\\nP(\\text{crack} \\mid \\text{positive}) &= ?\n\\end{aligned}$$\n\nExpand the denominator by the law of total probability:\n\n$$(P(\\text{positive})) = (0.99)(0.01) + (0.05)(0.99) \\rightarrow (P(\\text{positive})) = 0.0099 + 0.0495 = 0.0594$$\n\n$$(P(\\text{crack} \\mid \\text{positive})) = \\frac{0.0099}{0.0594} = 0.1667 \\approx 16.7\\%$$",
    "subtopic": "Bayes' theorem",
+   "tiTip": "No — set up the Bayes fraction by hand; the calculator only crunches the arithmetic.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=MF-7vWNNmAA",
    "videoTitle": "3 Word Problems to Master the Bayes' Theorem"
@@ -550,6 +555,7 @@
    "question": "The daily rainfall totals (in cm) recorded over 8 days are: 2, 4, 4, 4, 5, 5, 7, 9. What is the population standard deviation of this dataset?",
    "solution": "Refer to the Dispersion, Mean, Median, and Mode Values section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the population standard deviation (divide by \\(n\\), not \\(n - 1\\)):\n\n$$\\sigma = \\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\mu)^2}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nn &= 8 \\\\\n\\mu &= \\frac{40}{8} = 5\\ \\text{cm} \\\\\n\\sigma &= ?\n\\end{aligned}$$\n\n$$(\\sigma) = \\sqrt{\\frac{9 + 1 + 1 + 1 + 0 + 0 + 4 + 16}{8}} = \\sqrt{\\frac{32}{8}} = \\sqrt{4}$$\n\n$$(\\sigma) = 2\\ \\text{cm}$$",
    "subtopic": "Standard deviation",
+   "tiTip": "Yes — STAT 1-var mode: enter the data, then read σx (population, not Sx).",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=Yw2ky0IocfA",
    "videoTitle": "Statistics Basics: Mean, Median, Mode, Range & Standard Deviation Explained!"
@@ -569,6 +575,7 @@
    "question": "A sample of 25 soil compaction tests has a mean dry density of 50 pcf and a standard deviation of 10 pcf. What is the lower bound of the 95% confidence interval for the true mean dry density? (Use z = 1.96.)",
    "solution": "Refer to the Confidence Intervals section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for the lower bound of the 95% confidence interval for the true mean:\n\n$$\\bar{x} \\pm z\\frac{s}{\\sqrt{n}}$$\n\nList the known and unknown parameters in order to solve for the lower bound:\n\n$$\\begin{aligned}\n\\bar{x} &= 50\\ \\text{pcf} \\\\\ns &= 10\\ \\text{pcf} \\\\\nn &= 25 \\\\\nz &= 1.96\\ \\text{(95\\% confidence)} \\\\\n\\text{lower bound} &= ?\n\\end{aligned}$$\n\nStandard error: \\(s/\\sqrt{n} = 10/5 = 2\\). Margin: \\(1.96 \\times 2 = 3.92\\).\n\n$$(\\text{lower bound}) = 50 - 3.92 = 46.08 \\approx 46.1\\ \\text{pcf}$$",
    "subtopic": "Confidence intervals",
+   "tiTip": "Partially — no CI solver; compute x̄ − z*·s/√n by hand, then use the calculator for the arithmetic.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=9GtaIHFuEZU",
    "videoTitle": "Statistics 101: Confidence Interval Estimation, Sigma Known"
@@ -588,6 +595,7 @@
    "question": "A grab bag contains 5 red and 3 blue soil sample tags. Two tags are drawn at random without replacement. What is the probability that both are red?",
    "solution": "Refer to the Laws of Probability section in the Engineering Probability and Statistics chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(P(\\text{both red})\\). Sampling is without replacement, so the denominator changes on the second draw:\n\n$$P = P(\\text{1st red}) \\cdot P(\\text{2nd red} \\mid \\text{1st red})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\text{Red tags} &= 5 \\\\\n\\text{Blue tags} &= 3 \\\\\n\\text{Total tags} &= 8\n\\end{aligned}$$\n\nAfter drawing one red tag, 4 red and 3 blue remain out of 7 total:\n\n$$(P) = \\left(\\frac{5}{8}\\right)\\left(\\frac{4}{7}\\right) = \\frac{20}{56}$$\n\n$$(P) = 0.357$$",
    "subtopic": "Conditional probability without replacement",
+   "tiTip": "Yes — PROB menu: nCr(5,2) ÷ nCr(8,2).",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=SkidyDQuupA",
    "videoTitle": "Introduction to Probability, Basic Overview - Sample Space, & Tree Diagrams"
@@ -2405,6 +2413,7 @@
    "id": "stats-009",
    "topic": "Statistics and Probability",
    "subtopic": "Expected value",
+   "tiTip": "No — work the expected-value sum by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "A raffle ticket costs $2. The ticket pays $10 with probability 0.3 and nothing otherwise. What is the expected net gain per ticket?",
@@ -2424,6 +2433,7 @@
    "id": "stats-010",
    "topic": "Statistics and Probability",
    "subtopic": "Binomial probability",
+   "tiTip": "Yes — DISTR → Binompdf: enter n, p, x.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "Each concrete cylinder in a batch has a 10% chance of testing below the specified strength, independently. If 5 cylinders are tested, what is the probability that exactly 2 test below specification?",
@@ -2443,6 +2453,7 @@
    "id": "stats-011",
    "topic": "Statistics and Probability",
    "subtopic": "Normal probability",
+   "tiTip": "Yes — DISTR → Normalcdf: enter 51, 1E99, 50, 0.5.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "Steel rod diameters are normally distributed with mean 50 mm and standard deviation 0.5 mm. What is the probability a randomly selected rod has a diameter greater than 51 mm?",
@@ -2462,6 +2473,7 @@
    "id": "stats-012",
    "topic": "Statistics and Probability",
    "subtopic": "Least-squares slope",
+   "tiTip": "Yes — STAT 2-var mode: enter the pairs, run LinReg ax+b, then read a.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
    "question": "For the data points (1, 2), (2, 4), (3, 5), (4, 4), (5, 5), what is the slope of the least-squares regression line?",
@@ -2481,6 +2493,7 @@
    "id": "stats-013",
    "topic": "Statistics and Probability",
    "subtopic": "Poisson probability",
+   "tiTip": "Yes — DISTR → Poissonpdf: enter λ, x.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "Vehicles arrive at a toll booth at an average rate of 3 per minute. What is the probability that exactly 4 vehicles arrive in a given minute?",
@@ -5416,6 +5429,7 @@
    "id": "stats-014",
    "topic": "Statistics and Probability",
    "subtopic": "Normal distribution and percentiles",
+   "tiTip": "Yes — DISTR → Normalcdf: enter −1E99, 600, 500, 100 for the left-tail area.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 75,
    "question": "Concrete compressive strengths are normally distributed with a mean of 500 psi and a standard deviation of 100 psi. Approximately what percentile is a strength of 600 psi?",
@@ -5436,6 +5450,7 @@
    "id": "stats-015",
    "topic": "Statistics and Probability",
    "subtopic": "Complement rule",
+   "tiTip": "Partially — no 'at least' key; compute 1 − P(none) = 1 − (0.95)⁴ by hand.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 105,
    "question": "A manufactured part has a 5% defect rate, independently from part to part. If 4 parts are sampled, what is the probability that at least one is defective?",
@@ -5455,6 +5470,7 @@
    "id": "stats-016",
    "topic": "Statistics and Probability",
    "subtopic": "Coefficient of variation",
+   "tiTip": "No — it is just σ/μ by hand; the calculator only does the arithmetic.",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "question": "Steel yield strengths have a mean of 60 ksi and a standard deviation of 3 ksi. What is the coefficient of variation?",
@@ -5474,6 +5490,7 @@
    "id": "stats-017",
    "topic": "Statistics and Probability",
    "subtopic": "Hypothesis testing",
+   "tiTip": "No — this is a definition question; the calculator can't help.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
    "question": "In hypothesis testing, a Type I error is:",
@@ -5492,6 +5509,7 @@
    "id": "stats-018",
    "topic": "Statistics and Probability",
    "subtopic": "Confidence intervals for proportions",
+   "tiTip": "Partially — no CI solver; compute z*·√(p̂(1−p̂)/n) by hand, then use the calculator for the arithmetic.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "In a survey of 400 residents, 60% support a proposed transit project. What is the margin of error for a 95% confidence interval for the true proportion? (Use z = 1.96.)",
@@ -5511,6 +5529,7 @@
    "id": "stats-019",
    "topic": "Statistics and Probability",
    "subtopic": "Variance of linear combinations",
+   "tiTip": "No — apply Var(aX+bY) = a²Var(X) + b²Var(Y) by hand; the calculator only does the arithmetic.",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
    "question": "X and Y are independent random variables with Var(X) = 4 and Var(Y) = 9. What is Var(3X − 2Y)?",
@@ -5530,6 +5549,7 @@
    "id": "stats-020",
    "topic": "Statistics and Probability",
    "subtopic": "Poisson distribution",
+   "tiTip": "Yes — DISTR → Poissoncdf: enter λ, x.",
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "question": "Vehicles arrive at a toll booth at an average rate of 3 per minute. What is the probability that at most 1 vehicle arrives in a given minute?",
@@ -5728,6 +5748,7 @@
    "id": "stats-021",
    "topic": "Statistics and Probability",
    "subtopic": "Combinations",
+   "tiTip": "Yes — PROB menu: nCr(8,3).",
    "difficulty": "easy",
    "question": "An engineering firm must select 3 engineers from a team of 8 to form a design review panel. How many distinct panels are possible?",
    "choices": [
@@ -5745,6 +5766,7 @@
    "id": "stats-022",
    "topic": "Statistics and Probability",
    "subtopic": "Conditional probability from joint probabilities",
+   "tiTip": "No — divide by hand: P(D|F) = P(D∩F)/P(F); the calculator only does the arithmetic.",
    "difficulty": "medium",
    "question": "In a batch of castings, 30% have a surface flaw (event \\(F\\)) and 12% have both a surface flaw and a dimensional deviation (event \\(D\\)). Given that a randomly selected casting has a surface flaw, what is the probability it also has a dimensional deviation?",
    "choices": [
@@ -5762,6 +5784,7 @@
    "id": "stats-023",
    "topic": "Statistics and Probability",
    "subtopic": "Expected value of a function",
+   "tiTip": "Partially — no expected-value key; set up the integral by hand, then punch it into the numeric integral template.",
    "difficulty": "hard",
    "question": "A continuous random variable \\(X\\) has probability density function \\(f(x) = 1/10\\) for \\(0 \\le x \\le 10\\) (and zero otherwise). What is the expected value of \\(X^2\\)?",
    "choices": [
@@ -6529,6 +6552,7 @@
    "question": "Four paired observations are (1, 2), (2, 3), (3, 5), and (4, 4). What is the sample correlation coefficient R?",
    "solution": "Refer to the Sample Correlation Coefficient section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(R\\). The handbook prints:\n\n$$R = \\frac{S_{xy}}{\\sqrt{S_{xx} \\, S_{yy}}}$$\n\nCompute the means:\n\n$$\\begin{aligned}\n\\bar{x} &= \\frac{1 + 2 + 3 + 4}{4} = 2.5 \\\\\n\\bar{y} &= \\frac{2 + 3 + 5 + 4}{4} = 3.5\n\\end{aligned}$$\n\nCompute the sums of squares and cross-products:\n\n$$\\begin{aligned}\nS_{xy} &= (-1.5)(-1.5) + (-0.5)(-0.5) + (0.5)(1.5) + (1.5)(0.5) = 4.0 \\\\\nS_{xx} &= (-1.5)^2 + (-0.5)^2 + (0.5)^2 + (1.5)^2 = 5.0 \\\\\nS_{yy} &= (-1.5)^2 + (-0.5)^2 + (1.5)^2 + (0.5)^2 = 5.0\n\\end{aligned}$$\n\n$$(R) = \\frac{4.0}{\\sqrt{(5.0)(5.0)}} = \\frac{4.0}{5.0} = 0.80$$",
    "subtopic": "Sample correlation coefficient",
+   "tiTip": "Yes — STAT 2-var mode: enter the pairs, run LinReg ax+b, then read r.",
    "topic": "Statistics and Probability"
   },
   {
@@ -6546,6 +6570,7 @@
    "question": "Three data points (1, 3), (2, 5), and (3, 7) are fit with the least-squares line y = a + bx. What is the intercept a?",
    "solution": "Refer to the Linear Regression and Goodness of Fit section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(a\\). The handbook prints the intercept as:\n\n$$a = \\bar{y} - b\\bar{x}$$\n\nCompute the means:\n\n$$\\begin{aligned}\n\\bar{x} &= \\frac{1 + 2 + 3}{3} = 2 \\\\\n\\bar{y} &= \\frac{3 + 5 + 7}{3} = 5\n\\end{aligned}$$\n\nCompute the slope:\n\n$$b = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2} = \\frac{(-1)(-2) + (0)(0) + (1)(2)}{1 + 0 + 1} = \\frac{4}{2} = 2$$\n\n$$(a) = 5 - (2)(2) = 1$$",
    "subtopic": "Least-squares intercept",
+   "tiTip": "Yes — STAT 2-var mode: enter the pairs, run LinReg ax+b, then read b.",
    "topic": "Statistics and Probability"
   },
   {
@@ -6968,6 +6993,7 @@
    "question": "A two-sided 95% confidence interval for a population mean is constructed using the standard normal distribution. What is the critical value Z_{alpha/2}?",
    "solution": "Refer to the Test Statistics section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(Z_{\\alpha/2}\\). The handbook prints the Values of \\(Z_{\\alpha/2}\\) table:\n\n$$\\begin{aligned}\n80\\% &\\to 1.2816 \\\\\n90\\% &\\to 1.6449 \\\\\n95\\% &\\to 1.9600 \\\\\n96\\% &\\to 2.0537\n\\end{aligned}$$\n\nFor a 95% two-sided interval:\n\n$$(Z_{\\alpha/2}) = 1.9600$$",
    "subtopic": "Standard normal critical value",
+   "tiTip": "Yes — DISTR → invNorm: enter 0.975 for the two-sided 95% critical value.",
    "topic": "Statistics and Probability"
   },
   {
@@ -6985,6 +7011,7 @@
    "question": "Emergency calls arrive at a fire station at an average rate of 3 per hour. Assuming a Poisson process, what is the probability of exactly 2 calls in the next hour?",
    "solution": "Refer to the Poisson distribution in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(P(X = 2)\\). The handbook prints:\n\n$$f(x; \\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!}$$\n\nHere \\(\\lambda = 3\\) and \\(x = 2\\):\n\n$$(P) = \\frac{3^2 e^{-3}}{2!} = \\frac{9(0.04979)}{2}$$\n\n$$(P) = \\frac{0.4481}{2} = 0.224$$",
    "subtopic": "Poisson exact-count probability",
+   "tiTip": "Yes — DISTR → Poissonpdf: enter λ, x.",
    "topic": "Statistics and Probability"
   },
   {
@@ -7646,6 +7673,7 @@
    "question": "A population has a mean of 50 and a standard deviation of 12. For random samples of n = 36, what are the mean and standard deviation of the sampling distribution of the sample mean?",
    "solution": "Refer to The Central Limit Theorem in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the sampling distribution parameters. The handbook prints that for large \\(n\\), the sample mean is approximately normal with:\n\n$$\\begin{aligned}\n\\mu_{\\bar{x}} &= \\mu \\\\\n\\sigma_{\\bar{x}} &= \\frac{\\sigma}{\\sqrt{n}}\n\\end{aligned}$$\n\n$$(\\mu_{\\bar{x}}) = 50$$\n\n$$(\\sigma_{\\bar{x}}) = \\frac{12}{\\sqrt{36}} = \\frac{12}{6} = 2$$",
    "subtopic": "Central limit theorem (sampling distribution)",
+   "tiTip": "Partially — no sampling-distribution key; compute σ/√n by hand, then use the calculator for the arithmetic.",
    "topic": "Statistics and Probability"
   },
   {
@@ -7839,6 +7867,7 @@
    "question": "A random sample of 25 measurements has a sample mean of 48.2 and a sample standard deviation of 10.0. What is the value of the t-statistic for testing the hypothesis that the population mean is 50?",
    "solution": "Refer to the t-Distribution section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(t\\). The handbook prints:\n\n$$t = \\frac{\\bar{x} - \\mu}{s/\\sqrt{n}}$$\n\nSubstituting:\n\n$$(t) = \\frac{48.2 - 50}{10/\\sqrt{25}}$$\n\n$$(t) = \\frac{-1.8}{2.0} = -0.90$$",
    "subtopic": "t-statistic for a mean",
+   "tiTip": "Partially — no t-test menu; compute (x̄−μ₀)/(s/√n) by hand, then use the calculator for the arithmetic.",
    "topic": "Statistics and Probability"
   },
   {
@@ -7856,6 +7885,7 @@
    "question": "A club must elect a president, a vice president, a secretary, and a treasurer from 10 members. No member may hold more than one office. How many different slates of officers are possible?",
    "solution": "Refer to the Permutations and Combinations section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must compute \\(P(10, 4)\\). The handbook prints:\n\n$$P(n, r) = \\frac{n!}{(n - r)!}$$\n\nSubstituting:\n\n$$(P(10,4)) = \\frac{10!}{6!} = 10 \\times 9 \\times 8 \\times 7 = 5{,}040$$",
    "subtopic": "Permutations (officer election)",
+   "tiTip": "Yes — PROB menu: nPr(10,4).",
    "topic": "Statistics and Probability"
   },
   {
@@ -8428,6 +8458,7 @@
    "question": "A linear regression on \\(n = 12\\) observations yields \\(S_{xx} = 20\\), \\(S_{yy} = 45\\), and \\(S_{xy} = 24\\). What is the standard error of the estimate \\(S_e\\)?",
    "solution": "Refer to the Linear Regression section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(S_e\\). The handbook prints:\n\n$$S_e^2 = \\frac{S_{xx} S_{yy} - S_{xy}^2}{S_{xx}(n - 2)} = MSE$$\n\nSubstituting:\n\n$$(S_e^2) = \\frac{(20)(45) - 24^2}{20(12 - 2)}$$\n\n$$(S_e^2) = \\frac{900 - 576}{200} = \\frac{324}{200} = 1.62$$\n\nTaking the square root:\n\n$$(S_e) = \\sqrt{1.62} = 1.27$$",
    "subtopic": "Standard error of estimate",
+   "tiTip": "No — work the S_e formula by hand; the calculator only does the arithmetic.",
    "topic": "Statistics and Probability"
   },
   {
@@ -8937,6 +8968,7 @@
    "question": "A one-way ANOVA compares 4 treatments using 24 total observations. The sum of squares between treatments is 150 and the sum of squares for error is 400. What is the F-statistic for testing whether the treatment means differ?",
    "solution": "Refer to the One-Way Analysis of Variance (ANOVA) section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(F\\). The handbook's ANOVA table prints:\n\n$$F = \\frac{MST}{MSE} \\qquad MST = \\frac{SS_{treatments}}{k-1} \\qquad MSE = \\frac{SS_{error}}{N-k}$$\n\nComputing the mean squares:\n\n$$MST = \\frac{150}{4-1} = \\frac{150}{3} = 50$$\n\n$$MSE = \\frac{400}{24-4} = \\frac{400}{20} = 20$$\n\nForming the ratio:\n\n$$F = \\frac{50}{20} = 2.50$$\n",
    "subtopic": "One-way ANOVA (F-statistic)",
+   "tiTip": "No — no ANOVA menu; compute the mean squares and their ratio by hand.",
    "topic": "Statistics and Probability",
    "videoUrl": "https://www.youtube.com/watch?v=eSoyCkL1xHs",
    "videoTitle": "ANOVA (Analysis of Variance) | Definition, Formula & Computation"
@@ -8956,6 +8988,7 @@
    "question": "A hypothesis test rejects the null hypothesis \\(H_0\\), but \\(H_0\\) is actually true. What type of error has occurred?",
    "solution": "Refer to the Hypothesis Testing section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the error. The handbook prints:\n\n\"A Type I error occurs when the null hypothesis is rejected when it is true.\"\n\n\"A Type II error occurs when the null hypothesis is not rejected when it is false.\"\n\nThe test rejected \\(H_0\\) while \\(H_0\\) was true.\n\nTherefore a Type I error occurred.\n",
    "subtopic": "Type I and Type II errors",
+   "tiTip": "No — this is a definition question; the calculator can't help.",
    "topic": "Statistics and Probability"
   },
   {
@@ -8973,6 +9006,7 @@
    "question": "Let \\(Z_1, Z_2, Z_3, Z_4, Z_5\\) be independent standard normal random variables. What is the distribution of \\(W = Z_1^2 + Z_2^2 + Z_3^2 + Z_4^2 + Z_5^2\\)?",
    "solution": "Refer to the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must identify the distribution of \\(W\\). The handbook prints:\n\n\"If \\(Z_1, Z_2, \\ldots, Z_n\\) are independent unit normal random variables, then \\(\\chi^2 = Z_1^2 + Z_2^2 + \\cdots + Z_n^2\\) is said to have a chi-square distribution with \\(n\\) degrees of freedom.\"\n\nHere \\(n = 5\\).\n\nTherefore \\(W\\) has a chi-square distribution with 5 degrees of freedom.\n",
    "subtopic": "Chi-square distribution",
+   "tiTip": "No — this is distribution recognition, not a calculation; the calculator can't help.",
    "topic": "Statistics and Probability"
   },
   {
