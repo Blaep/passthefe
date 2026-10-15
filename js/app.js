@@ -4347,6 +4347,10 @@
     if (e.equation) {
       html += '<div class="math-display">' + displayMath(e.equation) + "</div>";
     }
+    if (e.diagram) {
+      html += '<img class="q-diagram" src="' + escapeHtml(e.diagram) + '" alt="' +
+        escapeHtml(e.title || "diagram") + '">';
+    }
     html += refSymbolsHtml(e);
     html += '<p class="ref-source">FE Reference Handbook 10.6' +
       (e.section ? ", " + escapeHtml(e.section) : "") +

@@ -1403,5 +1403,22 @@
    "LS": "late start of the activity"
   },
   "title": "CPM backward pass and float"
+ },
+ {
+  "id": "eq-statics-08",
+  "chapter": "statics",
+  "section": "Resultant (Two Dimensions)",
+  "title": "Distributed loads — equivalent resultant",
+  "equation": "\\(F_R = wL\\) (uniform), \\(\\quad F_R = \\tfrac{1}{2}wL\\) (triangular), \\(\\quad \\bar{x}\\) at the load-shape centroid",
+  "symbols": {
+   "F_R": "the single concentrated force equivalent to the whole distributed load",
+   "w": "the load intensity (force per unit length); w_A and w_B are the end intensities of a trapezoidal load",
+   "L": "the length of beam carrying the load",
+   "\\bar{x}": "distance from a reference end to the line of action of F_R"
+  },
+  "page": 95,
+  "explanation": "The magnitude of the resultant is the AREA of the load diagram: a rectangle gives wL, a triangle gives half wL. Its line of action passes through the CENTROID of the load shape: midpoint for a rectangle, one-third of the length from the fat end for a triangle. A trapezoidal load is handled by splitting it along the dashed line into a rectangle plus a triangle and combining the two resultants with Varignon's theorem. The handbook prints no named distributed-load formula; these follow from the resultant definition on p. 95.",
+  "example": "Triangular load, zero at the right end of a 4 m beam, 5 kN/m max at the left end.\\n\\(F_R = \\tfrac{1}{2}(5)(4) = 10\\ \\text{kN}\\)\\n\\(\\bar{x} = \\tfrac{1}{3}(4) = 1.33\\ \\text{m from the left (max) end}\\)",
+  "diagram": "diagrams/ref-distributed-loads.svg"
  }
 ]
