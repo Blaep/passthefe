@@ -157,6 +157,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -171,6 +172,16 @@
     };
   }
 
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
 
   // Registry: workstream files call reg(buildGenerator({...}, rollFn)).
   var STAT_ENTRIES = [];
@@ -1194,6 +1205,22 @@ reg(buildGenerator({
     dWrong = r2(x3 - sumFx / R);         // trap: measured from the F3 end
   } while (new Set([d, dUnwt, dWrong]).size !== 3);
   var xbar = r2(sumFx / R);
+  // Setup diagram (never the answer): beam with the three given forces.
+  var d025 = (function () {
+    var pxm = 52, ox = 40, beamY = 150, s = "";
+    s += SVG_HDR + AH;
+    s += '<rect x="' + ox + '" y="' + beamY + '" width="' + (11 * pxm) + '" height="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    [[F1, x1], [F2, x2], [F3, x3]].forEach(function (p) {
+      var Fx = ox + p[1] * pxm, len = 26 + p[0];
+      s += '<line x1="' + Fx + '" y1="' + (beamY - len) + '" x2="' + Fx + '" y2="' + (beamY - 4) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+      s += '<text x="' + (Fx - 24) + '" y="' + (beamY - len - 8) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">' + p[0] + ' kN</text>';
+      s += '<line x1="' + Fx + '" y1="176" x2="' + Fx + '" y2="188" stroke="#1a1a1a" stroke-width="1.2"/>';
+      s += '<text x="' + (Fx - 14) + '" y="206" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">' + p[1] + ' m</text>';
+    });
+    s += '<line x1="' + ox + '" y1="182" x2="' + (ox + 11 * pxm) + '" y2="182" stroke="#1a1a1a" stroke-width="1"/>';
+    s += '<text x="' + (ox - 8) + '" y="206" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">0</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   // num packs R and d as R + d/1000 (d < 8 m always, so the fields never overlap).
   var question = "Three parallel downward forces act on a beam: " + F1 + " kN at " + x1 +
     " m, " + F2 + " kN at " + x2 + " m, and " + F3 + " kN at " + x3 +
@@ -1207,6 +1234,7 @@ reg(buildGenerator({
   return {
     variantKey: "par-F1" + F1 + "-F2" + F2 + "-F3" + F3 + "-x1" + x1 + "-s1" + s1 + "-s2" + s2,
     question: question,
+    diagram: d025,
     options: [
       { label: R + " kN at " + fmt(d) + " m", num: R + d / 1000, correct: true },
       { label: R + " kN at " + fmt(dUnwt) + " m", num: R + dUnwt / 1000, correct: false },
@@ -1557,6 +1585,28 @@ reg(buildGenerator({
     t2 = r2(b * F3 / Math.sqrt(F2 * F2 + F3 * F3)); // trap: dropped F1 from Rx
     t3 = r2(h * F3 / FR);                          // trap: wrong moment arm
   } while (F1 === F2 || new Set([d, t1, t2, t3]).size !== 4);
+  // Setup diagram (never the answer): bracket, origin, and the three given forces.
+  var d033 = (function () {
+    var pxm = 45, ox = 120, oy = 220, s = "";
+    var Bx = ox + b * pxm, Cy = oy - h * pxm;
+    s += SVG_HDR + AH;
+    s += '<rect x="105" y="' + (Cy - 25) + '" width="' + (Bx - 105 + 50) + '" height="' + (oy + 20 - (Cy - 25)) + '" fill="#1d4ed8" opacity="0.06" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="60" y1="' + oy + '" x2="360" y2="' + oy + '" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ah)"/>';
+    s += '<line x1="' + ox + '" y1="285" x2="' + ox + '" y2="30" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ah)"/>';
+    s += '<text x="348" y="' + (oy - 8) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">x</text>';
+    s += '<text x="' + (ox + 8) + '" y="44" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">y</text>';
+    s += '<circle cx="' + ox + '" cy="' + oy + '" r="4" fill="#1a1a1a"/>';
+    s += '<text x="' + (ox - 22) + '" y="' + (oy + 22) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">O</text>';
+    s += '<line x1="' + ox + '" y1="200" x2="' + (ox + 55) + '" y2="200" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (ox + 58) + '" y="194" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">' + F1 + ' N</text>';
+    s += '<line x1="' + (Bx + 55) + '" y1="200" x2="' + Bx + '" y2="200" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (Bx + 58) + '" y="194" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">' + F2 + ' N</text>';
+    s += '<line x1="' + Bx + '" y1="' + (Cy + 55) + '" x2="' + Bx + '" y2="' + Cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (Bx + 8) + '" y="' + (Cy + 30) + '" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">' + F3 + ' N</text>';
+    s += '<text x="' + (Bx + 8) + '" y="' + (Cy + 48) + '" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">(' + fmt(b) + ' m, ' + fmt(h) + ' m)</text>';
+    s += '<text x="' + (Bx - 12) + '" y="292" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">(' + fmt(b) + ' m, 0)</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "Three coplanar forces act on a bracket: " + F1 + " N in the +x-direction at O(0, 0), " + F2 +
     " N in the −x-direction at (" + fmt(b) + " m, 0), and " + F3 + " N in the +y-direction at (" + fmt(b) +
     " m, " + fmt(h) + " m). What is the perpendicular distance from O to the line of action of the single resultant force?";
@@ -1570,6 +1620,7 @@ reg(buildGenerator({
   return {
     variantKey: "eqv-F1" + F1 + "-F2" + F2 + "-F3" + F3 + "-b" + pdot(b) + "-h" + pdot(h),
     question: question,
+    diagram: d033,
     options: [
       { label: fmt(d) + " m", num: d, correct: true },
       { label: fmt(t1) + " m", num: t1, correct: false },
@@ -1728,6 +1779,20 @@ reg(buildGenerator({
   var F = pick([100, 150, 200, 250]);
   var dT = pick([2, 3, 4]);
   var M = F * dT;
+  // Setup diagram (never the answer): crate with the push force and the couple.
+  var d037 = (function () {
+    var s = SVG_HDR + AH;
+    s += '<rect x="220" y="110" width="200" height="110" fill="#1d4ed8" opacity="0.06" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="180" y1="220" x2="460" y2="220" stroke="#1a1a1a" stroke-width="2.5"/>';
+    for (var gx = 190; gx < 460; gx += 24) {
+      s += '<line x1="' + gx + '" y1="220" x2="' + (gx - 12) + '" y2="232" stroke="#1a1a1a" stroke-width="1.2"/>';
+    }
+    s += '<line x1="120" y1="165" x2="212" y2="165" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="140" y="150" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">' + F + ' N</text>';
+    s += '<path d="M 320 118 A 47 47 0 1 1 285 132" fill="none" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ah)"/>';
+    s += '<text x="340" y="105" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">' + M + ' N·m</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A \\(" + F + "\\text{ N}\\) horizontal push acts on a shipping crate. Uneven loading adds a \\(" + M + "\\text{ N}\\cdot\\text{m}\\) clockwise couple. What single force is equivalent to this force-couple system, and where must its line of action lie?";
   var solution = "Refer to the Moments (Couples) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "A couple does not change the force resultant, so \\(R = " + F + "\\text{ N}\\) (horizontal). Shift its line of action a perpendicular distance \\(d\\) so its moment about the original line equals the couple:\n\n" +
@@ -1736,6 +1801,7 @@ reg(buildGenerator({
   return {
     variantKey: "fc-F" + F + "-d" + dT,
     question: question,
+    diagram: d037,
     options: [
       { label: F + " N →, " + fmt(dT) + " m above the original line of action", num: dT, correct: true },
       { label: F + " N →, " + fmt(dT) + " m below the original line of action", num: null, correct: false },
