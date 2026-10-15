@@ -107,6 +107,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -120,6 +121,18 @@
       }
     };
   }
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  function svgHdr(w, h) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" role="img">';
+  }
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
 
   // ---------------------------------------------------------------- math-001
   // Definite integral of kx from 0 to b. Answer k*b^2/2.
@@ -578,6 +591,33 @@
       "$$\\begin{aligned}\n\\text{lower bound} &= 0 \\\\\n\\text{upper bound} &= " + k + " \\\\\nA &= ?\n\\end{aligned}$$\n\n" +
       "$$(A) = \\left(" + texFrac(k, 2) + "(" + k + ")^2 - \\frac{(" + k + ")^3}{3}\\right) - 0 \\rightarrow (A) = " + (k2 * k / 2) + " - " + texFrac(k3, 3) + "$$\n\n" +
       "$$(A) = " + fracStr(k3, 6) + "$$";
+    // --- diagram: region enclosed by y = x^2 and y = kx (setup only) ---
+    var dW13 = 640, dH13 = 300, ox13 = 70, oy13 = 255;
+    var sx13 = (dW13 - ox13 - 40) / k, sy13 = (oy13 - 35) / (k * k);
+    var X13 = function (x) { return ox13 + x * sx13; };
+    var Y13 = function (y) { return oy13 - y * sy13; };
+    var dg13 = svgHdr(dW13, dH13) + AH;
+    dg13 += '<line x1="' + ox13 + '" y1="12" x2="' + ox13 + '" y2="' + oy13 + '" stroke="#111" stroke-width="2"/>';
+    dg13 += '<line x1="' + ox13 + '" y1="' + oy13 + '" x2="' + (dW13 - 20) + '" y2="' + oy13 + '" stroke="#111" stroke-width="2"/>';
+    var dgN13 = 40, dgi13, dgx13;
+    var dgSh13 = "M" + X13(0).toFixed(1) + "," + Y13(0).toFixed(1);
+    for (dgi13 = 1; dgi13 <= dgN13; dgi13++) { dgx13 = k * dgi13 / dgN13; dgSh13 += " L" + X13(dgx13).toFixed(1) + "," + Y13(k * dgx13).toFixed(1); }
+    for (dgi13 = dgN13; dgi13 >= 0; dgi13--) { dgx13 = k * dgi13 / dgN13; dgSh13 += " L" + X13(dgx13).toFixed(1) + "," + Y13(dgx13 * dgx13).toFixed(1); }
+    dgSh13 += " Z";
+    dg13 += '<path d="' + dgSh13 + '" fill="#bfdbfe" stroke="none"/>';
+    var dgP13 = "M" + X13(0).toFixed(1) + "," + Y13(0).toFixed(1);
+    for (dgi13 = 1; dgi13 <= dgN13; dgi13++) { dgx13 = k * dgi13 / dgN13; dgP13 += " L" + X13(dgx13).toFixed(1) + "," + Y13(dgx13 * dgx13).toFixed(1); }
+    dg13 += '<path d="' + dgP13 + '" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>';
+    dg13 += '<line x1="' + X13(0) + '" y1="' + Y13(0) + '" x2="' + X13(k) + '" y2="' + Y13(k * k) + '" stroke="#dc2626" stroke-width="2.5"/>';
+    dg13 += '<circle cx="' + X13(k).toFixed(1) + '" cy="' + Y13(k * k).toFixed(1) + '" r="5" fill="#111"/>';
+    dg13 += '<text x="' + (X13(k) - 56).toFixed(1) + '" y="' + (Y13(k * k) + 20).toFixed(1) + '" font-size="15" fill="#1d4ed8">y = x&#178;</text>';
+    dg13 += '<text x="' + X13(k * 0.45).toFixed(1) + '" y="' + (Y13(k * k * 0.45) - 10).toFixed(1) + '" font-size="15" fill="#dc2626">y = ' + k + 'x</text>';
+    dg13 += '<line x1="' + X13(k).toFixed(1) + '" y1="' + (oy13 - 5) + '" x2="' + X13(k).toFixed(1) + '" y2="' + (oy13 + 5) + '" stroke="#111" stroke-width="2"/>';
+    dg13 += '<text x="' + (X13(0) - 5).toFixed(1) + '" y="' + (oy13 + 24) + '" font-size="14">0</text>';
+    dg13 += '<text x="' + (X13(k) - 6).toFixed(1) + '" y="' + (oy13 + 24) + '" font-size="14">' + k + '</text>';
+    dg13 += '<text x="' + (dW13 - 34) + '" y="' + (oy13 + 24) + '" font-size="14">x</text>';
+    dg13 += '<text x="8" y="24" font-size="14">y</text>';
+    var d013 = svgURL(dg13 + SVG_FTR);
     return {
       variantKey: "k" + k,
       question: "What is the area of the region enclosed by the curves y = x² and y = " + k + "x?",
@@ -587,7 +627,8 @@
         { label: fracStr(2 * k2, 1), num: 2 * k2 },  // integrated only one power
         { label: fracStr((k + 1) * (k + 1) * (k + 1), 6), num: (k + 1) * (k + 1) * (k + 1) / 6 } // upper-bound slip
       ],
-      solution: solution
+      solution: solution,
+      diagram: d013
     };
   });
 
@@ -687,6 +728,19 @@
       "$$\\begin{aligned}\nx &= " + A + " \\\\\ny &= " + B + " \\\\\n\\frac{dy}{dx} &= ?\n\\end{aligned}$$\n\n" +
       "$$\\left(\\frac{dy}{dx}\\right) = -\\frac{x}{y} \\rightarrow \\left(\\frac{dy}{dx}\\right) = -\\frac{" + A + "}{" + B + "}$$\n\n" +
       "$$\\left(\\frac{dy}{dx}\\right) = " + texFrac(-A, B) + "$$";
+    // --- diagram: point (A, B) on the circle x^2 + y^2 = R^2 (setup only) ---
+    var dg16 = svgHdr(640, 300) + AH;
+    var dcx16 = 310, dcy16 = 160, dpr16 = 105;
+    dg16 += '<line x1="20" y1="' + dcy16 + '" x2="620" y2="' + dcy16 + '" stroke="#9ca3af" stroke-width="1.5"/>';
+    dg16 += '<line x1="' + dcx16 + '" y1="20" x2="' + dcx16 + '" y2="280" stroke="#9ca3af" stroke-width="1.5"/>';
+    dg16 += '<circle cx="' + dcx16 + '" cy="' + dcy16 + '" r="' + dpr16 + '" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>';
+    var dpx16 = dcx16 + A / R * dpr16, dpy16 = dcy16 - B / R * dpr16;
+    dg16 += '<circle cx="' + dpx16.toFixed(1) + '" cy="' + dpy16.toFixed(1) + '" r="6" fill="#dc2626"/>';
+    dg16 += '<text x="' + (dpx16 + 12).toFixed(1) + '" y="' + (dpy16 - 10).toFixed(1) + '" font-size="16" fill="#dc2626">(' + A + ', ' + B + ')</text>';
+    dg16 += '<text x="' + (dcx16 + dpr16 + 10) + '" y="' + (dcy16 + 24) + '" font-size="15" fill="#1d4ed8">x&#178; + y&#178; = ' + (R * R) + '</text>';
+    dg16 += '<text x="604" y="' + (dcy16 - 8) + '" font-size="14" fill="#6b7280">x</text>';
+    dg16 += '<text x="' + (dcx16 + 8) + '" y="34" font-size="14" fill="#6b7280">y</text>';
+    var d016 = svgURL(dg16 + SVG_FTR);
     return {
       variantKey: "pt" + A + "_" + B,
       question: "If \\(x^2 + y^2 = " + (R * R) + "\\), what is \\(\\frac{dy}{dx}\\) at the point \\((" + A + ", " + B + ")\\)?",
@@ -696,7 +750,8 @@
         { label: fracStr(-B, A), num: -B / A }, // inverted the fraction
         { label: fracStr(B, A), num: B / A }    // inverted and dropped the sign
       ],
-      solution: solution
+      solution: solution,
+      diagram: d016
     };
   });
 
@@ -914,6 +969,29 @@
       "Divide the moment by the area:\n\n" +
       "$$(x_c) = \\frac{(" + (b * b * b * b / 4) + ")}{(" + texFrac(b * b * b, 3) + ")} = " + fmt(ans) + "$$\n\n" +
       "$$x_c = " + fmt(ans) + "$$";
+    // --- diagram: region under y = x^2 on [0, b] (setup only) ---
+    var dg23 = svgHdr(640, 300) + AH;
+    var ox23 = 70, oy23 = 255;
+    var sx23 = (640 - ox23 - 40) / b, sy23 = (oy23 - 35) / (b * b);
+    var X23 = function (x) { return ox23 + x * sx23; };
+    var Y23 = function (y) { return oy23 - y * sy23; };
+    dg23 += '<line x1="' + ox23 + '" y1="12" x2="' + ox23 + '" y2="' + oy23 + '" stroke="#111" stroke-width="2"/>';
+    dg23 += '<line x1="' + ox23 + '" y1="' + oy23 + '" x2="620" y2="' + oy23 + '" stroke="#111" stroke-width="2"/>';
+    var N23 = 40, i23, x23;
+    var sh23 = "M" + X23(0).toFixed(1) + "," + Y23(0).toFixed(1);
+    for (i23 = 1; i23 <= N23; i23++) { x23 = b * i23 / N23; sh23 += " L" + X23(x23).toFixed(1) + "," + Y23(x23 * x23).toFixed(1); }
+    sh23 += " L" + X23(b).toFixed(1) + "," + Y23(0).toFixed(1) + " Z";
+    dg23 += '<path d="' + sh23 + '" fill="#bfdbfe" stroke="none"/>';
+    var pc23 = "M" + X23(0).toFixed(1) + "," + Y23(0).toFixed(1);
+    for (i23 = 1; i23 <= N23; i23++) { x23 = b * i23 / N23; pc23 += " L" + X23(x23).toFixed(1) + "," + Y23(x23 * x23).toFixed(1); }
+    dg23 += '<path d="' + pc23 + '" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>';
+    dg23 += '<line x1="' + X23(b).toFixed(1) + '" y1="' + Y23(b * b).toFixed(1) + '" x2="' + X23(b).toFixed(1) + '" y2="' + oy23 + '" stroke="#111" stroke-width="2" stroke-dasharray="6,4"/>';
+    dg23 += '<text x="' + X23(b * 0.5).toFixed(1) + '" y="' + (Y23(b * b * 0.25) - 12).toFixed(1) + '" font-size="15" fill="#1d4ed8">y = x&#178;</text>';
+    dg23 += '<text x="' + (X23(0) - 5).toFixed(1) + '" y="' + (oy23 + 24) + '" font-size="14">0</text>';
+    dg23 += '<text x="' + (X23(b) - 6).toFixed(1) + '" y="' + (oy23 + 24) + '" font-size="14">x = ' + b + '</text>';
+    dg23 += '<text x="606" y="' + (oy23 + 24) + '" font-size="14">x</text>';
+    dg23 += '<text x="8" y="24" font-size="14">y</text>';
+    var d023 = svgURL(dg23 + SVG_FTR);
     return {
       variantKey: "b" + b,
       question: "Consider the region bounded by the curve \\(y = x^2\\), the x-axis, and the vertical lines \\(x = 0\\) and \\(x = " + b + "\\). What is the x-coordinate of the centroid of this region?",
@@ -923,7 +1001,8 @@
         { label: fmt(b), num: b },             // used the right edge
         { label: fmt(3 * b / 8), num: 3 * b / 8 } // divided the moment by 2A
       ],
-      solution: solution
+      solution: solution,
+      diagram: d023
     };
   });
 
@@ -1165,6 +1244,27 @@
       "$$(c^2) = " + a + "^2 + " + b + "^2 - 2(" + a + ")(" + b + ")\\cos " + C + "^\\circ$$\n\n" +
       "$$(c^2) = " + (a * a) + " + " + (b * b) + " - " + fmt(2 * a * b * cosC) + " = " + fmt(c2) + "$$\n\n" +
       "$$(c) = \\sqrt{" + fmt(c2) + "} = " + fmt(c) + "$$";
+    // --- diagram: triangle with sides a, b and included angle C (setup only) ---
+    var Crad30 = C * Math.PI / 180;
+    var tqx30 = a, trx30 = b * Math.cos(Crad30), try30 = b * Math.sin(Crad30);
+    var txmin30 = Math.min(0, trx30), txmax30 = Math.max(a, trx30);
+    var tsf30 = Math.min((640 - 180) / (txmax30 - txmin30), (300 - 120) / try30);
+    var tX30 = function (x) { return 90 + (x - txmin30) * tsf30; };
+    var tY30 = function (y) { return 250 - y * tsf30; };
+    var tPx30 = tX30(0), tPy30 = tY30(0), tQx30 = tX30(a), tQy30 = tY30(0);
+    var tRx30 = tX30(trx30), tRy30 = tY30(try30);
+    var dg30 = svgHdr(640, 300) + AH;
+    dg30 += '<polygon points="' + tPx30.toFixed(1) + ',' + tPy30.toFixed(1) + ' ' + tQx30.toFixed(1) + ',' + tQy30.toFixed(1) + ' ' + tRx30.toFixed(1) + ',' + tRy30.toFixed(1) + '" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5"/>';
+    var tar30 = 34;
+    var ta1x30 = tPx30 + tar30, ta1y30 = tPy30;
+    var ta2x30 = tPx30 + tar30 * Math.cos(Crad30), ta2y30 = tPy30 - tar30 * Math.sin(Crad30);
+    dg30 += '<path d="M' + ta1x30.toFixed(1) + ',' + ta1y30.toFixed(1) + ' A' + tar30 + ',' + tar30 + ' 0 0 0 ' + ta2x30.toFixed(1) + ',' + ta2y30.toFixed(1) + '" fill="none" stroke="#dc2626" stroke-width="2"/>';
+    var tlm30 = tar30 + 18;
+    dg30 += '<text x="' + (tPx30 + tlm30 * Math.cos(Crad30 / 2)).toFixed(1) + '" y="' + (tPy30 - tlm30 * Math.sin(Crad30 / 2) + 5).toFixed(1) + '" font-size="15" fill="#dc2626" text-anchor="middle">' + C + '&#176;</text>';
+    dg30 += '<text x="' + ((tPx30 + tQx30) / 2).toFixed(1) + '" y="' + (tPy30 + 24) + '" font-size="15" text-anchor="middle">' + a + '</text>';
+    dg30 += '<text x="' + ((tPx30 + tRx30) / 2 - 14).toFixed(1) + '" y="' + ((tPy30 + tRy30) / 2).toFixed(1) + '" font-size="15" text-anchor="middle">' + b + '</text>';
+    dg30 += '<text x="' + ((tQx30 + tRx30) / 2 + 14).toFixed(1) + '" y="' + ((tQy30 + tRy30) / 2 - 6).toFixed(1) + '" font-size="16" fill="#6b7280" text-anchor="middle">?</text>';
+    var d030 = svgURL(dg30 + SVG_FTR);
     return {
       variantKey: "a" + a + "_b" + b + "_C" + C,
       question: "A triangle has sides of length " + a + " and " + b + " with an included angle of " + C + "°. What is the length of the third side?",
@@ -1174,7 +1274,8 @@
         { label: fmt(Math.sqrt(a * a + b * b)), num: Math.sqrt(a * a + b * b) }, // dropped the cosine term
         { label: fmt(Math.sqrt(a * a + b * b - a * b * cosC)), num: Math.sqrt(a * a + b * b - a * b * cosC) } // dropped the factor of 2
       ],
-      solution: solution
+      solution: solution,
+      diagram: d030
     };
   });
 
@@ -1374,6 +1475,39 @@
       "Ultimately, we must solve for \\(\\theta\\). The handbook gives the dot product as \\(\\mathbf{a} \\cdot \\mathbf{b} = |\\mathbf{a}||\\mathbf{b}|\\cos\\theta\\), so:\n\n" +
       "$$\\cos\\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|} = \\frac{" + sgn(dot) + "}{" + fmt(ma) + " \\times " + fmt(mb) + "}$$\n\n" +
       "$$\\theta = \\cos^{-1}\\left(" + fmt(dot / (ma * mb)) + "\\right) = " + p.deg + "^\\circ$$";
+    // --- diagram: two vectors from the origin with the angle between them (setup only) ---
+    var vax39 = p.a[0], vay39 = p.a[1], vbx39 = p.b[0], vby39 = p.b[1];
+    var vma39 = Math.sqrt(vax39 * vax39 + vay39 * vay39), vmb39 = Math.sqrt(vbx39 * vbx39 + vby39 * vby39);
+    var vsf39 = 115 / Math.max(vma39, vmb39);
+    var vcx39 = 300, vcy39 = 165;
+    var vAx39 = vcx39 + vax39 * vsf39, vAy39 = vcy39 - vay39 * vsf39;
+    var vBx39 = vcx39 + vbx39 * vsf39, vBy39 = vcy39 - vby39 * vsf39;
+    var dg39 = svgHdr(640, 300) + AH;
+    dg39 += '<line x1="40" y1="' + vcy39 + '" x2="600" y2="' + vcy39 + '" stroke="#9ca3af" stroke-width="1.5"/>';
+    dg39 += '<line x1="' + vcx39 + '" y1="25" x2="' + vcx39 + '" y2="275" stroke="#9ca3af" stroke-width="1.5"/>';
+    var tha39 = Math.atan2(vay39, vax39), thb39 = Math.atan2(vby39, vbx39);
+    if (p.deg > 0) {
+      var varc39 = 42;
+      var sAx39 = vcx39 + varc39 * Math.cos(tha39), sAy39 = vcy39 - varc39 * Math.sin(tha39);
+      var sBx39 = vcx39 + varc39 * Math.cos(thb39), sBy39 = vcy39 - varc39 * Math.sin(thb39);
+      var dth39 = thb39 - tha39;
+      while (dth39 > Math.PI) dth39 -= 2 * Math.PI;
+      while (dth39 < -Math.PI) dth39 += 2 * Math.PI;
+      var sweep39 = dth39 > 0 ? 0 : 1;
+      var large39 = Math.abs(dth39) > Math.PI ? 1 : 0;
+      dg39 += '<path d="M' + sAx39.toFixed(1) + ',' + sAy39.toFixed(1) + ' A' + varc39 + ',' + varc39 + ' 0 ' + large39 + ' ' + sweep39 + ' ' + sBx39.toFixed(1) + ',' + sBy39.toFixed(1) + '" fill="none" stroke="#dc2626" stroke-width="2"/>';
+      var thm39 = tha39 + dth39 / 2;
+      dg39 += '<text x="' + (vcx39 + (varc39 + 20) * Math.cos(thm39)).toFixed(1) + '" y="' + (vcy39 - (varc39 + 20) * Math.sin(thm39) + 5).toFixed(1) + '" font-size="16" fill="#dc2626" text-anchor="middle">&#952;</text>';
+    } else {
+      dg39 += '<text x="' + (vcx39 + 60).toFixed(1) + '" y="' + (vcy39 - 40) + '" font-size="16" fill="#dc2626">&#952;</text>';
+    }
+    dg39 += '<line x1="' + vcx39 + '" y1="' + vcy39 + '" x2="' + vAx39.toFixed(1) + '" y2="' + vAy39.toFixed(1) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    dg39 += '<line x1="' + vcx39 + '" y1="' + vcy39 + '" x2="' + vBx39.toFixed(1) + '" y2="' + vBy39.toFixed(1) + '" stroke="#059669" stroke-width="2.5" marker-end="url(#ah)"/>';
+    dg39 += '<circle cx="' + vcx39 + '" cy="' + vcy39 + '" r="4" fill="#111"/>';
+    dg39 += '<text x="' + (vAx39 + 10).toFixed(1) + '" y="' + (vAy39 - 6).toFixed(1) + '" font-size="15" fill="#1d4ed8">a = ' + vecStr(p.a) + '</text>';
+    var vByLbl39 = Math.min(vBy39 + 18, 288);
+    dg39 += '<text x="' + (vBx39 + 10).toFixed(1) + '" y="' + vByLbl39.toFixed(1) + '" font-size="15" fill="#059669">b = ' + vecStr(p.b) + '</text>';
+    var d039 = svgURL(dg39 + SVG_FTR);
     return {
       variantKey: "ang" + p.deg + "_" + p.a.join("") + "_" + p.b.join(""),
       question: "What is the angle between vectors \\(\\mathbf{a} = " + vecStr(p.a) + "\\) and \\(\\mathbf{b} = " + vecStr(p.b) + "\\)?",
@@ -1383,7 +1517,8 @@
         { label: p.traps[1] + "°", num: p.traps[1] },
         { label: p.traps[2] + "°", num: p.traps[2] }
       ],
-      solution: solution
+      solution: solution,
+      diagram: d039
     };
   });
 
@@ -1439,6 +1574,19 @@
       "$$\\text{Area} = |\\mathbf{a} \\times \\mathbf{b}|$$\n\n" +
       "$$\\mathbf{a} \\times \\mathbf{b} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ " + k + " & 0 & 0 \\\\ " + m + " & " + n + " & 0 \\end{vmatrix} = (0, 0, " + (k * n) + ")$$\n\n" +
       "$$\\text{Area} = \\sqrt{0^2 + 0^2 + " + (k * n) + "^2} = " + area + "$$";
+    // --- diagram: parallelogram with adjacent sides a and b (setup only) ---
+    var psf41 = Math.min((640 - 200) / (k + m), (300 - 130) / n);
+    var pX41 = function (x) { return 100 + x * psf41; };
+    var pY41 = function (y) { return 240 - y * psf41; };
+    var pOx41 = pX41(0), pOy41 = pY41(0), pAx41 = pX41(k), pAy41 = pY41(0);
+    var pBx41 = pX41(m), pBy41 = pY41(n), pCx41 = pX41(k + m), pCy41 = pY41(n);
+    var dg41 = svgHdr(640, 300) + AH;
+    dg41 += '<polygon points="' + pOx41.toFixed(1) + ',' + pOy41.toFixed(1) + ' ' + pAx41.toFixed(1) + ',' + pAy41.toFixed(1) + ' ' + pCx41.toFixed(1) + ',' + pCy41.toFixed(1) + ' ' + pBx41.toFixed(1) + ',' + pBy41.toFixed(1) + '" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5"/>';
+    dg41 += '<line x1="' + pOx41 + '" y1="' + pOy41 + '" x2="' + pAx41.toFixed(1) + '" y2="' + pAy41.toFixed(1) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    dg41 += '<line x1="' + pOx41 + '" y1="' + pOy41 + '" x2="' + pBx41.toFixed(1) + '" y2="' + pBy41.toFixed(1) + '" stroke="#059669" stroke-width="3" marker-end="url(#ah)"/>';
+    dg41 += '<text x="' + ((pOx41 + pAx41) / 2).toFixed(1) + '" y="' + (pOy41 + 24) + '" font-size="15" fill="#1d4ed8" text-anchor="middle">a = ' + vecStr([k, 0, 0]) + '</text>';
+    dg41 += '<text x="' + ((pOx41 + pBx41) / 2 - 10).toFixed(1) + '" y="' + ((pOy41 + pBy41) / 2).toFixed(1) + '" font-size="15" fill="#059669" text-anchor="end">b = ' + vecStr([m, n, 0]) + '</text>';
+    var d041 = svgURL(dg41 + SVG_FTR);
     return {
       variantKey: "A" + k + "_" + m + "_" + n,
       question: "Vectors \\(\\mathbf{a} = (" + k + ", 0, 0)\\) and \\(\\mathbf{b} = (" + m + ", " + n + ", 0)\\) form adjacent sides of a parallelogram. What is its area?",
@@ -1448,7 +1596,8 @@
         { label: fmt(ab), num: ab },      // |a||b|, forgot sin θ
         { label: fmt(k + m + n), num: k + m + n }
       ],
-      solution: solution
+      solution: solution,
+      diagram: d041
     };
   });
 

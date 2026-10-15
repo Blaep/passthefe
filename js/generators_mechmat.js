@@ -157,6 +157,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -171,6 +172,16 @@
     };
   }
 
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
 
   // Registry: workstream files call reg(buildGenerator({...}, rollFn)).
   var MM_ENTRIES = [];
@@ -207,7 +218,22 @@ reg(buildGenerator({
     "\\sigma &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma) = \\frac{" + P + "}{" + fmt(A) + "} = " + fmt(sig) + "\\ \\text{N/mm}^2 = " + fmt(sig) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): tie rod in tension with the given load and diameter.
+  var d001 = (function () {
+    var s = SVG_HDR + AH;
+    s += '<rect x="190" y="128" width="260" height="48" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="190" y1="152" x2="118" y2="152" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<line x1="450" y1="152" x2="522" y2="152" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="64" y="140" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">P = ' + PkN + ' kN</text>';
+    s += '<text x="478" y="140" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">P = ' + PkN + ' kN</text>';
+    s += '<circle cx="320" cy="152" r="14" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="306" y1="152" x2="334" y2="152" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="342" y="158" font-family="Georgia,serif" font-size="16" fill="#b45309">d = ' + d + ' mm</text>';
+    s += '<text x="196" y="230" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">solid circular steel tie rod in tension</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d001,
     variantKey: "axstress-P" + P + "-d" + d,
     question: question,
     options: [
@@ -261,7 +287,23 @@ reg(buildGenerator({
     "\\delta &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\delta) = \\frac{(" + P + ")(" + L + ")}{(" + fmt(A) + ")(" + E + ")} = " + fmt(del) + "\\ \\text{mm}$$";
+  // Setup diagram (never the answer): hanger rod with the given length, diameter, and load.
+  var d002 = (function () {
+    var s = SVG_HDR + AH;
+    s += '<rect x="250" y="36" width="140" height="14" fill="#9ca3af" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<rect x="308" y="50" width="24" height="150" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="320" y1="200" x2="320" y2="252" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="330" y="248" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">P = ' + PkN + ' kN</text>';
+    s += '<line x1="282" y1="50" x2="282" y2="200" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="275" y1="50" x2="289" y2="50" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="275" y1="200" x2="289" y2="200" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="150" y="130" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + fmt(Lm) + ' m</text>';
+    s += '<text x="342" y="130" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d = ' + d + ' mm</text>';
+    s += '<text x="150" y="288" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">' + mat.name + ' hanger rod, E = ' + mat.E + ' GPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d002,
     variantKey: "axdef-" + mat.name + "-P" + P + "-L" + pdot(Lm) + "-d" + d,
     question: question,
     options: [
@@ -309,7 +351,26 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "Section modulus: \\((S) = (" + b + ")(" + h + ")^2/6 = " + fmt(S) + "\\ \\text{mm}^3\\).\n\n" +
     "$$(\\sigma_{\\max}) = \\frac{" + MkNm + " \\times 10^6}{" + fmt(S) + "} = " + fmt(sig) + "\\ \\text{N/mm}^2 = " + fmt(sig) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): rectangular joist cross-section with b, h, and the bending moment.
+  var d003 = (function () {
+    var bx = 280, by = 80, bw = 100, bh = 150, s = SVG_HDR + AH;
+    s += '<rect x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (bx - 24) + '" y1="' + (by + bh / 2) + '" x2="' + (bx + bw + 24) + '" y2="' + (by + bh / 2) + '" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="7,5"/>';
+    s += '<text x="' + (bx + bw + 28) + '" y="' + (by + bh / 2 + 5) + '" font-family="Georgia,serif" font-size="14" fill="#6b7280">N.A.</text>';
+    s += '<path d="M ' + (bx + bw + 44) + ' ' + (by + 18) + ' A 60 60 0 0 1 ' + (bx + bw + 44) + ' ' + (by + bh - 18) + '" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (bx + bw + 52) + '" y="' + (by + bh / 2 + 6) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">M = ' + MkNm + ' kN-m</text>';
+    s += '<line x1="' + bx + '" y1="' + (by - 18) + '" x2="' + (bx + bw) + '" y2="' + (by - 18) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + bx + '" y1="' + (by - 24) + '" x2="' + bx + '" y2="' + (by - 12) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + (bx + bw) + '" y1="' + (by - 24) + '" x2="' + (bx + bw) + '" y2="' + (by - 12) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (bx + 14) + '" y="' + (by - 26) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">b = ' + b + ' mm</text>';
+    s += '<line x1="' + (bx - 18) + '" y1="' + by + '" x2="' + (bx - 18) + '" y2="' + (by + bh) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + (bx - 24) + '" y1="' + by + '" x2="' + (bx - 12) + '" y2="' + by + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + (bx - 24) + '" y1="' + (by + bh) + '" x2="' + (bx - 12) + '" y2="' + (by + bh) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (bx - 108) + '" y="' + (by + bh / 2 + 6) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">h = ' + h + ' mm</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d003,
     variantKey: "bend-b" + b + "-h" + h + "-M" + MkNm,
     question: question,
     options: [
@@ -355,7 +416,22 @@ reg(buildGenerator({
     "\\tau_{\\max} &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau_{\\max}) = 1.5\\frac{" + Vn + "}{" + A + "} = 1.5(" + fmt(Vn / A) + ") = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): rectangular beam cross-section with b, h, and the shear force.
+  var d004 = (function () {
+    var bx = 250, by = 80, bw = 140, bh = 130, s = SVG_HDR + AH;
+    s += '<rect x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (bx - 20) + '" y1="' + (by + bh / 2) + '" x2="' + (bx + bw + 20) + '" y2="' + (by + bh / 2) + '" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="7,5"/>';
+    s += '<line x1="' + (bx + bw + 44) + '" y1="' + (by - 10) + '" x2="' + (bx + bw + 44) + '" y2="' + (by + 60) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (bx + bw + 54) + '" y="' + (by + 20) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">V = ' + V + ' kN</text>';
+    s += '<line x1="' + bx + '" y1="' + (by - 18) + '" x2="' + (bx + bw) + '" y2="' + (by - 18) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (bx + 34) + '" y="' + (by - 26) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">b = ' + b + ' mm</text>';
+    s += '<line x1="' + (bx - 18) + '" y1="' + by + '" x2="' + (bx - 18) + '" y2="' + (by + bh) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (bx - 108) + '" y="' + (by + bh / 2 + 6) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">h = ' + h + ' mm</text>';
+    s += '<text x="' + (bx + bw + 28) + '" y="' + (by + bh / 2 + 42) + '" font-family="Georgia,serif" font-size="13" fill="#6b7280">max shear at N.A.</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d004,
     variantKey: "shear-V" + V + "-b" + b + "-h" + h,
     question: question,
     options: [
@@ -398,7 +474,21 @@ reg(buildGenerator({
     "\\tau_{\\max} &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau_{\\max}) = \\frac{16(" + T + ")}{\\pi(" + d + ")^3} = \\frac{" + (16 * T) + "}{" + fmt(Math.PI * d * d * d) + "} = " + fmt(tau) + "\\ \\text{N/mm}^2 = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): solid shaft with the given torque and diameter.
+  var d005 = (function () {
+    var s = SVG_HDR + AH;
+    s += '<rect x="170" y="120" width="300" height="60" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<path d="M 150 108 Q 118 150 150 192" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<path d="M 490 192 Q 522 150 490 108" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="262" y="100" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">T = ' + TNm + ' N-m</text>';
+    s += '<circle cx="320" cy="150" r="17" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="303" y1="150" x2="337" y2="150" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="344" y="156" font-family="Georgia,serif" font-size="16" fill="#b45309">d = ' + d + ' mm</text>';
+    s += '<text x="170" y="250" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">solid steel line shaft in torsion</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d005,
     variantKey: "tors-T" + TNm + "-d" + d,
     question: question,
     options: [
@@ -462,7 +552,36 @@ reg(buildGenerator({
     "P_{cr} &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(P_{cr}) = \\frac{\\pi^2(200 \\times 10^9)(" + mItex + ")}{(" + fmt(ec.K) + " \\times " + fmt(L) + ")^2} = " + fmt(r0(PcrN)) + "\\ \\text{N} \\approx " + fmt(r1(Pcr)) + "\\ \\text{kN}$$";
+  // Setup diagram (never the answer): column with its end conditions, length, and cross-section.
+  // The K value itself is the answer's ingredient, so it is deliberately not labeled.
+  var d006 = (function () {
+    var s = SVG_HDR + AH, cx = 250, top = 70, bot = 240, wpx = 56, K = ec.K;
+    function hatch(x, y, w, h) {
+      var g = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+      for (var i = -h; i < w; i += 10) g += '<line x1="' + (x + i) + '" y1="' + (y + h) + '" x2="' + (x + i + h) + '" y2="' + y + '" stroke="#6b7280" stroke-width="1"/>';
+      return g;
+    }
+    function pinTri(x, y, up) {
+      var tip = up ? (y - 22) : (y + 22);
+      return '<polygon points="' + (x - 26) + ',' + y + ' ' + (x + 26) + ',' + y + ' ' + x + ',' + tip + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    }
+    s += '<rect x="' + cx + '" y="' + top + '" width="' + wpx + '" height="' + (bot - top) + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    if (K === 2.0 || K === 0.7) s += hatch(cx - 30, bot, wpx + 60, 16);   // fixed base
+    else s += pinTri(cx + wpx / 2, bot, false);                          // pinned base
+    if (K === 0.5) s += hatch(cx - 30, top - 16, wpx + 60, 16);          // fixed top
+    else if (K !== 2.0) s += pinTri(cx + wpx / 2, top, true);            // pinned top
+    // free top (K = 2.0): no support drawn
+    s += '<line x1="180" y1="' + top + '" x2="180" y2="' + bot + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="173" y1="' + top + '" x2="187" y2="' + top + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="173" y1="' + bot + '" x2="187" y2="' + bot + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="96" y="' + ((top + bot) / 2 + 6) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + fmt(L) + ' m</text>';
+    s += '<rect x="430" y="100" width="60" height="110" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="404" y="244" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">section ' + w + ' × ' + d + ' mm</text>';
+    s += '<text x="60" y="36" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">steel column: ' + ec.label + '</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d006,
     variantKey: "buck-w" + w + "-d" + d + "-L" + pdot(L) + "-K" + pdot(ec.K),
     question: question,
     options: [
@@ -508,7 +627,27 @@ reg(buildGenerator({
     "\\sigma_{hoop} &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma_{hoop}) = \\frac{(" + fmt(p) + ")(" + fmt(r) + ")}{" + t + "} = " + fmt(sig) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): thin-walled cylinder with internal diameter, wall thickness, and pressure.
+  var d007 = (function () {
+    var s = SVG_HDR + AH, cy = 150, i;
+    s += '<rect x="170" y="105" width="300" height="90" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<ellipse cx="170" cy="' + cy + '" rx="18" ry="45" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="320" y1="105" x2="320" y2="195" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="313" y1="105" x2="327" y2="105" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="313" y1="195" x2="327" y2="195" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="332" y="155" font-family="Georgia,serif" font-size="16" fill="#b45309">D = ' + fmt(Dm) + ' m (inner)</text>';
+    for (i = 0; i < 4; i++) {
+      var px = 225 + i * 72;
+      s += '<line x1="' + px + '" y1="105" x2="' + px + '" y2="72" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    s += '<text x="60" y="62" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">p = ' + fmt(p) + ' MPa (internal)</text>';
+    s += '<text x="452" y="70" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">t = ' + t + ' mm</text>';
+    s += '<line x1="458" y1="76" x2="436" y2="102" stroke="#1a1a1a" stroke-width="1.2"/>';
+    s += '<text x="170" y="250" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">thin-walled cylindrical receiver tank</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d007,
     variantKey: "pv-D" + pdot(Dm) + "-t" + t + "-p" + pdot(p),
     question: question,
     options: [
@@ -567,7 +706,23 @@ reg(buildGenerator({
     "$$(\\sigma) = " + fmt(sig) + " \\times 10^6\\ \\text{Pa} = " + fmt(sig) + "\\ \\text{MPa " + dirWord + "}$$\n\n" +
     "Because the " + (heat ? "heated" : "cooled") + " rail is restrained from " + (heat ? "expanding" : "contracting") +
     ", the stress is " + dirWord + ". (The rail length and cross-sectional area are not needed.)";
+  // Setup diagram (never the answer): rail locked between rigid restraints with the temperature change.
+  var d008 = (function () {
+    var s = SVG_HDR + AH, i;
+    function wall(x) {
+      var g = '<rect x="' + x + '" y="110" width="22" height="80" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+      for (var j = -80; j < 22; j += 10) g += '<line x1="' + (x + j) + '" y1="190" x2="' + (x + j + 80) + '" y2="110" stroke="#6b7280" stroke-width="1"/>';
+      return g;
+    }
+    s += wall(90) + wall(528);
+    s += '<rect x="112" y="128" width="416" height="44" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<text x="180" y="80" font-family="Georgia,serif" font-size="17" fill="#1a1a1a">' + mat.name + ' rail, fully restrained</text>';
+    s += '<text x="200" y="240" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">T1 = ' + T1 + ' °C → T2 = ' + T2 + ' °C</text>';
+    s += '<text x="150" y="268" font-family="Georgia,serif" font-size="14" fill="#6b7280">' + (heat ? 'restrained heating' : 'restrained cooling') + ' — length and area play no role</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d008,
     variantKey: "therm-" + mat.name + "-dT" + dT + (heat ? "H" : "C"),
     question: question,
     options: [
@@ -628,7 +783,28 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma_{max}) = \\frac{" + P + "}{" + A + "} + \\frac{(" + fmt(M) + ")(" + fmt(c) + ")}{" + I + "}$$\n\n" +
     "$$(\\sigma_{max}) = " + fmt(sigAx) + "\\ \\text{MPa} + " + fmt(sigBend) + "\\ \\text{MPa} = " + fmt(ans) + "\\ \\text{MPa (C)}$$";
+  // Setup diagram (never the answer): plan view of the pier cross-section with the eccentric load offset.
+  var d009 = (function () {
+    var s = SVG_HDR + AH, cx = 320, cy = 150, wp = 100, hp = 160;
+    var ePx = (e / h) * hp, ly = cy - ePx;
+    s += '<rect x="' + (cx - wp / 2) + '" y="' + (cy - hp / 2) + '" width="' + wp + '" height="' + hp + '" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (cx - 12) + '" y1="' + cy + '" x2="' + (cx + 12) + '" y2="' + cy + '" stroke="#6b7280" stroke-width="1.6"/>';
+    s += '<line x1="' + cx + '" y1="' + (cy - 12) + '" x2="' + cx + '" y2="' + (cy + 12) + '" stroke="#6b7280" stroke-width="1.6"/>';
+    s += '<text x="' + (cx + 18) + '" y="' + (cy + 5) + '" font-family="Georgia,serif" font-size="13" fill="#6b7280">centroid</text>';
+    s += '<circle cx="' + cx + '" cy="' + ly.toFixed(1) + '" r="4" fill="#1d4ed8"/>';
+    s += '<line x1="' + cx + '" y1="' + (ly - 46).toFixed(1) + '" x2="' + cx + '" y2="' + (ly - 8).toFixed(1) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + 12) + '" y="' + (ly - 40).toFixed(1) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">P = ' + PkN + ' kN</text>';
+    s += '<line x1="' + (cx + 34) + '" y1="' + cy + '" x2="' + (cx + 34) + '" y2="' + ly.toFixed(1) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx + 42) + '" y="' + ((cy + ly) / 2 + 5).toFixed(1) + '" font-family="Georgia,serif" font-size="15" fill="#b45309">e = ' + e + ' mm</text>';
+    s += '<line x1="' + (cx - wp / 2 - 20) + '" y1="' + (cy - hp / 2) + '" x2="' + (cx - wp / 2 - 20) + '" y2="' + (cy + hp / 2) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx - wp / 2 - 108) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="15" fill="#b45309">h = ' + h + ' mm</text>';
+    s += '<line x1="' + (cx - wp / 2) + '" y1="' + (cy - hp / 2 - 20) + '" x2="' + (cx + wp / 2) + '" y2="' + (cy - hp / 2 - 20) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx - 44) + '" y="' + (cy - hp / 2 - 28) + '" font-family="Georgia,serif" font-size="15" fill="#b45309">b = ' + b + ' mm</text>';
+    s += '<text x="120" y="282" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">plan view — load offset along the depth h</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d009,
     variantKey: "combax-P" + PkN + "-b" + b + "-h" + h + "-e" + e,
     question: question,
     options: [
@@ -681,7 +857,29 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "$$(\\delta_{max}) = \\frac{5(" + w + ")(" + L + ")^4}{384(200\\times 10^9)(" + Ie6 + "\\times 10^{-6})}$$\n\n" +
     "$$(\\delta_{max}) = " + fmt(dman) + "\\times 10^{" + de + "}\\ \\text{m} = " + fmt(d) + "\\ \\text{mm downward}$$";
+  // Setup diagram (never the answer): simply supported beam with the uniform load and span.
+  var d010 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 140, x1 = 500, i, ax;
+    s += '<rect x="' + (x0 - 20) + '" y="' + y + '" width="' + (x1 - x0 + 40) + '" height="12" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<polygon points="' + (x0 - 16) + ',' + (y + 12) + ' ' + (x0 + 16) + ',' + (y + 12) + ' ' + x0 + ',' + (y + 36) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="' + (x0 - 24) + '" y1="' + (y + 36) + '" x2="' + (x0 + 24) + '" y2="' + (y + 36) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<polygon points="' + (x1 - 16) + ',' + (y + 12) + ' ' + (x1 + 16) + ',' + (y + 12) + ' ' + x1 + ',' + (y + 30) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<circle cx="' + (x1 - 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<circle cx="' + (x1 + 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<line x1="' + (x1 - 24) + '" y1="' + (y + 42) + '" x2="' + (x1 + 24) + '" y2="' + (y + 42) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = 0; i < 7; i++) {
+      ax = x0 + 20 + i * 55;
+      s += '<line x1="' + ax + '" y1="' + (y - 52) + '" x2="' + ax + '" y2="' + (y - 6) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    s += '<line x1="' + x0 + '" y1="' + (y - 58) + '" x2="' + x1 + '" y2="' + (y - 58) + '" stroke="#1d4ed8" stroke-width="1.4"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 52) + '" y="' + (y - 66) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">w = ' + wkN + ' kN/m</text>';
+    s += '<line x1="' + x0 + '" y1="240" x2="' + x1 + '" y2="240" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 34) + '" y="262" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + L + ' m</text>';
+    s += '<text x="' + x0 + '" y="110" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">simply supported, E = 200 GPa, I = ' + Ie6 + ' × 10⁶ mm⁴</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d010,
     variantKey: "bdef-w" + wkN + "-L" + L + "-I" + Ie6 + "e6",
     question: question,
     options: [
@@ -734,7 +932,24 @@ reg(buildGenerator({
     "$$(\\sigma_{1,2}) = \\frac{" + texNum(sx) + " + (" + texNum(sy) + ")}{2} \\pm \\sqrt{\\left(\\frac{" + texNum(sx) + " - (" + texNum(sy) + ")}{2}\\right)^2 + (" + texNum(txy) + ")^2}$$\n\n" +
     "$$(\\sigma_{1,2}) = " + fmt(avg) + " \\pm " + fmt(R) + "\\ \\text{MPa}$$\n\n" +
     "$$(\\sigma_1, \\sigma_2) = (" + texNum(s1) + "\\ \\text{MPa},\\ " + texNum(s2) + "\\ \\text{MPa})$$";
+  // Setup diagram (never the answer): stress element showing the given stress state on the x- and y-faces.
+  var d011 = (function () {
+    var s = SVG_HDR + AH, cx = 320, cy = 150, h = 120, hh = h / 2;
+    var dir = txy >= 0 ? 1 : -1;
+    s += '<rect x="' + (cx - hh) + '" y="' + (cy - hh) + '" width="' + h + '" height="' + h + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (cx - hh) + '" y1="' + cy + '" x2="' + (cx - hh - 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx + hh) + '" y1="' + cy + '" x2="' + (cx + hh + 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + hh + 50) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σx = ' + sx + ' MPa</text>';
+    s += '<line x1="' + cx + '" y1="' + (cy - hh - 44) + '" x2="' + cx + '" y2="' + (cy - hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + cx + '" y1="' + (cy + hh + 44) + '" x2="' + cx + '" y2="' + (cy + hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - 128) + '" y="' + (cy - hh - 52) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σy = ' + (-sy) + ' MPa (C)</text>';
+    s += '<line x1="' + (cx + hh + 26) + '" y1="' + (cy + dir * 34) + '" x2="' + (cx + hh + 26) + '" y2="' + (cy - dir * 34) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx - dir * 34) + '" y1="' + (cy - hh - 26) + '" x2="' + (cx + dir * 34) + '" y2="' + (cy - hh - 26) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - hh - 116) + '" y="' + (cy + hh + 62) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">τxy = ' + sgn(txy) + ' MPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d011,
     variantKey: "princ-sx" + sx + "-sy" + pdot(sy) + "-txy" + txy,
     question: question,
     options: [
@@ -780,7 +995,28 @@ reg(buildGenerator({
     "\\tau &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau) = \\frac{" + V + "}{2(" + fmt(A) + ")} = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): pin through three plates with the two shear planes and the load.
+  var d012 = (function () {
+    var s = SVG_HDR + AH, cy = 150;
+    s += '<rect x="230" y="70" width="44" height="160" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="298" y="70" width="44" height="160" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="366" y="70" width="44" height="160" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="210" y="' + (cy - 16) + '" width="220" height="32" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<circle cx="210" cy="' + cy + '" r="16" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<circle cx="430" cy="' + cy + '" r="16" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="320" y1="230" x2="320" y2="282" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="330" y="278" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">V = ' + VkN + ' kN</text>';
+    s += '<line x1="252" y1="70" x2="252" y2="22" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="388" y1="70" x2="388" y2="22" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="398" y="30" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">V/2 each</text>';
+    s += '<line x1="286" y1="118" x2="286" y2="182" stroke="#b45309" stroke-width="1.8" stroke-dasharray="6,4"/>';
+    s += '<line x1="354" y1="118" x2="354" y2="182" stroke="#b45309" stroke-width="1.8" stroke-dasharray="6,4"/>';
+    s += '<text x="160" y="112" font-family="Georgia,serif" font-size="14" fill="#b45309">double shear planes</text>';
+    s += '<text x="216" y="' + (cy + 54) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">pin d = ' + d + ' mm</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d012,
     variantKey: "dblshr-V" + VkN + "-d" + d,
     question: question,
     options: [
@@ -893,7 +1129,21 @@ reg(buildGenerator({
     "$$(\\phi) = \\frac{(" + TNm + ")(" + fmt(Lm) + ")}{(" + G + "\\times 10^9)(" + fmt(Jm) + "\\times 10^{" + Je + "})} = " + fmt(phi) + "\\ \\text{rad}$$\n\n" +
     "The formula gives radians, so convert to degrees:\n\n" +
     "$$(\\phi) = " + fmt(phi) + "\\left(\\frac{180^\\circ}{\\pi}\\right) = " + fmt(phiDeg) + "^\\circ$$";
+  // Setup diagram (never the answer): shaft fixed at one end with torque, length, and diameter.
+  var d014 = (function () {
+    var s = SVG_HDR + AH, y = 150, i;
+    s += '<rect x="90" y="90" width="22" height="120" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = -120; i < 22; i += 12) s += '<line x1="' + (90 + i) + '" y1="210" x2="' + (90 + i + 120) + '" y2="90" stroke="#6b7280" stroke-width="1"/>';
+    s += '<rect x="112" y="120" width="340" height="60" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<path d="M 470 108 Q 505 150 470 192" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="428" y="232" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">T = ' + TNm + ' N-m</text>';
+    s += '<line x1="112" y1="262" x2="452" y2="262" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="252" y="286" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + fmt(Lm) + ' m</text>';
+    s += '<text x="112" y="70" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d = ' + dmm + ' mm, ' + matName + ', G = ' + G + ' GPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d014,
     variantKey: "twist-" + matName + "-T" + TNm + "-L" + pdot(Lm) + "-d" + dmm,
     question: question,
     options: [
@@ -944,7 +1194,23 @@ reg(buildGenerator({
     "\\tau &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau) = \\frac{" + fmt(TkNm) + "\\times 10^6}{2(" + Am + ")(" + t + ")} = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): closed-tube cross-section with outer dimensions and wall thickness.
+  var d015 = (function () {
+    var s = SVG_HDR + AH, cx = 300, cy = 150, ow = 220, oh = 160, tpx = 14;
+    s += '<rect x="' + (cx - ow / 2) + '" y="' + (cy - oh / 2) + '" width="' + ow + '" height="' + oh + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="' + (cx - ow / 2 + tpx) + '" y="' + (cy - oh / 2 + tpx) + '" width="' + (ow - 2 * tpx) + '" height="' + (oh - 2 * tpx) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<rect x="' + (cx - ow / 2 + tpx / 2) + '" y="' + (cy - oh / 2 + tpx / 2) + '" width="' + (ow - tpx) + '" height="' + (oh - tpx) + '" fill="none" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="6,4"/>';
+    s += '<line x1="' + (cx - ow / 2) + '" y1="' + (cy - oh / 2 - 18) + '" x2="' + (cx + ow / 2) + '" y2="' + (cy - oh / 2 - 18) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx - 52) + '" y="' + (cy - oh / 2 - 26) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">a = ' + a + ' mm</text>';
+    s += '<line x1="' + (cx - ow / 2 - 18) + '" y1="' + (cy - oh / 2) + '" x2="' + (cx - ow / 2 - 18) + '" y2="' + (cy + oh / 2) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx - ow / 2 - 104) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">b = ' + b + ' mm</text>';
+    s += '<text x="' + (cx + ow / 2 + 16) + '" y="' + (cy - oh / 2 + 40) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">t = ' + t + ' mm</text>';
+    s += '<line x1="' + (cx + ow / 2 + 12) + '" y1="' + (cy - oh / 2 + 34) + '" x2="' + (cx + ow / 2 + 2) + '" y2="' + (cy - oh / 2 + 8) + '" stroke="#1a1a1a" stroke-width="1.2"/>';
+    s += '<text x="140" y="282" font-family="Georgia,serif" font-size="14" fill="#6b7280">closed ' + shape + ' tube section (dashed = wall centerline)</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d015,
     variantKey: "bredt-a" + a + "-b" + b + "-t" + t + "-T" + pdot(TkNm),
     question: question,
     options: [
@@ -1000,7 +1266,33 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma_{x'}) = \\frac{" + texNum(sx) + " + (" + texNum(sy) + ")}{2} + \\frac{" + texNum(sx) + " - (" + texNum(sy) + ")}{2}\\cos " + (2 * th) + "^\\circ + (" + texNum(txy) + ")\\sin " + (2 * th) + "^\\circ$$\n\n" +
     "$$(\\sigma_{x'}) = " + fmt(avg) + " + " + fmt(dev) + "(" + fmt(Math.cos(r2t)) + ") + (" + texNum(txy) + ")(" + fmt(Math.sin(r2t)) + ") = " + fmt(ans) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): stress element with the given state plus the inclined plane at theta.
+  var d016 = (function () {
+    var s = SVG_HDR + AH, cx = 300, cy = 150, h = 120, hh = h / 2;
+    var dir = txy >= 0 ? 1 : -1;
+    s += '<rect x="' + (cx - hh) + '" y="' + (cy - hh) + '" width="' + h + '" height="' + h + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (cx - hh) + '" y1="' + cy + '" x2="' + (cx - hh - 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx + hh) + '" y1="' + cy + '" x2="' + (cx + hh + 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + hh + 50) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σx = ' + sx + ' MPa</text>';
+    s += '<line x1="' + cx + '" y1="' + (cy - hh - 44) + '" x2="' + cx + '" y2="' + (cy - hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + cx + '" y1="' + (cy + hh + 44) + '" x2="' + cx + '" y2="' + (cy + hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - 128) + '" y="' + (cy - hh - 52) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σy = ' + (-sy) + ' MPa (C)</text>';
+    s += '<line x1="' + (cx + hh + 26) + '" y1="' + (cy + dir * 34) + '" x2="' + (cx + hh + 26) + '" y2="' + (cy - dir * 34) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx - dir * 34) + '" y1="' + (cy - hh - 26) + '" x2="' + (cx + dir * 34) + '" y2="' + (cy - hh - 26) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - hh - 116) + '" y="' + (cy + hh + 62) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">τxy = ' + sgn(txy) + ' MPa</text>';
+    // inclined plane: dashed trace through the element, rotated th CCW from the x-face (vertical)
+    var ang = th * Math.PI / 180, px = cx + hh, py = cy;
+    var ux = -Math.sin(ang), uy = -Math.cos(ang); // up-left direction of the plane trace
+    var nx = Math.cos(ang), ny = -Math.sin(ang);  // x' normal direction
+    s += '<line x1="' + (px - 62 * ux).toFixed(1) + '" y1="' + (py - 62 * uy).toFixed(1) + '" x2="' + (px + 62 * ux).toFixed(1) + '" y2="' + (py + 62 * uy).toFixed(1) + '" stroke="#6b7280" stroke-width="1.8" stroke-dasharray="7,5"/>';
+    s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + 52 * nx).toFixed(1) + '" y2="' + (cy + 52 * ny).toFixed(1) + '" stroke="#6b7280" stroke-width="2" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + 56 * nx + 6).toFixed(1) + '" y="' + (cy + 56 * ny + 4).toFixed(1) + '" font-family="Georgia,serif" font-size="15" fill="#6b7280">x\'</text>';
+    s += '<path d="M ' + px + ' ' + (py - 26) + ' Q ' + (px - 13) + ' ' + (py - 27) + ' ' + (px - 26 * Math.sin(ang)).toFixed(1) + ' ' + (py - 26 * Math.cos(ang)).toFixed(1) + '" fill="none" stroke="#6b7280" stroke-width="1.6"/>';
+    s += '<text x="' + (px + 8) + '" y="' + (py - 30) + '" font-family="Georgia,serif" font-size="15" fill="#6b7280">θ = ' + th + '°</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d016,
     variantKey: "strans-sx" + sx + "-sy" + pdot(sy) + "-txy" + pdot(txy) + "-th" + th,
     question: question,
     options: [
@@ -1105,7 +1397,28 @@ reg(buildGenerator({
     "Eliminating \\(R_R\\) gives \\(R_L = P\\frac{b}{a + b}\\):\n\n" +
     "$$(R_L) = (" + P + ")\\frac{" + fmt(b) + "}{" + fmt(a) + " + " + fmt(b) + "} = (" + P + ")\\frac{" + fmt(b) + "}{" + fmt(L) + "}$$\n\n" +
     "$$(R_L) = " + fmt(RL) + "\\ \\text{kN}$$";
+  // Setup diagram (never the answer): strut fixed between walls with the load located by segments a and b.
+  var d018 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 110, x1 = 530;
+    function wall(x) {
+      var g = '<rect x="' + x + '" y="110" width="22" height="80" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+      for (var j = -80; j < 22; j += 10) g += '<line x1="' + (x + j) + '" y1="190" x2="' + (x + j + 80) + '" y2="110" stroke="#6b7280" stroke-width="1"/>';
+      return g;
+    }
+    s += wall(x0 - 22) + wall(x1);
+    s += '<rect x="' + x0 + '" y="' + (y - 22) + '" width="' + (x1 - x0) + '" height="44" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    var xp = x0 + (a / L) * (x1 - x0);
+    s += '<line x1="' + xp.toFixed(1) + '" y1="' + (y - 76) + '" x2="' + xp.toFixed(1) + '" y2="' + (y - 26) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (xp + 10).toFixed(1) + '" y="' + (y - 66) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">P = ' + P + ' kN</text>';
+    s += '<line x1="' + x0 + '" y1="236" x2="' + xp.toFixed(1) + '" y2="236" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + xp) / 2 - 40).toFixed(1) + '" y="258" font-family="Georgia,serif" font-size="15" fill="#b45309">a = ' + fmt(a) + ' m</text>';
+    s += '<line x1="' + xp.toFixed(1) + '" y1="236" x2="' + x1 + '" y2="236" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((xp + x1) / 2 - 40).toFixed(1) + '" y="258" font-family="Georgia,serif" font-size="15" fill="#b45309">b = ' + fmt(b) + ' m</text>';
+    s += '<text x="' + x0 + '" y="60" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">steel strut fixed between rigid walls, total length ' + fmt(L) + ' m</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d018,
     variantKey: "indet-P" + P + "-a" + pdot(a) + "-b" + pdot(b),
     question: question,
     options: [
@@ -1152,7 +1465,20 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "$$(\\tau_{max}) = \\frac{4}{3}\\frac{" + (V * 1000) + "}{" + fmt(r1(A)) + "} = \\frac{4}{3}(" + fmt(tAvg) + ")$$\n\n" +
     "$$(\\tau_{max}) = " + fmt(tau) + "\\ \\text{N/mm}^2 = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): circular pin cross-section with diameter and transverse shear force.
+  var d019 = (function () {
+    var s = SVG_HDR + AH, cx = 300, cy = 150, r = 70;
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (cx - r - 16) + '" y1="' + cy + '" x2="' + (cx + r + 16) + '" y2="' + cy + '" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="6,4"/>';
+    s += '<line x1="' + (cx + r + 44) + '" y1="' + (cy - 60) + '" x2="' + (cx + r + 44) + '" y2="' + (cy + 10) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + r + 54) + '" y="' + (cy - 30) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">V = ' + V + ' kN</text>';
+    s += '<line x1="' + (cx - r) + '" y1="' + cy + '" x2="' + (cx + r) + '" y2="' + cy + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + (cx - 44) + '" y="' + (cy + r + 26) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">d = ' + d + ' mm</text>';
+    s += '<text x="120" y="282" font-family="Georgia,serif" font-size="14" fill="#6b7280">solid circular pin — max shear at the neutral axis</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d019,
     variantKey: "sheartau-V" + V + "-d" + d,
     question: question,
     options: [
@@ -1250,7 +1576,18 @@ reg(buildGenerator({
     "\\tau_{max} &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau_{max}) = \\frac{16(" + fmt(r1(T)) + ")}{\\pi(" + fmt(d) + ")^3} = " + fmt(tau) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): rotating shaft with the given power, speed, and diameter.
+  var d022 = (function () {
+    var s = SVG_HDR + AH, y = 150;
+    s += '<rect x="150" y="120" width="340" height="60" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<path d="M 200 108 Q 168 150 200 192" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<path d="M 440 192 Q 472 150 440 108" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="150" y="80" font-family="Georgia,serif" font-size="17" fill="#1a1a1a">P = ' + PkW + ' kW at N = ' + rpm + ' rpm</text>';
+    s += '<text x="150" y="240" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">solid steel line shaft, d = ' + dmm + ' mm</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d022,
     variantKey: "shaftpow-P" + PkW + "-rpm" + rpm + "-d" + dmm,
     question: question,
     options: [
@@ -1304,7 +1641,19 @@ reg(buildGenerator({
     "Refer to the Mohr's Circle—Stress, 2D section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
     "The circle's radius is the maximum shear stress (Tresca basis):\n\n" +
     "$$\\tau_{max} = \\frac{\\sigma_1 - \\sigma_2}{2} = \\frac{" + fmt(sig1) + " - (" + texNum(sig2) + ")}{2} = " + fmt(taumax) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): shaft carrying both a bending moment and a torque.
+  var d023 = (function () {
+    var s = SVG_HDR + AH, y = 150;
+    s += '<rect x="150" y="120" width="340" height="60" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<path d="M 130 96 Q 100 150 130 204" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<path d="M 510 106 A 14 44 0 1 1 510 194" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="60" y="252" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">M = ' + M + ' N·m (bending)</text>';
+    s += '<text x="380" y="252" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">T = ' + Tq + ' N·m (torsion)</text>';
+    s += '<text x="272" y="100" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d = ' + dmm + ' mm</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d023,
     variantKey: "bendtor-d" + dmm + "-M" + M + "-T" + Tq,
     question: question,
     options: [
@@ -1351,7 +1700,25 @@ reg(buildGenerator({
     "\\sigma_a &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma_a) = \\frac{(" + fmt(p) + ")(" + rmm + ")}{2(" + tmm + ")} = " + fmt(siga) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): cylindrical tank with inner radius, wall thickness, and pressure.
+  var d024 = (function () {
+    var s = SVG_HDR + AH, cy = 150, i, px;
+    s += '<rect x="170" y="105" width="300" height="90" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<ellipse cx="170" cy="' + cy + '" rx="18" ry="45" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<ellipse cx="470" cy="' + cy + '" rx="18" ry="45" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="320" y1="' + cy + '" x2="320" y2="105" stroke="#b45309" stroke-width="1.8"/>';
+    s += '<text x="330" y="132" font-family="Georgia,serif" font-size="16" fill="#b45309">r = ' + fmt(rm) + ' m</text>';
+    for (i = 0; i < 4; i++) {
+      px = 230 + i * 70;
+      s += '<line x1="' + px + '" y1="105" x2="' + px + '" y2="72" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    s += '<text x="60" y="60" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">p = ' + fmt(p) + ' MPa</text>';
+    s += '<text x="392" y="240" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">t = ' + tmm + ' mm</text>';
+    s += '<line x1="398" y1="232" x2="430" y2="200" stroke="#1a1a1a" stroke-width="1.2"/>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d024,
     variantKey: "pvax-p" + pdot(p) + "-r" + pdot(rm) + "-t" + tmm,
     question: question,
     options: [
@@ -1424,7 +1791,24 @@ reg(buildGenerator({
     "$$(\\phi_2) = \\frac{(" + (TkNm * 1000) + ")(" + fmt(L2) + ")}{(" + mat.G + " \\times 10^9)(" + m2.toFixed(2) + " \\times 10^{" + e2 + "})} = " + fmt(phi2) + "\\ \\text{rad}$$\n\n" +
     "$$(\\phi) = \\phi_1 + \\phi_2 = " + fmt(phi1) + " + " + fmt(phi2) + " = " + fmt(phiTot) + "\\ \\text{rad}$$" +
     (deg ? "\n\n$$(\\phi) = (" + fmt(phiTot) + ")\\frac{180^\\circ}{\\pi} = " + fmt(vals[0]) + "^\\circ$$" : "");
+  // Setup diagram (never the answer): stepped shaft with each segment's diameter and length.
+  var d025 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 110, i;
+    var w1 = 170, w2 = 170, h1 = 26 + d1, h2 = 26 + d2;
+    s += '<rect x="88" y="80" width="22" height="140" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = -140; i < 22; i += 12) s += '<line x1="' + (88 + i) + '" y1="220" x2="' + (88 + i + 140) + '" y2="80" stroke="#6b7280" stroke-width="1"/>';
+    s += '<rect x="' + x0 + '" y="' + (y - h1 / 2) + '" width="' + w1 + '" height="' + h1 + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="' + (x0 + w1) + '" y="' + (y - h2 / 2) + '" width="' + w2 + '" height="' + h2 + '" fill="#fef3c7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    var xe = x0 + w1 + w2;
+    s += '<path d="M ' + (xe + 18) + ' ' + (y - 42) + ' Q ' + (xe + 52) + ' ' + y + ' ' + (xe + 18) + ' ' + (y + 42) + '" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (xe - 190) + '" y="264" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">T = ' + fmt(TkNm) + ' kN·m at free end</text>';
+    s += '<text x="' + (x0 + 14) + '" y="' + (y - h1 / 2 - 12) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">seg 1: d = ' + d1 + ' mm, L = ' + fmt(L1) + ' m</text>';
+    s += '<text x="' + (x0 + w1 + 14) + '" y="' + (y - h2 / 2 - 12) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">seg 2: d = ' + d2 + ' mm, L = ' + fmt(L2) + ' m</text>';
+    s += '<text x="' + x0 + '" y="60" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">' + mat.n + ' stepped shaft, fixed at motor coupling, G = ' + mat.G + ' GPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d025,
     variantKey: "twist-" + mat.n + "-d1" + d1 + "-d2" + d2 + "-L1" + pdot(L1) + "-L2" + pdot(L2) + "-T" + pdot(TkNm) + (deg ? "-deg" : "-rad"),
     question: question,
     options: [
@@ -1524,7 +1908,28 @@ reg(buildGenerator({
     "\\end{aligned}$$\n\n" +
     "$$(\\sigma_t) = " + pInt + "\\frac{" + ro2 + " + " + ri2 + "}{" + ro2 + " - " + ri2 + "} = " + pInt + "\\frac{" + (ro2 + ri2) + "}{" + (ro2 - ri2) + "}$$\n\n" +
     "$$(\\sigma_t) = " + fmt(sig) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): thick-walled barrel cross-section with inner/outer radii and pressure.
+  var d027 = (function () {
+    var s = SVG_HDR + AH, cx = 300, cy = 150, ro = 95, ri = 55, k, a2;
+    var x1p, y1p, x2p, y2p;
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + ro + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + ri + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + ri) + '" y2="' + cy + '" stroke="#b45309" stroke-width="1.8"/>';
+    s += '<text x="' + (cx + 8) + '" y="' + (cy - 10) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">ri = ' + rin + ' mm</text>';
+    s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx - ro * 0.7).toFixed(1) + '" y2="' + (cy - ro * 0.7).toFixed(1) + '" stroke="#b45309" stroke-width="1.8"/>';
+    s += '<text x="' + (cx - ro - 82) + '" y="' + (cy - ro - 8) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">ro = ' + rout + ' mm</text>';
+    for (k = 0; k < 6; k++) {
+      a2 = k * Math.PI / 3;
+      x1p = cx + (ri - 4) * Math.cos(a2); y1p = cy + (ri - 4) * Math.sin(a2);
+      x2p = cx + (ri + 26) * Math.cos(a2); y2p = cy + (ri + 26) * Math.sin(a2);
+      s += '<line x1="' + x1p.toFixed(1) + '" y1="' + y1p.toFixed(1) + '" x2="' + x2p.toFixed(1) + '" y2="' + y2p.toFixed(1) + '" stroke="#1d4ed8" stroke-width="2.2" marker-end="url(#ah)"/>';
+    }
+    s += '<text x="436" y="60" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">p = ' + pInt + ' MPa (inside)</text>';
+    s += '<text x="420" y="272" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">thick-walled barrel section</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d027,
     variantKey: "lame-ri" + rin + "-ro" + rout + "-p" + pInt,
     question: question,
     options: [
@@ -1683,7 +2088,29 @@ reg(buildGenerator({
         "$$(T_L) = (" + fmt(T) + ")\\frac{" + fmt(b) + "}{" + fmt(L) + "} = " + fmt(TL) + "\\ \\text{kN-m}$$"
       : "Eliminating \\(T_L\\) gives \\(T_R = T\\,a/L\\):\n\n" +
         "$$(T_R) = (" + fmt(T) + ")\\frac{" + fmt(a) + "}{" + fmt(L) + "} = " + fmt(TR) + "\\ \\text{kN-m}$$");
+  // Setup diagram (never the answer): specimen fixed at both chucks with the torque collar located by a and b.
+  var d030 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 120, x1 = 520;
+    function wall(x) {
+      var g = '<rect x="' + x + '" y="100" width="22" height="100" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+      for (var j = -100; j < 22; j += 12) g += '<line x1="' + (x + j) + '" y1="200" x2="' + (x + j + 100) + '" y2="100" stroke="#6b7280" stroke-width="1"/>';
+      return g;
+    }
+    s += wall(x0 - 22) + wall(x1);
+    s += '<rect x="' + x0 + '" y="' + (y - 28) + '" width="' + (x1 - x0) + '" height="56" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    var xp = x0 + (a / L) * (x1 - x0);
+    s += '<rect x="' + (xp - 12).toFixed(1) + '" y="' + (y - 44) + '" width="24" height="88" fill="#dbeafe" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<path d="M ' + (xp + 30).toFixed(1) + ' ' + (y - 52) + ' Q ' + (xp + 62).toFixed(1) + ' ' + y + ' ' + (xp + 30).toFixed(1) + ' ' + (y + 52) + '" fill="none" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (xp - 70).toFixed(1) + '" y="60" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">T = ' + fmt(T) + ' kN·m at collar</text>';
+    s += '<line x1="' + x0 + '" y1="240" x2="' + xp.toFixed(1) + '" y2="240" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + xp) / 2 - 40).toFixed(1) + '" y="262" font-family="Georgia,serif" font-size="15" fill="#b45309">a = ' + fmt(a) + ' m</text>';
+    s += '<line x1="' + xp.toFixed(1) + '" y1="240" x2="' + x1 + '" y2="240" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((xp + x1) / 2 - 44).toFixed(1) + '" y="262" font-family="Georgia,serif" font-size="15" fill="#b45309">L − a</text>';
+    s += '<text x="' + x0 + '" y="288" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">fixed chucks both ends, total length L = ' + fmt(L) + ' m</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d030,
     variantKey: "indtor-L" + pdot(L) + "-a" + pdot(a) + "-T" + pdot(T) + "-" + sub,
     question: question,
     options: [
@@ -1830,7 +2257,24 @@ reg(buildGenerator({
     "$$\\sigma' = \\sqrt{\\frac{(\\sigma_A - \\sigma_B)^2 + (\\sigma_B - \\sigma_C)^2 + (\\sigma_C - \\sigma_A)^2}{2}}$$\n\n" +
     "$$(\\sigma') = \\sqrt{\\frac{(" + fmt(sA) + " - " + fmt(sB) + ")^2 + (" + fmt(sB) + " - 0)^2 + (0 - " + fmt(sA) + ")^2}{2}}$$\n\n" +
     "$$(\\sigma') = " + fmt(vm) + "\\ \\text{MPa}$$";
+  // Setup diagram (never the answer): stress element showing the given biaxial stress state.
+  var d033 = (function () {
+    var s = SVG_HDR + AH, cx = 320, cy = 150, h = 120, hh = h / 2;
+    var dir = txy >= 0 ? 1 : -1;
+    s += '<rect x="' + (cx - hh) + '" y="' + (cy - hh) + '" width="' + h + '" height="' + h + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (cx - hh) + '" y1="' + cy + '" x2="' + (cx - hh - 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx + hh) + '" y1="' + cy + '" x2="' + (cx + hh + 44) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx + hh + 50) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σx = ' + sx + ' MPa</text>';
+    s += '<line x1="' + cx + '" y1="' + (cy - hh - 44) + '" x2="' + cx + '" y2="' + (cy - hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + cx + '" y1="' + (cy + hh + 44) + '" x2="' + cx + '" y2="' + (cy + hh) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - 128) + '" y="' + (cy - hh - 52) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">σy = ' + (-sy) + ' MPa (C)</text>';
+    s += '<line x1="' + (cx + hh + 26) + '" y1="' + (cy + dir * 34) + '" x2="' + (cx + hh + 26) + '" y2="' + (cy - dir * 34) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (cx - dir * 34) + '" y1="' + (cy - hh - 26) + '" x2="' + (cx + dir * 34) + '" y2="' + (cy - hh - 26) + '" stroke="#b45309" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + (cx - hh - 116) + '" y="' + (cy + hh + 62) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">τxy = ' + sgn(txy) + ' MPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d033,
     variantKey: "vonmises-sx" + sx + "-sy" + pdot(sy) + "-txy" + pdot(txy),
     question: question,
     options: [
@@ -1870,7 +2314,31 @@ reg(buildGenerator({
     "By symmetry each reaction is \\(R = wL/2 + P/2 = " + fmt(w * L / 2) + " + " + fmt(P / 2) + " = " + fmt(R) + "\\text{ kN}\\). The moment peaks at midspan:\n\n" +
     "$$M_{max} = R\\left(\\frac{L}{2}\\right) - w\\frac{(L/2)^2}{2} = (" + fmt(R) + ")(" + fmt(L / 2) + ") - \\frac{(" + w + ")(" + fmt(L / 2) + ")^2}{2} = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}$$\n\n" +
     "Equivalently \\(M_{max} = wL^2/8 + PL/4 = " + fmt(w * L * L / 8) + " + " + fmt(P * L / 4) + " = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}\\).";
+  // Setup diagram (never the answer): simply supported beam with uniform load plus the midspan point load.
+  var d034 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 140, x1 = 500, i, ax;
+    var xm = (x0 + x1) / 2;
+    s += '<rect x="' + (x0 - 20) + '" y="' + y + '" width="' + (x1 - x0 + 40) + '" height="12" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<polygon points="' + (x0 - 16) + ',' + (y + 12) + ' ' + (x0 + 16) + ',' + (y + 12) + ' ' + x0 + ',' + (y + 36) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="' + (x0 - 24) + '" y1="' + (y + 36) + '" x2="' + (x0 + 24) + '" y2="' + (y + 36) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<polygon points="' + (x1 - 16) + ',' + (y + 12) + ' ' + (x1 + 16) + ',' + (y + 12) + ' ' + x1 + ',' + (y + 30) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<circle cx="' + (x1 - 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<circle cx="' + (x1 + 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<line x1="' + (x1 - 24) + '" y1="' + (y + 42) + '" x2="' + (x1 + 24) + '" y2="' + (y + 42) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = 0; i < 6; i++) {
+      ax = x0 + 18 + i * 62;
+      if (Math.abs(ax - xm) < 40) continue; // keep the midspan point load clear
+      s += '<line x1="' + ax + '" y1="' + (y - 44) + '" x2="' + ax + '" y2="' + (y - 6) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    s += '<line x1="' + xm + '" y1="' + (y - 108) + '" x2="' + xm + '" y2="' + (y - 52) + '" stroke="#b45309" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (xm + 10) + '" y="' + (y - 96) + '" font-family="Georgia,serif" font-size="17" fill="#b45309">P = ' + P + ' kN</text>';
+    s += '<text x="' + x0 + '" y="' + (y - 58) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">w = ' + w + ' kN/m</text>';
+    s += '<line x1="' + x0 + '" y1="240" x2="' + x1 + '" y2="240" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 30) + '" y="262" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + L + ' m</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d034,
     variantKey: "mmax-w" + w + "-L" + L + "-P" + P,
     question: question,
     options: [
@@ -1902,7 +2370,22 @@ reg(buildGenerator({
     "With only a tip load \\(P\\), the shear is constant along the entire cantilever:\n\n" +
     "$$V(x) = P = " + P + "\\text{ kN} \\quad \\text{everywhere}$$\n\n" +
     "so \\(V_{max} = " + P + "\\text{ kN}\\). (The maximum bending moment is \\(PL = (" + P + ")(" + fmt(L) + ") = " + fmt(P * L) + "\\text{ kN}\\cdot\\text{m}\\) at the fixed support — that is the " + fmt(P * L) + " kN trap.)";
+  // Setup diagram (never the answer): cantilever with fixed support and the tip load.
+  // The load is labeled symbolically only: its numeric value IS the answer.
+  var d035 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 120, x1 = 500, i;
+    s += '<rect x="' + (x0 - 22) + '" y="100" width="22" height="100" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = -100; i < 22; i += 12) s += '<line x1="' + (x0 - 22 + i) + '" y1="200" x2="' + (x0 - 22 + i + 100) + '" y2="100" stroke="#6b7280" stroke-width="1"/>';
+    s += '<rect x="' + x0 + '" y="' + (y - 8) + '" width="' + (x1 - x0) + '" height="16" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + x1 + '" y1="' + (y - 70) + '" x2="' + x1 + '" y2="' + (y - 12) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (x1 + 12) + '" y="' + (y - 40) + '" font-family="Georgia,serif" font-size="20" fill="#1d4ed8">P</text>';
+    s += '<line x1="' + x0 + '" y1="230" x2="' + x1 + '" y2="230" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 36) + '" y="252" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + fmt(L) + ' m</text>';
+    s += '<text x="' + x0 + '" y="90" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">cantilever — fixed at left, free at right</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d035,
     variantKey: "cantshear-P" + P + "-L" + pdot(L),
     question: question,
     options: [
@@ -1935,7 +2418,28 @@ reg(buildGenerator({
     "For a uniform load the shear diagram is linear, crossing zero at midspan — that is where the parabolic moment diagram peaks:\n\n" +
     "$$M_{max} = \\frac{wL^2}{8} = \\frac{(" + w + ")(" + L + ")^2}{8} = " + fmt(M) + "\\text{ kN}\\cdot\\text{m}$$\n\n" +
     "at \\(x = L/2 = " + fmt(L / 2) + "\\text{ m}\\), i.e., at midspan. (At the simple supports the moment is zero and the shear is maximum.)";
+  // Setup diagram (never the answer): simply supported beam with the uniform storage load and span.
+  var d036 = (function () {
+    var s = SVG_HDR + AH, y = 150, x0 = 140, x1 = 500, i, ax;
+    s += '<rect x="' + (x0 - 20) + '" y="' + y + '" width="' + (x1 - x0 + 40) + '" height="12" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<polygon points="' + (x0 - 16) + ',' + (y + 12) + ' ' + (x0 + 16) + ',' + (y + 12) + ' ' + x0 + ',' + (y + 36) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="' + (x0 - 24) + '" y1="' + (y + 36) + '" x2="' + (x0 + 24) + '" y2="' + (y + 36) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<polygon points="' + (x1 - 16) + ',' + (y + 12) + ' ' + (x1 + 16) + ',' + (y + 12) + ' ' + x1 + ',' + (y + 30) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<circle cx="' + (x1 - 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<circle cx="' + (x1 + 8) + '" cy="' + (y + 36) + '" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<line x1="' + (x1 - 24) + '" y1="' + (y + 42) + '" x2="' + (x1 + 24) + '" y2="' + (y + 42) + '" stroke="#1a1a1a" stroke-width="2"/>';
+    for (i = 0; i < 7; i++) {
+      ax = x0 + 20 + i * 55;
+      s += '<line x1="' + ax + '" y1="' + (y - 52) + '" x2="' + ax + '" y2="' + (y - 6) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    s += '<line x1="' + x0 + '" y1="' + (y - 58) + '" x2="' + x1 + '" y2="' + (y - 58) + '" stroke="#1d4ed8" stroke-width="1.4"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 52) + '" y="' + (y - 66) + '" font-family="Georgia,serif" font-size="17" fill="#1d4ed8">w = ' + w + ' kN/m</text>';
+    s += '<line x1="' + x0 + '" y1="240" x2="' + x1 + '" y2="240" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<text x="' + ((x0 + x1) / 2 - 34) + '" y="262" font-family="Georgia,serif" font-size="16" fill="#b45309">L = ' + L + ' m</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
+    diagram: d036,
     variantKey: "mmaxu-w" + w + "-L" + L,
     question: question,
     options: [

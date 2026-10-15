@@ -79,6 +79,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -93,6 +94,16 @@
     };
   }
 
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
 
   // Registry: workstream files call reg(buildGenerator({...}, rollFn)).
   var FLUID_ENTRIES = [];
@@ -126,7 +137,22 @@ reg(buildGenerator({
     fmt(liq.sigma) + " N/m, specific weight " + fmt(liq.gamma) +
     " kN/m\u00B3). The contact angle \u03B2 is 0\u00B0. What is the capillary rise of the " +
     liq.name + " in the tube?";
-  var solution = "Refer to the Surface Tension and Capillarity section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
+  // Setup diagram (never the answer): beaker of liquid with the thin
+  // capillary tube dipped in; label d from the roll and mark h = ?.
+  var s020 = SVG_HDR + AH +
+    '<rect x="230" y="130" width="160" height="120" fill="none" stroke="#334155" stroke-width="3"/>' +
+    '<rect x="232" y="200" width="156" height="48" fill="#bfdbfe"/>' +
+    '<rect x="302" y="50" width="12" height="180" fill="white" stroke="#334155" stroke-width="2"/>' +
+    '<rect x="304" y="110" width="8" height="90" fill="#60a5fa"/>' +
+    '<line x1="200" y1="200" x2="420" y2="200" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>' +
+    '<line x1="336" y1="110" x2="336" y2="200" stroke="#1d4ed8" stroke-width="2" marker-start="url(#ah)" marker-end="url(#ah)"/>' +
+    '<text x="344" y="160" font-family="sans-serif" font-size="17" fill="#1d4ed8">h = ?</text>' +
+    '<line x1="302" y1="66" x2="314" y2="66" stroke="#1d4ed8" stroke-width="2" marker-start="url(#ah)" marker-end="url(#ah)"/>' +
+    '<text x="318" y="62" font-family="sans-serif" font-size="15" fill="#1d4ed8">d = ' + fmt(dm) + ' mm</text>' +
+    '<text x="248" y="230" font-family="sans-serif" font-size="15" fill="#334155">' + liq.name + '</text>' +
+    '<text x="322" y="100" font-family="sans-serif" font-size="14" fill="#334155">capillary tube</text>' +
+    '<text x="322" y="195" font-family="sans-serif" font-size="14" fill="#334155">beaker surface</text>';
+  var d020 = svgURL(s020 + SVG_FTR);  var solution = "Refer to the Surface Tension and Capillarity section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "The handbook gives the general form for capillary rise:\n\n" +
     "$$h = \\frac{4\\sigma\\cos\\beta}{\\gamma d}$$\n\n" +
     "For a clean glass tube \\(\\beta = 0^{\\circ}\\), so \\(\\cos\\beta = 1\\). Convert the givens to consistent units, then list the parameters:\n\n" +
@@ -148,7 +174,8 @@ reg(buildGenerator({
       { label: fmt(tMmAsM) + " mm", num: tMmAsM, correct: false },
       { label: fmt(tKNasN) + " mm", num: tKNasN, correct: false }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d020
   };
 }));
 
@@ -235,6 +262,22 @@ reg(buildGenerator({
   var variantKey = "siphon-dh" + pdot(dh) + "-d" + dmm + (askVel ? "-vel" : "-Q");
   var setup = "A large open tank drains to the atmosphere through a siphon pipe of diameter " +
     dmm + " mm. The reservoir surface is " + fmt(dh) + " m above the pipe exit. Neglecting head loss, ";
+  // Setup diagram (never the answer): open tank, siphon pipe over the
+  // wall, exit below the surface; label Δh and the pipe diameter only.
+  var s025 = SVG_HDR + AH +
+    '<rect x="60" y="130" width="200" height="120" fill="none" stroke="#334155" stroke-width="3"/>' +
+    '<rect x="62" y="150" width="196" height="98" fill="#bfdbfe"/>' +
+    '<path d="M 215 235 L 215 70 L 400 70 L 400 215" fill="none" stroke="#475569" stroke-width="10"/>' +
+    '<path d="M 215 120 L 215 90 M 300 70 L 270 70 M 400 150 L 400 120" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>' +
+    '<line x1="60" y1="150" x2="500" y2="150" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>' +
+    '<line x1="370" y1="215" x2="500" y2="215" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>' +
+    '<line x1="470" y1="150" x2="470" y2="215" stroke="#1d4ed8" stroke-width="2" marker-start="url(#ah)" marker-end="url(#ah)"/>' +
+    '<text x="478" y="188" font-family="sans-serif" font-size="16" fill="#1d4ed8">Δh = ' + fmt(dh) + ' m</text>' +
+    '<line x1="385" y1="150" x2="415" y2="150" stroke="#1d4ed8" stroke-width="2" marker-start="url(#ah)" marker-end="url(#ah)"/>' +
+    '<text x="420" y="145" font-family="sans-serif" font-size="15" fill="#1d4ed8">d = ' + dmm + ' mm</text>' +
+    '<text x="120" y="225" font-family="sans-serif" font-size="15" fill="#334155">open tank</text>' +
+    '<text x="404" y="235" font-family="sans-serif" font-size="15" fill="#334155">exit to atmosphere</text>';
+  var d025 = svgURL(s025 + SVG_FTR);
 
   if (askVel) {
     var tForget2 = Math.sqrt(g * dh);      // trap: forgot the 2 in 2g
@@ -260,7 +303,8 @@ reg(buildGenerator({
         { label: fmt(tOutside) + " m/s", num: tOutside, correct: false },
         { label: fmt(tDouble) + " m/s", num: tDouble, correct: false }
       ],
-      solution: solution
+      solution: solution,
+      diagram: d025
     };
   }
 
@@ -288,7 +332,8 @@ reg(buildGenerator({
       { label: fmt(Qls) + " × 10⁶ L/s", num: tMm, correct: false },
       { label: fmt(tNoConv) + " L/s", num: tNoConv, correct: false }
     ],
-    solution: solutionQ
+    solution: solutionQ,
+    diagram: d025
   };
 }));
 
@@ -329,6 +374,22 @@ reg(buildGenerator({
     "$$Q = C_v A_2\\sqrt{\\frac{2g\\,\\Delta h}{1 - (D_2/D_1)^4}}$$\n\n" +
     "$$A_2 = \\frac{\\pi}{4}(" + fmt(D2 / 100) + ")^2 = " + fmt(A2) + "\\text{ m}^2, \\qquad \\left(\\frac{D_2}{D_1}\\right)^4 = " + fmt(b4) + "$$\n\n" +
     "$$Q = (1.0)(" + fmt(A2) + ")\\sqrt{\\frac{2(" + g + ")(" + fmt(dh) + ")}{" + fmt(1 - b4) + "}} = " + fmt(Q / 1000) + "\\text{ m}^3\\!/\\!\\text{s} = " + fmt(Q) + "\\text{ L/s}$$";
+  // Setup diagram (never the answer): horizontal venturi with inlet and
+  // throat diameters labeled, mercury manometer between the two taps.
+  var s034 = SVG_HDR + AH +
+    '<path d="M 40 70 L 260 70 L 300 120 L 380 120 L 420 70 L 600 70 L 600 230 L 420 230 L 380 180 L 300 180 L 260 230 L 40 230 Z" fill="#f8fafc" stroke="#334155" stroke-width="3"/>' +
+    '<line x1="120" y1="150" x2="200" y2="150" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>' +
+    '<line x1="150" y1="230" x2="150" y2="290" stroke="#334155" stroke-width="2.5"/>' +
+    '<line x1="340" y1="180" x2="340" y2="290" stroke="#334155" stroke-width="2.5"/>' +
+    '<path d="M 150 262 L 150 290 L 340 290 L 340 278 L 330 278 L 330 290 L 160 290 L 160 262 Z" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>' +
+    '<line x1="160" y1="262" x2="160" y2="278" stroke="#b91c1c" stroke-width="2" marker-start="url(#ah)" marker-end="url(#ah)"/>' +
+    '<text x="168" y="274" font-family="sans-serif" font-size="15" fill="#b91c1c">hm = ' + hm + ' cm</text>' +
+    '<text x="120" y="60" font-family="sans-serif" font-size="16" fill="#1d4ed8">D1 = ' + D1 + ' cm</text>' +
+    '<text x="306" y="112" font-family="sans-serif" font-size="16" fill="#1d4ed8">D2 = ' + D2 + ' cm</text>' +
+    '<text x="150" y="208" font-family="sans-serif" font-size="14" fill="#334155">inlet</text>' +
+    '<text x="300" y="200" font-family="sans-serif" font-size="14" fill="#334155">throat</text>' +
+    '<text x="170" y="297" font-family="sans-serif" font-size="14" fill="#475569">mercury manometer</text>';
+  var d034 = svgURL(s034 + SVG_FTR);
   return {
     variantKey: "venturi-D1" + D1 + "-D2" + D2 + "-hm" + hm,
     question: question,
@@ -338,7 +399,8 @@ reg(buildGenerator({
       { label: fmt(tNoM1) + " L/s", num: tNoM1, correct: false },
       { label: fmt(tRawHm) + " L/s", num: tRawHm, correct: false }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d034
   };
 }));
 

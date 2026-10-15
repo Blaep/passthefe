@@ -108,6 +108,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -123,6 +124,16 @@
   }
 
   
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+
   // Registry: workstream files call reg(buildGenerator({...}, rollFn)).
   var MAT_ENTRIES = [];
   function reg(e) { MAT_ENTRIES.push(e); return e; }
@@ -252,6 +263,19 @@ reg(buildGenerator({
   var dNoHalf = sy * sy / eMPa * 1000;      // trap: dropped the 2 in the denominator
   var dUnit = urMPa;                        // trap: MPa number reported as kJ/m^3
   var dHalf2 = sy * sy / (4 * eMPa) * 1000; // trap: halved twice
+  // Setup diagram (never the answer): tensile specimen with the given strength and stiffness.
+  var d010 = (function () {
+    var s = SVG_HDR + AH, cy = 140;
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">' + mat.name + ' tensile specimen</text>';
+    s += '<rect x="90" y="' + (cy - 58) + '" width="44" height="116" fill="#e5e7eb" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<rect x="506" y="' + (cy - 58) + '" width="44" height="116" fill="#e5e7eb" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<rect x="134" y="' + (cy - 26) + '" width="372" height="52" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="82" y1="' + cy + '" x2="36" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<line x1="558" y1="' + cy + '" x2="604" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="320" y="' + (cy - 44) + '" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="#1a1a1a">yield strength σy = ' + sy + ' MPa</text>';
+    s += '<text x="320" y="' + (cy + 62) + '" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="#1a1a1a">E = ' + mat.E + ' GPa</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A " + mat.name + " test specimen has a yield strength of " + sy +
     " MPa and a modulus of elasticity of " + mat.E +
     " GPa. What is the modulus of resilience of the " + mat.name + "?";
@@ -269,6 +293,7 @@ reg(buildGenerator({
   return {
     variantKey: "ur-sy" + sy + "-E" + mat.E,
     question: question,
+    diagram: d010,
     options: [
       { label: fmt(urKJ) + " kJ/m^3", num: urKJ, correct: true },
       { label: fmt(dNoHalf) + " kJ/m^3", num: dNoHalf, correct: false },
@@ -307,6 +332,22 @@ reg(buildGenerator({
   var dAdd = fiber.E + matrix.E;                  // trap: added the moduli
   var vfPct = Math.round(vf * 100);
   var vmPct = Math.round(vm * 100);
+  // Setup diagram (never the answer): aligned fibers in matrix, load parallel to the fibers.
+  var d011 = (function () {
+    var s = SVG_HDR + AH, y0 = 128, h = 90, x0 = 110, w = 420;
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">unidirectional fiber composite</text>';
+    s += '<text x="320" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#b45309">load parallel to the fibers</text>';
+    s += '<line x1="46" y1="88" x2="118" y2="88" stroke="#b45309" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<line x1="594" y1="88" x2="522" y2="88" stroke="#b45309" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2.5"/>';
+    for (var i = 0; i < 5; i++) {
+      var fy = y0 + 15 + i * 15;
+      s += '<line x1="' + x0 + '" y1="' + fy + '" x2="' + (x0 + w) + '" y2="' + fy + '" stroke="#1d4ed8" stroke-width="3"/>';
+    }
+    s += '<text x="60" y="254" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">' + fiber.name + ' fibers: E = ' + fiber.E + ' GPa,  Vf = ' + fmt(vf) + ' (' + vfPct + ' vol%)</text>';
+    s += '<text x="60" y="280" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">' + matrix.name + ' matrix: E = ' + matrix.E + ' GPa,  Vm = ' + fmt(vm) + ' (' + vmPct + ' vol%)</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A unidirectional fiber-reinforced composite is loaded parallel to the fibers. The composite contains " +
     vfPct + "% by volume " + fiber.name + " fibers (E = " + fiber.E + " GPa) and " +
     vmPct + "% by volume " + matrix.name + " matrix (E = " + matrix.E +
@@ -327,6 +368,7 @@ reg(buildGenerator({
   return {
     variantKey: "rom-" + fiber.name + "-" + matrix.name + "-" + vfPct,
     question: question,
+    diagram: d011,
     options: [
       { label: fmt(correct) + " GPa", num: correct, correct: true },
       { label: fmt(dTrans) + " GPa", num: dTrans, correct: false },
@@ -420,6 +462,22 @@ reg(buildGenerator({
   var mag = -delta;
   var dNoNu = -eps * d;                           // trap: forgot Poisson's ratio
   var dNoD = epsLat;                              // trap: reported strain, not the mm change
+  // Setup diagram (never the answer): cylinder in tension with the given quantities.
+  var d015 = (function () {
+    var s = SVG_HDR + AH, cy = 148, x0 = 190, w = 260, r = 34;
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">cylindrical specimen in axial tension</text>';
+    s += '<rect x="' + x0 + '" y="' + (cy - r) + '" width="' + w + '" height="' + (2 * r) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<ellipse cx="' + x0 + '" cy="' + cy + '" rx="12" ry="' + r + '" fill="#e5e7eb" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<ellipse cx="' + (x0 + w) + '" cy="' + cy + '" rx="12" ry="' + r + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (x0 - 72) + '" y1="' + cy + '" x2="' + (x0 - 20) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (x0 + w + 72) + '" y1="' + cy + '" x2="' + (x0 + w + 20) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    var dx = x0 + w + 42;
+    s += '<line x1="' + dx + '" y1="' + (cy - r) + '" x2="' + dx + '" y2="' + (cy + r) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+    s += '<text x="' + (dx + 8) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d = ' + fmt(d) + ' mm</text>';
+    s += '<text x="60" y="246" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">axial strain = ' + fmt(eps) + ' mm/mm</text>';
+    s += '<text x="60" y="272" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">Poisson\u2019s ratio ν = ' + fmt(nu) + '</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A cylindrical steel specimen with an original diameter of " + fmt(d) +
     " mm is loaded in axial tension, producing an axial strain of " + fmt(eps) +
     " mm/mm. If Poisson's ratio for the steel is " + fmt(nu) +
@@ -441,6 +499,7 @@ reg(buildGenerator({
   return {
     variantKey: "pois-d" + fmt(d) + "-e" + fmt(eps) + "-nu" + fmt(nu),
     question: question,
+    diagram: d015,
     options: [
       { label: "It decreases by " + fmt(mag) + " mm", num: delta, correct: true },
       { label: "It increases by " + fmt(mag) + " mm", num: -delta, correct: false },
@@ -576,6 +635,19 @@ reg(buildGenerator({
   var Lf = L0 + dL;
   var dFinal = dL / Lf * 100;        // used final length in denominator
   var dRatio = Lf / L0 * 100;        // reported Lf/L0 ratio as a percent
+  // Setup diagram (never the answer): original vs. refit gage lengths.
+  var d021 = (function () {
+    var s = SVG_HDR + AH, x0 = 170, L0px = 300, Lfpx = L0px * Lf / L0;
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">tensile specimen gage lengths</text>';
+    s += '<text x="60" y="112" font-family="Georgia,serif" font-size="14" fill="#6b7280">before</text>';
+    s += '<rect x="' + x0 + '" y="88" width="' + L0px + '" height="34" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<text x="' + (x0 + L0px / 2) + '" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">L0 = ' + fmt(L0) + ' mm (original)</text>';
+    s += '<text x="60" y="194" font-family="Georgia,serif" font-size="14" fill="#6b7280">after</text>';
+    s += '<rect x="' + x0 + '" y="170" width="' + Lfpx + '" height="34" fill="#e5e7eb" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<text x="' + (x0 + Lfpx / 2) + '" y="232" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">Lf = ' + fmt(Lf) + ' mm (refit after fracture)</text>';
+    s += '<text x="320" y="270" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">pieces fitted together after fracture</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var q = "A tensile test specimen has an original gage length of " + fmt(L0) +
     " mm. After fracture, the two pieces are fitted together and the final gage length is measured as " +
     fmt(Lf) + " mm. What is the percent elongation of the material?";
@@ -588,6 +660,7 @@ reg(buildGenerator({
   return {
     variantKey: "L" + Math.round(L0 * 10) + "-p" + p,
     question: q,
+    diagram: d021,
     options: [
       { label: fmt(p) + "%", num: p, correct: true },
       { label: fmt(dL) + "%", num: dL, correct: false },
@@ -618,6 +691,27 @@ reg(buildGenerator({
   } while (xb > 95 || Math.abs(corr - dAlpha) < 0.05);
   var dDenom = (x - xa) / xb * 100;      // forgot to subtract x_alpha in denominator
   var dNoSub = x / xb * 100;            // never subtracted the alpha composition at all
+  // Setup diagram (never the answer): composition axis with the two-phase field.
+  var d022 = (function () {
+    var s = SVG_HDR + AH, yA = 170, xL = 60, xR = 580;
+    function px(v) { return xL + v / 100 * (xR - xL); }
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">composition axis (wt% B)</text>';
+    // bracket over the two-phase field
+    s += '<line x1="' + px(xa) + '" y1="106" x2="' + px(xa) + '" y2="120" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="' + px(xb) + '" y1="106" x2="' + px(xb) + '" y2="120" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<line x1="' + px(xa) + '" y1="113" x2="' + px(xb) + '" y2="113" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="' + ((px(xa) + px(xb)) / 2) + '" y="94" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">α + β region</text>';
+    // axis
+    s += '<line x1="' + xL + '" y1="' + yA + '" x2="' + xR + '" y2="' + yA + '" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="' + xL + '" y="' + (yA + 60) + '" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#6b7280">0</text>';
+    s += '<text x="' + xR + '" y="' + (yA + 60) + '" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#6b7280">100 wt% B</text>';
+    [[xa, "xα = " + xa], [x, "x = " + x], [xb, "xβ = " + xb]].forEach(function (mk) {
+      var mx = px(mk[0]);
+      s += '<line x1="' + mx + '" y1="' + (yA - 10) + '" x2="' + mx + '" y2="' + (yA + 10) + '" stroke="#1d4ed8" stroke-width="2.5"/>';
+      s += '<text x="' + mx + '" y="' + (yA + 34) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">' + mk[1] + '</text>';
+    });
+    return svgURL(s + SVG_FTR);
+  })();
   var q = "At a certain temperature, a binary alloy of overall composition " + x +
     " wt% B lies in a two-phase (\u03b1 + \u03b2) region of its phase diagram. At this temperature the \u03b1 phase contains " +
     xa + " wt% B and the \u03b2 phase contains " + xb +
@@ -631,6 +725,7 @@ reg(buildGenerator({
   return {
     variantKey: "x" + x + "-a" + xa + "-b" + xb,
     question: q,
+    diagram: d022,
     options: [
       { label: fmt(corr) + " wt%", num: corr, correct: true },
       { label: fmt(dAlpha) + " wt%", num: dAlpha, correct: false },
@@ -661,6 +756,21 @@ reg(buildGenerator({
   var dRad = F * 1000 / (Math.PI * (d / 2) * (d / 2) / 4);  // plugged radius in where diameter belongs
   var iT = Math.round(sT), iEng = Math.round(dEng),
       iNo4 = Math.round(dNo4), iRad = Math.round(dRad);
+  // Setup diagram (never the answer): necked round specimen with the given diameters and load.
+  var d023 = (function () {
+    var s = SVG_HDR + AH, cy = 150, x0 = 140;
+    s += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">round tensile specimen (necked)</text>';
+    s += '<rect x="' + x0 + '" y="' + (cy - 30) + '" width="120" height="60" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="' + (x0 + 120) + '" y="' + (cy - 16) + '" width="100" height="32" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="' + (x0 + 220) + '" y="' + (cy - 30) + '" width="120" height="60" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<line x1="' + (x0 - 18) + '" y1="' + cy + '" x2="' + (x0 - 70) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<line x1="' + (x0 + 358) + '" y1="' + cy + '" x2="' + (x0 + 410) + '" y2="' + cy + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + (x0 - 44) + '" y="' + (cy - 14) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">F = ' + fmt(F) + ' kN</text>';
+    s += '<text x="' + (x0 + 384) + '" y="' + (cy - 14) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">F = ' + fmt(F) + ' kN</text>';
+    s += '<text x="' + (x0 + 60) + '" y="' + (cy - 44) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d0 = ' + fmt(d0) + ' mm (original)</text>';
+    s += '<text x="' + (x0 + 170) + '" y="' + (cy + 48) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">d = ' + fmt(d) + ' mm (instantaneous)</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var q = "A round tensile specimen has an original diameter of " + fmt(d0) +
     " mm. At a certain point during the test, the applied load is " + fmt(F) +
     " kN and the instantaneous (actual) diameter of the specimen is " + fmt(d) +
@@ -674,6 +784,7 @@ reg(buildGenerator({
   return {
     variantKey: "D" + Math.round(d0 * 10) + "-d" + Math.round(d * 10) + "-F" + Math.round(F * 10),
     question: q,
+    diagram: d023,
     options: [
       { label: iT + " MPa", num: iT, correct: true },
       { label: iEng + " MPa", num: iEng, correct: false },
@@ -788,6 +899,24 @@ reg(buildGenerator({
   var dHalf = Y * s * Math.sqrt(Math.PI * am / 2); // used half the crack length (center-crack slip)
   var dNoSqrt = Y * s * Math.PI * am;            // forgot the square root
   var r1 = function (v) { return Math.round(v * 10) / 10; };
+  // Setup diagram (never the answer): plate with an edge crack under tension.
+  var d026 = (function () {
+    var g = SVG_HDR + AH, x0 = 200, y0 = 66, w = 280, h = 150, cyc = y0 + h / 2;
+    g += '<text x="320" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">steel plate with edge crack</text>';
+    g += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    // jagged crack entering from the left edge
+    var cl = 110;
+    g += '<polyline points="' + x0 + ',' + cyc + ' ' + (x0 + 28) + ',' + (cyc - 8) + ' ' + (x0 + 55) + ',' + (cyc + 6) + ' ' + (x0 + 82) + ',' + (cyc - 5) + ' ' + (x0 + cl) + ',' + (cyc + 2) + '" fill="none" stroke="#b91c1c" stroke-width="3"/>';
+    // tensile stress arrows above and below the plate
+    for (var i = 0; i < 4; i++) {
+      var ax = x0 + 40 + i * 66;
+      g += '<line x1="' + ax + '" y1="' + (y0 - 12) + '" x2="' + ax + '" y2="' + (y0 - 48) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+      g += '<line x1="' + ax + '" y1="' + (y0 + h + 12) + '" x2="' + ax + '" y2="' + (y0 + h + 48) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    g += '<text x="' + (x0 + w / 2) + '" y="' + (cyc - 66) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">crack length a = ' + fmt(a) + ' mm,  Y = ' + fmt(Y) + '</text>';
+    g += '<text x="' + (x0 + w / 2) + '" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">tensile stress σ = ' + s + ' MPa</text>';
+    return svgURL(g + SVG_FTR);
+  })();
   var q = "A steel plate contains an edge crack " + fmt(a) +
     " mm long (geometry factor Y = " + fmt(Y) +
     "). The plate is subjected to a tensile stress of " + s +
@@ -802,6 +931,7 @@ reg(buildGenerator({
   return {
     variantKey: "a" + Math.round(a * 10) + "-Y" + Math.round(Y * 100) + "-s" + s,
     question: q,
+    diagram: d026,
     options: [
       { label: r1(K).toFixed(1) + " MPa-m^1/2", num: r1(K), correct: true },
       { label: r1(dNoY).toFixed(1) + " MPa-m^1/2", num: r1(dNoY), correct: false },
@@ -858,11 +988,25 @@ reg(buildGenerator({
   var m = c.m, L = c.L;
   var grad = (c.c2 - c.c1) / (L / 1000); // kg/m^4, negative
   var mD = m * 1000; // "dropped the 10^-11" trap: used D's mantissa as-is
+  // Setup diagram (never the answer): plate cross-section with the concentration drop.
+  var d027 = (function () {
+    var g = SVG_HDR + AH, x0 = 200, y0 = 84, w = 240, h = 110;
+    g += '<text x="320" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">steel plate cross-section</text>';
+    g += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    g += '<text x="' + (x0 - 14) + '" y="' + (y0 + h / 2 - 8) + '" text-anchor="end" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">C = ' + fmt(c.c1) + ' kg/m³</text>';
+    g += '<text x="' + (x0 + w + 14) + '" y="' + (y0 + h / 2 - 8) + '" text-anchor="start" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">C = ' + fmt(c.c2) + ' kg/m³</text>';
+    g += '<line x1="' + (x0 + 30) + '" y1="' + (y0 + h / 2 + 26) + '" x2="' + (x0 + w - 30) + '" y2="' + (y0 + h / 2 + 26) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    g += '<text x="' + (x0 + w / 2) + '" y="' + (y0 + h / 2 + 52) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">diffusion down the gradient</text>';
+    g += '<line x1="' + x0 + '" y1="' + (y0 + h + 66) + '" x2="' + (x0 + w) + '" y2="' + (y0 + h + 66) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+    g += '<text x="' + (x0 + w / 2) + '" y="' + (y0 + h + 92) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">thickness L = ' + fmt(L) + ' mm</text>';
+    return svgURL(g + SVG_FTR);
+  })();
   return {
     variantKey: "d" + pdot(c.d) + "-dc" + pdot(c.dc) + "-l" + pdot(L) + "-c2" + pdot(c.c2),
     question: "Carbon diffuses through a steel plate. The diffusion coefficient is " + sci(c.d, -11) +
       " m²/s. The carbon concentration drops from " + fmt(c.c1) + " kg/m³ to " + fmt(c.c2) +
       " kg/m³ across the " + fmt(L) + "-mm plate thickness. What is the steady-state diffusion flux?",
+    diagram: d027,
     options: [
       { label: sci(m, -8) + " kg/(m²·s)", num: m * 1e-8, correct: true },
       { label: sci(m, -11) + " kg/(m²·s)", num: m * 1e-11, correct: false },
@@ -983,9 +1127,23 @@ reg(buildGenerator({
   var t1 = (100 - c.ra);                       // Af/Ai: fraction remaining trap
   var t2 = Math.round((c.ai - c.af) / c.af * 1000) / 10; // wrong denominator trap
   var t3 = Math.round(c.ai / c.af * 1000) / 10;          // inverted trap
+  // Setup diagram (never the answer): cross-sections before and after fracture.
+  var d030 = (function () {
+    var g = SVG_HDR + AH, cy = 150;
+    var r1 = 70, r2 = 70 * Math.sqrt(c.af / c.ai);
+    g += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">specimen cross-sections</text>';
+    g += '<circle cx="200" cy="' + cy + '" r="' + r1 + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    g += '<circle cx="440" cy="' + cy + '" r="' + r2 + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    g += '<line x1="292" y1="' + cy + '" x2="368" y2="' + cy + '" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ah)"/>';
+    g += '<text x="330" y="' + (cy - 14) + '" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#6b7280">fracture</text>';
+    g += '<text x="200" y="' + (cy + 104) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">Ai = ' + c.ai + ' mm² (initial)</text>';
+    g += '<text x="440" y="' + (cy + 104) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">Af = ' + c.af + ' mm² (at fracture)</text>';
+    return svgURL(g + SVG_FTR);
+  })();
   return {
     variantKey: "ai" + c.ai + "-af" + c.af,
     question: "A tensile test specimen has an initial cross-sectional area of " + c.ai + " mm² and a final cross-sectional area at fracture of " + c.af + " mm². What is the percent reduction in area?",
+    diagram: d030,
     options: [
       { label: fmt(c.ra) + "%", num: c.ra, correct: true },
       { label: fmt(t1) + "%", num: t1, correct: false },
@@ -1028,11 +1186,25 @@ reg(buildGenerator({
   videoTitle: null
 }, function () {
   var c = pick(FOURIER_COMBOS);
+  // Setup diagram (never the answer): steady heat flow through the plate.
+  var d032 = (function () {
+    var g = SVG_HDR + AH, x0 = 220, y0 = 96, w = 200, h = 100, cyy = y0 + h / 2;
+    g += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">steel plate</text>';
+    g += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w + '" height="' + h + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    for (var i = -1; i <= 1; i++) {
+      g += '<line x1="' + (x0 - 90) + '" y1="' + (cyy + i * 30) + '" x2="' + (x0 - 16) + '" y2="' + (cyy + i * 30) + '" stroke="#b45309" stroke-width="3" marker-end="url(#ah)"/>';
+    }
+    g += '<text x="' + (x0 - 104) + '" y="' + (cyy - 52) + '" text-anchor="end" font-family="Georgia,serif" font-size="16" fill="#b45309">heat in</text>';
+    g += '<text x="60" y="248" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">k = ' + c.k + ' W/(m·K),  A = ' + fmt(c.A) + ' m²</text>';
+    g += '<text x="60" y="276" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">ΔT = ' + c.dT + ' K,  thickness L = ' + c.L + ' mm</text>';
+    return svgURL(g + SVG_FTR);
+  })();
   return {
     variantKey: "k" + c.k + "-a" + pdot(c.A) + "-dt" + c.dT + "-l" + c.L,
     question: "Heat flows steadily through a steel plate " + c.L + " mm thick with thermal conductivity " + c.k +
       " W/(m·K). The plate area perpendicular to the heat flow is " + fmt(c.A) + " m² and the temperature drop across the plate is " +
       c.dT + " K. What is the rate of heat transfer?",
+    diagram: d032,
     options: [
       { label: fmt(c.q) + " kW", num: c.q, correct: true },
       { label: fmt(c.q / 1000) + " kW", num: c.q / 1000, correct: false },
@@ -1079,10 +1251,23 @@ reg(buildGenerator({
   videoTitle: null
 }, function () {
   var c = pick(RHO_COMBOS);
+  // Setup diagram (never the answer): wire with the measured resistance and geometry.
+  var d033 = (function () {
+    var g = SVG_HDR + AH, x0 = 120, w = 400, cy = 146;
+    g += '<text x="320" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">copper wire</text>';
+    g += '<rect x="' + x0 + '" y="' + (cy - 14) + '" width="' + w + '" height="28" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    g += '<circle cx="' + (x0 - 24) + '" cy="' + cy + '" r="10" fill="#1a1a1a"/>';
+    g += '<circle cx="' + (x0 + w + 24) + '" cy="' + cy + '" r="10" fill="#1a1a1a"/>';
+    g += '<line x1="' + x0 + '" y1="' + (cy + 42) + '" x2="' + (x0 + w) + '" y2="' + (cy + 42) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+    g += '<text x="' + (x0 + w / 2) + '" y="' + (cy + 68) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">length L = ' + fmt(c.L) + ' m</text>';
+    g += '<text x="' + (x0 + w / 2) + '" y="' + (cy - 32) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">R = ' + fmt(c.R) + ' Ω,  cross-section A = ' + fmt(c.A) + ' mm²</text>';
+    return svgURL(g + SVG_FTR);
+  })();
   return {
     variantKey: "r" + pdot(c.R) + "-a" + pdot(c.A) + "-l" + pdot(c.L),
     question: "A copper wire " + fmt(c.L) + " m long with a cross-sectional area of " + fmt(c.A) +
       " mm² has a measured resistance of " + fmt(c.R) + " Ω. What is the resistivity of the copper?",
+    diagram: d033,
     options: [
       { label: sci(c.mant, c.e - 6) + " Ω·m", num: c.mant * Math.pow(10, c.e - 6), correct: true },
       { label: sci(c.mant, c.e) + " Ω·m", num: c.mant * Math.pow(10, c.e), correct: false },

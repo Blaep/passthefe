@@ -108,6 +108,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -122,6 +123,62 @@
     };
   }
 
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+  var AHG = '<defs><marker id="ahg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#15803d"/></marker></defs>';
+
+  // Cash-flow diagram: horizontal time axis with year ticks, upward green
+  // arrows for receipts, downward blue arrows for disbursements. Setup only:
+  // flows are the GIVEN cash amounts, never the answer.
+  // maxYear: last tick on the axis. ticks: years to label.
+  // flows: [{t, amt, dir ("up"|"down"), label, dx (x-offset px), lab (extra label y px)}].
+  // note: one caption line; bracket: {from, to, label} span under the axis.
+  function cfdSVG(maxYear, ticks, flows, note, bracket) {
+    var ox = 64, axisW = 512, axisY = 168;
+    var pxm = axisW / maxYear;
+    var maxAmt = 0, i;
+    for (i = 0; i < flows.length; i++) if (flows[i].amt > maxAmt) maxAmt = flows[i].amt;
+    var s = SVG_HDR + AH + AHG;
+    s += '<line x1="' + ox + '" y1="' + axisY + '" x2="' + (ox + axisW + 10) + '" y2="' + axisY + '" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ah)"/>';
+    for (i = 0; i < ticks.length; i++) {
+      var x = (ox + ticks[i] * pxm).toFixed(1);
+      s += '<line x1="' + x + '" y1="' + (axisY - 6) + '" x2="' + x + '" y2="' + (axisY + 6) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+      s += '<text x="' + (x - 5) + '" y="' + (axisY + 24) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">' + ticks[i] + '</text>';
+    }
+    s += '<text x="' + (ox + axisW + 14) + '" y="' + (axisY + 24) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">yr</text>';
+    for (i = 0; i < flows.length; i++) {
+      var f = flows[i];
+      var fx = (ox + f.t * pxm + (f.dx || 0)).toFixed(1);
+      var len = 26 + (maxAmt > 0 ? (f.amt / maxAmt) * 78 : 0);
+      var up = f.dir === "up";
+      var col = up ? "#15803d" : "#1d4ed8";
+      var mk = up ? "url(#ahg)" : "url(#ah)";
+      var tip = up ? axisY - len : axisY + len;
+      s += '<line x1="' + fx + '" y1="' + axisY + '" x2="' + fx + '" y2="' + tip.toFixed(1) + '" stroke="' + col + '" stroke-width="2.5" marker-end="' + mk + '"/>';
+      if (f.label) {
+        var lx = (parseFloat(fx) - f.label.length * 3.3).toFixed(1);
+        var ly = up ? tip - 10 : tip + 20 + (f.lab || 0);
+        s += '<text x="' + lx + '" y="' + ly.toFixed(1) + '" font-family="Georgia,serif" font-size="13" fill="' + col + '">' + f.label + '</text>';
+      }
+    }
+    if (bracket) {
+      var bx0 = ox + bracket.from * pxm, bx1 = ox + bracket.to * pxm, by = axisY + 44;
+      s += '<line x1="' + bx0.toFixed(1) + '" y1="' + by + '" x2="' + bx1.toFixed(1) + '" y2="' + by + '" stroke="#6b7280" stroke-width="1.5"/>';
+      s += '<line x1="' + bx0.toFixed(1) + '" y1="' + (by - 5) + '" x2="' + bx0.toFixed(1) + '" y2="' + (by + 5) + '" stroke="#6b7280" stroke-width="1.5"/>';
+      s += '<line x1="' + bx1.toFixed(1) + '" y1="' + (by - 5) + '" x2="' + bx1.toFixed(1) + '" y2="' + (by + 5) + '" stroke="#6b7280" stroke-width="1.5"/>';
+      s += '<text x="' + ((bx0 + bx1) / 2 - bracket.label.length * 3.3).toFixed(1) + '" y="' + (by + 20) + '" font-family="Georgia,serif" font-size="13" fill="#6b7280">' + bracket.label + '</text>';
+    }
+    if (note) s += '<text x="' + ox + '" y="28" font-family="Georgia,serif" font-size="13" fill="#4b5563">' + note + '</text>';
+    return svgURL(s + SVG_FTR);
+  }
 
   // Dollars with thousands separators and exactly two decimals: "$1,102.50".
   function money(x) {
@@ -587,6 +644,12 @@ def({ baseId: "econ-011", subtopic: "Arithmetic gradient", difficulty: "hard",
     "$$\\begin{aligned}\nA &= " + M(A) + " \\\\\nG &= " + M(G) + " \\\\\ni &= " + pct + "\\% \\\\\nn &= " + n + "\\ \\text{years} \\\\\nP &= ?\n\\end{aligned}$$\n\n" +
     "$$(P) = " + fmt(A) + "(" + pa.toFixed(4) + ") + " + fmt(G) + "(" + pg.toFixed(4) + ") \\rightarrow (P) = " + (A * pa).toFixed(2) + " + " + (G * pg).toFixed(2) + "$$\n\n" +
     "$$(P) = " + M(P) + "$$";
+  // Setup diagram (never the answer): the increasing yearly maintenance costs.
+  var flows011 = [], ticks011 = [];
+  for (var t011 = 1; t011 <= n; t011++)
+    flows011.push({ t: t011, amt: A + (t011 - 1) * G, dir: "down", label: money(A + (t011 - 1) * G) });
+  for (var y011 = 0; y011 <= n; y011++) ticks011.push(y011);
+  var d011 = cfdSVG(n, ticks011, flows011, "Costs rise by " + money(G) + " each year.", null);
   return {
     variantKey: "a" + A + "_g" + G + "_i" + pct + "_n" + n,
     question: "Annual maintenance costs are " + money(A) + " in year 1, increasing by " + money(G) + " each year through year " + n + ". At " + pct + "% annual interest, what is the present worth of these costs?",
@@ -596,7 +659,8 @@ def({ baseId: "econ-011", subtopic: "Arithmetic gradient", difficulty: "hard",
       { label: money(noTVM), num: noTVM },
       { label: money(gradAsAnnuity), num: gradAsAnnuity }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d011
   };
 });
 
@@ -627,6 +691,14 @@ def({ baseId: "econ-012", subtopic: "Capitalized cost", difficulty: "hard",
     "$$\\begin{aligned}\n\\text{initial cost} &= " + M(init) + " \\\\\n\\text{rehab} &= " + M(R) + "\\ \\text{every " + k + " years} \\\\\ni &= " + pct + "\\% \\\\\n(A/F, " + pct + "\\%, " + k + ") &= " + af.toFixed(4) + " \\\\\nCC &= ?\n\\end{aligned}$$\n\n" +
     "$$(A) = " + fmt(R) + "(" + af.toFixed(4) + ") \\rightarrow (A) = " + M(A) + "\\text{/yr}$$\n\n" +
     "$$(CC) = " + fmt(init) + " + \\frac{" + A.toFixed(2) + "}{" + i + "} = " + M(CC) + "$$";
+  // Setup diagram (never the answer): initial cost at year 0 plus the rehab
+  // repeating every k years, forever (three cycles shown with an ellipsis).
+  var flows012 = [{ t: 0, amt: init, dir: "down", label: money(init) }];
+  [1, 2, 3].forEach(function (j012) {
+    flows012.push({ t: j012 * k, amt: R, dir: "down", label: money(R), lab: (j012 % 2) * 24 });
+  });
+  var d012 = cfdSVG(3 * k, [0, k, 2 * k, 3 * k], flows012,
+    "\u22EF " + money(R) + " repeats every " + k + " years, forever.", null);
   return {
     variantKey: "c" + init + "_r" + R + "_k" + k + "_i" + pct,
     question: "A bridge requires a " + money(init) + " initial investment plus " + money(R) + " of major rehabilitation every " + k + " years, forever. At " + pct + "% annual interest, what is the capitalized cost?",
@@ -636,7 +708,8 @@ def({ baseId: "econ-012", subtopic: "Capitalized cost", difficulty: "hard",
       { label: money(noTVM), num: noTVM },
       { label: money(noCap), num: noCap }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d012
   };
 });
 
@@ -985,6 +1058,17 @@ def({
     "$$V = " + mtex(vAns) + "$$";
   var cOnly = Math.round(C * pa * 100) / 100;
   var faceUnd = Math.round((C * pa + face) * 100) / 100;
+  // Setup diagram (never the answer): annual coupon arrows plus the face
+  // value repaid at maturity (the coupon payment is the coupon rate times
+  // the face value).
+  var ticks022 = [];
+  for (var y022 = 0; y022 <= n; y022++) ticks022.push(y022);
+  var flows022 = [];
+  for (var t022 = 1; t022 <= n; t022++)
+    flows022.push({ t: t022, amt: C, dir: "up", label: t022 === 1 ? money(C) : null });
+  flows022.push({ t: n, amt: face, dir: "up", label: money(face), dx: 9 });
+  var d022 = cfdSVG(n, ticks022, flows022,
+    money(C) + " coupons each year; " + money(face) + " face repaid at year " + n + ".", null);
   return {
     variantKey: "face" + face + "_c" + cP + "_i" + iP + "_n" + n,
     question: "A " + n + "-year bond with a " + money(face) + " face value pays " + cP + "% annual coupons at each year end. If the market interest rate is " + iP + "% per year, what is the bond's value?",
@@ -994,7 +1078,8 @@ def({
       { label: money(face), num: face },         // face value at par
       { label: money(faceUnd), num: faceUnd }    // face added undiscounted
     ],
-    solution: solution
+    solution: solution,
+    diagram: d022
   };
 });
 
@@ -1027,6 +1112,17 @@ def({
     "Substitute both factors:\n\n" +
     "$$(P) = (" + fmt(A) + ")(" + pa.toFixed(4) + ")(" + pfk.toFixed(4) + ") \\rightarrow (" + fmt(A) + ")(" + (pa * pfk).toFixed(4) + ") = " + (A * pa * pfk).toFixed(2) + "$$\n\n" +
     "$$P = " + mtex(ans) + "$$";
+  // Setup diagram (never the answer): the deferral gap of k years, then the
+  // uniform savings series starting at the end of year k+1.
+  var max023 = k + n;
+  var ticks023 = [];
+  for (var y023 = 0; y023 <= max023; y023++) ticks023.push(y023);
+  var flows023 = [];
+  for (var t023 = k + 1; t023 <= max023; t023++)
+    flows023.push({ t: t023, amt: A, dir: "up", label: (t023 === k + 1 || t023 === max023) ? money(A) : null });
+  var d023 = cfdSVG(max023, ticks023, flows023,
+    money(A) + "/yr for " + n + " yrs \u2014 first at end of year " + (k + 1) + ".",
+    { from: 0, to: k, label: "deferred " + k + " years" });
   return {
     variantKey: "A" + A + "_n" + n + "_k" + k + "_i" + iP,
     question: "A machine upgrade will save " + money(A) + " per year for " + n + " years, with the first savings occurring at the end of year " + (k + 1) + " (the series is deferred " + k + " years). At " + iP + "% annual interest, what is the present worth of the savings?",
@@ -1036,7 +1132,8 @@ def({
       { label: money(Math.round(A * pa * p_f(i, k - 1))), num: Math.round(A * pa * p_f(i, k - 1)) }, // one year too few
       { label: money(Math.round(A * pa * p_f(i, k + 1))), num: Math.round(A * pa * p_f(i, k + 1)) }  // one year too many
     ],
-    solution: solution
+    solution: solution,
+    diagram: d023
   };
 });
 

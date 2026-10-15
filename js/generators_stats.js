@@ -106,6 +106,7 @@
             choices: order.map(function (i) { return r.options[i].label; }),
             answerIndex: order.indexOf(correctPos),
             solution: r.solution,
+            diagram: r.diagram || null,
             explanation: meta.explanation,
             videoUrl: meta.videoUrl,
             videoTitle: meta.videoTitle,
@@ -118,6 +119,52 @@
         throw new Error("distinctness retry exhausted for " + meta.baseId);
       }
     };
+  }
+
+  // Diagrams for generated variants: build a small SVG from the rolled
+  // numbers and hand it to the app as a data URL (q.diagram renders it in
+  // an <img>). Setup only — never draw the answer.
+  function svgURL(svg) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var SVG_HDR = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img">';
+  var SVG_FTR = '</svg>';
+  var AH = '<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+
+  // Bell-curve setup diagram for the normal tail-area questions (stats-004,
+  // stats-011): draws the curve from the rolled (mu, sigma) and shades the
+  // tail the question asks about. Setup only — the threshold and mean are
+  // given in the question text; the shaded area's numeric value is never
+  // drawn.
+  function normalTailDiagram(mu, sig, x, above, unit) {
+    var xMin = mu - 3.25 * sig, xMax = mu + 3.25 * sig;
+    var px = function (v) { return 60 + (v - xMin) / (xMax - xMin) * 520; };
+    var g = function (v) { var t = (v - mu) / sig; return Math.exp(-t * t / 2); };
+    var py = function (v) { return 250 - 190 * g(v); };
+    var s = SVG_HDR;
+    // Shaded tail: the region the question asks about.
+    var edge = above ? xMax : xMin, pts = "", i, v;
+    for (i = 0; i <= 120; i++) {
+      v = above ? x + (edge - x) * i / 120 : edge + (x - edge) * i / 120;
+      pts += " " + px(v).toFixed(1) + "," + py(v).toFixed(1);
+    }
+    s += '<polygon points="' + px(x).toFixed(1) + ",250" + pts + " " + px(edge).toFixed(1) + ',250" fill="#bfdbfe" fill-opacity="0.65"/>';
+    // Bell curve.
+    var d = "M " + px(xMin).toFixed(1) + " " + py(xMin).toFixed(1);
+    for (i = 0; i <= 160; i++) {
+      v = xMin + (xMax - xMin) * i / 160;
+      d += " L " + px(v).toFixed(1) + " " + py(v).toFixed(1);
+    }
+    s += '<path d="' + d + '" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>';
+    // Axis.
+    s += '<line x1="40" y1="250" x2="620" y2="250" stroke="#1a1a1a" stroke-width="1.5"/>';
+    // Mean tick + label.
+    s += '<line x1="' + px(mu).toFixed(1) + '" y1="244" x2="' + px(mu).toFixed(1) + '" y2="256" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="' + (px(mu) - 7).toFixed(0) + '" y="276" font-family="Georgia,serif" font-size="18" fill="#1a1a1a">μ</text>';
+    // Threshold tick + label (both come from the rolled question values).
+    s += '<line x1="' + px(x).toFixed(1) + '" y1="244" x2="' + px(x).toFixed(1) + '" y2="256" stroke="#1d4ed8" stroke-width="2"/>';
+    s += '<text x="' + (px(x) - 30).toFixed(0) + '" y="276" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">' + fmt(x) + " " + unit + "</text>";
+    return svgURL(s + SVG_FTR);
   }
 
   // ---- statistics helpers ----
@@ -345,8 +392,11 @@ PART.push(buildGenerator({ baseId: "stats-004", subtopic: "Normal distribution a
     "$$(z) = \\frac{" + fmt(x) + " - " + mu + "}{" + sig + "} = " + zSigned + "$$\n\n" +
     tailLine + "\n\n" +
     "$$P(x " + (above ? ">" : "<") + " " + fmt(x) + ") \\approx " + fmt(ans) + "\\%$$";
+  // Setup diagram (never the answer): bell curve with the asked-about tail shaded.
+  var d004 = normalTailDiagram(mu, sig, x, above, "MPa");
   return {
     variantKey: "mu" + mu + "_sig" + sig + "_z" + z + "_" + (above ? "above" : "below"),
+    diagram: d004,
     question: "Compressive test results for a concrete mix are normally distributed with a mean of " + mu + " MPa and a standard deviation of " + sig + " MPa. Approximately what percentage of samples " + (above ? "exceed " : "fall below ") + fmt(x) + " MPa?",
     options: [
       { label: fmt(ans) + "%", num: ans, correct: true },
@@ -692,8 +742,11 @@ PART.push(buildGenerator({ baseId: "stats-011", subtopic: "Normal probability", 
     "$$(z) = \\frac{" + fmt(x) + " - " + mu + "}{" + fmt(sig) + "} \\rightarrow (z) = " + fmt(zSigned) + "$$\n\n" +
     tailLine + "\n\n" +
     "$$(P) = " + f4(tail) + " = " + ans.toFixed(2) + "\\%$$";
+  // Setup diagram (never the answer): bell curve with the asked-about tail shaded.
+  var d011 = normalTailDiagram(mu, sig, x, above, "mm");
   return {
     variantKey: "mu" + mu + "_sig" + fmt(sig).replace(".", "p") + "_z" + String(z).replace(".", "p") + "_" + (above ? "above" : "below"),
+    diagram: d011,
     question: "Steel rod diameters are normally distributed with mean " + mu + " mm and standard deviation " + fmt(sig) + " mm. What is the probability a randomly selected rod has a diameter " + (above ? "greater than " : "less than ") + fmt(x) + " mm?",
     options: [
       { label: ans.toFixed(2) + "%", num: ans, correct: true },
