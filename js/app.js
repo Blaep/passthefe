@@ -4252,7 +4252,7 @@
   var EQUATIONS = null; // null = not fetched yet
   function loadEquations(cb) {
     if (EQUATIONS !== null) { cb(EQUATIONS); return; }
-    fetch("data/equations.json")
+    fetch("data/equations.json?v=1")
       .then(function (r) { if (!r.ok) throw new Error("missing"); return r.json(); })
       .then(function (d) {
         EQUATIONS = Array.isArray(d) ? d : (d.equations || []);
