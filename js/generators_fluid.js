@@ -186,11 +186,11 @@ reg(buildGenerator({
   subtopic: "Buckingham Pi theorem",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "The FE rarely makes you build the actual pi groups — it just asks you to COUNT them. Count the variables (n), count the basic dimensions (r), subtract: n − r."
+  explanation: "The FE rarely makes you build the actual π groups — it just asks you to COUNT them. Count the variables (n), count the basic dimensions (r), subtract: n − r."
 }, function () {
   var n = ri(4, 7);              // number of variables in the phenomenon
   var r = pick([2, 3]);          // number of basic dimensions (M, L, T)
-  var askTerms = Math.random() < 0.7; // ~70% ask for pi terms, ~30% for repeating variables
+  var askTerms = Math.random() < 0.7; // ~70% ask for π terms, ~30% for repeating variables
   var scenarios = [
     { ctx: "pressure drop along a length of pipe", vars: ["Δp", "ρ", "V", "D", "μ", "L", "ε"] },
     { ctx: "drag on a sphere moving through a fluid", vars: ["F", "ρ", "V", "D", "μ", "ε", "k"] },
@@ -205,8 +205,8 @@ reg(buildGenerator({
     vars.join(", ") + ". Expressed dimensionally, these variables involve r = " + r +
     " basic dimensions (M, L, T)." +
     (askTerms
-      ? " According to the Buckingham Pi theorem, how many independent dimensionless pi terms are required to describe this phenomenon?"
-      : " According to the Buckingham Pi theorem, how many repeating variables are required to form the dimensionless pi terms?");
+      ? " According to the Buckingham Pi theorem, how many independent dimensionless π terms are required to describe this phenomenon?"
+      : " According to the Buckingham Pi theorem, how many repeating variables are required to form the dimensionless π terms?");
   var ans, t1, t2, t3, kind;
   if (askTerms) {
     ans = n - r;
@@ -223,12 +223,12 @@ reg(buildGenerator({
     kind = "rep";
   }
   var solution = "Refer to the Dimensional Analysis section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
-    "The Buckingham Pi theorem states that the number of independent dimensionless groups (pi terms) for a phenomenon involving n variables equals \\(n - r_r\\), where \\(r_r\\) is the number of basic dimensions needed to express the variables dimensionally:\n\n" +
+    "The Buckingham Pi theorem states that the number of independent dimensionless groups (π terms) for a phenomenon involving n variables equals \\(n - r_r\\), where \\(r_r\\) is the number of basic dimensions needed to express the variables dimensionally:\n\n" +
     "$$k = n - r_r$$" +
     "\n\n" +
     (askTerms
-      ? "Here n = " + n + " variables and \\(r_r\\) = " + r + " basic dimensions, so the number of pi terms is\n\n$$k = " + n + " - " + r + " = " + ans + "$$"
-      : "The pi terms are formed from \\(r_r\\) repeating variables, so with \\(r_r\\) = " + r + " basic dimensions the number of repeating variables required is\n\n$$r_r = " + r + " = " + ans + "$$") +
+      ? "Here n = " + n + " variables and \\(r_r\\) = " + r + " basic dimensions, so the number of π terms is\n\n$$k = " + n + " - " + r + " = " + ans + "$$"
+      : "The π terms are formed from \\(r_r\\) repeating variables, so with \\(r_r\\) = " + r + " basic dimensions the number of repeating variables required is\n\n$$r_r = " + r + " = " + ans + "$$") +
     "\n\n$$\\boxed{" + ans + "}$$";
   return {
     variantKey: "pi-n" + n + "-r" + r + "-" + kind,
@@ -249,7 +249,7 @@ reg(buildGenerator({
   subtopic: "Siphon (energy equation)",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "Reservoir surface ≈ still, atmosphere cancels on both sides, and head loss is neglected — so the energy equation collapses to Torricelli, v = sqrt(2g*delta-h). Get diameter to meters before the area."
+  explanation: "Reservoir surface ≈ still, atmosphere cancels on both sides, and head loss is neglected — so the energy equation collapses to Torricelli, v = sqrt(2g*Δh). Get diameter to meters before the area."
 }, function () {
   var g = 9.81;                                  // m/s^2
   var dh = pick([1.5, 2.0, 2.5, 3.0, 5.0, 6.0]); // m, surface-to-exit elevation difference (Δh=1 makes the outside-root trap equal the answer; Δh=4 makes it equal the doubled trap — both excluded)

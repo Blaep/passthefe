@@ -729,7 +729,7 @@ reg(buildGenerator({
   subtopic: "Belt friction",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "Belt friction grows exponentially with contact angle - and the angle must be in RADIANS. Forgetting the 2*pi conversion is the classic error.",
+  explanation: "Belt friction grows exponentially with contact angle - and the angle must be in RADIANS. Forgetting the 2*π conversion is the classic error.",
   videoUrl: "https://www.youtube.com/watch?v=e7srQ4a0tI4",
   videoTitle: "Belt Friction – Concepts and Derivations"
 }, function () {
@@ -1005,7 +1005,7 @@ reg(buildGenerator({
   subtopic: "Frictionless inclined plane",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "On a frictionless incline the required holding force is just the downslope weight component W*sin(theta). The W*cos(theta) trap is the NORMAL force, not the parallel force.",
+  explanation: "On a frictionless incline the required holding force is just the downslope weight component W*sin(θ). The W*cos(theta) trap is the NORMAL force, not the parallel force.",
   videoUrl: "https://www.youtube.com/watch?v=GDzy4D9Llsg",
   videoTitle: "Determine the magnitude and direction of the friction force. Chapter 6: Friction"
 }, function () {
@@ -1091,7 +1091,7 @@ reg(buildGenerator({
   subtopic: "Tipping vs slipping",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "Compare P_slip = mu*W against P_tip from moment equilibrium about the tipping edge. Whichever needs the smaller P happens first.",
+  explanation: "Compare P_slip = μ*W against P_tip from moment equilibrium about the tipping edge. Whichever needs the smaller P happens first.",
   videoUrl: "https://www.youtube.com/watch?v=GDzy4D9Llsg",
   videoTitle: "Determine the magnitude and direction of the friction force. Chapter 6: Friction"
 }, function () {
@@ -1252,7 +1252,7 @@ reg(buildGenerator({
   subtopic: "Screw jack (tightening)",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "Tightening uses tan(alpha + phi): the friction angle ADDS to the lead angle. The tan(alpha - phi) trap is the LOOSENING formula.",
+  explanation: "Tightening uses tan(α + φ): the friction angle ADDS to the lead angle. The tan(α − φ) trap is the LOOSENING formula.",
   videoUrl: "https://www.youtube.com/watch?v=q2a5WUypqZE",
   videoTitle: "Screw Jack - Working Principle"
 }, function () {
@@ -1303,7 +1303,7 @@ reg(buildGenerator({
   subtopic: "Limiting static friction",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "Limiting friction is mu_s * N - the maximum static friction before motion impends. The W/mu trap inverts the relationship.",
+  explanation: "Limiting friction is μ_s * N - the maximum static friction before motion impends. The W/μ trap inverts the relationship.",
   videoUrl: "https://www.youtube.com/watch?v=GDzy4D9Llsg",
   videoTitle: "Determine the magnitude and direction of the friction force. Chapter 6: Friction"
 }, function () {
@@ -1474,7 +1474,7 @@ reg(buildGenerator({
   subtopic: "Screw jack (loosening)",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "Loosening uses tan(alpha - phi): friction now OPPOSES the unwinding. The tan(alpha + phi) trap is the TIGHTENING formula.",
+  explanation: "Loosening uses tan(α − φ): friction now OPPOSES the unwinding. The tan(α + φ) trap is the TIGHTENING formula.",
   videoUrl: "https://www.youtube.com/watch?v=q2a5WUypqZE",
   videoTitle: "Screw Jack - Working Principle"
 }, function () {

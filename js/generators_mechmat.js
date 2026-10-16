@@ -1092,7 +1092,7 @@ reg(buildGenerator({
   subtopic: "Angle of twist (torsion)",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "The torsion formula gives the twist in radians, so the last step is always multiplying by 180/pi — and the polar moment J uses the full diameter to the fourth power, not the radius.",
+  explanation: "The torsion formula gives the twist in radians, so the last step is always multiplying by 180/π — and the polar moment J uses the full diameter to the fourth power, not the radius.",
   videoUrl: "https://www.youtube.com/watch?v=zCyJxicDP-A",
   videoTitle: "Torsion of Stepped Shaft: Find Max Moment M & Total Angle of Twist"
 }, function () {
@@ -1230,7 +1230,7 @@ reg(buildGenerator({
   subtopic: "Stress transformation",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "The transformation equations take twice the physical angle — plug in 2theta, keep the shear term, and watch its sign.",
+  explanation: "The transformation equations take twice the physical angle — plug in 2θ, keep the shear term, and watch its sign.",
   videoUrl: "https://www.youtube.com/watch?v=Us98HjLmBG0",
   videoTitle: "For each of the plane stress states listed below, draw a Mohr's circle diagram..."
 }, function () {

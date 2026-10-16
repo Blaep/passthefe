@@ -1517,7 +1517,7 @@
     "85.3 m"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(H\\), the horizontal distance. For an inclined stadia sight:\n\n$$H = Ks\\cos^2\\theta + C\\cos\\theta$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nK &= 100 \\\\\ns &= 0.845\\ \\text{m} \\\\\n\\theta &= 4.5^\\circ \\\\\nC &= 0 \\\\\nH &= ?\n\\end{aligned}$$\n\nWith \\(C = 0\\) the additive term drops out:\n\n$$(H) = (100)(0.845)\\cos^2(4.5^\\circ) = (84.5)(0.99385)$$\n\n$$(H) = 83.98\\ \\text{m} \\approx 84.0\\ \\text{m}$$",
+   "solution": "Note: the FE Reference Handbook does not print the stadia equations — this is standard surveying practice to memorize.\n\nUltimately, we must solve for \\(H\\), the horizontal distance. For an inclined stadia sight:\n\n$$H = Ks\\cos^2\\theta + C\\cos\\theta$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nK &= 100 \\\\\ns &= 0.845\\ \\text{m} \\\\\n\\theta &= 4.5^\\circ \\\\\nC &= 0 \\\\\nH &= ?\n\\end{aligned}$$\n\nWith \\(C = 0\\) the additive term drops out:\n\n$$(H) = (100)(0.845)\\cos^2(4.5^\\circ) = (84.5)(0.99385)$$\n\n$$(H) = 83.98\\ \\text{m} \\approx 84.0\\ \\text{m}$$",
    "explanation": "Stadia tacheometry converts a rod intercept into distance, but on a slope the intercept must be reduced by cos^2 of the vertical angle to get the horizontal component. A common pitfall is using the slope distance K*s (84.5 m) directly as the horizontal distance.",
    "diagram": "diagrams/surveying-002.svg",
    "videoUrl": "https://www.youtube.com/watch?v=NDZ_GWwLPfU",

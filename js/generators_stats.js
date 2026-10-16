@@ -1416,7 +1416,7 @@ PART.push(buildGenerator({
   subtopic: "Standard normal critical value",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "For a two-sided interval, alpha/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed.",
+  explanation: "For a two-sided interval, α/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed.",
   videoUrl: null,
   videoTitle: null
 }, function () {

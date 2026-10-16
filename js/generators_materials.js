@@ -837,7 +837,7 @@ reg(buildGenerator({
   subtopic: "Thermal expansion (free elongation)",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "With free ends there is no stress -- the bar simply grows. Thermal strain is alpha times the temperature change, and elongation is strain times original length.",
+  explanation: "With free ends there is no stress -- the bar simply grows. Thermal strain is α times the temperature change, and elongation is strain times original length.",
   videoUrl: null,
   videoTitle: null
 }, function () {
