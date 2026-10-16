@@ -633,3 +633,8 @@ span.bad { color: var(--error); font-weight: 700; }
 #eqdrill-card { cursor: pointer; min-height: 200px; }
 #eqdrill-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 #eqdrill-done h3 { margin-top: 0; }
+
+/* Handbook quick-lookup button (quiz headers, exam sim, nav-adjacent) */
+.handbook-btn { padding: 6px 10px; font-size: .85em; white-space: nowrap; text-decoration: none; }
+.quiz-head .handbook-btn { margin-left: 4px; }
+.exam-actions .handbook-btn { margin-left: 6px; }

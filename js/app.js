@@ -1070,6 +1070,21 @@
     return '<button class="quiz-back" id="quiz-back" aria-label="Back to practice">‹</button>';
   }
 
+  // FE Reference Handbook PDF shipped with the site (v10.6). Printed handbook
+  // page N lives on PDF page N+6 (verified at printed pp. 126, 181, 200:
+  // PDF pp. 132, 187, 206 — 6 pages of front matter).
+  var HANDBOOK_PDF = "handbook/fe-reference-handbook.pdf";
+  var HANDBOOK_PAGE_OFFSET = 6;
+
+  function handbookBtnHtml() {
+    return ' <a class="btn handbook-btn" href="' + HANDBOOK_PDF + '" target="_blank" rel="noopener"' +
+      ' title="Open the FE Reference Handbook (v10.6) in a new tab">📖 Handbook</a>';
+  }
+
+  function handbookPageUrl(printedPage) {
+    return HANDBOOK_PDF + "#page=" + (parseInt(printedPage, 10) + HANDBOOK_PAGE_OFFSET);
+  }
+
   // Leave the quiz and return to the practice setup card. Setting
   // location.hash would be a no-op here: the quiz already runs under
   // #/practice, so changing the hash to itself fires no event.
@@ -1088,7 +1103,7 @@
     var modeTitle = quiz.mode === "adaptive" ? "Adaptive Practice" : "Practice";
     var letters = "ABCDEFGH";
     var html = '<div class="quiz-head">' + quizBackHtml() +
-      ' <span class="timer-pill" title="Time on this question · total quiz time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span></div>';
+      ' <span class="timer-pill" title="Time on this question · total quiz time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span>' + handbookBtnHtml() + '</div>';
     html += '<h2 class="quiz-title">' + escapeHtml(modeTitle) + "</h2>";
     html += '<div class="quiz-badges"><span class="badge badge-topic">' + escapeHtml(q.topic) + "</span>" +
       diffBadge(q.difficulty) + "</div>";
@@ -2704,7 +2719,7 @@
       ? "Drilling " + q._gen.subtopic : "Randomized Practice";
     var letters = "ABCDEFGH";
     var html = '<div class="quiz-head">' + quizBackHtml() +
-      ' <span class="timer-pill" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span></div>';
+      ' <span class="timer-pill" title="Time on this question · total session time">⏱ <b id="qt-q">0:00</b> · <b id="qt-t">0:00</b></span>' + handbookBtnHtml() + '</div>';
     html += '<h2 class="quiz-title">' + escapeHtml(modeLabel) + "</h2>";
     html += '<div class="quiz-badges"><span class="badge badge-topic">' + escapeHtml(q.topic) + "</span>" +
       diffBadge(q.difficulty) + "</div>";
@@ -3266,7 +3281,7 @@
       '<div class="exam-bar">' +
       '<div><div class="exam-count" id="exam-count"></div></div>' +
       '<div class="exam-actions">' +
-      '<button id="exam-flag-btn" class="btn">Flag</button>' +
+      '<button id="exam-flag-btn" class="btn">Flag</button>' + handbookBtnHtml() +
       (exam.breakUsed ? "" : '<button id="exam-break-btn" class="btn">Take break</button>') +
       '<button id="exam-submit-btn" class="btn primary">Submit exam</button>' +
       "</div></div>" +
@@ -4104,7 +4119,7 @@
   // maps that exact section name to equation ids. Never guess a link.
   function linkifyCitations(html) {
     if (!CITATION_LINKS) return html;
-    return html.replace(/Refer to the (.+?) section in the (.+?) chapter/g,
+    html = html.replace(/Refer to the (.+?) section in the (.+?) chapter/g,
       function (match, section) {
         var ids = CITATION_LINKS[section];
         if (ids && ids.length) {
@@ -4112,6 +4127,17 @@
         }
         return match;
       });
+    // Handbook page citations open the shipped PDF at the exact printed page
+    // (PDF page = printed page + HANDBOOK_PAGE_OFFSET).
+    html = html.replace(/\(v10\.6, p\. (\d+)\)/g, function (m, pg) {
+      return '(v10.6, <a href="' + handbookPageUrl(pg) + '" target="_blank" rel="noopener" title="Open handbook p. ' +
+        pg + '">p. ' + pg + "</a>)";
+    });
+    html = html.replace(/\(p\. (\d+)\)/g, function (m, pg) {
+      return '(<a href="' + handbookPageUrl(pg) + '" target="_blank" rel="noopener" title="Open handbook p. ' +
+        pg + '">p. ' + pg + "</a>)";
+    });
+    return html;
   }
 
   // ---- equation recall drill (formulas view) ----------------------------------
