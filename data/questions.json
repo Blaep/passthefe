@@ -10628,6 +10628,329 @@
    "subtopic": "Allowable bearing capacity",
    "tiTip": "No — one division; the calculator only does the arithmetic.",
    "topic": "Geotechnical Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "541.7 kip-ft",
+    "487.5 kip-ft",
+    "5,850 kip-ft",
+    "292.5 kip-ft"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "With continuous bracing only yielding governs, so \\(M_n = F_y Z_x\\), and LRFD applies \\(\\phi_b = 0.90\\). Skipping \\(\\phi_b\\) gives 541.7 kip-ft, and leaving the answer in kip-in gives 5,850.",
+   "id": "structural-036",
+   "question": "A compact doubly symmetric W-shape (\\(F_y\\) = 50 ksi, \\(Z_x\\) = 130 \\(\\text{in}^3\\)) is braced continuously against lateral-torsional buckling and bent about its major axis. Using LRFD, what is the design flexural strength \\(\\phi_b M_n\\)?",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi_b M_n\\). With continuous lateral bracing, lateral-torsional buckling does not apply, so the handbook gives yielding as the limit state:\n\n$$M_n = M_p = F_y Z_x, \\qquad \\phi_b = 0.90$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF_y &= 50\\ \\text{ksi} \\\\\nZ_x &= 130\\ \\text{in}^3 \\\\\n\\phi_b &= 0.90 \\\\\n\\phi_b M_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\phi_b M_n) &= 0.90(50)(130) \\\\\n&= 5{,}850\\ \\text{kip-in} \\\\\n&\\rightarrow \\frac{5{,}850}{12} \\\\\n&= 487.5\\ \\text{kip-ft}\n\\end{aligned}$$",
+   "subtopic": "Steel beam design flexural strength (yielding)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "375.0 kip-ft",
+    "360.6 kip-ft",
+    "324.5 kip-ft",
+    "236.2 kip-ft"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Because \\(L_p < L_b \\le L_r\\), the strength is reduced below \\(M_p\\) by the linear LTB equation. Using \\(\\phi_b M_p\\) alone (375.0 kip-ft) ignores the unbraced length, and stopping before \\(\\phi_b\\) gives 360.6 kip-ft.",
+   "id": "structural-037",
+   "question": "A compact doubly symmetric W-shape (\\(F_y\\) = 50 ksi, \\(Z_x\\) = 100 \\(\\text{in}^3\\), \\(S_x\\) = 90 \\(\\text{in}^3\\)) has \\(L_p\\) = 6 ft and \\(L_r\\) = 17 ft. It is bent about its major axis with an unbraced length \\(L_b\\) = 10 ft and \\(C_b\\) = 1.0. Using LRFD, what is the design flexural strength \\(\\phi_b M_n\\)?",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi_b M_n\\). Since \\(L_p < L_b \\le L_r\\), the handbook gives the inelastic lateral-torsional buckling equation:\n\n$$\\begin{aligned}\nM_n = C_b\\Bigl[M_p &- (M_p - 0.7 F_y S_x) \\\\\n&\\times\\left(\\frac{L_b - L_p}{L_r - L_p}\\right)\\Bigr] \\\\\nM_n &\\le M_p\n\\end{aligned}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nM_p &= F_y Z_x = (50)(100) \\\\\n&= 5{,}000\\ \\text{kip-in} \\\\\n&= 416.7\\ \\text{kip-ft} \\\\\n0.7 F_y S_x &= 0.7(50)(90) \\\\\n&= 3{,}150\\ \\text{kip-in} \\\\\n&= 262.5\\ \\text{kip-ft} \\\\\n\\frac{L_b - L_p}{L_r - L_p} &= \\frac{10 - 6}{17 - 6} = 0.364 \\\\\nM_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(M_n) &= (1.0)\\left[416.7 - (154.2)(0.364)\\right] \\\\\n&= 416.7 - 56.1 \\\\\n&= 360.6\\ \\text{kip-ft} \\le M_p\n\\end{aligned}$$\n\n$$\\phi_b M_n = 0.90(360.6) = 324.5\\ \\text{kip-ft}$$",
+   "subtopic": "Steel beam lateral-torsional buckling (Lp < Lb <= Lr)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "1.00",
+    "1.32",
+    "1.67",
+    "1.14"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Substituting the four moments into the handbook \\(C_b\\) equation gives 1.14, the same value the handbook table lists for a uniformly loaded, unbraced simple span. \\(C_b = 1.00\\) is the uniform-moment case and 1.32 is the midspan point-load value.",
+   "id": "structural-038",
+   "question": "In an unbraced segment of a simply supported steel beam, the absolute moments are \\(M_{max}\\) = 120 kip-ft, \\(M_A\\) = 90 kip-ft at the quarter point, \\(M_B\\) = 120 kip-ft at the centerline, and \\(M_C\\) = 90 kip-ft at the three-quarter point. What is the lateral-torsional buckling modification factor \\(C_b\\)?",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C_b\\). The handbook prints:\n\n$$C_b = \\frac{12.5 M_{max}}{2.5 M_{max} + 3 M_A + 4 M_B + 3 M_C}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nM_{max} &= 120\\ \\text{kip-ft} \\\\\nM_A &= 90\\ \\text{kip-ft} \\\\\nM_B &= 120\\ \\text{kip-ft} \\\\\nM_C &= 90\\ \\text{kip-ft} \\\\\nC_b &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(C_b) &= \\frac{12.5(120)}{300 + 270 + 480 + 270} \\\\\n&= \\frac{1{,}500}{1{,}320} \\\\\n&= 1.14\n\\end{aligned}$$",
+   "subtopic": "Steel beam Cb moment-gradient factor",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "126 kip",
+    "252 kip",
+    "227 kip",
+    "420 kip"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The handbook web area is the full overall depth times the web thickness, with \\(\\phi_v = 1.00\\) for rolled I-shapes. Using \\(\\phi = 0.90\\) gives 227 kip, dropping the 0.6 factor gives 420 kip, and using half the web area gives 126 kip.",
+   "id": "structural-039",
+   "question": "A rolled W-shape has an overall depth d = 21.0 in. and a web thickness \\(t_w\\) = 0.40 in. The steel has \\(F_y\\) = 50 ksi. Using LRFD, what is the design shear strength \\(\\phi_v V_n\\)?",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi_v V_n\\). The handbook gives, for webs of rolled I-shaped members:\n\n$$\\begin{gathered}\nV_n = 0.6 F_y A_w C_{v1} \\\\\nA_w = d\\,t_w \\\\\nC_{v1} = 1.0 \\\\\n\\phi_v = 1.00\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA_w &= (21.0)(0.40) = 8.40\\ \\text{in}^2 \\\\\nF_y &= 50\\ \\text{ksi} \\\\\n\\phi_v V_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\phi_v V_n) &= (1.00)(0.6)(50)(8.40)(1.0) \\\\\n&= 252\\ \\text{kip}\n\\end{aligned}$$",
+   "subtopic": "Steel I-shape design shear strength",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "648 kip",
+    "508 kip",
+    "406 kip",
+    "451 kip"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "\\(KL/r = 80\\) is below \\(4.71\\sqrt{E/F_y} = 113\\), so the inelastic equation \\(F_{cr} = 0.658^{F_y/F_e} F_y\\) applies. Using the squash load (648 kip) ignores buckling, using \\(0.877 F_e\\) is the elastic equation (wrong range), and omitting \\(\\phi\\) gives 451 kip.",
+   "id": "structural-040",
+   "question": "A steel column (\\(F_y\\) = 50 ksi, \\(A_g\\) = 14.4 \\(\\text{in}^2\\)) has KL/r = 80. Using LRFD, what is the design compressive strength \\(\\phi_c P_n\\) for flexural buckling? (E = 29,000 ksi; no slender elements.)",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi_c P_n\\). First compare the slenderness with the handbook limit:\n\n$$\\begin{aligned}\n4.71\\sqrt{\\frac{E}{F_y}} &= 4.71\\sqrt{\\frac{29{,}000}{50}} \\\\\n&= 113.4\n\\end{aligned}$$\n\nSince \\(KL/r = 80 \\le 113.4\\), the handbook gives:\n\n$$\\begin{gathered}\nF_e = \\frac{\\pi^2 E}{(KL/r)^2} \\\\\nF_{cr} = \\left[0.658^{F_y/F_e}\\right]F_y \\\\\nP_n = F_{cr} A_g \\\\\n\\phi_c = 0.90\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF_e &= \\frac{\\pi^2 (29{,}000)}{(80)^2} = 44.72\\ \\text{ksi} \\\\\nF_{cr} &= 0.658^{50/44.72}(50) = 31.3\\ \\text{ksi} \\\\\nA_g &= 14.4\\ \\text{in}^2 \\\\\n\\phi_c P_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\phi_c P_n) &= 0.90(31.3)(14.4) \\\\\n&= 406\\ \\text{kip}\n\\end{aligned}$$",
+   "subtopic": "Steel column flexural buckling (inelastic range)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "123 kip",
+    "133 kip",
+    "147 kip",
+    "151 kip"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "\\(KL/r = 140\\) exceeds \\(4.71\\sqrt{E/F_y} = 113\\), so elastic buckling governs with \\(F_{cr} = 0.877 F_e\\). Using the inelastic equation gives 123 kip, omitting \\(\\phi\\) gives 147 kip, and using \\(F_e\\) without the 0.877 factor gives 151 kip.",
+   "id": "structural-041",
+   "question": "A steel column (\\(F_y\\) = 50 ksi, \\(A_g\\) = 11.5 \\(\\text{in}^2\\)) has KL/r = 140. Using LRFD, what is the design compressive strength \\(\\phi_c P_n\\) for flexural buckling? (E = 29,000 ksi; no slender elements.)",
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi_c P_n\\). The handbook slenderness limit is:\n\n$$\\begin{aligned}\n4.71\\sqrt{\\frac{E}{F_y}} &= 4.71\\sqrt{\\frac{29{,}000}{50}} \\\\\n&= 113.4\n\\end{aligned}$$\n\nSince \\(KL/r = 140 > 113.4\\), the handbook gives:\n\n$$\\begin{gathered}\nF_e = \\frac{\\pi^2 E}{(KL/r)^2} \\\\\nF_{cr} = 0.877 F_e \\\\\nP_n = F_{cr} A_g \\\\\n\\phi_c = 0.90\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nF_e &= \\frac{\\pi^2 (29{,}000)}{(140)^2} = 14.60\\ \\text{ksi} \\\\\nF_{cr} &= 0.877(14.60) = 12.81\\ \\text{ksi} \\\\\nA_g &= 11.5\\ \\text{in}^2 \\\\\n\\phi_c P_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\phi_c P_n) &= 0.90(12.81)(11.5) \\\\\n&= 133\\ \\text{kip}\n\\end{aligned}$$",
+   "subtopic": "Steel column flexural buckling (elastic range)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "639 kip",
+    "798 kip",
+    "982 kip",
+    "884 kip"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The tied-column maximum includes the 0.80 factor and \\(\\phi = 0.65\\) (compression-controlled, tied). Dropping the 0.80 gives 798 kip, stopping before \\(\\phi\\) gives 982 kip, and using \\(\\phi = 0.90\\) gives 884 kip.",
+   "id": "structural-042",
+   "question": "A 16 in. x 16 in. tied short column is reinforced with eight #8 bars (\\(A_{st}\\) = 6.32 \\(\\text{in}^2\\)). The concrete has \\(f'_c\\) = 4 ksi and the bars have \\(f_y\\) = 60 ksi. Under pure axial load, what is the design axial strength \\(\\phi P_n\\) (maximum permitted by the handbook for a tied column)? Use ACI 318-14.",
+   "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi P_n\\). First check the longitudinal steel limits:\n\n$$\\begin{aligned}\n\\rho_g &= \\frac{A_{st}}{A_g} \\\\\n&= \\frac{6.32}{256} \\\\\n&= 2.47\\%\\ \\text{(within 1\\% to 8\\%)}\n\\end{aligned}$$\n\nThe handbook prints for tied columns:\n\n$$\\begin{gathered}\nP_n = 0.80\\left[0.85 f'_c (A_g - A_{st}) + A_{st} f_y\\right] \\\\\n\\phi = 0.65\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nA_g &= 16 \\times 16 = 256\\ \\text{in}^2 \\\\\nA_{st} &= 6.32\\ \\text{in}^2 \\\\\nf'_c &= 4\\ \\text{ksi}, \\quad f_y = 60\\ \\text{ksi} \\\\\n\\phi P_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(P_n) &= 0.80\\Bigl[0.85(4)(256 - 6.32) \\\\\n&\\qquad + (6.32)(60)\\Bigr] \\\\\n&= 0.80[849.0 + 379.2] \\\\\n&= 982\\ \\text{kip}\n\\end{aligned}$$\n\n$$\\phi P_n = 0.65(982) = 639\\ \\text{kip}$$",
+   "subtopic": "Reinforced concrete tied column axial capacity",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "289.4 kip-ft",
+    "188.1 kip-ft",
+    "230.7 kip-ft",
+    "260.5 kip-ft"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "The net tensile strain (0.0094) is above 0.005, so the section is tension-controlled and \\(\\phi = 0.90\\). Using \\(\\phi = 0.65\\) (compression-controlled) gives 188.1 kip-ft, stopping at \\(M_n\\) gives 289.4 kip-ft, and using the full \\(a\\) instead of \\(a/2\\) in the lever arm gives 230.7 kip-ft.",
+   "id": "structural-043",
+   "question": "A singly reinforced rectangular beam has b = 12 in., d = \\(d_t\\) = 21.5 in., \\(A_s\\) = 3.00 \\(\\text{in}^2\\) (three #9 bars), \\(f'_c\\) = 4,000 psi, and \\(f_y\\) = 60,000 psi. What is the design flexural strength \\(\\phi M_n\\)? Use ACI 318-14.",
+   "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\phi M_n\\). Find the stress block depth, nominal moment, and then check the net tensile strain to pick phi:\n\n$$\\begin{gathered}\na = \\frac{A_s f_y}{0.85 f'_c b} \\\\\nM_n = A_s f_y\\left(d - \\frac{a}{2}\\right) \\\\\n\\varepsilon_t = \\frac{0.003(d_t - c)}{c} \\\\\nc = \\frac{a}{\\beta_1}\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\na &= \\frac{(3.00)(60)}{0.85(4)(12)} \\\\\n&= 4.412\\ \\text{in} \\\\\n\\beta_1 &= 0.85\\ (f'_c = 4{,}000\\ \\text{psi}) \\\\\nc &= \\frac{4.412}{0.85} = 5.19\\ \\text{in} \\\\\n\\varepsilon_t &= \\frac{0.003(21.5 - 5.19)}{5.19} \\\\\n&= 0.0094 \\ge 0.005 \\\\\n&\\Rightarrow \\phi = 0.90 \\\\\n\\phi M_n &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(M_n) &= (3.00)(60)\\left(21.5 - \\frac{4.412}{2}\\right) \\\\\n&= 3473\\ \\text{kip-in}\n\\end{aligned}$$\n\n$$\\begin{aligned}\n\\phi M_n &= 0.90(3473) \\\\\n&= 3126\\ \\text{kip-in} \\\\\n&= 260.5\\ \\text{kip-ft}\n\\end{aligned}$$",
+   "subtopic": "RC beam design flexural strength with strain check",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "5.5 in.",
+    "11 in.",
+    "14.5 in.",
+    "24 in."
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "Strength alone requires \\(s = 14.6\\) in., but because \\(V_s\\) is below \\(4 b_w d\\sqrt{f'_c}\\) the maximum permitted spacing is the smaller of \\(d/2 = 11\\) in. and 24 in., so 11 in. controls. Choosing 14.5 in. satisfies strength but violates the maximum spacing.",
+   "id": "structural-044",
+   "question": "A normal-weight concrete beam has \\(b_w\\) = 12 in., d = 22 in., \\(f'_c\\) = 4,000 psi, and #3 U-stirrups (\\(A_v\\) = 0.22 \\(\\text{in}^2\\), two legs) with \\(f_y\\) = 60,000 psi. The factored shear at the critical section is \\(V_u\\) = 40.0 kip. What stirrup spacing should be used? Use ACI 318-14.",
+   "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(s\\). Compute the concrete shear strength and compare with the factored shear:\n\n$$\\begin{gathered}\n\\begin{aligned}\nV_c &= 2\\lambda\\sqrt{f'_c}\\,b_w d \\\\\n&= 2(1.0)\\sqrt{4000}(12)(22) \\\\\n&= 33.4\\ \\text{kip}\n\\end{aligned} \\\\\n\\phi V_c = 0.75(33.4) = 25.0\\ \\text{kip}\n\\end{gathered}$$\n\nSince \\(V_u = 40.0 > \\phi V_c\\), use the right-hand column of the handbook table:\n\n$$\\begin{gathered}\nV_s = \\frac{V_u}{\\phi} - V_c \\\\\ns = \\frac{A_v f_y d}{V_s}\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV_s &= \\frac{40.0}{0.75} - 33.4 = 19.9\\ \\text{kip} \\\\\n4 b_w d\\sqrt{f'_c} &= 66.8\\ \\text{kip} \\\\\n&> V_s \\\\\ns_{required} &= \\frac{(0.22)(60)(22)}{19.94} \\\\\n&= 14.6\\ \\text{in} \\\\\ns_{max} &= \\min\\left(\\frac{d}{2}, 24\\right) \\\\\n&= \\min(11, 24) = 11\\ \\text{in}\n\\end{aligned}$$\n\nThe smaller value controls:\n\n$$s = \\min(14.6,\\ 11) = 11\\ \\text{in}$$",
+   "subtopic": "RC beam stirrup spacing (required vs maximum)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "135.0 kip-ft",
+    "91.8 kip-ft",
+    "183.6 kip-ft",
+    "367.2 kip-ft"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "An interior beam's tributary width equals its spacing (8 ft). Factored load is 204 psf \\(\\times\\) 8 ft = 1.632 klf, so \\(M_u = w_u L^2/8 = 183.6\\) kip-ft. Using unfactored loads gives 135.0 kip-ft, a 4 ft tributary width gives 91.8 kip-ft, and a 16 ft width gives 367.2 kip-ft.",
+   "id": "structural-045",
+   "question": "An interior simply supported floor beam spans 30 ft and is spaced 8 ft on center from parallel beams. The floor carries a dead load of 90 psf and a live load of 60 psf (no live load reduction). Using the LRFD combination 1.2D + 1.6L, what is the maximum factored moment \\(M_u\\) in the beam?",
+   "solution": "Refer to the Loads (ASCE 7-16) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_u\\). An interior beam supports half the floor on each side, so its tributary width equals the beam spacing:\n\n$$w_u = (1.2D + 1.6L)\\,(\\text{tributary width})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD &= 90\\ \\text{psf} \\\\\nL &= 60\\ \\text{psf} \\\\\n\\text{tributary width} &= 8\\ \\text{ft} \\\\\nw_u &= [1.2(90) + 1.6(60)](8) \\\\\n&= (204)(8) \\\\\n&= 1632\\ \\text{plf} = 1.632\\ \\text{klf} \\\\\nM_u &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(M_u) &= \\frac{w_u L^2}{8} \\\\\n&= \\frac{(1.632)(30)^2}{8} \\\\\n&= 183.6\\ \\text{kip-ft}\n\\end{aligned}$$",
+   "subtopic": "Tributary width and LRFD factored moment",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "113.4 kip",
+    "104.4 kip",
+    "130.5 kip",
+    "126.0 kip"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "Check both limit states: yielding on the gross area gives 113.4 kip and rupture on the effective net area (\\(U = 1 - x/L = 0.80\\)) gives 104.4 kip, so rupture governs. Forgetting the shear lag factor gives 130.5 kip, and omitting \\(\\phi\\) from yielding gives 126.0 kip.",
+   "id": "structural-046",
+   "question": "A bolted angle tension member has \\(A_g\\) = 3.50 \\(\\text{in}^2\\) and net area \\(A_n\\) = 3.00 \\(\\text{in}^2\\). The connection eccentricity is x = 0.90 in. and the connection length is L = 4.50 in. The steel has \\(F_y\\) = 36 ksi and \\(F_u\\) = 58 ksi. Using LRFD and ignoring block shear, what is the design tensile strength?",
+   "solution": "Refer to the Tension Members section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the design tensile strength. The handbook requires checking yielding and rupture:\n\n$$\\begin{gathered}\n\\text{Yielding: } \\phi_y P_n = 0.90 F_y A_g \\\\\n\\text{Rupture: } \\phi_f P_n = 0.75 F_u A_e \\\\\nA_e = U A_n \\\\\nU = 1 - \\frac{x}{L}\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nU &= 1 - \\frac{0.90}{4.50} = 0.80 \\\\\nA_e &= (0.80)(3.00) = 2.40\\ \\text{in}^2 \\\\\n\\phi_y P_n &= 0.90(36)(3.50) = 113.4\\ \\text{kip} \\\\\n\\phi_f P_n &= 0.75(58)(2.40) = 104.4\\ \\text{kip}\n\\end{aligned}$$\n\nThe smaller value governs:\n\n$$\\begin{aligned}\n\\text{design strength} &= \\min(113.4,\\ 104.4) \\\\\n&= 104.4\\ \\text{kip}\n\\end{aligned}$$",
+   "subtopic": "Steel tension member strength (yielding vs rupture with shear lag)",
+   "topic": "Structural Engineering"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "1,188 ug/m3",
+    "109 ug/m3",
+    "100 ug/m3",
+    "2,438 ug/m3"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "The handbook relation needs absolute temperature (298.15 K). Using 25 in place of 298.15 K gives 1,188 \\(\\mu\\text{g/m}^3\\), using the 0 °C molar volume (22.4 L/mol) gives 109 \\(\\mu\\text{g/m}^3\\), and skipping the \\(P/RT\\) factor gives 2,438.",
+   "id": "water-054",
+   "question": "An air monitor reports 53 ppb of nitrogen dioxide (NO2, molecular weight 46 g/mol) at 25 deg C and 1 atm. What is the concentration in micrograms per cubic meter?",
+   "solution": "Refer to the Air pollution section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the concentration in \\(\\mu g/m^3\\). The handbook prints:\n\n$$\\frac{\\mu g}{m^3} = \\text{ppb} \\times \\frac{P(\\text{MW})}{RT}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{ppb} &= 53 \\\\\nP &= 1\\ \\text{atm} \\\\\n\\text{MW} &= 46\\ \\text{g/mol} \\\\\nR &= 0.0821\\ \\text{L-atm/(mol-K)} \\\\\nT &= 273.15 + 25 = 298.15\\ \\text{K} \\\\\n\\mu g/m^3 &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\mu g/m^3) &= 53 \\times \\frac{(1)(46)}{(0.0821)(298.15)} \\\\\n&= 100\\ \\mu g/m^3\n\\end{aligned}$$",
+   "subtopic": "Air pollutant ppb to ug/m3 conversion",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "3,979 ug/m3",
+    "538 ug/m3",
+    "269 ug/m3",
+    "1,077 ug/m3"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "At \\(z = 0\\) and \\(y = 0\\) the two reflection terms in the handbook equation are equal, so the exponential term is doubled and the leading \\(2\\pi\\) cancels to \\(\\pi\\). Leaving out the \\(\\exp(-H^2/2\\sigma_z^2)\\) factor gives 3,979, and forgetting the reflection term (using \\(2\\pi\\)) gives half the answer.",
+   "id": "water-055",
+   "question": "A stack emits a pollutant at Q = 5.0 x \\(10^7\\) ug/s with an effective stack height H = 40 m. At a point on the ground directly downwind on the plume centerline, the wind speed is u = 5.0 m/s and the dispersion parameters are \\(\\sigma_y\\) = 40 m and \\(\\sigma_z\\) = 20 m. What is the ground-level concentration?",
+   "solution": "Refer to the Atmospheric Dispersion Modeling (Gaussian) section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C\\). At ground level (\\(z = 0\\)) on the centerline (\\(y = 0\\)) the two exponentials inside the handbook bracket are equal, so the Gaussian equation reduces to:\n\n$$C = \\frac{Q}{\\pi u \\sigma_y \\sigma_z}\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ &= 5.0 \\times 10^7\\ \\mu g/s \\\\\nu &= 5.0\\ \\text{m/s} \\\\\n\\sigma_y &= 40\\ \\text{m}, \\quad \\sigma_z = 20\\ \\text{m} \\\\\nH &= 40\\ \\text{m} \\\\\nC &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(C) &= \\frac{5.0 \\times 10^7}{\\pi (5.0)(40)(20)}\\exp\\left(-\\frac{1}{2}\\frac{(40)^2}{(20)^2}\\right) \\\\\n&= (3{,}979)(0.1353) \\\\\n&= 538\\ \\mu g/m^3\n\\end{aligned}$$",
+   "subtopic": "Gaussian plume ground-level centerline concentration",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "2,001 ug/m3",
+    "368 ug/m3",
+    "858 ug/m3",
+    "736 ug/m3"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "For neutral conditions the handbook gives \\(\\sigma_z = H/\\sqrt{2}\\) at the maximum, so the exponential term is \\(\\exp(-1) = 0.368\\). Dropping the exponential gives 2,001, using a \\(2\\pi\\) denominator halves the result, and using \\(\\sigma_z = H\\) gives 858.",
+   "id": "water-056",
+   "question": "An elevated source (effective stack height H = 50 m) emits Q = 4.0 x \\(10^7\\) ug/s under neutral atmospheric conditions. The wind speed at stack height is u = 4.0 m/s and \\(\\sigma_y\\) = 45 m at the point of maximum ground-level concentration. What is the maximum ground-level concentration?",
+   "solution": "Refer to the Atmospheric Dispersion Modeling (Gaussian) section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C_{max}\\). For neutral conditions the handbook prints:\n\n$$\\begin{gathered}\nC_{max} = \\frac{Q}{\\pi u \\sigma_y \\sigma_z}\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right) \\\\\n\\sigma_z = \\frac{H}{\\sqrt{2}}\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\sigma_z &= \\frac{50}{\\sqrt{2}} = 35.36\\ \\text{m} \\\\\n\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right) &= \\exp(-1) = 0.3679 \\\\\nC_{max} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(C_{max}) &= \\frac{4.0 \\times 10^7}{\\pi (4.0)(45)(35.36)}(0.3679) \\\\\n&= (2001)(0.3679) \\\\\n&= 736\\ \\mu g/m^3\n\\end{aligned}$$",
+   "subtopic": "Maximum ground-level concentration (neutral conditions)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "6.1 days",
+    "7.5 days",
+    "33.3 days",
+    "20.0 days"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The handbook solids residence time counts solids leaving in both the waste sludge and the effluent. Ignoring effluent solids gives 7.5 days, using only the effluent term gives 33.3 days, and the ratio \\(V/Q_w\\) (20 days) ignores concentrations.",
+   "id": "water-057",
+   "question": "An activated sludge aeration basin has V = 2,000 \\(\\text{m}^3\\) and a mixed liquor concentration \\(X_A\\) = 3,000 mg/L. Waste sludge is withdrawn at \\(Q_w\\) = 100 \\(\\text{m}^3\\)/d with \\(X_w\\) = 8,000 mg/L. The effluent flow is \\(Q_e\\) = 9,000 \\(\\text{m}^3\\)/d with suspended solids \\(X_e\\) = 20 mg/L. What is the solids residence time (mean cell residence time)?",
+   "solution": "Refer to the Activated Sludge section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(\\theta_c\\). The handbook gives:\n\n$$\\theta_c = \\frac{V X_A}{Q_w X_w + Q_e X_e}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nV X_A &= (2{,}000)(3{,}000) \\\\\n&= 6.0 \\times 10^6\\ \\text{g} \\\\\nQ_w X_w &= (100)(8{,}000) = 800{,}000 \\\\\nQ_e X_e &= (9{,}000)(20) = 180{,}000 \\\\\n\\theta_c &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\theta_c) &= \\frac{6.0 \\times 10^6}{800{,}000 + 180{,}000} \\\\\n&= 6.1\\ \\text{days}\n\\end{aligned}$$",
+   "subtopic": "Activated sludge solids residence time (SRT)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "600 per day",
+    "0.07 per day",
+    "0.20 per day",
+    "5.0 per day"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "\\(F{:}M = Q_0 S_0 / (V X_A)\\) with consistent units gives 0.20 per day. Dropping \\(X_A\\) from the denominator gives 600, using only the concentration ratio gives 0.07, and inverting the ratio gives 5.0.",
+   "id": "water-058",
+   "question": "An aeration basin of volume 2,000 \\(\\text{m}^3\\) receives \\(Q_0\\) = 6,000 \\(\\text{m}^3\\)/d of wastewater with a BOD of \\(S_0\\) = 200 mg/L. The mixed liquor concentration is \\(X_A\\) = 3,000 mg/L. What is the food-to-mass (F:M) ratio?",
+   "solution": "Refer to the Activated Sludge section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for F:M. The handbook gives the organic loading rate as:\n\n$$F\\!:\\!M = \\frac{Q_0 S_0}{\\text{Vol}\\,X_A}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ_0 &= 6{,}000\\ \\text{m}^3\\text{/d} \\\\\nS_0 &= 200\\ \\text{mg/L} = 200\\ \\text{g/m}^3 \\\\\n\\text{Vol} &= 2{,}000\\ \\text{m}^3 \\\\\nX_A &= 3{,}000\\ \\text{mg/L} = 3{,}000\\ \\text{g/m}^3 \\\\\nF\\!:\\!M &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(F\\!:\\!M) &= \\frac{(6{,}000)(200)}{(2{,}000)(3{,}000)} \\\\\n&= 0.20\\ \\text{d}^{-1}\n\\end{aligned}$$",
+   "subtopic": "Activated sludge food-to-mass (F:M) ratio",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "0.1 mL/g",
+    "100 mL/g",
+    "50 mL/g",
+    "10 mL/g"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "SVI = (settled volume in mL/L \\(\\times\\) 1,000) / MLSS in mg/L = 100 mL/g. Forgetting the 1,000 factor gives 0.1, and inverting the ratio gives 10.",
+   "id": "water-059",
+   "question": "A 1-L sample of mixed liquor with MLSS = 3,000 mg/L is allowed to settle. After 30 minutes the settled sludge occupies 300 mL. What is the sludge volume index (SVI)?",
+   "solution": "Refer to the Activated Sludge section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for SVI. The handbook gives:\n\n$$\\text{SVI} = \\frac{\\text{settled volume (mL/L)} \\times 1{,}000}{\\text{MLSS (mg/L)}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{settled volume} &= 300\\ \\text{mL/L} \\\\\n\\text{MLSS} &= 3{,}000\\ \\text{mg/L} \\\\\n\\text{SVI} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\text{SVI}) &= \\frac{(300)(1{,}000)}{3{,}000} \\\\\n&= 100\\ \\text{mL/g}\n\\end{aligned}$$",
+   "subtopic": "Sludge volume index (SVI)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "173 mg/L",
+    "5.2 mg/L",
+    "168 mg/L",
+    "0.16 mg/L"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "P is the fraction of wastewater sample in the total volume (9/300 = 0.03), so BOD = \\((D_1 - D_2)/P\\) = 173 mg/L. Using the oxygen drop alone gives 5.2, using 9/291 as P gives 168, and multiplying by P gives 0.16.",
+   "id": "water-060",
+   "question": "A BOD test uses 9 mL of wastewater diluted to a total volume of 300 mL with unseeded dilution water. The initial dissolved oxygen is 8.6 mg/L and after 5 days at 20 deg C it is 3.4 mg/L. What is the BOD5 of the wastewater?",
+   "solution": "Refer to the BOD Test Solution and Seeding Procedures section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for BOD5. The dilution water is not seeded, so the handbook gives:\n\n$$\\text{BOD},\\ \\text{mg/L} = \\frac{D_1 - D_2}{P}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD_1 &= 8.6\\ \\text{mg/L} \\\\\nD_2 &= 3.4\\ \\text{mg/L} \\\\\nP &= \\frac{9}{300} = 0.030 \\\\\n\\text{BOD}_5 &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(\\text{BOD}_5) &= \\frac{8.6 - 3.4}{0.030} \\\\\n&= 173\\ \\text{mg/L}\n\\end{aligned}$$",
+   "subtopic": "BOD test (unseeded dilution)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "3.68 kg/m3",
+    "6.13 kg/m3",
+    "0.66 kg/m3",
+    "2.63 kg/m3"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 210,
+   "explanation": "\\(X_A = \\theta_c Y (S_0 - S_e) / [\\theta (1 + k_d \\theta_c)]\\) gives 2.63 \\(\\text{kg/m}^3\\). Ignoring endogenous decay gives 3.68, using \\((1 - k_d \\theta_c)\\) gives 6.13, and omitting the hydraulic residence time gives 0.66.",
+   "id": "water-061",
+   "question": "A completely mixed activated sludge system is designed with solids residence time 8 d, hydraulic residence time 0.25 d, yield Y = 0.5 kg biomass/kg BOD, and death coefficient \\(k_d\\) = 0.05 per day. The influent BOD is 0.25 kg/\\(\\text{m}^3\\) and the effluent BOD is 0.02 kg/\\(\\text{m}^3\\). What is the biomass concentration \\(X_A\\) in the aeration tank?",
+   "solution": "Refer to the Activated Sludge section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(X_A\\). The handbook gives:\n\n$$X_A = \\frac{\\theta_c Y (S_0 - S_e)}{\\theta(1 + k_d \\theta_c)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\theta_c &= 8\\ \\text{d}, \\quad \\theta = 0.25\\ \\text{d} \\\\\nY &= 0.5, \\quad k_d = 0.05\\ \\text{d}^{-1} \\\\\nS_0 - S_e &= 0.25 - 0.02 = 0.23\\ \\text{kg/m}^3 \\\\\nX_A &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(X_A) &= \\frac{(8)(0.5)(0.23)}{(0.25)[1 + (0.05)(8)]} \\\\\n&= \\frac{0.92}{0.35} \\\\\n&= 2.63\\ \\text{kg/m}^3\n\\end{aligned}$$",
+   "subtopic": "Activated sludge biomass concentration (kinetic design)",
+   "topic": "Water Resources"
   }
  ]
 }
