@@ -117,7 +117,7 @@
     {
      "code": "4D",
      "label": "Frames and trusses",
-     "count": 5
+     "count": 6
     },
     {
      "code": "4E",
@@ -207,17 +207,17 @@
     {
      "code": "7A",
      "label": "Mix design of concrete and asphalt",
-     "count": 4
+     "count": 7
     },
     {
      "code": "7B",
      "label": "Test methods and specifications of metals, concrete, aggregates, asphalt, and wood",
-     "count": 3
+     "count": 6
     },
     {
      "code": "7C",
      "label": "Physical and mechanical properties of metals, concrete, aggregates, asphalt, and wood",
-     "count": 21
+     "count": 24
     }
    ]
   },
@@ -297,7 +297,7 @@
     {
      "code": "10A",
      "label": "Basic hydrology (e.g., infiltration, rainfall, runoff, watersheds)",
-     "count": 4
+     "count": 7
     },
     {
      "code": "10B",
@@ -337,17 +337,17 @@
     {
      "code": "10I",
      "label": "Water quality (e.g., ground and surface, basic water chemistry)",
-     "count": 4
+     "count": 5
     },
     {
      "code": "10J",
      "label": "Testing and standards (e.g., water, wastewater, air, noise)",
-     "count": 4
+     "count": 7
     },
     {
      "code": "10K",
      "label": "Water and wastewater treatment (e.g., biological processes, softening, drinking water treatment)",
-     "count": 4
+     "count": 13
     }
    ]
   },
@@ -377,7 +377,7 @@
     {
      "code": "11D",
      "label": "Structural determinacy and stability analysis of beams, trusses, and frames",
-     "count": 4
+     "count": 6
     },
     {
      "code": "11E",
@@ -387,17 +387,17 @@
     {
      "code": "11F",
      "label": "Loads, load combinations, and load paths (e.g., dead, live, lateral, influence lines and moving loads, tributary areas)",
-     "count": 5
+     "count": 6
     },
     {
      "code": "11G",
      "label": "Design of steel components (e.g., codes and design philosophies, beams, columns, tension members, connections)",
-     "count": 3
+     "count": 10
     },
     {
      "code": "11H",
      "label": "Design of reinforced concrete components (e.g., codes and design philosophies, beams, columns)",
-     "count": 4
+     "count": 7
     }
    ]
   },
@@ -447,7 +447,7 @@
     {
      "code": "12H",
      "label": "Foundation types (e.g., spread footings, deep foundations, wall footings, mats)",
-     "count": 4
+     "count": 6
     },
     {
      "code": "12I",
@@ -492,12 +492,12 @@
     {
      "code": "13D",
      "label": "Traffic control devices",
-     "count": 4
+     "count": 11
     },
     {
      "code": "13E",
      "label": "Transportation planning (e.g., travel forecast modeling, safety, trip generation)",
-     "count": 5
+     "count": 8
     }
    ]
   },
@@ -512,7 +512,7 @@
     {
      "code": "14A",
      "label": "Project administration (e.g., documents, management, procurement, project delivery methods)",
-     "count": 2
+     "count": 5
     },
     {
      "code": "14B",
@@ -1108,7 +1108,61 @@
   "geotech-046": "12J",
   "geotech-047": "12J",
   "geotech-048": "12G",
-  "geotech-049": "12G"
+  "geotech-049": "12G",
+  "structural-036": "11G",
+  "structural-037": "11G",
+  "structural-038": "11G",
+  "structural-039": "11G",
+  "structural-040": "11G",
+  "structural-041": "11G",
+  "structural-046": "11G",
+  "structural-042": "11H",
+  "structural-043": "11H",
+  "structural-044": "11H",
+  "structural-045": "11F",
+  "water-054": "10J",
+  "water-055": "10J",
+  "water-056": "10J",
+  "water-057": "10K",
+  "water-058": "10K",
+  "water-059": "10K",
+  "water-061": "10K",
+  "water-060": "10I",
+  "water-062": "10K",
+  "water-063": "10K",
+  "water-064": "10K",
+  "water-065": "10K",
+  "water-066": "10K",
+  "statics-038": "4D",
+  "structural-047": "11D",
+  "structural-048": "11D",
+  "transportation-035": "13D",
+  "transportation-036": "13D",
+  "transportation-037": "13D",
+  "transportation-038": "13D",
+  "transportation-039": "13D",
+  "transportation-040": "13D",
+  "transportation-041": "13D",
+  "transportation-042": "13E",
+  "transportation-043": "13E",
+  "transportation-044": "13E",
+  "water-067": "10A",
+  "water-068": "10A",
+  "water-069": "10A",
+  "geotech-050": "12H",
+  "geotech-051": "12H",
+  "construction-038": "14A",
+  "construction-039": "14A",
+  "construction-040": "14A",
+  "materials-037": "7A",
+  "materials-038": "7A",
+  "materials-039": "7A",
+  "materials-040": "7C",
+  "materials-041": "7C",
+  "materials-042": "7C",
+  "materials-043": "7B",
+  "materials-044": "7B",
+  "materials-045": "7B"
  },
  "offspec": [
   "math-003",
