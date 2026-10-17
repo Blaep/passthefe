@@ -10951,6 +10951,145 @@
    "solution": "Refer to the Activated Sludge section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(X_A\\). The handbook gives:\n\n$$X_A = \\frac{\\theta_c Y (S_0 - S_e)}{\\theta(1 + k_d \\theta_c)}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\theta_c &= 8\\ \\text{d}, \\quad \\theta = 0.25\\ \\text{d} \\\\\nY &= 0.5, \\quad k_d = 0.05\\ \\text{d}^{-1} \\\\\nS_0 - S_e &= 0.25 - 0.02 = 0.23\\ \\text{kg/m}^3 \\\\\nX_A &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(X_A) &= \\frac{(8)(0.5)(0.23)}{(0.25)[1 + (0.05)(8)]} \\\\\n&= \\frac{0.92}{0.35} \\\\\n&= 2.63\\ \\text{kg/m}^3\n\\end{aligned}$$",
    "subtopic": "Activated sludge biomass concentration (kinetic design)",
    "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "122 mg/L",
+    "89 mg/L",
+    "34 mg/L",
+    "211 mg/L"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "explanation": "The \\(\\text{CO}_2\\) reaction and the calcium carbonate hardness reaction each use 1 mol of \\(\\text{Ca(OH)}_2\\) per mole removed. Counting only the hardness gives 89, counting only the \\(\\text{CO}_2\\) gives 34, and doubling the hardness term (the magnesium ratio) gives 211.",
+   "id": "water-062",
+   "question": "A groundwater contains 20 mg/L of dissolved \\(\\text{CO}_2\\) and 120 mg/L (as \\(\\text{CaCO}_3\\)) of calcium carbonate hardness. Using lime-soda softening, what lime dose, as \\(\\text{Ca(OH)}_2\\), is needed to remove both the \\(\\text{CO}_2\\) and the calcium carbonate hardness? (Molecular weights: \\(\\text{CO}_2\\) 44.01, \\(\\text{CaCO}_3\\) 100.09, \\(\\text{Ca(OH)}_2\\) 74.09 g/mol.)",
+   "solution": "Refer to the Lime-Soda Softening Equations section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the lime dose. The handbook lime-soda softening reactions for these two constituents are:\n\n$$\\begin{aligned}\n\\text{CO}_2 + \\text{Ca(OH)}_2 &\\\\ \\rightarrow \\text{CaCO}_3 + \\text{H}_2\\text{O} \\\\\n\\text{Ca(HCO}_3)_2 + \\text{Ca(OH)}_2 &\\\\ \\rightarrow 2\\,\\text{CaCO}_3 + 2\\,\\text{H}_2\\text{O}\n\\end{aligned}$$\n\nEach reaction uses 1 mol of \\(\\text{Ca(OH)}_2\\) per mole of \\(\\text{CO}_2\\) or of calcium bicarbonate hardness. Hardness in mg/L as \\(\\text{CaCO}_3\\) converts to moles with 100.09 g/mol.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{CO}_2 &= 20\\ \\text{mg/L} \\\\\n\\text{Ca hardness} &= 120\\ \\text{mg/L as CaCO}_3 \\\\\n\\text{Lime dose} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n\\text{Lime for CO}_2 &= \\frac{20}{44.01}(74.09) \\\\\n&= 33.7\\ \\text{mg/L} \\\\\n\\text{Lime for hardness} &= \\frac{120}{100.09}(74.09) \\\\\n&= 88.8\\ \\text{mg/L} \\\\\n\\text{Total} &= 33.7 + 88.8 \\\\\n&= 122\\ \\text{mg/L}\n\\end{aligned}$$",
+   "subtopic": "Lime-soda softening (CO2 and calcium carbonate hardness)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "104 mg/L",
+    "133 mg/L",
+    "178 mg/L",
+    "59 mg/L"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "Calcium carbonate hardness uses 1 mol of lime per mole, but magnesium carbonate hardness uses 2 mol. Counting 1 mol for both gives 104, doubling the calcium instead gives 178, and treating only the magnesium gives 59.",
+   "id": "water-063",
+   "question": "A water has no free \\(\\text{CO}_2\\), 100 mg/L (as \\(\\text{CaCO}_3\\)) of calcium carbonate hardness, and 40 mg/L (as \\(\\text{CaCO}_3\\)) of magnesium carbonate hardness. What lime dose, as \\(\\text{Ca(OH)}_2\\), is needed to remove all of this carbonate hardness by lime-soda softening? (\\(\\text{CaCO}_3\\) = 100.09 g/mol and \\(\\text{Ca(OH)}_2\\) = 74.09 g/mol.)",
+   "solution": "Refer to the Lime-Soda Softening Equations section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the lime dose. The handbook reactions are:\n\n$$\\begin{aligned}\n\\text{Ca(HCO}_3)_2 + \\text{Ca(OH)}_2 &\\\\ \\rightarrow 2\\,\\text{CaCO}_3 + 2\\,\\text{H}_2\\text{O} \\\\\n\\text{Mg(HCO}_3)_2 + 2\\,\\text{Ca(OH)}_2 &\\\\ \\rightarrow 2\\,\\text{CaCO}_3 + \\text{Mg(OH)}_2 \\\\ &\\quad + 2\\,\\text{H}_2\\text{O}\n\\end{aligned}$$\n\nCalcium carbonate hardness needs 1 mol of \\(\\text{Ca(OH)}_2\\) per mole. Magnesium carbonate hardness needs 2 mol per mole.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{Ca carbonate hardness} &= 100\\ \\text{mg/L} \\\\ &\\quad \\text{as CaCO}_3 \\\\\n\\text{Mg carbonate hardness} &= 40\\ \\text{mg/L} \\\\ &\\quad \\text{as CaCO}_3 \\\\\n\\text{Lime dose} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n\\text{Lime} &= \\frac{100 + 2(40)}{100.09}(74.09) \\\\\n&= \\frac{180}{100.09}(74.09) \\\\\n&= 133\\ \\text{mg/L}\n\\end{aligned}$$",
+   "subtopic": "Lime-soda softening (magnesium carbonate hardness)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 2,
+   "choices": [
+    "5.25 m/h",
+    "0.0019 m/s",
+    "7.0 m/h",
+    "14.0 m/h"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The filtration rate is the flow divided by the plan area of the filters in service. Using all four filters gives \\(5.25\\ \\text{m/h}\\), leaving the answer in m/s gives \\(0.0019\\), and doubling the flow gives \\(14.0\\).",
+   "id": "water-064",
+   "question": "A treatment plant passes 0.35 m\\(^3\\)/s through four identical rapid sand filters, each with a plan area of 60 m\\(^2\\). With one filter out of service for backwashing, what is the filtration rate through each of the other three?",
+   "solution": "Refer to the Filtration Equations section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the filtration rate. The handbook defines it as the empty-bed approach velocity:\n\n$$v_s = \\frac{Q}{A_{plan}}$$\n\nWith one of the four filters out of service, the flow passes through three filters.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ &= 0.35\\ \\text{m}^3/\\text{s} \\\\\nA_{plan} &= 3(60) = 180\\ \\text{m}^2 \\\\\nv_s &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(v_s) &= \\frac{0.35}{180} \\\\\n&= 0.001944\\ \\text{m/s} \\\\\n&\\rightarrow 0.001944(3{,}600) \\\\\n&= 7.0\\ \\text{m/h}\n\\end{aligned}$$",
+   "subtopic": "Rapid filtration rate (one filter in backwash)",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 3,
+   "choices": [
+    "1.5 mm/s",
+    "60 mm/s",
+    "67 mm/s",
+    "15 mm/s"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The backwash velocity is the backwash flow divided by the plan area of the bed. Reading the answer in the wrong unit gives 1.5, an area factor of 4 gives 60, and inverting the ratio gives 67.",
+   "id": "water-065",
+   "question": "A rapid sand filter with a plan area of 60 m\\(^2\\) is backwashed at 0.90 m\\(^3\\)/s. What is the backwash velocity?",
+   "solution": "Refer to the Filtration Equations section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the backwash velocity. The handbook gives:\n\n$$v_B = \\frac{Q_B}{A_{plan}}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ_B &= 0.90\\ \\text{m}^3/\\text{s} \\\\\nA_{plan} &= 60\\ \\text{m}^2 \\\\\nv_B &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(v_B) &= \\frac{0.90}{60} \\\\\n&= 0.015\\ \\text{m/s} \\\\\n&= 15\\ \\text{mm/s}\n\\end{aligned}$$",
+   "subtopic": "Filter backwash velocity",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "2.25 mm/s",
+    "0.56 mm/s",
+    "3.60 mm/s",
+    "4.49 mm/s"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Stokes' law uses the density difference (\\(2{,}652 - 998\\)) and the diameter squared. Using the radius in place of the diameter gives 0.56, using the particle density alone gives 3.60, and using \\(9\\) in place of \\(18\\) in the denominator gives 4.49.",
+   "id": "water-066",
+   "question": "A spherical silt particle with a diameter of 0.050 mm and a density of 2,650 kg/m\\(^3\\) settles in still water at 20 °C (density 998 kg/m\\(^3\\), dynamic viscosity 1.002 × 10\\(^{-3}\\) Pa·s). Assuming laminar settling, what is the terminal settling velocity?",
+   "solution": "Refer to the Settling Equations section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the terminal settling velocity. For laminar settling of a sphere the handbook gives Stokes' law:\n\n$$v_t = \\frac{g(\\rho_p - \\rho_f)d^2}{18\\mu}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\ng &= 9.81\\ \\text{m/s}^2 \\\\\n\\rho_p &= 2{,}650\\ \\text{kg/m}^3 \\\\\n\\rho_f &= 998\\ \\text{kg/m}^3 \\\\\nd &= 0.050\\ \\text{mm} = 5.0 \\times 10^{-5}\\ \\text{m} \\\\\n\\mu &= 1.002 \\times 10^{-3}\\ \\text{Pa}\\cdot\\text{s} \\\\\nv_t &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(v_t) &= \\frac{9.81(2{,}650 - 998)(5.0 \\times 10^{-5})^2}{18(1.002 \\times 10^{-3})} \\\\\n&= 0.00225\\ \\text{m/s} \\\\\n&= 2.25\\ \\text{mm/s}\n\\end{aligned}$$",
+   "subtopic": "Stokes' law settling velocity",
+   "topic": "Water Resources"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "24.0 kN",
+    "33.9 kN",
+    "26.8 kN",
+    "17.0 kN"
+   ],
+   "diagram": "diagrams/statics-038.svg",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The strut is a two-force member, so its force acts along BD. Moments about A give the vertical component (\\(24\\ \\text{kN}\\)), and the strut force is that divided by \\(\\sin 45^\\circ\\). Using only the vertical component gives 24.0, giving the pin force at A gives 26.8, and using the full \\(4\\ \\text{m}\\) beam length as the strut's moment arm gives 17.0.",
+   "id": "statics-038",
+   "question": "A horizontal beam AC is 4 m long. It is pinned to a vertical wall at A and pinned at its midpoint B to a strut BD. The other end D of the strut is pinned to the same wall 2 m directly below A, so the strut makes a 45° angle with the beam. A 12 kN downward load acts at end C. What is the force in strut BD?",
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for the force in strut BD. The strut is pinned at both ends and carries no other load, so it is a two-force member and its force acts along line BD. Draw the free-body diagram of beam AC and write the moment equilibrium equation from the handbook about pin A:\n\n$$\\sum M_A = 0$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nP &= 12\\ \\text{kN at C}, \\quad AC = 4\\ \\text{m} \\\\\nAB &= 2\\ \\text{m}, \\quad \\theta = 45^\\circ \\\\\nF_{BD} &= ?\n\\end{aligned}$$\n\nOnly the vertical component of the strut force has a moment arm about A:\n\n$$\\begin{aligned}\nF_{BD}\\sin 45^\\circ (2) - 12(4) &= 0 \\\\\nF_{BD} &= \\frac{48}{2\\sin 45^\\circ} \\\\\n&= 33.9\\ \\text{kN}\n\\end{aligned}$$\n\nThe strut pushes up and to the right on the beam, so it is in compression.",
+   "subtopic": "Frame with a two-force member",
+   "topic": "Statics"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Stable and statically indeterminate to the third degree",
+    "Stable and statically determinate",
+    "Stable and statically indeterminate to the first degree",
+    "Stable and statically indeterminate to the second degree"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Count reaction components, not supports: each fixed base gives 3, so \\(r = 6\\). Then \\(3m + r = 15\\) exceeds \\(3j + c = 12\\) by three. Counting 2 components per fixed base would give first degree, and counting only 1 would give an unstable frame.",
+   "id": "structural-047",
+   "question": "A planar portal frame has two columns and one beam rigidly connected at the top corners, so it has 3 members and 4 joints (see the figure). Both column bases are fixed, and there are no internal hinges. How is the frame classified?",
+   "solution": "Refer to the Stability, Determinacy, and Classification of Structures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the frame. Use the handbook test for plane frames with \\(m\\) members, \\(j\\) joints, \\(r\\) reaction components, and \\(c\\) equations of condition:\n\n$$\\begin{aligned}\n3m + r &< 3j + c \\Rightarrow \\text{unstable} \\\\\n3m + r &= 3j + c \\Rightarrow \\text{determinate} \\\\\n3m + r &> 3j + c \\Rightarrow \\text{indeterminate}\n\\end{aligned}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nm &= 3, \\quad j = 4 \\\\\nr &= 3 + 3 = 6 \\\\\nc &= 0\n\\end{aligned}$$\n\n$$\\begin{aligned}\n3m + r &= 3(3) + 6 = 15 \\\\\n3j + c &= 3(4) + 0 = 12 \\\\\n15 - 12 &= 3\n\\end{aligned}$$\n\nSince \\(3m + r\\) exceeds \\(3j + c\\) by 3, the frame is statically indeterminate to the third degree. It is also stable: the rigid corners and fixed bases hold the frame in a fixed shape with no mechanism, so the count gives the degree of indeterminacy.",
+   "subtopic": "Frame determinacy classification (fixed-base portal)",
+   "topic": "Structural Engineering",
+   "diagram": "diagrams/structural-047.svg"
+  },
+  {
+   "answerIndex": 1,
+   "choices": [
+    "Stable and statically indeterminate to the first degree",
+    "Stable and statically determinate",
+    "Stable and statically indeterminate to the second degree",
+    "Unstable"
+   ],
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "explanation": "Pinned bases give \\(r = 4\\), and the hinge gives \\(c = 1\\). Then \\(3m + r = 16\\) equals \\(3j + c = 16\\), so the frame is determinate. Ignoring the hinge gives first degree, and counting the hinge as two conditions would give an unstable frame. The count is only a necessary check. Stability also needs the three hinges not to be collinear, which the problem states.",
+   "id": "structural-048",
+   "question": "A planar frame has two columns and a beam made of two segments joined by an internal hinge at midspan, so it has 4 members and 5 joints (see the figure). The column-to-beam corners are rigid, both column bases are pinned, and the two base pins and the midspan hinge do not lie on one straight line. How is the frame classified? Treat the hinge as one equation of condition.",
+   "solution": "Refer to the Stability, Determinacy, and Classification of Structures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the frame. Use the handbook test \\(3m + r\\) versus \\(3j + c\\) for plane frames.\n\nList the known parameters:\n\n$$\\begin{aligned}\nm &= 4, \\quad j = 5 \\\\\nr &= 2 + 2 = 4 \\\\\nc &= 1\n\\end{aligned}$$\n\n$$\\begin{aligned}\n3m + r &= 3(4) + 4 = 16 \\\\\n3j + c &= 3(5) + 1 = 16\n\\end{aligned}$$\n\nSince \\(3m + r = 3j + c\\), the count is consistent with a determinate frame. The count alone does not prove stability, so check the geometry. Each half of the frame is a rigid body pinned to the ground at its base, and the two halves are joined by the midspan hinge. With the two base pins and the midspan hinge not in a straight line, this is a stable three-hinged frame. The statement gives that non-collinear geometry, so the frame is stable and statically determinate.",
+   "subtopic": "Frame determinacy classification (three-hinged portal)",
+   "topic": "Structural Engineering",
+   "diagram": "diagrams/structural-048.svg"
   }
  ]
 }
