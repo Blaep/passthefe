@@ -203,6 +203,20 @@ reg(buildGenerator({
   var dSum = F1 + F2;                 // trap: added the components as scalars
   var dNoRoot = F1 * F1 + F2 * F2;    // trap: skipped the square root
   var dDiff = Math.abs(F1 - F2);      // trap: subtracted instead of Pythagoras
+  // Setup diagram (never the answer): the two given forces at right angles
+  // acting on one point. The resultant is not drawn.
+  var d001 = (function () {
+    var ox = 150, oy = 250, k = 15, L1 = 40 + k * F1, L2 = 40 + k * F2, s = "";
+    s += SVG_HDR + AH;
+    s += '<line x1="' + ox + '" y1="' + oy + '" x2="' + (ox + L1) + '" y2="' + oy + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<line x1="' + ox + '" y1="' + oy + '" x2="' + ox + '" y2="' + (oy - L2) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<path d="M' + (ox + 16) + ',' + oy + ' L' + (ox + 16) + ',' + (oy - 16) + ' L' + ox + ',' + (oy - 16) + '" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>';
+    s += '<circle cx="' + ox + '" cy="' + oy + '" r="5" fill="#1a1a1a"/>';
+    s += '<text x="' + (ox + L1 + 12) + '" y="' + (oy + 6) + '" font-family="Georgia,serif" font-size="26" fill="#1d4ed8">' + F1 + ' N</text>';
+    s += '<text x="' + (ox + 14) + '" y="' + (oy - L2 + 6) + '" font-family="Georgia,serif" font-size="26" fill="#1d4ed8">' + F2 + ' N</text>';
+    s += '<text x="' + (ox - 22) + '" y="' + (oy + 22) + '" font-family="Georgia,serif" font-size="22" fill="#1a1a1a">A</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "Two perpendicular forces of " + F1 + " N and " + F2 +
     " N act at a point. What is the magnitude of their resultant?";
   var solution = "Refer to the Concurrent Forces section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
@@ -225,7 +239,8 @@ reg(buildGenerator({
       { label: fmt(dNoRoot) + " N", num: dNoRoot, correct: false },
       { label: fmt(dDiff) + " N", num: dDiff, correct: false }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d001
   };
 }));
 
@@ -429,6 +444,27 @@ reg(buildGenerator({
   var question = "A triangular distributed load varies from zero intensity at the " +
     (zeroLeft ? "left" : "right") + " end of a " + L + " m beam to a maximum intensity of " + w +
     " kN/m at the " + (zeroLeft ? "right" : "left") + " end. The equivalent concentrated resultant force acts at what distance from the left end of the beam?";
+  // Setup diagram (never the answer): beam, the triangular load with its
+  // zero and maximum ends, and the span. The resultant location is not drawn.
+  var d006 = (function () {
+    var x0 = 100, x1 = 540, by = 200, hMax = 100, svg = "", i, n = 8;
+    svg += SVG_HDR + AH;
+    svg += '<rect x="' + x0 + '" y="' + by + '" width="' + (x1 - x0) + '" height="10" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>';
+    for (i = 0; i <= n; i++) {
+      var x = x0 + (x1 - x0) * i / n;
+      var frac = zeroLeft ? i / n : 1 - i / n;
+      var h = hMax * frac;
+      if (h > 6) svg += '<line x1="' + x + '" y1="' + (by - h) + '" x2="' + x + '" y2="' + (by - 3) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    }
+    svg += '<line x1="' + x0 + '" y1="' + (zeroLeft ? by : by - hMax) + '" x2="' + x1 + '" y2="' + (zeroLeft ? by - hMax : by) + '" stroke="#1d4ed8" stroke-width="2.5"/>';
+    svg += '<text x="' + (zeroLeft ? x1 : x0) + '" y="' + (by - hMax - 12) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#1d4ed8">' + w + ' kN/m</text>';
+    svg += '<text x="' + (zeroLeft ? x0 : x1) + '" y="' + (by - 12) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#1d4ed8">0</text>';
+    svg += '<line x1="' + x0 + '" y1="250" x2="' + x1 + '" y2="250" stroke="#1a1a1a" stroke-width="1.2"/>';
+    svg += '<line x1="' + x0 + '" y1="242" x2="' + x0 + '" y2="258" stroke="#1a1a1a" stroke-width="1.5"/>';
+    svg += '<line x1="' + x1 + '" y1="242" x2="' + x1 + '" y2="258" stroke="#1a1a1a" stroke-width="1.5"/>';
+    svg += '<text x="' + ((x0 + x1) / 2) + '" y="282" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#1a1a1a">L = ' + L + ' m</text>';
+    return svgURL(svg + SVG_FTR);
+  })();
   var solution = "Refer to the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must locate the resultant of the triangular load. The resultant acts one-third of the length from the maximum-intensity side:\n\n" +
     "$$d_{\\text{from max}} = \\frac{" + L + "}{3} = " + fmt(r2(L / 3)) + "\\ \\text{m}$$\n\n" +
@@ -443,7 +479,8 @@ reg(buildGenerator({
       { label: fmt(dMid) + " m", num: dMid, correct: false },
       { label: fmt(dEnd) + " m", num: dEnd, correct: false }
     ],
-    solution: solution
+    solution: solution,
+    diagram: d006
   };
 }));
 
