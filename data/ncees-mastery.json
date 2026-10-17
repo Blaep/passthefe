@@ -22,7 +22,7 @@
     {
      "code": "1C",
      "label": "Vector operations",
-     "count": 7
+     "count": 8
     },
     {
      "code": "1D",
@@ -1162,7 +1162,8 @@
   "materials-042": "7C",
   "materials-043": "7B",
   "materials-044": "7B",
-  "materials-045": "7B"
+  "materials-045": "7B",
+  "math-040": "1C"
  },
  "offspec": [
   "math-003",
@@ -1210,8 +1211,7 @@
   "fluid-033",
   "materials-032",
   "materials-033",
-  "math-033",
-  "math-040"
+  "math-033"
  ],
  "spec": "NCEES FE Civil CBT Exam Specifications, effective July 2020"
 }
