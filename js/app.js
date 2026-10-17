@@ -1102,6 +1102,7 @@
         '<button id="hb-close" class="btn" aria-label="Close handbook">✕</button>' +
       "</div>" +
       '<div id="hb-results" class="hidden"></div>' +
+      '<p class="hb-hint">Tap a result to open that handbook page in a new tab.</p>' +
       '<iframe id="hb-frame" title="FE Reference Handbook v10.6"></iframe>';
     document.body.appendChild(pane);
     document.getElementById("hb-close").addEventListener("click", function () { hbSetOpen(false); });
@@ -1129,7 +1130,7 @@
     document.body.classList.toggle("hb-open", open);
     try { localStorage.setItem("hbPaneOpen", open ? "1" : "0"); } catch (e) {}
     var frame = document.getElementById("hb-frame");
-    if (open && !frame.getAttribute("src")) {
+    if (open && hbDesktop() && !frame.getAttribute("src")) {
       frame.setAttribute("src", HANDBOOK_PDF + (hbLastPdfPage ? "#page=" + hbLastPdfPage : ""));
     }
   }
@@ -1138,6 +1139,10 @@
     var pane = document.getElementById("handbook-pane");
     return !!pane && !pane.classList.contains("hidden");
   }
+
+  // Desktop gets the embedded two-screen PDF; on phones/tablets the PDF
+  // loads in a new tab instead — iOS freezes trying to render it in an iframe.
+  function hbDesktop() { return window.innerWidth >= 1100; }
 
   // Restore the panel on quiz views: last toggle wins; the exam sim opens it
   // by default on wide screens so it feels like the real two-screen exam.
@@ -1148,6 +1153,10 @@
 
   function hbGoPdfPage(pdfPage) {
     hbLastPdfPage = pdfPage;
+    if (!hbDesktop()) {
+      window.open(HANDBOOK_PDF + "#page=" + pdfPage, "_blank", "noopener");
+      return;
+    }
     hbEnsurePane();
     document.getElementById("hb-frame").setAttribute("src", HANDBOOK_PDF + "#page=" + pdfPage);
     document.getElementById("hb-results").classList.add("hidden");
