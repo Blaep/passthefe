@@ -11090,6 +11090,475 @@
    "subtopic": "Frame determinacy classification (three-hinged portal)",
    "topic": "Structural Engineering",
    "diagram": "diagrams/structural-048.svg"
+  },
+  {
+   "id": "transportation-035",
+   "topic": "Transportation Engineering",
+   "subtopic": "Work zone merging taper length",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A lane closure on a street with a posted speed of 35 mph requires a merging taper across a lane offset of 12 ft. What merging taper length equals L? (Table 6B-3 gives a merging taper as at least L.) MUTCD Table 6B-4 gives the taper length L in feet as L = WS\\(^2\\)/60 for S of 40 mph or less and L = WS for S of 45 mph or more, where W is the offset width in feet and S is the posted speed limit (or off-peak 85th-percentile speed or anticipated operating speed) in mph.",
+   "choices": [
+    "420 ft",
+    "122 ft",
+    "245 ft",
+    "81 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the merging taper length. MUTCD Table 6B-4 gives \\(L = \\dfrac{WS^2}{60}\\) for speeds of 40 mph or less and \\(L = WS\\) for 45 mph or more. Table 6B-3 says a merging taper is at least \\(L\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 12\\ \\text{ft} \\\\\nS &= 35\\ \\text{mph} \\\\\nL &= ?\n\\end{aligned}$$\n\nSince \\(S \\le 40\\) mph:\n\n$$\\begin{aligned}\nL &= \\frac{WS^2}{60} \\\\\n&= \\frac{(12)(35)^2}{60} \\\\\n&= 245\\ \\text{ft}\n\\end{aligned}$$",
+   "explanation": "For speeds of 40 mph or less, L = WS\\(^2\\)/60 (MUTCD Table 6B-4), and a merging taper is at least L (Table 6B-3). Using L = WS gives 420, using a shifting taper (0.5 L) gives 122, and using a shoulder taper (0.33 L) gives 81."
+  },
+  {
+   "id": "transportation-036",
+   "topic": "Transportation Engineering",
+   "subtopic": "Work zone merging taper length",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A freeway lane closure with a posted speed of 55 mph has a lane offset of 12 ft. What merging taper length equals L? (Table 6B-3 gives a merging taper as at least L.) MUTCD Table 6B-4 gives the taper length L in feet as L = WS\\(^2\\)/60 for S of 40 mph or less and L = WS for S of 45 mph or more, where W is the offset width in feet and S is the posted speed limit (or off-peak 85th-percentile speed or anticipated operating speed) in mph.",
+   "choices": [
+    "605 ft",
+    "330 ft",
+    "218 ft",
+    "660 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the merging taper length. MUTCD Table 6B-4 gives \\(L = WS\\) for speeds of 45 mph or more. A merging taper is at least \\(L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 12\\ \\text{ft} \\\\\nS &= 55\\ \\text{mph} \\\\\nL &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= WS \\\\\n&= (12)(55) \\\\\n&= 660\\ \\text{ft}\n\\end{aligned}$$",
+   "explanation": "For speeds of 45 mph or more, L = WS (MUTCD Table 6B-4), and a merging taper is at least L. Using WS\\(^2\\)/60 gives 605, a shifting taper gives 330, and a shoulder taper gives 218."
+  },
+  {
+   "id": "transportation-037",
+   "topic": "Transportation Engineering",
+   "subtopic": "Work zone shifting taper length",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A temporary lane shift on a road with a posted speed of 45 mph moves traffic laterally 10 ft. Table 6B-3 gives a shifting taper as at least 0.5 L. MUTCD Table 6B-4 gives the taper length L in feet as L = WS\\(^2\\)/60 for S of 40 mph or less and L = WS for S of 45 mph or more, where W is the offset width in feet and S is the posted speed limit (or off-peak 85th-percentile speed or anticipated operating speed) in mph. What is the shifting taper length equal to 0.5 L?",
+   "choices": [
+    "450 ft",
+    "169 ft",
+    "225 ft",
+    "148 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the shifting taper length. At 45 mph or more, \\(L = WS\\) (Table 6B-4). A shifting taper is at least \\(0.5L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 10\\ \\text{ft} \\\\\nS &= 45\\ \\text{mph} \\\\\nL_\\text{shift} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= WS = (10)(45) = 450\\ \\text{ft} \\\\\nL_\\text{shift} &= 0.5L \\\\\n&= 0.5(450) \\\\\n&= 225\\ \\text{ft}\n\\end{aligned}$$",
+   "explanation": "A shifting taper is at least 0.5 L (MUTCD Table 6B-3), and L = WS at 45 mph or more. Using the full merging length gives 450, applying the 40-mph-or-less formula gives 169, and using a shoulder taper gives 148."
+  },
+  {
+   "id": "transportation-038",
+   "topic": "Transportation Engineering",
+   "subtopic": "Work zone shoulder taper length",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 120,
+   "question": "A closed shoulder 10 ft wide is tapered on a road with a posted speed of 40 mph. Table 6B-3 gives a shoulder taper as at least 0.33 L. MUTCD Table 6B-4 gives the taper length L in feet as L = WS\\(^2\\)/60 for S of 40 mph or less and L = WS for S of 45 mph or more, where W is the offset width in feet and S is the posted speed limit (or off-peak 85th-percentile speed or anticipated operating speed) in mph. What is the shoulder taper length equal to 0.33 L? (Round to the nearest foot.)",
+   "choices": [
+    "133 ft",
+    "267 ft",
+    "400 ft",
+    "88 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the shoulder taper length. At 40 mph or less, \\(L = WS^2/60\\) (Table 6B-4). A shoulder taper is at least \\(0.33L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 10\\ \\text{ft} \\\\\nS &= 40\\ \\text{mph} \\\\\nL_\\text{shoulder} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= \\frac{(10)(40)^2}{60} = 266.7\\ \\text{ft} \\\\\nL_\\text{shoulder} &= 0.33L \\\\\n&= 0.33(266.7) \\\\\n&= 88\\ \\text{ft}\n\\end{aligned}$$",
+   "explanation": "A shoulder taper is at least 0.33 L (MUTCD Table 6B-3), and L = WS\\(^2\\)/60 at 40 mph or less, which gives L = 266.7 ft. Using 0.5 L gives 133, using the full L gives 267, and using L = WS gives 400."
+  },
+  {
+   "id": "transportation-039",
+   "topic": "Transportation Engineering",
+   "subtopic": "MUTCD color code",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 45,
+   "question": "According to the MUTCD color code, which color has the general meaning of temporary traffic control?",
+   "choices": [
+    "Yellow",
+    "Orange",
+    "Fluorescent pink",
+    "Green"
+   ],
+   "answerIndex": 1,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must match the color to its general meaning. MUTCD Section 1D.05 (Color Code) lists the general meaning of each color. Orange means temporary traffic control.\n\nThe other choices have different meanings. Yellow means warning. Fluorescent pink means incident management. Green means indicated movements or actions permitted and direction guidance.",
+   "explanation": "MUTCD Section 1D.05 assigns orange to temporary traffic control. Yellow is warning, fluorescent pink is incident management, and green is indicated movements or actions permitted and direction guidance.",
+   "conceptual": true
+  },
+  {
+   "id": "transportation-040",
+   "topic": "Transportation Engineering",
+   "subtopic": "Temporary traffic control zone areas",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "In a temporary traffic control zone, which area is the section of highway where road users are returned to their normal driving path?",
+   "choices": [
+    "Termination area",
+    "Advance warning area",
+    "Transition area",
+    "Activity area"
+   ],
+   "answerIndex": 0,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must identify which of the four areas of a TTC zone (MUTCD Section 6B.03) does this job.\n\nThe advance warning area informs road users of what is ahead. The transition area moves road users out of their normal path. The activity area contains the work space and traffic space. The termination area returns road users to their normal path.\n\nThe answer is the termination area (Section 6B.07).",
+   "explanation": "MUTCD Section 6B.07 defines the termination area as the section where road users return to their normal path, ending at the last TTC device such as END ROAD WORK signs. The advance warning area informs road users, the transition area moves them out of their normal path, and the activity area contains the work space and traffic space.",
+   "conceptual": true
+  },
+  {
+   "id": "transportation-041",
+   "topic": "Transportation Engineering",
+   "subtopic": "Downstream taper length",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "In the termination area of a temporary traffic control zone, a downstream taper may be used. Which length criterion does MUTCD Table 6B-3 give for a downstream taper?",
+   "choices": [
+    "At least L",
+    "At least 0.5 L",
+    "50 ft minimum, 100 ft maximum",
+    "At least 0.33 L"
+   ],
+   "answerIndex": 2,
+   "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must read the downstream taper criterion from MUTCD Table 6B-3 (Taper Length Criteria for Temporary Traffic Control Zones). A downstream taper may be useful in the termination area as a visual cue that the original lane is open again (Section 6B.08).\n\nTable 6B-3 gives a merging taper at least L, a shifting taper at least 0.5 L and a shoulder taper at least 0.33 L. A downstream taper does not use L. It has a 50 feet minimum and a 100 feet maximum length.",
+   "explanation": "MUTCD Table 6B-3 gives a downstream taper a length of 50 feet minimum and 100 feet maximum, not a multiple of L. A merging taper is at least L, a shifting taper is at least 0.5 L, and a shoulder taper is at least 0.33 L.",
+   "conceptual": true
+  },
+  {
+   "id": "water-067",
+   "topic": "Water Resources",
+   "subtopic": "Horton infiltration capacity",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 100,
+   "question": "Horton's equation gives the infiltration capacity as \\(f_p = f_\\infty + (f_0 - f_\\infty)e^{-k_d t}\\), where \\(f_0\\) is the initial capacity, \\(f_\\infty\\) is the final capacity and \\(k_d\\) is the decay coefficient. A soil has \\(f_0 = 4.0\\ \\text{in/hr}\\), \\(f_\\infty = 0.5\\ \\text{in/hr}\\) and \\(k_d = 3\\ \\text{hr}^{-1}\\). What is the infiltration capacity 0.5 hr after the start of the storm?",
+   "choices": [
+    "0.67 in/hr",
+    "2.25 in/hr",
+    "1.28 in/hr",
+    "3.46 in/hr"
+   ],
+   "answerIndex": 2,
+   "explanation": "The exponent is \\(k_d\\)t = 1.5, so \\(f_p\\) = 0.5 + 3.5\\(e^{-1.5}\\). Using t = 1 hr gives 0.67, averaging \\(f_0\\) and \\(f_\\infty\\) gives 2.25, and using t/\\(k_d\\) in the exponent gives 3.46.",
+   "solution": "Source: EPA SWMM Reference Manual Volume I, Hydrology (EPA/600/R-15/162A), Chapter 4, Horton's method, Equations 4-1 to 4-3 (https://downloads.tuflow.com/SWMM/SWMM5_Reference_Manual_Volume1_Hydrology_P100NYRA.pdf). Horton's equation is not in the FE Reference Handbook, so it is given in the question. This is supplemental practice.\n\nUltimately, we must find the infiltration capacity at \\(t = 0.5\\) hr.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nf_0 &= 4.0\\ \\text{in/hr} \\\\\nf_\\infty &= 0.5\\ \\text{in/hr} \\\\\nk_d &= 3\\ \\text{hr}^{-1} \\\\\nt &= 0.5\\ \\text{hr} \\\\\nf_p &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nf_p &= f_\\infty + (f_0 - f_\\infty)e^{-k_d t} \\\\\n&= 0.5 + (4.0 - 0.5)e^{-(3)(0.5)} \\\\\n&= 0.5 + 3.5(0.2231) \\\\\n&= 1.28\\ \\text{in/hr}\n\\end{aligned}$$"
+  },
+  {
+   "id": "water-068",
+   "topic": "Water Resources",
+   "subtopic": "Horton actual infiltration vs rainfall intensity",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 100,
+   "question": "Horton's equation gives the infiltration capacity as \\(f_p = f_\\infty + (f_0 - f_\\infty)e^{-k_d t}\\), where \\(f_0\\) is the initial capacity, \\(f_\\infty\\) is the final capacity and \\(k_d\\) is the decay coefficient. The actual infiltration rate is the lesser of the infiltration capacity and the rainfall intensity. A soil has \\(f_0 = 4.0\\ \\text{in/hr}\\), \\(f_\\infty = 0.5\\ \\text{in/hr}\\) and \\(k_d = 3\\ \\text{hr}^{-1}\\). At 0.5 hr into a storm the rainfall intensity is 1.0 in/hr. What is the actual infiltration rate?",
+   "choices": [
+    "1.28 in/hr",
+    "0.28 in/hr",
+    "2.28 in/hr",
+    "1.00 in/hr"
+   ],
+   "answerIndex": 3,
+   "explanation": "The capacity at 0.5 hr is 1.28 in/hr, which is more than the rainfall intensity of 1.0 in/hr, so all the rain infiltrates and the actual rate is 1.00 in/hr (no runoff). Choosing the capacity gives 1.28, taking the difference gives 0.28, and adding the two gives 2.28.",
+   "solution": "Source: EPA SWMM Reference Manual Volume I, Hydrology (EPA/600/R-15/162A), Chapter 4, Horton's method, Equations 4-1 to 4-3 (https://downloads.tuflow.com/SWMM/SWMM5_Reference_Manual_Volume1_Hydrology_P100NYRA.pdf). Horton's equation is not in the FE Reference Handbook, so it is given in the question. This is supplemental practice.\n\nUltimately, we must find the actual infiltration rate, which is the lesser of the capacity and the rainfall intensity.\n\nFirst the capacity at \\(t = 0.5\\) hr:\n\n$$\\begin{aligned}\nf_p &= 0.5 + (4.0 - 0.5)e^{-(3)(0.5)} \\\\\n&= 1.28\\ \\text{in/hr}\n\\end{aligned}$$\n\nThen compare with the rainfall intensity:\n\n$$\\begin{aligned}\nf &= \\min(f_p,\\ i) \\\\\n&= \\min(1.28,\\ 1.0) \\\\\n&= 1.00\\ \\text{in/hr}\n\\end{aligned}$$"
+  },
+  {
+   "id": "water-069",
+   "topic": "Water Resources",
+   "subtopic": "Horton cumulative infiltration",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "Horton's equation gives the infiltration capacity as \\(f_p = f_\\infty + (f_0 - f_\\infty)e^{-k_d t}\\), where \\(f_0\\) is the initial capacity, \\(f_\\infty\\) is the final capacity and \\(k_d\\) is the decay coefficient. Integrating gives the cumulative infiltration capacity \\(F = f_\\infty t + \\dfrac{f_0 - f_\\infty}{k_d}\\left(1 - e^{-k_d t}\\right)\\). A soil has \\(f_0 = 4.0\\ \\text{in/hr}\\), \\(f_\\infty = 0.5\\ \\text{in/hr}\\) and \\(k_d = 3\\ \\text{hr}^{-1}\\). What is the cumulative infiltration capacity over the first 1 hr, assuming infiltration equals capacity throughout?",
+   "choices": [
+    "3.83 in",
+    "1.61 in",
+    "1.67 in",
+    "0.67 in"
+   ],
+   "answerIndex": 1,
+   "explanation": "The integral of the capacity curve is the area under it. Leaving out the division by \\(k_d\\) gives 3.83, dropping the exponential term gives 1.67, and reporting the capacity at 1 hr (a rate, not a depth) gives 0.67.",
+   "solution": "Source: EPA SWMM Reference Manual Volume I, Hydrology (EPA/600/R-15/162A), Chapter 4, Horton's method, Equations 4-1 to 4-3 (https://downloads.tuflow.com/SWMM/SWMM5_Reference_Manual_Volume1_Hydrology_P100NYRA.pdf). Horton's equation is not in the FE Reference Handbook, so it is given in the question. This is supplemental practice.\n\nUltimately, we must find the cumulative infiltration depth over \\(1\\) hr.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nf_0 &= 4.0\\ \\text{in/hr} \\\\\nf_\\infty &= 0.5\\ \\text{in/hr} \\\\\nk_d &= 3\\ \\text{hr}^{-1} \\\\\nt &= 1\\ \\text{hr} \\\\\nF &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nF &= f_\\infty t + \\frac{f_0 - f_\\infty}{k_d}\\left(1 - e^{-k_d t}\\right) \\\\\n&= 0.5(1) + \\frac{3.5}{3}\\left(1 - e^{-3}\\right) \\\\\n&= 0.5 + 1.1667(0.9502) \\\\\n&= 1.61\\ \\text{in}\n\\end{aligned}$$"
+  },
+  {
+   "id": "geotech-050",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Drilled shaft base resistance in clay",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "FHWA GEC 10 gives the nominal unit base resistance of a drilled shaft in cohesive soil as \\(q_{BN} = N_c^* s_u\\), where \\(s_u\\) is the mean undrained shear strength over 2B below the base. For a shaft depth of at least 3 diameters and \\(s_u\\) of at least 2,000 psf, \\(N_c^* = 9.0\\). A drilled shaft is 4 ft in diameter and 40 ft deep, with \\(s_u = 3{,}000\\ \\text{psf}\\) below the base. What is the nominal base resistance?",
+   "choices": [
+    "339 kips",
+    "1,357 kips",
+    "245 kips",
+    "432 kips"
+   ],
+   "answerIndex": 0,
+   "explanation": "Since the depth (40 ft) is more than 3 diameters (12 ft) and \\(s_u\\) is above 2,000 psf, \\(N_c^*\\) = 9.0. The base area is \\(\\pi B^2/4\\). Using \\(\\pi B^2\\) for the area gives 1,357, using \\(N_c^*\\) = 6.5 gives 245, and using B\\(^2\\) for the area gives 432.",
+   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find the nominal base resistance \\(R_{BN}\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 4\\ \\text{ft} \\\\\ns_u &= 3{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= N_c^* s_u \\\\\n&= 9.0(3{,}000) \\\\\n&= 27{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 27{,}000\\left(\\frac{\\pi (4)^2}{4}\\right) \\\\\n&= 339{,}292\\ \\text{lb} \\\\\n&= 339\\ \\text{kips}\n\\end{aligned}$$"
+  },
+  {
+   "id": "geotech-051",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Drilled shaft base resistance (shallow, D < 3B)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "For a drilled shaft in cohesive soil with depth D less than 3 diameters B, FHWA GEC 10 gives \\(q_{BN} = \\frac{2}{3}\\left[1 + \\frac{1}{6}\\frac{D}{B}\\right]N_c^* s_u\\). For \\(s_u\\) of at least 2,000 psf, \\(N_c^* = 9.0\\). A drilled shaft is 5 ft in diameter and 10 ft deep, with \\(s_u = 2{,}000\\ \\text{psf}\\) below the base. What is the nominal base resistance?",
+   "choices": [
+    "353 kips",
+    "314 kips",
+    "255 kips",
+    "236 kips"
+   ],
+   "answerIndex": 1,
+   "explanation": "Here D/B = 2, which is less than 3, so the reduced expression applies and the factor is 0.8889. Ignoring the reduction (using \\(N_c^*\\)\\(s_u\\) alone) gives 353, inverting D/B gives 255, and dropping the (1/6)(D/B) term gives 236.",
+   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find \\(R_{BN}\\). Since \\(D/B = 10/5 = 2 < 3\\), use the shallow-shaft expression.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 5\\ \\text{ft} \\\\\nD &= 10\\ \\text{ft} \\\\\ns_u &= 2{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= \\frac{2}{3}\\left[1 + \\frac{1}{6}\\left(\\frac{D}{B}\\right)\\right]N_c^* s_u \\\\\n&= \\frac{2}{3}\\left[1 + \\frac{1}{6}(2)\\right](9.0)(2{,}000) \\\\\n&= 16{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 16{,}000\\left(\\frac{\\pi (5)^2}{4}\\right) \\\\\n&= 314{,}159\\ \\text{lb} \\\\\n&= 314\\ \\text{kips}\n\\end{aligned}$$"
+  },
+  {
+   "id": "construction-038",
+   "topic": "Construction Engineering",
+   "subtopic": "Project delivery methods (design-build)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Which project delivery method combines design and construction services into a single contract with one entity?",
+   "choices": [
+    "Design-bid-build",
+    "Design-build",
+    "Construction manager/general contractor (CM/GC)",
+    "Unit-price bidding"
+   ],
+   "answerIndex": 1,
+   "explanation": "FHWA describes design-build as a delivery method that combines two usually separate services, design and construction, into a single contract. In design-bid-build the owner (or its consultant) designs the project and then awards a construction contract to the lowest responsive bidder. In CM/GC there are two phases, design and construction. Unit-price bidding is a payment method, not a delivery method.",
+   "solution": "Source: FHWA (Alternative Project Delivery, Design-Build and CM/GC pages, and the FHWA Design-Build Effectiveness Study glossary): https://www.fhwa.dot.gov/ipd/alternative_project_delivery/defined/new_build_facilities/design_build.aspx , https://www.fhwa.dot.gov/construction/contracts/acm/cmgc.cfm , https://www.fhwa.dot.gov/reports/designbuild/designbuilda1.htm . Supplemental practice; the FE Reference Handbook does not cover project delivery methods.\n\nUltimately, we must match the delivery method to its contract structure.\n\nDesign-build combines two usually separate services, architectural/engineering design and construction, in a single contract. The design-builder takes responsibility for most of the design and all of the construction.\n\nDesign-bid-build separates them: the owner designs (or hires a designer), solicits bids and awards construction to the lowest responsive bidder. CM/GC has a design phase and a construction phase, with the contractor advising during design.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-039",
+   "topic": "Construction Engineering",
+   "subtopic": "Project delivery methods (CM/GC)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 75,
+   "question": "In the construction manager/general contractor (CM/GC) delivery method, what does the contractor do during the design phase?",
+   "choices": [
+    "Acts as a consultant giving constructability and pricing feedback",
+    "Completes the design and the construction under one lump-sum contract",
+    "Waits for the design to be complete and then bids against other contractors",
+    "Has no role until a price is agreed by the owner"
+   ],
+   "answerIndex": 0,
+   "explanation": "FHWA describes CM/GC as having a design phase and a construction phase. During design the contractor acts as a consultant, offering constructability and pricing feedback and identifying risks. When the owner considers the design complete, the contractor has an opportunity to bid, and if the price is judged fair the contractor becomes the general contractor.",
+   "solution": "Source: FHWA (Alternative Project Delivery, Design-Build and CM/GC pages, and the FHWA Design-Build Effectiveness Study glossary): https://www.fhwa.dot.gov/ipd/alternative_project_delivery/defined/new_build_facilities/design_build.aspx , https://www.fhwa.dot.gov/construction/contracts/acm/cmgc.cfm , https://www.fhwa.dot.gov/reports/designbuild/designbuilda1.htm . Supplemental practice; the FE Reference Handbook does not cover project delivery methods.\n\nUltimately, we must recall the contractor's role during the design phase of CM/GC.\n\nIn the design phase the contractor is a consultant to the owner. The contractor gives constructability and pricing feedback on design options and identifies risks from its means and methods. This also lets the owner take an active part in design decisions.\n\nAfter the design is complete, the contractor can bid based on the completed design. If the owner, designer and an independent cost estimator agree the price is fair, the owner issues a construction contract and the construction manager becomes the general contractor.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-040",
+   "topic": "Construction Engineering",
+   "subtopic": "Design-build best-value (adjusted bid)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A design-build procurement uses an adjusted bid. Technical proposals are scored from 0 to 1, and the adjusted bid is the price divided by the technical score. The lowest adjusted bid wins, but the winner is paid its stated price. Offeror A has a technical score of 0.9 and a price of USD 50 million. Offeror B has a technical score of 0.75 and a price of USD 44 million. Which statement is correct?",
+   "choices": [
+    "B wins because its price is lower, and it is paid USD 44 million",
+    "A wins, with an adjusted bid of USD 55.6 million versus USD 58.7 million for B",
+    "A wins, with an adjusted bid of USD 45.0 million versus USD 33.0 million for B",
+    "B wins, with an adjusted bid of USD 33.0 million versus USD 45.0 million for A"
+   ],
+   "answerIndex": 1,
+   "explanation": "The adjusted bid is price divided by technical score: A is 50/0.9 = 55.6 and B is 44/0.75 = 58.7. A has the lower adjusted bid, so A wins even though B's price is lower, and A is paid its stated USD 50 million. Multiplying price by score gives 45.0 and 33.0, which reverses the ranking incorrectly.",
+   "solution": "Source: FHWA (Alternative Project Delivery, Design-Build and CM/GC pages, and the FHWA Design-Build Effectiveness Study glossary): https://www.fhwa.dot.gov/ipd/alternative_project_delivery/defined/new_build_facilities/design_build.aspx , https://www.fhwa.dot.gov/construction/contracts/acm/cmgc.cfm , https://www.fhwa.dot.gov/reports/designbuild/designbuilda1.htm . Supplemental practice; the FE Reference Handbook does not cover project delivery methods.\n\nUltimately, we must compare the adjusted bids. The adjusted bid is the price divided by the technical score (FHWA Design-Build Effectiveness Study glossary, Adjusted Bid).\n\n$$\\begin{aligned}\n\\text{A} &= \\frac{50}{0.9} = 55.6\\ \\text{million} \\\\\n\\text{B} &= \\frac{44}{0.75} = 58.7\\ \\text{million}\n\\end{aligned}$$\n\nThe lowest adjusted bid wins, so A is selected. The adjusted bid is used only for the award. A is paid its stated price of USD 50 million."
+  },
+  {
+   "id": "materials-037",
+   "topic": "Materials",
+   "subtopic": "Asphalt mixture air voids",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "The air voids of a compacted asphalt mixture are \\(V_a = \\left(1 - \\dfrac{G_{mb}}{G_{mm}}\\right)(100)\\), where \\(G_{mb}\\) is the bulk specific gravity of the compacted mixture, \\(G_{mm}\\) is the maximum specific gravity of the mixture, \\(P_s\\) is the aggregate content as a percent by mass of the total mixture, and \\(G_{sb}\\) is the aggregate bulk specific gravity. A compacted sample has \\(G_{mb} = 2.350\\) and \\(G_{mm} = 2.470\\). What are the air voids?",
+   "choices": [
+    "5.1%",
+    "0.1%",
+    "4.9%",
+    "95.1%"
+   ],
+   "answerIndex": 2,
+   "explanation": "Va = (1 - 2.35/2.47)(100) = 4.9 percent. Inverting the ratio gives 5.1, subtracting the specific gravities and reading the result as a percent gives 0.1, and forgetting to subtract from 1 gives 95.1.",
+   "solution": "Source: FHWA, A Review of Aggregate and Asphalt Mixture Specific Gravity Measurements and Their Impacts on Asphalt Mix Design Properties and Mix Acceptance (FHWA-HIF-11-033), Equations 1 to 3 (https://www.fhwa.dot.gov/pavement/materials/pubs/hif11033/hif11033.pdf). The asphalt mixture volumetric equations are not in the FE Reference Handbook 10.6 (I searched for VMA, air voids and Gmb), so they are given in the question. Supplemental practice.\n\nUltimately, we must find the air voids \\(V_a\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nG_{mb} &= 2.350 \\\\\nG_{mm} &= 2.470 \\\\\nV_a &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nV_a &= \\left(1 - \\frac{G_{mb}}{G_{mm}}\\right)(100) \\\\\n&= \\left(1 - \\frac{2.350}{2.470}\\right)(100) \\\\\n&= 4.9\\%\n\\end{aligned}$$"
+  },
+  {
+   "id": "materials-038",
+   "topic": "Materials",
+   "subtopic": "Asphalt mixture VMA",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "The voids in the mineral aggregate of a compacted asphalt mixture are \\(VMA = 100 - \\dfrac{G_{mb}P_s}{G_{sb}}\\), where \\(G_{mb}\\) is the bulk specific gravity of the compacted mixture, \\(G_{mm}\\) is the maximum specific gravity of the mixture, \\(P_s\\) is the aggregate content as a percent by mass of the total mixture, and \\(G_{sb}\\) is the aggregate bulk specific gravity. A mixture has \\(G_{mb} = 2.350\\), \\(P_s = 95.0\\) percent and \\(G_{sb} = 2.650\\). What is the VMA?",
+   "choices": [
+    "15.8%",
+    "84.2%",
+    "95.6%",
+    "99.2%"
+   ],
+   "answerIndex": 0,
+   "explanation": "VMA = 100 - (2.35)(95.0)/2.65 = 15.8 percent. Forgetting to subtract from 100 gives 84.2, using the binder content (100 - P\\(_s\\)) in place of P\\(_s\\) gives 95.6, and dividing the product by 100 gives 99.2.",
+   "solution": "Source: FHWA, A Review of Aggregate and Asphalt Mixture Specific Gravity Measurements and Their Impacts on Asphalt Mix Design Properties and Mix Acceptance (FHWA-HIF-11-033), Equations 1 to 3 (https://www.fhwa.dot.gov/pavement/materials/pubs/hif11033/hif11033.pdf). The asphalt mixture volumetric equations are not in the FE Reference Handbook 10.6 (I searched for VMA, air voids and Gmb), so they are given in the question. Supplemental practice.\n\nUltimately, we must find \\(VMA\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nG_{mb} &= 2.350 \\\\\nP_s &= 95.0\\% \\\\\nG_{sb} &= 2.650 \\\\\nVMA &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nVMA &= 100 - \\frac{G_{mb}P_s}{G_{sb}} \\\\\n&= 100 - \\frac{(2.350)(95.0)}{2.650} \\\\\n&= 15.8\\%\n\\end{aligned}$$"
+  },
+  {
+   "id": "materials-039",
+   "topic": "Materials",
+   "subtopic": "Asphalt mixture VFA",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "For a compacted asphalt mixture, \\(V_a = \\left(1 - \\dfrac{G_{mb}}{G_{mm}}\\right)(100)\\), \\(VMA = 100 - \\dfrac{G_{mb}P_s}{G_{sb}}\\) and \\(VFA = \\dfrac{VMA - V_a}{VMA}(100)\\), where \\(G_{mb}\\) is the bulk specific gravity of the compacted mixture, \\(G_{mm}\\) is the maximum specific gravity of the mixture, \\(P_s\\) is the aggregate content as a percent by mass of the total mixture, and \\(G_{sb}\\) is the aggregate bulk specific gravity. A mixture has \\(G_{mb} = 2.350\\), \\(G_{mm} = 2.470\\), \\(P_s = 95.0\\) percent and \\(G_{sb} = 2.650\\). What is the VFA?",
+   "choices": [
+    "10.9%",
+    "30.8%",
+    "224.3%",
+    "69.2%"
+   ],
+   "answerIndex": 3,
+   "explanation": "First Va = 4.86% and VMA = 15.75%. Then VFA = (15.75 - 4.86)/15.75 x 100 = 69.2 percent. Reporting VMA - Va (the effective binder volume) gives 10.9, dividing Va by VMA gives 30.8, and dividing by Va instead of VMA gives 224.3.",
+   "solution": "Source: FHWA, A Review of Aggregate and Asphalt Mixture Specific Gravity Measurements and Their Impacts on Asphalt Mix Design Properties and Mix Acceptance (FHWA-HIF-11-033), Equations 1 to 3 (https://www.fhwa.dot.gov/pavement/materials/pubs/hif11033/hif11033.pdf). The asphalt mixture volumetric equations are not in the FE Reference Handbook 10.6 (I searched for VMA, air voids and Gmb), so they are given in the question. Supplemental practice.\n\nUltimately, we must find \\(VFA\\), which needs \\(V_a\\) and \\(VMA\\) first.\n\n$$\\begin{aligned}\nV_a &= \\left(1 - \\frac{2.350}{2.470}\\right)(100) = 4.86\\% \\\\\nVMA &= 100 - \\frac{(2.350)(95.0)}{2.650} = 15.75\\%\n\\end{aligned}$$\n\n$$\\begin{aligned}\nVFA &= \\frac{VMA - V_a}{VMA}(100) \\\\\n&= \\frac{15.75 - 4.86}{15.75}(100) \\\\\n&= 69.2\\%\n\\end{aligned}$$"
+  },
+  {
+   "id": "transportation-042",
+   "topic": "Transportation Engineering",
+   "subtopic": "Trip generation (average rate)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A proposed retail building has 120,000 square feet of floor area. For this problem, assume the average weekday PM peak hour rate is 3.5 vehicle trips per 1,000 square feet. How many PM peak hour vehicle trips does the building generate?",
+   "choices": [
+    "420,000 trips",
+    "420 trips",
+    "34 trips",
+    "840 trips"
+   ],
+   "answerIndex": 1,
+   "explanation": "Trips = rate x independent variable, with the floor area in thousands of square feet: 3.5 x 120 = 420. Using the area in square feet gives 420,000, dividing gives 34, and doubling the result gives 840.",
+   "solution": "Source for the method: TxDOT Traffic Safety/Design manual, Chapter 16, Section 16.4 Analysis Methodology (https://www.txdot.gov/content/txdotoms/us/en/manuals/des/tsp/chapter-16-traffic-impact-analysis-/16-4-analysis-methodology.html): trips are generated from average rates or a fitted-curve equation for an independent variable, and a pass-by percentage is applied to the vehicle trips generated minus any internal capture. The rates and equation values in this question are assumed for practice and are not from the ITE Trip Generation Manual (paywalled). Supplemental practice, not handbook-based.\n\nUltimately, we must find the trips generated.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{Rate} &= 3.5\\ \\text{trips per 1{,}000 sq ft} \\\\\nX &= 120{,}000\\ \\text{sq ft} = 120\\ (1{,}000\\ \\text{sq ft}) \\\\\nT &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nT &= (\\text{rate})(X) \\\\\n&= (3.5)(120) \\\\\n&= 420\\ \\text{trips}\n\\end{aligned}$$"
+  },
+  {
+   "id": "transportation-043",
+   "topic": "Transportation Engineering",
+   "subtopic": "Trip generation (fitted curve)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 105,
+   "question": "A residential development has 250 dwelling units. For this problem, assume the fitted-curve equation for daily vehicle trips is \\(\\ln(T) = 0.8\\ln(X) + 1.2\\), where \\(T\\) is the number of trips and \\(X\\) is the number of dwelling units. How many daily vehicle trips are generated?",
+   "choices": [
+    "5.6 trips",
+    "201 trips",
+    "275 trips",
+    "99 trips"
+   ],
+   "answerIndex": 2,
+   "explanation": "Evaluate the right side, ln(T) = 0.8(ln 250) + 1.2 = 5.617, then take the exponential: T = 275. Reporting ln(T) itself gives 5.6, treating the equation as linear gives 201, and multiplying instead of adding the constant gives 99.",
+   "solution": "Source for the method: TxDOT Traffic Safety/Design manual, Chapter 16, Section 16.4 Analysis Methodology (https://www.txdot.gov/content/txdotoms/us/en/manuals/des/tsp/chapter-16-traffic-impact-analysis-/16-4-analysis-methodology.html): trips are generated from average rates or a fitted-curve equation for an independent variable, and a pass-by percentage is applied to the vehicle trips generated minus any internal capture. The rates and equation values in this question are assumed for practice and are not from the ITE Trip Generation Manual (paywalled). Supplemental practice, not handbook-based.\n\nUltimately, we must find \\(T\\) from the fitted curve.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nX &= 250\\ \\text{units} \\\\\na &= 0.8,\\quad b = 1.2 \\\\\nT &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n\\ln(T) &= 0.8\\ln(250) + 1.2 \\\\\n&= 5.617 \\\\\nT &= e^{5.617} \\\\\n&= 275\\ \\text{trips}\n\\end{aligned}$$"
+  },
+  {
+   "id": "transportation-044",
+   "topic": "Transportation Engineering",
+   "subtopic": "Trip generation (internal capture and pass-by)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A development generates 1,000 vehicle trips in the peak hour. For this problem, assume 10% of the trips are internal capture, and the pass-by percentage is 20% of the vehicle trips generated minus the internal capture. How many new (primary) trips does the development add to the surrounding street network?",
+   "choices": [
+    "720 trips",
+    "700 trips",
+    "800 trips",
+    "180 trips"
+   ],
+   "answerIndex": 0,
+   "explanation": "Internal capture removes 100 trips, leaving 900. The pass-by trips are 20% of 900, or 180, so the new trips are 720. Subtracting both percentages from the original total gives 700, ignoring internal capture gives 800, and reporting only the pass-by trips gives 180.",
+   "solution": "Source for the method: TxDOT Traffic Safety/Design manual, Chapter 16, Section 16.4 Analysis Methodology (https://www.txdot.gov/content/txdotoms/us/en/manuals/des/tsp/chapter-16-traffic-impact-analysis-/16-4-analysis-methodology.html): trips are generated from average rates or a fitted-curve equation for an independent variable, and a pass-by percentage is applied to the vehicle trips generated minus any internal capture. The rates and equation values in this question are assumed for practice and are not from the ITE Trip Generation Manual (paywalled). Supplemental practice, not handbook-based.\n\nUltimately, we must find the new trips. The pass-by percentage applies to the trips generated minus the internal capture.\n\n$$\\begin{aligned}\nG &= 1{,}000 \\\\\n\\text{Internal capture} &= 10\\% \\\\\n\\text{Pass-by} &= 20\\%\n\\end{aligned}$$\n\n$$\\begin{aligned}\n\\text{Net} &= 1{,}000(1 - 0.1) = 900 \\\\\n\\text{Pass-by} &= 900(0.2) = 180 \\\\\n\\text{New} &= 900 - 180 \\\\\n&= 720\n\\end{aligned}$$"
+  },
+  {
+   "id": "materials-040",
+   "topic": "Materials",
+   "subtopic": "Wood moisture content",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "The moisture content of wood is the mass of water divided by the mass of the oven-dry wood, as a percentage, so \\(MC = \\dfrac{m_{wet} - m_{dry}}{m_{dry}}(100)\\). A wood specimen has a mass of 580 g at its current moisture content and 450 g after oven drying. What is its moisture content?",
+   "choices": [
+    "22.4%",
+    "28.9%",
+    "130.0%",
+    "0.29%"
+   ],
+   "answerIndex": 1,
+   "explanation": "The water mass is 580 - 450 = 130 g, and the moisture content is 130/450 x 100 = 28.9 percent. Dividing by the wet mass gives 22.4, reporting the water mass as a percent gives 130.0, and forgetting to multiply by 100 gives 0.29.",
+   "solution": "Source: USDA Forest Products Laboratory, Wood Handbook: Wood as an Engineering Material (FPL-GTR-282), Chapter 4, Moisture Relations and Physical Properties of Wood (https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/chapter_04_fpl_gtr282.pdf). Wood moisture and shrinkage are not in the FE Reference Handbook 10.6 text I searched. Supplemental practice.\n\nUltimately, we must find the moisture content.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nm_{wet} &= 580\\ \\text{g} \\\\\nm_{dry} &= 450\\ \\text{g} \\\\\nMC &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nMC &= \\frac{m_{wet} - m_{dry}}{m_{dry}}(100) \\\\\n&= \\frac{580 - 450}{450}(100) \\\\\n&= 28.9\\%\n\\end{aligned}$$"
+  },
+  {
+   "id": "materials-041",
+   "topic": "Materials",
+   "subtopic": "Wood shrinkage direction",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "As wood dries below the fiber saturation point, in which direction does it shrink the most?",
+   "choices": [
+    "Radial, across the growth rings",
+    "Longitudinal, along the grain",
+    "Tangential to the growth rings",
+    "All three directions equally"
+   ],
+   "answerIndex": 2,
+   "explanation": "Wood is anisotropic. The Wood Handbook says it shrinks most in the direction of the annual growth rings (tangentially), about half as much across the rings (radially), and only slightly along the grain. Longitudinal shrinkage from green to oven-dry is generally 0.1 to 0.2 percent.",
+   "solution": "Source: USDA Forest Products Laboratory, Wood Handbook: Wood as an Engineering Material (FPL-GTR-282), Chapter 4, Moisture Relations and Physical Properties of Wood (https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/chapter_04_fpl_gtr282.pdf). Wood moisture and shrinkage are not in the FE Reference Handbook 10.6 text I searched. Supplemental practice.\n\nUltimately, we must rank the shrinkage directions of wood.\n\nBelow the fiber saturation point, wood shrinks most tangentially (along the growth rings). Radial shrinkage across the rings is about half as large as tangential. Longitudinal shrinkage along the grain is very small, generally 0.1 to 0.2 percent from green to oven-dry.\n\nSo the greatest shrinkage is tangential.",
+   "conceptual": true
+  },
+  {
+   "id": "materials-042",
+   "topic": "Materials",
+   "subtopic": "Wood fiber saturation point",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "The fiber saturation point of wood is the moisture content below which most wood properties start to change. About what moisture content is it, on average?",
+   "choices": [
+    "10%",
+    "30%",
+    "60%",
+    "100%"
+   ],
+   "answerIndex": 1,
+   "explanation": "The Wood Handbook says the point below which most wood properties start to change averages about 30 percent moisture content, though it varies by several percentage points among species and pieces. Wood properties do not change with moisture content above this point.",
+   "solution": "Source: USDA Forest Products Laboratory, Wood Handbook: Wood as an Engineering Material (FPL-GTR-282), Chapter 4, Moisture Relations and Physical Properties of Wood (https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/chapter_04_fpl_gtr282.pdf). Wood moisture and shrinkage are not in the FE Reference Handbook 10.6 text I searched. Supplemental practice.\n\nUltimately, we must recall the average fiber saturation point.\n\nAbove the fiber saturation point, physical and mechanical properties of wood do not change with moisture content. Below it, wood begins to shrink and its properties change. The average value is about 30 percent moisture content.",
+   "conceptual": true
+  },
+  {
+   "id": "materials-043",
+   "topic": "Materials",
+   "subtopic": "Concrete slump test purpose",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 45,
+   "question": "What does the concrete slump test (AASHTO T 119 / ASTM C143) determine?",
+   "choices": [
+    "The compressive strength of the hardened concrete",
+    "The consistency of the fresh concrete",
+    "The air content of the fresh concrete",
+    "The unit weight of the hardened concrete"
+   ],
+   "answerIndex": 1,
+   "explanation": "The FHWA lab manual says the slump test is used to determine the consistency of concrete, in other words how wet or dry it is. Strength comes from cylinder tests, and air content has its own pressure or volumetric test.",
+   "solution": "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.\n\nUltimately, we must state what the slump test measures.\n\nThe test determines and monitors the consistency of plastic hydraulic cement concrete, meaning how wet or dry it is. The slump value is generally specified in the project documents.",
+   "conceptual": true
+  },
+  {
+   "id": "materials-044",
+   "topic": "Materials",
+   "subtopic": "Concrete slump test procedure",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 60,
+   "question": "In the standard slump test (AASHTO T 119 / ASTM C143), how is the cone filled and consolidated?",
+   "choices": [
+    "Three equal layers by volume, each rodded 25 times",
+    "Two equal layers, each rodded 15 times",
+    "Three equal layers by volume, each rodded 10 times",
+    "One layer, rodded 25 times"
+   ],
+   "answerIndex": 0,
+   "explanation": "The FHWA lab manual describes filling the cone in three equal layers by volume, rodding each layer 25 times, keeping the final layer heaped, striking off the top, and lifting the cone straight up in 5 plus or minus 2 seconds.",
+   "solution": "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.\n\nUltimately, we must recall the filling procedure for the slump cone.\n\nThe cone is filled in three equal layers by volume. Each layer is rodded 25 times. The second and third layers are rodded to penetrate about an inch into the layer below. After the final layer the top is struck off and the cone is lifted straight up in 5 plus or minus 2 seconds.",
+   "conceptual": true
+  },
+  {
+   "id": "materials-045",
+   "topic": "Materials",
+   "subtopic": "Concrete slump reporting",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 60,
+   "question": "A slump test gives a measured slump of 98 mm. The standard reports slump to the nearest 5 mm. What value is recorded?",
+   "choices": [
+    "95 mm",
+    "98 mm",
+    "100 mm",
+    "105 mm"
+   ],
+   "answerIndex": 2,
+   "explanation": "The FHWA lab manual says the slump is measured and recorded to the nearest 5 mm (1/4 in.). 98 mm is 2 mm from 100 mm and 3 mm from 95 mm, so 100 mm is recorded.",
+   "solution": "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.\n\nUltimately, we must round the measured slump to the nearest 5 mm.\n\nThe slump is recorded to the nearest 5 mm [1/4 in.]. The two nearest multiples of 5 are 95 mm and 100 mm.\n\n$$\\begin{aligned}\n98 - 95 &= 3\\ \\text{mm} \\\\\n100 - 98 &= 2\\ \\text{mm}\n\\end{aligned}$$\n\n98 mm is closer to 100 mm, so 100 mm is recorded.",
+   "conceptual": true
   }
  ]
 }
