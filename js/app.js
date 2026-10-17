@@ -72,7 +72,7 @@
   // ---- router ------------------------------------------------------------
   function route() {
     stopQuizTimer(); // navigating away freezes the live timer; resume restarts it
-    if (typeof exam !== "undefined" && exam && exam.tick) pauseExamTimer(); // exam sim pauses off-view
+    if (typeof exam !== "undefined" && exam && exam.tick) pauseExamTimer("leave"); // untimed exam pauses off-view; a timed clock keeps running
     loadCitationLinks(); // fire-and-forget so solution citations can deep-link
     // Deep links look like #/reference#eq-<id>: the view first, then the anchor.
     var parts = (location.hash || "#/").replace("#/", "").split("#");
@@ -3097,8 +3097,20 @@
   }
 
   // ---- exam persistence ----------------------------------------------------
+  // Timed clock: the deadline (endAt) is the source of truth while the clock
+  // is running, so timeLeft never depends on how many interval ticks fired.
+  function examClockRunning() {
+    return !!(exam && exam.timed && !exam.breakActive && (exam.tick || exam.leaveRunning));
+  }
+  function syncExamClock() {
+    if (examClockRunning() && exam.endAt) {
+      exam.timeLeft = Math.max(0, Math.ceil((exam.endAt - Date.now()) / 1000));
+    }
+  }
+
   function saveExamProgress() {
     if (!exam || exam.submitted || !exam.list.length) { store.set("examResume", null); return; }
+    syncExamClock();
     store.set("examResume", {
       v: 1,
       qids: exam.list.map(function (q) { return q.id; }),
@@ -3108,6 +3120,7 @@
       idx: exam.idx,
       timeLeft: Math.round(exam.timeLeft),
       timed: !!exam.timed,
+      running: examClockRunning(), // timed clock was counting down when saved
       elapsed: Math.round(exam.elapsed || 0),
       breakUsed: exam.breakUsed,
       startedAt: exam.startedAt,
@@ -3119,10 +3132,16 @@
 
   function clearExamResume() { store.set("examResume", null); }
 
-  function pauseExamTimer() {
+  // pauseExamTimer("leave"): the user left the exam screen. A timed clock
+  // keeps running (the deadline stays in force and resume deducts the time
+  // away); untimed exams still pause. Without the argument the clock is
+  // frozen (review screen).
+  function pauseExamTimer(why) {
     if (!exam || !exam.tick) return;
+    syncExamClock();
     clearInterval(exam.tick);
     exam.tick = null;
+    exam.leaveRunning = (why === "leave" && !!exam.timed && !exam.breakActive);
     saveExamProgress();
   }
 
@@ -3156,6 +3175,18 @@
         seed: saved.seed, // carried through so code-gen keeps working
         seedPrior: saved.seedPrior
       };
+      // A timed clock that was running when saved kept running while the
+      // page was closed or left: deduct the time away. Older saves have no
+      // "running" flag and resume exactly where they stopped.
+      if (exam.timed && saved.running === true && typeof saved.savedAt === "number") {
+        exam.timeLeft = Math.max(0, exam.timeLeft - Math.floor((Date.now() - saved.savedAt) / 1000));
+      }
+      if (exam.timed && exam.timeLeft <= 0) {
+        showExamScreen("exam-run");
+        toast("Time expired while you were away — submitting your exam.");
+        submitExam(true);
+        return;
+      }
       showExamScreen("exam-run");
       renderExamRun();
       startExamTimer();
@@ -3279,7 +3310,7 @@
   // long-standing behavior is unchanged unless the user picks Untimed.
   function examModeNote() {
     return examMode === "timed"
-      ? "Like test day: 5h20m countdown, auto-submits at zero."
+      ? "Like test day: 5h20m countdown, auto-submits at zero. The clock keeps running if you leave or close the page."
       : "No countdown, no auto-submit — elapsed time is shown instead. Same 110 questions, same scoring.";
   }
   function showExamScreen(id) {
@@ -3386,7 +3417,7 @@
   // Back out of a live exam to the Exams list. The attempt is saved first,
   // so it stays resumable from its card.
   function examGoBack() {
-    pauseExamTimer();
+    pauseExamTimer("leave");
     saveExamProgress();
     showExamScreen("exam-setup");
     renderExamSetup();
@@ -3424,6 +3455,8 @@
 
   function startExamTimer() {
     if (!exam || exam.tick || exam.submitted) return;
+    exam.leaveRunning = false;
+    if (exam.timed) exam.endAt = Date.now() + exam.timeLeft * 1000;
     exam.tick = setInterval(examTick, 1000);
   }
 
@@ -3438,7 +3471,7 @@
     }
     var tEl = document.getElementById("exam-timer");
     if (exam.timed) {
-      exam.timeLeft--;
+      exam.timeLeft = Math.max(0, Math.ceil((exam.endAt - Date.now()) / 1000));
       if (tEl) {
         tEl.textContent = fmtClock(exam.timeLeft);
         tEl.classList.toggle("low", exam.timeLeft <= 600);
@@ -3578,6 +3611,7 @@
   // ---- scheduled break -------------------------------------------------------
   function startBreak() {
     if (!exam || exam.submitted || exam.breakUsed || exam.breakActive) return;
+    syncExamClock();
     exam.breakActive = true;
     exam.breakUsed = true;
     exam.breakLeft = EXAM_BREAK_SECS;
@@ -3592,6 +3626,7 @@
   function endBreak() {
     if (!exam || !exam.breakActive) return;
     exam.breakActive = false;
+    if (exam.timed) exam.endAt = Date.now() + exam.timeLeft * 1000; // clock resumes after the break
     document.getElementById("exam-break-overlay").classList.add("hidden");
     saveExamProgress();
     toast("Break over — timer resumed.");
@@ -3600,7 +3635,7 @@
   // ---- review + submit -------------------------------------------------------
   function examReviewScreen() {
     if (!exam || exam.submitted) return;
-    pauseExamTimer();
+    if (!exam.timed) pauseExamTimer(); // untimed pauses here; a timed clock keeps running
     var box = document.getElementById("exam-review");
     var flagged = [], unanswered = [];
     exam.list.forEach(function (q, i) {
@@ -3619,7 +3654,7 @@
     var html = "<h3>Review before submitting</h3>" +
       '<p class="lede">' + examAnsweredCount() + " of " + exam.list.length + " answered · " +
       flagged.length + " flagged · " +
-      (exam.timed ? fmtClock(exam.timeLeft) + " left on the clock."
+      (exam.timed ? '<b id="exam-timer">' + fmtClock(exam.timeLeft) + "</b> left on the clock."
                   : fmtClock(exam.elapsed) + " elapsed (untimed).") + "</p>" +
       "<h4>Flagged for review</h4>" + rowList(flagged, "flagged") +
       "<h4>Unanswered</h4>" + rowList(unanswered, "unanswered") +
@@ -3797,6 +3832,7 @@
   window.addEventListener("pagehide", function () { if (exam && exam.tick) saveExamProgress(); });
   document.addEventListener("visibilitychange", function () {
     if (document.hidden && exam && exam.tick) saveExamProgress();
+    else if (!document.hidden && exam && exam.tick && exam.timed && !exam.breakActive) examTick(); // catch up now
   });
 
   // One completed quiz = one logged session (score, scope, missed question ids).
