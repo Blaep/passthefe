@@ -28,6 +28,7 @@
     "12 N",
     "25 N"
    ],
+   "diagram": "diagrams/statics-001.svg",
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The classic 3-4-5 triangle appears constantly in statics. Recognizing Pythagorean triples saves time.",
