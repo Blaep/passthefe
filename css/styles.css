@@ -112,6 +112,7 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .choices li:hover { border-color: var(--primary); background: #f5f8ff; }
 .solution { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #dfe2ec; color: var(--text); }
 .explain-head { font-weight: 800; font-size: 1.05rem; margin: 14px 0 4px; }
+.explain-body { overflow-wrap: anywhere; }
 .explain-body p { margin: 0 0 10px; }
 .explain-body p:last-child { margin-bottom: 0; }
 .ti-callout {
