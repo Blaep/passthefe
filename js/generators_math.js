@@ -585,7 +585,11 @@
     var k2 = k * k, k3 = k2 * k;
     var solution =
       "Refer to the Integral Calculus section in the Mathematics chapter of the FE Reference Handbook.\n\n" +
-      "Ultimately, we must solve for the enclosed area \\(A\\). The curves intersect where \\(x^2 = " + k + "x\\), i.e. at \\(x = 0\\) and \\(x = " + k + "\\), and \\(" + k + "x \\geq x^2\\) between them:\n\n" +
+      "Ultimately, we must solve for the enclosed area \\(A\\). The limits of integration are the \\(x\\)-values where the two curves cross, so start there.\n\n" +
+      "Step 1 - find the limits. Set the two functions equal, move everything to one side, and factor:\n\n" +
+      "$$x^2 = " + k + "x \\;\\Rightarrow\\; x^2 - " + k + "x = 0 \\;\\Rightarrow\\; x(x - " + k + ") = 0$$\n\n" +
+      "So the curves cross at \\(x = 0\\) and \\(x = " + k + "\\). These are the lower and upper limits. (Plugging back in gives the points \\((0, 0)\\) and \\((" + k + ", " + k2 + ")\\), the two corners of the shaded region in the figure.)\n\n" +
+      "Step 2 - find which curve is on top. Test any \\(x\\) between the limits, such as \\(x = 1\\): the line gives \\(y = " + k + "\\) and the parabola gives \\(y = 1\\). The line is higher, so \\(" + k + "x \\geq x^2\\) on the whole interval and the integrand is (top - bottom) = \\(" + k + "x - x^2\\):\n\n" +
       "$$A = \\int_{0}^{" + k + "} (" + k + "x - x^2) \\, dx = \\left[" + texFrac(k, 2) + "x^2 - \\frac{x^3}{3}\\right]_{0}^{" + k + "}$$\n\n" +
       "List the known and unknown parameters:\n\n" +
       "$$\\begin{aligned}\n\\text{lower bound} &= 0 \\\\\n\\text{upper bound} &= " + k + " \\\\\nA &= ?\n\\end{aligned}$$\n\n" +
