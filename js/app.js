@@ -1102,10 +1102,24 @@
         '<button id="hb-close" class="btn" aria-label="Close handbook">✕</button>' +
       "</div>" +
       '<div id="hb-results" class="hidden"></div>' +
-      '<p class="hb-hint">Tap a result to open that handbook page in a new tab.</p>' +
-      '<iframe id="hb-frame" title="FE Reference Handbook v10.6"></iframe>';
+      '<div class="hb-reader">' +
+        '<div class="hb-pagenav">' +
+          '<button type="button" class="btn" id="hb-prev" aria-label="Previous page">‹</button>' +
+          '<span id="hb-pageind">–</span>' +
+          '<button type="button" class="btn" id="hb-next" aria-label="Next page">›</button>' +
+          '<button type="button" class="btn" id="hb-zout" aria-label="Zoom out">−</button>' +
+          '<button type="button" class="btn" id="hb-zin" aria-label="Zoom in">+</button>' +
+        "</div>" +
+        '<div class="hb-pagescroll" id="hb-pagescroll">' +
+          '<img id="hb-pageimg" alt="Handbook page">' +
+        "</div>" +
+      "</div>";
     document.body.appendChild(pane);
     document.getElementById("hb-close").addEventListener("click", function () { hbSetOpen(false); });
+    document.getElementById("hb-prev").addEventListener("click", function () { hbShowPdfPage(hbCurPdf - 1); });
+    document.getElementById("hb-next").addEventListener("click", function () { hbShowPdfPage(hbCurPdf + 1); });
+    document.getElementById("hb-zin").addEventListener("click", function () { hbZoomBy(0.5); });
+    document.getElementById("hb-zout").addEventListener("click", function () { hbZoomBy(-0.5); });
     var search = document.getElementById("hb-search"), deb = null;
     search.addEventListener("input", function () {
       clearTimeout(deb);
@@ -1129,20 +1143,13 @@
     pane.classList.toggle("hidden", !open);
     document.body.classList.toggle("hb-open", open);
     try { localStorage.setItem("hbPaneOpen", open ? "1" : "0"); } catch (e) {}
-    var frame = document.getElementById("hb-frame");
-    if (open && hbDesktop() && !frame.getAttribute("src")) {
-      frame.setAttribute("src", HANDBOOK_PDF + (hbLastPdfPage ? "#page=" + hbLastPdfPage : ""));
-    }
+    if (open && !hbCurPdf) hbShowPdfPage(HANDBOOK_PAGE_OFFSET + 1); // printed p. 1
   }
 
   function hbIsOpen() {
     var pane = document.getElementById("handbook-pane");
     return !!pane && !pane.classList.contains("hidden");
   }
-
-  // Desktop gets the embedded two-screen PDF; on phones/tablets the PDF
-  // loads in a new tab instead — iOS freezes trying to render it in an iframe.
-  function hbDesktop() { return window.innerWidth >= 1100; }
 
   // Restore the panel on quiz views: last toggle wins; the exam sim opens it
   // by default on wide screens so it feels like the real two-screen exam.
@@ -1151,16 +1158,49 @@
     if (pref === "1" || (pref === null && defaultOpen && window.innerWidth >= 1100)) hbSetOpen(true);
   }
 
-  function hbGoPdfPage(pdfPage) {
-    hbLastPdfPage = pdfPage;
-    if (!hbDesktop()) {
-      window.open(HANDBOOK_PDF + "#page=" + pdfPage, "_blank", "noopener");
-      return;
-    }
-    hbEnsurePane();
-    document.getElementById("hb-frame").setAttribute("src", HANDBOOK_PDF + "#page=" + pdfPage);
+  // Page-image reader: every handbook page is a pre-rendered WebP
+  // (handbook/pages/pg-NNN.webp, NNN = PDF page). Seamless on phones —
+  // no PDF plugin, no new tabs, no iframe freeze.
+  var HB_TOTAL_PAGES = 506;
+  var hbCurPdf = 0, hbZoom = 1;
+
+  function hbPageFile(pdf) {
+    return "handbook/pages/pg-" + String(pdf).padStart(3, "0") + ".webp";
+  }
+
+  function hbPrintedLabel(pdf) {
+    var p = pdf - HANDBOOK_PAGE_OFFSET;
+    return p >= 1 ? "p. " + p : "front matter";
+  }
+
+  function hbShowPdfPage(pdf) {
+    pdf = Math.max(1, Math.min(HB_TOTAL_PAGES, parseInt(pdf, 10) || 1));
+    hbCurPdf = pdf;
+    hbLastPdfPage = pdf;
+    hbZoom = 1;
+    var img = document.getElementById("hb-pageimg");
+    img.style.width = "100%";
+    img.onerror = function () {
+      document.getElementById("hb-pageind").textContent = "page image missing";
+    };
+    img.src = hbPageFile(pdf);
+    document.getElementById("hb-pageind").textContent = hbPrintedLabel(pdf);
+    document.getElementById("hb-pagescroll").scrollTop = 0;
     document.getElementById("hb-results").classList.add("hidden");
+    var self = pdf;
+    [self - 1, self + 1].forEach(function (n) {
+      if (n >= 1 && n <= HB_TOTAL_PAGES) { var im = new Image(); im.src = hbPageFile(n); }
+    });
+  }
+
+  function hbZoomBy(d) {
+    hbZoom = Math.min(2.5, Math.max(1, hbZoom + d));
+    document.getElementById("hb-pageimg").style.width = (hbZoom * 100) + "%";
+  }
+
+  function hbGoPdfPage(pdfPage) {
     hbSetOpen(true);
+    hbShowPdfPage(pdfPage);
   }
 
   function hbSearch(q) {

@@ -647,7 +647,13 @@ span.bad { color: var(--error); font-weight: 700; }
 .hb-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid var(--border, #d5dbe7); }
 .hb-bar strong { white-space: nowrap; }
 #hb-search { flex: 1; min-width: 0; padding: 8px 10px; font-size: 16px; border: 1px solid var(--border, #d5dbe7); border-radius: 8px; }
-#hb-frame { flex: 1; width: 100%; border: 0; background: #fff; }
+.hb-reader { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.hb-pagenav { display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+  border-bottom: 1px solid var(--border, #d5dbe7); background: #fff; }
+.hb-pagenav .btn { padding: 4px 12px; font-size: 1.05em; line-height: 1.4; }
+#hb-pageind { flex: 1; text-align: center; font-weight: 600; }
+.hb-pagescroll { flex: 1; overflow: auto; background: #525659; -webkit-overflow-scrolling: touch; }
+#hb-pageimg { display: block; width: 100%; height: auto; background: #fff; }
 #hb-results { max-height: 42%; overflow-y: auto; border-bottom: 1px solid var(--border, #d5dbe7); }
 #hb-results.hidden { display: none; }
 .hb-hit { display: block; width: 100%; text-align: left; padding: 8px 12px; background: none; border: 0;
@@ -660,12 +666,4 @@ span.bad { color: var(--error); font-weight: 700; }
   body.hb-open { padding-right: 560px; }
 }
 
-/* Handbook panel on phones/tablets: search-only, no embedded PDF (iOS
-   freezes rendering the PDF in an iframe); results open in a new tab. */
-.hb-hint { display: none; margin: 0; padding: 6px 12px; font-size: .8em; color: #666;
-  border-bottom: 1px solid var(--border, #d5dbe7); }
-@media (max-width: 1099.98px) {
-  #hb-frame { display: none; }
-  #hb-results { max-height: none; flex: 1; border-bottom: 0; }
-  .hb-hint { display: block; }
-}
+/* (reader replaces the old iframe embed — no per-screen overrides needed) */
