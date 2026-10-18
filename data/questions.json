@@ -3533,7 +3533,7 @@
    "subtopic": "Terzaghi bearing capacity",
    "difficulty": "hard",
    "estimatedTimeSeconds": 150,
-   "question": "A 2-m-wide strip footing bears 1 m below the ground surface on a saturated clay with undrained shear strength c = 60 kPa (φ = 0) and total unit weight γ = 18 kN/m³. Using Terzaghi's bearing capacity theory, what is the ultimate bearing capacity of the soil?",
+   "question": "A 2-m-wide strip footing bears 1 m below the ground surface on a saturated clay with undrained shear strength c = 60 kPa (φ = 0) and total unit weight γ = 18 kN/m³. Using Terzaghi's bearing capacity theory, what is the ultimate bearing capacity of the soil? Use Terzaghi's factors for φ = 0: Nc = 5.7, Nq = 1.0, Nγ = 0.",
    "choices": [
     "360 kPa",
     "342 kPa",
@@ -3541,8 +3541,8 @@
     "378 kPa"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(q_{ult}\\). We can determine \\(q_{ult}\\) from the following equation:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\tfrac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 60\\ \\text{kPa} \\\\\n\\phi &= 0^\\circ \\; \\Rightarrow \\; N_c = 5.7,\\ N_q = 1.0,\\ N_{\\gamma} = 0 \\; (\\text{Terzaghi}) \\\\\nB &= 2\\ \\text{m} \\\\\nD_f &= 1\\ \\text{m} \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (60)(5.7) + (18)(1)(1.0) + 0 \\rightarrow (q_{ult}) = 342 + 18$$\n\n$$(q_{ult}) = 360\\ \\text{kPa}$$",
-   "explanation": "For φ = 0, Nγ = 0 so the width term vanishes, but the overburden term γD_fN_q still counts — dropping it gives 342 kPa. Use Terzaghi's N_c = 5.7, not the general 5.14 (which gives 326 kPa). Handbook table: also solvable with the Terzaghi bearing-capacity factors table in the Geotechnical chapter — read Nc = 5.7, Nq = 1.0, Nγ = 0 from the φ = 0° row to use in q_ult = cNc + γDfNq + ½γBNγ.",
+   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (printed p.270). The factor values are given in the problem.\n\nUltimately, we must solve for \\(q_{ult}\\). We can determine \\(q_{ult}\\) from the following equation:\n\n$$q_{ult} = cN_c + \\gamma D_f N_q + \\tfrac{1}{2}\\gamma B N_{\\gamma}$$\n\nList the known and unknown parameters in order to solve for \\(q_{ult}\\):\n\n$$\\begin{aligned}\nc &= 60\\ \\text{kPa} \\\\\n\\phi &= 0^\\circ \\; \\Rightarrow \\; N_c = 5.7,\\ N_q = 1.0,\\ N_{\\gamma} = 0 \\; (\\text{Terzaghi}) \\\\\nB &= 2\\ \\text{m} \\\\\nD_f &= 1\\ \\text{m} \\\\\n\\gamma &= 18\\ \\text{kN/m}^3 \\\\\nq_{ult} &= ?\n\\end{aligned}$$\n\n$$(q_{ult}) = (60)(5.7) + (18)(1)(1.0) + 0 \\rightarrow (q_{ult}) = 342 + 18$$\n\n$$(q_{ult}) = 360\\ \\text{kPa}$$",
+   "explanation": "For φ = 0, Nγ = 0 so the width term vanishes, but the overburden term γD_fN_q still counts — dropping it gives 342 kPa. Use Terzaghi's N_c = 5.7, not the general 5.14 (which gives 326 kPa). The handbook prints the equation and defines the factors (printed p.270) but gives no factor values, and a Terzaghi factor table was not located in 10.6, so the values come from the problem.",
    "diagram": "diagrams/geotech-012.svg",
    "videoUrl": "https://www.youtube.com/watch?v=J7hdkwijECA",
    "videoTitle": "Bearing Capacity of Soil EXPLAINED: Terzaghi, Meyerhof, Hansen, Vesic, Skempton & IS Code"
@@ -10609,7 +10609,7 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
-   "explanation": "Read the right column AND the right row: 37.2 is Nc, 19.7 is Nγ, and 2.7 is Nq for the wrong friction angle (10°). Handbook table: also solvable with the Terzaghi bearing-capacity factors table in the Geotechnical chapter — read Nq = 22.5 directly from the φ = 30° row.",
+   "explanation": "Read the right column AND the right row: 37.2 is Nc, 19.7 is Nγ, and 2.7 is Nq for the wrong friction angle (10°). The handbook prints the equation and defines Nq (printed p.270) but gives no factor values, and a Terzaghi factor table was not located in 10.6, so read Nq = 22.5 from the φ = 30° row of the excerpt in the problem.",
    "id": "geotech-048",
    "question": "A geotechnical report includes this excerpt from a Terzaghi bearing capacity factor table:\n\nφ = 30°: Nc = 37.2, Nq = 22.5, Nγ = 19.7\n(The table also lists Nq = 2.7 for φ = 10°.)\n\nFor a footing bearing on soil with an internal friction angle of 30°, what is the bearing capacity factor Nq?",
    "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6). where \\(N_q\\) is defined as the bearing capacity factor for depth (it multiplies the overburden term \\(\\gamma' D_f\\) in \\(q_{ULT} = cN_c + \\gamma' D_f N_q + \\tfrac{1}{2}\\gamma' B N_\\gamma\\)).\n\nUltimately, we must read \\(N_q\\) for \\(\\phi = 30^\\circ\\). From the \\(N_q\\) column at the \\(\\phi = 30^\\circ\\) row:\n\n$$N_q = 22.5$$",
