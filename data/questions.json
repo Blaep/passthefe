@@ -6957,7 +6957,8 @@
    "question": "A horizontal curve has a radius of 500 ft. Using the arc definition, what is the degree of curve?",
    "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe handbook (p. 308) prints the arc-definition relation in this exact form:\n\n$$R = \\frac{5729.58}{D}$$\n\nSolving for \\(D\\) (multiplying through by \\(D/R\\)) gives the working equation:\n\n$$D = \\frac{5729.58}{R}$$\n\nUltimately, we must solve for \\(D\\). The handbook prints, for the arc definition:\n\n$$D = \\frac{5729.58}{R}$$\n\n$$(D) = \\frac{5729.58}{500} = 11.46^\\circ$$",
    "subtopic": "Degree of curve (arc definition)",
-   "topic": "Surveying"
+   "topic": "Surveying",
+   "diagram": "diagrams/surveying-024.svg"
   },
   {
    "answerIndex": 2,
@@ -6991,7 +6992,8 @@
    "question": "At a signalized intersection, the curb-to-curb width is 60 ft, the design vehicle is 20 ft long, and the approach speed is 45 mph. What is the all-red clearance interval?",
    "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(r\\). The handbook prints:\n\n$$r = \\frac{W + l}{v}$$\n\nConvert the approach speed to ft/s:\n\n$$(v) = 45 \\text{ mph} \\times 1.46667 = 66 \\text{ ft/s}$$\n\n$$(r) = \\frac{60 + 20}{66} = \\frac{80}{66} = 1.21 \\text{ s} \\approx 1.2 \\text{ s}$$",
    "subtopic": "All-red clearance interval",
-   "topic": "Transportation Engineering"
+   "topic": "Transportation Engineering",
+   "diagram": "diagrams/transportation-024.svg"
   },
   {
    "answerIndex": 1,
@@ -7995,7 +7997,8 @@
    "question": "A rectangular area is 4 in. wide in the x-direction and 6 in. tall in the y-direction. By symmetry, its centroidal product of inertia is zero. What is the product of inertia about a pair of axes parallel to the centroidal axes, offset by 3 in. in x and 2 in. in y?",
    "solution": "Refer to the Product of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(I_{xy}\\). The handbook prints:\n\n$$I'_{xy} = I_{x_c y_c} + d_x d_y A$$\n\nThe area:\n\n$$(A) = (4)(6) = 24 \\text{ in}^2$$\n\nSubstituting (\\(I_{x_c y_c} = 0\\) by symmetry):\n\n$$(I_{xy}) = 0 + (3)(2)(24) = 144 \\text{ in}^4$$",
    "subtopic": "Product of inertia (parallel-axis)",
-   "topic": "Statics"
+   "topic": "Statics",
+   "diagram": "diagrams/statics-029.svg"
   },
   {
    "answerIndex": 1,
@@ -9709,7 +9712,8 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Real length = 3.25 × 40 = 130 ft. Dividing by the scale factor instead of multiplying gives 0.08 ft — always check that the answer is bigger than the paper measurement.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\times (\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\text{in} \\\\\n\\text{scale} &= 40\\\\ \\text{ft/in}\n\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\times (\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\text{in} \\\\\n\\text{scale} &= 40\\\\ \\text{ft/in}\n\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\text{ft}$$",
+   "diagram": "diagrams/construction-034.svg"
   },
   {
    "id": "construction-035",
@@ -9726,7 +9730,8 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Station 27+50 = 2,750 ft and 24+00 = 2,400 ft from the origin, so the length is 350 ft. The '+' separates hundreds of feet from tens and ones.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\begin{aligned}\n\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\text{ft} \\\\\n\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\text{ft}$$"
+   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\begin{aligned}\n\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\text{ft} \\\\\n\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\text{ft}$$",
+   "diagram": "diagrams/construction-035.svg"
   },
   {
    "id": "construction-036",
@@ -10534,7 +10539,8 @@
    "solution": "Refer to the Stability, Determinacy, and Classification of Structures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must classify the beam. Treat it as a plane frame with \\(m = 1\\) member and \\(j = 2\\) joints. Reaction components: fixed support \\(A = 3\\), roller \\(B = 1\\), so \\(r = 4\\); no internal hinges, so \\(c = 0\\). The handbook gives:\n\n$$3m + r = 3(1) + 4 = 7 \\qquad 3j + c = 3(2) + 0 = 6$$\n\nSince \\(3m + r > 3j + c\\) by exactly one, the beam (a propped cantilever) is stable and statically indeterminate to the first degree.",
    "subtopic": "Beam determinacy classification",
    "tiTip": "No — count and compare; there is no calculation for the calculator to shortcut.",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "diagram": "diagrams/structural-035.svg"
   },
   {
    "answerIndex": 0,
@@ -10797,7 +10803,8 @@
    "question": "An interior simply supported floor beam spans 30 ft and is spaced 8 ft on center from parallel beams. The floor carries a dead load of 90 psf and a live load of 60 psf (no live load reduction). Using the LRFD combination 1.2D + 1.6L, what is the maximum factored moment \\(M_u\\) in the beam?",
    "solution": "Refer to the Loads (ASCE 7-16) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(M_u\\). An interior beam supports half the floor on each side, so its tributary width equals the beam spacing:\n\n$$w_u = (1.2D + 1.6L)\\,(\\text{tributary width})$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nD &= 90\\ \\text{psf} \\\\\nL &= 60\\ \\text{psf} \\\\\n\\text{tributary width} &= 8\\ \\text{ft} \\\\\nw_u &= [1.2(90) + 1.6(60)](8) \\\\\n&= (204)(8) \\\\\n&= 1632\\ \\text{plf} = 1.632\\ \\text{klf} \\\\\nM_u &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(M_u) &= \\frac{w_u L^2}{8} \\\\\n&= \\frac{(1.632)(30)^2}{8} \\\\\n&= 183.6\\ \\text{kip-ft}\n\\end{aligned}$$",
    "subtopic": "Tributary width and LRFD factored moment",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "diagram": "diagrams/structural-045.svg"
   },
   {
    "answerIndex": 1,
@@ -10848,7 +10855,8 @@
    "question": "A stack emits a pollutant at Q = 5.0 x \\(10^7\\) ug/s with an effective stack height H = 40 m. At a point on the ground directly downwind on the plume centerline, the wind speed is u = 5.0 m/s and the dispersion parameters are \\(\\sigma_y\\) = 40 m and \\(\\sigma_z\\) = 20 m. What is the ground-level concentration?",
    "solution": "Refer to the Atmospheric Dispersion Modeling (Gaussian) section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C\\). At ground level (\\(z = 0\\)) on the centerline (\\(y = 0\\)) the two exponentials inside the handbook bracket are equal, so the Gaussian equation reduces to:\n\n$$C = \\frac{Q}{\\pi u \\sigma_y \\sigma_z}\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right)$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nQ &= 5.0 \\times 10^7\\ \\mu g/s \\\\\nu &= 5.0\\ \\text{m/s} \\\\\n\\sigma_y &= 40\\ \\text{m}, \\quad \\sigma_z = 20\\ \\text{m} \\\\\nH &= 40\\ \\text{m} \\\\\nC &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(C) &= \\frac{5.0 \\times 10^7}{\\pi (5.0)(40)(20)}\\exp\\left(-\\frac{1}{2}\\frac{(40)^2}{(20)^2}\\right) \\\\\n&= (3{,}979)(0.1353) \\\\\n&= 538\\ \\mu g/m^3\n\\end{aligned}$$",
    "subtopic": "Gaussian plume ground-level centerline concentration",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "diagram": "diagrams/water-055.svg"
   },
   {
    "answerIndex": 3,
@@ -10865,7 +10873,8 @@
    "question": "An elevated source (effective stack height H = 50 m) emits Q = 4.0 x \\(10^7\\) ug/s under neutral atmospheric conditions. The wind speed at stack height is u = 4.0 m/s and \\(\\sigma_y\\) = 45 m at the point of maximum ground-level concentration. What is the maximum ground-level concentration?",
    "solution": "Refer to the Atmospheric Dispersion Modeling (Gaussian) section in the Environmental Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C_{max}\\). For neutral conditions the handbook prints:\n\n$$\\begin{gathered}\nC_{max} = \\frac{Q}{\\pi u \\sigma_y \\sigma_z}\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right) \\\\\n\\sigma_z = \\frac{H}{\\sqrt{2}}\n\\end{gathered}$$\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\sigma_z &= \\frac{50}{\\sqrt{2}} = 35.36\\ \\text{m} \\\\\n\\exp\\left(-\\frac{1}{2}\\frac{H^2}{\\sigma_z^2}\\right) &= \\exp(-1) = 0.3679 \\\\\nC_{max} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\n(C_{max}) &= \\frac{4.0 \\times 10^7}{\\pi (4.0)(45)(35.36)}(0.3679) \\\\\n&= (2001)(0.3679) \\\\\n&= 736\\ \\mu g/m^3\n\\end{aligned}$$",
    "subtopic": "Maximum ground-level concentration (neutral conditions)",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "diagram": "diagrams/water-056.svg"
   },
   {
    "answerIndex": 0,
@@ -11106,7 +11115,8 @@
    ],
    "answerIndex": 2,
    "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the merging taper length. MUTCD Table 6B-4 gives \\(L = \\dfrac{WS^2}{60}\\) for speeds of 40 mph or less and \\(L = WS\\) for 45 mph or more. Table 6B-3 says a merging taper is at least \\(L\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 12\\ \\text{ft} \\\\\nS &= 35\\ \\text{mph} \\\\\nL &= ?\n\\end{aligned}$$\n\nSince \\(S \\le 40\\) mph:\n\n$$\\begin{aligned}\nL &= \\frac{WS^2}{60} \\\\\n&= \\frac{(12)(35)^2}{60} \\\\\n&= 245\\ \\text{ft}\n\\end{aligned}$$",
-   "explanation": "For speeds of 40 mph or less, L = WS\\(^2\\)/60 (MUTCD Table 6B-4), and a merging taper is at least L (Table 6B-3). Using L = WS gives 420, using a shifting taper (0.5 L) gives 122, and using a shoulder taper (0.33 L) gives 81."
+   "explanation": "For speeds of 40 mph or less, L = WS\\(^2\\)/60 (MUTCD Table 6B-4), and a merging taper is at least L (Table 6B-3). Using L = WS gives 420, using a shifting taper (0.5 L) gives 122, and using a shoulder taper (0.33 L) gives 81.",
+   "diagram": "diagrams/transportation-035.svg"
   },
   {
    "id": "transportation-036",
@@ -11123,7 +11133,8 @@
    ],
    "answerIndex": 3,
    "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the merging taper length. MUTCD Table 6B-4 gives \\(L = WS\\) for speeds of 45 mph or more. A merging taper is at least \\(L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 12\\ \\text{ft} \\\\\nS &= 55\\ \\text{mph} \\\\\nL &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= WS \\\\\n&= (12)(55) \\\\\n&= 660\\ \\text{ft}\n\\end{aligned}$$",
-   "explanation": "For speeds of 45 mph or more, L = WS (MUTCD Table 6B-4), and a merging taper is at least L. Using WS\\(^2\\)/60 gives 605, a shifting taper gives 330, and a shoulder taper gives 218."
+   "explanation": "For speeds of 45 mph or more, L = WS (MUTCD Table 6B-4), and a merging taper is at least L. Using WS\\(^2\\)/60 gives 605, a shifting taper gives 330, and a shoulder taper gives 218.",
+   "diagram": "diagrams/transportation-036.svg"
   },
   {
    "id": "transportation-037",
@@ -11140,7 +11151,8 @@
    ],
    "answerIndex": 2,
    "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the shifting taper length. At 45 mph or more, \\(L = WS\\) (Table 6B-4). A shifting taper is at least \\(0.5L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 10\\ \\text{ft} \\\\\nS &= 45\\ \\text{mph} \\\\\nL_\\text{shift} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= WS = (10)(45) = 450\\ \\text{ft} \\\\\nL_\\text{shift} &= 0.5L \\\\\n&= 0.5(450) \\\\\n&= 225\\ \\text{ft}\n\\end{aligned}$$",
-   "explanation": "A shifting taper is at least 0.5 L (MUTCD Table 6B-3), and L = WS at 45 mph or more. Using the full merging length gives 450, applying the 40-mph-or-less formula gives 169, and using a shoulder taper gives 148."
+   "explanation": "A shifting taper is at least 0.5 L (MUTCD Table 6B-3), and L = WS at 45 mph or more. Using the full merging length gives 450, applying the 40-mph-or-less formula gives 169, and using a shoulder taper gives 148.",
+   "diagram": "diagrams/transportation-037.svg"
   },
   {
    "id": "transportation-038",
@@ -11157,7 +11169,8 @@
    ],
    "answerIndex": 3,
    "solution": "Source: FHWA MUTCD, 11th Edition with Revision 1 (December 2025), the current edition on the FHWA site. The MUTCD is not part of the FE Reference Handbook, so the needed table values are given in the question. This is supplemental practice on MUTCD content, not a handbook-based item.\n\nUltimately, we must find the shoulder taper length. At 40 mph or less, \\(L = WS^2/60\\) (Table 6B-4). A shoulder taper is at least \\(0.33L\\) (Table 6B-3).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nW &= 10\\ \\text{ft} \\\\\nS &= 40\\ \\text{mph} \\\\\nL_\\text{shoulder} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nL &= \\frac{(10)(40)^2}{60} = 266.7\\ \\text{ft} \\\\\nL_\\text{shoulder} &= 0.33L \\\\\n&= 0.33(266.7) \\\\\n&= 88\\ \\text{ft}\n\\end{aligned}$$",
-   "explanation": "A shoulder taper is at least 0.33 L (MUTCD Table 6B-3), and L = WS\\(^2\\)/60 at 40 mph or less, which gives L = 266.7 ft. Using 0.5 L gives 133, using the full L gives 267, and using L = WS gives 400."
+   "explanation": "A shoulder taper is at least 0.33 L (MUTCD Table 6B-3), and L = WS\\(^2\\)/60 at 40 mph or less, which gives L = 266.7 ft. Using 0.5 L gives 133, using the full L gives 267, and using L = WS gives 400.",
+   "diagram": "diagrams/transportation-038.svg"
   },
   {
    "id": "transportation-039",
@@ -11279,7 +11292,8 @@
    ],
    "answerIndex": 0,
    "explanation": "Since the depth (40 ft) is more than 3 diameters (12 ft) and \\(s_u\\) is above 2,000 psf, \\(N_c^*\\) = 9.0. The base area is \\(\\pi B^2/4\\). Using \\(\\pi B^2\\) for the area gives 1,357, using \\(N_c^*\\) = 6.5 gives 245, and using B\\(^2\\) for the area gives 432.",
-   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find the nominal base resistance \\(R_{BN}\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 4\\ \\text{ft} \\\\\ns_u &= 3{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= N_c^* s_u \\\\\n&= 9.0(3{,}000) \\\\\n&= 27{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 27{,}000\\left(\\frac{\\pi (4)^2}{4}\\right) \\\\\n&= 339{,}292\\ \\text{lb} \\\\\n&= 339\\ \\text{kips}\n\\end{aligned}$$"
+   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find the nominal base resistance \\(R_{BN}\\).\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 4\\ \\text{ft} \\\\\ns_u &= 3{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= N_c^* s_u \\\\\n&= 9.0(3{,}000) \\\\\n&= 27{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 27{,}000\\left(\\frac{\\pi (4)^2}{4}\\right) \\\\\n&= 339{,}292\\ \\text{lb} \\\\\n&= 339\\ \\text{kips}\n\\end{aligned}$$",
+   "diagram": "diagrams/geotech-050.svg"
   },
   {
    "id": "geotech-051",
@@ -11296,7 +11310,8 @@
    ],
    "answerIndex": 1,
    "explanation": "Here D/B = 2, which is less than 3, so the reduced expression applies and the factor is 0.8889. Ignoring the reduction (using \\(N_c^*\\)\\(s_u\\) alone) gives 353, inverting D/B gives 255, and dropping the (1/6)(D/B) term gives 236.",
-   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find \\(R_{BN}\\). Since \\(D/B = 10/5 = 2 < 3\\), use the shallow-shaft expression.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 5\\ \\text{ft} \\\\\nD &= 10\\ \\text{ft} \\\\\ns_u &= 2{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= \\frac{2}{3}\\left[1 + \\frac{1}{6}\\left(\\frac{D}{B}\\right)\\right]N_c^* s_u \\\\\n&= \\frac{2}{3}\\left[1 + \\frac{1}{6}(2)\\right](9.0)(2{,}000) \\\\\n&= 16{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 16{,}000\\left(\\frac{\\pi (5)^2}{4}\\right) \\\\\n&= 314{,}159\\ \\text{lb} \\\\\n&= 314\\ \\text{kips}\n\\end{aligned}$$"
+   "solution": "Source: FHWA GEC 10, Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024), Section 10 (Axial Loading), base resistance in cohesive soil, Equations 10-19 and 10-20 and Table 10-2 (https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf). These equations are given in the question. This is supplemental practice, not a handbook-based item.\n\nUltimately, we must find \\(R_{BN}\\). Since \\(D/B = 10/5 = 2 < 3\\), use the shallow-shaft expression.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\nB &= 5\\ \\text{ft} \\\\\nD &= 10\\ \\text{ft} \\\\\ns_u &= 2{,}000\\ \\text{psf} \\\\\nN_c^* &= 9.0 \\\\\nR_{BN} &= ?\n\\end{aligned}$$\n\n$$\\begin{aligned}\nq_{BN} &= \\frac{2}{3}\\left[1 + \\frac{1}{6}\\left(\\frac{D}{B}\\right)\\right]N_c^* s_u \\\\\n&= \\frac{2}{3}\\left[1 + \\frac{1}{6}(2)\\right](9.0)(2{,}000) \\\\\n&= 16{,}000\\ \\text{psf}\n\\end{aligned}$$\n\n$$\\begin{aligned}\nR_{BN} &= q_{BN}\\left(\\frac{\\pi B^2}{4}\\right) \\\\\n&= 16{,}000\\left(\\frac{\\pi (5)^2}{4}\\right) \\\\\n&= 314{,}159\\ \\text{lb} \\\\\n&= 314\\ \\text{kips}\n\\end{aligned}$$",
+   "diagram": "diagrams/geotech-051.svg"
   },
   {
    "id": "construction-038",
@@ -11558,7 +11573,8 @@
    "answerIndex": 2,
    "explanation": "The FHWA lab manual says the slump is measured and recorded to the nearest 5 mm (1/4 in.). 98 mm is 2 mm from 100 mm and 3 mm from 95 mm, so 100 mm is recorded.",
    "solution": "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.\n\nUltimately, we must round the measured slump to the nearest 5 mm.\n\nThe slump is recorded to the nearest 5 mm [1/4 in.]. The two nearest multiples of 5 are 95 mm and 100 mm.\n\n$$\\begin{aligned}\n98 - 95 &= 3\\ \\text{mm} \\\\\n100 - 98 &= 2\\ \\text{mm}\n\\end{aligned}$$\n\n98 mm is closer to 100 mm, so 100 mm is recorded.",
-   "conceptual": true
+   "conceptual": true,
+   "diagram": "diagrams/materials-045.svg"
   }
  ]
 }
