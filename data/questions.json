@@ -10207,7 +10207,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "τ = c + σ·tanφ = 200 + 1,000(0.466) = 666 psf. Dropping the cohesion term gives 466 psf.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nUltimately, we must apply the Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma\\tan\\phi$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nc &= 200\\\\ \\text{psf} \\\\\n\\phi &= 25^{\\circ} \\\\\n\\sigma &= 1{,}000\\\\ \\text{psf}\n\\end{aligned}$$\n\n$$(\\tau) = 200 + (1{,}000)\\tan(25^{\\circ})$$\n\n$$(\\tau) = 200 + (1{,}000)(0.4663)$$\n\n$$(\\tau) = 666\\\\ \\text{psf}$$"
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (Mohr-Coulomb failure, printed pages 268-269):\n\nUltimately, we must apply the Mohr-Coulomb failure criterion:\n\n$$\\tau = c + \\sigma\\tan\\phi$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nc &= 200\\\\ \\text{psf} \\\\\n\\phi &= 25^{\\circ} \\\\\n\\sigma &= 1{,}000\\\\ \\text{psf}\n\\end{aligned}$$\n\n$$(\\tau) = 200 + (1{,}000)\\tan(25^{\\circ})$$\n\n$$(\\tau) = 200 + (1{,}000)(0.4663)$$\n\n$$(\\tau) = 666\\\\ \\text{psf}$$"
   },
   {
    "id": "geotech-043",
@@ -10224,7 +10224,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "For φ = 0, the Mohr circle passes through the origin and qu, so su = c = qu/2 = 900 psf.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nIn an unconfined compression test the confining stress is zero and a saturated clay behaves with \\(\\phi = 0\\). The Mohr circle then has diameter qu:\n\n$$s_u = c = \\frac{q_u}{2}$$\n\n$$(s_u) = \\frac{1{,}800}{2}$$\n\n$$(s_u) = 900\\\\ \\text{psf}$$"
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (Mohr-Coulomb failure, printed pages 268-269):\n\nIn an unconfined compression test the confining stress is zero and a saturated clay behaves with \\(\\phi = 0\\). The Mohr circle then has diameter qu:\n\n$$s_u = c = \\frac{q_u}{2}$$\n\n$$(s_u) = \\frac{1{,}800}{2}$$\n\n$$(s_u) = 900\\\\ \\text{psf}$$"
   },
   {
    "id": "geotech-044",
@@ -10241,7 +10241,7 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "σ1 = σ3·tan²(45+φ/2) + 2c·tan(45+φ/2) = 100(3) + 40(1.732) = 370 kPa. The 300 kPa answer drops the cohesion term.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil shear-strength section; the Mohr-Coulomb failure criterion is standard geotechnical practice:\n\nUltimately, we must solve for the major principal stress at failure from the Mohr-Coulomb relation:\n\n$$\\sigma_1 = \\sigma_3\\tan^2\\left(45 + \\frac{\\phi}{2}\\right) + 2c\\tan\\left(45 + \\frac{\\phi}{2}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\sigma_3 &= 100\\\\ \\text{kPa} \\\\\nc &= 20\\\\ \\text{kPa}, \\quad \\phi = 30^{\\circ} \\\\\n\\tan(60^{\\circ}) &= 1.732\n\\end{aligned}$$\n\n$$(\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\sigma_1) = 300 + 69.3$$\n\n$$(\\sigma_1) = 370\\\\ \\text{kPa}$$",
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (Mohr-Coulomb failure, printed pages 268-269):\n\nThe handbook prints the Mohr-Coulomb criterion \\(\\tau_F = c + \\sigma_N\\tan\\phi\\) and the Rankine factor \\(\\tan^2(45^\\circ + \\phi/2)\\), but not the principal-stress form below. This form is derived from them (derived relation, not printed). Ultimately, we must solve for the major principal stress at failure:\n\n$$\\sigma_1 = \\sigma_3\\tan^2\\left(45 + \\frac{\\phi}{2}\\right) + 2c\\tan\\left(45 + \\frac{\\phi}{2}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\sigma_3 &= 100\\\\ \\text{kPa} \\\\\nc &= 20\\\\ \\text{kPa}, \\quad \\phi = 30^{\\circ} \\\\\n\\tan(60^{\\circ}) &= 1.732\n\\end{aligned}$$\n\n$$(\\sigma_1) = (100)(1.732)^2 + (2)(20)(1.732)$$\n\n$$(\\sigma_1) = 300 + 69.3$$\n\n$$(\\sigma_1) = 370\\\\ \\text{kPa}$$",
    "videoUrl": "https://www.youtube.com/watch?v=RSo5eq6aOKI",
    "videoTitle": "Use of Mohr's Circle in Geotechnical Engineering | Shear Strength of Soil"
   },
