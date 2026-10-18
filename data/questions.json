@@ -9360,7 +9360,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Decimal degrees = degrees + minutes/60 + seconds/3600 = 40 + 0.75 + 0.0083 = 40.7583°. Writing 40.4530° just drops the symbols without converting.",
-   "solution": "The FE Reference Handbook does not print a dedicated surveying section; latitude/longitude conversion is standard surveying practice:\n\nUltimately, we must convert degrees-minutes-seconds to decimal degrees:\n\n$$Decimal = D + \\frac{M}{60} + \\frac{S}{3600}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nD &= 40 \\\\\nM &= 45 \\\\\nS &= 30\n\\end{aligned}$$\n\n$$(Decimal) = 40 + \\frac{45}{60} + \\frac{30}{3600}$$\n\n$$(Decimal) = 40 + 0.75 + 0.0083$$\n\n$$(Decimal) = 40.7583^{\\circ}$$"
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); this is a unit conversion (60 minutes per degree, 3,600 seconds per degree):\n\nUltimately, we must convert degrees-minutes-seconds to decimal degrees:\n\n$$Decimal = D + \\frac{M}{60} + \\frac{S}{3600}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nD &= 40 \\\\\nM &= 45 \\\\\nS &= 30\n\\end{aligned}$$\n\n$$(Decimal) = 40 + \\frac{45}{60} + \\frac{30}{3600}$$\n\n$$(Decimal) = 40 + 0.75 + 0.0083$$\n\n$$(Decimal) = 40.7583^{\\circ}$$"
   },
   {
    "id": "surveying-036",
@@ -9377,7 +9377,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Azimuth is measured clockwise from north: tan(az) = ΔE/ΔN = 400/300, so az = 53.13°. The 36.87° answer is the angle from east, not from north.",
-   "solution": "The FE Reference Handbook does not print a dedicated surveying section; state plane coordinates are standard surveying practice:\n\nUltimately, we must solve for the grid azimuth, measured clockwise from grid north:\n\n$$\\tan(az) = \\frac{\\Delta E}{\\Delta N}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta N &= 1{,}300.00 - 1{,}000.00 = 300.00\\\\ \\text{ft} \\\\\n\\Delta E &= 2{,}400.00 - 2{,}000.00 = 400.00\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(az) = \\tan^{-1}\\left(\\frac{400.00}{300.00}\\right)$$\n\n$$(az) = \\tan^{-1}(1.3333)$$\n\n$$(az) = 53.13^{\\circ}$$\n\nBoth departures are positive (northeast quadrant), so no 180° correction is needed.",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); compute the azimuth from the coordinate differences, measured clockwise from north:\n\nUltimately, we must solve for the grid azimuth, measured clockwise from grid north:\n\n$$\\tan(az) = \\frac{\\Delta E}{\\Delta N}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta N &= 1{,}300.00 - 1{,}000.00 = 300.00\\\\ \\text{ft} \\\\\n\\Delta E &= 2{,}400.00 - 2{,}000.00 = 400.00\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(az) = \\tan^{-1}\\left(\\frac{400.00}{300.00}\\right)$$\n\n$$(az) = \\tan^{-1}(1.3333)$$\n\n$$(az) = 53.13^{\\circ}$$\n\nBoth departures are positive (northeast quadrant), so no 180° correction is needed.",
    "diagram": "diagrams/surveying-036.svg"
   },
   {
@@ -9391,11 +9391,11 @@
     "125°30'",
     "127°00'"
    ],
-   "answerIndex": 0,
+   "answerIndex": 1,
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
-   "explanation": "True azimuth = grid azimuth + convergence when true north is east of grid north: 125°30' + 1°15' = 126°45'. Subtracting applies when true north lies west of grid north.",
-   "solution": "The FE Reference Handbook does not print a dedicated surveying section; grid azimuth and convergence are standard surveying practice:\n\nUltimately, we must correct the grid azimuth to a true (geographic) azimuth using the convergence angle:\n\n$$az_{true} = az_{grid} + \\text{(convergence)}$$\n\nThe convergence is added because true north lies east of grid north at this site.\n\nList the known parameters:\n\n$$\\begin{aligned}\naz_{grid} &= 125^{\\circ}30' \\\\\n\\text{convergence} &= 1^{\\circ}15'\n\\end{aligned}$$\n\n$$(az_{true}) = 125^{\\circ}30' + 1^{\\circ}15'$$\n\n$$(az_{true}) = 126^{\\circ}45'$$",
+   "explanation": "True north lies east (clockwise) of grid north, so the azimuth measured from true north is smaller than the grid azimuth: 125°30' - 1°15' = 124°15'. Adding the convergence gives 126°45', which has the sign reversed.",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index). The sign follows the stem: true north lies east (clockwise) of grid north, so the line's azimuth from true north is smaller than its grid azimuth:\n\nUltimately, we must correct the grid azimuth to a true (geographic) azimuth using the convergence angle:\n\n$$az_{true} = az_{grid} - \\text{(convergence)}$$\n\nThe convergence is subtracted because true north lies east of grid north at this site, so the line is measured from a direction rotated clockwise from grid north.\n\nList the known parameters:\n\n$$\\begin{aligned}\naz_{grid} &= 125^{\\circ}30' \\\\\n\\text{convergence} &= 1^{\\circ}15'\n\\end{aligned}$$\n\n$$(az_{true}) = 125^{\\circ}30' - 1^{\\circ}15'$$\n\n$$(az_{true}) = 124^{\\circ}15'$$",
    "diagram": "diagrams/surveying-037.svg"
   },
   {
@@ -9413,7 +9413,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The Lambert conformal conic projection suits zones that are wide east-west; transverse Mercator suits zones that are tall north-south. States are assigned one or the other based on their shape.",
-   "solution": "The FE Reference Handbook does not print a dedicated surveying section; map projection selection is standard surveying practice:\n\nState Plane Coordinate System zones use one of two conformal projections, chosen by the shape of the zone:\n\n$$\\begin{aligned}\n\\text{East-west extent} &\\rightarrow \\text{Lambert conformal conic} \\\\\n\\text{North-south extent} &\\rightarrow \\text{Transverse Mercator}\n\\end{aligned}$$\n\nA state much wider east-west than north-south falls in the first case.\n\n$$(\\text{projection}) = \\text{Lambert conformal conic}$$"
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); this is standard surveying knowledge (most states with long east-west extent use Lambert conformal conic, long north-south extent use transverse Mercator; a few use others):\n\nState Plane Coordinate System zones use one of two conformal projections, chosen by the shape of the zone:\n\n$$\\begin{aligned}\n\\text{East-west extent} &\\rightarrow \\text{Lambert conformal conic} \\\\\n\\text{North-south extent} &\\rightarrow \\text{Transverse Mercator}\n\\end{aligned}$$\n\nA state much wider east-west than north-south falls in the first case.\n\n$$(\\text{projection}) = \\text{Lambert conformal conic}$$"
   },
   {
    "id": "water-034",
@@ -9466,7 +9466,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Reservoir storage attenuates the flood wave: water stored on the rising limb is released later, so the outflow peak is always lower than the inflow peak for level-pool routing.",
-   "solution": "The FE Reference Handbook does not print a dedicated flood-control section; level-pool reservoir routing is standard hydrology:\n\nLevel-pool routing is governed by the continuity equation applied to reservoir storage:\n\n$$\\frac{dS}{dt} = I - O$$\n\nOn the rising limb of the flood, inflow exceeds outflow (I > O), so storage increases. That stored volume is released on the falling limb. Because part of the flood volume is temporarily held in storage, the outflow hydrograph is flattened:\n\n$$(O_{peak}) < (I_{peak})$$\n\nThis attenuation is the entire purpose of flood-control storage."
+   "solution": "Level-pool routing is not located by name in the FE Reference Handbook 10.6. The printed hydrologic budget (Civil Engineering, p.296) gives the storage balance; peak attenuation follows from it:\n\nLevel-pool routing is governed by the continuity equation applied to reservoir storage:\n\n$$\\frac{dS}{dt} = I - O$$\n\nOn the rising limb of the flood, inflow exceeds outflow (I > O), so storage increases. That stored volume is released on the falling limb. Because part of the flood volume is temporarily held in storage, the outflow hydrograph is flattened:\n\n$$(O_{peak}) < (I_{peak})$$\n\nThis attenuation is the entire purpose of flood-control storage."
   },
   {
    "id": "water-037",
@@ -9483,7 +9483,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "ΔS = (800 − 500) × 6 × 3600 = 6.48×10^6 ft³ = 149 acre-ft. Forgetting the 3600 s/hr conversion is the classic error here.",
-   "solution": "The FE Reference Handbook does not print a dedicated flood-control section; level-pool reservoir routing is standard hydrology:\n\nThe handbook (p. 296) prints the surface-water hydrologic budget in this exact form:\n\n$$P + Q_{in} - Q_{out} + Q_g - E_s - T_s - I = \\Delta S_s$$\n\nFor a flood-control reservoir during the storm, keeping only inflow, outflow, and the change in storage, the handbook form collapses to the working storage equation:\n\n$$\\Delta S = (I_{avg} - O_{avg})\\Delta t$$\n\nUltimately, we must solve for the change in storage from continuity:\n\n$$\\Delta S = (I_{avg} - O_{avg})\\Delta t$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nI_{avg} &= 800\\\\ \\text{cfs} \\\\\nO_{avg} &= 500\\\\ \\text{cfs} \\\\\n\\Delta t &= 6\\\\ \\text{hr} = 21{,}600\\\\ \\text{s}\n\\end{aligned}$$\n\n$$(\\Delta S) = (800 - 500)(21{,}600)$$\n\n$$(\\Delta S) = 6{,}480{,}000\\\\ \\text{ft}^3$$\n\nConvert to acre-feet (1 acre-ft = 43,560 ft^3):\n\n$$(\\Delta S) = \\frac{6{,}480{,}000}{43{,}560} = 149\\\\ \\text{acre-ft}$$",
+   "solution": "The storage change comes from the Hydrologic Mass Balance (Budget) in the Civil Engineering chapter (printed p.296):\n\nThe handbook (p. 296) prints the surface-water hydrologic budget in this exact form:\n\n$$P + Q_{in} - Q_{out} + Q_g - E_s - T_s - I = \\Delta S_s$$\n\nFor a flood-control reservoir during the storm, keeping only inflow, outflow, and the change in storage, the handbook form collapses to the working storage equation:\n\n$$\\Delta S = (I_{avg} - O_{avg})\\Delta t$$\n\nUltimately, we must solve for the change in storage from continuity:\n\n$$\\Delta S = (I_{avg} - O_{avg})\\Delta t$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nI_{avg} &= 800\\\\ \\text{cfs} \\\\\nO_{avg} &= 500\\\\ \\text{cfs} \\\\\n\\Delta t &= 6\\\\ \\text{hr} = 21{,}600\\\\ \\text{s}\n\\end{aligned}$$\n\n$$(\\Delta S) = (800 - 500)(21{,}600)$$\n\n$$(\\Delta S) = 6{,}480{,}000\\\\ \\text{ft}^3$$\n\nConvert to acre-feet (1 acre-ft = 43,560 ft^3):\n\n$$(\\Delta S) = \\frac{6{,}480{,}000}{43{,}560} = 149\\\\ \\text{acre-ft}$$",
    "diagram": "diagrams/water-037.svg"
   },
   {
@@ -9508,7 +9508,7 @@
    "id": "water-039",
    "topic": "Water Resources",
    "subtopic": "Sewer self-cleansing velocity",
-   "question": "The 12-inch sewer in the previous question carries its full-flow discharge of 2.52 cfs. Does it satisfy the typical minimum self-cleansing velocity of 2 ft/s?",
+   "question": "A 12-inch circular sewer carries its full-flow discharge of 2.52 cfs. Does it satisfy the typical minimum self-cleansing velocity of 2 ft/s?",
    "choices": [
     "Yes — velocity is 3.21 ft/s",
     "No — velocity is 1.61 ft/s",
@@ -9519,7 +9519,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "V = Q/A = 2.52/0.785 = 3.21 ft/s, which exceeds the 2 ft/s self-cleansing minimum that keeps solids from depositing.",
-   "solution": "The FE Reference Handbook does not print a dedicated collection-systems section; the velocity-discharge relation is standard practice:\n\nThe handbook (p. 185) prints the continuity equation in this exact form:\n\n$$Q = Av$$\n\nSolving the handbook form for the average velocity gives the working velocity-discharge relation:\n\n$$V = \\frac{Q}{A}$$\n\nSanitary sewers are designed so the flowing-full velocity stays above the self-cleansing minimum (typically 2 ft/s) to prevent solids deposition:\n\n$$V = \\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ &= 2.52\\\\ \\text{cfs} \\\\\nA &= 0.7854\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(V) = \\frac{2.52}{0.7854}$$\n\n$$(V) = 3.21\\\\ \\text{ft/s}$$\n\n$$(3.21\\\\ \\text{ft/s}) > (2\\\\ \\text{ft/s}) \\rightarrow \\text{requirement met}$$"
+   "solution": "Continuity, \\(Q = Av\\), is printed in Fluid Mechanics (p.185). The 2 ft/s self-cleansing minimum is a design standard and is not located in the FE Reference Handbook 10.6:\n\nThe handbook (p. 185) prints the continuity equation in this exact form:\n\n$$Q = Av$$\n\nSolving the handbook form for the average velocity gives the working velocity-discharge relation:\n\n$$V = \\frac{Q}{A}$$\n\nSanitary sewers are designed so the flowing-full velocity stays above the self-cleansing minimum (typically 2 ft/s) to prevent solids deposition:\n\n$$V = \\frac{Q}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ &= 2.52\\\\ \\text{cfs} \\\\\nA &= 0.7854\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(V) = \\frac{2.52}{0.7854}$$\n\n$$(V) = 3.21\\\\ \\text{ft/s}$$\n\n$$(3.21\\\\ \\text{ft/s}) > (2\\\\ \\text{ft/s}) \\rightarrow \\text{requirement met}$$"
   },
   {
    "id": "water-040",
@@ -9556,7 +9556,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "The standard self-cleansing minimum is 2 ft/s (about 0.6 m/s) flowing full. Higher velocities risk scour of the pipe; lower velocities let solids settle.",
-   "solution": "The FE Reference Handbook does not print a dedicated collection-systems section; the velocity-discharge relation is standard practice:\n\nSanitary sewers must maintain a self-cleansing velocity so suspended solids do not settle and clog the pipe. The long-standing design standard, used on the FE exam, is:\n\n$$(V_{min}) = 2\\\\ \\text{ft/s} \\text{ (flowing full)}$$\n\nSlopes are then selected so that the design flow produces at least this velocity, while staying below the maximum (typically 10 ft/s) that would scour the pipe."
+   "solution": "The 2 ft/s minimum flowing-full velocity is a design standard that is not located in the FE Reference Handbook 10.6 (the handbook's sewage flow ratio curves, Civil Engineering p.300, do not give it):\n\nSanitary sewers must maintain a self-cleansing velocity so suspended solids do not settle and clog the pipe. The long-standing design standard, used on the FE exam, is:\n\n$$(V_{min}) = 2\\\\ \\text{ft/s} \\text{ (flowing full)}$$\n\nSlopes are then selected so that the design flow produces at least this velocity, while staying below the maximum (typically 10 ft/s) that would scour the pipe."
   },
   {
    "id": "geotech-034",
@@ -9573,7 +9573,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "q = P/A = 180/25 = 7.2 ksf. The 36.0 ksf answer divides by the side length instead of the area.",
-   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must solve for the contact pressure under a concentrically loaded footing:\n\n$$q = \\frac{P}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 180\\\\ \\text{kips} \\\\\nA &= (5)(5) = 25\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(q) = \\frac{180}{25}$$\n\n$$(q) = 7.2\\\\ \\text{ksf}$$",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); contact pressure under a concentric load is force divided by area:\n\nUltimately, we must solve for the contact pressure under a concentrically loaded footing:\n\n$$q = \\frac{P}{A}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 180\\\\ \\text{kips} \\\\\nA &= (5)(5) = 25\\\\ \\text{ft}^2\n\\end{aligned}$$\n\n$$(q) = \\frac{180}{25}$$\n\n$$(q) = 7.2\\\\ \\text{ksf}$$",
    "diagram": "diagrams/geotech-034.svg"
   },
   {
@@ -9591,7 +9591,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "q_max = (P/A)(1 + 6e/B) = (150/36)(1 + 3/6) = 6.25 ksf. The 4.17 ksf answer ignores the eccentricity.",
-   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must solve for the maximum contact pressure under eccentric loading. The handbook gives:\n\n$$q_{max} = \\frac{P}{A}\\left(1 + \\frac{6e}{B}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 150\\\\ \\text{kips} \\\\\nA &= (6)(6) = 36\\\\ \\text{ft}^2 \\\\\ne &= 0.5\\\\ \\text{ft}, \\quad B = 6\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(q_{max}) = \\frac{150}{36}\\left(1 + \\frac{6(0.5)}{6}\\right)$$\n\n$$(q_{max}) = (4.167)(1.5)$$\n\n$$(q_{max}) = 6.25\\\\ \\text{ksf}$$",
+   "solution": "The toe pressure \\(q_{toe} = \\frac{\\Sigma V}{B}\\left(1 + \\frac{6e}{B}\\right)\\) is printed under Retaining Walls (Civil Engineering, p.270), written for a wall base per unit length. Applying the same form to a square footing with eccentricity in one direction is an extension:\n\nUltimately, we must solve for the maximum contact pressure under eccentric loading. The handbook gives:\n\n$$q_{max} = \\frac{P}{A}\\left(1 + \\frac{6e}{B}\\right)$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 150\\\\ \\text{kips} \\\\\nA &= (6)(6) = 36\\\\ \\text{ft}^2 \\\\\ne &= 0.5\\\\ \\text{ft}, \\quad B = 6\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(q_{max}) = \\frac{150}{36}\\left(1 + \\frac{6(0.5)}{6}\\right)$$\n\n$$(q_{max}) = (4.167)(1.5)$$\n\n$$(q_{max}) = 6.25\\\\ \\text{ksf}$$",
    "diagram": "diagrams/geotech-035.svg"
   },
   {
@@ -9609,7 +9609,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "For a 1-ft strip: B = P/q_allow = 8/4 = 2.0 ft. The footing width is set so the contact pressure just reaches the allowable.",
-   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nUltimately, we must size the footing so the contact pressure equals the allowable bearing pressure. For a 1-ft-long strip of wall footing:\n\n$$B = \\frac{P}{q_{allow}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 8\\\\ \\text{kips/ft} \\\\\nq_{allow} &= 4\\\\ \\text{ksf}\n\\end{aligned}$$\n\n$$(B) = \\frac{8}{4}$$\n\n$$(B) = 2.0\\\\ \\text{ft}$$",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); for a continuous wall footing, bearing pressure is load per unit length divided by width:\n\nUltimately, we must size the footing so the contact pressure equals the allowable bearing pressure. For a 1-ft-long strip of wall footing:\n\n$$B = \\frac{P}{q_{allow}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nP &= 8\\\\ \\text{kips/ft} \\\\\nq_{allow} &= 4\\\\ \\text{ksf}\n\\end{aligned}$$\n\n$$(B) = \\frac{8}{4}$$\n\n$$(B) = 2.0\\\\ \\text{ft}$$",
    "diagram": "diagrams/geotech-036.svg"
   },
   {
@@ -9627,7 +9627,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "When footings grow so large they would cover over ~50% of the footprint, a single mat becomes more economical and settles more uniformly. Dense sand, light loads, or shallow bedrock all favor simple spread footings instead.",
-   "solution": "The FE Reference Handbook does not print a dedicated foundation-types section; contact pressure under a concentrically loaded footing is simply:\n\nFoundation type follows the soil and the loading:\n\n$$\\begin{aligned}\n\\text{Spread footings} &\\rightarrow \\text{competent soil, moderate loads} \\\\\n\\text{Mat foundation} &\\rightarrow \\text{footings would cover } > \\sim 50\\\\% \\text{ of footprint} \\\\\n\\text{Deep foundations} &\\rightarrow \\text{weak near-surface soil}\n\\end{aligned}$$\n\nA mat spreads the building load over the entire footprint, cutting the contact pressure and bridging soft spots so the building settles as one unit."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); the one-half-of-footprint guideline is a common rule of thumb, not a handbook value:\n\nFoundation type follows the soil and the loading:\n\n$$\\begin{aligned}\n\\text{Spread footings} &\\rightarrow \\text{competent soil, moderate loads} \\\\\n\\text{Mat foundation} &\\rightarrow \\text{footings would cover } > \\sim 50\\\\% \\text{ of footprint} \\\\\n\\text{Deep foundations} &\\rightarrow \\text{weak near-surface soil}\n\\end{aligned}$$\n\nA mat spreads the building load over the entire footprint, cutting the contact pressure and bridging soft spots so the building settles as one unit."
   },
   {
    "id": "geotech-038",
@@ -9644,7 +9644,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Lime causes cation exchange and pozzolanic reactions that drop the plasticity index, raise strength, and make wet clay workable. It does the opposite of the other three choices.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nChemical stabilization with lime treats the cause of poor subgrade behavior in plastic clays:\n\n$$\\text{lime} + \\text{clay} \\rightarrow \\text{cation exchange} + \\text{pozzolanic cementing}$$\n\nThe practical effects are:\n\n$$\\begin{aligned}\n\\text{Plasticity index} &\\downarrow \\\\\n\\text{Strength / stiffness} &\\uparrow \\\\\n\\text{Workability of wet clay} &\\uparrow\n\\end{aligned}$$\n\nThis is why lime is the standard treatment for highly plastic (fat clay) subgrades."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); this is standard geotechnical practice:\n\nChemical stabilization with lime treats the cause of poor subgrade behavior in plastic clays:\n\n$$\\text{lime} + \\text{clay} \\rightarrow \\text{cation exchange} + \\text{pozzolanic cementing}$$\n\nThe practical effects are:\n\n$$\\begin{aligned}\n\\text{Plasticity index} &\\downarrow \\\\\n\\text{Strength / stiffness} &\\uparrow \\\\\n\\text{Workability of wet clay} &\\uparrow\n\\end{aligned}$$\n\nThis is why lime is the standard treatment for highly plastic (fat clay) subgrades."
   },
   {
    "id": "geotech-039",
@@ -9661,7 +9661,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Between dissimilar materials, the geotextile's job is separation — keeping the aggregate from punching into the clay and the clay from pumping up. Filtration passes water while retaining soil; reinforcement carries tension.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nGeosynthetics are specified by function:\n\n$$\\begin{aligned}\n\\text{Separation} &\\rightarrow \\text{keep dissimilar layers from mixing} \\\\\n\\text{Filtration} &\\rightarrow \\text{pass water, retain soil} \\\\\n\\text{Reinforcement} &\\rightarrow \\text{carry tensile load} \\\\\n\\text{Drainage} &\\rightarrow \\text{transmit water in-plane}\n\\end{aligned}$$\n\nA geotextile sandwiched between clay and aggregate blocks intermixing (which would destroy the base's strength), so its primary function here is separation."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); geosynthetic functions are standard geotechnical practice:\n\nGeosynthetics are specified by function:\n\n$$\\begin{aligned}\n\\text{Separation} &\\rightarrow \\text{keep dissimilar layers from mixing} \\\\\n\\text{Filtration} &\\rightarrow \\text{pass water, retain soil} \\\\\n\\text{Reinforcement} &\\rightarrow \\text{carry tensile load} \\\\\n\\text{Drainage} &\\rightarrow \\text{transmit water in-plane}\n\\end{aligned}$$\n\nA geotextile sandwiched between clay and aggregate blocks intermixing (which would destroy the base's strength), so its primary function here is separation."
   },
   {
    "id": "geotech-040",
@@ -9678,7 +9678,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Passing water while retaining soil is the textbook definition of filtration. The key design property is the apparent opening size (AOS) relative to the soil gradation.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nThe geosynthetic functions are distinguished by what they move or hold:\n\n$$\\text{Filtration} = \\text{transmit water across the plane } + \\text{ retain soil particles}$$\n\nAround a drain, the geotextile must do exactly this: admit groundwater into the drain while preventing soil migration that would clog it. Separation keeps layers apart (no flow requirement); reinforcement carries load."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); geosynthetic functions are standard geotechnical practice:\n\nThe geosynthetic functions are distinguished by what they move or hold:\n\n$$\\text{Filtration} = \\text{transmit water across the plane } + \\text{ retain soil particles}$$\n\nAround a drain, the geotextile must do exactly this: admit groundwater into the drain while preventing soil migration that would clog it. Separation keeps layers apart (no flow requirement); reinforcement carries load."
   },
   {
    "id": "geotech-041",
@@ -9695,7 +9695,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Cement hydration cements the particles together, raising the layer's strength and stiffness (measured by unconfined compressive strength). It reduces — but does not eliminate — permeability and volume change.",
-   "solution": "The FE Reference Handbook does not print a dedicated soil-stabilization section; lime treatment of plastic clays is standard geotechnical practice:\n\nSoil-cement works through hydration of the cement:\n\n$$\\text{cement} + \\text{water} \\rightarrow \\text{hydration products binding soil particles}$$\n\nThe design property is the unconfined compressive strength of the stabilized mixture:\n\n$$(\\text{strength}_{stabilized}) \\gg (\\text{strength}_{untreated})$$\n\nThe stabilized layer behaves as a semi-rigid slab, spreading wheel loads over a wider area of the subgrade."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); this is standard geotechnical practice:\n\nSoil-cement works through hydration of the cement:\n\n$$\\text{cement} + \\text{water} \\rightarrow \\text{hydration products binding soil particles}$$\n\nThe design property is the unconfined compressive strength of the stabilized mixture:\n\n$$(\\text{strength}_{stabilized}) \\gg (\\text{strength}_{untreated})$$\n\nThe stabilized layer behaves as a semi-rigid slab, spreading wheel loads over a wider area of the subgrade."
   },
   {
    "id": "construction-034",
@@ -9712,7 +9712,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Real length = 3.25 × 40 = 130 ft. Dividing by the scale factor instead of multiplying gives 0.08 ft — always check that the answer is bigger than the paper measurement.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\times (\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\text{in} \\\\\n\\text{scale} &= 40\\\\ \\text{ft/in}\n\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\text{ft}$$",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); scale conversion is multiplying the drawing length by the scale:\n\nUltimately, we must convert the paper measurement to a real length using the drawing scale:\n\n$$L_{real} = L_{drawing} \\times (\\text{scale factor})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nL_{drawing} &= 3.25\\\\ \\text{in} \\\\\n\\text{scale} &= 40\\\\ \\text{ft/in}\n\\end{aligned}$$\n\n$$(L_{real}) = (3.25)(40)$$\n\n$$(L_{real}) = 130\\\\ \\text{ft}$$",
    "diagram": "diagrams/construction-034.svg"
   },
   {
@@ -9730,7 +9730,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Station 27+50 = 2,750 ft and 24+00 = 2,400 ft from the origin, so the length is 350 ft. The '+' separates hundreds of feet from tens and ones.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\begin{aligned}\n\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\text{ft} \\\\\n\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\text{ft}$$",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index) (the mass-haul diagram on p.315 shows a STATION axis only); stationing is read in feet, 1 station = 100 ft:\n\nUltimately, we must convert station notation to feet. A station is written as hundreds of feet plus remaining feet:\n\n$$\\begin{aligned}\n\\text{Sta } 27{+}50 &= 2{,}750\\\\ \\text{ft} \\\\\n\\text{Sta } 24{+}00 &= 2{,}400\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(L) = 2{,}750 - 2{,}400$$\n\n$$(L) = 350\\\\ \\text{ft}$$",
    "diagram": "diagrams/construction-035.svg"
   },
   {
@@ -9748,7 +9748,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Six contours span 10 ft of elevation, creating 5 intervals: 10/5 = 2 ft. Counting contours instead of intervals gives 10/6, a classic trap.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\text{interval} = \\frac{\\Delta Elev}{\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta Elev &= 108 - 98 = 10\\\\ \\text{ft} \\\\\n\\text{intervals} &= 5\\\\ \\ (6\\\\ \\text{contours make } 5\\\\ \\text{ gaps})\n\\end{aligned}$$\n\n$$(\\text{interval}) = \\frac{10}{5}$$\n\n$$(\\text{interval}) = 2\\\\ \\text{ft}$$",
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); contour interval is the elevation difference divided by the number of intervals:\n\nUltimately, we must solve for the contour interval — the elevation change between adjacent contours:\n\n$$\\text{interval} = \\frac{\\Delta Elev}{\\text{number of intervals}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\Delta Elev &= 108 - 98 = 10\\\\ \\text{ft} \\\\\n\\text{intervals} &= 5\\\\ \\ (6\\\\ \\text{contours make } 5\\\\ \\text{ gaps})\n\\end{aligned}$$\n\n$$(\\text{interval}) = \\frac{10}{5}$$\n\n$$(\\text{interval}) = 2\\\\ \\text{ft}$$",
    "diagram": "diagrams/construction-036.svg"
   },
   {
@@ -9766,7 +9766,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 60,
    "explanation": "Profile = elevations along the alignment (vertical alignment). Plan = bird's-eye layout. Cross-section = transverse slice at one station.",
-   "solution": "The FE Reference Handbook does not print a dedicated section on reading drawing scales; the scale conversion is standard practice:\n\nThe three principal views each answer a different question:\n\n$$\\begin{aligned}\n\\text{Plan} &\\rightarrow \\text{horizontal layout (bird's eye)} \\\\\n\\text{Profile} &\\rightarrow \\text{elevations along the alignment} \\\\\n\\text{Cross-section} &\\rightarrow \\text{transverse slice at one station}\n\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); plan, profile and cross-section views are standard plan-reading conventions:\n\nThe three principal views each answer a different question:\n\n$$\\begin{aligned}\n\\text{Plan} &\\rightarrow \\text{horizontal layout (bird's eye)} \\\\\n\\text{Profile} &\\rightarrow \\text{elevations along the alignment} \\\\\n\\text{Cross-section} &\\rightarrow \\text{transverse slice at one station}\n\\end{aligned}$$\n\nGrades, vertical curves, and earthwork depths are read from the profile, which plots centerline elevation against station."
   },
   {
    "id": "math-034",
@@ -9999,7 +9999,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Storage = inflow volume − outflow volume = ½(80)(14,400) − 25(14,400) = 216,000 ft³ = 5.0 acre-ft.",
-   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nThe handbook (p. 296) prints the surface-water hydrologic budget in this exact form:\n\n$$P + Q_{in} - Q_{out} + Q_g - E_s - T_s - I = \\Delta S_s$$\n\nFor the detention basin during the storm, keeping only inflow, outflow, and the change in storage, the handbook form collapses to the working storage equation:\n\n$$S = V_{in} - V_{out}$$\n\nUltimately, we must solve for the required storage as the difference between inflow and outflow volumes:\n\n$$S = V_{in} - V_{out}$$\n\nThe inflow hydrograph is triangular; the outflow is constant over the same base time.\n\n$$\\begin{aligned}\nV_{in} &= \\tfrac{1}{2}(80)(4 \\times 3{,}600) = 576{,}000\\\\ \\text{ft}^3 \\\\\nV_{out} &= (25)(4 \\times 3{,}600) = 360{,}000\\\\ \\text{ft}^3\n\\end{aligned}$$\n\n$$(S) = 576{,}000 - 360{,}000 = 216{,}000\\\\ \\text{ft}^3$$\n\n$$(S) = \\frac{216{,}000}{43{,}560} = 5.0\\\\ \\text{acre-ft}$$",
+   "solution": "The storage balance comes from the Hydrologic Mass Balance (Budget) in the Civil Engineering chapter (printed p.296); the triangular hydrograph volume is computed directly:\n\nThe handbook (p. 296) prints the surface-water hydrologic budget in this exact form:\n\n$$P + Q_{in} - Q_{out} + Q_g - E_s - T_s - I = \\Delta S_s$$\n\nFor the detention basin during the storm, keeping only inflow, outflow, and the change in storage, the handbook form collapses to the working storage equation:\n\n$$S = V_{in} - V_{out}$$\n\nUltimately, we must solve for the required storage as the difference between inflow and outflow volumes:\n\n$$S = V_{in} - V_{out}$$\n\nThe inflow hydrograph is triangular; the outflow is constant over the same base time.\n\n$$\\begin{aligned}\nV_{in} &= \\tfrac{1}{2}(80)(4 \\times 3{,}600) = 576{,}000\\\\ \\text{ft}^3 \\\\\nV_{out} &= (25)(4 \\times 3{,}600) = 360{,}000\\\\ \\text{ft}^3\n\\end{aligned}$$\n\n$$(S) = 576{,}000 - 360{,}000 = 216{,}000\\\\ \\text{ft}^3$$\n\n$$(S) = \\frac{216{,}000}{43{,}560} = 5.0\\\\ \\text{acre-ft}$$",
    "diagram": "diagrams/water-042.svg"
   },
   {
@@ -10017,7 +10017,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "Q = Cd·A√(2gh) = 0.60 × 0.196 × √(257.6) = 1.9 cfs. Using the diameter instead of the area is the common error.",
-   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nUltimately, we must solve for the orifice outflow:\n\n$$Q = C_d A\\sqrt{2gh}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nd &= 6\\\\ \\text{in} = 0.5\\\\ \\text{ft} \\\\\nA &= \\frac{\\pi(0.5)^2}{4} = 0.1963\\\\ \\text{ft}^2 \\\\\nC_d &= 0.60, \\quad h = 4\\\\ \\text{ft}, \\quad g = 32.2\\\\ \\text{ft/s}^2\n\\end{aligned}$$\n\n$$(Q) = (0.60)(0.1963)\\sqrt{2(32.2)(4)}$$\n\n$$(Q) = (0.1178)(16.05)$$\n\n$$(Q) = 1.9\\\\ \\text{cfs}$$",
+   "solution": "The free-discharge orifice equation \\(Q = C A_0\\sqrt{2gh}\\) is printed in Fluid Mechanics (p.190), with h measured to the orifice centroid:\n\nUltimately, we must solve for the orifice outflow:\n\n$$Q = C_d A\\sqrt{2gh}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nd &= 6\\\\ \\text{in} = 0.5\\\\ \\text{ft} \\\\\nA &= \\frac{\\pi(0.5)^2}{4} = 0.1963\\\\ \\text{ft}^2 \\\\\nC_d &= 0.60, \\quad h = 4\\\\ \\text{ft}, \\quad g = 32.2\\\\ \\text{ft/s}^2\n\\end{aligned}$$\n\n$$(Q) = (0.60)(0.1963)\\sqrt{2(32.2)(4)}$$\n\n$$(Q) = (0.1178)(16.05)$$\n\n$$(Q) = 1.9\\\\ \\text{cfs}$$",
    "diagram": "diagrams/water-043.svg"
   },
   {
@@ -10035,7 +10035,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "V = area × depth = 2(43,560)(1/12) = 7,260 ft³. The 87,120 answer forgets to convert inches to feet.",
-   "solution": "The FE Reference Handbook does not print a dedicated stormwater-routing section; the reservoir storage balance is standard hydrology:\n\nUltimately, we must solve for the water-quality capture volume:\n\n$$V = (\\text{area})(\\text{design depth})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nA &= 2\\\\ \\text{ac} = 87{,}120\\\\ \\text{ft}^2 \\\\\nd &= 1\\\\ \\text{in} = \\frac{1}{12}\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(V) = (87{,}120)\\left(\\frac{1}{12}\\right)$$\n\n$$(V) = 7{,}260\\\\ \\text{ft}^3$$"
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); the capture volume is drainage area times design depth (unit conversion):\n\nUltimately, we must solve for the water-quality capture volume:\n\n$$V = (\\text{area})(\\text{design depth})$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nA &= 2\\\\ \\text{ac} = 87{,}120\\\\ \\text{ft}^2 \\\\\nd &= 1\\\\ \\text{in} = \\frac{1}{12}\\\\ \\text{ft}\n\\end{aligned}$$\n\n$$(V) = (87{,}120)\\left(\\frac{1}{12}\\right)$$\n\n$$(V) = 7{,}260\\\\ \\text{ft}^3$$"
   },
   {
    "id": "water-045",
@@ -10052,7 +10052,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "Flow-weighted average: (10×2 + 2×250)/12 = 43.3 mg/L. Averaging the concentrations without flow-weighting gives 126 mg/L — not among the choices for a reason.",
-   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nThe handbook (p. 327) prints the mass-balance equation in this exact form:\n\n$$\\frac{dM}{dt} = \\frac{dM_{in}}{dt} - \\frac{dM_{out}}{dt} \\pm rV, \\quad \\frac{dM_{in}}{dt} = C_{in}Q_{in}$$\n\nAt steady state (\\(dM/dt = 0\\)) with a conservative substance (\\(r = 0\\)) and two inflows mixing completely, the handbook form collapses to the working complete-mix equation:\n\n$$C_{mix} = \\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nUltimately, we must solve for the completely mixed concentration:\n\n$$C_{mix} = \\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ_s &= 10\\\\ \\text{cfs}, \\quad C_s = 2\\\\ \\text{mg/L} \\\\\nQ_w &= 2\\\\ \\text{cfs}, \\quad C_w = 250\\\\ \\text{mg/L}\n\\end{aligned}$$\n\n$$(C_{mix}) = \\frac{(10)(2) + (2)(250)}{10 + 2}$$\n\n$$(C_{mix}) = \\frac{520}{12}$$\n\n$$(C_{mix}) = 43.3\\\\ \\text{mg/L}$$",
+   "solution": "The mass balance \\(\\frac{dM}{dt} = \\frac{dM_{in}}{dt} - \\frac{dM_{out}}{dt}\\) is printed in Environmental Engineering (p.327). The steady complete-mix result below is derived from it:\n\nThe handbook (p. 327) prints the mass-balance equation in this exact form:\n\n$$\\frac{dM}{dt} = \\frac{dM_{in}}{dt} - \\frac{dM_{out}}{dt} \\pm rV, \\quad \\frac{dM_{in}}{dt} = C_{in}Q_{in}$$\n\nAt steady state (\\(dM/dt = 0\\)) with a conservative substance (\\(r = 0\\)) and two inflows mixing completely, the handbook form collapses to the working complete-mix equation:\n\n$$C_{mix} = \\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nUltimately, we must solve for the completely mixed concentration:\n\n$$C_{mix} = \\frac{Q_s C_s + Q_w C_w}{Q_s + Q_w}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nQ_s &= 10\\\\ \\text{cfs}, \\quad C_s = 2\\\\ \\text{mg/L} \\\\\nQ_w &= 2\\\\ \\text{cfs}, \\quad C_w = 250\\\\ \\text{mg/L}\n\\end{aligned}$$\n\n$$(C_{mix}) = \\frac{(10)(2) + (2)(250)}{10 + 2}$$\n\n$$(C_{mix}) = \\frac{520}{12}$$\n\n$$(C_{mix}) = 43.3\\\\ \\text{mg/L}$$",
    "diagram": "diagrams/water-045.svg"
   },
   {
@@ -10070,7 +10070,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 150,
    "explanation": "BOD5 = L(1 − e^−kt), so L = 200/(1 − e^−1.15) = 293 mg/L. BOD5 is always less than ultimate BOD — the 200 answer confuses the two.",
-   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nThe handbook (p. 327) prints the BOD exertion equation in this exact form:\n\n$$BOD_t = L_o\\left(1 - e^{-kt}\\right)$$\n\nSolving the handbook form for the ultimate BOD \\(L_o\\) gives the working equation:\n\n$$(L) = \\frac{BOD_t}{1 - e^{-kt}}$$\n\nUltimately, we must solve for the ultimate (carbonaceous) BOD. The handbook gives the BOD exerted at time t:\n\n$$BOD_t = L(1 - e^{-kt})$$\n\nSolving for L:\n\n$$(L) = \\frac{BOD_t}{1 - e^{-kt}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nBOD_5 &= 200\\\\ \\text{mg/L} \\\\\nk &= 0.23\\\\ \\text{/day}, \\quad t = 5\\\\ \\text{days}\n\\end{aligned}$$\n\n$$(L) = \\frac{200}{1 - e^{-(0.23)(5)}}$$\n\n$$(L) = \\frac{200}{1 - 0.3166}$$\n\n$$(L) = \\frac{200}{0.6834} = 293\\\\ \\text{mg/L}$$"
+   "solution": "The BOD exertion equation is printed in Environmental Engineering (p.327):\n\nThe handbook (p. 327) prints the BOD exertion equation in this exact form:\n\n$$BOD_t = L_o\\left(1 - e^{-kt}\\right)$$\n\nSolving the handbook form for the ultimate BOD \\(L_o\\) gives the working equation:\n\n$$(L) = \\frac{BOD_t}{1 - e^{-kt}}$$\n\nUltimately, we must solve for the ultimate (carbonaceous) BOD. The handbook gives the BOD exerted at time t:\n\n$$BOD_t = L(1 - e^{-kt})$$\n\nSolving for L:\n\n$$(L) = \\frac{BOD_t}{1 - e^{-kt}}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\nBOD_5 &= 200\\\\ \\text{mg/L} \\\\\nk &= 0.23\\\\ \\text{/day}, \\quad t = 5\\\\ \\text{days}\n\\end{aligned}$$\n\n$$(L) = \\frac{200}{1 - e^{-(0.23)(5)}}$$\n\n$$(L) = \\frac{200}{1 - 0.3166}$$\n\n$$(L) = \\frac{200}{0.6834} = 293\\\\ \\text{mg/L}$$"
   },
   {
    "id": "water-047",
@@ -10087,7 +10087,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "The sag minimum is where the falling limb flattens: oxygen consumed by BOD exactly balances oxygen absorbed from the atmosphere. Downstream of that point, reaeration wins and DO recovers.",
-   "solution": "The FE Reference Handbook does not print a dedicated water-quality section; the complete-mix mass balance is standard practice:\n\nThe Streeter-Phelps oxygen sag is governed by two competing rates:\n\n$$\\begin{aligned}\n\\text{Deoxygenation} &\\rightarrow \\text{oxygen consumed by BOD} \\\\\n\\text{Reaeration} &\\rightarrow \\text{oxygen absorbed from air}\n\\end{aligned}$$\n\nThe dissolved oxygen deficit grows while deoxygenation outpaces reaeration, peaks, then shrinks. At the minimum DO point the deficit stops growing:\n\n$$(\\text{deoxygenation rate}) = (\\text{reaeration rate}) \\text{ at the critical deficit}$$"
+   "solution": "The Streeter-Phelps oxygen-sag equations, including tc (time of minimum dissolved oxygen), are printed in Environmental Engineering (p.327-328). The rate-equality condition below is derived from them (set \\(dD/dt = 0\\)), not printed in words:\n\nThe Streeter-Phelps oxygen sag is governed by two competing rates:\n\n$$\\begin{aligned}\n\\text{Deoxygenation} &\\rightarrow \\text{oxygen consumed by BOD} \\\\\n\\text{Reaeration} &\\rightarrow \\text{oxygen absorbed from air}\n\\end{aligned}$$\n\nThe dissolved oxygen deficit grows while deoxygenation outpaces reaeration, peaks, then shrinks. At the minimum DO point the deficit stops growing:\n\n$$(\\text{deoxygenation rate}) = (\\text{reaeration rate}) \\text{ at the critical deficit}$$"
   },
   {
    "id": "water-048",
@@ -10260,7 +10260,7 @@
    "difficulty": "medium",
    "estimatedTimeSeconds": 120,
    "explanation": "FS = tanφ/tanβ = 0.577/0.364 = 1.59. Inverting the ratio gives 0.63 — always check that FS > 1 for a standing slope.",
-   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nUltimately, we must solve for the factor of safety of a dry infinite slope in cohesionless soil:\n\n$$FS = \\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\phi &= 30^{\\circ} \\\\\n\\beta &= 20^{\\circ}\n\\end{aligned}$$\n\n$$(FS) = \\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})}$$\n\n$$(FS) = \\frac{0.5774}{0.3640}$$\n\n$$(FS) = 1.59$$",
+   "solution": "The planar slope-failure factor of safety \\(FS = T_{FF}/T_{MOB}\\), with \\(T_{FF} = cL_S + W_M\\cos\\alpha_S\\tan\\phi\\) and \\(T_{MOB} = W_M\\sin\\alpha_S\\), is printed (Civil Engineering, p.271). For \\(c = 0\\) the infinite-slope result below follows:\n\nUltimately, we must solve for the factor of safety of a dry infinite slope in cohesionless soil:\n\n$$FS = \\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\phi &= 30^{\\circ} \\\\\n\\beta &= 20^{\\circ}\n\\end{aligned}$$\n\n$$(FS) = \\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})}$$\n\n$$(FS) = \\frac{0.5774}{0.3640}$$\n\n$$(FS) = 1.59$$",
    "diagram": "diagrams/geotech-045.svg"
   },
   {
@@ -10278,7 +10278,7 @@
    "difficulty": "hard",
    "estimatedTimeSeconds": 180,
    "explanation": "Seepage cuts FS by γ'/γ_sat: (62.6/125)(1.59) = 0.79. The slope that was stable dry now fails — the classic seepage lesson.",
-   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\left(\\frac{\\gamma'}{\\gamma_{sat}}\\right)\\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\gamma_{sat} &= 125\\\\ \\text{pcf} \\\\\n\\gamma' &= 125 - 62.4 = 62.6\\\\ \\text{pcf} \\\\\n\\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})} &= 1.586\n\\end{aligned}$$\n\n$$(FS) = \\left(\\frac{62.6}{125}\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$",
+   "solution": "The dry planar-slope formula is printed (Civil Engineering, p.271), but the seepage-parallel-to-slope factor below is not located in the FE Reference Handbook 10.6; it is the standard infinite-slope result derived with effective stress:\n\nUltimately, we must correct the infinite-slope factor of safety for seepage parallel to the surface:\n\n$$FS = \\left(\\frac{\\gamma'}{\\gamma_{sat}}\\right)\\frac{\\tan\\phi}{\\tan\\beta}$$\n\nList the known parameters:\n\n$$\\begin{aligned}\n\\gamma_{sat} &= 125\\\\ \\text{pcf} \\\\\n\\gamma' &= 125 - 62.4 = 62.6\\\\ \\text{pcf} \\\\\n\\frac{\\tan(30^{\\circ})}{\\tan(20^{\\circ})} &= 1.586\n\\end{aligned}$$\n\n$$(FS) = \\left(\\frac{62.6}{125}\\right)(1.586)$$\n\n$$(FS) = (0.5008)(1.586)$$\n\n$$(FS) = 0.79$$",
    "videoUrl": "https://www.youtube.com/watch?v=BJYcNLJX8-s",
    "videoTitle": "Numerical 4 on Infinite Slopes | Stability of Slopes | Geotechnical Engineering - GATE",
    "diagram": "diagrams/geotech-046.svg"
@@ -10298,7 +10298,7 @@
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
    "explanation": "Fellenius slices a circular slip mass and neglects interslice forces — simple and conservative. Bishop's simplified method keeps the circular surface but satisfies moment equilibrium including interslice normals.",
-   "solution": "The FE Reference Handbook does not print a dedicated slope-stability section; the infinite-slope factor of safety is standard geotechnical practice:\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\begin{aligned}\n\\text{Ordinary (Fellenius)} &\\rightarrow \\text{circular surface, interslice forces neglected} \\\\\n\\text{Bishop simplified} &\\rightarrow \\text{circular surface, moment equilibrium with interslice normals}\n\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
+   "solution": "Not located in the FE Reference Handbook 10.6 (searched text and index); the method assumptions are standard geotechnical practice (only the planar failure surface is printed, Civil Engineering p.271):\n\nLimit-equilibrium slope methods differ in their assumptions:\n\n$$\\begin{aligned}\n\\text{Ordinary (Fellenius)} &\\rightarrow \\text{circular surface, interslice forces neglected} \\\\\n\\text{Bishop simplified} &\\rightarrow \\text{circular surface, moment equilibrium with interslice normals}\n\\end{aligned}$$\n\nNeglecting the interslice forces makes Fellenius statically determinate and quick to compute, at the cost of a somewhat conservative (lower) factor of safety."
   },
   {
    "answerIndex": 0,
@@ -10627,10 +10627,10 @@
    ],
    "difficulty": "easy",
    "estimatedTimeSeconds": 90,
-   "explanation": "Allowable = ultimate divided by FS. The 2,490 kPa trap multiplies by the factor of safety instead — FS always reduces the capacity.",
+   "explanation": "Allowable = ultimate divided by FS. The 2,490 kPa trap multiplies by the factor of safety instead — FS always reduces the capacity. This is the pressure permitted by the bearing safety factor alone; settlement or other limits can govern the design.",
    "id": "geotech-049",
    "question": "A strip footing analysis gives an ultimate bearing capacity of 830 kPa. The design requires a factor of safety of 3.0 against bearing failure. What is the allowable bearing capacity?",
-   "solution": "Refer to the Ultimate Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(q_{allow}\\). The allowable capacity is the ultimate capacity divided by the factor of safety:\n\n$$q_{allow} = \\frac{q_{ULT}}{FS} = \\frac{830}{3.0} = 276.7 = 277\\text{ kPa}$$",
+   "solution": "Refer to the Ultimate Bearing Capacity and Retaining Walls blocks in the Civil Engineering chapter of the FE Reference Handbook (printed p.270). The handbook prints \\(q_{ULT}\\) and the bearing factor of safety \\(FS = q_{ULT}/q_{toe}\\); the allowable pressure below is that definition rearranged (the form \\(q_{allow} = q_{ULT}/FS\\) is not printed).\n\nUltimately, we must solve for \\(q_{allow}\\). The allowable capacity is the ultimate capacity divided by the factor of safety:\n\n$$q_{allow} = \\frac{q_{ULT}}{FS} = \\frac{830}{3.0} = 276.7 = 277\\text{ kPa}$$",
    "subtopic": "Allowable bearing capacity",
    "tiTip": "No — one division; the calculator only does the arithmetic.",
    "topic": "Geotechnical Engineering"
