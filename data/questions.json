@@ -3625,16 +3625,16 @@
    "subtopic": "Load equivalency factor",
    "difficulty": "medium",
    "estimatedTimeSeconds": 90,
-   "question": "In flexible pavement design, what is the load equivalency factor (LEF) of a 24-kip single axle relative to the 18-kip standard axle, using the AASHTO fourth-power law?",
+   "question": "In flexible pavement design, what is the load equivalency factor (LEF) of a 24-kip single axle relative to the 18-kip standard axle? Use the Load Equivalency Factors table in the FE Reference Handbook.",
    "choices": [
+    "3.03",
     "3.16",
-    "1.33",
-    "1.78",
-    "2.37"
+    "0.260",
+    "3.53"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Highway Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook.\n\nUltimately, we must solve for \\(LEF\\). We can determine \\(LEF\\) from the following equation:\n\n$$LEF = \\left(\\frac{W}{18}\\right)^4$$\n\nList the known and unknown parameters in order to solve for \\(LEF\\):\n\n$$\\begin{aligned}\nW &= 24\\ \\text{kips} \\\\\nLEF &= ?\n\\end{aligned}$$\n\n$$(LEF) = \\left(\\frac{24}{18}\\right)^4 \\rightarrow (LEF) = (1.333)^4$$\n\n$$(LEF) = 3.16$$",
-   "explanation": "Damage scales with the FOURTH power of the load ratio — each wrong exponent is a trap: linear gives 1.33, squared 1.78, cubed 2.37."
+   "solution": "Refer to the Highway Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook (v10.6), printed page 314.\n\nUltimately, we must find \\(LEF\\) for a 24-kip single axle. The handbook does not print a formula for this. It prints a table of Load Equivalency Factors by gross axle load, for single and tandem axles. The 18,000 lb single axle is the standard, with a factor of 1.000.\n\nList the known and unknown parameters:\n\n$$\\begin{aligned}\n\\text{Gross axle load} &= 24{,}000\\ \\text{lb}\\ (106.8\\ \\text{kN}) \\\\\n\\text{Axle type} &= \\text{single} \\\\\nLEF &= ?\n\\end{aligned}$$\n\nRead the 24,000 lb row of the single-axle column:\n\n$$(LEF) = 3.03$$",
+   "explanation": "Use the handbook table, not a formula. The fourth-power rule \\((24/18)^4\\) gives about 3.16, which is close but is not the printed value. 0.260 is the tandem-axle factor for the same 24,000 lb load, and 3.53 is the single-axle factor for 25,000 lb."
   },
   {
    "id": "transportation-013",
