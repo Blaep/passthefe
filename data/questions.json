@@ -11785,7 +11785,7 @@
    "choices": [
     "116.0 lb/ft³",
     "108.9 lb/ft³",
-    "114.9 lb/ft³",
+    "115.0 lb/ft³",
     "127.4 lb/ft³"
    ],
    "difficulty": "medium",
@@ -11793,7 +11793,7 @@
    "explanation": "127.4 divides by 0.95 and exceeds the lab maximum, which a field fill cannot normally reach.",
    "id": "geotech-064",
    "question": "The specification requires 95% relative compaction. The laboratory maximum dry unit weight is 121 lb/ft³. What minimum field dry unit weight must the contractor achieve?",
-   "solution": "Refer to the Relative compaction (%) in the FE Reference Handbook (v10.6), Civil Engineering: Geotechnical, printed page 266 (PDF page 272).\n\nFrom \\(RC = (\\gamma_{D\\ field}/\\gamma_{D\\ max}) \\times 100\\):\n\n$$\\begin{aligned}\\gamma_{D\\ field} &= 0.95(\\gamma_{D\\ max}) \\\\ &= 0.95(121) \\\\ &= 114.9\\ \\text{lb/ft}^3\\end{aligned}$$",
+   "solution": "Refer to the Relative compaction (%) in the FE Reference Handbook (v10.6), Civil Engineering: Geotechnical, printed page 266 (PDF page 272).\n\nFrom \\(RC = (\\gamma_{D\\ field}/\\gamma_{D\\ max}) \\times 100\\):\n\n$$\\begin{aligned}\\gamma_{D\\ field} &= 0.95(\\gamma_{D\\ max}) \\\\ &= 0.95(121) \\\\ &= 115.0\\ \\text{lb/ft}^3\\end{aligned}$$",
    "subtopic": "Required field dry unit weight",
    "topic": "Geotechnical Engineering"
   },
@@ -17247,7 +17247,7 @@
    "choices": [
     "23.1 kW",
     "25.2 kW",
-    "27.3 kW",
+    "27.4 kW",
     "35.1 kW"
    ],
    "difficulty": "hard",
@@ -17255,7 +17255,7 @@
    "explanation": "The brake power already includes the pump efficiency. Dividing by the pump efficiency again double counts it.",
    "id": "water-101",
    "question": "A pump has a brake (shaft) power of 25.2 kW and is driven by a motor with efficiency 0.92. What is the purchased electrical power?",
-   "solution": "Refer to Purchased power in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 196 (PDF page 202).\n\nThe handbook gives \\(\\dot W_{purchased} = \\dot W/\\eta_{motor}\\):\n\n$$\\begin{aligned}\\dot W_{purchased} &= \\frac{25.2}{0.92} \\\\ &= 27.3\\ \\text{kW}\\end{aligned}$$",
+   "solution": "Refer to Purchased power in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 196 (PDF page 202).\n\nThe handbook gives \\(\\dot W_{purchased} = \\dot W/\\eta_{motor}\\):\n\n$$\\begin{aligned}\\dot W_{purchased} &= \\frac{25.2}{0.92} \\\\ &= 27.4\\ \\text{kW}\\end{aligned}$$",
    "subtopic": "Purchased electrical power",
    "topic": "Water Resources"
   },
