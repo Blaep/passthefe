@@ -1054,6 +1054,26 @@ reg(buildGenerator({
   var m = -dd;                          // magnitude
   var tSkip = eAx * d;                  // trap: axial strain applied to the diameter (nu skipped)
   var tHalf = m / 2;                    // trap: change in radius instead of diameter
+  // Setup diagram (never the answer): the tie rod under axial tension with
+  // its diameter and material constants. The diameter change is not drawn.
+  var d013 = (function () {
+    var AHK2 = '<defs><marker id="ahk" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1a1a1a"/></marker><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="260" viewBox="0 0 480 260" role="img">' + AHK2;
+    s += '<line x1="70" y1="60" x2="70" y2="200" stroke="#1a1a1a" stroke-width="3"/>';
+    for (var i = 0; i < 4; i++) s += '<line x1="70" y1="' + (72 + 36 * i) + '" x2="56" y2="' + (84 + 36 * i) + '" stroke="#1a1a1a" stroke-width="1.4"/>';
+    s += '<rect x="70" y="98" width="300" height="56" fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="220" y="132" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">' + matName + ' rod</text>';
+    s += '<line x1="370" y1="126" x2="450" y2="126" stroke="#1d4ed8" stroke-width="2.6" marker-end="url(#ah)"/>';
+    s += '<text x="410" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">P = ' + PkN + ' kN</text>';
+    s += '<line x1="92" y1="98" x2="92" y2="154" stroke="#1a1a1a" stroke-width="1.2"/>';
+    s += '<line x1="92" y1="100" x2="92" y2="118" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#ahk)"/>';
+    s += '<line x1="92" y1="152" x2="92" y2="134" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#ahk)"/>';
+    s += '<text x="102" y="130" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">d = ' + d + ' mm</text>';
+    s += '<text x="240" y="188" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">E = ' + E + ' GPa,  ν = ' + fmt(nu) + '</text>';
+    s += '<text x="240" y="232" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#1a1a1a">Δd = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A solid " + matName + " tie rod with a diameter of " + d +
     " mm (E = " + E + " GPa, \\(\\nu = " + fmt(nu) + "\\)) hangs a work platform and carries a " +
     PkN + " kN axial tensile load. What is the change in the rod's diameter?";
@@ -1075,6 +1095,7 @@ reg(buildGenerator({
   return {
     variantKey: "poiss-" + matName + "-d" + d + "-P" + PkN,
     question: question,
+    diagram: d013,
     options: [
       { label: "Decreases by " + fmt(m) + " mm", num: dd, correct: true },
       { label: "Increases by " + fmt(m) + " mm", num: -dd, correct: false },
@@ -1327,6 +1348,31 @@ reg(buildGenerator({
   var tFull = Math.abs(a);                  // trap: forgot to divide by 2
   // Strict ordering tInPlane < ans < tAvg < tFull holds for |a| > |b| > 0.
   var state = neg ? "both compressive" : "both tensile";
+  // Setup diagram (never the answer): stress element with both principal
+  // stresses; arrow sense follows the rolled sign (tension out, compression in).
+  // The absolute maximum shear is not given.
+  var d017 = (function () {
+    var AHK2 = '<defs><marker id="ahk" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1a1a1a"/></marker><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+    var x0 = 180, y0 = 110, sz = 120;
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360" role="img">' + AHK2;
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + sz + '" height="' + sz + '" fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>';
+    var o = neg ? 0 : 1; // 1 = arrows point outward (tension)
+    function arr(x1, y1, x2, y2) { return '<line x1="' + r1(x1) + '" y1="' + r1(y1) + '" x2="' + r1(x2) + '" y2="' + r1(y2) + '" stroke="#1d4ed8" stroke-width="2.6" marker-end="url(#ah)"/>'; }
+    var cx = x0 + sz / 2, cy = y0 + sz / 2;
+    if (o) {
+      s += arr(x0, cy, x0 - 64, cy) + arr(x0 + sz, cy, x0 + sz + 64, cy);
+      s += arr(cx, y0, cx, y0 - 64) + arr(cx, y0 + sz, cx, y0 + sz + 64);
+    } else {
+      s += arr(x0 - 64, cy, x0, cy) + arr(x0 + sz + 64, cy, x0 + sz, cy);
+      s += arr(cx, y0 - 64, cx, y0) + arr(cx, y0 + sz + 64, cx, y0 + sz);
+    }
+    s += '<text x="' + cx + '" y="' + (y0 - 76) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">σ1 = ' + sgn(a) + ' MPa</text>';
+    s += '<text x="' + (x0 + sz + 70) + '" y="' + (cy + 5) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">σ2 = ' + sgn(b) + ' MPa</text>';
+    s += '<text x="240" y="296" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">thin plate, plane stress (' + state + ')</text>';
+    s += '<text x="240" y="332" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#1a1a1a">τ(abs max) = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A steel gusset plate in a pedestrian bridge truss is in a state of plane stress. " +
     "At a critical point near a bolt hole, the in-plane principal stresses are σ1 = " + sgn(a) +
     " MPa and σ2 = " + sgn(b) + " MPa (" + state + "). " +
@@ -1346,6 +1392,7 @@ reg(buildGenerator({
   return {
     variantKey: "absmax-" + (neg ? "neg" : "pos") + "-s1" + s1 + "-s2" + s2,
     question: question,
+    diagram: d017,
     options: [
       { label: fmt(ans) + " MPa", num: ans, correct: true },
       { label: fmt(tInPlane) + " MPa", num: tInPlane, correct: false },
@@ -1512,6 +1559,44 @@ reg(buildGenerator({
   // Traps: the effective lengths for the OTHER three end conditions.
   var traps = [1.0, 2.0, 0.5, 0.7].filter(function (k) { return k !== cond.K; })
     .map(function (k) { return r2(k * L); });
+  // Setup diagram (never the answer): the column with its actual rolled end
+  // conditions and length. The effective length is not given.
+  var d021 = (function () {
+    var AHK2 = '<defs><marker id="ahk" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1a1a1a"/></marker><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"/></marker></defs>';
+    var cx = 250, top = 70, bot = 280;
+    var baseFixed = cond.desc.indexOf('fixed at its base') === 0;
+    var topFree = cond.desc.indexOf('free at its top') >= 0;
+    var topPinned = cond.desc.indexOf('pinned at its top') >= 0;
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360" role="img">' + AHK2;
+    s += '<rect x="' + (cx - 15) + '" y="' + top + '" width="30" height="' + (bot - top) + '" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2.5"/>';
+    if (baseFixed) {
+      s += '<line x1="' + (cx - 90) + '" y1="' + bot + '" x2="' + (cx + 90) + '" y2="' + bot + '" stroke="#1a1a1a" stroke-width="2.5"/>';
+      for (var i = 0; i < 5; i++) s += '<line x1="' + (cx - 80 + 36 * i) + '" y1="' + bot + '" x2="' + (cx - 92 + 36 * i) + '" y2="' + (bot + 12) + '" stroke="#1a1a1a" stroke-width="1.4"/>';
+      s += '<text x="' + (cx + 100) + '" y="' + (bot + 5) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">fixed base</text>';
+    } else {
+      s += '<path d="M' + (cx - 18) + ',' + bot + ' L' + (cx + 18) + ',' + bot + ' L' + cx + ',' + (bot + 22) + ' Z" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+      s += '<line x1="' + (cx - 60) + '" y1="' + (bot + 22) + '" x2="' + (cx + 60) + '" y2="' + (bot + 22) + '" stroke="#1a1a1a" stroke-width="2.5"/>';
+      s += '<text x="' + (cx + 76) + '" y="' + (bot + 16) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">pinned base</text>';
+    }
+    if (topFree) {
+      s += '<text x="' + cx + '" y="' + (top - 16) + '" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">free top</text>';
+    } else if (topPinned) {
+      s += '<path d="M' + (cx - 18) + ',' + top + ' L' + (cx + 18) + ',' + top + ' L' + cx + ',' + (top - 22) + ' Z" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+      s += '<line x1="' + (cx - 60) + '" y1="' + (top - 22) + '" x2="' + (cx + 60) + '" y2="' + (top - 22) + '" stroke="#1a1a1a" stroke-width="2.5"/>';
+      s += '<text x="' + (cx + 74) + '" y="' + (top - 14) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">pinned top</text>';
+    } else {
+      s += '<line x1="' + (cx - 90) + '" y1="' + top + '" x2="' + (cx + 90) + '" y2="' + top + '" stroke="#1a1a1a" stroke-width="2.5"/>';
+      for (var j = 0; j < 5; j++) s += '<line x1="' + (cx - 80 + 36 * j) + '" y1="' + top + '" x2="' + (cx - 92 + 36 * j) + '" y2="' + (top - 12) + '" stroke="#1a1a1a" stroke-width="1.4"/>';
+      s += '<text x="' + (cx + 100) + '" y="' + (top + 5) + '" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">fixed top</text>';
+    }
+    s += '<line x1="' + (cx - 55) + '" y1="' + top + '" x2="' + (cx - 55) + '" y2="' + bot + '" stroke="#1a1a1a" stroke-width="1.2"/>';
+    s += '<line x1="' + (cx - 55) + '" y1="' + (top + 2) + '" x2="' + (cx - 55) + '" y2="' + (top + 20) + '" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#ahk)"/>';
+    s += '<line x1="' + (cx - 55) + '" y1="' + (bot - 2) + '" x2="' + (cx - 55) + '" y2="' + (bot - 20) + '" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#ahk)"/>';
+    s += '<text x="' + (cx - 70) + '" y="' + ((top + bot) / 2) + '" text-anchor="end" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">L = ' + fmt(L) + ' m</text>';
+    s += '<text x="240" y="340" text-anchor="middle" font-family="Georgia,serif" font-size="19" font-weight="bold" fill="#1d4ed8">KL = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A " + fmt(L) + " m steel column in a warehouse mezzanine is " + cond.desc +
     ". What is the effective length \\(KL\\) used in Euler's buckling formula?";
   var solution = "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
@@ -1527,6 +1612,7 @@ reg(buildGenerator({
   return {
     variantKey: "KL-K" + pdot(cond.K) + "-L" + pdot(L),
     question: question,
+    diagram: d021,
     options: [
       { label: fmt(ans) + " m", num: ans, correct: true },
       { label: fmt(traps[0]) + " m", num: traps[0], correct: false },
@@ -2012,6 +2098,24 @@ reg(buildGenerator({
     tNSq = n * n * (M * 1e6) * y / IT;    // trap: applied n twice
   } while (ans < 40 || ans > 600 || new Set([ans, tNoN, tInvN, tNSq]).size !== 4);
   mat2 = E2 <= 25 ? "glulam timber" : "aluminum";
+  // Setup diagram (never the answer): the two-material section with constants
+  // and the fiber distance from the NA. The stress is not given.
+  var d029 = (function () {
+    var x0 = 150, y0 = 90, w2 = 190, h1 = 62, h2 = 92;
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="340" viewBox="0 0 480 340" role="img">';
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + w2 + '" height="' + h1 + '" fill="#eef2f7" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<rect x="' + x0 + '" y="' + (y0 + h1) + '" width="' + w2 + '" height="' + h2 + '" fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<text x="' + (x0 + w2 / 2) + '" y="' + (y0 + h1 / 2 + 6) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">steel plate</text>';
+    s += '<text x="' + (x0 + w2 / 2) + '" y="' + (y0 + h1 + h2 / 2 + 6) + '" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">' + mat2 + ' beam</text>';
+    s += '<line x1="' + (x0 + w2 + 14) + '" y1="' + (y0 + h1 + h2 * 0.45) + '" x2="' + (x0 + w2 + 60) + '" y2="' + (y0 + h1 + h2 * 0.45) + '" stroke="#1a1a1a" stroke-width="1.6" stroke-dasharray="7,5"/>';
+    s += '<text x="' + (x0 + w2 + 66) + '" y="' + (y0 + h1 + h2 * 0.45 + 5) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">NA</text>';
+    s += '<text x="' + (x0 - 12) + '" y="' + (y0 - 14) + '" text-anchor="start" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">E1 = ' + E1 + ' GPa (steel)</text>';
+    s += '<text x="' + (x0 - 12) + '" y="' + (y0 + h1 + h2 + 24) + '" text-anchor="start" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">E2 = ' + E2 + ' GPa (' + mat2 + ')</text>';
+    s += '<text x="240" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">I_T = ' + (IT / 1e6) + '\u00d710\u2076 mm\u2074,  M = ' + M + ' kN\u00b7m,  fiber ' + y + ' mm from NA</text>';
+    s += '<text x="240" y="328" text-anchor="middle" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#1a1a1a">\u03c3 (steel, at that fiber) = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A steel cover plate (\\(E_1 = " + E1 + "\\ \\text{GPa}\\)) is bonded to the top of a " + mat2 +
     " beam (\\(E_2 = " + E2 + "\\ \\text{GPa}\\)). The transformed section (all " + mat2 + ") has " +
     "\\(I_T = " + (IT / 1e6) + " \\times 10^6\\ \\text{mm}^4\\). Under a service bending moment of " + M +
@@ -2035,6 +2139,7 @@ reg(buildGenerator({
   return {
     variantKey: "compbm-E1" + E1 + "-E2" + E2 + "-M" + M + "-y" + y + "-IT" + pdot(IT / 1e6),
     question: question,
+    diagram: d029,
     options: [
       { label: fmt(ans) + " MPa", num: ans, correct: true },
       { label: fmt(tNoN) + " MPa", num: tNoN, correct: false },
@@ -2192,6 +2297,21 @@ reg(buildGenerator({
   var tDiam = 2 * g;   // trap: used the diameter instead of the radius
   var tHalf = g / 2;   // trap: halved the radius
   var tDec = g / 10;   // trap: slipped a decimal converting mm to m
+  // Setup diagram (never the answer): the shaft cross-section with its radius
+  // and the measured twist rate. The strain is not given.
+  var d032 = (function () {
+    var cx = 240, cy = 150, R = 95;
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300" role="img">' + AH;
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="#f5f5f5" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="#1a1a1a"/>';
+    s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + R) + '" y2="' + cy + '" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<text x="' + (cx + R / 2) + '" y="' + (cy - 10) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">r = ' + rmm + ' mm</text>';
+    s += '<path d="M' + (cx - 66) + ',' + (cy - 66) + ' A 93,93 0 0,1 ' + (cx + 66) + ',' + (cy - 66) + '" fill="none" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+    s += '<text x="' + cx + '" y="' + (cy - 106) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">twist rate ' + fmt(rate) + ' rad/m</text>';
+    s += '<text x="240" y="284" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">solid circular shaft;  \u03b3max = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "During a maintenance inspection, engineers measure the twist rate along a wind-turbine main shaft as " + fmt(rate) +
     " rad/m. The solid shaft has a radius of " + rmm + " mm. What is the maximum shear strain in the shaft?";
   var solution = "Refer to the Torsional Strain section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
@@ -2207,6 +2327,7 @@ reg(buildGenerator({
   return {
     variantKey: "torsstr-rate" + pdot(rate) + "-r" + rmm,
     question: question,
+    diagram: d032,
     options: [
       { label: fmt(X) + " × 10⁻⁶ rad", num: g, correct: true },
       { label: fmt(2 * X) + " × 10⁻⁶ rad", num: tDiam, correct: false },

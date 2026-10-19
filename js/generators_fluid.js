@@ -422,6 +422,29 @@ reg(buildGenerator({
   var tG = r2q(Math.sqrt(2 * 9.81 * dP));    // trap: treated kPa as head
   var tNo2 = r2q(Math.sqrt(dP));             // trap: dropped the 2
   var tDec = r2q(v / 10);                    // trap: decimal slip
+  // Setup diagram (never the answer): pipe with the pitot tube and static
+  // tap; only the measured pressure difference is given. V is the unknown.
+  var d035 = (function () {
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="290" viewBox="0 0 480 290" role="img">' + AH;
+    s += '<rect x="40" y="90" width="400" height="120" fill="#dbeafe" stroke="none"/>';
+    s += '<line x1="40" y1="90" x2="440" y2="90" stroke="#1a1a1a" stroke-width="4"/>';
+    s += '<line x1="40" y1="210" x2="440" y2="210" stroke="#1a1a1a" stroke-width="4"/>';
+    s += '<text x="60" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">pipe wall</text>';
+    s += '<line x1="70" y1="150" x2="190" y2="150" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="130" y="138" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">V = ?</text>';
+    s += '<rect x="234" y="52" width="10" height="100" fill="#bfdbfe" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<rect x="212" y="138" width="44" height="20" fill="#bfdbfe" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<rect x="208" y="140" width="6" height="16" fill="#dbeafe" stroke="none"/>';
+    s += '<text x="252" y="66" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">P0</text>';
+    s += '<text x="252" y="82" font-family="Georgia,serif" font-size="11" fill="#1a1a1a">stagnation</text>';
+    s += '<text x="212" y="180" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#1a1a1a">pitot tube</text>';
+    s += '<rect x="340" y="210" width="10" height="28" fill="#bfdbfe" stroke="#1a1a1a" stroke-width="2"/>';
+    s += '<text x="358" y="230" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">Ps</text>';
+    s += '<text x="358" y="246" font-family="Georgia,serif" font-size="11" fill="#1a1a1a">static tap</text>';
+    s += '<text x="240" y="272" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">Given: P0 \u2212 Ps = ' + dP + ' kPa, water</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var question = "A pitot tube in a water pipeline measures a stagnation pressure \\(" + dP + "\\text{ kPa}\\) above the local static pressure. What is most nearly the flow velocity?";
   var solution = "Refer to the Pitot Tubes section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "From the stagnation pressure equation for an incompressible fluid:\n\n" +
@@ -429,6 +452,7 @@ reg(buildGenerator({
   return {
     variantKey: "pitot-dP" + dP,
     question: question,
+    diagram: d035,
     options: [
       { label: fmt(v) + " m/s", num: v, correct: true },
       { label: fmt(tG) + " m/s", num: tG, correct: false },

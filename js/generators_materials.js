@@ -580,6 +580,33 @@ reg(buildGenerator({
     Vc2 = mc2 / (SGc * gw);
     Vfa2 = 1 - (Vw + Vc2 + Vca + Vair);
   } while (sgCA === sgFA || Vfa < 0.10 || Vfa > 0.45 || Vfa2 < 0.10 || Vfa2 > 0.45);
+  // Setup diagram (never the answer): the ingredient table with all givens;
+  // the fine-aggregate mass is the marked unknown.
+  var d020 = (function () {
+    function row(y, name, given, hot) {
+      var fill = hot ? '#dbeafe' : '#ffffff';
+      var stroke = hot ? '#1d4ed8' : '#1a1a1a';
+      var tcol = hot ? '#1d4ed8' : '#1a1a1a';
+      return '<rect x="50" y="' + y + '" width="190" height="42" fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.6"/>' +
+        '<rect x="240" y="' + y + '" width="200" height="42" fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.6"/>' +
+        '<text x="60" y="' + (y + 26) + '" font-family="Georgia,serif" font-size="14" fill="' + tcol + '">' + name + '</text>' +
+        '<text x="250" y="' + (y + 26) + '" font-family="Georgia,serif" font-size="14" fill="' + tcol + '">' + given + '</text>';
+    }
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="380" viewBox="0 0 480 380" role="img">';
+    s += '<text x="240" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">absolute volume method: all volumes sum to 1 m\u00b3</text>';
+    s += '<rect x="50" y="46" width="190" height="38" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<rect x="240" y="46" width="200" height="38" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="1.6"/>';
+    s += '<text x="60" y="70" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#1a1a1a">Ingredient</text>';
+    s += '<text x="250" y="70" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#1a1a1a">Given</text>';
+    s += row(88, 'water', W + ' kg', false);
+    s += row(134, 'cement', 'w/c = ' + fmt(wc) + ', SG = 3.15', false);
+    s += row(180, 'coarse aggregate', CA + ' kg, SG = ' + fmt(sgCA), false);
+    s += row(226, 'entrapped air', fmt(air) + '%', false);
+    s += row(272, 'fine aggregate', 'SG = ' + fmt(sgFA) + ', mass = ?', true);
+    s += '<text x="240" y="350" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">unit weight of water = 1000 kg/m\u00b3</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var mFA = Math.round(Vfa * sgFA * gw);
   var dNoAir = Math.round((Vfa + Vair) * sgFA * gw);      // forgot entrapped air
   var dInvWc = Math.round(Vfa2 * sgFA * gw);              // inverted w/c ratio
@@ -609,6 +636,7 @@ reg(buildGenerator({
     variantKey: "W" + W + "-wc" + Math.round(wc * 100) + "-CA" + CA + "-ca" + Math.round(sgCA * 100) +
       "-fa" + Math.round(sgFA * 100) + "-air" + Math.round(air * 10),
     question: q,
+    diagram: d020,
     options: [
       { label: mFA + " kg", num: mFA, correct: true },
       { label: dNoAir + " kg", num: dNoAir, correct: false },
@@ -856,6 +884,19 @@ reg(buildGenerator({
   var dAbs = m[1] * T2 * L * 1000;           // used the final temperature instead of Delta T
   var dDbl = m[1] * dT * (2 * L) * 1000;     // doubled the bar length
   var r = function (v) { return Math.round(v * 100) / 100; };
+  // Setup diagram (never the answer): the bar, the temperature change, and
+  // alpha; the elongation is the marked unknown.
+  var d025 = (function () {
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img">';
+    s += '<text x="240" y="34" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">heated from ' + T1 + ' \u00b0C to ' + T2 + ' \u00b0C</text>';
+    s += '<text x="240" y="58" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#1d4ed8">\u03b1 = ' + fmt(a6) + ' \u00d7 10\u207b\u2076 per \u00b0C</text>';
+    s += '<rect x="90" y="90" width="300" height="46" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2.5"/>';
+    s += '<text x="240" y="119" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">' + m[0] + ' bar, free ends</text>';
+    s += '<text x="240" y="168" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">L = ' + fmt(L) + ' m</text>';
+    s += '<text x="240" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#1a1a1a">elongation \u03b4 = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   var q = "A " + fmt(L) + "-m " + m[0] + " bar with free ends is heated from " + T1 +
     " C to " + T2 + " C. The coefficient of thermal expansion is " + fmt(a6) +
     " x 10^-6 per C. How much does the bar elongate?";
@@ -870,6 +911,7 @@ reg(buildGenerator({
   return {
     variantKey: m[0].slice(0, 2) + "-L" + Math.round(L * 10) + "-dT" + dT,
     question: q,
+    diagram: d025,
     options: [
       { label: fmt(r(dl)) + " mm", num: r(dl), correct: true },
       { label: fmt(r(dNoL)) + " mm", num: r(dNoL), correct: false },

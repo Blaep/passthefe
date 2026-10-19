@@ -1530,9 +1530,32 @@ def({
     "Substituting:\n\n" +
     "$$EUAC = " + fmt(P) + "(" + ap.toFixed(5) + ") - " + fmt(S) + "(" + af.toFixed(5) + ")$$\n\n" +
     "$$EUAC = " + (P * ap).toFixed(1) + " - " + (S * af).toFixed(1) + " = " + (P * ap - S * af).toFixed(1) + " \\approx " + mtex(ans) + "$$";
+  // Setup diagram (never the answer): the cash-flow timeline with the first
+  // cost, the salvage receipt, and the rate. EUAC is not given.
+  var d033 = (function () {
+    var x0 = 70, x1 = 430, ty = 120;
+    var s = "";
+    s += '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300" role="img">';
+    s += AH;
+    s += '<text x="240" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">Machine: ' + money(P) + ' new, ' + money(S) + ' salvage at year ' + n + '</text>';
+    s += '<line x1="' + x0 + '" y1="' + ty + '" x2="' + x1 + '" y2="' + ty + '" stroke="#1a1a1a" stroke-width="1.6"/>';
+    for (var t = 0; t <= n; t++) {
+      var tx = x0 + (x1 - x0) * t / n;
+      s += '<line x1="' + (Math.round(tx*10)/10) + '" y1="' + (ty - 5) + '" x2="' + (Math.round(tx*10)/10) + '" y2="' + (ty + 5) + '" stroke="#1a1a1a" stroke-width="1.2"/>';
+      if (n <= 12 || t % 2 === 0 || t === n) s += '<text x="' + (Math.round(tx*10)/10) + '" y="' + (ty + 22) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#1a1a1a">' + t + '</text>';
+    }
+    s += '<text x="250" y="' + (ty + 42) + '" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">End of year \u2192</text>';
+    s += '<line x1="' + x0 + '" y1="' + ty + '" x2="' + x0 + '" y2="' + (ty + 70) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + x0 + '" y="' + (ty + 92) + '" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1d4ed8">' + money(P) + '</text>';
+    s += '<line x1="' + x1 + '" y1="' + ty + '" x2="' + x1 + '" y2="' + (ty - 52) + '" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah)"/>';
+    s += '<text x="' + x1 + '" y="' + (ty - 62) + '" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1d4ed8">' + money(S) + '</text>';
+    s += '<text x="240" y="262" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#1a1a1a">i = ' + iP + '% per year \u00b7 EUAC = ?</text>';
+    return svgURL(s + SVG_FTR);
+  })();
   return {
     variantKey: "P" + P + "_S" + S + "_n" + n + "_i" + iP,
     question: "A machine costs " + money(P) + " new, has an estimated salvage value of " + money(S) + " after " + n + " years, and the interest rate is " + iP + "% per year. What is the equivalent uniform annual cost (EUAC) of owning the machine?",
+    diagram: d033,
     options: [
       { label: money(ans), num: ans, correct: true },
       { label: money(Math.round(P * ap)), num: Math.round(P * ap) },                   // ignores salvage
