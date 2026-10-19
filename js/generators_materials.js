@@ -1283,5 +1283,379 @@ reg(buildGenerator({
   };
 }));
 
-  window.MATERIALS_GENERATORS = MAT_ENTRIES;
+  /* ---- New-bank materials generators (materials-037..055 numeric set) ---- */
+
+var SRC_FHWA_VOLUM = "Source: FHWA, A Review of Aggregate and Asphalt Mixture Specific Gravity Measurements and Their Impacts on Asphalt Mix Design Properties and Mix Acceptance (FHWA-HIF-11-033), Equations 1 to 3 (https://www.fhwa.dot.gov/pavement/materials/pubs/hif11033/hif11033.pdf). The asphalt mixture volumetric equations are not in the FE Reference Handbook 10.6 (I searched for VMA, air voids and Gmb), so they are given in the question. Supplemental practice.";
+var SRC_USDA_WOOD = "Source: USDA Forest Products Laboratory, Wood Handbook: Wood as an Engineering Material (FPL-GTR-282), Chapter 4, Moisture Relations and Physical Properties of Wood (https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/chapter_04_fpl_gtr282.pdf). Wood moisture and shrinkage are not in the FE Reference Handbook 10.6 text I searched. Supplemental practice.";
+var SRC_FHWA_SLUMP = "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.";
+var CITE_FRACTURE = "Refer to Fracture toughness (K_Ic = Y\u03C3\u221A(\u03C0a)) in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
+var CITE_FRACTURE2 = "Refer to Fracture toughness in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
+var CITE_DIFFUSION = "Refer to Diffusion Coefficient (D = D0 e^(\u2212Q/RT)) in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 117 (PDF page 123).";
+var CITE_HARDNESS = "Refer to Relationship Between Hardness and Tensile Strength in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
+var CITE_GRAIN = "Refer to ASTM Grain Size in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
+
+function pct1(x) { return (Math.round(x * 10) / 10).toFixed(1) + "%"; }
+function commas(n) { return Math.round(n).toLocaleString("en-US"); }
+
+// materials-045 slump-cone diagram; slumped top follows the rolled measurement (bank scale 0.6 px/mm, cone 300 mm = 180 px)
+function dMat045(slump) {
+  var Y = 50 + slump * 0.6;
+  var cMid = 230 - (230 - Y) * 0.55;
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="280" viewBox="0 0 640 280" role="img" aria-label="Slump cone test: the slumped concrete surface is ' + slump + ' millimeters below the original 300 millimeter cone top">';
+  s += '<rect width="640" height="280" fill="#ffffff"/>' + AH;
+  s += '<line x1="60" y1="230" x2="580" y2="230" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<polygon points="260,50 380,50 350,230 290,230" fill="none" stroke="#9aa0b4" stroke-width="2" stroke-dasharray="8 6"/>';
+  s += '<path d="M235,230 C270,228 285,' + cMid.toFixed(1) + ' 295,' + Y.toFixed(1) + ' L345,' + Y.toFixed(1) + ' C355,' + cMid.toFixed(1) + ' 370,228 405,230 Z" fill="#d1d5db" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<line x1="250" y1="50" x2="470" y2="50" stroke="#9aa0b4" stroke-width="1.5" stroke-dasharray="8 6"/>';
+  s += '<line x1="450" y1="50" x2="450" y2="' + Y.toFixed(1) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<line x1="450" y1="52" x2="450" y2="72" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ah)"/>';
+  s += '<line x1="450" y1="' + (Y - 2).toFixed(1) + '" x2="450" y2="' + (Y - 22).toFixed(1) + '" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ah)"/>';
+  s += '<line x1="442" y1="50" x2="458" y2="50" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<line x1="442" y1="' + Y.toFixed(1) + '" x2="458" y2="' + Y.toFixed(1) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="462" y="' + (Y + (50 - Y) / 2 + 8).toFixed(1) + '" text-anchor="start" font-family="Georgia, serif" font-size="26" fill="#1d4ed8">slump = ' + slump + ' mm</text>';
+  s += '<line x1="210" y1="50" x2="210" y2="230" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<line x1="210" y1="52" x2="210" y2="72" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ah)"/>';
+  s += '<line x1="210" y1="228" x2="210" y2="208" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ah)"/>';
+  s += '<text x="198" y="147" text-anchor="end" font-family="Georgia, serif" font-size="25" fill="#1a1a1a">300 mm</text>';
+  s += '<text x="320" y="264" text-anchor="middle" font-family="Georgia, serif" font-size="23" fill="#1a1a1a">slumped concrete (cone outline dashed)</text>';
+  return svgURL(s + '</svg>');
+}
+
+/* ---- materials-037: asphalt air voids ---- */
+reg(buildGenerator({
+  baseId: "materials-037", topic: "Materials", subtopic: "Asphalt mixture air voids",
+  difficulty: "easy", estimatedTimeSeconds: 75,
+  explanation: "Inverting the ratio, subtracting the specific gravities, or forgetting to subtract from 1 give the traps. Air voids control asphalt durability.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var Gmb = pick([2.30, 2.32, 2.35, 2.36, 2.38, 2.40]);
+  var Gmm = pick([2.42, 2.44, 2.45, 2.47, 2.48, 2.50]);
+  if (Gmm - Gmb < 0.05) Gmm = Gmb + 0.12;
+  var correct = (1 - Gmb / Gmm) * 100;
+  var dInv = (Gmm / Gmb - 1) * 100;
+  var dDiff = Gmm - Gmb;
+  var dNoSub = Gmb / Gmm * 100;
+  var question = "The air voids of a compacted asphalt mixture are \\(V_a = \\left(1 - \\dfrac{G_{mb}}{G_{mm}}\\right)(100)\\), where \\(G_{mb}\\) is the bulk specific gravity of the compacted mixture and \\(G_{mm}\\) is the maximum specific gravity of the mixture. A compacted sample has \\(G_{mb} = " + Gmb.toFixed(3) + "\\) and \\(G_{mm} = " + Gmm.toFixed(3) + "\\). What are the air voids?";
+  var solution = SRC_FHWA_VOLUM + "\n\n" +
+    "$$V_a = \\left(1 - \\frac{G_{mb}}{G_{mm}}\\right)(100) = \\left(1 - \\frac{" + Gmb.toFixed(3) + "}{" + Gmm.toFixed(3) + "}\\right)(100) = " + pct1(correct) + "$$";
+  return {
+    variantKey: "Gmb" + Gmb + "_Gmm" + Gmm,
+    question: question,
+    options: [
+      { label: pct1(correct), num: correct, correct: true },
+      { label: pct1(dInv), num: dInv, correct: false },
+      { label: pct1(dDiff), num: dDiff, correct: false },
+      { label: pct1(dNoSub), num: dNoSub, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-038: asphalt VMA ---- */
+reg(buildGenerator({
+  baseId: "materials-038", topic: "Materials", subtopic: "Asphalt mixture VMA",
+  difficulty: "easy", estimatedTimeSeconds: 75,
+  explanation: "Forgetting to subtract from 100, using the binder content instead of P_s, or treating P_s as a fraction give the traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var Gmb = pick([2.30, 2.35, 2.38, 2.40]);
+  var Ps = pick([93.0, 94.0, 95.0, 96.0]);
+  var Gsb = pick([2.60, 2.65, 2.70, 2.75]);
+  var correct = 100 - Gmb * Ps / Gsb;
+  var dNoSub = Gmb * Ps / Gsb;
+  var dBinder = 100 - Gmb * (100 - Ps) / Gsb;
+  var dFrac = 100 - Gmb * (Ps / 100) / Gsb;
+  var question = "The voids in the mineral aggregate of a compacted asphalt mixture are \\(VMA = 100 - \\dfrac{G_{mb}P_s}{G_{sb}}\\), where \\(G_{mb} = " + Gmb.toFixed(3) + "\\), \\(P_s = " + Ps.toFixed(1) + "\\%\\) is the aggregate content by mass of the total mixture, and \\(G_{sb} = " + Gsb.toFixed(3) + "\\). What is the VMA?";
+  var solution = SRC_FHWA_VOLUM + "\n\n" +
+    "$$VMA = 100 - \\frac{G_{mb}P_s}{G_{sb}} = 100 - \\frac{(" + Gmb.toFixed(3) + ")(" + Ps.toFixed(1) + ")}{" + Gsb.toFixed(3) + "} = " + pct1(correct) + "$$";
+  return {
+    variantKey: "Gmb" + Gmb + "_Ps" + Ps + "_Gsb" + Gsb,
+    question: question,
+    options: [
+      { label: pct1(correct), num: correct, correct: true },
+      { label: pct1(dNoSub), num: dNoSub, correct: false },
+      { label: pct1(dBinder), num: dBinder, correct: false },
+      { label: pct1(dFrac), num: dFrac, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-039: asphalt VFA ---- */
+reg(buildGenerator({
+  baseId: "materials-039", topic: "Materials", subtopic: "Asphalt mixture VFA",
+  difficulty: "medium", estimatedTimeSeconds: 90,
+  explanation: "The traps report VMA - Va (effective binder volume), Va/VMA, or (VMA - Va)/Va instead of the filled fraction.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var Gmb = pick([2.30, 2.35, 2.38, 2.40]);
+  var Gmm = pick([2.44, 2.47, 2.50]);
+  var Ps = pick([94.0, 95.0, 96.0]);
+  var Gsb = pick([2.60, 2.65, 2.70]);
+  if (Gmm - Gmb < 0.05) Gmm = Gmb + 0.12;
+  var Va = (1 - Gmb / Gmm) * 100;
+  var VMA = 100 - Gmb * Ps / Gsb;
+  if (VMA - Va < 4) Ps = Ps - 2;
+  var VMAf = 100 - Gmb * Ps / Gsb;
+  var correct = (VMAf - Va) / VMAf * 100;
+  var dDiff = VMAf - Va;
+  var dRatio = Va / VMAf * 100;
+  var dOver = (VMAf - Va) / Va * 100;
+  var question = "For a compacted asphalt mixture, \\(V_a = \\left(1 - \\dfrac{G_{mb}}{G_{mm}}\\right)(100)\\), \\(VMA = 100 - \\dfrac{G_{mb}P_s}{G_{sb}}\\) and \\(VFA = \\dfrac{VMA - V_a}{VMA}(100)\\). A sample has \\(G_{mb} = " + Gmb.toFixed(3) + "\\), \\(G_{mm} = " + Gmm.toFixed(3) + "\\), \\(P_s = " + Ps.toFixed(1) + "\\%\\) and \\(G_{sb} = " + Gsb.toFixed(3) + "\\). What is the VFA?";
+  var solution = SRC_FHWA_VOLUM + "\n\n" +
+    "$$V_a = \\left(1 - \\frac{" + Gmb.toFixed(3) + "}{" + Gmm.toFixed(3) + "}\\right)(100) = " + pct1(Va) + "$$\n\n" +
+    "$$VMA = 100 - \\frac{(" + Gmb.toFixed(3) + ")(" + Ps.toFixed(1) + ")}{" + Gsb.toFixed(3) + "} = " + pct1(VMAf) + "$$\n\n" +
+    "$$VFA = \\frac{VMA - V_a}{VMA}(100) = \\frac{" + pct1(VMAf).replace('%','') + " - " + pct1(Va).replace('%','') + "}{" + pct1(VMAf).replace('%','') + "}(100) = " + pct1(correct) + "$$";
+  return {
+    variantKey: "Gmb" + Gmb + "_Gmm" + Gmm + "_Ps" + Ps + "_Gsb" + Gsb,
+    question: question,
+    options: [
+      { label: pct1(correct), num: correct, correct: true },
+      { label: pct1(dDiff), num: dDiff, correct: false },
+      { label: pct1(dRatio), num: dRatio, correct: false },
+      { label: pct1(dOver), num: dOver, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-040: wood moisture content ---- */
+reg(buildGenerator({
+  baseId: "materials-040", topic: "Materials", subtopic: "Wood moisture content",
+  difficulty: "easy", estimatedTimeSeconds: 75,
+  explanation: "Moisture content is referenced to the oven-dry mass - the wet-basis ratio is the classic trap.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var dry = pick([400, 450, 500, 550, 600]);
+  var water = pick([100, 120, 130, 150, 180, 200]);
+  var wet = dry + water;
+  var correct = water / dry * 100;
+  var dWetBasis = water / wet * 100;
+  var dWater = water;
+  var dFrac = water / dry / 100;
+  var question = "The moisture content of wood is the mass of water divided by the mass of the oven-dry wood, as a percentage, so \\(MC = \\dfrac{m_{wet} - m_{dry}}{m_{dry}}(100)\\). A wood specimen has a mass of " + wet + " g at its current condition and " + dry + " g after oven drying. What is its moisture content?";
+  var solution = SRC_USDA_WOOD + "\n\n" +
+    "$$MC = \\frac{m_{wet} - m_{dry}}{m_{dry}}(100) = \\frac{" + wet + " - " + dry + "}{" + dry + "}(100) = " + pct1(correct) + "$$";
+  return {
+    variantKey: "wet" + wet + "_dry" + dry,
+    question: question,
+    options: [
+      { label: pct1(correct), num: correct, correct: true },
+      { label: pct1(dWetBasis), num: dWetBasis, correct: false },
+      { label: pct1(dWater), num: dWater, correct: false },
+      { label: pct1(dFrac), num: dFrac, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-045: concrete slump reporting ---- */
+reg(buildGenerator({
+  baseId: "materials-045", topic: "Materials", subtopic: "Concrete slump reporting",
+  difficulty: "easy", estimatedTimeSeconds: 45,
+  explanation: "Slump is recorded to the nearest 5 mm; the traps are the unrounded reading and the adjacent 5 mm marks.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var s = pick([92, 93, 97, 98, 102, 103, 107, 108]);
+  var nearest = Math.floor(s / 5) * 5;
+  if (s - nearest > nearest + 5 - s) nearest += 5;
+  var correct = nearest;
+  var below = correct - 5, above = correct + 5;
+  var question = "A slump test gives a measured slump of " + s + " mm. The standard reports slump to the nearest 5 mm. What value is recorded?";
+  var solution = SRC_FHWA_SLUMP + "\n\n" +
+    "The FHWA lab manual says the slump is measured and recorded to the nearest 5 mm (1/4 in.). " + s + " mm is " + Math.abs(s - correct) + " mm from " + correct + " mm, so the recorded value is " + correct + " mm.";
+  return {
+    variantKey: "s" + s,
+    question: question, diagram: dMat045(s),
+    options: [
+      { label: correct + " mm", num: correct, correct: true },
+      { label: s + " mm", num: s, correct: false },
+      { label: below + " mm", num: below, correct: false },
+      { label: above + " mm", num: above, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-046: critical fracture stress ---- */
+reg(buildGenerator({
+  baseId: "materials-046", topic: "Materials", subtopic: "Fracture toughness, critical stress",
+  difficulty: "medium", estimatedTimeSeconds: 90,
+  explanation: "Y divides the toughness when solving for stress; multiplying by Y, omitting Y, or omitting pi gives the traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var K = pick([30, 40, 50, 60]);
+  var Y = pick([1.0, 1.1, 1.2]);
+  var a = pick([0.10, 0.15, 0.20, 0.25, 0.30]);
+  var root = Math.sqrt(Math.PI * a);
+  var correct = K / (Y * root);
+  var dMulY = K * Y / root;
+  var dNoY = K / root;
+  var dNoPi = K / (Y * Math.sqrt(a));
+  var question = "A plate of a material with K_Ic = " + K + " ksi\u221Ain. has an exterior edge crack of length a = " + a.toFixed(2) + " in. using Y = " + Y.toFixed(1) + ". What stress causes fracture?";
+  var solution = CITE_FRACTURE + "\n\n" +
+    "$$\\sigma_f = \\frac{K_{Ic}}{Y\\sqrt{\\pi a}} = \\frac{" + K + "}{(" + Y.toFixed(1) + ")\\sqrt{\\pi (" + a.toFixed(2) + ")}} = " + (Math.round(correct * 10) / 10).toFixed(1) + "\\ \\text{ksi}$$";
+  return {
+    variantKey: "K" + K + "_Y" + Y + "_a" + a,
+    question: question,
+    options: [
+      { label: (Math.round(correct * 10) / 10).toFixed(1) + " ksi", num: correct, correct: true },
+      { label: (Math.round(dMulY * 10) / 10).toFixed(1) + " ksi", num: dMulY, correct: false },
+      { label: (Math.round(dNoY * 10) / 10).toFixed(1) + " ksi", num: dNoY, correct: false },
+      { label: (Math.round(dNoPi * 10) / 10).toFixed(1) + " ksi", num: dNoPi, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-047: critical crack length ---- */
+reg(buildGenerator({
+  baseId: "materials-047", topic: "Materials", subtopic: "Critical crack length",
+  difficulty: "medium", estimatedTimeSeconds: 90,
+  explanation: "The ratio K_Ic/sigma is squared and divided by pi; skipping pi, skipping the square, or doubling for the interior 2a convention gives the traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var K = pick([30, 40, 50]);
+  var sig = pick([20, 25, 30, 35]);
+  var r = K / sig;
+  var correct = r * r / Math.PI;
+  var dNoPi = r * r;
+  var dInterior = 4 * correct;
+  var dNoSquare = K / (sig * Math.PI);
+  var question = "An interior crack (Y = 1) in a part with K_Ic = " + K + " ksi\u221Ain. is loaded to " + sig + " ksi. What is the critical crack length a?";
+  var solution = CITE_FRACTURE + "\n\n" +
+    "$$a = \\frac{1}{\\pi}\\left(\\frac{K_{Ic}}{Y\\sigma}\\right)^2 = \\frac{1}{\\pi}\\left(\\frac{" + K + "}{" + sig + "}\\right)^2 = " + (Math.round(correct * 100) / 100).toFixed(2) + "\\ \\text{in.}$$";
+  return {
+    variantKey: "K" + K + "_s" + sig,
+    question: question,
+    options: [
+      { label: (Math.round(correct * 100) / 100).toFixed(2) + " in.", num: correct, correct: true },
+      { label: (Math.round(dNoPi * 100) / 100).toFixed(2) + " in.", num: dNoPi, correct: false },
+      { label: (Math.round(dInterior * 100) / 100).toFixed(2) + " in.", num: dInterior, correct: false },
+      { label: (Math.round(dNoSquare * 100) / 100).toFixed(2) + " in.", num: dNoSquare, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-048: diffusion coefficient ratio ---- */
+reg(buildGenerator({
+  baseId: "materials-048", topic: "Materials", subtopic: "Diffusion coefficient ratio",
+  difficulty: "medium", estimatedTimeSeconds: 90,
+  explanation: "D depends exponentially on 1/T; the temperature ratio alone greatly underestimates the change, and inverting gives D1/D2.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var Q = pick([100000, 120000, 150000]);
+  var T1 = pick([800, 900, 1000]);
+  var dT = pick([100, 150, 200]);
+  var T2 = T1 + dT;
+  var R = 8.314;
+  var expo = Q / R * (1 / T1 - 1 / T2);
+  var correct = Math.exp(expo);
+  var dInv = 1 / correct;
+  var dTratio = T2 / T1;
+  var dHalf = Math.exp(expo / 2);
+  var question = "A diffusion process has activation energy Q = " + commas(Q) + " J/mol (R = 8.314 J/mol\u00B7K). By what factor does the diffusion coefficient D increase when the temperature rises from " + commas(T1) + " K to " + commas(T2) + " K?";
+  var solution = CITE_DIFFUSION + "\n\n" +
+    "$$\\frac{D_2}{D_1} = \\exp\\!\\left[\\frac{Q}{R}\\left(\\frac{1}{T_1} - \\frac{1}{T_2}\\right)\\right] = \\exp\\!\\left[\\frac{" + commas(Q) + "}{8.314}\\left(\\frac{1}{" + commas(T1) + "} - \\frac{1}{" + commas(T2) + "}\\right)\\right] = " + (Math.round(correct * 100) / 100).toFixed(2) + "$$";
+  return {
+    variantKey: "Q" + Q + "_T1_" + T1 + "_T2_" + T2,
+    question: question,
+    options: [
+      { label: (Math.round(correct * 10) / 10).toFixed(1), num: correct, correct: true },
+      { label: (Math.round(dInv * 1000) / 1000).toFixed(3), num: dInv, correct: false },
+      { label: (Math.round(dTratio * 100) / 100).toFixed(2), num: dTratio, correct: false },
+      { label: (Math.round(dHalf * 10) / 10).toFixed(1), num: dHalf, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-053: hardness and tensile strength ---- */
+reg(buildGenerator({
+  baseId: "materials-053", topic: "Materials", subtopic: "Hardness and tensile strength of steel",
+  difficulty: "easy", estimatedTimeSeconds: 60,
+  explanation: "The handbook relation is TS(psi) = 500 x BHN; 3.5 x BHN is the MPa value, and decimal slips give the other traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var bhn = pick([150, 200, 250, 300, 350, 400]);
+  var correct = 500 * bhn;
+  var dMPa = 3.5 * bhn;
+  var dLow = 500 * bhn / 1000;
+  var dHigh = 500 * bhn * 10;
+  var question = "A plain carbon steel has a Brinell hardness of " + bhn + " BHN. Using the handbook relation, what is the approximate tensile strength?";
+  var solution = CITE_HARDNESS + "\n\n" +
+    "$$TS(\\text{psi}) = 500 \\times BHN = 500 \\times " + bhn + " = " + commas(correct) + "\\ \\text{psi}$$";
+  return {
+    variantKey: "bhn" + bhn,
+    question: question,
+    options: [
+      { label: commas(correct) + " psi", num: correct, correct: true },
+      { label: commas(dMPa) + " psi", num: dMPa, correct: false },
+      { label: commas(dLow) + " psi", num: dLow, correct: false },
+      { label: commas(dHigh) + " psi", num: dHigh, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-054: stress intensity factor ---- */
+reg(buildGenerator({
+  baseId: "materials-054", topic: "Materials", subtopic: "Fracture toughness stress intensity",
+  difficulty: "medium", estimatedTimeSeconds: 90,
+  explanation: "Omitting Y, using the interior-crack length 2a, or forgetting the square root entirely gives the traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var Y = pick([1.0, 1.1, 1.2]);
+  var sig = pick([200, 250, 300, 350]);
+  var a = pick([0.001, 0.002, 0.003, 0.005]);
+  var correct = Y * sig * Math.sqrt(Math.PI * a);
+  var dNoY = sig * Math.sqrt(Math.PI * a);
+  var d2a = Y * sig * Math.sqrt(Math.PI * 2 * a);
+  var dNoRoot = Y * sig * a;
+  var question = "An edge crack of length a = " + (a * 1000) + " mm in a plate under an applied stress of " + sig + " MPa has Y = " + Y.toFixed(1) + ". What is the stress intensity K (MPa m\u00B9\u2044\u00B2)?";
+  var solution = CITE_FRACTURE2 + "\n\n" +
+    "$$K = Y\\sigma\\sqrt{\\pi a} = (" + Y.toFixed(1) + ")(" + sig + ")\\sqrt{\\pi (" + a + ")} = " + (Math.round(correct * 10) / 10).toFixed(1) + "\\ \\text{MPa}\\sqrt{\\text{m}}$$";
+  return {
+    variantKey: "Y" + Y + "_s" + sig + "_a" + a,
+    question: question,
+    options: [
+      { label: (Math.round(correct * 10) / 10).toFixed(1) + " MPa m\u00B9\u2044\u00B2", num: correct, correct: true },
+      { label: (Math.round(dNoY * 10) / 10).toFixed(1) + " MPa m\u00B9\u2044\u00B2", num: dNoY, correct: false },
+      { label: (Math.round(d2a * 10) / 10).toFixed(1) + " MPa m\u00B9\u2044\u00B2", num: d2a, correct: false },
+      { label: (Math.round(dNoRoot * 100) / 100).toFixed(2) + " MPa m\u00B9\u2044\u00B2", num: dNoRoot, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+/* ---- materials-055: ASTM grain size ---- */
+reg(buildGenerator({
+  baseId: "materials-055", topic: "Materials", subtopic: "ASTM grain size",
+  difficulty: "easy", estimatedTimeSeconds: 60,
+  explanation: "The handbook relation is N = 2^(n-1); using 2^n, n^2, or 2n gives the traps.",
+  videoUrl: null, videoTitle: null
+}, function () {
+  var n = pick([4, 5, 6, 7, 8]);
+  var correct = Math.pow(2, n - 1);
+  var dNoMinus = Math.pow(2, n);
+  var dSquare = n * n;
+  var dDouble = 2 * n;
+  var question = "Using the handbook relation N = 2^(n-1) for the number of grains per 0.0645 mm\u00B2, how many grains are in that area for ASTM grain size n = " + n + "?";
+  var solution = CITE_GRAIN + "\n\n" +
+    "$$N = 2^{n-1} = 2^{" + n + "-1} = 2^{" + (n - 1) + "} = " + correct + "$$";
+  return {
+    variantKey: "n" + n,
+    question: question,
+    options: [
+      { label: String(correct), num: correct, correct: true },
+      { label: String(dNoMinus), num: dNoMinus, correct: false },
+      { label: String(dSquare), num: dSquare, correct: false },
+      { label: String(dDouble), num: dDouble, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+window.MATERIALS_GENERATORS = MAT_ENTRIES;
 })();

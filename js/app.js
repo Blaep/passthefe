@@ -2400,7 +2400,10 @@
     var libs = [window.MATH_GENERATORS, window.ECON_GENERATORS,
                 window.STATS_GENERATORS, window.MATERIALS_GENERATORS,
                 window.STATICS_GENERATORS, window.MECHMAT_GENERATORS,
-                window.FLUID_GENERATORS];
+                window.FLUID_GENERATORS, window.WATER_GENERATORS,
+                window.GEOTECH_GENERATORS, window.STRUCTURAL_GENERATORS,
+                window.TRANSPORTATION_GENERATORS, window.CONSTRUCTION_GENERATORS,
+                window.DYNAMICS_GENERATORS, window.SURVEYING_GENERATORS];
     for (var i = 0; i < libs.length; i++) {
       var lib = libs[i];
       if (!Array.isArray(lib)) continue;
@@ -2738,6 +2741,20 @@
     if (Array.isArray(mm) && mm.length) all = all.concat(mm);
     var f = window.FLUID_GENERATORS;
     if (Array.isArray(f) && f.length) all = all.concat(f);
+    var w = window.WATER_GENERATORS;
+    if (Array.isArray(w) && w.length) all = all.concat(w);
+    var gt = window.GEOTECH_GENERATORS;
+    if (Array.isArray(gt) && gt.length) all = all.concat(gt);
+    var sr = window.STRUCTURAL_GENERATORS;
+    if (Array.isArray(sr) && sr.length) all = all.concat(sr);
+    var tr = window.TRANSPORTATION_GENERATORS;
+    if (Array.isArray(tr) && tr.length) all = all.concat(tr);
+    var cn = window.CONSTRUCTION_GENERATORS;
+    if (Array.isArray(cn) && cn.length) all = all.concat(cn);
+    var dy = window.DYNAMICS_GENERATORS;
+    if (Array.isArray(dy) && dy.length) all = all.concat(dy);
+    var sv = window.SURVEYING_GENERATORS;
+    if (Array.isArray(sv) && sv.length) all = all.concat(sv);
     return all.length ? all : null;
   }
 
@@ -2761,6 +2778,8 @@
     var okMm = Array.isArray(mm) && mm.length;
     var fl = window.FLUID_GENERATORS;
     var okFl = Array.isArray(fl) && fl.length;
+    var w = window.WATER_GENERATORS;
+    var okW = Array.isArray(w) && w.length;
     if (ch === "econ") return okE ? e.slice() : null;
     if (ch === "math") return okM ? m.slice() : null;
     if (ch === "stats") return okS ? s.slice() : null;
@@ -2768,6 +2787,25 @@
     if (ch === "stat") return okSt ? st.slice() : null;
     if (ch === "mechmat") return okMm ? mm.slice() : null;
     if (ch === "fluid") return okFl ? fl.slice() : null;
+    if (ch === "water") return okW ? w.slice() : null;
+    var gt = window.GEOTECH_GENERATORS;
+    var sr = window.STRUCTURAL_GENERATORS;
+    var tr = window.TRANSPORTATION_GENERATORS;
+    var cn = window.CONSTRUCTION_GENERATORS;
+    var dy = window.DYNAMICS_GENERATORS;
+    var sv = window.SURVEYING_GENERATORS;
+    var okGt = Array.isArray(gt) && gt.length;
+    var okSr = Array.isArray(sr) && sr.length;
+    var okTr = Array.isArray(tr) && tr.length;
+    var okCn = Array.isArray(cn) && cn.length;
+    var okDy = Array.isArray(dy) && dy.length;
+    var okSv = Array.isArray(sv) && sv.length;
+    if (ch === "geotech") return okGt ? gt.slice() : null;
+    if (ch === "structural") return okSr ? sr.slice() : null;
+    if (ch === "transportation") return okTr ? tr.slice() : null;
+    if (ch === "construction") return okCn ? cn.slice() : null;
+    if (ch === "dynamics") return okDy ? dy.slice() : null;
+    if (ch === "surveying") return okSv ? sv.slice() : null;
     var all = [];
     if (okM) all = all.concat(m);
     if (okE) all = all.concat(e);
@@ -2776,6 +2814,13 @@
     if (okSt) all = all.concat(st);
     if (okMm) all = all.concat(mm);
     if (okFl) all = all.concat(fl);
+    if (okW) all = all.concat(w);
+    if (okGt) all = all.concat(gt);
+    if (okSr) all = all.concat(sr);
+    if (okTr) all = all.concat(tr);
+    if (okCn) all = all.concat(cn);
+    if (okDy) all = all.concat(dy);
+    if (okSv) all = all.concat(sv);
     return all.length ? all : null;
   }
 
@@ -2802,8 +2847,15 @@
     var okSt = Array.isArray(window.STATICS_GENERATORS) && window.STATICS_GENERATORS.length;
     var okMm = Array.isArray(window.MECHMAT_GENERATORS) && window.MECHMAT_GENERATORS.length;
     var okFl = Array.isArray(window.FLUID_GENERATORS) && window.FLUID_GENERATORS.length;
-    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt, mechmat: okMm, fluid: okFl };
-    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0) + (okMm ? 1 : 0) + (okFl ? 1 : 0);
+    var okW = Array.isArray(window.WATER_GENERATORS) && window.WATER_GENERATORS.length;
+    var okGt = Array.isArray(window.GEOTECH_GENERATORS) && window.GEOTECH_GENERATORS.length;
+    var okSr = Array.isArray(window.STRUCTURAL_GENERATORS) && window.STRUCTURAL_GENERATORS.length;
+    var okTr = Array.isArray(window.TRANSPORTATION_GENERATORS) && window.TRANSPORTATION_GENERATORS.length;
+    var okCn = Array.isArray(window.CONSTRUCTION_GENERATORS) && window.CONSTRUCTION_GENERATORS.length;
+    var okDy = Array.isArray(window.DYNAMICS_GENERATORS) && window.DYNAMICS_GENERATORS.length;
+    var okSv = Array.isArray(window.SURVEYING_GENERATORS) && window.SURVEYING_GENERATORS.length;
+    var okMap = { math: okM, econ: okE, stats: okS, mat: okMt, stat: okSt, mechmat: okMm, fluid: okFl, water: okW, geotech: okGt, structural: okSr, transportation: okTr, construction: okCn, dynamics: okDy, surveying: okSv };
+    var present = (okM ? 1 : 0) + (okE ? 1 : 0) + (okS ? 1 : 0) + (okMt ? 1 : 0) + (okSt ? 1 : 0) + (okMm ? 1 : 0) + (okFl ? 1 : 0) + (okW ? 1 : 0) + (okGt ? 1 : 0) + (okSr ? 1 : 0) + (okTr ? 1 : 0) + (okCn ? 1 : 0) + (okDy ? 1 : 0) + (okSv ? 1 : 0);
     picker.classList.toggle("hidden", present < 2);
     picker.querySelectorAll(".length-btn").forEach(function (b) {
       var ch = b.dataset.chapter || "mixed";

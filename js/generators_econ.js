@@ -825,53 +825,57 @@ def({
   estimatedTimeSeconds: 135,
   explanation: "Discounted payback discounts first, then accumulates; the 3.00-year trap is the simple (undiscounted) payback."
 }, function () {
-  var P = 12000, iPct = 10, A = 4000, nfrac = 0, ok = false;
+  var P = 12000, iPct = 10, A = 4000, nint = 0, ok = false;
+  var k = 0, cum = 0, cumPrev = 0, discK = 0;
   for (var t = 0; t < 300 && !ok; t++) {
     P = ri(8, 30) * 1000;
     iPct = ri(5, 12);
     A = ri(3, 12) * 1000;
     var ii = iPct / 100;
     if (A <= P * ii * 1.15) continue; // must actually recover the investment
-    nfrac = -Math.log(1 - P * ii / A) / Math.log(1 + ii);
-    var nums017 = [nfrac, P / A, Math.ceil(nfrac), Math.floor(nfrac) + 0.5];
-    ok = nfrac > 2.2 && nfrac < 6.5 && P / A >= 2.0;
+    // Bank method: discount year by year, then interpolate inside the final year.
+    cum = 0; k = 0;
+    while (cum < P && k < 200) { k++; discK = A / Math.pow(1 + ii, k); cumPrev = cum; cum += discK; }
+    nint = (k - 1) + (P - cumPrev) / discK;
+    var fr017 = nint - (k - 1); // skip degenerate variants where recovery lands ~exactly on a year boundary
+    var nums017 = [nint, P / A, k, Math.floor(nint) + 0.5];
+    ok = nint > 2.2 && nint < 6.5 && P / A >= 2.0 && fr017 > 0.02 && fr017 < 0.98;
     for (var q1 = 0; q1 < 4 && ok; q1++)
       for (var q2 = q1 + 1; q2 < 4 && ok; q2++)
         if (Math.abs(nums017[q1] - nums017[q2]) < 0.06) ok = false;
   }
   var i = iPct / 100;
   var oneP = (1 + i).toFixed(2);
-  var k = Math.ceil(nfrac), cum = 0, cumPrev = 0, discK = 0;
+  cum = 0; cumPrev = 0; discK = 0;
   var rows = [];
   for (var yr = 1; yr <= k; yr++) {
     var d = A / Math.pow(1 + i, yr);
     cumPrev = cum; cum += d;
     if (yr === k) discK = d;
     var div = yr === 1 ? oneP : "(" + oneP + ")^" + yr;
-    rows.push("\\text{Year " + yr + ":} &\\quad " + fmt(A) + "/" + div +
-      " = " + mtex(d) + " \\quad (\\text{cum } " + mtex(cum) + ")");
+    rows.push("\\text{Year " + yr + ":} &\\quad " + mtex(d));
   }
-  var frac = nfrac - (k - 1);
+  var frac = (P - cumPrev) / discK;
   var solution =
     "Refer to the Engineering Economics chapter of the FE Reference Handbook.\n\n" +
     "Ultimately, we must solve for the discounted payback period: the time until the cumulative discounted cash inflows recover the initial investment:\n\n" +
     "$$\\sum_{t=1}^{n}\\frac{A}{(1+i)^t} \\geq P$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(n\\):\n\n" +
     "$$\\begin{aligned}\nP &= " + mtex(P) + " \\\\\nA &= " + mtex(A) + "/\\text{yr} \\\\\ni &= " + iPct + "\\% = " + texNum(i) + " \\\\\nn &= ?\n\\end{aligned}$$\n\n" +
-    "Accumulate the discounted inflows:\n\n" +
+    "Discount each year's inflow by \\((1+i)^t\\) and accumulate:\n\n" +
     "$$\\begin{aligned}\n" + rows.join(" \\\\\n") + "\n\\end{aligned}$$\n\n" +
-    "The investment is recovered during year " + k + ":\n\n" +
-    "$$n = " + (k - 1) + " + \\frac{" + fmt(P - cumPrev) + "}{" + fmt(discK) + "} = " + (k - 1) + " + " + frac.toFixed(2) + "$$\n\n" +
-    "$$n = " + nfrac.toFixed(2) + "\\ \\text{years}$$";
+    "Through year " + (k - 1) + " the cumulative discounted inflow is " + money(cumPrev) + ", so the investment is recovered during year " + k + ":\n\n" +
+    "$$n = " + (k - 1) + " + \\frac{" + (P - cumPrev).toFixed(2) + "}{" + discK.toFixed(2) + "} = " + (k - 1) + " + " + frac.toFixed(2) + "$$\n\n" +
+    "$$n = " + nint.toFixed(2) + "\\ \\text{years}$$";
   var simple = P / A;
   return {
     variantKey: "P" + P + "_A" + A + "_i" + iPct,
     question: "A project requires an initial investment of " + money(P) + " and generates " + money(A) + " per year. At " + iPct + "% annual interest, what is the discounted payback period?",
     options: [
-      { label: nfrac.toFixed(2) + " years", num: +nfrac.toFixed(2), correct: true },
+      { label: nint.toFixed(2) + " years", num: +nint.toFixed(2), correct: true },
       { label: simple.toFixed(2) + " years", num: +simple.toFixed(2) },  // simple (undiscounted) payback
       { label: k + " years", num: k },                                    // rounds up to the full year
-      { label: (Math.floor(nfrac) + 0.5).toFixed(2) + " years", num: Math.floor(nfrac) + 0.5 } // mid-year guess
+      { label: (Math.floor(nint) + 0.5).toFixed(2) + " years", num: Math.floor(nint) + 0.5 } // mid-year guess
     ],
     solution: solution
   };
@@ -1534,6 +1538,758 @@ def({
       { label: money(Math.round(P * ap)), num: Math.round(P * ap) },                   // ignores salvage
       { label: money(Math.round(P * ap + S * af)), num: Math.round(P * ap + S * af) }, // adds salvage
       { label: money(Math.round((P - S) * ap)), num: Math.round((P - S) * ap) }        // salvage reduces first cost
+    ],
+    solution: solution
+  };
+});
+
+
+/* ============ 2026-10 expansion entries (econ-040..066) ============
+ * Factors are rounded to 4 decimals like the handbook tables, then the
+ * product is rounded to dollars - exactly the bank's reviewed method.
+ * Citations reuse the bank's reviewed wording; table pages by rate are
+ * verified against the v10.6 PDF (0.5/1% -> 238/244, 1.5/2% -> 239/245,
+ * 4/6% -> 240/246, 8/10% -> 241/247, 12/18% -> 242/248).
+ */
+var r4e = function (x) { return Math.round(x * 10000) / 10000; };
+var TBLPG = { "0.5": [238, 244], "1": [238, 244], "1.5": [239, 245], "2": [239, 245], "4": [240, 246], "6": [240, 246], "8": [241, 247], "10": [241, 247], "12": [242, 248], "18": [242, 248] };
+var tblCite = function (pct) {
+  var pg = TBLPG[String(pct)];
+  return "Refer to the Engineering Economics interest-rate table for i = " + pct + "% in the FE Reference Handbook (v10.6), printed page " + pg[0] + " (PDF page " + pg[1] + "), and the factor formulas, printed page 235 (PDF page 241).";
+};
+var p_g = function (i, n) { var f = Math.pow(1 + i, n); return (f - 1) / (i * i * f) - n / (i * f); };
+var a_g = function (i, n) { return 1 / i - n / (Math.pow(1 + i, n) - 1); };
+
+// ---------------------------------------------------------------- econ-040
+// Single payment compound amount F = P(F/P).
+def({ baseId: "econ-040", subtopic: "Single payment compound amount from the table", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "(F/P) converts present to future. The traps are simple interest, the P/F inverse, and squaring the horizon."
+}, function () {
+  var P = pick([5000, 6000, 8000, 10000]);
+  var pct = pick([4, 6, 8]); var i = pct / 100;
+  var n = pick([5, 10, 15]);
+  var f = r4e(f_p(i, n));
+  var F = Math.round(P * f);
+  var tSimple = Math.round(P * (1 + i * n));
+  var tInv = Math.round(P * r4e(p_f(i, n)));
+  var tDbl = Math.round(P * r4e(f_p(i, 2 * n)));
+  var question = "A deposit of " + money(P) + " earns " + pct + "% interest per year, compounded annually. Using the handbook interest-rate table, what is the balance after " + n + " years?";
+  var solution = tblCite(pct) + "\n\n" +
+    "The factor \\((F/P, " + pct + "\\%, " + n + ")\\) converts a present amount to a future amount.\n\n" +
+    "$$\\begin{aligned}F &= P(F/P, " + pct + "\\%, " + n + ") \\\\ &= (" + money(P).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(F) + "\\end{aligned}$$";
+  return {
+    variantKey: "P" + P + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(F), num: F, correct: true },
+      { label: money(tInv), num: tInv, correct: false },
+      { label: money(tDbl), num: tDbl, correct: false },
+      { label: money(tSimple), num: tSimple, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-041
+// Present worth P = F(P/F).
+def({ baseId: "econ-041", subtopic: "Present worth of a future sum", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "(P/F) discounts future to present. F/n is the no-interest slip; (F/P) inflates instead of discounting."
+}, function () {
+  var F = pick([25000, 50000, 75000]);
+  var pct = pick([8, 10, 12]); var i = pct / 100;
+  var n = pick([10, 15, 20]);
+  var f = r4e(p_f(i, n));
+  var P = Math.round(F * f);
+  var tInv = Math.round(F * r4e(f_p(i, n)));
+  var tN = Math.round(F / n);
+  var tHalf = Math.round(F / 2);
+  var question = "A city needs " + money(F) + " in " + n + " years for a bridge replacement fund. At " + pct + "% interest compounded annually, how much must be set aside today?";
+  var solution = tblCite(pct) + "\n\n" +
+    "$$\\begin{aligned}P &= F(P/F, " + pct + "\\%, " + n + ") \\\\ &= (" + money(F).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(P) + "\\end{aligned}$$";
+  return {
+    variantKey: "F" + F + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(P), num: P, correct: true },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tInv), num: tInv, correct: false },
+      { label: money(tHalf), num: tHalf, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-042
+// Capital recovery A = P(A/P).
+def({ baseId: "econ-042", subtopic: "Loan payment using the capital recovery factor", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "(A/P) annualizes a present loan. P/n forgets interest entirely; (A/F) is the sinking-fund factor; (P/A) multiplies the wrong way."
+}, function () {
+  var P = pick([80000, 120000, 150000]);
+  var pct = pick([6, 8, 10]); var i = pct / 100;
+  var n = pick([15, 20, 25]);
+  var f = r4e(a_p(i, n));
+  var A = Math.round(P * f);
+  var tN = Math.round(P / n);
+  var tAF = Math.round(P * r4e(a_f(i, n)));
+  var tPA = Math.round(P * r4e(p_a(i, n)));
+  var question = "A contractor finances " + money(P) + " of equipment with a " + n + "-year loan at " + pct + "% per year, paid in equal annual payments at the end of each year. What is the annual payment?";
+  var solution = tblCite(pct) + "\n\n" +
+    "The capital recovery factor converts a present amount P to a uniform series A.\n\n" +
+    "$$\\begin{aligned}A &= P(A/P, " + pct + "\\%, " + n + ") \\\\ &= (" + money(P).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(A) + "\\end{aligned}$$";
+  return {
+    variantKey: "P" + P + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(A), num: A, correct: true },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tAF), num: tAF, correct: false },
+      { label: money(tPA), num: tPA, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-043
+// Sinking fund A = F(A/F).
+def({ baseId: "econ-043", subtopic: "Sinking fund deposit", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "(A/F) is smaller than (A/P) because the deposits earn interest. F/n forgets the interest; (F/A) inverts the factor."
+}, function () {
+  var F = pick([50000, 90000, 120000]);
+  var pct = pick([4, 6, 8]); var i = pct / 100;
+  var n = pick([10, 12, 15]);
+  var f = r4e(a_f(i, n));
+  var A = Math.round(F * f);
+  var tAP = Math.round(F * r4e(a_p(i, n)));
+  var tN = Math.round(F / n);
+  var tFA = Math.round(F * r4e(f_a(i, n)));
+  var question = "A utility will deposit equal amounts at the end of each year for " + n + " years at " + pct + "% annual interest so that the account holds " + money(F) + " immediately after the last deposit. What is each deposit?";
+  var solution = tblCite(pct) + "\n\n" +
+    "$$\\begin{aligned}A &= F(A/F, " + pct + "\\%, " + n + ") \\\\ &= (" + money(F).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(A) + "\\end{aligned}$$";
+  return {
+    variantKey: "F" + F + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(A), num: A, correct: true },
+      { label: money(tAP), num: tAP, correct: false },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tFA), num: tFA, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-044
+// Compound amount of a uniform series F = A(F/A).
+def({ baseId: "econ-044", subtopic: "Future value of an annuity", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "(F/A) accumulates a uniform series with interest. A*n is the no-interest slip; (P/A) and (F/P) are single-sum factors misapplied."
+}, function () {
+  var A = pick([1500, 2500, 4000]);
+  var pct = pick([8, 10, 12]); var i = pct / 100;
+  var n = pick([8, 10, 12]);
+  var f = r4e(f_a(i, n));
+  var F = Math.round(A * f);
+  var tPA = Math.round(A * r4e(p_a(i, n)));
+  var tN = A * n;
+  var tFP = Math.round(A * r4e(f_p(i, n)));
+  var question = "An investor deposits " + money(A) + " at the end of every year into an account earning " + pct + "% annual interest. How much is in the account immediately after the deposit at the end of year " + n + "?";
+  var solution = tblCite(pct) + "\n\n" +
+    "$$\\begin{aligned}F &= A(F/A, " + pct + "\\%, " + n + ") \\\\ &= (" + money(A).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(F) + "\\end{aligned}$$";
+  return {
+    variantKey: "A" + A + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(F), num: F, correct: true },
+      { label: money(tPA), num: tPA, correct: false },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tFP), num: tFP, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-045
+// Present worth of monthly payments P = A(P/A) with monthly rate.
+def({ baseId: "econ-045", subtopic: "Present worth of monthly payments", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "n counts MONTHS because i is a monthly rate. A*n ignores interest; (F/A) goes the wrong way; (A/P) inverts it."
+}, function () {
+  var A = pick([200, 300, 500]);
+  var pct = pick([0.5, 1.5]); var i = pct / 100;
+  var n = pick([24, 36]);
+  var f = r4e(p_a(i, n));
+  var P = Math.round(A * f);
+  var tN = A * n;
+  var tFA = Math.round(A * r4e(f_a(i, n)));
+  var tAP = Math.max(2, Math.round(A * r4e(a_p(i, n))));
+  var question = "A machine saves " + money(A) + " per month. What is the present worth of " + n + " monthly savings at " + pct + "% per month?";
+  var solution = tblCite(pct) + " The rate is per month, so n counts months.\n\n" +
+    "$$\\begin{aligned}P &= A(P/A, " + pct + "\\%, " + n + ") \\\\ &= (" + money(A).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(P) + "\\end{aligned}$$";
+  return {
+    variantKey: "A" + A + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(P), num: P, correct: true },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tFA), num: tFA, correct: false },
+      { label: money(tAP), num: tAP, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-046
+// Present worth of a linear gradient P = G(P/G).
+def({ baseId: "econ-046", subtopic: "Present worth of an arithmetic gradient series", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "The gradient starts at zero at the end of year 1 and steps by G. (P/G) is its own factor - the (P/A), (A/G), and (F/A) factors do not substitute."
+}, function () {
+  var G = pick([500, 1000, 2000]);
+  var pct = pick([8, 10]); var i = pct / 100;
+  var n = pick([8, 10]);
+  var f = r4e(p_g(i, n));
+  var P = Math.round(G * f);
+  var tPA = Math.round(G * r4e(p_a(i, n)));
+  var tAG = Math.round(G * r4e(a_g(i, n)));
+  var tFA = Math.round(G * r4e(f_a(i, n)));
+  var question = "Maintenance on a pump is $0 at the end of year 1 and then increases by " + money(G) + " each year, through year " + n + ". At " + pct + "% interest, what is the present worth of this gradient series?";
+  var solution = tblCite(pct) + " The gradient factor assumes the first gradient amount arrives at the end of year 2.\n\n" +
+    "$$\\begin{aligned}P &= G(P/G, " + pct + "\\%, " + n + ") \\\\ &= (" + money(G).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(P) + "\\end{aligned}$$";
+  return {
+    variantKey: "G" + G + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(P), num: P, correct: true },
+      { label: money(tPA), num: tPA, correct: false },
+      { label: money(tAG), num: tAG, correct: false },
+      { label: money(tFA), num: tFA, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-047
+// Gradient to uniform series A = G(A/G).
+def({ baseId: "econ-047", subtopic: "Uniform-series equivalent of a gradient", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "(A/G) is the gradient-to-uniform factor. G(n-1)/2 is the simple average; (P/G) leaves it in present-worth units."
+}, function () {
+  var G = pick([250, 500, 750]);
+  var pct = pick([4, 6, 8]); var i = pct / 100;
+  var n = pick([8, 10]);
+  var f = r4e(a_g(i, n));
+  var A = Math.round(G * f);
+  var tPG = Math.round(G * r4e(p_g(i, n)));
+  var tAvg = Math.round(G * (n - 1) / 2);
+  var tAFG = Math.round(G * r4e(a_f(i, n)));
+  var question = "Maintenance is $0 at the end of year 1 and increases by " + money(G) + " each year, through year " + n + ". At " + pct + "% interest, what equal annual amount over " + n + " years is equivalent to this gradient series?";
+  var solution = tblCite(pct) + "\n\n" +
+    "$$\\begin{aligned}A &= G(A/G, " + pct + "\\%, " + n + ") \\\\ &= (" + money(G).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(A) + "\\end{aligned}$$";
+  return {
+    variantKey: "G" + G + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(A), num: A, correct: true },
+      { label: money(tPG), num: tPG, correct: false },
+      { label: money(tAvg), num: tAvg, correct: false },
+      { label: money(tAFG), num: tAFG, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-048
+// Effective annual rate from nominal.
+def({ baseId: "econ-048", subtopic: "Effective annual interest rate", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "i_eff = (1 + r/m)^m - 1. The traps are the nominal rate itself, r/m, and the wrong compounding count."
+}, function () {
+  var case_ = pick([{ r: 8, m: 4 }, { r: 8, m: 12 }, { r: 10, m: 2 }, { r: 10, m: 4 }, { r: 12, m: 2 }, { r: 12, m: 12 }]);
+  var r = case_.r, m = case_.m;
+  var ieff = (Math.pow(1 + r / 100 / m, m) - 1) * 100;
+  var ans = Math.round(ieff * 100) / 100;
+  var wrongM = m === 12 ? 4 : 12;
+  var tWrongM = Math.round((Math.pow(1 + r / 100 / wrongM, wrongM) - 1) * 10000) / 100;
+  var labels = {
+    correct: ans.toFixed(2) + "%",
+    trap1: (r / m).toFixed(2) + "%",
+    trap2: r.toFixed(2) + "%",
+    trap3: tWrongM.toFixed(2) + "%"
+  };
+  var mName = { 2: "semiannually", 4: "quarterly", 12: "monthly" }[m];
+  var question = "A loan has a nominal annual interest rate of " + r + "% per year, compounded " + mName + ". What is the effective annual interest rate?";
+  var solution = "Refer to Non-Annual Compounding in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "There are m = " + m + " compounding periods per year.\n\n" +
+    "$$\\begin{aligned}i_{\\text{eff}} &= \\left(1 + \\frac{" + (r / 100).toFixed(2) + "}{" + m + "}\\right)^{" + m + "} - 1 \\\\ &= (" + (1 + r / 100 / m).toFixed(6) + ")^{" + m + "} - 1 = " + (ans / 100).toFixed(4) + " = " + labels.correct + "\\end{aligned}$$";
+  return {
+    variantKey: "r" + r + "_m" + m,
+    question: question,
+    options: [
+      { label: labels.correct, num: ans, correct: true },
+      { label: labels.trap1, num: r / m, correct: false },
+      { label: labels.trap2, num: r, correct: false },
+      { label: labels.trap3, num: tWrongM, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-049
+// Inflation-adjusted (combined) interest rate d = i + f + if.
+def({ baseId: "econ-049", subtopic: "Inflation-adjusted interest rate", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "d = i + f + if - the interaction term if is the trap everyone drops. d = i + f is close but wrong."
+}, function () {
+  var case_ = pick([{ i: 6, f: 3 }, { i: 6, f: 5 }, { i: 9, f: 4 }, { i: 12, f: 3 }, { i: 12, f: 5 }]);
+  var ip = case_.i, fp = case_.f;
+  var i = ip / 100, f = fp / 100;
+  var d = (i + f + i * f) * 100;
+  var ans = Math.round(d * 100) / 100;
+  var tSum = ip + fp;
+  var tDiff = Math.abs(ip - fp);
+  var tReal = Math.round(((1 + i) / (1 + f) - 1) * 10000) / 100;
+  var labels = { c: ans.toFixed(2) + "%", t1: tSum.toFixed(2) + "%", t2: tDiff.toFixed(2) + "%", t3: tReal.toFixed(2) + "%" };
+  var question = "An investment earns a real annual rate of return of " + ip + "%. Inflation is " + fp + "% per year. What inflation-adjusted interest rate d should be used to discount future dollar cash flows?";
+  var solution = "Refer to the Inflation subsection of the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "The combined rate satisfies \\((1 + d) = (1 + i)(1 + f)\\), so \\(d = i + f + if\\).\n\n" +
+    "$$\\begin{aligned}d &= " + i.toFixed(2) + " + " + f.toFixed(2) + " + (" + i.toFixed(2) + ")(" + f.toFixed(2) + ") \\\\ &= " + (i + f).toFixed(2) + " + " + (i * f).toFixed(4) + " = " + (d / 100).toFixed(4) + " = " + labels.c + "\\end{aligned}$$";
+  return {
+    variantKey: "i" + ip + "_f" + fp,
+    question: question,
+    options: [
+      { label: labels.c, num: ans, correct: true },
+      { label: labels.t1, num: tSum, correct: false },
+      { label: labels.t2, num: tDiff, correct: false },
+      { label: labels.t3, num: tReal, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-050
+// Bond value.
+def({ baseId: "econ-050", subtopic: "Bond value", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "Value = coupons at the MARKET yield plus the discounted face. Par ($1,000) is the trap when coupon < yield; the un-discounted total ignores time value."
+}, function () {
+  var F = 1000;
+  var pair = pick([{ rc: 5, yd: 6 }, { rc: 5, yd: 8 }, { rc: 5, yd: 10 }, { rc: 6, yd: 8 }, { rc: 6, yd: 10 }, { rc: 7, yd: 10 }]);
+  var rc = pair.rc, yd = pair.yd;
+  var n = pick([8, 10, 12]);
+  var y = yd / 100;
+  var C = F * rc / 100;
+  var fPA = r4e(p_a(y, n));
+  var fPF = r4e(p_f(y, n));
+  var V = Math.round(C * fPA + F * fPF);
+  var tFace = F;
+  var tCouponsOnly = Math.round(C * fPA);
+  var tSum = Math.round(C * n + F);
+  var question = "A bond has a face value of $1,000, a coupon rate of " + rc + "% per year paid annually, " + n + " years remaining to maturity, and a current market yield of " + yd + "%. What is the value of the bond?";
+  var solution = tblCite(yd) + "\n\n" +
+    "Value the bond at the market yield, not the coupon rate: \\(V = C(P/A, " + yd + "\\%, " + n + ") + F(P/F, " + yd + "\\%, " + n + ")\\) (Bond Value formula, Engineering Economics, printed page 236 (PDF page 242)).\n\n" +
+    "$$\\begin{aligned}C &= 0.0" + rc + "(1000) = " + C.toFixed(0) + " \\\\ V &= (" + C.toFixed(0) + ")(" + fPA.toFixed(4) + ") + (1000)(" + fPF.toFixed(4) + ") \\\\ &= " + mtex(V) + "\\end{aligned}$$";
+  return {
+    variantKey: "rc" + rc + "_y" + yd + "_n" + n,
+    question: question,
+    options: [
+      { label: money(V), num: V, correct: true },
+      { label: money(tFace), num: tFace, correct: false },
+      { label: money(tCouponsOnly), num: tCouponsOnly, correct: false },
+      { label: money(tSum), num: tSum, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-051
+// EUAC of a purchase with salvage.
+def({ baseId: "econ-051", subtopic: "Equivalent uniform annual cost", difficulty: "medium",
+  estimatedTimeSeconds: 135,
+  explanation: "EUAC = P(A/P) - S(A/F). Crediting the salvage by the same factor as the first cost, and dropping the salvage entirely, are the two classic traps."
+}, function () {
+  var P = pick([40000, 50000, 60000]);
+  var S = pick([5000, 8000, 12000]);
+  var pct = pick([6, 8]); var i = pct / 100;
+  var n = pick([8, 10]);
+  var fAP = r4e(a_p(i, n));
+  var fAF = r4e(a_f(i, n));
+  var E = Math.round(P * fAP - S * fAF);
+  var tNoSalv = Math.round(P * fAP);
+  var tSame = Math.round((P - S) * fAP);
+  var tSL = Math.round((P - S) / n);
+  var question = "A machine costs " + money(P) + ", has a salvage value of " + money(S) + " after " + n + " years, and interest is " + pct + "%. What is the equivalent uniform annual cost (EUAC) of owning the machine?";
+  var solution = tblCite(pct) + "\n\n" +
+    "$$\\begin{aligned}\\text{EUAC} &= P(A/P, " + pct + "\\%, " + n + ") - S(A/F, " + pct + "\\%, " + n + ") \\\\ &= (" + money(P).slice(1) + ")(" + fAP.toFixed(4) + ") - (" + money(S).slice(1) + ")(" + fAF.toFixed(4) + ") \\\\ &= " + mtex(E) + "\\end{aligned}$$";
+  return {
+    variantKey: "P" + P + "_S" + S + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(E), num: E, correct: true },
+      { label: money(tNoSalv), num: tNoSalv, correct: false },
+      { label: money(tSame), num: tSame, correct: false },
+      { label: money(tSL), num: tSL, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-052
+// Monthly loan payment A = P(A/P) at monthly rate.
+def({ baseId: "econ-052", subtopic: "Monthly loan payment", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Both i and n are monthly. P/n is interest-free; P*i is interest-only; (P/A) multiplies the wrong way."
+}, function () {
+  var P = pick([12000, 24000, 36000]);
+  var pct = pick([0.5, 1.5]); var i = pct / 100;
+  var n = pick([36, 40, 48]);
+  var f = r4e(a_p(i, n));
+  var A = Math.round(P * f);
+  var tN = Math.round(P / n);
+  var tInt = Math.round(P * i);
+  var tPA = Math.round(P * r4e(p_a(i, n)));
+  var question = "A shop borrows " + money(P) + " at " + pct + "% per month and repays it in " + n + " equal end-of-month payments. What is each monthly payment?";
+  var solution = tblCite(pct) + " The rate and the period are both monthly.\n\n" +
+    "$$\\begin{aligned}A &= P(A/P, " + pct + "\\%, " + n + ") \\\\ &= (" + money(P).slice(1) + ")(" + f.toFixed(4) + ") \\\\ &= " + mtex(A) + "\\end{aligned}$$";
+  return {
+    variantKey: "P" + P + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: money(A), num: A, correct: true },
+      { label: money(tN), num: tN, correct: false },
+      { label: money(tInt), num: tInt, correct: false },
+      { label: money(tPA), num: tPA, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-053
+// Rate of return from factor ratio (discrete rate cases).
+def({ baseId: "econ-053", subtopic: "Rate of return by factor lookup", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "The ratio A/P equals (A/P, i, n) for exactly one tabulated rate. The two-flip traps use (P/A) inverted and the wrong decade of n."
+}, function () {
+  var n = 5;
+  var case_ = pick([
+    { rate: 4, perTen: 2246 },
+    { rate: 8, perTen: 2505 },
+    { rate: 12, perTen: 2774 }
+  ]);
+  var mult = pick([1, 2, 4]);
+  var P = 10000 * mult, A = case_.perTen * mult;
+  var rate = case_.rate;
+  var pg = TBLPG[String(rate)];
+  var question = "An investment of " + money(P) + " returns " + money(A) + " at the end of each year for " + n + " years. Which of the following is closest to the investment's rate of return?";
+  var solution = "Refer to the Engineering Economics interest-rate table for i = " + rate + "% in the FE Reference Handbook (v10.6), printed page " + pg[0] + " (PDF page " + pg[1] + ").\n\n" +
+    "The uniform series satisfies \\(A = P(A/P, i, " + n + ")\\), so the factor ratio is\n\n" +
+    "$$\\frac{A}{P} = \\frac{" + A + "}{" + P + "} = " + (A / P).toFixed(4) + "$$\n\n" +
+    "Scanning the i = " + rate + "% table at n = " + n + ": \\((A/P, " + rate + "\\%, " + n + ") = " + r4e(a_p(rate / 100, n)).toFixed(4) + "\\), which matches the ratio. The other listed rates give factors that do not match, so the rate of return is " + rate + "%.";
+  return {
+    variantKey: "r" + rate + "_m" + mult,
+    question: question,
+    options: [
+      { label: rate + "%", num: rate, correct: true },
+      { label: (rate === 4 ? 8 : 4) + "%", num: rate === 4 ? 8 : 4, correct: false },
+      { label: (rate === 12 ? 8 : 12) + "%", num: rate === 12 ? 8 : 12, correct: false },
+      { label: "1.5%", num: 1.5, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-054
+// Break-even volume.
+def({ baseId: "econ-054", subtopic: "Break-even volume", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Break-even divides fixed cost by the MARGIN (p - v), not by price or unit cost. The margin is the trap surface."
+}, function () {
+  var F = pick([60000, 120000, 180000]);
+  var v = pick([12, 18, 24]);
+  var margin = pick([6, 10, 12]);
+  var p = v + margin;
+  var x = Math.round(F / margin);
+  var tP = Math.round(F / p);
+  var tV = Math.round(F / v);
+  var tHalf = Math.round(F / (margin / 2));
+  var question = "A product sells for $" + p + " per unit with a variable cost of $" + v + " per unit. Annual fixed costs are " + money(F) + ". What is the annual break-even volume, in units?";
+  var solution = "Refer to Breakeven Analysis in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242): the breakeven point is where income just covers expenses. Setting revenue equal to total cost: \\(p\\,x = F + v\\,x\\) (algebra, not printed in the handbook).\n\n" +
+    "$$x = \\frac{F}{p - v} = \\frac{" + F + "}{" + p + " - " + v + "} = \\frac{" + F + "}{" + margin + "} = " + x.toLocaleString("en-US") + "\\ \\text{units}$$";
+  return {
+    variantKey: "F" + F + "_v" + v + "_m" + margin,
+    question: question,
+    options: [
+      { label: x.toLocaleString("en-US") + " units", num: x, correct: true },
+      { label: tP.toLocaleString("en-US") + " units", num: tP, correct: false },
+      { label: tV.toLocaleString("en-US") + " units", num: tV, correct: false },
+      { label: tHalf.toLocaleString("en-US") + " units", num: tHalf, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-055
+// Break-even point as percent of capacity.
+def({ baseId: "econ-055", subtopic: "Break-even point as percent of capacity", difficulty: "medium",
+  estimatedTimeSeconds: 135,
+  explanation: "BE% = F / (R - V). The denominator is the total margin at capacity, not revenue or variable cost alone."
+}, function () {
+  var tri = pick([[1000000, 400000, 200000], [1000000, 400000, 300000], [1000000, 400000, 450000], [1000000, 700000, 200000], [1000000, 700000, 450000], [1500000, 400000, 200000], [1500000, 400000, 300000], [1500000, 400000, 450000], [1500000, 500000, 200000], [1500000, 500000, 300000], [1500000, 500000, 450000], [1500000, 700000, 200000], [1500000, 700000, 300000], [1500000, 700000, 450000], [2000000, 400000, 200000], [2000000, 400000, 300000], [2000000, 400000, 450000], [2000000, 500000, 200000], [2000000, 500000, 300000], [2000000, 500000, 450000], [2000000, 700000, 200000], [2000000, 700000, 300000], [2000000, 700000, 450000]]);
+  var R = tri[0], V = tri[1], F = tri[2];
+  var BE = Math.round(1000 * F / (R - V)) / 10;
+  var tFR = Math.round(1000 * F / R) / 10;
+  var tMR = Math.round(1000 * (R - V) / R) / 10;
+  var tFV = Math.round(1000 * F / V) / 10;
+  var labels = [BE, tFR, tMR, tFV].map(function (x) { return x.toFixed(1) + "%"; });
+  var fmoney = function (x) { return "$" + (x / 1000000).toFixed(x % 1000000 === 0 ? 1 : 2).replace(/\.?0+$/, "") + " million"; };
+  var question = "A plant's annual revenue at full capacity is " + fmoney(R) + ". Annual variable costs at capacity are " + fmoney(V) + " and annual fixed costs are " + fmoney(F) + ". What is the break-even point as a percentage of full capacity?";
+  var solution = "Refer to Breakeven Analysis in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "Break-even fraction = fixed costs / (revenue - variable costs) at capacity.\n\n" +
+    "$$\\text{BE\\%} = \\frac{F}{R - V} = \\frac{" + F + "}{" + R + " - " + V + "} = " + (F / (R - V)).toFixed(4) + " = " + labels[0] + "$$";
+  return {
+    variantKey: "R" + R + "_V" + V + "_F" + F,
+    question: question,
+    options: [
+      { label: labels[0], num: BE, correct: true },
+      { label: labels[1], num: tFR, correct: false },
+      { label: labels[2], num: tMR, correct: false },
+      { label: labels[3], num: tFV, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-056
+// Make-vs-buy break-even quantity.
+def({ baseId: "econ-056", subtopic: "Make-or-buy break-even quantity", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Make wins when x > F/(v_buy - v_make). Dividing the fixed cost by either unit cost alone is the classic slip."
+}, function () {
+  var F = pick([30000, 50000, 80000]);
+  var vm = pick([6, 8, 10]);
+  var d = pick([4, 6, 8]);
+  var vb = vm + d;
+  var x = Math.round(F / d);
+  var tVb = Math.round(F / vb);
+  var tVm = Math.round(F / vm);
+  var tSum = Math.round(F / (vb + vm));
+  var question = "A part can be purchased for $" + vb + " per unit. Making it in-house costs $" + vm + " per unit plus an annual fixed cost of " + money(F) + ". Above what annual quantity is making cheaper than buying?";
+  var solution = "Refer to Breakeven Analysis in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "Set the two total costs equal: \\(F + " + vm + "x = " + vb + "x\\).\n\n" +
+    "$$x = \\frac{F}{v_{\\text{buy}} - v_{\\text{make}}} = \\frac{" + F + "}{" + vb + " - " + vm + "} = \\frac{" + F + "}{" + d + "} = " + x.toLocaleString("en-US") + "\\ \\text{units}$$\n\n" +
+    "Making is cheaper for quantities above " + x.toLocaleString("en-US") + " parts per year.";
+  return {
+    variantKey: "F" + F + "_vm" + vm + "_d" + d,
+    question: question,
+    options: [
+      { label: x.toLocaleString("en-US") + " parts", num: x, correct: true },
+      { label: tVb.toLocaleString("en-US") + " parts", num: tVb, correct: false },
+      { label: tVm.toLocaleString("en-US") + " parts", num: tVm, correct: false },
+      { label: tSum.toLocaleString("en-US") + " parts", num: tSum, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-060
+// Simple payback period.
+def({ baseId: "econ-060", subtopic: "Simple payback period", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "Payback = cost / annual savings. The traps add or subtract a year or invert the ratio."
+}, function () {
+  var C = pick([40000, 60000, 90000]);
+  var S = pick([10000, 12000, 15000]);
+  var yrs = Math.round(10 * C / S) / 10;
+  var tP1 = Math.round(10 * (C / S + 1)) / 10;
+  var tM1 = Math.max(0.5, Math.round(10 * (C / S - 1)) / 10);
+  var tInv = Math.round(100 * S / C) / 10;
+  var labels = [yrs, tP1, tM1, tInv].map(function (x) { return x.toFixed(1) + " years"; });
+  var question = "An efficiency upgrade costs " + money(C) + " and saves " + money(S) + " per year in energy costs. What is the simple payback period?";
+  var solution = "Refer to Rate-of-Return Analysis in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "Simple payback ignores the time value of money:\n\n" +
+    "$$\\text{Payback} = \\frac{" + C + "}{" + S + "} = " + yrs.toFixed(1) + "\\ \\text{years}$$";
+  return {
+    variantKey: "C" + C + "_S" + S,
+    question: question,
+    options: [
+      { label: labels[0], num: yrs, correct: true },
+      { label: labels[1], num: tP1, correct: false },
+      { label: labels[2], num: tM1, correct: false },
+      { label: labels[3], num: tInv, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-061
+// Benefit-cost ratio of a public project.
+def({ baseId: "econ-061", subtopic: "Benefit-cost ratio", difficulty: "medium",
+  estimatedTimeSeconds: 135,
+  explanation: "Annualize the capital cost first: B/C = B / (C(A/P) + O&M). Straight-lining the capital or dropping O&M both corrupt the denominator."
+}, function () {
+  var C = pick([1600000, 2400000, 3200000]);
+  var OM = pick([40000, 60000, 90000]);
+  var B = pick([300000, 400000, 520000]);
+  var pct = pick([6, 8]); var i = pct / 100;
+  var n = pick([20, 25]);
+  var fAP = r4e(a_p(i, n));
+  var capAnnual = Math.round(C * fAP);
+  var denom = capAnnual + OM;
+  var BC = Math.round(100 * B / denom) / 100;
+  var tSL = Math.round(100 * B / (C / n + OM)) / 100;
+  var tRecip = Math.round(100 * denom / B) / 100;
+  var tNoOM = Math.round(100 * B / capAnnual) / 100;
+  var question = "A public project has a capital cost of " + money(C) + ", annual operations and maintenance of " + money(OM) + ", and annual benefits of " + money(B) + ". With interest at " + pct + "% and a project life of " + n + " years, what is the benefit-cost ratio?";
+  var solution = "Refer to Benefit-Cost Analysis in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 237 (PDF page 243), and " + tblCite(pct).replace(/^Refer to /, "").replace(/\.$/, "") + ".\n\n" +
+    "Annualize the capital cost with the capital recovery factor, then divide annual benefits by total annual costs.\n\n" +
+    "$$\\begin{aligned}\\text{Annual cost} &= (" + money(C).slice(1) + ")(" + fAP.toFixed(4) + ") + " + money(OM).slice(1) + " \\\\ &= " + money(denom).slice(1) + " \\\\ B/C &= \\frac{" + B + "}{" + denom + "} = " + BC.toFixed(2) + "\\end{aligned}$$";
+  return {
+    variantKey: "C" + C + "_OM" + OM + "_B" + B + "_i" + pct + "_n" + n,
+    question: question,
+    options: [
+      { label: BC.toFixed(2), num: BC, correct: true },
+      { label: tSL.toFixed(2), num: tSL, correct: false },
+      { label: tRecip.toFixed(2), num: tRecip, correct: false },
+      { label: tNoOM.toFixed(2), num: tNoOM, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-062
+// MACRS depreciation for a given recovery year.
+def({ baseId: "econ-062", subtopic: "MACRS depreciation", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "MACRS reads the table percentage for the class and year. Straight-line, the year-1 rate, and the adjacent-year rate are the standard traps."
+}, function () {
+  var cls = pick([3, 5, 7]);
+  var year = ri(2, cls + 1);                       // year 1 reserved as a trap
+  var C = pick([60000, 80000, 100000]);
+  var ratePct = MACRS_RATES[cls][year - 1];
+  var D = Math.round(C * ratePct / 100);
+  var tSL = Math.round(C / cls);
+  var otherCls = cls === 7 ? 5 : 7;               // wrong-row trap: other class, same year
+  var tY1 = Math.round(C * MACRS_RATES[otherCls][Math.min(year - 1, MACRS_RATES[otherCls].length - 1)] / 100);
+  var adjIdx = year - 1;                            // adjacent-year trap with a REAL rate gap
+  for (var probe = year; probe < MACRS_RATES[cls].length; probe++) {
+    if (Math.abs(MACRS_RATES[cls][probe] - ratePct) >= 1.0) { adjIdx = probe; break; }
+  }
+  if (adjIdx === year - 1) {
+    for (var probe2 = year - 2; probe2 >= 0; probe2--) {
+      if (Math.abs(MACRS_RATES[cls][probe2] - ratePct) >= 1.0) { adjIdx = probe2; break; }
+    }
+  }
+  var tAdj = Math.round(C * MACRS_RATES[cls][adjIdx] / 100);
+  var labels = [D, tSL, tY1, tAdj].map(money);
+  var question = "Equipment costing " + money(C) + " is placed in service as " + cls + "-year MACRS property. Using the MACRS percentages in the handbook (half-year convention), what is the depreciation deduction in year " + year + "?";
+  var solution = "Refer to the MACRS table in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 237 (PDF page 243).\n\n" +
+    "The MACRS rate for " + cls + "-year property, year " + year + ", is " + ratePct.toFixed(2) + "%.\n\n" +
+    "$$D_{" + year + "} = " + (ratePct / 100).toFixed(4) + " \\times " + money(C).slice(1) + " = " + mtex(D) + "$$";
+  return {
+    variantKey: "c" + cls + "_y" + year + "_C" + C,
+    question: question,
+    options: [
+      { label: labels[0], num: D, correct: true },
+      { label: labels[1], num: tSL, correct: false },
+      { label: labels[2], num: tY1, correct: false },
+      { label: labels[3], num: tAdj, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-063
+// Corporate income tax with depreciation deduction.
+def({ baseId: "econ-063", subtopic: "After-tax cash flow: income tax with depreciation", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Depreciation shields income before the rate is applied: T = t(GI - E - D). Taxing GI - E, taxing GI, or ADDING depreciation are the traps."
+}, function () {
+  var GI = pick([400000, 500000, 650000]);
+  var E = pick([200000, 260000]);
+  var D = pick([60000, 90000]);
+  var t = pick([25, 30, 35]);
+  var T = Math.round((GI - E - D) * t / 100);
+  var tNoD = Math.round((GI - E) * t / 100);
+  var tGross = Math.round(GI * t / 100);
+  var tAdd = Math.round((GI - E + D) * t / 100);
+  var question = "A firm has gross income of " + money(GI) + ", operating expenses of " + money(E) + ", and a depreciation deduction of " + money(D) + ". With an effective tax rate of " + t + "%, what is the firm's income tax?";
+  var solution = "Refer to the Taxation subsection of the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "Taxable income = gross income - operating expenses - depreciation.\n\n" +
+    "$$\\begin{aligned}\\text{TI} &= " + GI + " - " + E + " - " + D + " = " + (GI - E - D) + " \\\\ T &= 0." + t + " \\times " + (GI - E - D) + " = " + mtex(T) + "\\end{aligned}$$";
+  return {
+    variantKey: "GI" + GI + "_E" + E + "_D" + D + "_t" + t,
+    question: question,
+    options: [
+      { label: money(T), num: T, correct: true },
+      { label: money(tNoD), num: tNoD, correct: false },
+      { label: money(tGross), num: tGross, correct: false },
+      { label: money(tAdd), num: tAdd, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-064
+// Capitalized cost of perpetual service.
+def({ baseId: "econ-064", subtopic: "Capitalized cost", difficulty: "hard",
+  estimatedTimeSeconds: 120,
+  explanation: "Capitalized cost = first cost + A/i (perpetuity). Stopping at A/i forgets the first cost; A*i inverts the division."
+}, function () {
+  var P = pick([80000, 100000, 150000]);
+  var A = pick([10000, 12000, 15000]);
+  var pct = pick([4, 5]);
+  var CC = Math.round(P + A / (pct / 100));
+  var tPerp = Math.round(A / (pct / 100));
+  var tSmall = Math.round(P + A * pct / 100);
+  var tMult = Math.round(P + A * 20);
+  var question = "A structure has a first cost of " + money(P) + " and requires " + money(A) + " per year of maintenance forever. With interest at " + pct + "%, what is the capitalized cost of perpetual service?";
+  var solution = "Refer to Capitalized Cost in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
+    "The maintenance is a perpetuity, worth \\(A/i\\) today.\n\n" +
+    "$$\\text{CC} = P + \\frac{A}{i} = " + money(P).slice(1) + " + \\frac{" + money(A).slice(1) + "}{0.0" + pct + "} = " + mtex(CC) + "$$";
+  return {
+    variantKey: "P" + P + "_A" + A + "_i" + pct,
+    question: question,
+    options: [
+      { label: money(CC), num: CC, correct: true },
+      { label: money(tPerp), num: tPerp, correct: false },
+      { label: money(tSmall), num: tSmall, correct: false },
+      { label: money(tMult), num: tMult, correct: false }
+    ],
+    solution: solution
+  };
+});
+
+// ---------------------------------------------------------------- econ-066
+// Expected monetary value of a decision.
+def({ baseId: "econ-066", subtopic: "Expected monetary value", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "EMV weights EVERY outcome by its probability - including the loss. The unweighted average and the upside-only sum are the traps."
+}, function () {
+  var case_ = pick([
+    { p1: 0.5, v1: 200, p2: 0.3, v2: 50, p3: 0.2, v3: -80 },   // bank base -> 99
+    { p1: 0.4, v1: 300, p2: 0.4, v2: 100, p3: 0.2, v3: -50 },
+    { p1: 0.6, v1: 150, p2: 0.3, v2: 60, p3: 0.1, v3: -120 }
+  ]);
+  var emv = Math.round(case_.p1 * case_.v1 + case_.p2 * case_.v2 + case_.p3 * case_.v3) * 1000;
+  var tAvg = Math.round((case_.v1 + case_.v2 + case_.v3) / 3) * 1000;
+  var tUpside = Math.round(case_.p1 * case_.v1 + case_.p2 * case_.v2) * 1000;
+  var tBest = case_.v1 * 1000;
+  var labels = [emv, tAvg, tUpside, tBest].map(money);
+  var fmtp = function (p) { return (p * 100).toFixed(0) + "%"; };
+  var question = "A project has three possible outcomes: a profit of " + money(case_.v1 * 1000) + " with probability " + fmtp(case_.p1) + ", a profit of " + money(case_.v2 * 1000) + " with probability " + fmtp(case_.p2) + ", or a loss of " + money(-case_.v3 * 1000).slice(1) + " with probability " + fmtp(case_.p3) + ". What is the expected monetary value of the project?";
+  var solution = "Refer to Economic Decision Trees / Expected Value in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 237 (PDF page 243).\n\n" +
+    "$$\\begin{aligned}\\text{EMV} &= (" + case_.p1 + ")(" + case_.v1 + "\\text{k}) + (" + case_.p2 + ")(" + case_.v2 + "\\text{k}) + (" + case_.p3 + ")(" + case_.v3 + "\\text{k}) \\\\ &= " + (case_.p1 * case_.v1).toFixed(0) + "\\text{k} + " + (case_.p2 * case_.v2).toFixed(0) + "\\text{k} - " + Math.abs(case_.p3 * case_.v3).toFixed(0) + "\\text{k} = " + mtex(emv) + "\\end{aligned}$$";
+  return {
+    variantKey: "c" + case_.v1 + "_" + Math.round(case_.p1 * 100),
+    question: question,
+    options: [
+      { label: labels[0], num: emv, correct: true },
+      { label: labels[1], num: tAvg, correct: false },
+      { label: labels[2], num: tUpside, correct: false },
+      { label: labels[3], num: tBest, correct: false }
     ],
     solution: solution
   };

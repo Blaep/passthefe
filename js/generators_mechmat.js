@@ -1163,25 +1163,24 @@ reg(buildGenerator({
   subtopic: "Torsion of thin-walled closed sections",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "Bredt's formula needs the area enclosed by the wall centerline, not the outside dimensions — and don't lose the factor of 2 in the denominator.",
+  explanation: "Bredt's formula needs the area enclosed by the wall centerline; the traps use the outside dimensions, drop the factor of 2, or double the wall thickness.",
   videoUrl: null,
   videoTitle: null
 }, function () {
-  var a = pick([120, 150, 160, 180, 200]); // mm, outer
-  var b = pick([100, 120, 150, 180]);     // mm, outer
+  var a = pick([120, 150, 160, 180, 200]); // mm, centerline
+  var b = pick([100, 120, 150, 180]);     // mm, centerline
   var t = pick([4, 5, 6, 8]);             // mm, wall thickness
   var TkNm = pick([1, 1.5, 2, 2.5, 3]);   // kN-m
-  var ac = a - t, bc = b - t;             // mm, centerline dimensions
-  var Am = ac * bc;                       // mm^2 enclosed by the centerline
+  var Am = a * b;                         // mm^2 enclosed by the wall centerline
   var T = TkNm * 1e6;                     // N-mm
   var tau = T / (2 * Am * t);             // MPa
   var tNo2 = T / (Am * t);                // trap: dropped the 2 in Bredt's formula
-  var tOuter = T / (2 * a * b * t);       // trap: outside dimensions for the enclosed area
+  var tOuter = T / (2 * (a + t) * (b + t) * t); // trap: outside dimensions for the enclosed area
   var t2t = T / (2 * Am * 2 * t);         // trap: doubled the wall thickness
   var shape = (a === b) ? "square" : "rectangular";
-  var question = "A thin-walled closed " + shape + " tube with outside dimensions " + a +
-    " mm × " + b + " mm and a uniform wall thickness of " + t +
-    " mm is used as a sign post. It is subjected to a torque of " + fmt(TkNm) +
+  var question = "A thin-walled closed " + shape + " tube (centerline dimensions " + a +
+    " mm × " + b + " mm) with uniform wall thickness " + t +
+    " mm is subjected to a torque of " + fmt(TkNm) +
     " kN-m. Using Bredt's formula, what is the shear stress in the tube wall?";
   var solution = "Refer to the For Hollow, Thin-Walled Shafts section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must solve for \\(\\tau\\), the shear stress in the tube wall. Bredt's formula relates the torque to the shear flow around the section:\n\n" +
@@ -1189,24 +1188,24 @@ reg(buildGenerator({
     "List the known and unknown parameters in order to solve for \\(\\tau\\):\n\n" +
     "$$\\begin{aligned}\n" +
     "T &= " + fmt(TkNm) + "\\ \\text{kN-m} = " + fmt(TkNm) + "\\times 10^6\\ \\text{N-mm} \\\\\n" +
-    "A_m &= (" + a + " - " + t + ")(" + b + " - " + t + ") = " + Am + "\\ \\text{mm}^2\\ \\text{(centerline)} \\\\\n" +
+    "A_m &= (" + a + ")(" + b + ") = " + Am + "\\ \\text{mm}^2\\ \\text{(centerline)} \\\\\n" +
     "t &= " + t + "\\ \\text{mm} \\\\\n" +
     "\\tau &= ?\n" +
     "\\end{aligned}$$\n\n" +
     "$$(\\tau) = \\frac{" + fmt(TkNm) + "\\times 10^6}{2(" + Am + ")(" + t + ")} = " + fmt(tau) + "\\ \\text{MPa}$$";
-  // Setup diagram (never the answer): closed-tube cross-section with outer dimensions and wall thickness.
+  // Setup diagram (never the answer): closed-tube cross-section; dimensions are wall centerline.
   var d015 = (function () {
     var s = SVG_HDR + AH, cx = 300, cy = 150, ow = 220, oh = 160, tpx = 14;
     s += '<rect x="' + (cx - ow / 2) + '" y="' + (cy - oh / 2) + '" width="' + ow + '" height="' + oh + '" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2.5"/>';
     s += '<rect x="' + (cx - ow / 2 + tpx) + '" y="' + (cy - oh / 2 + tpx) + '" width="' + (ow - 2 * tpx) + '" height="' + (oh - 2 * tpx) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.6"/>';
     s += '<rect x="' + (cx - ow / 2 + tpx / 2) + '" y="' + (cy - oh / 2 + tpx / 2) + '" width="' + (ow - tpx) + '" height="' + (oh - tpx) + '" fill="none" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="6,4"/>';
-    s += '<line x1="' + (cx - ow / 2) + '" y1="' + (cy - oh / 2 - 18) + '" x2="' + (cx + ow / 2) + '" y2="' + (cy - oh / 2 - 18) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + (cx - ow / 2 + tpx / 2) + '" y1="' + (cy - oh / 2 - 18) + '" x2="' + (cx + ow / 2 - tpx / 2) + '" y2="' + (cy - oh / 2 - 18) + '" stroke="#b45309" stroke-width="1.6"/>';
     s += '<text x="' + (cx - 52) + '" y="' + (cy - oh / 2 - 26) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">a = ' + a + ' mm</text>';
-    s += '<line x1="' + (cx - ow / 2 - 18) + '" y1="' + (cy - oh / 2) + '" x2="' + (cx - ow / 2 - 18) + '" y2="' + (cy + oh / 2) + '" stroke="#b45309" stroke-width="1.6"/>';
+    s += '<line x1="' + (cx - ow / 2 - 18) + '" y1="' + (cy - oh / 2 + tpx / 2) + '" x2="' + (cx - ow / 2 - 18) + '" y2="' + (cy + oh / 2 - tpx / 2) + '" stroke="#b45309" stroke-width="1.6"/>';
     s += '<text x="' + (cx - ow / 2 - 104) + '" y="' + (cy + 6) + '" font-family="Georgia,serif" font-size="16" fill="#b45309">b = ' + b + ' mm</text>';
     s += '<text x="' + (cx + ow / 2 + 16) + '" y="' + (cy - oh / 2 + 40) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">t = ' + t + ' mm</text>';
     s += '<line x1="' + (cx + ow / 2 + 12) + '" y1="' + (cy - oh / 2 + 34) + '" x2="' + (cx + ow / 2 + 2) + '" y2="' + (cy - oh / 2 + 8) + '" stroke="#1a1a1a" stroke-width="1.2"/>';
-    s += '<text x="140" y="282" font-family="Georgia,serif" font-size="14" fill="#6b7280">closed ' + shape + ' tube section (dashed = wall centerline)</text>';
+    s += '<text x="105" y="282" font-family="Georgia,serif" font-size="14" fill="#6b7280">closed ' + shape + ' tube section; a, b are wall centerline dimensions</text>';
     return svgURL(s + SVG_FTR);
   })();
   return {
@@ -2451,6 +2450,668 @@ reg(buildGenerator({
     solution: solution
   };
 }));
+
+
+/* ============ 2026-10 expansion entries (mechmat-037..058) ============
+ * Citations reuse each bank question's reviewed "Refer to ..." line verbatim.
+ * mechmat-051 is conceptual (skipped). 043/057 share the modular-ratio
+ * formula; both are kept, parameterized over the same material-pair space.
+ */
+var MM_SUP6 = "\u00D710\u207B\u2076";   // ×10⁻⁶ for strain labels
+
+// ---------------------------------------------------------------- mechmat-037
+// Axial elongation delta = PL/(AE), length given in feet.
+reg(buildGenerator({ baseId: "mechmat-037", subtopic: "Axial deformation", difficulty: "easy",
+  estimatedTimeSeconds: 105,
+  explanation: "delta = PL/(AE) with L converted feet to inches. The traps skip the conversion, apply it twice, or double the area."
+}, function () {
+  var mat = pick([{ name: "steel", E: 29000000, Etex: "29\\times 10^{6}" }, { name: "aluminum", E: 10000000, Etex: "10\\times 10^{6}" }]);
+  var A = pick([0.5, 0.75, 1.0]);
+  var Lft = pick([10, 12, 20]);
+  var P = pick([20000, 30000, 50000]);
+  var d = P * Lft * 12 / (A * mat.E);
+  var ans = d.toFixed(4);
+  var tNo12 = (d / 12).toFixed(5);
+  var tHalf = (d / 2).toFixed(4);
+  var tDbl12 = (d * 12).toFixed(3);
+  var question = "A " + mat.name + " rod (E = " + mat.E.toLocaleString("en-US") + " psi) with area " + A + " in² and length " + Lft + " ft carries a " + P.toLocaleString("en-US") + " lb tensile load. What is the elongation?";
+  var solution = "Refer to Uniaxial Loading and Deformation in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "$$\\delta = \\frac{PL}{AE} = \\frac{(" + P.toLocaleString("en-US") + ")(" + Lft + " \\times 12)}{(" + A + ")(" + mat.Etex + ")} = " + ans + "\\ \\text{in.}$$\n\n" +
+    "The length must be in inches: " + Lft + " ft = " + (Lft * 12) + " in.";
+  return { variantKey: mat.name + "_A" + A + "_L" + Lft + "_P" + P,
+    question: question, diagram: dMM037(mat.name, P, Lft, A), options: [
+      { label: ans + " in.", num: parseFloat(ans), correct: true },
+      { label: tNo12 + " in.", num: parseFloat(tNo12), correct: false },
+      { label: tHalf + " in.", num: parseFloat(tHalf), correct: false },
+      { label: tDbl12 + " in.", num: parseFloat(tDbl12), correct: false }
+    ], solution: solution };
+}));
+
+
+// ---------------------------------------------------------------- mechmat-038
+// Thermal elongation, length in feet.
+reg(buildGenerator({ baseId: "mechmat-038", subtopic: "Thermal elongation", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "delta = alpha L dT with L converted feet to inches. Traps: no conversion, double conversion, alpha slip."
+}, function () {
+  var Lft = pick([100, 150, 240]);
+  var dT = pick([40, 60, 80, 100]);
+  var alpha = 6.5e-6;
+  var d = alpha * Lft * 12 * dT;
+  var ans = d.toFixed(3);
+  var tDbl = (d * 12).toFixed(2);
+  var tNo = (d / 12).toFixed(4);
+  var tAlpha = (d / 1000).toFixed(6);
+  var question = "A " + Lft + " ft steel member (\u03B1 = 6.5\u00D710\u207B\u2076 /\u00B0F) heats up by " + dT + "\u00B0F and is free to expand. What is the change in length?";
+  var solution = "Refer to Thermal Deformations in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "$$\\delta = \\alpha L \\Delta T = (6.5\\times 10^{-6})(" + Lft + " \\times 12)(" + dT + ") = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "L" + Lft + "_T" + dT,
+    question: question, options: [
+      { label: ans + " in.", num: parseFloat(ans), correct: true },
+      { label: tDbl + " in.", num: parseFloat(tDbl), correct: false },
+      { label: tNo + " in.", num: parseFloat(tNo), correct: false },
+      { label: tAlpha + " in.", num: parseFloat(tAlpha), correct: false }
+    ], solution: solution };
+}));
+
+
+// ---------------------------------------------------------------- mechmat-039
+// Bulk modulus K = E / (3(1 - 2 nu)).
+reg(buildGenerator({ baseId: "mechmat-039", subtopic: "Bulk modulus", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "K = E/(3(1-2nu)). The traps confuse it with the shear modulus G = E/(2(1+nu)) or drop the factor 2."
+}, function () {
+  var mat = pick([{ E: 29000, nu: 0.30 }, { E: 29000, nu: 0.25 }, { E: 10000, nu: 0.33 }, { E: 10000, nu: 0.30 }]);
+  var K = mat.E / (3 * (1 - 2 * mat.nu));
+  var ans = Math.round(K).toLocaleString("en-US");
+  var tG = Math.round(mat.E / (2 * (1 + mat.nu))).toLocaleString("en-US");
+  var tNo2 = Math.round(mat.E / (3 * (1 - mat.nu))).toLocaleString("en-US");
+  var tQ = Math.round(K / 4).toLocaleString("en-US");
+  var question = "A material has E = " + mat.E.toLocaleString("en-US") + " ksi and Poisson's ratio " + mat.nu.toFixed(2) + ". What is its bulk modulus using the handbook relation?";
+  var solution = "Refer to Bulk (Volume) Modulus of Elasticity in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "$$K = \\frac{E}{3(1 - 2\\nu)} = \\frac{" + mat.E.toLocaleString("en-US") + "}{3(1 - 2(" + mat.nu.toFixed(2) + "))} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "E" + mat.E + "_n" + mat.nu,
+    question: question, options: [
+      { label: ans + " ksi", num: K, correct: true },
+      { label: tG + " ksi", num: mat.E / (2 * (1 + mat.nu)), correct: false },
+      { label: tNo2 + " ksi", num: mat.E / (3 * (1 - mat.nu)), correct: false },
+      { label: tQ + " ksi", num: K / 4, correct: false }
+    ], solution: solution };
+}));
+
+
+// ---------------------------------------------------------------- mechmat-040
+// Plane-stress strain ex = (sx - n sy)/E.
+reg(buildGenerator({ baseId: "mechmat-040", subtopic: "Plane stress strain", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "ex = (sx - nu*sy)/E in plane stress. Traps: add instead of subtract, ignore the lateral term, slip a power of ten."
+}, function () {
+  var sx = pick([20, 30, 40]);
+  var sy = pick([8, 10, 15]);
+  var E = 29000, nu = 0.30;
+  var ex = (sx - nu * sy) / E * 1e6;
+  var ans = Math.round(ex);
+  var tPlus = Math.round((sx + nu * sy) / E * 1e6);
+  var tNoLat = Math.round(sx / E * 1e6);
+  var tTen = Math.round(ex / 10);
+  var question = "In plane stress (\u03C3z = 0), \u03C3x = " + sx + " ksi and \u03C3y = " + sy + " ksi, with E = 29,000 ksi and \u03BD = 0.30. What is the strain \u03B5x?";
+  var solution = "Refer to Hooke's Law, plane stress case in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 134 (PDF page 140).\n\n" +
+    "$$\\varepsilon_x = \\frac{\\sigma_x - \\nu\\sigma_y}{E} = \\frac{" + sx + " - 0.30(" + sy + ")}{29000} = " + ans + " \\times 10^{-6}$$";
+  return { variantKey: "sx" + sx + "_sy" + sy,
+    question: question, options: [
+      { label: ans + " " + MM_SUP6, num: ans, correct: true },
+      { label: tPlus + " " + MM_SUP6, num: tPlus, correct: false },
+      { label: tNoLat + " " + MM_SUP6, num: tNoLat, correct: false },
+      { label: tTen + " " + MM_SUP6, num: tTen, correct: false }
+    ], solution: solution };
+}));
+
+
+// ---------------------------------------------------------------- mechmat-041
+// Bending stress with moment in kip-ft.
+reg(buildGenerator({ baseId: "mechmat-041", subtopic: "Bending stress", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "sigma = Mc/I with M converted kip-ft to kip-in. The traps skip the 12x conversion or botch it."
+}, function () {
+  var I = pick([300, 500]);
+  var c = pick([5, 6]);
+  var M = pick([120, 150, 200]);
+  var sig = M * 12 * c / I;
+  var ans = sig.toFixed(1);
+  var tNo = (sig / 12).toFixed(1);
+  var tDiv = (sig / 144).toFixed(2);
+  var tLb = (sig * 1000).toFixed(0);
+  var question = "A beam section has I = " + I + " in\u2074 and c = " + c + " in. to the extreme fiber. What is the maximum bending stress at a section with M = " + M + " kip-ft?";
+  var solution = "Refer to Maximum normal stresses in a beam due to bending in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\n" +
+    "Convert the moment: " + M + " kip-ft = " + (M * 12) + " kip-in.\n\n" +
+    "$$\\sigma = \\frac{Mc}{I} = \\frac{(" + M * 12 + ")(" + c + ")}{" + I + "} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "I" + I + "_c" + c + "_M" + M,
+    question: question, options: [
+      { label: ans + " ksi", num: parseFloat(ans), correct: true },
+      { label: tNo + " ksi", num: parseFloat(tNo), correct: false },
+      { label: tDiv + " ksi", num: parseFloat(tDiv), correct: false },
+      { label: tLb + " ksi", num: parseFloat(tLb), correct: false }
+    ], solution: solution };
+}));
+
+
+
+/* ---- Parameterized bank-diagram retrofits (mechmat) ---- */
+
+// mechmat-037: wall-fixed rod in tension; labels carry rolled P, L, A, material
+function dMM037(matName, P, Lft, A) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="230" viewBox="0 0 480 230" role="img" aria-label="' + matName + ' rod ' + Lft + ' feet long with area ' + A + ' square inches carrying a ' + P.toLocaleString("en-US") + ' pound tensile load">';
+  s += '<rect width="480" height="230" fill="#ffffff"/>';
+  s += '<line x1="60" y1="60" x2="60" y2="160" stroke="#1a1a1a" stroke-width="4"/>';
+  for (var i = 0; i < 11; i++) s += '<line x1="60" y1="' + (66 + i * 9) + '" x2="50" y2="' + (74 + i * 9) + '" stroke="#8a8a8a" stroke-width="1"/>';
+  s += '<rect x="60" y="95" width="340" height="30" fill="#cfcfcf" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="400" y1="110" x2="456" y2="110" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+  s += '<text x="404" y="96" font-family="Helvetica,Arial,sans-serif" font-size="15" fill="#1d4ed8">P = ' + P.toLocaleString("en-US") + ' lb</text>';
+  s += '<text x="230" y="88" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">L = ' + Lft + ' ft</text>';
+  s += '<text x="230" y="145" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">A = ' + A + ' in\u00B2</text>';
+  return svgURL(s + '</svg>');
+}
+
+// mechmat-052: same rod drawing, kips/inches units
+function dMM052(P, Lin, A) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="230" viewBox="0 0 480 230" role="img" aria-label="Steel rod ' + Lin + ' inches long with area ' + A + ' square inches carrying a ' + P + ' kip axial load">';
+  s += '<rect width="480" height="230" fill="#ffffff"/>';
+  s += '<line x1="60" y1="60" x2="60" y2="160" stroke="#1a1a1a" stroke-width="4"/>';
+  for (var i = 0; i < 11; i++) s += '<line x1="60" y1="' + (66 + i * 9) + '" x2="50" y2="' + (74 + i * 9) + '" stroke="#8a8a8a" stroke-width="1"/>';
+  s += '<rect x="60" y="95" width="340" height="30" fill="#cfcfcf" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="400" y1="110" x2="456" y2="110" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+  s += '<text x="404" y="96" font-family="Helvetica,Arial,sans-serif" font-size="15" fill="#1d4ed8">' + P + ' kip</text>';
+  s += '<text x="230" y="88" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">L = ' + Lin + ' in.</text>';
+  s += '<text x="230" y="145" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">A = ' + A + ' in.\u00B2</text>';
+  return svgURL(s + '</svg>');
+}
+
+// mechmat-044/045: plane-stress element with rolled sigma_x, sigma_y, tau_xy
+function dMMStressEl(sx, sy, tau) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="245" viewBox="0 0 480 245" role="img" aria-label="Plane stress element with normal stress sigma x of ' + sx + ' ksi, sigma y of ' + sy + ' ksi and shear stress tau xy of ' + tau + ' ksi">';
+  s += '<defs><marker id="ah2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"/></marker><marker id="ah3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#2e86c1"/></marker></defs>';
+  s += '<rect width="480" height="245" fill="#ffffff"/>';
+  s += '<rect x="190" y="60" width="100" height="100" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="290" y1="110" x2="345" y2="110" stroke="#c0392b" stroke-width="3" marker-end="url(#ah2)"/>';
+  s += '<line x1="190" y1="110" x2="135" y2="110" stroke="#c0392b" stroke-width="3" marker-end="url(#ah2)"/>';
+  s += '<line x1="240" y1="60" x2="240" y2="12" stroke="#c0392b" stroke-width="3" marker-end="url(#ah2)"/>';
+  s += '<line x1="240" y1="160" x2="240" y2="208" stroke="#c0392b" stroke-width="3" marker-end="url(#ah2)"/>';
+  s += '<line x1="305" y1="165" x2="305" y2="135" stroke="#2e86c1" stroke-width="2.5" marker-end="url(#ah3)"/>';
+  s += '<line x1="176" y1="55" x2="176" y2="85" stroke="#2e86c1" stroke-width="2.5" marker-end="url(#ah3)"/>';
+  s += '<line x1="255" y1="47" x2="285" y2="47" stroke="#2e86c1" stroke-width="2.5" marker-end="url(#ah3)"/>';
+  s += '<line x1="225" y1="173" x2="195" y2="173" stroke="#2e86c1" stroke-width="2.5" marker-end="url(#ah3)"/>';
+  s += '<text x="352" y="115" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">\u03C3x = ' + sx + ' ksi</text>';
+  s += '<text x="250" y="22" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">\u03C3y = ' + sy + ' ksi</text>';
+  s += '<text x="316" y="175" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#2e86c1">\u03C4xy = ' + tau + ' ksi</text>';
+  return svgURL(s + '</svg>');
+}
+
+// mechmat-058: thick-wall cylinder cross-section; inner radius scales with a/b
+function dMM058(a, b, p) {
+  var rO = 90, rI = 90 * a / b;
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="235" viewBox="0 0 480 235" role="img" aria-label="Thick-walled cylinder cross section with inside radius ' + a.toFixed(1) + ' inches, outside radius ' + b.toFixed(1) + ' inches and internal pressure ' + p.toLocaleString("en-US") + ' psi">';
+  s += '<rect width="480" height="235" fill="#ffffff"/>';
+  s += '<circle cx="240" cy="110" r="' + rO + '" fill="#cfcfcf" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<circle cx="240" cy="110" r="' + rI.toFixed(1) + '" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="240" y1="110" x2="' + (240 + rI).toFixed(1) + '" y2="110" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="' + (240 + rI / 2).toFixed(1) + '" y="127" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a">' + a.toFixed(1) + ' in.</text>';
+  s += '<line x1="240" y1="110" x2="195" y2="188" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="176" y="198" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="end" fill="#1a1a1a">' + b.toFixed(1) + ' in.</text>';
+  s += '<text x="225" y="88" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a">p = ' + p.toLocaleString("en-US") + ' psi</text>';
+  s += '<text x="240" y="225" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a">internal pressure only</text>';
+  return svgURL(s + '</svg>');
+}
+
+// Beam cases where the reactions are exact integers (P, a, L); base (30, 8, 20) included.
+var MM_BEAM_CASES = [[20, 6, 15], [20, 8, 16], [20, 5, 20], [20, 6, 20], [20, 8, 20], [30, 5, 15], [30, 6, 15], [30, 8, 15], [30, 8, 16], [30, 6, 20], [30, 8, 20], [40, 6, 15], [40, 6, 16], [40, 8, 16], [40, 5, 20], [40, 6, 20], [40, 8, 20]];
+function mmBeamPick() { var c = pick(MM_BEAM_CASES); return { P: c[0], a: c[1], L: c[2] }; }
+
+// Shared parameterized beam diagrams (Jose's 10/18 steering: diagrams follow the rolled numbers).
+function mmBeamPointSVG(P, a, L) {
+  var ox = 64, bw = 512, by = 150;
+  var px = ox + bw * a / L;
+  var s = SVG_HDR + AH;
+  s += '<rect x="' + ox + '" y="' + (by - 8) + '" width="' + bw + '" height="16" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="' + px + '" y1="' + (by - 70) + '" x2="' + px + '" y2="' + (by - 12) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+  s += '<text x="' + (px - 34) + '" y="' + (by - 80) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">P = ' + P + ' kip</text>';
+  s += '<polygon points="' + ox + ',' + (by + 8) + ' ' + (ox - 14) + ',' + (by + 34) + ' ' + (ox + 14) + ',' + (by + 34) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<circle cx="' + (ox + bw - 7) + '" cy="' + (by + 22) + '" r="7" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<circle cx="' + (ox + bw + 9) + '" cy="' + (by + 22) + '" r="7" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<text x="' + (ox - 4) + '" y="' + (by + 56) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">A</text>';
+  s += '<text x="' + (ox + bw - 4) + '" y="' + (by + 56) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">B</text>';
+  s += '<line x1="' + ox + '" y1="' + (by + 76) + '" x2="' + px + '" y2="' + (by + 76) + '" stroke="#6b7280" stroke-width="1.5"/>';
+  s += '<text x="' + ((ox + px) / 2 - 30) + '" y="' + (by + 98) + '" font-family="Georgia,serif" font-size="15" fill="#6b7280">a = ' + a + ' ft</text>';
+  s += '<line x1="' + px + '" y1="' + (by + 76) + '" x2="' + (ox + bw) + '" y2="' + (by + 76) + '" stroke="#6b7280" stroke-width="1.5"/>';
+  s += '<text x="' + ((px + ox + bw) / 2 - 44) + '" y="' + (by + 98) + '" font-family="Georgia,serif" font-size="15" fill="#6b7280">' + (L - a) + ' ft</text>';
+  s += '<text x="' + (ox + 4) + '" y="30" font-family="Georgia,serif" font-size="14" fill="#4b5563">Simply supported beam, span L = ' + L + ' ft</text>';
+  return svgURL(s + SVG_FTR);
+}
+function mmBeamUDLSVG(w, L) {
+  var ox = 64, bw = 512, by = 150;
+  var s = SVG_HDR + AH;
+  s += '<rect x="' + ox + '" y="' + (by - 8) + '" width="' + bw + '" height="16" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="' + ox + '" y1="' + (by - 46) + '" x2="' + (ox + bw) + '" y2="' + (by - 46) + '" stroke="#1d4ed8" stroke-width="2"/>';
+  for (var i = 0; i <= 8; i++) {
+    var x = ox + bw * i / 8;
+    s += '<line x1="' + x + '" y1="' + (by - 46) + '" x2="' + x + '" y2="' + (by - 12) + '" stroke="#1d4ed8" stroke-width="2" marker-end="url(#ah)"/>';
+  }
+  s += '<text x="' + (ox + bw / 2 - 58) + '" y="' + (by - 58) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">w = ' + w + ' kip/ft</text>';
+  s += '<polygon points="' + ox + ',' + (by + 8) + ' ' + (ox - 14) + ',' + (by + 34) + ' ' + (ox + 14) + ',' + (by + 34) + '" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<circle cx="' + (ox + bw - 7) + '" cy="' + (by + 22) + '" r="7" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<circle cx="' + (ox + bw + 9) + '" cy="' + (by + 22) + '" r="7" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<text x="' + (ox - 4) + '" y="' + (by + 56) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">A</text>';
+  s += '<text x="' + (ox + bw - 4) + '" y="' + (by + 56) + '" font-family="Georgia,serif" font-size="16" fill="#1a1a1a">B</text>';
+  s += '<text x="' + (ox + bw / 2 - 34) + '" y="' + (by + 56) + '" font-family="Georgia,serif" font-size="15" fill="#6b7280">L = ' + L + ' ft</text>';
+  return svgURL(s + SVG_FTR);
+}
+
+// ---------------------------------------------------------------- mechmat-042
+// Transverse shear stress tau = VQ/(Ib), V given in kips.
+reg(buildGenerator({ baseId: "mechmat-042", subtopic: "Transverse shear stress", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "tau = VQ/(Ib) with V converted kips to lb. The traps drop b, multiply by b, or slip the kip-lb factor."
+}, function () {
+  var V = pick([18, 30, 24]);
+  var Q = pick([40, 48, 60]);
+  var I = pick([300, 500]);
+  var b = pick([4, 6]);
+  var tau = V * 1000 * Q / (I * b) / 1000;   // ksi
+  var ans = tau.toFixed(2);
+  var tNoB = (V * Q / I).toFixed(2);
+  var tXB = (V * Q * b / I).toFixed(2);
+  var tSlip = (tau / 10).toFixed(2);
+  var question = "At a point in a beam, V = " + V + " kip, Q = " + Q + " in³, I = " + I + " in⁴ and the width is b = " + b + " in. What is the shear stress?";
+  var solution = "Refer to Transverse shear stress in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\n" +
+    "$$\\tau = \\frac{VQ}{Ib} = \\frac{(" + V + "\\times 1000)(" + Q + ")}{(" + I + ")(" + b + ")} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "V" + V + "_Q" + Q + "_I" + I + "_b" + b,
+    question: question, options: [
+      { label: ans + " ksi", num: parseFloat(ans), correct: true },
+      { label: tNoB + " ksi", num: parseFloat(tNoB), correct: false },
+      { label: tXB + " ksi", num: parseFloat(tXB), correct: false },
+      { label: tSlip + " ksi", num: parseFloat(tSlip), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-043
+// Modular ratio n = E1/E2.
+reg(buildGenerator({ baseId: "mechmat-043", subtopic: "Composite beam modular ratio", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "n = E1/E2 with material 1 stiffer. Traps: invert the ratio, halve it, or add the moduli."
+}, function () {
+  var pair = pick([{ m1: "steel", E1: 29000, m2: "wood", E2: 1800 }, { m1: "steel", E1: 29000, m2: "concrete", E2: 3000 }, { m1: "steel", E1: 29000, m2: "aluminum", E2: 10000 }]);
+  var n = pair.E1 / pair.E2;
+  var ans = n.toFixed(1);
+  var tInv = (pair.E2 / pair.E1).toFixed(3);
+  var tHalf = (n / 2).toFixed(1);
+  var tSum = (pair.E1 + pair.E2).toLocaleString("en-US");
+  var question = "A composite beam uses " + pair.m1 + " (E = " + pair.E1.toLocaleString("en-US") + " ksi) and " + pair.m2 + " (E = " + pair.E2.toLocaleString("en-US") + " ksi). Using the handbook transformed-section method with " + pair.m1 + " as material 1, what is the modular ratio n?";
+  var solution = "Refer to Composite Sections in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 137 (PDF page 143).\n\n" +
+    "$$n = \\frac{E_1}{E_2} = \\frac{" + pair.E1.toLocaleString("en-US") + "}{" + pair.E2.toLocaleString("en-US") + "} = " + ans + "$$";
+  return { variantKey: pair.m2,
+    question: question, options: [
+      { label: ans, num: n, correct: true },
+      { label: tInv, num: pair.E2 / pair.E1, correct: false },
+      { label: tHalf, num: n / 2, correct: false },
+      { label: tSum, num: pair.E1 + pair.E2, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-044
+// Larger principal stress.
+reg(buildGenerator({ baseId: "mechmat-044", subtopic: "Principal stresses", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "sigma1 = avg + R with R = sqrt(((sx-sy)/2)^2 + txy^2). Traps: the average alone, sx alone, or sx+sy."
+}, function () {
+  var sx = pick([60, 50, 40]);
+  var sy = pick([20, 10, 30]);
+  var tau = pick([15, 12, 20]);
+  var avg = (sx + sy) / 2, R = Math.sqrt(Math.pow((sx - sy) / 2, 2) + tau * tau);
+  var s1 = avg + R;
+  var ans = s1.toFixed(1);
+  var tAvg = avg.toFixed(1);
+  var tSx = sx.toFixed(1);
+  var tSum = (sx + sy).toFixed(1);
+  var question = "At a point in plane stress, \u03C3x = " + sx + " ksi, \u03C3y = " + sy + " ksi and \u03C4xy = " + tau + " ksi. What is the larger principal stress?";
+  var solution = "Refer to Mohr's circle (center and radius) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 133 (PDF page 139).\n\n" +
+    "$$\\begin{aligned}\\sigma_{\\text{avg}} &= \\frac{" + sx + " + " + sy + "}{2} = " + avg.toFixed(1) + "\\ \\text{ksi} \\\\ R &= \\sqrt{\\left(\\frac{" + sx + " - " + sy + "}{2}\\right)^2 + " + tau + "^2} = " + R.toFixed(1) + "\\ \\text{ksi} \\\\ \\sigma_1 &= " + avg.toFixed(1) + " + " + R.toFixed(1) + " = " + ans + "\\ \\text{ksi}\\end{aligned}$$";
+  return { variantKey: "sx" + sx + "_sy" + sy + "_t" + tau,
+    question: question, diagram: dMMStressEl(sx, sy, tau), options: [
+      { label: ans + " ksi", num: s1, correct: true },
+      { label: tAvg + " ksi", num: avg, correct: false },
+      { label: tSx + " ksi", num: sx, correct: false },
+      { label: tSum + " ksi", num: sx + sy, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-045
+// Maximum in-plane shear stress = R (same stress state family).
+reg(buildGenerator({ baseId: "mechmat-045", subtopic: "Maximum in-plane shear stress", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "tau_max = R, the radius of Mohr's circle. Traps: 2R (diameter), the (sx-sy)/2 term alone, or txy itself."
+}, function () {
+  var sx = pick([60, 50, 40]);
+  var sy = pick([20, 10, 30]);
+  var tau = pick([15, 12, 20]);
+  var R = Math.sqrt(Math.pow((sx - sy) / 2, 2) + tau * tau);
+  var ans = R.toFixed(2);
+  var tDbl = (2 * R).toFixed(2);
+  var tHalf = ((sx - sy) / 2).toFixed(1);
+  var tTxy = tau.toFixed(1);
+  var question = "For the stress state (\u03C3x = " + sx + " ksi, \u03C3y = " + sy + " ksi, \u03C4xy = " + tau + " ksi), what is the maximum in-plane shear stress?";
+  var solution = "Refer to Mohr's circle (maximum in-plane shear stress) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 134 (PDF page 140).\n\n" +
+    "$$\\tau_{\\max} = R = \\sqrt{\\left(\\frac{" + sx + " - " + sy + "}{2}\\right)^2 + " + tau + "^2} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "sx" + sx + "_sy" + sy + "_t" + tau,
+    question: question, diagram: dMMStressEl(sx, sy, tau), options: [
+      { label: ans + " ksi", num: R, correct: true },
+      { label: tDbl + " ksi", num: 2 * R, correct: false },
+      { label: tHalf + " ksi", num: (sx - sy) / 2, correct: false },
+      { label: tTxy + " ksi", num: tau, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-046
+// Reaction at A, point load on simple span. DIAGRAM: rolled P, a, L.
+reg(buildGenerator({ baseId: "mechmat-046", subtopic: "Reaction at A, point load", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "Take moments about B: RA = P(L-a)/L. Traps: the other reaction, the full load, or the midspan split."
+}, function () {
+  var bc = mmBeamPick();
+  var P = bc.P, a = bc.a, L = bc.L;
+  var RA = P * (L - a) / L;
+  var RB = P - RA;
+  var question = "The simply supported beam shown carries a " + P + " kip point load " + a + " ft from support A on a " + L + " ft span. What is the reaction at A?";
+  var solution = "Refer to Beams (shear force and bending moment relations) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 135 (PDF page 141).\n\n" +
+    "Sum moments about B: \\(R_A L = P(L - a)\\).\n\n" +
+    "$$R_A = \\frac{" + P + "(" + L + " - " + a + ")}{" + L + "} = " + RA.toFixed(0) + "\\ \\text{kip}$$";
+  return { variantKey: "P" + P + "_a" + a + "_L" + L,
+    question: question, diagram: mmBeamPointSVG(P, a, L), options: [
+      { label: RA.toFixed(0) + " kip", num: RA, correct: true },
+      { label: RB.toFixed(0) + " kip", num: RB, correct: false },
+      { label: P + " kip", num: P, correct: false },
+      { label: (P / 2).toFixed(0) + " kip", num: P / 2, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-047
+// Maximum moment under the point load. DIAGRAM: rolled beam.
+reg(buildGenerator({ baseId: "mechmat-047", subtopic: "Maximum moment, point load", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Mmax = RA*a = Pa(L-a)/L at the load. Traps: RB*a is actually the same... no - the traps use the midspan formula PL/4 and P*a."
+}, function () {
+  var bc = mmBeamPick();
+  var P = bc.P, a = bc.a, L = bc.L;
+  var M = P * a * (L - a) / L;
+  var tMid = P * L / 4;
+  var tPa = P * a;
+  var tRb = P * (L - a) / L * (L - a);     // RB x (L-a): same value as M! use PL/8 instead
+  tRb = P * L / 8;
+  var question = "For the beam shown (P = " + P + " kip at " + a + " ft from A, span " + L + " ft), what is the maximum bending moment?";
+  var solution = "Refer to Beams (V and M relationship, dM/dx = V) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 135 (PDF page 141).\n\n" +
+    "The maximum moment occurs under the load, where the shear crosses zero.\n\n" +
+    "$$M_{\\max} = R_A\\,a = \\frac{Pa(L-a)}{L} = \\frac{" + P + "(" + a + ")(" + (L - a) + ")}{" + L + "} = " + M.toFixed(0) + "\\ \\text{kip-ft}$$";
+  return { variantKey: "P" + P + "_a" + a + "_L" + L,
+    question: question, diagram: mmBeamPointSVG(P, a, L), options: [
+      { label: M.toFixed(0) + " kip-ft", num: M, correct: true },
+      { label: tMid.toFixed(0) + " kip-ft", num: tMid, correct: false },
+      { label: tPa.toFixed(0) + " kip-ft", num: tPa, correct: false },
+      { label: tRb.toFixed(0) + " kip-ft", num: tRb, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-048
+// Shear just right of the point load = RA - P (U+2212 negatives). DIAGRAM.
+reg(buildGenerator({ baseId: "mechmat-048", subtopic: "Shear just right of the load", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "V(right of load) = RA - P = -RB. Traps: -P, +RA, and +RB (sign flip of the correct answer)."
+}, function () {
+  var bc = mmBeamPick();
+  var P = bc.P, a = bc.a, L = bc.L;
+  var RA = P * (L - a) / L, RB = P - RA;
+  var V = RA - P;                          // negative
+  var question = "For the simply supported beam shown (P = " + P + " kip at " + a + " ft from A, span " + L + " ft), what is the shear just to the right of the point load? Use the handbook sign convention (positive when the right portion tends to shear downward).";
+  var solution = "Refer to Shearing Force and Bending Moment Sign Conventions in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 135 (PDF page 141).\n\n" +
+    "$$V = R_A - P = " + RA.toFixed(0) + " - " + P + " = " + V.toFixed(0) + "\\ \\text{kip}$$\n\n" +
+    "The negative sign means the right portion tends to shear upward - equivalently, the shear carries the B reaction's magnitude with the opposite sign.";
+  var lbl = function (v) { return (v < 0 ? MINUS : "") + Math.abs(v).toFixed(0) + " kip"; };
+  return { variantKey: "P" + P + "_a" + a + "_L" + L,
+    question: question, diagram: mmBeamPointSVG(P, a, L), options: [
+      { label: lbl(V), num: V, correct: true },
+      { label: lbl(-P), num: -P, correct: false },
+      { label: lbl(RA), num: RA, correct: false },
+      { label: lbl(RB), num: RB, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-049
+// Max moment, uniform load. DIAGRAM: rolled UDL.
+reg(buildGenerator({ baseId: "mechmat-049", subtopic: "Maximum moment, uniform load", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "Mmax = wL^2/8 at midspan. Traps: the cantilever wL^2/2, wL^2/4, and the reaction wL/2."
+}, function () {
+  var w = pick([2.5, 2, 3]);
+  var L = pick([16, 12, 20]);
+  var M = w * L * L / 8;
+  var tCant = w * L * L / 2;
+  var tQ = w * L * L / 4;
+  var tR = w * L / 2;
+  var question = "The simply supported beam shown carries " + w + " kip/ft over a " + L + " ft span. What is the maximum bending moment?";
+  var solution = "Refer to Beams (V and M relationship, dM/dx = V) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 135 (PDF page 141).\n\n" +
+    "$$M_{\\max} = \\frac{wL^2}{8} = \\frac{" + w + "(" + L + ")^2}{8} = " + M.toFixed(0) + "\\ \\text{kip-ft}$$";
+  return { variantKey: "w" + w + "_L" + L,
+    question: question, diagram: mmBeamUDLSVG(w, L), options: [
+      { label: M.toFixed(0) + " kip-ft", num: M, correct: true },
+      { label: tCant.toFixed(0) + " kip-ft", num: tCant, correct: false },
+      { label: tQ.toFixed(0) + " kip-ft", num: tQ, correct: false },
+      { label: tR.toFixed(0) + " kip-ft", num: tR, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-050
+// Position of zero shear under UDL (midspan). DIAGRAM: rolled UDL.
+reg(buildGenerator({ baseId: "mechmat-050", subtopic: "Position of zero shear", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "V(x) = w(L/2 - x) = 0 at midspan. Traps: the span itself, L/4, and the reaction value."
+}, function () {
+  var w = pick([2.5, 2, 3]);
+  var L = pick([16, 12, 20]);
+  var x = L / 2;
+  var R = w * L / 2;
+  var question = "For the uniformly loaded beam shown (w = " + w + " kip/ft, L = " + L + " ft, reactions " + R.toFixed(0) + " kip), how far from A is the shear zero?";
+  var solution = "Refer to Beams (V and M relationship, w = -dV/dx) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 135 (PDF page 141).\n\n" +
+    "$$V(x) = R_A - wx = w\\left(\\frac{L}{2} - x\\right) = 0 \\quad\\Rightarrow\\quad x = \\frac{L}{2} = " + x.toFixed(0) + "\\ \\text{ft}$$";
+  return { variantKey: "w" + w + "_L" + L,
+    question: question, diagram: mmBeamUDLSVG(w, L), options: [
+      { label: x.toFixed(0) + " ft", num: x, correct: true },
+      { label: L + " ft", num: L, correct: false },
+      { label: (L / 4).toFixed(0) + " ft", num: L / 4, correct: false },
+      { label: R.toFixed(0) + " ft", num: R, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-052
+// Axial deformation, all units in inches/kips.
+reg(buildGenerator({ baseId: "mechmat-052", subtopic: "Axial deformation", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "delta = PL/(AE) with E in ksi needing x1000 and P in kips. Traps: x12 phantom conversion, half-length, and the ksi slip that zeroes the answer."
+}, function () {
+  var P = pick([30, 50, 20]);              // kips
+  var A = pick([0.5, 0.75]);
+  var L = pick([120, 96, 240]);            // in.
+  var d = P * 1000 * L / (A * 29000000);
+  var ans = d.toFixed(3);
+  var t12 = (d * 12).toFixed(3);
+  var tHalf = (d / 2).toFixed(3);
+  var tSlip = (d / 1000).toFixed(5);
+  var question = "A steel rod (E = 29,000 ksi) with an area of " + A + " in.² and a length of " + L + " in. carries an axial load of " + P + " kips. What is the elongation?";
+  var solution = "Refer to Uniaxial Loading and Deformation in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "$$\\delta = \\frac{PL}{AE} = \\frac{(" + P + "\\times 1000)(" + L + ")}{(" + A + ")(29\\times 10^{6})} = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "P" + P + "_A" + A + "_L" + L,
+    question: question, diagram: dMM052(P, L, A), options: [
+      { label: ans + " in.", num: parseFloat(ans), correct: true },
+      { label: t12 + " in.", num: parseFloat(t12), correct: false },
+      { label: tHalf + " in.", num: parseFloat(tHalf), correct: false },
+      { label: tSlip + " in.", num: parseFloat(tSlip), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-053
+// Thermal elongation in inches.
+reg(buildGenerator({ baseId: "mechmat-053", subtopic: "Thermal elongation", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "delta = alpha L dT with L already in inches. Traps: alpha slip (/100), phantom x12, and inverting the formula."
+}, function () {
+  var L = pick([240, 120, 180]);
+  var dT = pick([80, 60, 100]);
+  var alpha = 6.5e-6;
+  var d = alpha * L * dT;
+  var ans = d.toFixed(4);
+  var tAlpha = (d / 100).toFixed(6);
+  var t12 = (d * 12).toFixed(4);
+  var tInv = (L / (alpha * dT * 1e6)).toFixed(2);   // nonsense inverse, scaled
+  var question = "A steel member " + L + " in. long (\u03B1 = 6.5 \u00D7 10\u207B\u2076 per \u00B0F) is heated by " + dT + " degrees F and is free to expand. What is the change in length?";
+  var solution = "Refer to Thermal Deformations in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "$$\\delta = \\alpha L \\Delta T = (6.5 \\times 10^{-6})(" + L + ")(" + dT + ") = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "L" + L + "_T" + dT,
+    question: question, options: [
+      { label: ans + " in.", num: parseFloat(ans), correct: true },
+      { label: tAlpha + " in.", num: parseFloat(tAlpha), correct: false },
+      { label: t12 + " in.", num: parseFloat(t12), correct: false },
+      { label: tInv + " in.", num: parseFloat(tInv), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-054
+// Bending stress with moment in kip-in. (no unit conversion).
+reg(buildGenerator({ baseId: "mechmat-054", subtopic: "Maximum bending stress", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "sigma = Mc/I directly since M is already in kip-in. Traps: phantom conversions and the I*c denominator swap."
+}, function () {
+  var I = pick([300, 500]);
+  var c = pick([5, 6]);
+  var M = pick([120, 150, 200]);           // kip-in
+  var sig = M * c / I;
+  var ans = sig.toFixed(2);
+  var tDbl = (M * 1000 * 12 * c / I / 1000).toFixed(0);   // phantom x12
+  var tSwap = (M / (I * c)).toFixed(4);
+  var tHalf = (sig / 2).toFixed(2);
+  var question = "A beam section has I = " + I + " in.\u2074 and c = " + c + " in. to the extreme fiber. What is the maximum bending stress for a moment of " + M + " kip-in.?";
+  var solution = "Refer to Stresses in Beams in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\n" +
+    "$$\\sigma = \\frac{Mc}{I} = \\frac{(" + M + ")(" + c + ")}{" + I + "} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "I" + I + "_c" + c + "_M" + M,
+    question: question, options: [
+      { label: ans + " ksi", num: parseFloat(ans), correct: true },
+      { label: tDbl + " ksi", num: parseFloat(tDbl), correct: false },
+      { label: tSwap + " ksi", num: parseFloat(tSwap), correct: false },
+      { label: tHalf + " ksi", num: parseFloat(tHalf), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-055
+// Transverse shear stress (kips version).
+reg(buildGenerator({ baseId: "mechmat-055", subtopic: "Transverse shear stress", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "tau = VQ/(Ib), V converted kips to lb. Traps: drop b, multiply by b, kip-lb slip."
+}, function () {
+  var V = pick([18, 24, 30]);
+  var Q = pick([40, 48]);
+  var I = pick([300, 500]);
+  var b = pick([4, 6]);
+  var tau = V * Q / (I * b);               // kip/in^2 = ksi
+  var ans = tau.toFixed(3);
+  var tNoB = (V * Q / I).toFixed(3);
+  var tXB = (V * Q * b / I).toFixed(3);
+  var tSlip = (tau / 10).toFixed(3);
+  var question = "At a point in a beam, V = " + V + " kips, Q = " + Q + " in.\u00B3, I = " + I + " in.\u2074 and the width is " + b + " in. What is the transverse shear stress?";
+  var solution = "Refer to Stresses in Beams (transverse shear stress) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\n" +
+    "$$\\tau = \\frac{VQ}{Ib} = \\frac{(" + V + ")(" + Q + ")}{(" + I + ")(" + b + ")} = " + ans + "\\ \\text{ksi}$$";
+  return { variantKey: "V" + V + "_Q" + Q + "_I" + I + "_b" + b,
+    question: question, options: [
+      { label: ans + " ksi", num: parseFloat(ans), correct: true },
+      { label: tNoB + " ksi", num: parseFloat(tNoB), correct: false },
+      { label: tXB + " ksi", num: parseFloat(tXB), correct: false },
+      { label: tSlip + " ksi", num: parseFloat(tSlip), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-056
+// Shear flow q = VQ/I for connector design.
+reg(buildGenerator({ baseId: "mechmat-056", subtopic: "Shear flow in a built-up section", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "q = VQ/I (force per unit length). Traps: invert it, divide by b (that is shear STRESS), or slip the kip factor."
+}, function () {
+  var V = pick([18, 24, 30]);
+  var Q = pick([40, 48]);
+  var I = pick([300, 500]);
+  var q = V * Q / I;                       // kip/in
+  var ans = q.toFixed(2);
+  var tInv = (I / (V * 1000 * Q)).toFixed(4);
+  var tTau = (q / 4).toFixed(3);           // q/b with b=4 = shear stress
+  var tSlip = (q / 10).toFixed(3);
+  var question = "A built-up beam carries V = " + V + " kips with Q = " + Q + " in.\u00B3 for the connected part and I = " + I + " in.\u2074. What shear flow must the connectors carry per inch of length?";
+  var solution = "Refer to Stresses in Beams (transverse shear flow) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\n" +
+    "$$q = \\frac{VQ}{I} = \\frac{(" + V + ")(" + Q + ")}{" + I + "} = " + ans + "\\ \\text{kip/in.}$$";
+  return { variantKey: "V" + V + "_Q" + Q + "_I" + I,
+    question: question, options: [
+      { label: ans + " kip/in.", num: q, correct: true },
+      { label: tInv + " kip/in.", num: parseFloat(tInv), correct: false },
+      { label: tTau + " kip/in.", num: q / 4, correct: false },
+      { label: tSlip + " kip/in.", num: parseFloat(tSlip), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-057
+// Modular ratio (concrete-transform version).
+reg(buildGenerator({ baseId: "mechmat-057", subtopic: "Modular ratio in a composite beam", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "n = E1/E2 with E1 > E2. Traps: invert it, take its square root, or subtract the moduli."
+}, function () {
+  var pair = pick([{ m1: "steel", E1: 29000, m2: "concrete", E2: 3000 }, { m1: "steel", E1: 29000, m2: "wood", E2: 1800 }, { m1: "steel", E1: 29000, m2: "masonry", E2: 4500 }]);
+  var n = pair.E1 / pair.E2;
+  var ans = n.toFixed(2);
+  var tInv = (pair.E2 / pair.E1).toFixed(3);
+  var tSqrt = Math.sqrt(n).toFixed(2);
+  var tDiff = (pair.E1 - pair.E2).toLocaleString("en-US");
+  var question = "A composite beam has " + pair.m1 + " (E = " + pair.E1.toLocaleString("en-US") + " ksi) and " + pair.m2 + " (E = " + pair.E2.toLocaleString("en-US") + " ksi). What modular ratio n transforms the " + pair.m2 + " into an equivalent " + pair.m1 + " section when the handbook defines n = E1/E2 with E1 > E2?";
+  var solution = "Refer to Composite Sections in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 137 (PDF page 143).\n\n" +
+    "$$n = \\frac{E_1}{E_2} = \\frac{" + pair.E1.toLocaleString("en-US") + "}{" + pair.E2.toLocaleString("en-US") + "} = " + ans + "$$";
+  return { variantKey: pair.m2,
+    question: question, options: [
+      { label: ans, num: n, correct: true },
+      { label: tInv, num: pair.E2 / pair.E1, correct: false },
+      { label: tSqrt, num: Math.sqrt(n), correct: false },
+      { label: tDiff, num: pair.E1 - pair.E2, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- mechmat-058
+// Thick-wall cylinder hoop stress at the inside wall, internal pressure only.
+reg(buildGenerator({ baseId: "mechmat-058", subtopic: "Thick-wall cylinder hoop stress", difficulty: "hard",
+  estimatedTimeSeconds: 120,
+  explanation: "sigma_theta(a) = pi (a^2 + b^2)/(b^2 - a^2) for internal pressure only. Traps: invert the radius ratio, answer -pi, or 2*pi."
+}, function () {
+  var a = pick([4, 3]);
+  var b = a + pick([2, 3]);
+  var pi_ = pick([500, 800, 1000]);
+  var s = pi_ * (a * a + b * b) / (b * b - a * a);
+  var ans = Math.round(s).toLocaleString("en-US");
+  var tInv = Math.round(pi_ * (b * b - a * a) / (a * a + b * b)).toLocaleString("en-US");
+  var tNeg = MINUS + pi_.toLocaleString("en-US");
+  var tDbl = (2 * pi_).toLocaleString("en-US");
+  var question = "A cylinder has an inside radius of " + a.toFixed(1) + " in., outside radius of " + b.toFixed(1) + " in. and internal pressure " + pi_.toLocaleString("en-US") + " psi only. What is the hoop stress at the inside wall?";
+  var solution = "Refer to Cylindrical Pressure Vessel in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 131 (PDF page 137).\n\n" +
+    "With internal pressure only, the hoop stress is largest at the inner radius r = a.\n\n" +
+    "$$\\sigma_\\theta(a) = p_i\\,\\frac{a^2 + b^2}{b^2 - a^2} = " + pi_ + "\\,\\frac{" + (a*a) + " + " + (b*b) + "}{" + (b*b) + " - " + (a*a) + "} = " + ans + "\\ \\text{psi}$$";
+  return { variantKey: "a" + a + "_b" + b + "_p" + pi_,
+    question: question, diagram: dMM058(a, b, pi_), options: [
+      { label: ans + " psi", num: s, correct: true },
+      { label: tInv + " psi", num: pi_ * (b * b - a * a) / (a * a + b * b), correct: false },
+      { label: tNeg + " psi", num: -pi_, correct: false },
+      { label: tDbl + " psi", num: 2 * pi_, correct: false }
+    ], solution: solution };
+}));
+
+// mechmat-051 SKIPPED: conceptual question (no drillable numeric parameter),
+// same rationale as the bank's own math-020 skip.
 
 window.MECHMAT_GENERATORS = MM_ENTRIES;
 

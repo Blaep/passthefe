@@ -1783,5 +1783,891 @@ PART.push(buildGenerator({
   };
 }));
 
+
+/* ============ 2026-10 expansion entries (stats-035..068) ============
+ * One entry per numerical new bank question. Citations reuse the bank
+ * question's own reviewed citation verbatim. Dataset-based entries roll
+ * from preset families that include the bank's reviewed dataset.
+ */
+var r3s = function (x) { return Math.round(x * 1000) / 1000; };
+var r1d = function (x) { return Math.round(x * 10) / 10; };
+var pdot = function (x) { return String(x).replace(/\./g, "p").replace(/-/g, "m"); };
+var sMean = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
+var sVar = function (a) { var m = sMean(a); return a.reduce(function (x, y) { return x + (y - m) * (y - m); }, 0) / (a.length - 1); };
+var r2s = function (x) { return Math.round(x * 100) / 100; };
+var r4s = function (x) { return Math.round(x * 10000) / 10000; };
+var f2 = function (x) { return (Math.round(x * 100) / 100).toFixed(2); };
+var f4 = function (x) { return (Math.round(x * 10000) / 10000).toFixed(4); };
+// Abramowitz-Stegun 26.2.17-style normal CDF (|err| < 2e-4 at 4 dp via 7.1.26)
+var phiCdf = function (x) {
+  var t = 1 / (1 + 0.2316419 * Math.abs(x));
+  var d = 0.3989423 * Math.exp(-x * x / 2);
+  var p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+  return x > 0 ? 1 - p : p;
+};
+var CIT_P1 = " in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page ";
+
+// ---------------------------------------------------------------- stats-035
+// Sample standard deviation (dataset family).
+PART.push(buildGenerator({ baseId: "stats-035", subtopic: "Sample standard deviation", difficulty: "medium",
+  estimatedTimeSeconds: 180,
+  explanation: "Divide by n\u22121 for a SAMPLE - dividing by n is the population formula and the main trap. The mean and the variance itself are the other two decoys."
+}, function () {
+  var sets = [
+    [12, 15, 11, 18, 14, 20, 16],
+    [10, 14, 12, 16, 18, 11, 17],
+    [21, 25, 19, 28, 23, 30, 26],
+    [8, 12, 9, 15, 11, 14, 10]
+  ];
+  var di = ri(0, sets.length - 1), data = sets[di], n = data.length;
+  var mean = sMean(data), vr = sVar(data), sd = Math.sqrt(vr);
+  var sdN = Math.sqrt(vr * (n - 1) / n);   // divided by n (population)
+  var question = "A sample has the values " + data.join(", ") + ". What is the sample standard deviation?";
+  var solution = "Refer to sample statistics (mean, variance, standard deviation) in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "Mean \\(\\bar x = " + f2(mean) + "\\). \\(\\sum(x-\\bar x)^2 = " + f2(vr * (n - 1)) + "\\).\n\n" +
+    "$$\\begin{aligned}s &= \\sqrt{\\frac{\\sum(x_i - \\bar x)^2}{n-1}} \\\\ &= \\sqrt{\\frac{" + f2(vr * (n - 1)) + "}{" + (n - 1) + "}} \\\\ &= " + f2(sd) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(sd), num: r2s(sd), correct: true },
+      { label: f2(vr), num: r2s(vr), correct: false },
+      { label: f2(sdN), num: r2s(sdN), correct: false },
+      { label: f2(mean), num: r2s(mean), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-036
+// Binomial probability b(x; n, p).
+PART.push(buildGenerator({ baseId: "stats-036", subtopic: "Binomial probability", difficulty: "medium",
+  estimatedTimeSeconds: 150,
+  explanation: "b(x;n,p) = C(n,x)p^x(1\u2212p)^(n\u2212x). The decoys are the expected value np, p^x alone, and the cumulative-style slip."
+}, function () {
+  var cases = [
+    { n: 10, x: 3, p: 0.3 }, { n: 8, x: 2, p: 0.25 }, { n: 12, x: 4, p: 0.3 },
+    { n: 10, x: 2, p: 0.2 }, { n: 6, x: 2, p: 0.4 }, { n: 9, x: 3, p: 0.5 }
+  ];
+  var c = cases[ri(0, cases.length - 1)];
+  var C = function (n, k2) { var r = 1; for (var i = 0; i < k2; i++) r = r * (n - i) / (i + 1); return r; };
+  var ans = C(c.n, c.x) * Math.pow(c.p, c.x) * Math.pow(1 - c.p, c.n - c.x);
+  var tNP = c.n * c.p, tPx = Math.pow(c.p, c.x), tNoC = Math.pow(c.p, c.x) * Math.pow(1 - c.p, c.n - c.x);
+  var question = "A process fails with probability " + c.p + " on each independent trial. What is the probability of exactly " + c.x + " failures in " + c.n + " trials?";
+  var solution = "Refer to Binomial distribution b(x; n, p) in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "$$\\begin{aligned}b(" + c.x + ";" + c.n + "," + c.p + ") &= \\binom{" + c.n + "}{" + c.x + "}(" + c.p + ")^" + c.x + "(" + f2(1 - c.p) + ")^" + (c.n - c.x) + " \\\\ &= " + f4(ans) + "\\end{aligned}$$";
+  return {
+    variantKey: "n" + c.n + "_x" + c.x + "_p" + pdot(c.p),
+    question: question,
+    options: [
+      { label: f4(ans), num: r4s(ans), correct: true },
+      { label: f4(tNP), num: r4s(tNP), correct: false },
+      { label: f4(tPx), num: r4s(tPx), correct: false },
+      { label: f4(tNoC), num: r4s(tNoC), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-038
+// Poisson probability.
+PART.push(buildGenerator({ baseId: "stats-038", subtopic: "Poisson probability", difficulty: "medium",
+  estimatedTimeSeconds: 150,
+  explanation: "f(x;\u03BB) = \u03BB^x e^(\u2212\u03BB)/x!. The decoys drop the x! or use \u03BB in place of x."
+}, function () {
+  var cases = [ { l: 4, x: 2 }, { l: 3, x: 2 }, { l: 5, x: 3 }, { l: 2, x: 3 }, { l: 4, x: 3 }, { l: 6, x: 2 } ];
+  var c = cases[ri(0, cases.length - 1)];
+  var fact = function (n) { var r = 1; for (var i = 2; i <= n; i++) r *= i; return r; };
+  var ans = Math.pow(c.l, c.x) * Math.exp(-c.l) / fact(c.x);
+  var tNoFact = Math.pow(c.l, c.x) * Math.exp(-c.l);
+  var tSwap = Math.pow(c.x, c.l) * Math.exp(-c.x) / fact(c.l);
+  var tMean = 1 / c.l;
+  var question = "Defects occur at an average rate of " + c.l + " per day (Poisson). What is the probability of exactly " + c.x + " defects in a day?";
+  var solution = "Refer to Poisson distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "$$\\begin{aligned}f(" + c.x + ";" + c.l + ") &= \\frac{\\lambda^xe^{-\\lambda}}{x!} \\\\ &= \\frac{" + c.l + "^" + c.x + "e^{-" + c.l + "}}{" + c.x + "!} \\\\ &= " + f4(ans) + "\\end{aligned}$$";
+  return {
+    variantKey: "l" + c.l + "_x" + c.x,
+    question: question,
+    options: [
+      { label: f4(ans), num: r4s(ans), correct: true },
+      { label: f4(tNoFact), num: r4s(tNoFact), correct: false },
+      { label: f4(tSwap), num: r4s(tSwap), correct: false },
+      { label: f4(tMean), num: r4s(tMean), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-040
+// Sample variance from data (dataset family).
+PART.push(buildGenerator({ baseId: "stats-040", subtopic: "Sample variance from data", difficulty: "medium",
+  estimatedTimeSeconds: 180,
+  explanation: "Sample variance divides by n\u22121. The sum of squares itself, the sd, and the mean are the decoys."
+}, function () {
+  var sets = [
+    [12, 15, 11, 18, 14, 20],
+    [10, 14, 12, 16, 18, 11],
+    [22, 26, 20, 29, 24, 31],
+    [7, 11, 8, 14, 10, 13]
+  ];
+  var di = ri(0, sets.length - 1), data = sets[di], n = data.length;
+  var mean = sMean(data), vr = sVar(data), ss = vr * (n - 1), sd = Math.sqrt(vr);
+  var question = "A sample of " + n + " concrete cylinder strengths (ksi x 0.1) reads " + data.join(", ") + ". What is the sample variance?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "The mean is " + f2(mean) + ". The handbook sample variance divides by n \u2212 1:\n\n" +
+    "$$\\begin{aligned}s^2 &= \\frac{1}{n-1}\\sum (X_i-\\bar X)^2 \\\\ &= \\frac{" + f2(ss) + "}{" + (n - 1) + "} \\\\ &= " + f2(vr) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(vr), num: r2s(vr), correct: true },
+      { label: f2(ss), num: r2s(ss), correct: false },
+      { label: f2(sd), num: r2s(sd), correct: false },
+      { label: f2(mean), num: r2s(mean), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-041
+// Weighted arithmetic mean.
+PART.push(buildGenerator({ baseId: "stats-041", subtopic: "Weighted arithmetic mean", difficulty: "easy",
+  estimatedTimeSeconds: 120,
+  explanation: "\u03A3wx/\u03A3w. The plain average of the three scores ignores the weights; the un-divided sum is the decimal-slip decoy."
+}, function () {
+  var sets = [
+    { w: [2, 3, 5], x: [85, 90, 78], names: ["homework", "a midterm", "a final"] },
+    { w: [1, 2, 3], x: [88, 82, 91], names: ["quiz work", "a midterm", "a final"] },
+    { w: [3, 3, 4], x: [76, 84, 90], names: ["labs", "a project", "a final"] },
+    { w: [2, 2, 6], x: [92, 84, 86], names: ["homework", "a midterm", "a final"] }
+  ];
+  var di = ri(0, sets.length - 1), s = sets[di];
+  var sw = s.w[0] + s.w[1] + s.w[2];
+  var swx = s.w[0] * s.x[0] + s.w[1] * s.x[1] + s.w[2] * s.x[2];
+  var wm = r1d(swx / sw);
+  var plain = r1d((s.x[0] + s.x[1] + s.x[2]) / 3);
+  var tSum = r1d(swx), tMax = Math.max(s.x[0], s.x[1], s.x[2]);
+  var question = "A course grade uses " + s.names[0] + " (weight " + s.w[0] + ") with a score of " + s.x[0] + ", " + s.names[1] + " (weight " + s.w[1] + ") with " + s.x[1] + " and " + s.names[2] + " (weight " + s.w[2] + ") with " + s.x[2] + ". What is the weighted mean?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "$$\\begin{aligned}\\bar X_w &= \\frac{\\sum w_iX_i}{\\sum w_i} \\\\ &= \\frac{" + s.w[0] + "(" + s.x[0] + ")+" + s.w[1] + "(" + s.x[1] + ")+" + s.w[2] + "(" + s.x[2] + ")}{" + sw + "} \\\\ &= " + f2(wm) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(wm), num: wm, correct: true },
+      { label: f2(plain), num: plain, correct: false },
+      { label: tMax.toFixed(1), num: tMax, correct: false },
+      { label: tSum.toFixed(1), num: tSum, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-042
+// Median, even count (dataset family).
+PART.push(buildGenerator({ baseId: "stats-042", subtopic: "Median, even count", difficulty: "easy",
+  estimatedTimeSeconds: 90,
+  explanation: "Even n: sort, then average the two middle values. The decoys are a single middle value, the mean, and an unsorted middle."
+}, function () {
+  var sets = [
+    [7, 3, 9, 4, 8, 12],
+    [5, 2, 11, 6, 9, 14],
+    [15, 8, 21, 10, 18, 25],
+    [4, 1, 9, 3, 7, 12]
+  ];
+  var di = ri(0, sets.length - 1), data = sets[di];
+  var srt = data.slice().sort(function (a, b) { return a - b; });
+  var h = srt.length / 2;
+  var med = (srt[h - 1] + srt[h]) / 2;
+  var mean = sMean(data);
+  var question = "What is the median of the data set " + data.join(", ") + "?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "Sorted: " + srt.join(", ") + ". With n = " + srt.length + " (even) the median is the average of the (n/2)th and (n/2 + 1)th items: (" + srt[h - 1] + " + " + srt[h] + ")/2 = " + f2(med) + ".";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(med), num: med, correct: true },
+      { label: f2(srt[h]), num: srt[h], correct: false },
+      { label: f2(mean), num: r2s(mean), correct: false },
+      { label: f2(srt[h - 1]), num: srt[h - 1], correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-043
+// Standard deviation of the mean.
+PART.push(buildGenerator({ baseId: "stats-043", subtopic: "Standard deviation of the mean", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "\u03C3_mean = \u03C3/\u221An, not \u03C3/n and not \u03C3\u00D7\u221An."
+}, function () {
+  var sig = pick([4, 6, 8, 10]), n = pick([16, 25, 36, 49]);
+  var ans = r2s(sig / Math.sqrt(n));
+  var tN = r2s(sig / n), tMul = r2s(sig * Math.sqrt(n)), tSame = sig;
+  var question = "Individual measurements have a standard deviation of " + f2(sig) + " psi. What is the standard deviation of the mean of " + n + " independent measurements?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "The handbook gives \\(\\sigma_{mean} = \\sigma/\\sqrt{n}\\):\n\n" +
+    "$$\\begin{aligned}\\sigma_{mean} &= \\frac{" + f2(sig) + "}{\\sqrt{" + n + "}} \\\\ &= " + f2(ans) + "\\ \\text{psi}\\end{aligned}$$";
+  return {
+    variantKey: "s" + sig + "_n" + n,
+    question: question,
+    options: [
+      { label: f2(ans) + " psi", num: ans, correct: true },
+      { label: f2(tN) + " psi", num: tN, correct: false },
+      { label: f2(tSame) + " psi", num: tSame, correct: false },
+      { label: f2(tMul) + " psi", num: tMul, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-044
+// Standard deviation of a sum (quadrature).
+PART.push(buildGenerator({ baseId: "stats-044", subtopic: "Standard deviation of a sum", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Independent sigmas add in QUADRATURE: \u221A(\u03C31\u00B2+\u03C32\u00B2+\u03C33\u00B2). Plain addition is the trap; the sum of squares is the other."
+}, function () {
+  var sets = [ [3, 4, 12], [6, 8, 10], [5, 12, 13], [8, 15, 17], [9, 12, 15] ];
+  var di = ri(0, sets.length - 1), s = sets[di];
+  var ss = s[0] * s[0] + s[1] * s[1] + s[2] * s[2];
+  var ans = r2s(Math.sqrt(ss));
+  var tAdd = s[0] + s[1] + s[2], tSS = ss, tMax = Math.max(s[0], s[1], s[2]);
+  var question = "Three independent loads have standard deviations of " + s[0] + ", " + s[1] + " and " + s[2] + " kips. What is the standard deviation of their sum?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "Independent standard deviations add in quadrature (\\(\\sigma_{sum} = \\sqrt{\\sigma_1^2+\\sigma_2^2+\\dots}\\)):\n\n" +
+    "$$\\begin{aligned}\\sigma_{sum} &= \\sqrt{" + s[0] + "^2+" + s[1] + "^2+" + s[2] + "^2} \\\\ &= \\sqrt{" + ss + "} \\\\ &= " + f2(ans) + "\\ \\text{kips}\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(ans) + " kips", num: ans, correct: true },
+      { label: f2(tSS) + " kips", num: tSS, correct: false },
+      { label: f2(tAdd) + " kips", num: tAdd, correct: false },
+      { label: f2(tMax) + " kips", num: tMax, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-045
+// Sample geometric mean (dataset family).
+PART.push(buildGenerator({ baseId: "stats-045", subtopic: "Sample geometric mean", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "Geometric mean = nth root of the product. The arithmetic mean and RMS are the natural decoys."
+}, function () {
+  var sets = [ [2, 8, 4, 16], [3, 9, 27, 1], [2, 4, 8, 32], [5, 10, 20, 40], [1, 4, 16, 64] ];
+  var di = ri(0, sets.length - 1), d = sets[di], n = d.length;
+  var prod = d.reduce(function (a, b) { return a * b; }, 1);
+  var gm = Math.pow(prod, 1 / n);
+  var am = sMean(d);
+  var rms = Math.sqrt(d.reduce(function (a, b) { return a + b * b; }, 0) / n);
+  var harm = n / d.reduce(function (a, b) { return a + 1 / b; }, 0);
+  var question = "What is the geometric mean of " + d.join(", ") + "?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "$$\\begin{aligned}\\sqrt[n]{X_1X_2\\cdots X_n} &= \\sqrt[" + n + "]{" + prod + "} \\\\ &= " + f2(gm) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(gm), num: r2s(gm), correct: true },
+      { label: f2(harm), num: r2s(harm), correct: false },
+      { label: f2(rms), num: r2s(rms), correct: false },
+      { label: f2(am), num: r2s(am), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-046
+// Root-mean-square value (dataset family).
+PART.push(buildGenerator({ baseId: "stats-046", subtopic: "Root-mean-square value", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "RMS = \u221A(\u03A3x\u00B2/n). The mean of squares (no root), the arithmetic mean, and the geometric mean are the decoys."
+}, function () {
+  var sets = [ [2, 8, 4, 16], [3, 9, 27, 1], [2, 4, 8, 32], [5, 10, 20, 40], [1, 4, 16, 64] ];
+  var di = ri(0, sets.length - 1), d = sets[di], n = d.length;
+  var ms = d.reduce(function (a, b) { return a + b * b; }, 0) / n;
+  var rms = Math.sqrt(ms);
+  var am = sMean(d);
+  var gm = Math.pow(d.reduce(function (a, b) { return a * b; }, 1), 1 / n);
+  var question = "What is the sample root-mean-square value of " + d.join(", ") + "?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 64 (PDF page 70).\n\n" +
+    "$$\\begin{aligned}\\sqrt{\\frac{1}{n}\\sum X_i^2} &= \\sqrt{\\frac{" + fmt(ms * n) + "}{" + n + "}} \\\\ &= " + f2(rms) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(rms), num: r2s(rms), correct: true },
+      { label: f2(am), num: r2s(am), correct: false },
+      { label: f2(ms), num: r2s(ms), correct: false },
+      { label: f2(gm), num: r2s(gm), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-047
+// Binomial variance np(1-p).
+PART.push(buildGenerator({ baseId: "stats-047", subtopic: "Binomial mean and variance", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "Variance is np(1\u2212p); np alone is the MEAN. The sd \u221A(np(1\u2212p)) and np\u00B2 are the other decoys."
+}, function () {
+  var cases = [ { n: 12, p: 0.15 }, { n: 20, p: 0.1 }, { n: 10, p: 0.3 }, { n: 15, p: 0.2 }, { n: 8, p: 0.25 }, { n: 25, p: 0.12 } ];
+  var c = cases[ri(0, cases.length - 1)];
+  var vr = r2s(c.n * c.p * (1 - c.p)), mean = r2s(c.n * c.p), sd = r2s(Math.sqrt(c.n * c.p * (1 - c.p))), tP2 = r2s(c.n * c.p * c.p);
+  var question = "A binomial experiment has n = " + c.n + " trials and p = " + c.p + ". What is its variance?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "From the table, the binomial variance is \\(np(1-p)\\) = " + c.n + "(" + c.p + ")(" + f2(1 - c.p) + ") = " + f2(vr) + ".";
+  return {
+    variantKey: "n" + c.n + "_p" + pdot(c.p),
+    question: question,
+    options: [
+      { label: f2(vr), num: vr, correct: true },
+      { label: f2(mean), num: mean, correct: false },
+      { label: f2(tP2), num: tP2, correct: false },
+      { label: f2(sd), num: sd, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-048
+// Poisson variance = lambda.
+PART.push(buildGenerator({ baseId: "stats-048", subtopic: "Poisson mean and variance", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "Poisson: mean = \u03BB AND variance = \u03BB. The squared value, \u221A\u03BB, and 1/\u03BB are the decoys."
+}, function () {
+  var l = pick([2.5, 3.2, 4.5, 1.8, 5.6]);
+  var vr = l, tSq = r2s(l * l), tRt = r2s(Math.sqrt(l)), tInv = r2s(1 / l);
+  var question = "A Poisson count has a mean of " + l + " events per interval. What is its variance?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "For the Poisson distribution the table gives mean = \\(\\lambda\\) and variance = \\(\\lambda\\), so the variance is " + l + ".";
+  return {
+    variantKey: "l" + pdot(l),
+    question: question,
+    options: [
+      { label: fmt(vr), num: vr, correct: true },
+      { label: f2(tSq), num: tSq, correct: false },
+      { label: f2(tInv), num: tInv, correct: false },
+      { label: f2(tRt), num: tRt, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-049
+// Exponential distribution variance = beta^2.
+PART.push(buildGenerator({ baseId: "stats-049", subtopic: "Exponential distribution mean and variance", difficulty: "medium",
+  estimatedTimeSeconds: 60,
+  explanation: "Exponential: mean = \u03B2, variance = \u03B2\u00B2. \u03B2 itself, 2\u03B2, and 1/\u03B2\u00B2 are the decoys."
+}, function () {
+  var b = pick([2, 3, 4, 5, 6]);
+  var vr = b * b, t2b = 2 * b, tInv = r4s(1 / (b * b)), tHalf = r2s(b * b / 4);
+  var question = "An exponential distribution has a mean of " + f2(b) + " hours (the handbook parameter beta). What is its variance?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "In the handbook table the exponential mean is \\(\\beta\\) and the variance is \\(\\beta^2\\) = " + vr + ".";
+  return {
+    variantKey: "b" + b,
+    question: question,
+    options: [
+      { label: fmt(vr), num: vr, correct: true },
+      { label: f2(b), num: b, correct: false },
+      { label: f2(t2b), num: t2b, correct: false },
+      { label: f4(tInv), num: tInv, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-050
+// Uniform distribution variance.
+PART.push(buildGenerator({ baseId: "stats-050", subtopic: "Uniform distribution variance", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "Uniform(a,b): variance (b\u2212a)\u00B2/12. The width (b\u2212a), the mean (a+b)/2, and (b\u2212a)\u00B2/4 (the triangular-looking slip) are the decoys."
+}, function () {
+  var cases = [ [10, 22], [5, 17], [2, 14], [4, 20], [8, 26] ];
+  var c = cases[ri(0, cases.length - 1)], a = c[0], b2 = c[1], w = b2 - a;
+  var vr = r2s(w * w / 12), mean = r2s((a + b2) / 2), tW = r2s(w / 2), tQ = r2s(w * w / 4);
+  var question = "A random variable is uniformly distributed between " + a + " and " + b2 + ". What is its variance?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "The table gives \\((b-a)^2/12\\) = " + (w * w) + "/12 = " + f2(vr) + ". The mean is (a + b)/2 = " + f2(mean) + ".";
+  return {
+    variantKey: "a" + a + "_b" + b2,
+    question: question,
+    options: [
+      { label: f2(vr), num: vr, correct: true },
+      { label: f2(tW), num: tW, correct: false },
+      { label: f2(mean), num: mean, correct: false },
+      { label: f2(tQ), num: tQ, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-051
+// Geometric distribution mean = 1/p.
+PART.push(buildGenerator({ baseId: "stats-051", subtopic: "Geometric distribution mean", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "Geometric mean is 1/p trials. 1/p\u00B2, p itself, and 1/(1\u2212p) are the decoys."
+}, function () {
+  var p = pick([0.1, 0.2, 0.25, 0.4, 0.5]);
+  var ans = r2s(1 / p), tSq = r2s(1 / (p * p)), tP = p, tQ = r2s(1 / (1 - p));
+  var question = "A test passes with probability " + p + " on each independent trial. Using the geometric distribution, what is the expected number of trials until the first pass?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "The handbook geometric mean is 1/p = 1/" + p + " = " + f2(ans) + " trials.";
+  return {
+    variantKey: "p" + pdot(p),
+    question: question,
+    options: [
+      { label: f2(ans), num: ans, correct: true },
+      { label: f2(tSq), num: tSq, correct: false },
+      { label: f2(tP), num: tP, correct: false },
+      { label: f2(tQ), num: tQ, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-052
+// Hypergeometric mean nr/N.
+PART.push(buildGenerator({ baseId: "stats-052", subtopic: "Hypergeometric mean", difficulty: "hard",
+  estimatedTimeSeconds: 120,
+  explanation: "Expected defectives without replacement: nr/N - the same as the binomial np with p = r/N. The decoys use n(1\u2212r/N), r itself, or binomial variance."
+}, function () {
+  var cases = [ { N: 20, r: 6, n: 5 }, { N: 25, r: 8, n: 4 }, { N: 30, r: 9, n: 5 }, { N: 16, r: 4, n: 6 }, { N: 24, r: 10, n: 6 } ];
+  var c = cases[ri(0, cases.length - 1)];
+  var ans = r2s(c.n * c.r / c.N);
+  var tNq = r2s(c.n * (1 - c.r / c.N)), tR = c.r, tVar = r2s(c.n * (c.r / c.N) * (1 - c.r / c.N));
+  var question = "A lot of " + c.N + " bolts contains " + c.r + " defective bolts. " + c.n + " are drawn without replacement. What is the expected number of defectives in the sample?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "The hypergeometric mean is \\(nr/N\\) = " + c.n + "(" + c.r + ")/" + c.N + " = " + f2(ans) + ".";
+  return {
+    variantKey: "N" + c.N + "_r" + c.r + "_n" + c.n,
+    question: question,
+    options: [
+      { label: f2(ans), num: ans, correct: true },
+      { label: f2(tNq), num: tNq, correct: false },
+      { label: f2(tR), num: tR, correct: false },
+      { label: f2(tVar), num: tVar, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-053
+// Triangular distribution mean.
+PART.push(buildGenerator({ baseId: "stats-053", subtopic: "Triangular distribution mean", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "Triangular: mean = (a + b + m)/3 - the mode counts too. Averaging only the endpoints is the trap."
+}, function () {
+  var cases = [ { a: 2, m: 5, b: 14 }, { a: 1, m: 4, b: 12 }, { a: 3, m: 6, b: 18 }, { a: 2, m: 8, b: 20 }, { a: 5, m: 9, b: 25 } ];
+  var c = cases[ri(0, cases.length - 1)];
+  var ans = r2s((c.a + c.b + c.m) / 3);
+  var tEnds = r2s((c.a + c.b) / 2), tMode = c.m, tMin = c.a;
+  var question = "A task duration follows a triangular distribution with minimum " + c.a + ", mode " + c.m + " and maximum " + c.b + " days. What is the mean?";
+  var solution = "Refer to Engineering Probability and Statistics in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 85 (PDF page 91).\n\n" +
+    "The table gives mean = (a + b + m)/3 = (" + c.a + " + " + c.b + " + " + c.m + ")/3 = " + f2(ans) + " days.";
+  return {
+    variantKey: "a" + c.a + "_m" + c.m + "_b" + c.b,
+    question: question,
+    options: [
+      { label: f2(ans), num: ans, correct: true },
+      { label: f2(tEnds), num: tEnds, correct: false },
+      { label: f2(tMode), num: tMode, correct: false },
+      { label: f2(tMin), num: tMin, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-054
+// Standard normal symmetry F(-x) = 1 - F(x).
+PART.push(buildGenerator({ baseId: "stats-054", subtopic: "Standard normal symmetry, F(-x)", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "F(\u2212x) = 1 \u2212 F(x). The stated table value itself, 2F(\u2212x), and F(x)\u22120.5-type slips are the decoys."
+}, function () {
+  var x = pick([0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0]);
+  var Fx = r4s(phiCdf(x));
+  var Fnx = r4s(1 - Fx);
+  var t2 = r4s(2 * Fnx), tHalf = r4s(Fx - 0.5);
+  var question = "From a unit normal table, F(" + f2(x) + ") = " + f4(Fx) + ", where F(x) is the area under the curve from \u2212\u221E to x. Using the handbook's relation for negative arguments, what is F(\u2212" + f2(x) + ")?";
+  var solution = "Refer to Normal Distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 68 (PDF page 74).\n\n" +
+    "The handbook gives \\(F(-x) = 1 - F(x)\\):\n\n" +
+    "$$F(-" + f2(x) + ") = 1 - " + f4(Fx) + " = " + f4(Fnx) + "$$";
+  return {
+    variantKey: "x" + pdot(x),
+    question: question,
+    options: [
+      { label: f4(Fnx), num: Fnx, correct: true },
+      { label: f4(Fx), num: Fx, correct: false },
+      { label: f4(t2), num: t2, correct: false },
+      { label: f4(tHalf), num: tHalf, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-056
+// t statistic for a sample mean.
+PART.push(buildGenerator({ baseId: "stats-056", subtopic: "t statistic for a sample mean", difficulty: "medium",
+  estimatedTimeSeconds: 120,
+  explanation: "t = (x\u0304 \u2212 \u03BC)/(s/\u221An). Dividing by s instead of s/\u221An (or by \u221An alone) flips the magnitude."
+}, function () {
+  var n = pick([9, 16, 25]), s = pick([3, 6, 8]), mu = pick([50, 100]);
+  var dm = pick([2, 4, 6]);                 // xbar - mu
+  var xbar = mu + dm;
+  var t = r2s(dm / (s / Math.sqrt(n)));
+  var tNoSqrt = r2s(dm / s), tDivN = r3s(dm / (s / n)), tHalf = r2s(t / 2);
+  var question = "A sample of n = " + n + " has a mean of " + xbar + " and a standard deviation of " + s + ". What is the t statistic for testing \u03BC = " + mu + "?";
+  var solution = "Refer to t-Distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
+    "The handbook gives \\(t = \\dfrac{\\bar x - \\mu}{s/\\sqrt n}\\):\n\n" +
+    "$$t = \\frac{" + xbar + "-" + mu + "}{" + s + "/\\sqrt{" + n + "}} = " + f2(t) + "$$";
+  return {
+    variantKey: "n" + n + "_s" + s + "_mu" + mu + "_dm" + dm,
+    question: question,
+    options: [
+      { label: f2(t), num: t, correct: true },
+      { label: fmt(tNoSqrt), num: tNoSqrt, correct: false },
+      { label: fmt(tDivN), num: tDivN, correct: false },
+      { label: f2(tHalf), num: tHalf, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-057
+// t-distribution symmetry t(1-a,v) = -t(a,v).
+PART.push(buildGenerator({ baseId: "stats-057", subtopic: "t-distribution symmetry", difficulty: "medium",
+  estimatedTimeSeconds: 60,
+  explanation: "t(1\u2212\u03B1, \u03BD) = \u2212t(\u03B1, \u03BD). The positive table value is the trap; magnitude slips are the others."
+}, function () {
+  var cases = [ { a: "0.05", v: 10, t: 1.812 }, { a: "0.05", v: 15, t: 1.753 }, { a: "0.025", v: 10, t: 2.228 }, { a: "0.05", v: 20, t: 1.725 }, { a: "0.10", v: 10, t: 1.372 } ];
+  var c = cases[ri(0, cases.length - 1)];
+  var a2 = (1 - parseFloat(c.a)).toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  var question = "A t table gives t(" + c.a + ", " + c.v + ") = " + c.t + ". Using the handbook's symmetry relation t(1\u2212\u03B1, \u03BD) = \u2212t(\u03B1, \u03BD), what is t(" + a2 + ", " + c.v + ")?";
+  var solution = "Refer to t-Distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
+    "The handbook notes that, in view of the symmetry of the t-distribution, \\(t_{1-\\alpha,\\nu} = -t_{\\alpha,\\nu}\\). So \\(t_{" + a2 + "," + c.v + "}\\) = " + MINUS + c.t + ".";
+  return {
+    variantKey: "a" + c.a + "_v" + c.v,
+    question: question,
+    options: [
+      { label: MINUS + c.t, num: -c.t, correct: true },
+      { label: MINUS + r2s(c.t - 1).toFixed(3), num: -(c.t - 1), correct: false },
+      { label: fmt(r2s(1 - c.t)), num: r2s(1 - c.t), correct: false },
+      { label: "" + c.t, num: c.t, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-058
+// Degrees of freedom for the t-distribution.
+PART.push(buildGenerator({ baseId: "stats-058", subtopic: "Degrees of freedom for the t-distribution", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "\u03BD = n \u2212 1. n itself, n + 1, and n \u2212 2 are the decoys."
+}, function () {
+  var n = pick([8, 10, 12, 15, 20, 25]);
+  var question = "A sample of " + n + " observations is used with the t-distribution. According to the handbook, how many degrees of freedom does it have?";
+  var solution = "Refer to t-Distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
+    "The handbook gives \\(\\nu = n - 1 = " + n + " - 1 = " + (n - 1) + "\\).";
+  return {
+    variantKey: "n" + n,
+    question: question,
+    options: [
+      { label: "" + (n - 1), num: n - 1, correct: true },
+      { label: "" + n, num: n, correct: false },
+      { label: "" + (n + 1), num: n + 1, correct: false },
+      { label: "" + (n - 2), num: n - 2, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-059
+// Chi-square degrees of freedom.
+PART.push(buildGenerator({ baseId: "stats-059", subtopic: "Chi-square degrees of freedom", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "\u03C7\u00B2 of a sum of n squared unit normals has n degrees of freedom - it equals the COUNT, not n\u22121."
+}, function () {
+  var n = pick([3, 4, 5, 6, 8]);
+  var zs = [];
+  for (var i = 1; i <= n; i++) zs.push("Z" + i);
+  var squares = zs.map(function (z) { return z + "\u00B2"; }).join(" + ");
+  var question = "If " + zs.join(", ") + " are independent unit normal random variables, how many degrees of freedom does \u03C7\u00B2 = " + squares + " have?";
+  var solution = "Refer to \u03C7\u00B2 - Distribution in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
+    "The handbook defines the sum of squares of n independent unit normal variables as chi-square with n degrees of freedom. Here n = " + n + ".";
+  return {
+    variantKey: "n" + n,
+    question: question,
+    options: [
+      { label: "" + n, num: n, correct: true },
+      { label: "" + (n * n), num: n * n, correct: false },
+      { label: "1", num: 1, correct: false },
+      { label: "" + (n - 1), num: n - 1, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-060
+// Measurement error model: d_random = x - x_ref - d_systematic.
+PART.push(buildGenerator({ baseId: "stats-060", subtopic: "Measurement error model", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "d_random = x \u2212 x_ref \u2212 d_systematic. Forgetting to subtract the systematic part (or adding it) is the trap."
+}, function () {
+  var xref = pick([10, 20, 5]), dsys = pick([0.12, 0.18, 0.25]), dr = pick([0.04, 0.07, 0.09]);
+  var x = r2s(xref + dsys + dr);
+  var tNoSub = r2s(x - xref), tAdd = r2s(x - xref + dsys), tSum = r2s(x + xref + dsys);
+  var question = "A measurement x = " + f2(x) + " has reference value x_ref = " + f2(xref) + " and a systematic disturbance of " + dsys + ". Using the handbook's model x = x_ref + d_systematic + d_random, what is the random component?";
+  var solution = "Refer to Measurement Error in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
+    "$$\\begin{aligned}d_{random} &= x - x_{ref} - d_{systematic} \\\\ &= " + f2(x) + " - " + f2(xref) + " - " + dsys + " \\\\ &= " + f2(dr) + "\\end{aligned}$$";
+  return {
+    variantKey: "x" + pdot(x) + "_r" + xref + "_s" + pdot(dsys),
+    question: question,
+    options: [
+      { label: f2(dr), num: dr, correct: true },
+      { label: f2(tNoSub), num: tNoSub, correct: false },
+      { label: f2(tSum), num: tSum, correct: false },
+      { label: f2(tAdd), num: tAdd, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-061
+// Kline-McClintock uncertainty of a product.
+PART.push(buildGenerator({ baseId: "stats-061", subtopic: "Uncertainty of a product", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "For y = x1x2 the sensitivities are x2 and x1: \u03C3y = \u221A((x2\u03C31)\u00B2 + (x1\u03C32)\u00B2). Using \u03C31,\u03C32 directly is the trap."
+}, function () {
+  var x1 = pick([8, 10, 12]), x2 = pick([4, 5, 6]), s1 = pick([0.1, 0.2]), s2 = pick([0.05, 0.1]);
+  var ans = r2s(Math.sqrt(Math.pow(x2 * s1, 2) + Math.pow(x1 * s2, 2)));
+  var tQuad = r2s(Math.sqrt(s1 * s1 + s2 * s2));
+  var tSum = r2s(x2 * s1 + x1 * s2);
+  var tProd = r2s(x1 * x2 * Math.sqrt(s1 * s1 + s2 * s2));
+  var question = "Two uncorrelated measurements are x1 = " + x1 + " with standard deviation " + s1 + " and x2 = " + x2 + " with standard deviation " + s2 + ". Using the Kline-McClintock equation, what is the standard uncertainty of y = x1\u00B7x2?";
+  var solution = "Refer to Measurement Uncertainty in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "The handbook gives \\(\\sigma_y = \\sqrt{(\\partial f/\\partial x_1)^2\\sigma_1^2 + (\\partial f/\\partial x_2)^2\\sigma_2^2}\\). For y = x1x2, \\(\\partial y/\\partial x_1 = x_2 = " + x2 + "\\) and \\(\\partial y/\\partial x_2 = x_1 = " + x1 + "\\):\n\n" +
+    "$$\\sigma_y = \\sqrt{(" + x2 + ")^2(" + s1 + ")^2 + (" + x1 + ")^2(" + s2 + ")^2} = " + f2(ans) + "$$";
+  return {
+    variantKey: "x" + x1 + "_" + x2 + "_s" + pdot(s1) + "_" + pdot(s2),
+    question: question,
+    options: [
+      { label: f2(ans), num: ans, correct: true },
+      { label: f2(tQuad), num: tQuad, correct: false },
+      { label: f2(tSum), num: tSum, correct: false },
+      { label: f2(tProd), num: tProd, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-062
+// Kline-McClintock uncertainty of a sum.
+PART.push(buildGenerator({ baseId: "stats-062", subtopic: "Uncertainty of a sum", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "For y = x1 + x2 both sensitivities are 1, so \u03C3y = \u221A(\u03C31\u00B2 + \u03C32\u00B2). Adding the sigmas linearly is the trap."
+}, function () {
+  var s1 = pick([0.2, 0.3, 0.4]), s2 = pick([0.3, 0.4, 0.5]);
+  var ans = r2s(Math.sqrt(s1 * s1 + s2 * s2));
+  var tAdd = r2s(s1 + s2), tDiff = r2s(Math.abs(s1 - s2)), tAvg = r2s((s1 + s2) / 2);
+  var question = "Two uncorrelated measured lengths have standard deviations of " + s1 + " mm and " + s2 + " mm. What is the standard uncertainty of their sum, using the Kline-McClintock equation?";
+  var solution = "Refer to Measurement Uncertainty in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "For y = x1 + x2 both partial derivatives equal 1:\n\n" +
+    "$$\\sigma_y = \\sqrt{" + s1 + "^2 + " + s2 + "^2} = " + f2(ans) + "\\ \\text{mm}$$";
+  return {
+    variantKey: "s" + pdot(s1) + "_" + pdot(s2),
+    question: question,
+    options: [
+      { label: f2(ans) + " mm", num: ans, correct: true },
+      { label: f2(tDiff) + " mm", num: tDiff, correct: false },
+      { label: f2(tAvg) + " mm", num: tAvg, correct: false },
+      { label: f2(tAdd) + " mm", num: tAdd, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-063
+// Kline-McClintock uncertainty of a squared quantity.
+PART.push(buildGenerator({ baseId: "stats-063", subtopic: "Uncertainty of a squared quantity", difficulty: "hard",
+  estimatedTimeSeconds: 120,
+  explanation: "For y = x\u00B2 the sensitivity is 2x, so \u03C3y = 2x\u03C3. Using \u03C3\u00B2 or x\u03C3 forgets the derivative."
+}, function () {
+  var x = pick([2, 3, 4, 5]), sx = pick([0.05, 0.1, 0.15]);
+  var ans = r2s(2 * x * sx);
+  var tSx = sx, tSq = r2s(sx * sx), tX = r2s(x * sx);
+  var question = "A side x = " + f2(x) + " m is measured with standard deviation " + sx + " m. What is the standard uncertainty of the area y = x\u00B2, using the Kline-McClintock equation?";
+  var solution = "Refer to Measurement Uncertainty in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "Here \\(\\partial y/\\partial x = 2x = " + f2(2 * x) + "\\), so \\(\\sigma_y = " + f2(2 * x) + "(" + sx + ") = " + f2(ans) + "\\ \\text{m}^2\\).";
+  return {
+    variantKey: "x" + x + "_s" + pdot(sx),
+    question: question,
+    options: [
+      { label: f2(ans) + " m\u00B2", num: ans, correct: true },
+      { label: f2(tSq) + " m\u00B2", num: tSq, correct: false },
+      { label: f2(tX) + " m\u00B2", num: tX, correct: false },
+      { label: f2(tSx) + " m\u00B2", num: tSx, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-064
+// Expanded uncertainty with coverage factor k = 2.
+PART.push(buildGenerator({ baseId: "stats-064", subtopic: "Expanded uncertainty", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "Expanded uncertainty U = k\u03C3 with k = 2, reported at about 95% confidence. The k = 1 and k = 3 confidence pairings are the decoys."
+}, function () {
+  var u = pick([0.3, 0.4, 0.5, 0.6]);
+  var U = r2s(2 * u);
+  var question = "A standard uncertainty is " + u + " units. At the handbook's coverage factor of k = 2, what expanded uncertainty is reported, and at about what confidence level?";
+  var solution = "Refer to Measurement Uncertainty in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "The handbook says expanded uncertainties are typically given at about 95% confidence with a coverage factor k = 2 (2 sigma): 2(" + u + ") = " + f2(U) + ".";
+  return {
+    variantKey: "u" + pdot(u),
+    question: question,
+    options: [
+      { label: (Math.round(U * 10) / 10).toFixed(1) + " units, about 95%", num: null, correct: true },
+      { label: (Math.round(U * 10) / 10).toFixed(1) + " units, about 99.7%", num: null, correct: false },
+      { label: (Math.round(u * 10) / 10).toFixed(1) + " units, about 68%", num: null, correct: false },
+      { label: f2(u / 2) + " units, about 95%", num: null, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-065
+// Least-squares prediction from Sxy, Sxx, means.
+PART.push(buildGenerator({ baseId: "stats-065", subtopic: "Least-squares prediction", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "b = Sxy/Sxx, a = \u0233 \u2212 bx\u0304, then \u0177 = a + bx. Using \u0233 as the intercept skips the centering step."
+}, function () {
+  var cases = [
+    { Sxy: 120, Sxx: 40, mx: 5, my: 30, x: 7 },
+    { Sxy: 90, Sxx: 30, mx: 4, my: 22, x: 6 },
+    { Sxy: 60, Sxx: 20, mx: 6, my: 40, x: 8 },
+    { Sxy: 150, Sxx: 50, mx: 3, my: 18, x: 5 },
+    { Sxy: 80, Sxx: 25, mx: 5, my: 26, x: 9 }
+  ];
+  var c = cases[ri(0, cases.length - 1)];
+  var b = c.Sxy / c.Sxx, a = c.my - b * c.mx;
+  var ans = r2s(a + b * c.x);
+  var tNoCenter = r2s(c.my + b * c.x), tInv = r2s((c.Sxx / c.Sxy) * c.x + c.my), tMean = c.my;
+  var question = "A regression has Sxy = " + c.Sxy + ", Sxx = " + c.Sxx + ", mean x = " + c.mx + " and mean y = " + c.my + ". What does the fitted line predict at x = " + c.x + "?";
+  var solution = "Refer to Least Squares in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "The handbook gives \\(\\hat b = S_{xy}/S_{xx} = " + c.Sxy + "/" + c.Sxx + " = " + fmt(b) + "\\) and \\(\\hat a = \\bar y - \\hat b\\bar x = " + c.my + " - " + fmt(b) + "(" + c.mx + ") = " + fmt(a) + "\\):\n\n" +
+    "$$\\hat y = " + fmt(a) + " + " + fmt(b) + "(" + c.x + ") = " + fmt(ans) + "$$";
+  return {
+    variantKey: "Sxy" + c.Sxy + "_Sxx" + c.Sxx + "_x" + c.x,
+    question: question,
+    options: [
+      { label: f2(ans), num: ans, correct: true },
+      { label: f2(tInv), num: tInv, correct: false },
+      { label: f2(tNoCenter), num: tNoCenter, correct: false },
+      { label: f2(tMean), num: tMean, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-066
+// Least-squares slope from data (dataset family).
+PART.push(buildGenerator({ baseId: "stats-066", subtopic: "Least-squares slope from data", difficulty: "hard",
+  estimatedTimeSeconds: 180,
+  explanation: "b = Sxy/Sxx from the raw points. The endpoint-secant slope and the inverted ratio Sxx/Sxy are the decoys."
+}, function () {
+  var sets = [
+    [[1, 2.1], [2, 3.9], [3, 6.2], [4, 7.8], [5, 10.1]],
+    [[1, 3.2], [2, 5.1], [3, 6.8], [4, 9.2], [5, 11.0]],
+    [[1, 1.8], [2, 4.3], [3, 6.0], [4, 8.5], [5, 10.4]],
+    [[1, 4.0], [2, 6.4], [3, 7.5], [4, 10.8], [5, 12.2]]
+  ];
+  var di = ri(0, sets.length - 1), d = sets[di], n = d.length;
+  var mx = sMean(d.map(function (p) { return p[0]; }));
+  var my = sMean(d.map(function (p) { return p[1]; }));
+  var Sxx = 0, Sxy = 0;
+  for (var i = 0; i < n; i++) { Sxx += (d[i][0] - mx) * (d[i][0] - mx); Sxy += (d[i][0] - mx) * (d[i][1] - my); }
+  var b = Sxy / Sxx;
+  var sec = (d[n - 1][1] - d[0][1]) / (d[n - 1][0] - d[0][0]);
+  var inv = Sxx / Sxy, off = r2s(Math.abs(b - sec));
+  var pt = function (p) { return "(" + p[0] + ", " + p[1] + ")"; };
+  var question = "For the data (x, y) = " + d.map(pt).join(", ") + ", what is the least-squares slope?";
+  var solution = "Refer to Least Squares in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "With mean x = " + f2(mx) + " and mean y = " + f2(my) + ": \\(S_{xx} = " + f2(Sxx) + "\\) and \\(S_{xy} = " + f2(Sxy) + "\\).\n\n" +
+    "$$\\begin{aligned}\\hat b &= \\frac{S_{xy}}{S_{xx}} \\\\ &= \\frac{" + f2(Sxy) + "}{" + f2(Sxx) + "} \\\\ &= " + f2(b) + "\\end{aligned}$$";
+  return {
+    variantKey: "set" + di,
+    question: question,
+    options: [
+      { label: f2(b), num: r2s(b), correct: true },
+      { label: f2(off), num: off, correct: false },
+      { label: f2(sec), num: r2s(sec), correct: false },
+      { label: f2(inv), num: r2s(inv), correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-067
+// Standard error of estimate squared (MSE).
+PART.push(buildGenerator({ baseId: "stats-067", subtopic: "Standard error of estimate", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "Se\u00B2 = (Sxx\u00B7Syy \u2212 Sxy\u00B2)/(Sxx(n\u22122)). Using n instead of n\u22122 inflates it; Sxy\u00B2/Sxx is the explained-variation slip."
+}, function () {
+  var cases = [
+    { n: 5, Sxx: 10, Syy: 40, Sxy: 19.9 },
+    { n: 6, Sxx: 12, Syy: 60, Sxy: 26.4 },
+    { n: 8, Sxx: 20, Syy: 90, Sxy: 42.0 },
+    { n: 7, Sxx: 15, Syy: 55, Sxy: 28.2 },
+    { n: 5, Sxx: 8, Syy: 34, Sxy: 16.2 }
+  ];
+  var c = cases[ri(0, cases.length - 1)];
+  var mse = (c.Sxx * c.Syy - c.Sxy * c.Sxy) / (c.Sxx * (c.n - 2));
+  var tN = (c.Sxx * c.Syy - c.Sxy * c.Sxy) / (c.Sxx * c.n);
+  var tExpl = c.Sxy * c.Sxy / c.Sxx;
+  var tRoot = Math.sqrt(mse);
+  var question = "A regression with n = " + c.n + " has Sxx = " + c.Sxx + ", Syy = " + c.Syy + " and Sxy = " + c.Sxy + ". What is the standard error of estimate squared, \\(S_e^2\\) (the MSE)?";
+  var solution = "Refer to Standard Error of Estimate in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "The handbook gives \\(S_e^2 = \\dfrac{S_{xx}S_{yy} - S_{xy}^2}{S_{xx}(n-2)}\\):\n\n" +
+    "$$S_e^2 = \\frac{" + c.Sxx + "(" + c.Syy + ") - (" + c.Sxy + ")^2}{" + c.Sxx + "(" + c.n + "-2)} = " + fmt(Math.round(mse * 1000) / 1000) + "$$";
+  return {
+    variantKey: "n" + c.n + "_Sxx" + c.Sxx + "_Syy" + c.Syy + "_Sxy" + pdot(c.Sxy),
+    question: question,
+    options: [
+      { label: (Math.round(mse * 1000) / 1000).toFixed(3), num: Math.round(mse * 1000) / 1000, correct: true },
+      { label: (Math.round(tRoot * 1000) / 1000).toFixed(3), num: Math.round(tRoot * 1000) / 1000, correct: false },
+      { label: (Math.round(tExpl * 100) / 100).toFixed(3), num: Math.round(tExpl * 100) / 100, correct: false },
+      { label: (Math.round(tN * 1000) / 1000).toFixed(3), num: Math.round(tN * 1000) / 1000, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
+// ---------------------------------------------------------------- stats-068
+// Regression residual e = y - yhat.
+PART.push(buildGenerator({ baseId: "stats-068", subtopic: "Regression residual", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "e = y \u2212 \u0177. The fitted value itself and the flipped sign are the decoys."
+}, function () {
+  var a = pick([1.0, 1.5, 2.0]), b = pick([1.5, 2.0, 2.5]), x = pick([2, 3, 4]), e = pick([0.5, 1.0, -0.5, -1.0]);
+  var yhat = r2s(a + b * x), y = r2s(yhat + e);
+  var question = "A fitted line is \u0177 = " + f2(a) + " + " + f2(b) + "x. At x = " + x + " the observed value is y = " + f2(y) + ". What is the residual e?";
+  var solution = "Refer to Residual in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\n" +
+    "The handbook gives \\(e_i = y_i - \\hat y_i\\). Here \\(\\hat y = " + f2(a) + " + " + f2(b) + "(" + x + ") = " + f2(yhat) + "\\), so \\(e = " + f2(y) + " - " + f2(yhat) + " = " + sgn(e) + "\\).";
+  return {
+    variantKey: "a" + pdot(a) + "_b" + pdot(b) + "_x" + x + "_e" + pdot(e),
+    question: question,
+    options: [
+      { label: sgn(e), num: e, correct: true },
+      { label: f2(yhat), num: yhat, correct: false },
+      { label: f2(y), num: y, correct: false },
+      { label: sgn(-e), num: -e, correct: false }
+    ],
+    solution: solution
+  };
+}));
+
   window.STATS_GENERATORS = PART;
 })();

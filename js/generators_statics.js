@@ -877,10 +877,11 @@ reg(buildGenerator({
     t2 = r1(Math.abs(rx * Fx) + Math.abs(ry * Fy) + Math.abs(rz * Fz)); // trap: summed |ri*Fi|
     var MxW = ry * Fz + rz * Fy, MyW = rz * Fx + rx * Fz, MzW = rx * Fy + ry * Fx;
     t3 = r1(Math.sqrt(MxW * MxW + MyW * MyW + MzW * MzW)); // trap: added instead of subtracting in each component
-  } while (Mmag <= 50 || new Set([Mmag, t1, t2, t3]).size !== 4);
+  } while (Mmag <= 50 || new Set([Mmag, t1, t2, t3]).size !== 4 ||
+    Math.abs(t1 - Mmag) < 0.02 * Mmag || Math.abs(t2 - Mmag) < 0.02 * Mmag || Math.abs(t3 - Mmag) < 0.02 * Mmag);
   var rVec = vec3(rx, ry, rz, "r", "\\ \\text{m}");
   var FVec = vec3(Fx, Fy, Fz, "F", "\\ \\text{N}");
-  var question = "A position vector \\(\\mathbf{r} = " + rVec + "\\) locates the point of application of a force \\(\\mathbf{F} = " + FVec + "\\) relative to point O. What is the magnitude of the moment of the force about O?";
+  var question = "A position vector \\(\\mathbf{r} = " + rVec + "\\) locates the point of application of a force \\(\\mathbf{F} = " + FVec + "\\) relative to point O. What is the magnitude of the moment of the force about O, to the nearest 0.1 N-m?";
   var solution = "Refer to the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must solve for \\(|\\mathbf{M}_O|\\). The moment about O is the cross product:\n\n" +
     "$$\\mathbf{M}_O = \\mathbf{r} \\times \\mathbf{F}$$\n\n" +
@@ -1435,22 +1436,22 @@ reg(buildGenerator({
     tSum = r2(b * h * (dx + dy));    // trap: added the offsets instead of multiplying
     tPlus = r2(b * h * h * h / 12 + b * b * b * h / 12); // trap: Ix_c + Iy_c
   } while (new Set([Ixy, tHalf, tSum, tPlus]).size !== 4);
-  var question = "A rectangle " + b + " m wide (x-direction) by " + h +
-    " m tall (y-direction) has its centroid at (" + fmt(dx) + " m, " + fmt(dy) +
-    " m) relative to the origin O. What is the product of inertia I_xy of the rectangle about the x- and y-axes through O?";
+  var question = "A rectangle " + b + " in. wide (x-direction) by " + h +
+    " in. tall (y-direction) has its centroid at (" + fmt(dx) + " in., " + fmt(dy) +
+    " in.) relative to the origin O. What is the product of inertia I_xy of the rectangle about the x- and y-axes through O?";
   var solution = "Refer to the Product of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must solve for \\(I_{xy}\\). The parallel-axis relation for the product of inertia is:\n\n" +
     "$$I_{xy} = I_{x_c y_c} + A\\,d_x d_y$$\n\n" +
     "For a rectangle with sides parallel to the axes, \\(I_{x_c y_c} = 0\\):\n\n" +
-    "$$(I_{xy}) = (" + b + ")(" + h + ")(" + fmt(dx) + ")(" + fmt(dy) + ") = " + fmt(Ixy) + "\\ \\text{m}^4$$";
+    "$$(I_{xy}) = (" + b + ")(" + h + ")(" + fmt(dx) + ")(" + fmt(dy) + ") = " + fmt(Ixy) + "\\ \\text{in}^4$$";
   return {
     variantKey: "Ixy-b" + b + "-h" + h + "-dx" + pdot(dx) + "-dy" + pdot(dy),
     question: question,
     options: [
-      { label: fmt(Ixy) + " m⁴", num: Ixy, correct: true },
-      { label: fmt(tHalf) + " m⁴", num: tHalf, correct: false },
-      { label: fmt(tSum) + " m⁴", num: tSum, correct: false },
-      { label: fmt(tPlus) + " m⁴", num: tPlus, correct: false }
+      { label: fmt(Ixy) + " in⁴", num: Ixy, correct: true },
+      { label: fmt(tHalf) + " in⁴", num: tHalf, correct: false },
+      { label: fmt(tSum) + " in⁴", num: tSum, correct: false },
+      { label: fmt(tPlus) + " in⁴", num: tPlus, correct: false }
     ],
     solution: solution
   };
@@ -1847,6 +1848,610 @@ reg(buildGenerator({
     ],
     solution: solution
   };
+}));
+
+
+/* ============ 2026-10 expansion entries (statics-038..059) ============
+ * Citations reuse each bank question's reviewed line verbatim.
+ * Conceptual skips: 044 (triangle centroid coordinate fact), 051 (slip/no-slip
+ * judgment), 057 (couple definition), 060-064 (zero-force/rules/conceptual).
+ */
+
+/* ---- Parameterized bank-diagram retrofits: same composition as the bank's
+ * diagrams/<id>.svg, with labels AND geometry rebuilt from rolled values. ---- */
+
+// statics-039: right triangle, legs scale with b and h (bank: 240px base, 120px height at b=6, h=12)
+function dStat039(b, h) {
+  var k = Math.min(240 / b, 118 / h);
+  var bx = 120 + b * k, ty = 170 - h * k;
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="225" viewBox="0 0 480 225" role="img" aria-label="Right triangle with base b equal to ' + b + ' inches along the x axis and height h equal to ' + h + ' inches">';
+  s += '<rect width="480" height="225" fill="#ffffff"/>';
+  s += '<polygon points="120,170 ' + bx.toFixed(1) + ',170 120,' + ty.toFixed(1) + '" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="95" y1="170" x2="' + (bx + 40).toFixed(1) + '" y2="170" stroke="#c0392b" stroke-width="2" stroke-dasharray="5 3"/>';
+  s += '<text x="' + (bx + 45).toFixed(1) + '" y="175" font-family="Helvetica,Arial,sans-serif" font-size="15" fill="#1a1a1a">x</text>';
+  s += '<line x1="120" y1="200" x2="' + bx.toFixed(1) + '" y2="200" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="' + ((120 + bx) / 2).toFixed(1) + '" y="220" font-family="Helvetica,Arial,sans-serif" font-size="15" text-anchor="middle" fill="#1a1a1a">b = ' + b + ' in.</text>';
+  s += '<line x1="95" y1="' + ty.toFixed(1) + '" x2="95" y2="170" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="87" y="' + ((ty + 170) / 2).toFixed(1) + '" font-family="Helvetica,Arial,sans-serif" font-size="15" text-anchor="end" fill="#1a1a1a">h = ' + h + ' in.</text>';
+  s += '<text x="250" y="150" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a">base axis (x)</text>';
+  return svgURL(s + '</svg>');
+}
+
+// statics-040: rectangle with centroidal axis and parallel axis d away (bank: 70x140px at 6x12 in, axes 100/217 at d=10)
+function dStat040(b, h, d) {
+  var kw = 11.67, kh = 11.67;
+  var w = b * kw, hp = h * kh, x0 = 205 - w / 2, y0 = 20;
+  var cy = y0 + hp / 2, py = Math.min(cy + 11.7 * d, 226);
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="245" viewBox="0 0 480 245" role="img" aria-label="Rectangle ' + b + ' inches wide and ' + h + ' inches tall with its horizontal centroidal axis and a parallel axis ' + d + ' inches away">';
+  s += '<rect width="480" height="245" fill="#ffffff"/>';
+  s += '<rect x="' + x0.toFixed(1) + '" y="' + y0 + '" width="' + w.toFixed(1) + '" height="' + hp.toFixed(1) + '" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="' + (x0 - 60).toFixed(1) + '" y1="' + cy.toFixed(1) + '" x2="' + (x0 + w + 60).toFixed(1) + '" y2="' + cy.toFixed(1) + '" stroke="#c0392b" stroke-width="2" stroke-dasharray="5 3"/>';
+  s += '<text x="' + (x0 + w + 66).toFixed(1) + '" y="' + (cy + 5).toFixed(1) + '" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#c0392b">centroidal axis</text>';
+  s += '<line x1="' + (x0 - 60).toFixed(1) + '" y1="' + py.toFixed(1) + '" x2="' + (x0 + w + 60).toFixed(1) + '" y2="' + py.toFixed(1) + '" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="5 3"/>';
+  s += '<text x="' + (x0 + w + 66).toFixed(1) + '" y="' + (py + 5).toFixed(1) + '" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#1a1a1a">parallel axis</text>';
+  s += '<line x1="' + (x0 - 40).toFixed(1) + '" y1="' + cy.toFixed(1) + '" x2="' + (x0 - 40).toFixed(1) + '" y2="' + py.toFixed(1) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<text x="' + (x0 - 46).toFixed(1) + '" y="' + ((cy + py) / 2).toFixed(1) + '" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="end" fill="#1a1a1a">' + d + ' in.</text>';
+  s += '<text x="205" y="' + (y0 - 6) + '" font-family="Helvetica,Arial,sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">' + b + ' in.</text>';
+  s += '<text x="' + (x0 + w + 14).toFixed(1) + '" y="' + cy.toFixed(1) + '" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">' + h + ' in.</text>';
+  return svgURL(s + '</svg>');
+}
+
+// statics-045: post with wrapped rope (bank schematic; wrap/force in labels)
+function dStat045(turns, mu, F2) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="215" viewBox="0 0 480 215" role="img" aria-label="Rope wrapped around a fixed post for ' + turns + ' turns (drawn schematically) with a holding force of ' + F2 + ' pounds on one end and an unknown force on the other">';
+  s += '<rect width="480" height="215" fill="#ffffff"/>';
+  s += '<circle cx="240" cy="110" r="38" fill="#d9d9d9" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<path d="M 220 74 A 38 38 0 1 1 202 128" fill="none" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<line x1="220" y1="72" x2="60" y2="72" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<line x1="215" y1="148" x2="60" y2="148" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<line x1="115" y1="72" x2="70" y2="72" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<line x1="115" y1="148" x2="70" y2="148" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<text x="120" y="64" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">F\u2081 = ?</text>';
+  s += '<text x="120" y="166" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">F\u2082 = ' + F2 + ' lb</text>';
+  s += '<text x="300" y="105" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">wrap ' + turns + ' turns, \u03BC = ' + mu.toFixed(2) + '</text>';
+  s += '<text x="300" y="125" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#6b7280">post</text>';
+  return svgURL(s + '</svg>');
+}
+
+// statics-050: crate on a level floor (label carries rolled weight; mu in caption)
+function dStat050(W, mu) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="225" viewBox="0 0 480 225" role="img" aria-label="Crate weighing ' + W + ' pounds resting on a level floor with coefficient of static friction ' + mu.toFixed(2) + '">';
+  s += '<rect width="480" height="225" fill="#ffffff"/>';
+  s += '<rect x="170" y="90" width="110" height="60" fill="#c9d6e8" stroke="#1a1a1a" stroke-width="2"/>';
+  s += '<line x1="120" y1="150" x2="360" y2="150" stroke="#1a1a1a" stroke-width="3"/>';
+  for (var i = 0; i < 16; i++) s += '<line x1="' + (125 + i * 15) + '" y1="150" x2="' + (117 + i * 15) + '" y2="160" stroke="#8a8a8a" stroke-width="1"/>';
+  s += '<text x="225" y="124" font-family="Helvetica,Arial,sans-serif" font-size="15" text-anchor="middle" fill="#1a1a1a">' + W.toLocaleString("en-US") + ' lb</text>';
+  s += '<text x="240" y="185" font-family="Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle" fill="#6b7280">level surface, \u03BC_s = ' + mu.toFixed(2) + '</text>';
+  return svgURL(s + '</svg>');
+}
+
+// statics-059: drum with half-wrap rope (wrap angle/mu/slack force in labels)
+function dStat059(deg, mu, F2) {
+  var s = '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="230" viewBox="0 0 480 230" role="img" aria-label="Rope wrapped ' + deg + ' degrees around a fixed drum with a ' + F2 + ' pound holding force on the slack side and an unknown force on the tight side">';
+  s += '<rect width="480" height="230" fill="#ffffff"/>';
+  s += '<circle cx="240" cy="110" r="42" fill="#d9d9d9" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<line x1="240" y1="68" x2="70" y2="68" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<line x1="240" y1="152" x2="70" y2="152" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<path d="M 240 68 A 42 42 0 0 1 240 152" fill="none" stroke="#8a5a2b" stroke-width="3"/>';
+  s += '<line x1="130" y1="68" x2="80" y2="68" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<line x1="130" y1="152" x2="80" y2="152" stroke="#1a1a1a" stroke-width="3"/>';
+  s += '<text x="136" y="60" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">tight side (to find)</text>';
+  s += '<text x="136" y="170" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">slack side ' + F2 + ' lb</text>';
+  s += '<text x="300" y="105" font-family="Helvetica,Arial,sans-serif" font-size="14" fill="#1a1a1a">' + deg + '\u00B0 wrap, \u03BC = ' + mu.toFixed(1) + '</text>';
+  s += '<text x="300" y="125" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#6b7280">drum</text>';
+  return svgURL(s + '</svg>');
+}
+
+function statFrameSVG(W, L) {
+  var ox = 96, by = 60, bw = 380, wallX = ox - 30;
+  var s = SVG_HDR + AH;
+  s += '<line x1="' + wallX + '" y1="30" x2="' + wallX + '" y2="270" stroke="#1a1a1a" stroke-width="4"/>';
+  for (var i = 0; i < 8; i++) s += '<line x1="' + wallX + '" y1="' + (34 + i * 30) + '" x2="' + (wallX - 12) + '" y2="' + (46 + i * 30) + '" stroke="#1a1a1a" stroke-width="1.5"/>';
+  s += '<rect x="' + wallX + '" y="' + (by - 6) + '" width="' + bw + '" height="12" fill="#eef2ff" stroke="#1a1a1a" stroke-width="2"/>';
+  var midX = wallX + bw / 2, dY = by + 120;
+  s += '<line x1="' + midX + '" y1="' + (by + 6) + '" x2="' + wallX + '" y2="' + dY + '" stroke="#b45309" stroke-width="4"/>';
+  s += '<text x="' + (wallX + 40) + '" y="' + (dY + 4) + '" font-family="Georgia,serif" font-size="15" fill="#b45309">strut BD (45\u00B0)</text>';
+  var endX = wallX + bw;
+  s += '<line x1="' + endX + '" y1="' + (by - 56) + '" x2="' + endX + '" y2="' + (by - 10) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
+  s += '<text x="' + (endX - 52) + '" y="' + (by - 64) + '" font-family="Georgia,serif" font-size="16" fill="#1d4ed8">P = ' + W + ' kN</text>';
+  s += '<text x="' + (wallX - 14) + '" y="' + (by - 14) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">A</text>';
+  s += '<text x="' + (midX - 4) + '" y="' + (by - 14) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">B</text>';
+  s += '<text x="' + (endX + 6) + '" y="' + (by + 4) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">C</text>';
+  s += '<text x="' + (wallX - 14) + '" y="' + (dY + 4) + '" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">D</text>';
+  s += '<text x="' + (wallX + bw / 2 - 70) + '" y="290" font-family="Georgia,serif" font-size="14" fill="#6b7280">beam AC = ' + L + ' m, D is ' + (L / 2) + ' m below A</text>';
+  return svgURL(s + SVG_FTR);
+}
+
+// ---------------------------------------------------------------- statics-038
+// Two-force-member strut: moments about pin A.
+reg(buildGenerator({ baseId: "statics-038", subtopic: "Frame with a two-force member", difficulty: "hard",
+  estimatedTimeSeconds: 150,
+  explanation: "Moments about A: T sin45 x (L/2) = W x L. Traps drop the sin45, drop the lever ratio, or halve the result."
+}, function () {
+  var W = pick([12, 10, 15, 20]);
+  var L = 4;
+  var T = W * L / (L / 2 * Math.SQRT1_2);
+  var ans = T.toFixed(1);
+  var tNoSin = (W * 2).toFixed(1);
+  var tWSin = (W * Math.SQRT2).toFixed(1);
+  var tLoad = W.toFixed(1);
+  var question = "A horizontal beam AC is " + L + " m long. It is pinned to a vertical wall at A and pinned at its midpoint B to a strut BD. The other end D of the strut is pinned to the same wall " + (L / 2) + " m directly below A, so the strut makes a 45\u00B0 angle with the beam. A " + W + " kN downward load acts at end C. What is the force in strut BD?";
+  var solution = "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
+    "BD is a two-force member, so its force T acts along the strut at 45\u00B0. Moments about pin A:\n\n" +
+    "$$\\sum M_A = 0:\\quad T\\sin 45^\\circ \\cdot \\frac{L}{2} = W L \\quad\\Rightarrow\\quad T = \\frac{" + W + " \\times " + L + "}{" + (L / 2) + " \\times 0.7071} = " + ans + "\\ \\text{kN}$$";
+  return { variantKey: "W" + W,
+    question: question, diagram: statFrameSVG(W, L), options: [
+      { label: ans + " kN", num: T, correct: true },
+      { label: tNoSin + " kN", num: W * 2, correct: false },
+      { label: tWSin + " kN", num: W * Math.SQRT2, correct: false },
+      { label: tLoad + " kN", num: W, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-039
+// Triangle area moment of inertia about its base: I = b h^3 / 12.
+reg(buildGenerator({ baseId: "statics-039", subtopic: "Triangle moment of inertia about base", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "About the BASE the triangle's I = b h^3/12. bh^3/36 is about the centroidal axis - the classic swap."
+}, function () {
+  var b = pick([6, 8, 9]);
+  var h = pick([12, 9, 15]);
+  var I = b * Math.pow(h, 3) / 12;
+  var tCent = b * Math.pow(h, 3) / 36;
+  var t6 = b * Math.pow(h, 3) / 6;
+  var t3 = b * Math.pow(h, 3) / 3;
+  var question = "A right triangle has base b = " + b + " in. and height h = " + h + " in. What is its area moment of inertia about the base axis (x axis along the base)?";
+  var solution = "Refer to the table of area properties (triangle) in the Statics section of the FE Reference Handbook (v10.6), printed page 99 (PDF page 105).\n\n" +
+    "$$I_x = \\frac{bh^3}{12} = \\frac{" + b + "(" + h + ")^3}{12} = " + I.toLocaleString("en-US") + "\\ \\text{in}^4$$";
+  return { variantKey: "b" + b + "_h" + h,
+    question: question, diagram: dStat039(b, h), options: [
+      { label: I.toLocaleString("en-US") + " in\u2074", num: I, correct: true },
+      { label: tCent.toLocaleString("en-US") + " in\u2074", num: tCent, correct: false },
+      { label: t6.toLocaleString("en-US") + " in\u2074", num: t6, correct: false },
+      { label: t3.toLocaleString("en-US") + " in\u2074", num: t3, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-040
+// Parallel axis theorem for a rectangle.
+reg(buildGenerator({ baseId: "statics-040", subtopic: "Parallel axis theorem", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "I = Ic + Ad^2. The traps forget to square d, drop one of the two terms, or report Ic alone."
+}, function () {
+  var b = pick([6, 4, 8]);
+  var h = pick([12, 10, 14]);
+  var d = pick([10, 8, 12]);
+  var Ic = b * Math.pow(h, 3) / 12, A = b * h;
+  var I = Math.round(Ic + A * d * d);
+  var tNoSq = Math.round(Ic + A * d);
+  var tIc = Math.round(Ic);
+  var tAd2 = Math.round(A * d * d);
+  var question = "A rectangle " + b + " in. wide and " + h + " in. tall has a centroidal moment of inertia about its horizontal centroidal axis. What is its moment of inertia about an axis parallel to it and " + d + " in. away?";
+  var solution = "Refer to the parallel axis theorem in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
+    "$$\\begin{aligned}I_c &= \\frac{bh^3}{12} = " + Math.round(Ic).toLocaleString("en-US") + "\\ \\text{in}^4, \\quad A = " + A + "\\ \\text{in}^2 \\\\ I &= I_c + Ad^2 = " + Math.round(Ic).toLocaleString("en-US") + " + " + A + "(" + d + ")^2 = " + I.toLocaleString("en-US") + "\\ \\text{in}^4\\end{aligned}$$";
+  return { variantKey: "b" + b + "_h" + h + "_d" + d,
+    question: question, diagram: dStat040(b, h, d), options: [
+      { label: I.toLocaleString("en-US") + " in\u2074", num: I, correct: true },
+      { label: tNoSq.toLocaleString("en-US") + " in\u2074", num: tNoSq, correct: false },
+      { label: tIc.toLocaleString("en-US") + " in\u2074", num: tIc, correct: false },
+      { label: tAd2.toLocaleString("en-US") + " in\u2074", num: tAd2, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-041
+// Circle centroidal I = pi a^4 / 4.
+reg(buildGenerator({ baseId: "statics-041", subtopic: "Circle moment of inertia", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "I = pi a^4/4. The polar J = pi a^4/2 is the swap trap; the diameter slip quarters a."
+}, function () {
+  var a = pick([5, 4, 6, 3]);
+  var I = Math.PI * Math.pow(a, 4) / 4;
+  var ans = Math.round(I).toLocaleString("en-US");
+  var tJ = Math.round(Math.PI * Math.pow(a, 4) / 2).toLocaleString("en-US");
+  var t4 = Math.round(Math.PI * Math.pow(a, 4)).toLocaleString("en-US");
+  var tD = Math.round(Math.PI * Math.pow(a / 2, 4) / 4 * 10) / 10;
+  var question = "A solid circular section has radius a = " + a + " in. What is its centroidal area moment of inertia?";
+  var solution = "Refer to the table of area properties (circle) in the Statics section of the FE Reference Handbook (v10.6), printed page 100 (PDF page 106).\n\n" +
+    "$$I = \\frac{\\pi a^4}{4} = \\frac{\\pi(" + a + ")^4}{4} = " + ans + "\\ \\text{in}^4$$";
+  return { variantKey: "a" + a,
+    question: question, options: [
+      { label: ans + " in\u2074", num: Math.round(I), correct: true },
+      { label: tJ + " in\u2074", num: Math.round(Math.PI * Math.pow(a, 4) / 2), correct: false },
+      { label: t4 + " in\u2074", num: Math.round(Math.PI * Math.pow(a, 4)), correct: false },
+      { label: tD + " in\u2074", num: tD, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-042
+// Polar moment J = pi a^4 / 2.
+reg(buildGenerator({ baseId: "statics-042", subtopic: "Circle polar moment J", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "J = pi a^4/2 = 2I. Traps: report I instead, pi a^4, or half of I."
+}, function () {
+  var a = pick([5, 4, 6, 3]);
+  var J = Math.PI * Math.pow(a, 4) / 2;
+  var ans = Math.round(J).toLocaleString("en-US");
+  var tI = Math.round(J / 2).toLocaleString("en-US");
+  var t4 = Math.round(Math.PI * Math.pow(a, 4)).toLocaleString("en-US");
+  var tHalf = Math.round(J / 4).toLocaleString("en-US");
+  var question = "For a solid circle of radius a = " + a + " in., what is the polar moment of inertia J?";
+  var solution = "Refer to the table of area properties (circle) in the Statics section of the FE Reference Handbook (v10.6), printed page 100 (PDF page 106).\n\n" +
+    "$$J = \\frac{\\pi a^4}{2} = \\frac{\\pi(" + a + ")^4}{2} = " + ans + "\\ \\text{in}^4$$";
+  return { variantKey: "a" + a,
+    question: question, options: [
+      { label: ans + " in\u2074", num: Math.round(J), correct: true },
+      { label: tI + " in\u2074", num: Math.round(J / 2), correct: false },
+      { label: t4 + " in\u2074", num: Math.round(Math.PI * Math.pow(a, 4)), correct: false },
+      { label: tHalf + " in\u2074", num: Math.round(J / 4), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-043
+// Composite area centroid (T-section as two rectangles).
+reg(buildGenerator({ baseId: "statics-043", subtopic: "Composite area centroid", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "ybar = sum(Ay)/sum(A). Traps: the numerator alone, the plain average of the two heights, and swapping the areas."
+}, function () {
+  var A1 = pick([48, 40, 60]);
+  var A2 = pick([36, 24, 48]);
+  var y1 = pick([3, 4, 2]);
+  var y2 = pick([12, 10, 14]);
+  var ybar = (A1 * y1 + A2 * y2) / (A1 + A2);
+  var ans = ybar.toFixed(2);
+  var tNum = (A1 * y1 + A2 * y2).toLocaleString("en-US");
+  var tAvg = ((y1 + y2) / 2).toFixed(2);
+  var tSwap = ((A2 * y1 + A1 * y2) / (A1 + A2)).toFixed(2);
+  var question = "A T-shaped area is split into two rectangles: area " + A1 + " in\u00B2 with centroid " + y1 + " in. above the base, and area " + A2 + " in\u00B2 with centroid " + y2 + " in. above the base. How far above the base is the centroid of the whole area?";
+  var solution = "Refer to the centroid of area definitions (discrete sum) in the Statics section of the FE Reference Handbook (v10.6), printed page 96 (PDF page 102).\n\n" +
+    "$$\\bar{y} = \\frac{A_1 y_1 + A_2 y_2}{A_1 + A_2} = \\frac{" + A1 + "(" + y1 + ") + " + A2 + "(" + y2 + ")}{" + A1 + " + " + A2 + "} = \\frac{" + (A1 * y1 + A2 * y2) + "}{" + (A1 + A2) + "} = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "A" + A1 + "_" + A2 + "_y" + y1 + "_" + y2,
+    question: question, options: [
+      { label: ans + " in.", num: ybar, correct: true },
+      { label: tNum + " in.", num: A1 * y1 + A2 * y2, correct: false },
+      { label: tAvg + " in.", num: (y1 + y2) / 2, correct: false },
+      { label: tSwap + " in.", num: (A2 * y1 + A1 * y2) / (A1 + A2), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-045
+// Belt friction with turns: F1 = F2 e^(mu*beta), beta in radians.
+reg(buildGenerator({ baseId: "statics-045", subtopic: "Belt friction", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Capstan: F1 = F2 e^(mu*beta) with beta in RADIANS. Traps: invert it, linearize it, or feed turns instead of radians."
+}, function () {
+  var F2 = pick([80, 100, 60]);
+  var mu = pick([0.25, 0.3, 0.2]);
+  var turns = pick([1.5, 1, 2]);
+  var beta = turns * 2 * Math.PI;
+  var F1 = F2 * Math.exp(mu * beta);
+  var ans = Math.round(F1).toLocaleString("en-US");
+  var tInv = (F2 / Math.exp(mu * beta)).toFixed(1);
+  var tLin = Math.round(F2 * (1 + mu * beta)).toLocaleString("en-US");
+  var tTurns = Math.round(F2 * Math.exp(mu * turns)).toLocaleString("en-US");
+  var betaTxt = turns === 1 ? "2\u03C0" : (turns * 2) + "\u03C0";
+  var question = "A rope wraps " + turns + " turns (" + betaTxt + " rad) around a fixed post. The coefficient of static friction is " + mu.toFixed(2) + " and the holding force is " + F2 + " lb. What is the largest force F1 that can be resisted using the handbook belt friction equation?";
+  var solution = "Refer to Belt Friction in the Statics section of the FE Reference Handbook (v10.6), printed page 98 (PDF page 104).\n\n" +
+    "$$F_1 = F_2 e^{\\mu\\beta} = " + F2 + "\\, e^{(" + mu.toFixed(2) + ")(" + beta.toFixed(3) + ")} = " + F2 + "\\, e^{" + (mu * beta).toFixed(3) + "} = " + ans + "\\ \\text{lb}$$";
+  return { variantKey: "F" + F2 + "_m" + mu + "_t" + turns,
+    question: question, diagram: dStat045(turns, mu, F2), options: [
+      { label: ans + " lb", num: Math.round(F1), correct: true },
+      { label: tInv + " lb", num: parseFloat(tInv), correct: false },
+      { label: tLin + " lb", num: Math.round(F2 * (1 + mu * beta)), correct: false },
+      { label: tTurns + " lb", num: Math.round(F2 * Math.exp(mu * turns)), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-046
+// Composite centroid, same drill as 043 (bank carries both wordings).
+reg(buildGenerator({ baseId: "statics-046", subtopic: "Centroid of a composite area", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "ybar = sum(Ay)/sum(A). Traps: the numerator alone, the plain average, and the swapped-area weighting."
+}, function () {
+  var A1 = pick([48, 40, 60]);
+  var A2 = pick([36, 24, 48]);
+  var y1 = pick([3, 4, 2]);
+  var y2 = pick([12, 10, 14]);
+  var ybar = (A1 * y1 + A2 * y2) / (A1 + A2);
+  var ans = ybar.toFixed(2);
+  var tNum = (A1 * y1 + A2 * y2).toLocaleString("en-US");
+  var tAvg = ((y1 + y2) / 2).toFixed(2);
+  var tSwap = ((A2 * y1 + A1 * y2) / (A1 + A2)).toFixed(2);
+  var question = "A composite section is made of a " + A1 + " in.\u00B2 flange whose centroid is " + y1 + " in. above the base and a " + A2 + " in.\u00B2 web whose centroid is " + y2 + " in. above the base. How far above the base is the centroid of the whole section?";
+  var solution = "Refer to Centroid of Area in the Statics section of the FE Reference Handbook (v10.6), printed page 96 (PDF page 102).\n\n" +
+    "$$\\bar{y} = \\frac{" + A1 + "(" + y1 + ") + " + A2 + "(" + y2 + ")}{" + A1 + " + " + A2 + "} = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "A" + A1 + "_" + A2 + "_y" + y1 + "_" + y2,
+    question: question, options: [
+      { label: ans + " in.", num: ybar, correct: true },
+      { label: tNum + " in.", num: A1 * y1 + A2 * y2, correct: false },
+      { label: tAvg + " in.", num: (y1 + y2) / 2, correct: false },
+      { label: tSwap + " in.", num: (A2 * y1 + A1 * y2) / (A1 + A2), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-047
+// Parallel axis theorem (second wording).
+reg(buildGenerator({ baseId: "statics-047", subtopic: "Parallel axis theorem", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "I = Ic + Ad^2. Traps: Ad^2 alone, Ic + Ad (no square), Ic alone."
+}, function () {
+  var b = pick([4, 6, 8]);
+  var h = pick([10, 12, 14]);
+  var d = pick([8, 10, 12]);
+  var Ic = b * Math.pow(h, 3) / 12, A = b * h;
+  var I = Math.round(Ic + A * d * d);
+  var tAd2 = Math.round(A * d * d);
+  var tNoSq = Math.round(Ic + A * d);
+  var tIc = Math.round(Ic);
+  var question = "A rectangle " + b + " in. wide and " + h + " in. deep has its centroidal moment of inertia about the horizontal axis. What is its moment of inertia about a parallel axis " + d + " in. from the centroid?";
+  var solution = "Refer to Moment of Inertia Parallel Axis Theorem in the Statics section of the FE Reference Handbook (v10.6), printed page 96 (PDF page 102).\n\n" +
+    "$$I = I_c + Ad^2 = \\frac{" + b + "(" + h + ")^3}{12} + (" + b + " \\times " + h + ")(" + d + ")^2 = " + I.toLocaleString("en-US") + "\\ \\text{in.}^4$$";
+  return { variantKey: "b" + b + "_h" + h + "_d" + d,
+    question: question, options: [
+      { label: I.toLocaleString("en-US") + " in.\u2074", num: I, correct: true },
+      { label: tAd2.toLocaleString("en-US") + " in.\u2074", num: tAd2, correct: false },
+      { label: tNoSq.toLocaleString("en-US") + " in.\u2074", num: tNoSq, correct: false },
+      { label: tIc.toLocaleString("en-US") + " in.\u2074", num: tIc, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-048
+// Radius of gyration r = sqrt(I/A).
+reg(buildGenerator({ baseId: "statics-048", subtopic: "Radius of gyration", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "r = sqrt(I/A). Traps: I/A (no root), I/r, and r^4."
+}, function () {
+  var A = pick([30, 20, 50]);
+  var r2 = pick([80, 60, 40]);            // target I/A so roots stay clean-ish
+  var I = A * r2;
+  var r = Math.sqrt(r2);
+  var ans = r.toFixed(2);
+  var tIA = (I / A).toFixed(2);
+  var tIr = (I / r).toFixed(1);
+  var t4 = Math.round(r2 * r2).toLocaleString("en-US");
+  var question = "A section has I_x = " + I.toLocaleString("en-US") + " in.\u2074 and an area of " + A + " in.\u00B2. What is the radius of gyration r_x?";
+  var solution = "Refer to Radius of Gyration in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
+    "$$r_x = \\sqrt{\\frac{I_x}{A}} = \\sqrt{\\frac{" + I.toLocaleString("en-US") + "}{" + A + "}} = \\sqrt{" + r2 + "} = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "A" + A + "_r" + r2,
+    question: question, options: [
+      { label: ans + " in.", num: r, correct: true },
+      { label: tIA + " in.", num: I / A, correct: false },
+      { label: tIr + " in.", num: I / r, correct: false },
+      { label: t4 + " in.", num: r2 * r2, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-049
+// Polar radius of gyration rp = sqrt((Ix + Iy)/A).
+reg(buildGenerator({ baseId: "statics-049", subtopic: "Polar moment of inertia of an area", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "rp = sqrt(J/A) with J = Ix + Iy. Traps: use Ix alone, subtract the I's, or skip the root."
+}, function () {
+  var A = pick([20, 25, 40]);
+  var Ix = pick([500, 800, 400]);
+  var Iy = pick([300, 200, 600]);
+  var rp = Math.sqrt((Ix + Iy) / A);
+  var ans = rp.toFixed(2);
+  var tX = Math.sqrt(Ix / A).toFixed(2);
+  var tDiff = Math.sqrt(Math.abs(Ix - Iy) / A).toFixed(2);
+  var tNoRoot = ((Ix + Iy) / A).toFixed(2);
+  var question = "An area of " + A + " in.\u00B2 has I_x = " + Ix + " in.\u2074 and I_y = " + Iy + " in.\u2074. What is its polar radius of gyration r_p?";
+  var solution = "Refer to Polar moment of inertia and Radius of Gyration in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
+    "$$r_p = \\sqrt{\\frac{J}{A}} = \\sqrt{\\frac{I_x + I_y}{A}} = \\sqrt{\\frac{" + Ix + " + " + Iy + "}{" + A + "}} = " + ans + "\\ \\text{in.}$$";
+  return { variantKey: "A" + A + "_" + Ix + "_" + Iy,
+    question: question, options: [
+      { label: ans + " in.", num: rp, correct: true },
+      { label: tX + " in.", num: Math.sqrt(Ix / A), correct: false },
+      { label: tDiff + " in.", num: Math.sqrt(Math.abs(Ix - Iy) / A), correct: false },
+      { label: tNoRoot + " in.", num: (Ix + Iy) / A, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-050
+// Limiting friction F = mu N.
+reg(buildGenerator({ baseId: "statics-050", subtopic: "Limiting friction force", difficulty: "easy",
+  estimatedTimeSeconds: 60,
+  explanation: "F_max = mu_s N. Traps: half it, report N, or divide by mu."
+}, function () {
+  var W = pick([400, 500, 250]);
+  var mu = pick([0.35, 0.3, 0.4]);
+  var F = Math.round(W * mu);
+  var tHalf = Math.round(W * mu / 2);
+  var tN = W;
+  var tDiv = Math.round(W / mu);
+  var question = "A " + W + " lb crate rests on a level floor with a coefficient of static friction of " + mu.toFixed(2) + ". What is the largest friction force the floor can supply before the crate slips?";
+  var solution = "Refer to Friction in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
+    "$$F_{\\max} = \\mu_s N = " + mu.toFixed(2) + " \\times " + W + " = " + F + "\\ \\text{lb}$$";
+  return { variantKey: "W" + W + "_m" + mu,
+    question: question, diagram: dStat050(W, mu), options: [
+      { label: F.toLocaleString("en-US") + " lb", num: F, correct: true },
+      { label: tHalf.toLocaleString("en-US") + " lb", num: tHalf, correct: false },
+      { label: tN.toLocaleString("en-US") + " lb", num: tN, correct: false },
+      { label: tDiv.toLocaleString("en-US") + " lb", num: tDiv, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-052
+// Resultant of three forces from components.
+reg(buildGenerator({ baseId: "statics-052", subtopic: "Resultant magnitude", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Sum the components first, then R = sqrt(Fx^2 + Fy^2). Traps: halve it, add the sums arithmetically, or hypotenuse each force separately and add."
+}, function () {
+  var f1x = pick([30, 20, 50]), f1y = pick([20, 10, 40]);
+  var f2x = pick([40, 30, -20]), f2y = pick([-50, -30, -20]);
+  var f3x = pick([-10, -20, 10]), f3y = pick([60, 30, -40]);
+  var Fx = f1x + f2x + f3x, Fy = f1y + f2y + f3y;
+  var R = Math.sqrt(Fx * Fx + Fy * Fy);
+  var ans = R.toFixed(1);
+  var tHalf = (R / 2).toFixed(1);
+  var tSum = (Math.abs(Fx) + Math.abs(Fy)).toFixed(1);
+  var tSep = (Math.hypot(f1x, f1y) + Math.hypot(f2x, f2y) + Math.hypot(f3x, f3y)).toFixed(1);
+  var question = "Three forces act on a particle. Their x-components are " + f1x + ", " + f2x + " and " + f3x + " lb and their y-components are " + f1y + ", " + f2y + " and " + f3y + " lb. What is the magnitude of the resultant?";
+  var solution = "Refer to Resultant (Two Dimensions) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
+    "$$\\begin{aligned}\\sum F_x &= " + f1x + " + " + f2x + " + " + f3x + " = " + Fx + "\\ \\text{lb} \\\\ \\sum F_y &= " + f1y + " + " + f2y + " + " + f3y + " = " + Fy + "\\ \\text{lb} \\\\ R &= \\sqrt{" + Fx + "^2 + " + Fy + "^2} = " + ans + "\\ \\text{lb}\\end{aligned}$$";
+  return { variantKey: Fx + "_" + Fy,
+    question: question, options: [
+      { label: ans + " lb", num: R, correct: true },
+      { label: tHalf + " lb", num: R / 2, correct: false },
+      { label: tSum + " lb", num: Math.abs(Fx) + Math.abs(Fy), correct: false },
+      { label: tSep + " lb", num: parseFloat(tSep), correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-053
+// Resultant direction theta = atan(Fy/Fx).
+reg(buildGenerator({ baseId: "statics-053", subtopic: "Resultant direction", difficulty: "easy",
+  estimatedTimeSeconds: 75,
+  explanation: "theta = atan(|Fy|/|Fx|) in the first quadrant. The flip atan(Fx/Fy) is the classic swap; the negative and supplementary angles are the vector-direction traps."
+}, function () {
+  var Fx = pick([60, 40, 80]);
+  var Fy = pick([30, 20, 40]);
+  var th = Math.atan2(Fy, Fx) * 180 / Math.PI;
+  var ans = th.toFixed(1);
+  var tFlip = (90 - th).toFixed(1);
+  var tNeg = MINUS + th.toFixed(1);
+  var tSup = (180 - th).toFixed(1);
+  var question = "Forces on a particle sum to \\(\\sum F_x = " + Fx + "\\) lb and \\(\\sum F_y = " + Fy + "\\) lb. Using the handbook's arctan relation, what is the value of the resultant direction \\(\\theta\\) with respect to the x-axis?";
+  var solution = "Refer to Resultant (Two Dimensions) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
+    "$$\\theta = \\tan^{-1}\\frac{F_y}{F_x} = \\tan^{-1}\\frac{" + Fy + "}{" + Fx + "} = " + ans + "^\\circ$$";
+  return { variantKey: Fx + "_" + Fy,
+    question: question, options: [
+      { label: ans + "\u00B0", num: th, correct: true },
+      { label: tFlip + "\u00B0", num: 90 - th, correct: false },
+      { label: tNeg + "\u00B0", num: -th, correct: false },
+      { label: tSup + "\u00B0", num: 180 - th, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-054
+// Moment z-component Mz = x*Fy - y*Fx (case A).
+reg(buildGenerator({ baseId: "statics-054", subtopic: "Moment of a force about the origin", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Mz = x Fy - y Fx (the z-row of r x F). Traps: flip the sign, swap the products, or add them."
+}, function () {
+  var x = pick([2, 3, 1]), y = pick([3, 1, 4]);
+  var Fx = pick([4, -2, 3]), Fy = pick([-1, 5, 2]);
+  var Mz = x * Fy - y * Fx;
+  if (Mz === 0) { Fy = Fy + 2; Mz = x * Fy - y * Fx; }
+  var lbl = function (v) { return (v < 0 ? MINUS : "") + Math.abs(v) + " ft-lb"; };
+  var tFlip = -Mz;
+  var tSwap = x * Fx - y * Fy;
+  var tPlus = x * Fy + y * Fx;
+  var question = "A force F = (" + Fx + ", " + Fy + ", 2) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 1) ft. What is the z-component of the moment about the origin, M_z?";
+  var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
+    "The z-component of \\(\\mathbf{r} \\times \\mathbf{F}\\) is \\(xF_y - yF_x\\).\n\n" +
+    "$$M_z = (" + x + ")(" + Fy + ") - (" + y + ")(" + Fx + ") = " + Mz + "\\ \\text{ft-lb}$$";
+  return { variantKey: x + "_" + y + "_" + Fx + "_" + Fy,
+    question: question, options: [
+      { label: lbl(Mz), num: Mz, correct: true },
+      { label: lbl(tFlip), num: tFlip, correct: false },
+      { label: lbl(tSwap), num: tSwap, correct: false },
+      { label: lbl(tPlus), num: tPlus, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-055
+// Moment z-component (case B wording family, different roll anchors).
+reg(buildGenerator({ baseId: "statics-055", subtopic: "Moment of a force about the origin", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Mz = x Fy - y Fx. Watch the negative coordinate: subtracting a negative y product ADDS."
+}, function () {
+  var x = pick([1, 2, 4]), y = pick([-2, -1, -3]);
+  var Fx = pick([2, 3, -1]), Fy = pick([5, 4, 6]);
+  var Mz = x * Fy - y * Fx;
+  var lbl = function (v) { return (v < 0 ? MINUS : "") + Math.abs(v) + " ft-lb"; };
+  var tFlip = -Mz;
+  var tNoNeg = x * Fy + y * Fx;             // sign slip on the negative y
+  var tSwap = x * Fx - y * Fy;
+  var question = "A force F = (" + Fx + ", " + Fy + ", " + MINUS + "1) lb acts at the point (x, y, z) = (" + x + ", " + MINUS + Math.abs(y) + ", 3) ft. What is the z-component of the moment about the origin, M_z?";
+  var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
+    "$$M_z = xF_y - yF_x = (" + x + ")(" + Fy + ") - (" + y + ")(" + Fx + ") = " + Mz + "\\ \\text{ft-lb}$$";
+  return { variantKey: x + "_" + y + "_" + Fx + "_" + Fy,
+    question: question, options: [
+      { label: lbl(Mz), num: Mz, correct: true },
+      { label: lbl(tFlip), num: tFlip, correct: false },
+      { label: lbl(tNoNeg), num: tNoNeg, correct: false },
+      { label: lbl(tSwap), num: tSwap, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-056
+// Moment z-component (case C: negative Fx).
+reg(buildGenerator({ baseId: "statics-056", subtopic: "Moment of a force about the origin", difficulty: "medium",
+  estimatedTimeSeconds: 105,
+  explanation: "Mz = x Fy - y Fx. With Fx negative the second term adds - sign discipline is the drill."
+}, function () {
+  var x = pick([3, 2, 4]), y = pick([1, 2, 3]);
+  var Fx = pick([-2, -3, -4]), Fy = pick([4, 3, 5]);
+  var Mz = x * Fy - y * Fx;
+  var lbl = function (v) { return (v < 0 ? MINUS : "") + Math.abs(v) + " ft-lb"; };
+  var tFlip = -Mz;
+  var tNoNeg = x * Fy + y * Fx;
+  var tSwap = x * Fx + y * Fy;
+  var question = "A force F = (" + MINUS + Math.abs(Fx) + ", " + Fy + ", 1) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 2) ft. What is the z-component of the moment about the origin, M_z?";
+  var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
+    "$$M_z = xF_y - yF_x = (" + x + ")(" + Fy + ") - (" + y + ")(" + MINUS + Math.abs(Fx) + ") = " + Mz + "\\ \\text{ft-lb}$$";
+  return { variantKey: x + "_" + y + "_" + Fx + "_" + Fy,
+    question: question, options: [
+      { label: lbl(Mz), num: Mz, correct: true },
+      { label: lbl(tFlip), num: tFlip, correct: false },
+      { label: lbl(tNoNeg), num: tNoNeg, correct: false },
+      { label: lbl(tSwap), num: tSwap, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-058
+// Screw jack torque to raise the load: M = W r tan(phi + alpha), tan phi = mu.
+reg(buildGenerator({ baseId: "statics-058", subtopic: "Screw jack torque, tightening", difficulty: "hard",
+  estimatedTimeSeconds: 135,
+  explanation: "M = W r tan(phi + alpha) with phi = atan(mu). The loosening angle (phi - alpha), friction-only, and lead-angle-only terms are the traps."
+}, function () {
+  var W = pick([2000, 3000, 1500]);
+  var r = pick([0.5, 0.75]);
+  var alpha = pick([6, 8]);
+  var mu = pick([0.15, 0.12]);
+  var phi = Math.atan(mu) * 180 / Math.PI;
+  var M = W * r * Math.tan((phi + alpha) * Math.PI / 180);
+  var ans = Math.round(M).toLocaleString("en-US");
+  var tLoose = Math.round(W * r * Math.tan((phi - alpha) * Math.PI / 180));
+  var tFric = Math.round(W * r * mu);
+  var tLead = Math.round(W * r * Math.tan(alpha * Math.PI / 180));
+  var question = "A square-thread screw jack carries a load of " + W.toLocaleString("en-US") + " lb. The mean thread radius is " + r + " in, the pitch angle is " + alpha + "\u00B0 and the coefficient of friction is " + mu.toFixed(2) + ". What moment tightens the screw (raises the load)?";
+  var solution = "Refer to Screw Thread in the Statics section of the FE Reference Handbook (v10.6), printed page 98 (PDF page 104).\n\n" +
+    "$$\\begin{aligned}\\phi &= \\tan^{-1}(" + mu.toFixed(2) + ") = " + phi.toFixed(1) + "^\\circ \\\\ M &= Wr\\tan(\\phi + \\alpha) = (" + W.toLocaleString("en-US") + ")(" + r + ")\\tan(" + phi.toFixed(1) + "^\\circ + " + alpha + "^\\circ) = " + ans + "\\ \\text{in-lb}\\end{aligned}$$";
+  return { variantKey: "W" + W + "_r" + r + "_a" + alpha + "_m" + mu,
+    question: question, options: [
+      { label: ans + " in-lb", num: Math.round(M), correct: true },
+      { label: tLoose + " in-lb", num: tLoose, correct: false },
+      { label: tFric + " in-lb", num: tFric, correct: false },
+      { label: tLead + " in-lb", num: tLead, correct: false }
+    ], solution: solution };
+}));
+
+// ---------------------------------------------------------------- statics-059
+// Belt friction, wrap given in degrees: F1 = F2 e^(mu*beta).
+reg(buildGenerator({ baseId: "statics-059", subtopic: "Belt friction", difficulty: "medium",
+  estimatedTimeSeconds: 90,
+  explanation: "Convert the wrap to radians, then F1 = F2 e^(mu*beta). Traps: linearize, invert, or multiply F2 by mu*beta."
+}, function () {
+  var deg = pick([180, 90, 270]);
+  var mu = pick([0.3, 0.25, 0.4]);
+  var F2 = pick([100, 80, 150]);
+  var beta = deg * Math.PI / 180;
+  var F1 = F2 * Math.exp(mu * beta);
+  var ans = Math.round(F1).toLocaleString("en-US");
+  var tLin = Math.round(F2 * (1 + mu * beta)).toLocaleString("en-US");
+  var tInv = Math.round(F2 / Math.exp(mu * beta)).toLocaleString("en-US");
+  var tMuB = Math.round(F2 * mu * beta).toLocaleString("en-US");
+  var question = "A rope wraps " + deg + "\u00B0 around a fixed drum with a coefficient of static friction of " + mu.toFixed(1) + ". The holding force on the slack side is " + F2 + " lb. What is the largest force on the tight side at impending slip?";
+  var solution = "Refer to Belt Friction in the Statics section of the FE Reference Handbook (v10.6), printed page 98 (PDF page 104).\n\n" +
+    "$$F_1 = F_2 e^{\\mu\\beta} = " + F2 + "\\, e^{(" + mu.toFixed(1) + ")(" + beta.toFixed(3) + ")} = " + ans + "\\ \\text{lb}$$";
+  return { variantKey: "d" + deg + "_m" + mu + "_F" + F2,
+    question: question, diagram: dStat059(deg, mu, F2), options: [
+      { label: ans + " lb", num: Math.round(F1), correct: true },
+      { label: tLin + " lb", num: Math.round(F2 * (1 + mu * beta)), correct: false },
+      { label: tInv + " lb", num: Math.round(F2 / Math.exp(mu * beta)), correct: false },
+      { label: tMuB + " lb", num: Math.round(F2 * mu * beta), correct: false }
+    ], solution: solution };
 }));
 
 window.STATICS_GENERATORS = STAT_ENTRIES;
