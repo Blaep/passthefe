@@ -1829,7 +1829,7 @@ def({ baseId: "econ-047", subtopic: "Uniform-series equivalent of a gradient", d
 // Effective annual rate from nominal.
 def({ baseId: "econ-048", subtopic: "Effective annual interest rate", difficulty: "medium",
   estimatedTimeSeconds: 90,
-  explanation: "i_eff = (1 + r/m)^m - 1. The traps are the nominal rate itself, r/m, and the wrong compounding count."
+  explanation: "\\(i_{eff} = (1 + r/m)^m - 1\\). The traps are the nominal rate itself, r/m, and the wrong compounding count."
 }, function () {
   var case_ = pick([{ r: 8, m: 4 }, { r: 8, m: 12 }, { r: 10, m: 2 }, { r: 10, m: 4 }, { r: 12, m: 2 }, { r: 12, m: 12 }]);
   var r = case_.r, m = case_.m;
@@ -1847,7 +1847,7 @@ def({ baseId: "econ-048", subtopic: "Effective annual interest rate", difficulty
   var question = "A loan has a nominal annual interest rate of " + r + "% per year, compounded " + mName + ". What is the effective annual interest rate?";
   var solution = "Refer to Non-Annual Compounding in the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
     "There are m = " + m + " compounding periods per year.\n\n" +
-    "$$\\begin{aligned}i_{\\text{eff}} &= \\left(1 + \\frac{" + (r / 100).toFixed(2) + "}{" + m + "}\\right)^{" + m + "} - 1 \\\\ &= (" + (1 + r / 100 / m).toFixed(6) + ")^{" + m + "} - 1 = " + (ans / 100).toFixed(4) + " = " + labels.correct + "\\end{aligned}$$";
+    "$$\\begin{aligned}i_{\\text{eff}} &= \\left(1 + \\frac{" + (r / 100).toFixed(2) + "}{" + m + "}\\right)^{" + m + "} - 1 \\\\ &= (" + (1 + r / 100 / m).toFixed(6) + ")^{" + m + "} - 1 = " + (ans / 100).toFixed(4) + " = " + labels.correct.replace("%", "\\%") + "\\end{aligned}$$";
   return {
     variantKey: "r" + r + "_m" + m,
     question: question,
@@ -1879,7 +1879,7 @@ def({ baseId: "econ-049", subtopic: "Inflation-adjusted interest rate", difficul
   var question = "An investment earns a real annual rate of return of " + ip + "%. Inflation is " + fp + "% per year. What inflation-adjusted interest rate d should be used to discount future dollar cash flows?";
   var solution = "Refer to the Inflation subsection of the Engineering Economics section of the FE Reference Handbook (v10.6), printed page 236 (PDF page 242).\n\n" +
     "The combined rate satisfies \\((1 + d) = (1 + i)(1 + f)\\), so \\(d = i + f + if\\).\n\n" +
-    "$$\\begin{aligned}d &= " + i.toFixed(2) + " + " + f.toFixed(2) + " + (" + i.toFixed(2) + ")(" + f.toFixed(2) + ") \\\\ &= " + (i + f).toFixed(2) + " + " + (i * f).toFixed(4) + " = " + (d / 100).toFixed(4) + " = " + labels.c + "\\end{aligned}$$";
+    "$$\\begin{aligned}d &= " + i.toFixed(2) + " + " + f.toFixed(2) + " + (" + i.toFixed(2) + ")(" + f.toFixed(2) + ") \\\\ &= " + (i + f).toFixed(2) + " + " + (i * f).toFixed(4) + " = " + (d / 100).toFixed(4) + " = " + labels.c.replace("%", "\\%") + "\\end{aligned}$$";
   return {
     variantKey: "i" + ip + "_f" + fp,
     question: question,
@@ -2089,7 +2089,7 @@ def({ baseId: "econ-055", subtopic: "Break-even point as percent of capacity", d
 // Make-vs-buy break-even quantity.
 def({ baseId: "econ-056", subtopic: "Make-or-buy break-even quantity", difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "Make wins when x > F/(v_buy - v_make). Dividing the fixed cost by either unit cost alone is the classic slip."
+  explanation: "Make wins when \\(x > F/(v_{buy} - v_{make})\\). Dividing the fixed cost by either unit cost alone is the classic slip."
 }, function () {
   var F = pick([30000, 50000, 80000]);
   var vm = pick([6, 8, 10]);

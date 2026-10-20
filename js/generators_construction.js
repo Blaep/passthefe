@@ -237,7 +237,7 @@ reg(buildGenerator({
   function usd(x) { return "$" + Math.round(x).toLocaleString("en-US"); }
   var question = "A project has BAC = " + usd(BAC) + ", BCWP = " + usd(BCWP) + ", ACWP = " + usd(ACWP) + ", so CPI = BCWP/ACWP = " + CPI.toFixed(3) + " (carry the unrounded ratio). Assuming the current cost performance continues, what is the estimate at completion?";
   var solution = "Refer to Earned-Value Analysis (Forecasting) in the Civil Engineering (Construction) chapter of the FE Reference Handbook (v10.6), printed page 317 (PDF page 323).\n\n" +
-    "$$EAC = \\frac{BAC}{CPI} = \\frac{" + BAC.toLocaleString("en-US") + "}{" + (BCWP + "/" + ACWP) + "} = " + usd(correct) + "$$";
+    "$$EAC = \\frac{BAC}{CPI} = \\frac{" + BAC.toLocaleString("en-US") + "}{" + (BCWP + "/" + ACWP) + "} = " + "\\$" + Math.round(correct).toLocaleString("en-US") + "$$";
   return {
     variantKey: "BAC" + BAC + "_BCWP" + BCWP + "_ACWP" + ACWP,
     question: question,

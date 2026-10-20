@@ -386,7 +386,7 @@ reg(buildGenerator({
   subtopic: "Concrete modulus of elasticity",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "The 4,700 multiplier already expects f'_c in MPa under the square root — skipping the root gives 117.5 GPa, and plugging in a doubled strength gives 33.2 GPa.",
+  explanation: "The 4,700 multiplier already expects \\(f'_c\\) in MPa under the square root — skipping the root gives 117.5 GPa, and plugging in a doubled strength gives 33.2 GPa.",
   videoUrl: null,
   videoTitle: null
 }, function () {
@@ -616,7 +616,7 @@ reg(buildGenerator({
     ". The mix also contains " + CA + " kg of coarse aggregate (specific gravity " + fmt(sgCA) +
     ") and " + fmt(air) + "% entrapped air. What is the required mass of fine aggregate (specific gravity " +
     fmt(sgFA) + ") per cubic meter of concrete? (Specific gravity of cement = 3.15; unit weight of water = 1000 kg/m^3)";
-  var sol = "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): $SG = \\rho/\\rho_w$.\n\n" +
+  var sol = "Refer to the definition of specific gravity in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6, p. 181): \\(SG = \\rho/\\rho_w\\).\n\n" +
     "Ultimately, we must solve for the mass of fine aggregate. By the absolute volume method, the volumes of all ingredients plus air sum to 1 m\u00b3, so the fine aggregate occupies whatever volume remains:\n\n" +
     "$$V_{\\text{FA}} = 1 - (V_w + V_c + V_{CA} + V_{\\text{air}})$$\n\n" +
     "List the known and unknown parameters in order to solve for \\(m_{FA}\\):\n\n" +
@@ -1330,7 +1330,7 @@ reg(buildGenerator({
 var SRC_FHWA_VOLUM = "Source: FHWA, A Review of Aggregate and Asphalt Mixture Specific Gravity Measurements and Their Impacts on Asphalt Mix Design Properties and Mix Acceptance (FHWA-HIF-11-033), Equations 1 to 3 (https://www.fhwa.dot.gov/pavement/materials/pubs/hif11033/hif11033.pdf). The asphalt mixture volumetric equations are not in the FE Reference Handbook 10.6 (I searched for VMA, air voids and Gmb), so they are given in the question. Supplemental practice.";
 var SRC_USDA_WOOD = "Source: USDA Forest Products Laboratory, Wood Handbook: Wood as an Engineering Material (FPL-GTR-282), Chapter 4, Moisture Relations and Physical Properties of Wood (https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/chapter_04_fpl_gtr282.pdf). Wood moisture and shrinkage are not in the FE Reference Handbook 10.6 text I searched. Supplemental practice.";
 var SRC_FHWA_SLUMP = "Source: FHWA Highway Materials Engineering Course, Module G, Testing Fresh Concrete Laboratory Manual, AASHTO T 119 / ASTM C143 slump test (https://www.fhwa.dot.gov/pavement/materials/hmec/pubs/module_g/lab_manual_fresh.pdf). The slump test procedure is not in the FE Reference Handbook 10.6 text I searched (it only mentions a slump value in a mix example). Supplemental practice.";
-var CITE_FRACTURE = "Refer to Fracture toughness (K_Ic = Y\u03C3\u221A(\u03C0a)) in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
+var CITE_FRACTURE = "Refer to Fracture toughness (\\(K_{Ic}\\) = Y\u03C3\u221A(\u03C0a)) in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
 var CITE_FRACTURE2 = "Refer to Fracture toughness in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
 var CITE_DIFFUSION = "Refer to Diffusion Coefficient (D = D0 e^(\u2212Q/RT)) in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 117 (PDF page 123).";
 var CITE_HARDNESS = "Refer to Relationship Between Hardness and Tensile Strength in the Materials Science/Structure of Matter section of the FE Reference Handbook (v10.6), printed page 123 (PDF page 129).";
@@ -1397,7 +1397,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "materials-038", topic: "Materials", subtopic: "Asphalt mixture VMA",
   difficulty: "easy", estimatedTimeSeconds: 75,
-  explanation: "Forgetting to subtract from 100, using the binder content instead of P_s, or treating P_s as a fraction give the traps.",
+  explanation: "Forgetting to subtract from 100, using the binder content instead of \\(P_s\\), or treating \\(P_s\\) as a fraction give the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Gmb = pick([2.30, 2.35, 2.38, 2.40]);
@@ -1534,7 +1534,7 @@ reg(buildGenerator({
   var dMulY = K * Y / root;
   var dNoY = K / root;
   var dNoPi = K / (Y * Math.sqrt(a));
-  var question = "A plate of a material with K_Ic = " + K + " ksi\u221Ain. has an exterior edge crack of length a = " + a.toFixed(2) + " in. using Y = " + Y.toFixed(1) + ". What stress causes fracture?";
+  var question = "A plate of a material with \\(K_{Ic}\\) = " + K + " ksi\u221Ain. has an exterior edge crack of length a = " + a.toFixed(2) + " in. using Y = " + Y.toFixed(1) + ". What stress causes fracture?";
   var solution = CITE_FRACTURE + "\n\n" +
     "$$\\sigma_f = \\frac{K_{Ic}}{Y\\sqrt{\\pi a}} = \\frac{" + K + "}{(" + Y.toFixed(1) + ")\\sqrt{\\pi (" + a.toFixed(2) + ")}} = " + (Math.round(correct * 10) / 10).toFixed(1) + "\\ \\text{ksi}$$";
   return {
@@ -1554,7 +1554,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "materials-047", topic: "Materials", subtopic: "Critical crack length",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "The ratio K_Ic/sigma is squared and divided by pi; skipping pi, skipping the square, or doubling for the interior 2a convention gives the traps.",
+  explanation: "The ratio \\(K_{Ic}/\\sigma\\) is squared and divided by \\(\\pi\\); skipping \\(\\pi\\), skipping the square, or doubling for the interior 2a convention gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var K = pick([30, 40, 50]);
@@ -1564,7 +1564,7 @@ reg(buildGenerator({
   var dNoPi = r * r;
   var dInterior = 4 * correct;
   var dNoSquare = K / (sig * Math.PI);
-  var question = "An interior crack (Y = 1) in a part with K_Ic = " + K + " ksi\u221Ain. is loaded to " + sig + " ksi. What is the critical crack length a?";
+  var question = "An interior crack (Y = 1) in a part with \\(K_{Ic}\\) = " + K + " ksi\u221Ain. is loaded to " + sig + " ksi. What is the critical crack length a?";
   var solution = CITE_FRACTURE + "\n\n" +
     "$$a = \\frac{1}{\\pi}\\left(\\frac{K_{Ic}}{Y\\sigma}\\right)^2 = \\frac{1}{\\pi}\\left(\\frac{" + K + "}{" + sig + "}\\right)^2 = " + (Math.round(correct * 100) / 100).toFixed(2) + "\\ \\text{in.}$$";
   return {

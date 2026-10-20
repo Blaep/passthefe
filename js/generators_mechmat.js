@@ -508,7 +508,7 @@ reg(buildGenerator({
   subtopic: "Column buckling",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "A column always buckles about its weak axis, so I_min controls — and the end condition sets K, which gets squared, so misreading the supports hurts twice.",
+  explanation: "A column always buckles about its weak axis, so \\(I_{min}\\) controls — and the end condition sets K, which gets squared, so misreading the supports hurts twice.",
   videoUrl: "https://www.youtube.com/watch?v=uxsd_fGWxfw",
   videoTitle: "Euler's Equation for Steel Compression Members"
 }, function () {
@@ -2908,7 +2908,7 @@ reg(buildGenerator({ baseId: "mechmat-044", subtopic: "Principal stresses", diff
 // Maximum in-plane shear stress = R (same stress state family).
 reg(buildGenerator({ baseId: "mechmat-045", subtopic: "Maximum in-plane shear stress", difficulty: "medium",
   estimatedTimeSeconds: 105,
-  explanation: "tau_max = R, the radius of Mohr's circle. Traps: 2R (diameter), the (sx-sy)/2 term alone, or txy itself."
+  explanation: "\\(\\tau_{max} = R\\), the radius of Mohr's circle. Traps: \\(2R\\) (diameter), the \\((\\sigma_x - \\sigma_y)/2\\) term alone, or \\(\\tau_{xy}\\) itself."
 }, function () {
   var sx = pick([60, 50, 40]);
   var sy = pick([20, 10, 30]);
@@ -2934,7 +2934,7 @@ reg(buildGenerator({ baseId: "mechmat-045", subtopic: "Maximum in-plane shear st
 // Reaction at A, point load on simple span. DIAGRAM: rolled P, a, L.
 reg(buildGenerator({ baseId: "mechmat-046", subtopic: "Reaction at A, point load", difficulty: "easy",
   estimatedTimeSeconds: 90,
-  explanation: "Take moments about B: RA = P(L-a)/L. Traps: the other reaction, the full load, or the midspan split."
+  explanation: "Take moments about B: \\(R_A = P(L-a)/L\\), derived from statics (\\(R_A + R_B = P\\)). Traps: the other reaction, the full load, or the midspan split."
 }, function () {
   var bc = mmBeamPick();
   var P = bc.P, a = bc.a, L = bc.L;
@@ -2957,7 +2957,7 @@ reg(buildGenerator({ baseId: "mechmat-046", subtopic: "Reaction at A, point load
 // Maximum moment under the point load. DIAGRAM: rolled beam.
 reg(buildGenerator({ baseId: "mechmat-047", subtopic: "Maximum moment, point load", difficulty: "medium",
   estimatedTimeSeconds: 105,
-  explanation: "Mmax = RA*a = Pa(L-a)/L at the load. Traps: RB*a is actually the same... no - the traps use the midspan formula PL/4 and P*a."
+  explanation: "\\(M_{\\max} = R_A a = Pa(L-a)/L\\) at the load. The traps use the midspan formula \\(PL/4\\), \\(P \\cdot a\\), and \\(PL/8\\)."
 }, function () {
   var bc = mmBeamPick();
   var P = bc.P, a = bc.a, L = bc.L;
@@ -2983,7 +2983,7 @@ reg(buildGenerator({ baseId: "mechmat-047", subtopic: "Maximum moment, point loa
 // Shear just right of the point load = RA - P (U+2212 negatives). DIAGRAM.
 reg(buildGenerator({ baseId: "mechmat-048", subtopic: "Shear just right of the load", difficulty: "medium",
   estimatedTimeSeconds: 105,
-  explanation: "V(right of load) = RA - P = -RB. Traps: -P, +RA, and +RB (sign flip of the correct answer)."
+  explanation: "Just right of the load, \\(V = R_A - P = -R_B\\). Traps: \\(-P\\), \\(+R_A\\), and \\(+R_B\\) (sign flip of the correct answer)."
 }, function () {
   var bc = mmBeamPick();
   var P = bc.P, a = bc.a, L = bc.L;
@@ -3208,7 +3208,7 @@ reg(buildGenerator({ baseId: "mechmat-057", subtopic: "Modular ratio in a compos
 // Thick-wall cylinder hoop stress at the inside wall, internal pressure only.
 reg(buildGenerator({ baseId: "mechmat-058", subtopic: "Thick-wall cylinder hoop stress", difficulty: "hard",
   estimatedTimeSeconds: 120,
-  explanation: "sigma_theta(a) = pi (a^2 + b^2)/(b^2 - a^2) for internal pressure only. Traps: invert the radius ratio, answer -pi, or 2*pi."
+  explanation: "\\(\\sigma_\\theta(a) = p_i (a^2 + b^2)/(b^2 - a^2)\\) for internal pressure only. Traps: invert the radius ratio, answer \\(-p_i\\), or \\(2 p_i\\)."
 }, function () {
   var a = pick([4, 3]);
   var b = a + pick([2, 3]);

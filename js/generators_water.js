@@ -460,7 +460,7 @@ wreg({
 wreg({
   baseId: "water-066", topic: "Water Resources & Environmental", subtopic: "Stokes' law settling velocity",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "v = g(rho_p - rho) d^2/(18 mu). The diameter is squared; using the diameter to the first power or forgetting to convert mm to m gives the traps.",
+  explanation: "\\(v = g(\\rho_p - \\rho) d^2/(18\\mu)\\). The diameter is squared; using the diameter to the first power or forgetting to convert mm to m gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var d = pick([0.040, 0.050, 0.060]), rhoP = pick([2400, 2650, 2900]);
@@ -1084,7 +1084,7 @@ wreg({
 wreg({
   baseId: "water-099", topic: "Water Resources & Environmental", subtopic: "Pump power with total efficiency",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "P(hp) = Q gamma h / (550 eta_total). Multiplying by the efficiency instead of dividing gives the low trap.",
+  explanation: "\\(P(hp) = Q\\gamma h / (550\\,\\eta_{total})\\). Multiplying by the efficiency instead of dividing gives the low trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Q = pick([1.5, 2.0, 2.5]), h = pick([70, 80, 90]), eff = pick([0.6, 0.7, 0.8]);
@@ -1102,7 +1102,7 @@ wreg({
 wreg({
   baseId: "water-100", topic: "Water Resources & Environmental", subtopic: "Pump brake power",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "Brake power = rho g Q H / eta_pump (SI). Omitting the efficiency division gives the fluid-power trap.",
+  explanation: "Brake power \\(= \\rho g Q H / \\eta_{pump}\\) (SI). Omitting the efficiency division gives the fluid-power trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Q = pick([0.04, 0.05, 0.06]), H = pick([35, 40, 45]), eta = pick([0.74, 0.78, 0.82]);
@@ -1159,7 +1159,7 @@ wreg({
 wreg({
   baseId: "water-103", topic: "Water Resources & Environmental", subtopic: "NPSH available",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "NPSHA = h_atm + h_s - h_f - h_vp with positive static head when the surface is above the impeller. Subtracting the static head instead of adding gives the low trap.",
+  explanation: "\\(\\mathrm{NPSHA} = h_{atm} + h_s - h_f - h_{vp}\\) with positive static head when the surface is above the impeller. Subtracting the static head instead of adding gives the low trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var hatm = 33.9, hs = pick([6.0, 8.0, 10.0]), hf = pick([2.0, 2.5, 3.0]), hvp = pick([0.6, 0.8, 1.0]);
@@ -1177,7 +1177,7 @@ wreg({
 wreg({
   baseId: "water-104", topic: "Water Resources & Environmental", subtopic: "NPSH available with a suction lift",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "With a suction lift the static suction head is negative: NPSHA = h_atm - lift - h_f - h_vp. Adding the lift instead of subtracting gives the high trap.",
+  explanation: "With a suction lift the static suction head is negative: \\(\\mathrm{NPSHA} = h_{atm} - lift - h_f - h_{vp}\\). Adding the lift instead of subtracting gives the high trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var hatm = 33.9, lift = pick([10, 12, 14]), hf = pick([2.0, 2.5, 3.0]), hvp = pick([0.6, 0.8, 1.0]);
@@ -1195,7 +1195,7 @@ wreg({
 wreg({
   baseId: "water-105", topic: "Water Resources & Environmental", subtopic: "NPSH available from inlet conditions",
   difficulty: "hard", estimatedTimeSeconds: 120,
-  explanation: "NPSHA = (p_inlet - p_vapor)/gamma + V^2/(2g). Omitting the velocity head, or dividing pressure by 144 the wrong way, gives the traps.",
+  explanation: "\\(\\mathrm{NPSHA} = (p_{inlet} - p_{vapor})/\\gamma + V^2/(2g)\\). Omitting the velocity head, or dividing pressure by 144 the wrong way, gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var p = pick([20, 22, 24]), V = pick([5.0, 6.0, 7.0]), pv = pick([0.26, 0.36, 0.46]);

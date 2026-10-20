@@ -275,7 +275,7 @@ function deg(x) { return x * Math.PI / 180; }
 reg(buildGenerator({
   baseId: "geotech-050", topic: "Geotechnical Engineering", subtopic: "Drilled shaft base resistance in clay",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "R_BN = Nc* x su x base area; using pi B^2 or B^2 for the area gives the traps.",
+  explanation: "\\(R_{BN} = N_c^* \\times s_u \\times\\) base area; using \\(\\pi B^2\\) or \\(B^2\\) for the area gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var B = pick([3, 4, 5]), D = pick([30, 40, 50]), su = pick([2500, 3000, 3500, 4000]);
@@ -401,7 +401,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-058", topic: "Geotechnical Engineering", subtopic: "Saturated unit weight",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "gamma_sat = (Gs + e)/(1 + e) gamma_w; dropping terms of the ratio gives the traps.",
+  explanation: "\\(\\gamma_{sat} = (G_s + e)/(1 + e)\\,\\gamma_w\\); dropping terms of the ratio gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Gs = pick([2.60, 2.65, 2.68, 2.70, 2.75]), e = pick([0.60, 0.72, 0.85, 0.95]);
@@ -426,7 +426,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-059", topic: "Geotechnical Engineering", subtopic: "Effective (submerged) unit weight",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "gamma' = gamma_sat - gamma_w; reporting gamma_sat or dropping the (1+e) divisor gives the traps.",
+  explanation: "\\(\\gamma' = \\gamma_{sat} - \\gamma_w\\); reporting \\(\\gamma_{sat}\\) or dropping the \\(1+e\\) divisor gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Gs = pick([2.60, 2.65, 2.70, 2.75]), e = pick([0.70, 0.80, 0.90, 1.00]);
@@ -501,7 +501,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-062", topic: "Geotechnical Engineering", subtopic: "Dry unit weight from total unit weight and water content",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "gamma_d = gamma/(1+w); multiplying by (1-w) or (1+w) or subtracting w gives the traps.",
+  explanation: "\\(\\gamma_d = \\gamma/(1+w)\\); multiplying by \\(1-w\\) or \\(1+w\\) or subtracting \\(w\\) gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var g = pick([118, 122, 127, 132]), w = pick([0.10, 0.14, 0.18, 0.22]);
@@ -525,7 +525,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-063", topic: "Geotechnical Engineering", subtopic: "Void ratio from weight of solids",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "Compute the solids volume from Ws/(Gs gamma_w), then e = Vv/Vs; the traps use Vt in the ratio or invert it.",
+  explanation: "Compute the solids volume from \\(W_s/(G_s \\gamma_w)\\), then \\(e = V_v/V_s\\); the traps use \\(V_t\\) in the ratio or invert it.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Vt = pick([1.0, 1.2, 1.5]), Ws = pick([85, 100, 115]), Gs = pick([2.60, 2.65, 2.70]);
@@ -627,7 +627,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-067", topic: "Geotechnical Engineering", subtopic: "Effective vertical stress with a water table",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "Below the water table use gamma_sat - gamma_w; the traps give total stress, the pore pressure, or a half-depth error.",
+  explanation: "Below the water table use \\(\\gamma_{sat} - \\gamma_w\\); the traps give total stress, the pore pressure, or a half-depth error.",
   videoUrl: null, videoTitle: null
 }, function () {
   var h1 = pick([4, 5, 6]), g1 = pick([110, 115, 120]), h2 = pick([8, 10, 12]), g2 = pick([120, 125, 130]);
@@ -651,7 +651,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-068", topic: "Geotechnical Engineering", subtopic: "Effective stress with surcharge",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "The surcharge adds to effective stress directly; the traps omit it, use total unit weight, or halve gamma_w.",
+  explanation: "The surcharge adds to effective stress directly; the traps omit it, use total unit weight, or halve \\(\\gamma_w\\).",
   videoUrl: null, videoTitle: null
 }, function () {
   var h = pick([10, 12, 14]), gsat = pick([118, 120, 125]), q = pick([300, 400, 500]);
@@ -675,7 +675,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-069", topic: "Geotechnical Engineering", subtopic: "Effective stress with pressure head",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "u = gamma_w x head; the traps add u, report u, or use 9.81 with psf.",
+  explanation: "\\(u = \\gamma_w \\times\\) head; the traps add \\(u\\), report \\(u\\), or use 9.81 with psf.",
   videoUrl: null, videoTitle: null
 }, function () {
   var sig = pick([2000, 2400, 2800]), hw = pick([20, 25, 30]);
@@ -847,7 +847,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-076", topic: "Geotechnical Engineering", subtopic: "Shear strength at failure",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "tau_f = c + sigma tan phi; the traps drop tan phi, drop c, or use sin phi.",
+  explanation: "\\(\\tau_f = c + \\sigma \\tan\\phi\\); the traps drop \\(\\tan\\phi\\), drop \\(c\\), or use \\(\\sin\\phi\\).",
   videoUrl: null, videoTitle: null
 }, function () {
   var c = pick([200, 300, 400]), phi = pick([24, 28, 32]), sig = pick([1500, 2000, 2500]);
@@ -922,7 +922,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-079", topic: "Geotechnical Engineering", subtopic: "Ultimate bearing capacity, strip footing, dry cohesionless soil",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "qu = gamma Df Nq + (1/2) gamma B N_gamma; the traps drop the gamma term, drop the 1/2, or drop the Df term.",
+  explanation: "\\(q_u = \\gamma D_f N_q + (1/2)\\gamma B N_\\gamma\\); the traps drop the \\(\\gamma\\) term, drop the 1/2, or drop the \\(D_f\\) term.",
   videoUrl: null, videoTitle: null
 }, function () {
   var B = pick([4, 5, 6]), Df = pick([3, 4]), g = pick([115, 120, 125]);
@@ -974,7 +974,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-081", topic: "Geotechnical Engineering", subtopic: "Ultimate bearing capacity with water table at the surface",
   difficulty: "hard", estimatedTimeSeconds: 150,
-  explanation: "With the water table at the ground surface, use buoyant unit weight in BOTH terms; the traps use gamma_sat throughout, in one term only, or swapped.",
+  explanation: "With the water table at the ground surface, use buoyant unit weight in BOTH terms; the traps use \\(\\gamma_{sat}\\) throughout, in one term only, or swapped.",
   videoUrl: null, videoTitle: null
 }, function () {
   var B = pick([4, 5, 6]), Df = pick([3, 4]), gsat = pick([120, 125, 130]);
@@ -1179,7 +1179,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "geotech-089", topic: "Geotechnical Engineering", subtopic: "Settlement at a given degree of consolidation",
   difficulty: "easy", estimatedTimeSeconds: 45,
-  explanation: "S(t) = U x S_ultimate; the traps divide by U, use the remaining percentage, or shift a decimal.",
+  explanation: "\\(S(t) = U \\times S_{ultimate}\\); the traps divide by \\(U\\), use the remaining percentage, or shift a decimal.",
   videoUrl: null, videoTitle: null
 }, function () {
   var U = pick([50, 62, 70]), Sult = pick([200, 240, 300]);

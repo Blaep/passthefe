@@ -164,7 +164,7 @@ var STRUCTURAL_ENTRIES = [];
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-036", topic: "Structural Engineering", subtopic: "Steel beam design flexural strength (yielding)",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "With continuous bracing only yielding governs, so M_n = F_y Z_x, and LRFD applies phi_b = 0.90. Skipping phi_b or leaving the answer in kip-in gives the traps.",
+  explanation: "With continuous bracing only yielding governs, so \\(M_n = F_y Z_x\\), and LRFD applies \\(\\phi_b = 0.90\\). Skipping \\(\\phi_b\\) or leaving the answer in kip-in gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Fy = pick([36, 50, 65]), Zx = pick([90, 100, 130, 150, 200]);
@@ -190,7 +190,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-037", topic: "Structural Engineering", subtopic: "Steel beam lateral-torsional buckling (Lp < Lb <= Lr)",
   difficulty: "medium", estimatedTimeSeconds: 150,
-  explanation: "Because Lp < Lb <= Lr, the strength is reduced below Mp by the linear LTB equation. Using phi_b Mp alone ignores the unbraced length; stopping before phi_b is another trap.",
+  explanation: "Because Lp < Lb <= Lr, the strength is reduced below Mp by the linear LTB equation. Using \\(\\phi_b M_p\\) alone ignores the unbraced length; stopping before \\(\\phi_b\\) is another trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Fy = 50, Zx = pick([100, 120, 150]), Sx = pick([90, 110, 135]), Lp = pick([5, 6, 8]), Lr = pick([15, 17, 20]);
@@ -247,7 +247,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-039", topic: "Structural Engineering", subtopic: "Steel I-shape design shear strength",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "The handbook web area is the full overall depth times the web thickness, with phi_v = 1.00 for rolled I-shapes. Using phi = 0.90 or dropping the 0.6 factor gives the traps.",
+  explanation: "The handbook web area is the full overall depth times the web thickness, with \\(\\phi_v = 1.00\\) for rolled I-shapes. Using \\(\\phi = 0.90\\) or dropping the 0.6 factor gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var d = pick([18, 21, 24]), tw = pick([0.35, 0.40, 0.45, 0.50]), Fy = pick([36, 50]);
@@ -269,8 +269,8 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 }));
 
 /* ---- structural-040 / structural-041 ---- */
-[["structural-040", [70, 80, 90], [10.6, 14.4, 17.9], "inelastic range", "KL/r is below 4.71 sqrt(E/Fy), so the inelastic equation F_cr = 0.658^(Fy/Fe) Fy applies. Using the squash load, the elastic equation, or omitting phi gives the traps."],
- ["structural-041", [130, 140, 150, 160], [9.13, 11.5, 13.0], "elastic range", "KL/r exceeds 4.71 sqrt(E/Fy), so elastic buckling governs with F_cr = 0.877 F_e. Using the inelastic equation or omitting phi gives the traps."]]
+[["structural-040", [70, 80, 90], [10.6, 14.4, 17.9], "inelastic range", "\\(KL/r\\) is below \\(4.71\\sqrt{E/F_y}\\), so the inelastic equation \\(F_{cr} = 0.658^{(F_y/F_e)} F_y\\) applies. Using the squash load, the elastic equation, or omitting \\(\\phi\\) gives the traps."],
+ ["structural-041", [130, 140, 150, 160], [9.13, 11.5, 13.0], "elastic range", "\\(KL/r\\) exceeds \\(4.71\\sqrt{E/F_y}\\), so elastic buckling governs with \\(F_{cr} = 0.877 F_e\\). Using the inelastic equation or omitting \\(\\phi\\) gives the traps."]]
 .forEach(function (cfg) {
   var baseId = cfg[0], klrList = cfg[1], agList = cfg[2], rangeName = cfg[3], expl = cfg[4];
   STRUCTURAL_ENTRIES.push(buildGenerator({
@@ -332,7 +332,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-043", topic: "Structural Engineering", subtopic: "RC beam design flexural strength with strain check",
   difficulty: "hard", estimatedTimeSeconds: 180,
-  explanation: "Check the net tensile strain to pick phi: with eps_t >= 0.005 the section is tension-controlled and phi = 0.90. Using phi = 0.65, stopping at M_n, or using the full a in the lever arm gives the traps.",
+  explanation: "Check the net tensile strain to pick \\(\\phi\\): with \\(\\epsilon_t \\geq 0.005\\) the section is tension-controlled and \\(\\phi = 0.90\\). Using \\(\\phi = 0.65\\), stopping at \\(M_n\\), or using the full \\(a\\) in the lever arm gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var b = pick([12, 14, 16]), d = pick([18, 21.5, 24]), As = pick([2.0, 3.0, 4.0]), fc = 4000, fy = 60000;
@@ -559,7 +559,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-052", topic: "Structural Engineering", subtopic: "Live load reduction, beam",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "For a beam K_LL = 2; using the column value K_LL = 4, leaving K_LL out, or dropping the 0.25 term gives the traps.",
+  explanation: "For a beam \\(K_{LL} = 2\\); using the column value \\(K_{LL} = 4\\), leaving \\(K_{LL}\\) out, or dropping the 0.25 term gives the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var AT = pick([400, 600, 800]), Lo = pick([40, 50, 60]);
@@ -619,7 +619,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-060", topic: "Structural Engineering", subtopic: "Plastic moment capacity",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "Fully braced compact shape: phi_b Mn = phi_b Fy Zx with phi_b = 0.90. The nominal Mp without phi, the ASD allowable, and applying phi twice are the traps.",
+  explanation: "Fully braced compact shape: \\(\\phi_b M_n = \\phi_b F_y Z_x\\) with \\(\\phi_b = 0.90\\). The nominal \\(M_p\\) without \\(\\phi\\), the ASD allowable, and applying \\(\\phi\\) twice are the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Fy = 50, Zx = pick([150, 200, 250]);
@@ -638,7 +638,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-061", topic: "Structural Engineering", subtopic: "ASD allowable moment",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "Omega = 1.67 for flexure. The 1.50 factor is the shear Omega, and phi_b = 0.90 belongs to LRFD.",
+  explanation: "\\(\\Omega = 1.67\\) for flexure. The 1.50 factor is the shear \\(\\Omega\\), and \\(\\phi_b = 0.90\\) belongs to LRFD.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Fy = 50, Zx = pick([150, 200, 250]);
@@ -659,7 +659,7 @@ STRUCTURAL_ENTRIES.push(buildGenerator({
 STRUCTURAL_ENTRIES.push(buildGenerator({
   baseId: "structural-062", topic: "Structural Engineering", subtopic: "Web shear strength",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "phi_v = 1.00 for rolled I-shaped webs, so no 0.90 reduction applies. The ASD value with Omega = 1.50 and dropping the 0.6 factor are the traps.",
+  explanation: "\\(\\phi_v = 1.00\\) for rolled I-shaped webs, so no 0.90 reduction applies. The ASD value with \\(\\Omega = 1.50\\) and dropping the 0.6 factor are the traps.",
   videoUrl: null, videoTitle: null
 }, function () {
   var d = pick([18, 21, 24]), tw = pick([0.4, 0.5, 0.6]), Fy = pick([36, 50]);

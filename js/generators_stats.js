@@ -1416,7 +1416,7 @@ PART.push(buildGenerator({
   subtopic: "Standard normal critical value",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "For a two-sided interval, α/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates Z_{alpha/2} directly, so no table lookup is needed.",
+  explanation: "For a two-sided interval, α/2 goes in each tail: a 95% interval leaves 2.5% above the upper critical value. The handbook tabulates \\(Z_{\\alpha/2}\\) directly, so no table lookup is needed.",
   videoUrl: null,
   videoTitle: null
 }, function () {
@@ -1650,7 +1650,7 @@ PART.push(buildGenerator({
   subtopic: "Standard error of estimate",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "The formula gives the variance S_e squared -- the standard error is its square root. Stopping at 1.62 answers a different question.",
+  explanation: "The formula gives the variance \\(S_e^2\\) -- the standard error is its square root. Stopping at 1.62 answers a different question.",
   videoUrl: null,
   videoTitle: null
 }, function () {
@@ -2000,7 +2000,7 @@ PART.push(buildGenerator({ baseId: "stats-042", subtopic: "Median, even count", 
 // Standard deviation of the mean.
 PART.push(buildGenerator({ baseId: "stats-043", subtopic: "Standard deviation of the mean", difficulty: "medium",
   estimatedTimeSeconds: 90,
-  explanation: "\u03C3_mean = \u03C3/\u221An, not \u03C3/n and not \u03C3\u00D7\u221An."
+  explanation: "\\(\\sigma_{mean} = \\sigma/\\sqrt{n}\\), not \\(\\sigma/n\\) and not \\(\\sigma \\times \\sqrt{n}\\)."
 }, function () {
   var sig = pick([4, 6, 8, 10]), n = pick([16, 25, 36, 49]);
   var ans = r2s(sig / Math.sqrt(n));
@@ -2414,12 +2414,12 @@ PART.push(buildGenerator({ baseId: "stats-059", subtopic: "Chi-square degrees of
 // Measurement error model: d_random = x - x_ref - d_systematic.
 PART.push(buildGenerator({ baseId: "stats-060", subtopic: "Measurement error model", difficulty: "medium",
   estimatedTimeSeconds: 90,
-  explanation: "d_random = x \u2212 x_ref \u2212 d_systematic. Forgetting to subtract the systematic part (or adding it) is the trap."
+  explanation: "\\(d_{random} = x - x_{ref} - d_{systematic}\\). Forgetting to subtract the systematic part (or adding it) is the trap."
 }, function () {
   var xref = pick([10, 20, 5]), dsys = pick([0.12, 0.18, 0.25]), dr = pick([0.04, 0.07, 0.09]);
   var x = r2s(xref + dsys + dr);
   var tNoSub = r2s(x - xref), tAdd = r2s(x - xref + dsys), tSum = r2s(x + xref + dsys);
-  var question = "A measurement x = " + f2(x) + " has reference value x_ref = " + f2(xref) + " and a systematic disturbance of " + dsys + ". Using the handbook's model x = x_ref + d_systematic + d_random, what is the random component?";
+  var question = "A measurement x = " + f2(x) + " has reference value \\(x_{ref}\\) = " + f2(xref) + " and a systematic disturbance of " + dsys + ". Using the handbook's model \\(x = x_{ref} + d_{systematic} + d_{random}\\), what is the random component?";
   var solution = "Refer to Measurement Error in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 69 (PDF page 75).\n\n" +
     "$$\\begin{aligned}d_{random} &= x - x_{ref} - d_{systematic} \\\\ &= " + f2(x) + " - " + f2(xref) + " - " + dsys + " \\\\ &= " + f2(dr) + "\\end{aligned}$$";
   return {

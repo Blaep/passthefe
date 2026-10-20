@@ -467,7 +467,7 @@ treg({
 treg({
   baseId: "transportation-050", topic: "Transportation Engineering", subtopic: "Intersection sight distance",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "ISD = 1.47 V t_gap; the 1.47 factor converts mph to ft/s. Without it the result is not in feet.",
+  explanation: "\\(\\mathrm{ISD} = 1.47 V t_{gap}\\); the 1.47 factor converts mph to ft/s. Without it the result is not in feet.",
   videoUrl: null, videoTitle: null
 }, function () {
   var V = pick([35, 45, 55]), gap = pick([6.5, 7.5, 8.5]);
@@ -647,7 +647,7 @@ function dPavement(D1, a1, D3, a3, m3, a2, m2, SN) {
 treg({
   baseId: "transportation-056", topic: "Transportation Engineering", subtopic: "High point of a crest curve",
   difficulty: "medium", estimatedTimeSeconds: 150,
-  explanation: "x_hp = L g1/A from the PVC, then y = y_PVC + g1 x/100 - A x^2/(200 L). The back-tangent elevation at that station skips the parabolic drop; adding the term overstates it.",
+  explanation: "\\(x_{hp} = L g_1/A\\) from the PVC, then \\(y = y_{PVC} + g_1 x/100 - A x^2/(200L)\\). The back-tangent elevation at that station skips the parabolic drop; adding the term overstates it.",
   videoUrl: null, videoTitle: null
 }, function () {
   var g1 = pick([2, 3, 4]), g2 = -pick([2, 3, 4]), L = pick([400, 600, 800]), elev0 = pick([400, 500, 600]);
@@ -809,7 +809,7 @@ treg({
 treg({
   baseId: "transportation-066", topic: "Transportation Engineering", subtopic: "Freeway breakpoint",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "BP = [1000 + 40(75 - FFS_adj)] x CAF. A lower free-flow speed raises the breakpoint, so the 40(75 - FFS) term adds.",
+  explanation: "\\(BP = [1000 + 40(75 - FFS_{adj})] \\times CAF\\). A lower free-flow speed raises the breakpoint, so the \\(40(75 - FFS)\\) term adds.",
   videoUrl: null, videoTitle: null
 }, function () {
   var FFS = pick([55, 60, 65, 70]), CAF = pick([0.90, 0.95, 1.00]);
@@ -827,7 +827,7 @@ treg({
 treg({
   baseId: "transportation-067", topic: "Transportation Engineering", subtopic: "Free-flow speed of a basic freeway segment",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "FFS = 75.4 - f_LW - f_LC - 3.22 TRD^0.84. Dropping the ramp-density term overstates FFS; using TRD without the 0.84 exponent applies too large a ramp penalty.",
+  explanation: "\\(FFS = 75.4 - f_{LW} - f_{LC} - 3.22\\,\\mathrm{TRD}^{0.84}\\). Dropping the ramp-density term overstates FFS; using TRD without the 0.84 exponent applies too large a ramp penalty.",
   videoUrl: null, videoTitle: null
 }, function () {
   var fLW = pick([0, 1.9, 3.1]), fLC = pick([0, 0.8, 1.6]), TRD = pick([0.5, 1.0, 1.5]);
@@ -846,7 +846,7 @@ treg({
 treg({
   baseId: "transportation-068", topic: "Transportation Engineering", subtopic: "Demand flow rate with heavy vehicles",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "v_p = V/(PHF x N x f_HV) with f_HV = 1/(1 + P_T(E_T - 1)). Ignoring trucks understates v_p; using E_T instead of E_T - 1 overcounts trucks.",
+  explanation: "\\(v_p = V/(PHF \\times N \\times f_{HV})\\) with \\(f_{HV} = 1/(1 + P_T(E_T - 1))\\). Ignoring trucks understates \\(v_p\\); using \\(E_T\\) instead of \\(E_T - 1\\) overcounts trucks.",
   videoUrl: null, videoTitle: null
 }, function () {
   var V = pick([3000, 3600, 4200]), PHF = pick([0.88, 0.92, 0.95]), N = pick([3, 4]), PT = pick([0.05, 0.10, 0.15]);
@@ -855,7 +855,7 @@ treg({
   var correct = V / (PHF * N * fHV);
   var noTruck = V / (PHF * N);
   var etWrong = V / (PHF * N * (1 / (1 + PT * ET)));
-  var question = "A freeway direction with " + N + " lanes (level terrain) carries " + V.toLocaleString("en-US") + " veh/h with PHF = " + PHF.toFixed(2) + ". Trucks are " + Math.round(PT * 100) + "% of traffic. Use the handbook passenger car equivalent for level terrain (E_T = 2.0). What is the demand flow rate v_p in pc/h/ln?";
+  var question = "A freeway direction with " + N + " lanes (level terrain) carries " + V.toLocaleString("en-US") + " veh/h with PHF = " + PHF.toFixed(2) + ". Trucks are " + Math.round(PT * 100) + "% of traffic. Use the handbook passenger car equivalent for level terrain (\\(E_T = 2.0\\)). What is the demand flow rate \\(v_p\\) in pc/h/ln?";
   var solution = CT("transportation-068") + "\n\n$$f_{HV} = \\frac{1}{1 + P_T(E_T - 1)} = \\frac{1}{1 + " + PT.toFixed(2) + "(2.0 - 1)} = " + f3(fHV) + "$$\n$$v_p = \\frac{V}{PHF \\times N \\times f_{HV}} = \\frac{" + V.toLocaleString("en-US") + "(" + PHF.toFixed(2) + ")(" + N + ")(" + f3(fHV) + ")} = " + f0c(correct) + "\\ \\text{pc/h/ln}$$".replace("(", "\\frac{").replace(")(", "}{") ;
   solution = CT("transportation-068") + "\n\n$$f_{HV} = \\frac{1}{1 + P_T(E_T - 1)} = \\frac{1}{1 + " + PT.toFixed(2) + "(2.0 - 1)} = " + f3(fHV) + "$$\n$$v_p = \\frac{V}{PHF \\times N \\times f_{HV}} = \\frac{" + V.toLocaleString("en-US") + "}{" + PHF.toFixed(2) + " \\times " + N + " \\times " + f3(fHV) + "} = " + f0c(correct) + "\\ \\text{pc/h/ln}$$";
   return { variantKey: "V" + V + "_P" + PHF + "_N" + N + "_T" + PT, question: question,
@@ -869,7 +869,7 @@ treg({
 treg({
   baseId: "transportation-069", topic: "Transportation Engineering", subtopic: "Freeway density and level of service",
   difficulty: "medium", estimatedTimeSeconds: 90,
-  explanation: "Below the breakpoint, density D = v_p/FFS. LOS thresholds: A to 11, B to 18, C to 26, D to 35 pc/mi/ln.",
+  explanation: "Below the breakpoint, density \\(D = v_p/FFS\\). LOS thresholds: A to 11, B to 18, C to 26, D to 35 pc/mi/ln.",
   videoUrl: null, videoTitle: null
 }, function () {
   var vp = pick([900, 1050, 1200]), S = pick([65, 70, 75]);
@@ -891,7 +891,7 @@ treg({
 treg({
   baseId: "transportation-070", topic: "Transportation Engineering", subtopic: "Greenshields speed at a given density",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "Under Greenshields, speed falls linearly: v = v_f(1 - k/k_j). The speed at optimum density (k_j/2) is half the free-flow speed.",
+  explanation: "Under Greenshields, speed falls linearly: \\(v = v_f(1 - k/k_j)\\). The speed at optimum density (\\(k_j/2\\)) is half the free-flow speed.",
   videoUrl: null, videoTitle: null
 }, function () {
   var vf = pick([50, 60, 70]), kj = pick([120, 150, 180]), frac = pick([1 / 6, 1 / 3, 1 / 2]);
@@ -910,7 +910,7 @@ treg({
 treg({
   baseId: "transportation-071", topic: "Transportation Engineering", subtopic: "Greenshields maximum flow",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "Maximum flow occurs at k_j/2 and v_f/2, so q_max = v_f k_j/4.",
+  explanation: "Maximum flow occurs at \\(k_j/2\\) and \\(v_f/2\\), so \\(q_{max} = v_f k_j/4\\).",
   videoUrl: null, videoTitle: null
 }, function () {
   var vf = pick([50, 60, 70]), kj = pick([120, 150, 180]);
@@ -928,7 +928,7 @@ treg({
 treg({
   baseId: "transportation-072", topic: "Transportation Engineering", subtopic: "Greenshields flow at a density",
   difficulty: "easy", estimatedTimeSeconds: 90,
-  explanation: "q = v_f k (1 - k/k_j). The speed at that density, v_f(1 - k/k_j), is not the flow; multiplying k by v_f alone ignores the speed drop.",
+  explanation: "\\(q = v_f k (1 - k/k_j)\\). The speed at that density, \\(v_f(1 - k/k_j)\\), is not the flow; multiplying \\(k\\) by \\(v_f\\) alone ignores the speed drop.",
   videoUrl: null, videoTitle: null
 }, function () {
   var vf = pick([50, 60, 70]), kj = pick([120, 150, 180]), frac = pick([1 / 6, 1 / 3, 1 / 2]);
@@ -1009,7 +1009,7 @@ treg({
 treg({
   baseId: "transportation-076", topic: "Transportation Engineering", subtopic: "Gravity model trip distribution",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "T_ij = P_i (A_j F_j)/sum(A F). Using attractions alone ignores travel time; using friction factors alone ignores zone size.",
+  explanation: "\\(T_{ij} = P_i (A_j F_j)/\\sum(AF)\\). Using attractions alone ignores travel time; using friction factors alone ignores zone size.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Pi = pick([1000, 1200, 1500]);
@@ -1035,7 +1035,7 @@ treg({
 treg({
   baseId: "transportation-077", topic: "Transportation Engineering", subtopic: "Logit model mode choice",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "P(auto) = e^{U_auto}/(e^{U_auto} + e^{U_transit}). The transit probability is the complement; a ratio of utilities is not a probability.",
+  explanation: "\\(P(auto) = e^{U_{auto}}/(e^{U_{auto}} + e^{U_{transit}})\\). The transit probability is the complement; a ratio of utilities is not a probability.",
   videoUrl: null, videoTitle: null
 }, function () {
   var a1 = -0.05, a2 = -0.30;

@@ -515,7 +515,7 @@ reg(buildGenerator({
 reg(buildGenerator({
   baseId: "dynamics-047", topic: "Dynamics", subtopic: "Angular displacement",
   difficulty: "easy", estimatedTimeSeconds: 60,
-  explanation: "The traps drop the 1/2, add omega_0 without multiplying by t, or use omega_0*t + alpha*t.",
+  explanation: "The traps drop the 1/2, add \\(\\omega_0\\) without multiplying by \\(t\\), or use \\(\\omega_0 t + \\alpha t\\).",
   videoUrl: null, videoTitle: null
 }, function () {
   var w0 = pick([0, 2, 4]), al = pick([10, 15, 20]), t = pick([4, 5, 6]);
@@ -593,7 +593,7 @@ reg(buildGenerator({
   var m = pick([8, 10, 12]), Ic = pick([3.0, 4.0, 5.0, 6.0]), d = pick([0.4, 0.5, 0.6]);
   var correct = Ic + m * d * d;
   var question = "A body of mass " + m + " kg has a mass moment of inertia of " + Ic.toFixed(1) + " kg\u00B7m\u00B2 about an axis through its mass center. What is its mass moment of inertia about a parallel axis " + d.toFixed(1) + " m from the mass center?";
-  var solution = C_DYN_PA + "\n\n$$I = I_c + md^2 = " + Ic.toFixed(1) + " + (" + m + ")(" + d.toFixed(1) + ")^2 = " + f2(correct) + "\\ \\text{kg\\cdot m}^2$$";
+  var solution = C_DYN_PA + "\n\n$$I = I_c + md^2 = " + Ic.toFixed(1) + " + (" + m + ")(" + d.toFixed(1) + ")^2 = " + f2(correct) + "\\ \\text{kg}\\cdot\\text{m}^2$$";
   return {
     variantKey: "m" + m + "_I" + Ic + "_d" + d,
     question: question,

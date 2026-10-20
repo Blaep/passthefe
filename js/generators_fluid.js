@@ -1174,7 +1174,7 @@ reg(buildGenerator({
   var Te = Ti + dT;
   var W = r1d(mdot * cp * dT);
   var tAdd = r1d(mdot * cp * (Ti + Te)), tTe = r1d(mdot * cp * Te), t2x = r1d(2 * W);
-  var question = "An adiabatic air compressor (c_p = " + cp + " Btu/lbm-R, constant) takes in " + mdot.toFixed(1) + " lbm/s at " + Ti + " R and delivers it at " + Te + " R. What is the magnitude of the compressor power?";
+  var question = "An adiabatic air compressor (\\(c_p\\) = " + cp + " Btu/lbm-R, constant) takes in " + mdot.toFixed(1) + " lbm/s at " + Ti + " R and delivers it at " + Te + " R. What is the magnitude of the compressor power?";
   var solution = "Refer to Compressors in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 197 (PDF page 203).\n\n" +
     "The handbook gives \\(\\dot W_{comp} = -\\dot mc_p(T_e - T_i)\\); the magnitude is:\n\n" +
     "$$\\begin{aligned}|\\dot W| &= " + mdot.toFixed(1) + "(" + cp + ")(" + Te + "-" + Ti + ") \\\\ &= " + fmt(W) + "\\ \\text{Btu/s}\\end{aligned}$$";
@@ -1231,7 +1231,7 @@ reg(buildGenerator({
   var Te = Ti - dT;
   var W = Math.round(mdot * cp * dT);
   var tAdd = Math.round(mdot * cp * (Ti + Te)), tTe = Math.round(mdot * cp * Te), tTi = Math.round(mdot * cp * Ti);
-  var question = "An adiabatic gas turbine (c_p = " + cp + " Btu/lbm-R) passes " + mdot.toFixed(1) + " lbm/s, entering at " + Ti + " R and leaving at " + Te + " R. What is the turbine power output?";
+  var question = "An adiabatic gas turbine (\\(c_p\\) = " + cp + " Btu/lbm-R) passes " + mdot.toFixed(1) + " lbm/s, entering at " + Ti + " R and leaving at " + Te + " R. What is the turbine power output?";
   var solution = "Refer to Turbines in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 199 (PDF page 205).\n\n" +
     "The handbook gives \\(\\dot W_{turb} = \\dot mc_p(T_i - T_e)\\):\n\n" +
     "$$\\begin{aligned}\\dot W &= " + mdot.toFixed(1) + "(" + cp + ")(" + Ti + "-" + Te + ") \\\\ &= " + fmt(W) + "\\ \\text{Btu/s}\\end{aligned}$$";
@@ -1317,7 +1317,7 @@ reg(buildGenerator({
   var M1 = pick([1.5, 2, 2.5, 3]), k = 1.4;
   var P = r2d(shockP21(M1, k));
   var tM2 = r2d(M1 * M1), tR = r2d(shockR21(M1, k)), tInv = r3d(1 / shockP21(M1, k));
-  var question = "For a normal shock in air (k = 1.4) with Ma_1 = " + M1.toFixed(1) + ", what is the static pressure ratio P2/P1?";
+  var question = "For a normal shock in air (k = 1.4) with \\(Ma_1\\) = " + M1.toFixed(1) + ", what is the static pressure ratio \\(P_2/P_1\\)?";
   var solution = "Refer to Normal Shock Relationships in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 195 (PDF page 201).\n\n" +
     "The handbook gives \\(P_2/P_1 = \\dfrac{1}{k+1}\\left[2kMa_1^2 - (k-1)\\right]\\):\n\n" +
     "$$\\begin{aligned}\\frac{P_2}{P_1} &= \\frac{2(1.4)(" + M1.toFixed(1) + ")^2-(1.4-1)}{1.4+1} \\\\ &= " + fmt(P) + "\\end{aligned}$$";
@@ -1343,7 +1343,7 @@ reg(buildGenerator({
   var M1 = pick([1.5, 2, 2.5, 3]), k = 1.4;
   var R = r3d(shockR21(M1, k));
   var tP = r2d(shockP21(M1, k)), tInv = r3d(1 / shockR21(M1, k)), tM = M1;
-  var question = "For a normal shock in air (k = 1.4) with Ma_1 = " + M1.toFixed(1) + ", what is the density ratio rho2/rho1?";
+  var question = "For a normal shock in air (k = 1.4) with \\(Ma_1\\) = " + M1.toFixed(1) + ", what is the density ratio \\(\\rho_2/\\rho_1\\)?";
   var solution = "Refer to Normal Shock Relationships in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 195 (PDF page 201).\n\n" +
     "The handbook gives \\(\\rho_2/\\rho_1 = V_1/V_2 = \\dfrac{(k+1)Ma_1^2}{(k-1)Ma_1^2+2}\\):\n\n" +
     "$$\\begin{aligned}\\frac{\\rho_2}{\\rho_1} &= \\frac{(1.4+1)(" + M1.toFixed(1) + ")^2}{(1.4-1)(" + M1.toFixed(1) + ")^2+2} \\\\ &= " + fmt(R) + "\\end{aligned}$$";
@@ -1431,9 +1431,9 @@ reg(buildGenerator({
   var A2in = Math.PI * D2 * D2 / 4;         // trap: areas left in in^2, head in ft
   var tIn = r2d(Cv * A2in / Math.sqrt(1 - Math.pow(A2in / (Math.PI * D1 * D1 / 4), 2)) * Math.sqrt(2 * 32.2 * dh));
   var tNoCv = r2d(A2 / Math.sqrt(1 - Math.pow(A2 / A1, 2)) * Math.sqrt(2 * 32.2 * dh));
-  var question = "A horizontal venturi meter has an inlet diameter of " + D1 + " in and a throat diameter of " + fmt(D2) + " in. The piezometric head difference between inlet and throat is " + dh.toFixed(1) + " ft of water and C_v = " + Cv + ". What is the flow rate?";
+  var question = "A horizontal venturi meter has an inlet diameter of " + D1 + " in and a throat diameter of " + fmt(D2) + " in. The piezometric head difference between inlet and throat is " + dh.toFixed(1) + " ft of water and \\(C_v\\) = " + Cv + ". What is the flow rate?";
   var solution = "Refer to Venturi Meters in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 200 (PDF page 206).\n\n" +
-    "The handbook gives \\(Q = \\dfrac{C_vA_2}{\\sqrt{1-(A_2/A_1)^2}}\\sqrt{2g\\,\\Delta h}\\). With A_1 = " + fmt(r3d(A1)) + " ft\u00B2 and A_2 = " + fmt(r3d(A2)) + " ft\u00B2:\n\n" +
+    "The handbook gives \\(Q = \\dfrac{C_vA_2}{\\sqrt{1-(A_2/A_1)^2}}\\sqrt{2g\\,\\Delta h}\\). With \\(A_1\\) = " + fmt(r3d(A1)) + " ft\u00B2 and \\(A_2\\) = " + fmt(r3d(A2)) + " ft\u00B2:\n\n" +
     "$$\\begin{aligned}Q &= \\frac{" + Cv + "(" + fmt(r3d(A2)) + ")}{\\sqrt{1-(" + fmt(r3d(A2 / A1)) + ")^2}}\\sqrt{2(32.2)(" + dh.toFixed(1) + ")} \\\\ &= " + fmt(Q) + "\\ \\text{cfs}\\end{aligned}$$";
   return {
     variantKey: "D1_" + D1 + "_b" + pdot(beta) + "_dh" + dh + "_Cv" + pdot(Cv),
@@ -1483,7 +1483,7 @@ reg(buildGenerator({
   var M1 = pick([1.5, 2, 2.5, 3]), k = 1.4;
   var M2 = r3d(shockMa2(M1, k));
   var tInv = r3d(1 / M2), t2d3 = r3d(2 / (M1 + 1)), tSqrt = r3d(Math.sqrt(1 / M1));
-  var question = "Air (k = 1.4) crosses a normal shock with Ma_1 = " + M1.toFixed(1) + ". What is Ma_2?";
+  var question = "Air (k = 1.4) crosses a normal shock with \\(Ma_1\\) = " + M1.toFixed(1) + ". What is \\(Ma_2\\)?";
   var solution = "Refer to Normal Shock Relationships in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 195 (PDF page 201).\n\n" +
     "The handbook gives \\(Ma_2 = \\sqrt{\\dfrac{(k-1)Ma_1^2+2}{2kMa_1^2-(k-1)}} = " + fmt(M2) + "\\), which is subsonic as the handbook states.";
   return {

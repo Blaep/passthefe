@@ -31,7 +31,7 @@
   var QUESTIONS = [];
   function loadQuestions(cb) {
     if (QUESTIONS.length) { cb(QUESTIONS); return; }
-    fetch("data/questions.json?v=7")
+    fetch("data/questions.json?v=8")
       .then(function (r) { return r.json(); })
       .then(function (d) { QUESTIONS = d.questions || []; cb(QUESTIONS); })
       .catch(function () { cb([]); });
@@ -4955,18 +4955,25 @@
   function renderRich(text) {
     return String(text).split(/\n\s*\n/).map(function (para) {
       if (/^\s*$/.test(para)) return "";
-      var dm = para.match(/^\s*\$\$([\s\S]+?)\$\$\s*$/);
-      if (dm) {
-        // Aligned equation blocks (parameter lists) sit left, like the handbook;
-        // standalone equations stay centered.
-        var left = dm[1].indexOf("\\begin{aligned}") !== -1 ? " left" : "";
-        return '<div class="math-display' + left + '">' + texHtml(dm[1], true) + "</div>";
-      }
-      var inner = para.split(/(\\\([\s\S]+?\\\))/g).map(function (part) {
-        var m = part.match(/^\\\(([\s\S]+?)\\\)$/);
-        return m ? texHtml(m[1], false) : escapeHtml(part).replace(/\n/g, "<br>");
+      // Split each paragraph into display-math blocks and text runs, so
+      // consecutive $$...$$ blocks (no blank line between) each render, and
+      // a $$...$$ block inside a text paragraph renders instead of printing
+      // the delimiters. Unbalanced $$ stays escaped plain text.
+      return para.split(/(\$\$[\s\S]+?\$\$)/g).map(function (part) {
+        if (!part.trim()) return "";
+        var dm = part.match(/^\$\$([\s\S]+?)\$\$$/);
+        if (dm) {
+          // Aligned equation blocks (parameter lists) sit left, like the handbook;
+          // standalone equations stay centered.
+          var left = dm[1].indexOf("\\begin{aligned}") !== -1 ? " left" : "";
+          return '<div class="math-display' + left + '">' + texHtml(dm[1], true) + "</div>";
+        }
+        var inner = part.split(/(\\\([\s\S]+?\\\))/g).map(function (seg) {
+          var m = seg.match(/^\\\(([\s\S]+?)\\\)$/);
+          return m ? texHtml(m[1], false) : escapeHtml(seg).replace(/\n/g, "<br>");
+        }).join("");
+        return "<p>" + inner + "</p>";
       }).join("");
-      return "<p>" + inner + "</p>";
     }).join("");
   }
 

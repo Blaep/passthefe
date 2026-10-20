@@ -1925,7 +1925,7 @@
     baseId: "math-052", subtopic: "Cross product", difficulty: "hard",
     tiTip: "Yes — vector menu: cross product, then read the i component.",
     estimatedTimeSeconds: 180,
-    explanation: "The i component is the determinant of the y and z entries: a_y b_z − a_z b_y. The opposite sign is the B × A value.",
+    explanation: "The i component is the determinant of the y and z entries: \\(a_y b_z - a_z b_y\\). The opposite sign is the B × A value.",
     videoUrl: null, videoTitle: null
   }, function () {
     var ax = ri(-5, 5), ay = ri(-5, 5), az = ri(-5, 5), bx = ri(-5, 5), by = ri(-5, 5), bz = ri(-5, 5);
@@ -2759,7 +2759,7 @@
   var G079 = buildGenerator({
     baseId: "math-079", subtopic: "Parallelogram, short diagonal", difficulty: "hard",
     tiTip: null, estimatedTimeSeconds: 180,
-    explanation: "d_2 carries the plus sign and gives the longer diagonal.",
+    explanation: "\\(d_2\\) carries the plus sign and gives the longer diagonal.",
     videoUrl: null, videoTitle: null
   }, function () {
     var a = ri(4, 12), b = ri(3, 10);
@@ -2774,7 +2774,7 @@
       "$$\\begin{aligned}d_1 &= \\sqrt{" + a + "^2 + " + b + "^2 - 2(" + a + ")(" + b + ")\\cos " + phiDeg + "^\\circ} \\\\ &= \\sqrt{" + rad1.toFixed(1) + "} \\\\ &= " + d1.toFixed(2) + "\\ \\text{ft}\\end{aligned}$$";
     return {
       variantKey: "a" + a + "_b" + b + "_phi" + phiDeg,
-      question: "A parallelogram has sides a = " + a + " ft and b = " + b + " ft with an interior angle φ = " + phiDeg + "° between them. What is the length of the diagonal d_1 given by the handbook's formula \\(d_1 = \\sqrt{a^2+b^2-2ab\\cos\\phi}\\)?",
+      question: "A parallelogram has sides a = " + a + " ft and b = " + b + " ft with an interior angle φ = " + phiDeg + "° between them. What is the length of the diagonal \\(d_1\\) given by the handbook's formula \\(d_1 = \\sqrt{a^2+b^2-2ab\\cos\\phi}\\)?",
       options: [
         { label: f(d1), num: d1, correct: true },
         { label: f(d2), num: d2 },                 // plus-sign diagonal
@@ -2801,7 +2801,7 @@
       "$$d_1^2+d_2^2 = 2(" + a + "^2+" + b + "^2) = " + ans + "$$";
     return {
       variantKey: "a" + a + "_b" + b,
-      question: "The sides of a parallelogram are " + a + " and " + b + ". The handbook states d_1² + d_2² = 2(a² + b²). What is d_1² + d_2²?",
+      question: "The sides of a parallelogram are " + a + " and " + b + ". The handbook states \\(d_1^2 + d_2^2 = 2(a^2 + b^2)\\). What is \\(d_1^2 + d_2^2\\)?",
       options: [
         { label: String(ans), num: ans, correct: true },
         { label: String(a * a + b * b), num: a * a + b * b },       // no factor 2
@@ -3022,7 +3022,7 @@
       "$$\\begin{aligned}A_x &= A_b\\frac{x^2}{h^2} \\\\ &= " + Ab + "\\frac{" + x + "^2}{" + h + "^2} \\\\ &= " + ans.toFixed(1) + "\\ \\text{ft}^2\\end{aligned}$$";
     return {
       variantKey: "h" + h + "_x" + x + "_Ab" + Ab,
-      question: "For a right circular cone of height " + h + " ft with a base area of " + Ab + " ft², what is the area of a cross-section parallel to the base at a distance x = " + x + " ft from the apex? (Use A_x : A_b = x² : h².)",
+      question: "For a right circular cone of height " + h + " ft with a base area of " + Ab + " ft², what is the area of a cross-section parallel to the base at a distance x = " + x + " ft from the apex? (Use \\(A_x : A_b = x^2 : h^2\\).)",
       options: [
         { label: f(ans), num: ans, correct: true },
         { label: f(t1), num: t1 },

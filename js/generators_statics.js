@@ -1117,18 +1117,18 @@ reg(buildGenerator({
     s += '<line x1="' + r1(end[0]) + '" y1="' + r1(end[1]) + '" x2="' + r1(exit[0]) + '" y2="' + r1(exit[1]) + '" stroke="#1a1a1a" stroke-width="3"/>';
     var am = [(entry[0] + start[0]) / 2, entry[1]];
     s += '<line x1="' + r1(am[0] + 55) + '" y1="' + r1(am[1]) + '" x2="' + r1(am[0] - 55) + '" y2="' + r1(am[1]) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
-    s += '<text x="' + r1(am[0]) + '" y="' + r1(am[1] - 12) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">T_tight</text>';
+    s += '<text x="' + r1(am[0]) + '" y="' + r1(am[1] - 12) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">T<tspan baseline-shift="sub" font-size="11">tight</tspan></text>';
     var em = [(end[0] + exit[0]) / 2, (end[1] + exit[1]) / 2];
     var aL0 = Math.min(45, exL * 0.3), aL1 = Math.min(135, exL * 0.85), tL = Math.min(155, exL + 14);
     s += '<line x1="' + r1(end[0] + aL0 * ux) + '" y1="' + r1(end[1] + aL0 * uy) + '" x2="' + r1(end[0] + aL1 * ux) + '" y2="' + r1(end[1] + aL1 * uy) + '" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ah)"/>';
-    s += '<text x="' + r1(end[0] + tL * ux) + '" y="' + r1(Math.min(Math.max(end[1] + tL * uy, 20), 330) + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">T_loose</text>';
+    s += '<text x="' + r1(end[0] + tL * ux) + '" y="' + r1(Math.min(Math.max(end[1] + tL * uy, 20), 330) + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1d4ed8">T<tspan baseline-shift="sub" font-size="11">loose</tspan></text>';
     s += '<text x="240" y="325" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#1a1a1a">belt wrapped ' + (n === 1 ? '1' : fmt(n)) + ' turn' + (n === 1 ? '' : 's') + ' \u00b7 \u03bc\u209b = ' + fmt(mu) + '</text>';
     return svgURL(s + SVG_FTR);
   })();
   var question = "A flat belt is about to slip relative to a drum. The belt contacts the drum over " +
     (n === 1 ? "1 full turn" : fmt(n) + " full turns") +
     " and the coefficient of static friction between the belt and the drum is " + fmt(mu) +
-    ". What is the ratio of the tight-side tension to the loose-side tension (T_tight / T_loose)?";
+    ". What is the ratio of the tight-side tension to the loose-side tension (\\(T_{tight} / T_{loose}\\))?";
   var solution = "Refer to the Belt Friction section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must solve for \\(T_{\\text{tight}}/T_{\\text{loose}}\\). Belt friction follows the exponential capstan relation:\n\n" +
     "$$\\frac{T_{\\text{tight}}}{T_{\\text{loose}}} = e^{\\mu\\beta}$$\n\n" +
@@ -1263,7 +1263,7 @@ reg(buildGenerator({
   subtopic: "Partial distributed loads",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "Partial UDLs: the resultant is w*L_loaded acting at the LOADED segment's midpoint, not the beam's. The traps are the classic centroid slips.",
+  explanation: "Partial UDLs: the resultant is \\(w L_{loaded}\\) acting at the LOADED segment's midpoint, not the beam's. The traps are the classic centroid slips.",
   videoUrl: "https://www.youtube.com/watch?v=J3s6m9rOFPY",
   videoTitle: "Beam Reactions Under a Triangular Distributed Load"
 }, function () {
@@ -1543,7 +1543,7 @@ reg(buildGenerator({
   subtopic: "Moment about a coordinate axis",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "M_y = z*F_x - x*F_z: only the x- and z-components contribute, and the order matters. The traps are the single-term and sign errors.",
+  explanation: "\\(M_y = zF_x - xF_z\\): only the x- and z-components contribute, and the order matters. The traps are the single-term and sign errors.",
   videoUrl: "https://www.youtube.com/watch?v=QNNnPZ68STI",
   videoTitle: "Moment of a Force"
 }, function () {
@@ -1626,7 +1626,7 @@ reg(buildGenerator({
   subtopic: "Tipping vs slipping",
   difficulty: "medium",
   estimatedTimeSeconds: 150,
-  explanation: "Compare P_slip = μ*W against P_tip from moment equilibrium about the tipping edge. Whichever needs the smaller P happens first.",
+  explanation: "Compare \\(P_{slip} = \\mu W\\) against \\(P_{tip}\\) from moment equilibrium about the tipping edge. Whichever needs the smaller P happens first.",
   videoUrl: "https://www.youtube.com/watch?v=GDzy4D9Llsg",
   videoTitle: "Determine the magnitude and direction of the friction force. Chapter 6: Friction"
 }, function () {
@@ -1926,7 +1926,7 @@ reg(buildGenerator({
   subtopic: "Limiting static friction",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "Limiting friction is μ_s * N - the maximum static friction before motion impends. The W/μ trap inverts the relationship.",
+  explanation: "Limiting friction is \\(\\mu_s \\cdot N\\) - the maximum static friction before motion impends. The W/μ trap inverts the relationship.",
   videoUrl: "https://www.youtube.com/watch?v=GDzy4D9Llsg",
   videoTitle: "Determine the magnitude and direction of the friction force. Chapter 6: Friction"
 }, function () {
@@ -2030,7 +2030,7 @@ reg(buildGenerator({
   subtopic: "Product of inertia (parallel axis)",
   difficulty: "medium",
   estimatedTimeSeconds: 120,
-  explanation: "I_xy = I_xc_yc + A*d_x*d_y: for a rectangle with sides parallel to the axes, the centroidal product is zero and only the transfer term survives.",
+  explanation: "\\(I_{xy} = I_{x_c y_c} + A d_x d_y\\): for a rectangle with sides parallel to the axes, the centroidal product is zero and only the transfer term survives.",
   videoUrl: "https://www.youtube.com/watch?v=Bls5KnQdCo0",
   videoTitle: "Statics: Lesson 67 - Introduction to Area Moment of Inertia"
 }, function () {
@@ -2083,7 +2083,7 @@ reg(buildGenerator({
   })();
   var question = "A rectangle " + b + " in. wide (x-direction) by " + h +
     " in. tall (y-direction) has its centroid at (" + fmt(dx) + " in., " + fmt(dy) +
-    " in.) relative to the origin O. What is the product of inertia I_xy of the rectangle about the x- and y-axes through O?";
+    " in.) relative to the origin O. What is the product of inertia \\(I_{xy}\\) of the rectangle about the x- and y-axes through O?";
   var solution = "Refer to the Product of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\n" +
     "Ultimately, we must solve for \\(I_{xy}\\). The parallel-axis relation for the product of inertia is:\n\n" +
     "$$I_{xy} = I_{x_c y_c} + A\\,d_x d_y$$\n\n" +
@@ -2237,7 +2237,7 @@ reg(buildGenerator({
   subtopic: "Polar moment of inertia",
   difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "J = I_x + I_y, the sum - not the difference. The difference trap is the formula for the in-plane principal values, not J.",
+  explanation: "\\(J = I_x + I_y\\), the sum - not the difference. The difference trap is the formula for the in-plane principal values, not J.",
   videoUrl: "https://www.youtube.com/watch?v=Bls5KnQdCo0",
   videoTitle: "Statics: Lesson 67 - Introduction to Area Moment of Inertia"
 }, function () {
@@ -2281,7 +2281,7 @@ reg(buildGenerator({
   subtopic: "Single equivalent force (coplanar system)",
   difficulty: "hard",
   estimatedTimeSeconds: 180,
-  explanation: "The resultant's line of action comes from the moment equation: d = M_O / R. The traps use the scalar sum of forces or the wrong moment arm.",
+  explanation: "The resultant's line of action comes from the moment equation: \\(d = M_O / R\\). The traps use the scalar sum of forces or the wrong moment arm.",
   videoUrl: "https://www.youtube.com/watch?v=R5NVwAb94Yo",
   videoTitle: "How to Find the Resultant of Three Force Vectors – Statics Components and Resultants Problem 18"
 }, function () {
@@ -2952,7 +2952,7 @@ reg(buildGenerator({ baseId: "statics-048", subtopic: "Radius of gyration", diff
   var tIA = (I / A).toFixed(2);
   var tIr = (I / r).toFixed(1);
   var t4 = Math.round(r2 * r2).toLocaleString("en-US");
-  var question = "A section has I_x = " + I.toLocaleString("en-US") + " in.\u2074 and an area of " + A + " in.\u00B2. What is the radius of gyration r_x?";
+  var question = "A section has \\(I_x\\) = " + I.toLocaleString("en-US") + " in.\u2074 and an area of " + A + " in.\u00B2. What is the radius of gyration \\(r_x\\)?";
   var solution = "Refer to Radius of Gyration in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
     "$$r_x = \\sqrt{\\frac{I_x}{A}} = \\sqrt{\\frac{" + I.toLocaleString("en-US") + "}{" + A + "}} = \\sqrt{" + r2 + "} = " + ans + "\\ \\text{in.}$$";
   return { variantKey: "A" + A + "_r" + r2,
@@ -2978,7 +2978,7 @@ reg(buildGenerator({ baseId: "statics-049", subtopic: "Polar moment of inertia o
   var tX = Math.sqrt(Ix / A).toFixed(2);
   var tDiff = Math.sqrt(Math.abs(Ix - Iy) / A).toFixed(2);
   var tNoRoot = ((Ix + Iy) / A).toFixed(2);
-  var question = "An area of " + A + " in.\u00B2 has I_x = " + Ix + " in.\u2074 and I_y = " + Iy + " in.\u2074. What is its polar radius of gyration r_p?";
+  var question = "An area of " + A + " in.² has \\(I_x\\) = " + Ix + " in.⁴ and \\(I_y\\) = " + Iy + " in.\u2074. What is its polar radius of gyration \\(r_p\\)?";
   var solution = "Refer to Polar moment of inertia and Radius of Gyration in the Statics section of the FE Reference Handbook (v10.6), printed page 97 (PDF page 103).\n\n" +
     "$$r_p = \\sqrt{\\frac{J}{A}} = \\sqrt{\\frac{I_x + I_y}{A}} = \\sqrt{\\frac{" + Ix + " + " + Iy + "}{" + A + "}} = " + ans + "\\ \\text{in.}$$";
   return { variantKey: "A" + A + "_" + Ix + "_" + Iy,
@@ -2994,7 +2994,7 @@ reg(buildGenerator({ baseId: "statics-049", subtopic: "Polar moment of inertia o
 // Limiting friction F = mu N.
 reg(buildGenerator({ baseId: "statics-050", subtopic: "Limiting friction force", difficulty: "easy",
   estimatedTimeSeconds: 60,
-  explanation: "F_max = mu_s N. Traps: half it, report N, or divide by mu."
+  explanation: "\\(F_{max} = \\mu_s N\\). Traps: half it, report \\(N\\), or divide by \\(\\mu\\)."
 }, function () {
   var W = pick([400, 500, 250]);
   var mu = pick([0.35, 0.3, 0.4]);
@@ -3080,7 +3080,7 @@ reg(buildGenerator({ baseId: "statics-054", subtopic: "Moment of a force about t
   var tFlip = -Mz;
   var tSwap = x * Fx - y * Fy;
   var tPlus = x * Fy + y * Fx;
-  var question = "A force F = (" + Fx + ", " + Fy + ", 2) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 1) ft. What is the z-component of the moment about the origin, M_z?";
+  var question = "A force F = (" + Fx + ", " + Fy + ", 2) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 1) ft. What is the z-component of the moment about the origin, \\(M_z\\)?";
   var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
     "The z-component of \\(\\mathbf{r} \\times \\mathbf{F}\\) is \\(xF_y - yF_x\\).\n\n" +
     "$$M_z = (" + x + ")(" + Fy + ") - (" + y + ")(" + Fx + ") = " + Mz + "\\ \\text{ft-lb}$$";
@@ -3106,7 +3106,7 @@ reg(buildGenerator({ baseId: "statics-055", subtopic: "Moment of a force about t
   var tFlip = -Mz;
   var tNoNeg = x * Fy + y * Fx;             // sign slip on the negative y
   var tSwap = x * Fx - y * Fy;
-  var question = "A force F = (" + Fx + ", " + Fy + ", " + MINUS + "1) lb acts at the point (x, y, z) = (" + x + ", " + MINUS + Math.abs(y) + ", 3) ft. What is the z-component of the moment about the origin, M_z?";
+  var question = "A force F = (" + Fx + ", " + Fy + ", " + MINUS + "1) lb acts at the point (x, y, z) = (" + x + ", " + MINUS + Math.abs(y) + ", 3) ft. What is the z-component of the moment about the origin, \\(M_z\\)?";
   var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
     "$$M_z = xF_y - yF_x = (" + x + ")(" + Fy + ") - (" + y + ")(" + Fx + ") = " + Mz + "\\ \\text{ft-lb}$$";
   return { variantKey: x + "_" + y + "_" + Fx + "_" + Fy,
@@ -3131,7 +3131,7 @@ reg(buildGenerator({ baseId: "statics-056", subtopic: "Moment of a force about t
   var tFlip = -Mz;
   var tNoNeg = x * Fy + y * Fx;
   var tSwap = x * Fx + y * Fy;
-  var question = "A force F = (" + MINUS + Math.abs(Fx) + ", " + Fy + ", 1) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 2) ft. What is the z-component of the moment about the origin, M_z?";
+  var question = "A force F = (" + MINUS + Math.abs(Fx) + ", " + Fy + ", 1) lb acts at the point (x, y, z) = (" + x + ", " + y + ", 2) ft. What is the z-component of the moment about the origin, \\(M_z\\)?";
   var solution = "Refer to Moments (Couples) in the Statics section of the FE Reference Handbook (v10.6), printed page 95 (PDF page 101).\n\n" +
     "$$M_z = xF_y - yF_x = (" + x + ")(" + Fy + ") - (" + y + ")(" + MINUS + Math.abs(Fx) + ") = " + Mz + "\\ \\text{ft-lb}$$";
   return { variantKey: x + "_" + y + "_" + Fx + "_" + Fy,
