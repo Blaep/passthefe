@@ -1715,11 +1715,15 @@ reg(buildGenerator({
     " N·m while the shaft simultaneously transmits a torque of " + Tq +
     " N·m. Determine the maximum shear stress in the shaft on the Tresca (maximum-shear-stress) basis.";
   var solution = "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
-    "Ultimately, we must solve for \\(\\tau_{max}\\), the maximum shear stress. Bending produces a normal stress on the outer fiber:\n\n" +
-    "$$\\sigma_x = \\frac{32M}{\\pi d^3} = \\frac{32(" + M + ")}{\\pi(" + fmt(d) + ")^3} = " + fmt(sx) + "\\ \\text{MPa}$$\n\n" +
+    "Ultimately, we must solve for \\(\\tau_{max}\\), the maximum shear stress. Bending produces a normal stress on the outer fiber.\n\n" +
+    "The handbook (Stresses in Beams, printed p. 136 / PDF p. 142) prints the maximum bending stress equation in this exact form:\n\n" +
+    "$$\\sigma_x = \\pm \\frac{Mc}{I}$$\n\n" +
+    "The working form \\(32M/(\\pi d^3)\\) is derived from this printed equation, not printed verbatim. For a solid circular cross-section, the Statics centroids and moments of inertia table (printed p. 100 / PDF p. 106) gives \\(I = \\pi a^4/4\\) for a circle of radius \\(a\\). With \\(a = d/2\\): \\(I = \\pi d^4/64\\), and the outer fiber is at \\(c = d/2\\). Substituting into the printed equation:\n\n" +
+    "$$\\sigma_x = \\frac{M(d/2)}{\\pi d^4/64} = \\frac{32M}{\\pi d^3}$$\n\n" +
+    "$$\\sigma_x = \\frac{32(" + M + ")}{\\pi(" + fmt(d) + ")^3} = " + fmt(sx) + "\\ \\text{MPa}$$\n\n" +
     "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
-    "Torsion produces a shear stress on the outer fiber:\n\n" +
-    "$$\\tau_{xy} = \\frac{16T}{\\pi d^3} = \\frac{16(" + Tq + ")}{\\pi(" + fmt(d) + ")^3} = " + fmt(txy) + "\\ \\text{MPa}$$\n\n" +
+    "Torsion produces a shear stress on the outer fiber. The handbook (Torsion, printed p. 134 / PDF p. 140) prints \\(\\tau = Tr/J\\), where \\(J\\) is the polar moment of inertia. The working form \\(16T/(\\pi d^3)\\) is derived from this printed equation, not printed verbatim. The Statics centroids table (printed p. 100 / PDF p. 106) gives the circle's polar moment as \\(J = \\pi(a^4-b^4)/2\\); with no hole (\\(b = 0\\)) and radius \\(a = d/2\\), \\(J = \\pi d^4/32\\), and the outer fiber is at \\(r = d/2\\). Substituting:\n\n" +
+    "$$\\tau_{xy} = \\frac{T(d/2)}{\\pi d^4/32} = \\frac{16T}{\\pi d^3} = \\frac{16(" + Tq + ")}{\\pi(" + fmt(d) + ")^3} = " + fmt(txy) + "\\ \\text{MPa}$$\n\n" +
     "Refer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n" +
     "$$\\sigma_{1,2} = \\frac{\\sigma_x}{2} \\pm \\sqrt{\\left(\\frac{\\sigma_x}{2}\\right)^2 + \\tau_{xy}^2} = " + fmt(r2(sx / 2)) + " \\pm \\sqrt{(" + fmt(r2(sx / 2)) + ")^2 + (" + fmt(txy) + ")^2} = " + fmt(r2(sx / 2)) + " \\pm " + fmt(taumax) + "$$\n\n" +
     "$$(\\sigma_1) = " + fmt(sig1) + "\\ \\text{MPa}, \\quad (\\sigma_2) = " + texNum(sig2) + "\\ \\text{MPa}$$\n\n" +
