@@ -382,8 +382,9 @@ wreg({
 wreg({
   baseId: "water-062", topic: "Water Resources & Environmental", subtopic: "Lime-soda softening (CO2 and calcium carbonate hardness)",
   difficulty: "hard", estimatedTimeSeconds: 150,
-  explanation: "Lime as Ca(OH)2: CO2 x 74/44 plus Ca carbonate hardness (as CaCO3) x 74/100. Forgetting the CO2 term or using the CaCO3 equivalent weight on CO2 gives the traps.",
-  videoUrl: null, videoTitle: null
+  explanation: "Lime dose = CO2 x 74/44 + calcium hardness x 74/100. Why these factors: rows 1 and 2 of the printed Lime-Soda Softening Equations table (handbook p.348) each use 1 mole of lime per mole removed. The arrow means reacts to form, and the 2 before CaCO3 is product, not lime. With the handbook weights (CO2 44, lime 74, CaCO3 100), each 44 mg of CO2 needs 74 mg of lime and each 100 mg of hardness reported as CaCO3 needs 74 mg of lime. As-CaCO3 is only the reporting basis. Traps: forgetting the CO2 term or using the 100 basis on CO2. The linked video works a larger plant-design example (magnesium and soda ash included) with the same reaction stoichiometry.",
+  videoUrl: "https://www.youtube.com/watch?v=cHeqXRp2eJI",
+  videoTitle: "ENE 483: Lime Softening Example: Calculating Stoichiometric Amounts of Lime and Soda ash"
 }, function () {
   var co2 = pick([15, 20, 25]), caH = pick([100, 120, 140]);
   var limeCO2 = co2 * 74 / 44, limeCa = caH * 74 / 100;
@@ -422,19 +423,19 @@ wreg({
 wreg({
   baseId: "water-064", topic: "Water Resources & Environmental", subtopic: "Rapid filtration rate (one filter in backwash)",
   difficulty: "medium", estimatedTimeSeconds: 120,
-  explanation: "With one of four filters out, the full flow passes through three filters: rate = Q/(3A), converted from m/s to m/h. Dividing by all four areas gives the trap.",
+  explanation: "With one of four filters out, the full flow passes through three filters: rate = Q/(3A) in m/s, the handbook unit for approach velocity. Dividing by all four areas gives the trap.",
   videoUrl: null, videoTitle: null
 }, function () {
   var Q = pick([0.30, 0.35, 0.40]), A = pick([50, 60, 70]), N = 4;
-  var correct = Q / ((N - 1) * A) * 3600;
-  var question = "A treatment plant passes " + Q.toFixed(2) + " m\\(^3\\)/s through four identical rapid sand filters, each with a plan area of " + A + " m\\(^2\\). With one filter out of service for backwashing, what is the filtration rate through each of the other three?";
-  var solution = CT("water-064") + "\n\n$$v = \\frac{Q}{3A} = \\frac{" + Q.toFixed(2) + "}{3(" + A + ")} = " + (Q / (3 * A)).toExponential(3) + "\\ \\text{m/s} \\times 3600 = " + f1(correct) + "\\ \\text{m/h}$$";
+  var correct = Q / ((N - 1) * A);
+  var question = "A treatment plant passes " + Q.toFixed(2) + " m\\(^3\\)/s through four identical rapid sand filters, each with a plan area of " + A + " m\\(^2\\). With one filter out of service for backwashing, what is the filtration rate through each of the other three, in m/s?";
+  var solution = CT("water-064") + "\n\n$$v = \\frac{Q}{3A} = \\frac{" + Q.toFixed(2) + "}{3(" + A + ")} = " + (Q / (3 * A)).toExponential(3) + "\\ \\text{m/s} \\approx " + correct.toFixed(4) + "\\ \\text{m/s}$$";
   return { variantKey: "Q" + Q + "_A" + A, question: question,
     options: [
-      { label: f1(correct) + " m/h", num: correct, correct: true },
-      { label: f1(Q / (N * A) * 3600) + " m/h", num: Q / (N * A) * 3600, correct: false },
-      { label: (Q / ((N - 1) * A)).toFixed(4) + " m/s", num: Q / ((N - 1) * A), correct: false },
-      { label: f1(2 * correct) + " m/h", num: 2 * correct, correct: false }
+      { label: correct.toFixed(4) + " m/s", num: correct, correct: true },
+      { label: (Q / (N * A)).toFixed(4) + " m/s", num: Q / (N * A), correct: false },
+      { label: (2 * correct).toFixed(4) + " m/s", num: 2 * correct, correct: false },
+      { label: (Q / A).toFixed(4) + " m/s", num: Q / A, correct: false }
     ], solution: solution };
 });
 wreg({
