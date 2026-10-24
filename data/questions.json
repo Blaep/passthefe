@@ -4700,8 +4700,8 @@
     "0.049 m"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUltimately, we must solve for \\(C\\), the combined correction:\n\n$$C = 0.0675\\,D^2$$\n\nwhere \\(D\\) is in kilometers and \\(C\\) is in meters. List the parameters in order to solve for \\(C\\):\n\n$$\\begin{aligned}\nD &= 1.2\\ \\text{km} \\\\\nC &= ?\n\\end{aligned}$$\n\n$$(C) = (0.0675)(D)^2 \\rightarrow (C) = (0.0675)(1.2)^2$$\n\n$$(C) = (0.0675)(1.44) = 0.097\\ \\text{m}$$",
-   "explanation": "The 0.0675D^2 formula needs D in km — entering meters gives the absurd 97.2 m. Curvature dominates; refraction only shaves off about one-seventh.",
+   "solution": "The combined curvature-refraction correction is a standard surveying relation - it is not printed in the FE Reference Handbook 10.6 (the handbook's Civil Engineering chapter has no surveying section), so it is worth memorizing. Surveying references give it as \\(C = 0.0675\\,D^2\\) with \\(D\\) in kilometers and \\(C\\) in meters: the curvature error alone is \\(0.0785\\,D^2\\), and refraction cancels about one-seventh of it.\n\nWhy there is a correction: the telescope's line of sight is straight, but the earth curves down away from it, so a distant rod is read too high (curvature). The air bends the light slightly back down (refraction), canceling part of that effect.\n\nUltimately, we must solve for \\(C\\). List the parameters in order to solve for \\(C\\):\n\n$$\\begin{aligned}\nD &= 1.2\\ \\text{km} \\\\\nC &= ?\n\\end{aligned}$$\n\n$$(C) = (0.0675)(D)^2$$\n\n$$(C) = (0.0675)(1.2)^2$$\n\n$$(C) = (0.0675)(1.44) = 0.097\\ \\text{m}$$",
+   "explanation": "The 0.0675D^2 formula needs D in km - entering meters (1200) gives 0.0675 × 1,440,000 = 97,200 m, the absurd result that flags the unit slip. Curvature dominates; refraction only cancels about one-seventh of it. This relation is standard surveying practice and is not printed in the handbook.",
    "videoUrl": "https://www.youtube.com/watch?v=M_DceYA6g-o",
    "videoTitle": "Reciprocal Levelling : Curvature and Refraction Correction"
   },
