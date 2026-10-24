@@ -14220,6 +14220,59 @@
    "diagram": "diagrams/surveying-051.svg"
   },
   {
+   "answerIndex": 0,
+   "choices": [
+    "50.240 m",
+    "50.630 m",
+    "51.460 m",
+    "48.540 m"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 120,
+   "explanation": "Height of collimation = known RL + backsight; every reading from the same setup subtracts from that one HoC. 51.460 m is the HoC itself, 50.630 m is station B, and 48.540 m subtracts the backsight.",
+   "id": "surveying-052",
+   "question": "A leveling run is booked in the table below. The reduced level (RL) of BM-A is 50.000 m and the instrument stays at one setup for all three readings. What is the RL of station C?",
+   "solution": "Leveling booking tables (BS/IS/FS/HoC/RL) are standard surveying practice; this method is not printed in the FE Reference Handbook (v10.6).\n\nHeight of collimation (HoC) = RL + backsight. Every reading taken from the same setup subtracts from that one HoC.\n\n1. HoC \\(= 50.000 + 1.46 = 51.460\\ \\text{m}\\)\n2. RL of B \\(= 51.460 - 0.83 = 50.630\\ \\text{m}\\)\n3. RL of C \\(= 51.460 - 1.22 = 50.240\\ \\text{m}\\)\n\nCompleted table (rows in station order BM-A, B, C):\n\n$${\\small \\begin{array}{c|c|c|c|c} \\textbf{BS} & \\textbf{IS} & \\textbf{FS} & \\textbf{HoC} & \\textbf{RL} \\\\ \\hline 1.46 & - & - & 51.460 & 50.000 \\\\ - & 0.83 & - & & 50.630 \\\\ - & - & 1.22 & & 50.240 \\\\ \\hline 1.46 & & 1.22 & & \\end{array}}$$\n\nArithmetic check: \\(\\Sigma BS - \\Sigma FS = 1.46 - 1.22 = +0.24\\ \\text{m} = 50.240 - 50.000\\).",
+   "subtopic": "Height of collimation booking table, single setup",
+   "topic": "Surveying",
+   "diagram": "diagrams/surveying-052.svg"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "86.370 m",
+    "87.110 m",
+    "88.080 m",
+    "87.630 m"
+   ],
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 180,
+   "explanation": "The CP1 foresight (1.68) comes off the first HoC (88.320); the CP1 backsight (1.44) starts the second HoC (88.080). 87.630 m flips the sign of the -0.63 m difference, 88.080 m is the second HoC, and 87.110 m is IS2.",
+   "id": "surveying-053",
+   "question": "A leveling run from BM-1 to BM-2 is booked in the table below with one change point (CP1), where the instrument is moved to a new setup. The RL of BM-1 is 87.000 m. What is the RL of BM-2?",
+   "solution": "Leveling booking tables (BS/IS/FS/HoC/RL) are standard surveying practice; this method is not printed in the FE Reference Handbook (v10.6).\n\nAt a change point (CP) the foresight closes the old setup and the backsight opens the new one.\n\n1. HoC at setup 1 \\(= 87.000 + 1.32 = 88.320\\ \\text{m}\\)\n2. RL of CP1 \\(= 88.320 - 1.68 = 86.640\\ \\text{m}\\)\n3. HoC at setup 2 \\(= 86.640 + 1.44 = 88.080\\ \\text{m}\\)\n4. RL of BM-2 \\(= 88.080 - 1.71 = 86.370\\ \\text{m}\\)\n\nCompleted table (rows in station order BM-1, IS1, CP1, IS2, BM-2):\n\n$${\\small \\begin{array}{c|c|c|c|c} \\textbf{BS} & \\textbf{IS} & \\textbf{FS} & \\textbf{HoC} & \\textbf{RL} \\\\ \\hline 1.32 & - & - & 88.320 & 87.000 \\\\ - & 1.05 & - & & 87.270 \\\\ 1.44 & - & 1.68 & 88.080 & 86.640 \\\\ - & 0.97 & - & & 87.110 \\\\ - & - & 1.71 & & 86.370 \\\\ \\hline 2.76 & & 3.39 & & \\end{array}}$$\n\nArithmetic check: \\(\\Sigma BS - \\Sigma FS = 2.76 - 3.39 = -0.63\\ \\text{m} = 86.370 - 87.000\\). The check verifies the booking arithmetic, not field blunders.",
+   "subtopic": "Height of collimation booking table with change point",
+   "topic": "Surveying",
+   "diagram": "diagrams/surveying-053.svg"
+  },
+  {
+   "answerIndex": 0,
+   "choices": [
+    "Yes: \\(\\Sigma BS - \\Sigma FS = +0.33\\ \\text{m}\\), matching \\(50.330 - 50.000 = +0.33\\ \\text{m}\\)",
+    "No: the backsight and foresight totals must be equal",
+    "Yes: because \\(\\Sigma BS + \\Sigma FS = 8.77\\ \\text{m}\\) equals twice the rise",
+    "No: the check only works if the run closes back on the starting BM"
+   ],
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "explanation": "The check is sum(BS) - sum(FS) = last RL - first RL. The totals need not be equal, and closing back on the starting BM is a separate closure check, not part of this arithmetic check.",
+   "id": "surveying-054",
+   "question": "A leveling run from BM-A (RL 50.000 m) to BM-B is booked with total backsight \\(\\Sigma BS = 4.55\\ \\text{m}\\) and total foresight \\(\\Sigma FS = 4.22\\ \\text{m}\\). The booked RL of BM-B is 50.330 m. Does the arithmetic check pass?",
+   "solution": "The arithmetic check is standard leveling-booking practice; it is not printed in the FE Reference Handbook (v10.6).\n\n1. \\(\\Sigma BS - \\Sigma FS = 4.55 - 4.22 = +0.33\\ \\text{m}\\)\n2. Last RL - first RL \\(= 50.330 - 50.000 = +0.33\\ \\text{m}\\)\n3. The two differences match, so the booking arithmetic checks out.\n\nIntermediate sights do not enter the check, and equal totals are not required: a net rise is normal when the closing BM is higher. The check verifies the arithmetic only; it does not catch field blunders.",
+   "subtopic": "Leveling arithmetic check, sum BS minus sum FS",
+   "topic": "Surveying"
+  },
+  {
    "answerIndex": 1,
    "choices": [
     "17 days",

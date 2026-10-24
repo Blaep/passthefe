@@ -282,7 +282,7 @@
     {
      "code": "9E",
      "label": "Leveling (e.g., differential, elevations, percent grades)",
-     "count": 5
+     "count": 8
     }
    ]
   },
@@ -1317,6 +1317,9 @@
   "surveying-049": "9C",
   "surveying-050": "9A",
   "surveying-051": "9A",
+  "surveying-052": "9E",
+  "surveying-053": "9E",
+  "surveying-054": "9E",
   "construction-041": "14C",
   "construction-042": "14C",
   "construction-043": "14C",
