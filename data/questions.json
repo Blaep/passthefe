@@ -15263,7 +15263,8 @@
    "question": "A 12 in. pipe (1.0 ft) is 2000 ft long with C = 120 and carries 3.0 cfs. Using the handbook head loss equation, what is hf?",
    "solution": "Refer to Circular Pipe Head Loss Equation (Head Loss Expressed in Feet) in the Civil Engineering: Hydrology/Water Resources section of the FE Reference Handbook (v10.6), printed page 304 (PDF page 310).\n\n$$\\begin{aligned}h_f &= \\frac{4.73L}{C^{1.852}D^{4.87}}Q^{1.852} \\\\ &= \\frac{4.73(2000)}{120^{1.852}(1.0)^{4.87}}(3.0)^{1.852} \\\\ &= 10.2\\ \\text{ft}\\end{aligned}$$",
    "subtopic": "Hazen-Williams head loss",
-   "topic": "Water Resources"
+   "topic": "Water Resources",
+   "diagram": "diagrams/water-093.svg"
   },
   {
    "answerIndex": 0,
@@ -22222,7 +22223,8 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Orifices section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = C_d A\\sqrt{2gh} = 0.60(0.05)\\sqrt{2(9.81)(3)} = 0.03(7.67) = 0.23\\ \\text{m}^3/\\text{s}$$",
-   "explanation": "√(2gh) = 7.67 m/s; Q = Cd·A·√(2gh) = 0.23 m³/s."
+   "explanation": "√(2gh) = 7.67 m/s; Q = Cd·A·√(2gh) = 0.23 m³/s.",
+   "diagram": "diagrams/water-109.svg"
   },
   {
    "id": "geotech-095",
@@ -22273,7 +22275,8 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Continuity Equation section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nVelocity from continuity, then velocity head:\n\n$$V = \\frac{Q}{A} = \\frac{0.02}{\\pi(0.05)^2} = 2.55\\ \\text{m/s};\\quad \\frac{V^2}{2g} = \\frac{2.55^2}{2(9.81)} = 0.33\\ \\text{m}$$",
-   "explanation": "A = 7.85×10⁻³ m², V = 2.55 m/s, velocity head = 0.33 m."
+   "explanation": "A = 7.85×10⁻³ m², V = 2.55 m/s, velocity head = 0.33 m.",
+   "diagram": "diagrams/fluid-076.svg"
   },
   {
    "id": "geotech-096",
@@ -22479,7 +22482,8 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q_{ult} = \\gamma D_f N_q + 0.5\\gamma B N_\\gamma = 18(1)(18) + 0.5(18)(2)(15) = 324 + 270 = 594\\ \\text{kPa}$$",
-   "explanation": "Sum the surcharge and width terms (c = 0): 594 kPa."
+   "explanation": "Sum the surcharge and width terms (c = 0): 594 kPa.",
+   "diagram": "diagrams/geotech-107.svg"
   },
   {
    "id": "geotech-108",
@@ -22530,7 +22534,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q = \\frac{P}{B L} = \\frac{800}{2(2)} = 200\\ \\text{kPa}$$",
-   "explanation": "q = P/area = 200 kPa."
+   "explanation": "q = P/area = 200 kPa.",
+   "diagram": "diagrams/geotech-110.svg"
   },
   {
    "id": "geotech-111",
@@ -22922,7 +22927,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Weir Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = 1.84 L H^{1.5} = 1.84(2)(0.30)^{1.5} = 0.605\\ \\text{m}^3/\\text{s}$$",
-   "explanation": "Q = 1.84·L·H^1.5 = 0.605 m³/s."
+   "explanation": "Q = 1.84·L·H^1.5 = 0.605 m³/s.",
+   "diagram": "diagrams/water-112.svg"
   },
   {
    "id": "water-113",
@@ -23245,7 +23251,8 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Deep Foundations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q_s = \\alpha c (\\pi D L) = 0.5(50)(\\pi)(0.4)(10) = 0.5(50)(12.57) = 314\\ \\text{kN}$$",
-   "explanation": "Qs = α·c·(surface area) = 314 kN."
+   "explanation": "Qs = α·c·(surface area) = 314 kN.",
+   "diagram": "diagrams/geotech-120.svg"
   },
   {
    "id": "geotech-121",
@@ -23262,7 +23269,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Deep Foundations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q_p = N_c c A_p = 9(50)\\left(\\frac{\\pi(0.4)^2}{4}\\right) = 9(50)(0.1257) = 56.5\\ \\text{kN}$$",
-   "explanation": "Qp = Nc·c·(tip area) = 56.5 kN."
+   "explanation": "Qp = Nc·c·(tip area) = 56.5 kN.",
+   "diagram": "diagrams/geotech-121.svg"
   },
   {
    "id": "geotech-122",
@@ -23398,7 +23406,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Permeability (Darcy's Law) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q = k H \\frac{N_f}{N_d} = (1\\times10^{-5})(6)\\frac{4}{12} = 2.0\\times10^{-5}\\ \\text{m}^3/\\text{s per m}$$",
-   "explanation": "q = kH(Nf/Nd) = 2.0×10⁻⁵ m³/s per meter."
+   "explanation": "q = kH(Nf/Nd) = 2.0×10⁻⁵ m³/s per meter.",
+   "diagram": "diagrams/geotech-129.svg"
   },
   {
    "id": "geotech-130",
