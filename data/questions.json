@@ -22274,6 +22274,907 @@
    "answerIndex": 0,
    "solution": "Refer to the Continuity Equation section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nVelocity from continuity, then velocity head:\n\n$$V = \\frac{Q}{A} = \\frac{0.02}{\\pi(0.05)^2} = 2.55\\ \\text{m/s};\\quad \\frac{V^2}{2g} = \\frac{2.55^2}{2(9.81)} = 0.33\\ \\text{m}$$",
    "explanation": "A = 7.85×10⁻³ m², V = 2.55 m/s, velocity head = 0.33 m."
+  },
+  {
+   "id": "geotech-096",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Void ratio from porosity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A soil has a porosity of 0.40. What is its void ratio?",
+   "choices": [
+    "0.667",
+    "0.40",
+    "0.60",
+    "1.67"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$e = \\frac{n}{1-n} = \\frac{0.40}{0.60} = 0.667$$",
+   "explanation": "e = n/(1−n) = 0.667."
+  },
+  {
+   "id": "geotech-097",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Porosity from void ratio",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A soil has a void ratio of 0.60. What is its porosity?",
+   "choices": [
+    "0.60",
+    "0.375",
+    "0.40",
+    "1.60"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$n = \\frac{e}{1+e} = \\frac{0.60}{1.60} = 0.375$$",
+   "explanation": "n = e/(1+e) = 0.375."
+  },
+  {
+   "id": "geotech-098",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Dry unit weight",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A soil has a total unit weight of 19.5 kN/m³ at a water content of 15%. What is the dry unit weight?",
+   "choices": [
+    "22.4 kN/m³",
+    "16.58 kN/m³",
+    "16.96 kN/m³",
+    "19.5 kN/m³"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\gamma_d = \\frac{\\gamma_t}{1+w} = \\frac{19.5}{1.15} = 16.96\\ \\text{kN/m}^3$$",
+   "explanation": "γd = γt/(1+w) = 16.96 kN/m³."
+  },
+  {
+   "id": "geotech-099",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Degree of saturation",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A soil has w = 20%, Gs = 2.70, and e = 0.65. What is the degree of saturation?",
+   "choices": [
+    "54.0%",
+    "100%",
+    "77.1%",
+    "83.1%"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$S = \\frac{w\\,G_s}{e} = \\frac{0.20(2.70)}{0.65} = 0.831 = 83.1\\%$$",
+   "explanation": "S = wGs/e = 83.1%."
+  },
+  {
+   "id": "geotech-100",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Saturated unit weight",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A saturated soil has Gs = 2.70 and e = 0.70 (γw = 9.81 kN/m³). What is its saturated unit weight?",
+   "choices": [
+    "19.62 kN/m³",
+    "15.59 kN/m³",
+    "26.49 kN/m³",
+    "9.81 kN/m³"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Phase Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\gamma_{sat} = \\frac{(G_s + e)\\gamma_w}{1+e} = \\frac{(3.40)(9.81)}{1.70} = 19.62\\ \\text{kN/m}^3$$",
+   "explanation": "γsat = (Gs+e)γw/(1+e) = 19.62 kN/m³."
+  },
+  {
+   "id": "geotech-101",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Effective stress (water table at surface)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "At 6 m depth in a saturated soil (γsat = 19 kN/m³) with the water table at the surface, what is the effective vertical stress? (γw = 9.81)",
+   "choices": [
+    "114 kPa",
+    "55.1 kPa",
+    "58.9 kPa",
+    "48.0 kPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\sigma' = \\sigma - u = (19)(6) - (9.81)(6) = 114 - 58.9 = 55.1\\ \\text{kPa}$$",
+   "explanation": "σ' = σ − u = 55.1 kPa (equals submerged weight × depth)."
+  },
+  {
+   "id": "geotech-102",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Effective stress with water table below surface",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A profile has 3 m of dry sand (γ = 17 kN/m³) over 2 m of saturated sand (γsat = 20 kN/m³) to the point of interest; the water table is at 3 m. What is the effective stress at 5 m? (γw = 9.81)",
+   "choices": [
+    "91.8 kPa",
+    "51.0 kPa",
+    "71.4 kPa",
+    "100 kPa"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\sigma' = (17)(3) + (20-9.81)(2) = 51 + 20.4 = 71.4\\ \\text{kPa}$$",
+   "explanation": "Add dry overburden plus submerged weight below the water table: 71.4 kPa."
+  },
+  {
+   "id": "geotech-103",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Rankine active coefficient",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "For a cohesionless soil with φ = 30°, what is the Rankine active earth pressure coefficient?",
+   "choices": [
+    "3.00",
+    "0.500",
+    "1.00",
+    "0.333"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$K_a = \\tan^2\\!\\left(45 - \\tfrac{\\phi}{2}\\right) = \\tan^2 30^\\circ = 0.333$$",
+   "explanation": "Ka = tan²(45−φ/2) = 0.333."
+  },
+  {
+   "id": "geotech-104",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Rankine passive coefficient",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "For a cohesionless soil with φ = 30°, what is the Rankine passive earth pressure coefficient?",
+   "choices": [
+    "3.00",
+    "0.333",
+    "1.00",
+    "2.00"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$K_p = \\tan^2\\!\\left(45 + \\tfrac{\\phi}{2}\\right) = \\tan^2 60^\\circ = 3.00$$",
+   "explanation": "Kp = tan²(45+φ/2) = 3.0."
+  },
+  {
+   "id": "geotech-105",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Active thrust on a wall",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A 5 m high wall retains cohesionless soil (γ = 18 kN/m³, Ka = 0.333). What is the total active thrust per unit length?",
+   "choices": [
+    "150 kN/m",
+    "75 kN/m",
+    "37.5 kN/m",
+    "300 kN/m"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$P_a = \\tfrac{1}{2} K_a \\gamma H^2 = \\tfrac{1}{2}(0.333)(18)(5)^2 = 75\\ \\text{kN/m}$$",
+   "explanation": "Pa = ½KaγH² = 75 kN/m, acting at H/3 above the base."
+  },
+  {
+   "id": "geotech-106",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "At-rest earth pressure coefficient",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "For a normally consolidated soil with φ = 32°, what is the at-rest earth pressure coefficient (Jaky)?",
+   "choices": [
+    "0.53",
+    "0.31",
+    "0.47",
+    "1.00"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$K_0 = 1 - \\sin\\phi = 1 - \\sin 32^\\circ = 0.47$$",
+   "explanation": "K0 = 1 − sinφ = 0.47 for NC soil."
+  },
+  {
+   "id": "geotech-107",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Terzaghi bearing capacity (strip)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A 2 m wide strip footing bears at Df = 1 m in cohesionless soil (γ = 18 kN/m³, c = 0). With Nq = 18 and Nγ = 15, what is the ultimate bearing capacity?",
+   "choices": [
+    "324 kPa",
+    "270 kPa",
+    "918 kPa",
+    "594 kPa"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q_{ult} = \\gamma D_f N_q + 0.5\\gamma B N_\\gamma = 18(1)(18) + 0.5(18)(2)(15) = 324 + 270 = 594\\ \\text{kPa}$$",
+   "explanation": "Sum the surcharge and width terms (c = 0): 594 kPa."
+  },
+  {
+   "id": "geotech-108",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Bearing capacity in clay (φ = 0)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A footing bears at Df = 1 m in saturated clay (c = 50 kPa, φ = 0, γ = 18 kN/m³). Using Nc = 5.14, what is the ultimate bearing capacity?",
+   "choices": [
+    "275 kPa",
+    "257 kPa",
+    "293 kPa",
+    "100 kPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q_{ult} = c N_c + \\gamma D_f = 50(5.14) + 18(1) = 257 + 18 = 275\\ \\text{kPa}$$",
+   "explanation": "For φ = 0: qult = cNc + γDf = 275 kPa."
+  },
+  {
+   "id": "geotech-109",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Allowable bearing capacity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A footing has an ultimate bearing capacity of 600 kPa. Using a factor of safety of 3, what is the allowable bearing capacity?",
+   "choices": [
+    "300 kPa",
+    "200 kPa",
+    "1800 kPa",
+    "150 kPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q_{all} = \\frac{q_{ult}}{FS} = \\frac{600}{3} = 200\\ \\text{kPa}$$",
+   "explanation": "qall = qult/FS = 200 kPa."
+  },
+  {
+   "id": "geotech-110",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Spread footing contact pressure",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A square spread footing 2 m × 2 m carries a column load of 800 kN. What is the contact pressure?",
+   "choices": [
+    "400 kPa",
+    "160 kPa",
+    "200 kPa",
+    "100 kPa"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Bearing Capacity section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q = \\frac{P}{B L} = \\frac{800}{2(2)} = 200\\ \\text{kPa}$$",
+   "explanation": "q = P/area = 200 kPa."
+  },
+  {
+   "id": "geotech-111",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Consolidation settlement (NC clay)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 220,
+   "question": "A 4 m thick normally consolidated clay (Cc = 0.25, e0 = 0.90) sees effective stress rise from 120 to 200 kPa. What is the primary settlement?",
+   "choices": [
+    "234 mm",
+    "58 mm",
+    "80 mm",
+    "117 mm"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Consolidation Settlement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$S_c = \\frac{C_c}{1+e_0}H\\log\\frac{\\sigma'_0+\\Delta\\sigma}{\\sigma'_0} = \\frac{0.25}{1.90}(4000)\\log\\frac{200}{120} = 117\\ \\text{mm}$$",
+   "explanation": "log(200/120) = 0.222; Sc = 0.1316×4000×0.222 = 117 mm."
+  },
+  {
+   "id": "geotech-112",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Consolidation time factor",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A 4 m thick clay layer drains from one side only (cv = 0.003 m²/day). How long does it take to reach 50% consolidation (Tv = 0.197)?",
+   "choices": [
+    "1,051 days",
+    "263 days",
+    "525 days",
+    "66 days"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Consolidation Settlement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWith single (one-way) drainage, the drainage path equals the full layer thickness, Hdr = 4 m:\n\n$$t = \\frac{T_v H_{dr}^2}{c_v} = \\frac{0.197(4)^2}{0.003} = \\frac{0.197(16)}{0.003} \\approx 1{,}051\\ \\text{days}$$",
+   "explanation": "Single drainage: Hdr = full thickness (4 m), so t ≈ 1,051 days. Two-way drainage would use Hdr = 2 m and give 263 days."
+  },
+  {
+   "id": "geotech-113",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Critical hydraulic gradient",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A sand has Gs = 2.65 and e = 0.65. What is the critical hydraulic gradient for quicksand (boiling)?",
+   "choices": [
+    "0.61",
+    "1.00",
+    "1.65",
+    "2.65"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$i_{cr} = \\frac{G_s - 1}{1 + e} = \\frac{1.65}{1.65} = 1.00$$",
+   "explanation": "icr = (Gs−1)/(1+e) = 1.0."
+  },
+  {
+   "id": "geotech-114",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Darcy discharge",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "Water flows through a soil with k = 1×10⁻⁴ m/s under a hydraulic gradient of 0.5 across an area of 2 m². What is the discharge?",
+   "choices": [
+    "2×10⁻⁴ m³/s",
+    "5×10⁻⁵ m³/s",
+    "1×10⁻⁴ m³/s",
+    "1×10⁻² m³/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Permeability (Darcy's Law) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q = kiA = (1\\times10^{-4})(0.5)(2) = 1\\times10^{-4}\\ \\text{m}^3/\\text{s}$$",
+   "explanation": "q = kiA = 1×10⁻⁴ m³/s."
+  },
+  {
+   "id": "geotech-115",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Plasticity index",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A soil has a liquid limit of 45 and a plastic limit of 22. What is the plasticity index?",
+   "choices": [
+    "67",
+    "45",
+    "22",
+    "23"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Index Properties section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$PI = LL - PL = 45 - 22 = 23$$",
+   "explanation": "PI = LL − PL = 23."
+  },
+  {
+   "id": "geotech-116",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Relative density",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A sand has emax = 0.90, emin = 0.40, and in-place void ratio e = 0.60. What is the relative density?",
+   "choices": [
+    "60%",
+    "40%",
+    "67%",
+    "30%"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Index Properties section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$D_r = \\frac{e_{max} - e}{e_{max} - e_{min}} = \\frac{0.30}{0.50} = 0.60 = 60\\%$$",
+   "explanation": "Dr = (emax−e)/(emax−emin) = 60%."
+  },
+  {
+   "id": "surveying-059",
+   "topic": "Surveying",
+   "subtopic": "Area by trapezoidal rule",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "Offsets measured at 10 m intervals along a baseline are 0, 5, 8, 6, and 0 m. Using the trapezoidal rule, what is the area?",
+   "choices": [
+    "190 m²",
+    "380 m²",
+    "95 m²",
+    "195 m²"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Area Computations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$A = d\\left[\\frac{y_0+y_n}{2} + \\sum y_{mid}\\right] = 10\\left[0 + (5+8+6)\\right] = 190\\ \\text{m}^2$$",
+   "explanation": "Trapezoidal rule: 10[(0+0)/2 + 19] = 190 m²."
+  },
+  {
+   "id": "surveying-060",
+   "topic": "Surveying",
+   "subtopic": "Average end-area volume",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "Two cross-sections 50 m apart have areas of 20 m² and 30 m². Using the average end-area method, what is the volume between them?",
+   "choices": [
+    "2,500 m³",
+    "1,250 m³",
+    "1,283 m³",
+    "625 m³"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earthwork Volumes section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$V = \\frac{A_1+A_2}{2}L = \\frac{20+30}{2}(50) = 1{,}250\\ \\text{m}^3$$",
+   "explanation": "V = (A1+A2)/2 × L = 1,250 m³."
+  },
+  {
+   "id": "surveying-061",
+   "topic": "Surveying",
+   "subtopic": "Prismoidal volume",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "Two end sections 50 m apart are 20 m² and 30 m², with a middle section of 26 m². Using the prismoidal formula, what is the volume?",
+   "choices": [
+    "1,250 m³",
+    "1,300 m³",
+    "1,283 m³",
+    "2,166 m³"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork Volumes section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$V = \\frac{L}{6}(A_1 + 4A_m + A_2) = \\frac{50}{6}(20 + 104 + 30) = 1{,}283\\ \\text{m}^3$$",
+   "explanation": "Prismoidal: L/6(A1+4Am+A2) = 1,283 m³."
+  },
+  {
+   "id": "surveying-062",
+   "topic": "Surveying",
+   "subtopic": "Bearing to azimuth",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A line has a bearing of S40°E. What is its azimuth (measured clockwise from north)?",
+   "choices": [
+    "220°",
+    "40°",
+    "320°",
+    "140°"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Angles and Directions section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nA southeast bearing converts to azimuth as 180° − bearing angle:\n\n$$Az = 180° - 40° = 140°$$",
+   "explanation": "SE bearing: Az = 180° − 40° = 140°."
+  },
+  {
+   "id": "surveying-063",
+   "topic": "Surveying",
+   "subtopic": "Departure of a course",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A course has an azimuth of 60° and a length of 200 ft. What is its departure?",
+   "choices": [
+    "173.2 ft",
+    "100.0 ft",
+    "200.0 ft",
+    "115.5 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Latitudes and Departures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Dep} = L\\sin(Az) = 200\\sin 60° = 173.2\\ \\text{ft}$$",
+   "explanation": "Departure = L·sin(Az) = 173.2 ft; latitude = L·cos(Az) = 100 ft."
+  },
+  {
+   "id": "surveying-064",
+   "topic": "Surveying",
+   "subtopic": "Horizontal curve tangent",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A horizontal curve has R = 400 ft and a deflection angle of 40°. What is the tangent distance?",
+   "choices": [
+    "291.2 ft",
+    "145.6 ft",
+    "279.3 ft",
+    "72.8 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$T = R\\tan\\!\\left(\\tfrac{\\Delta}{2}\\right) = 400\\tan 20° = 145.6\\ \\text{ft}$$",
+   "explanation": "T = R·tan(Δ/2) = 145.6 ft."
+  },
+  {
+   "id": "surveying-065",
+   "topic": "Surveying",
+   "subtopic": "Stadia distance",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A stadia reading has an interval of 1.2 m with a stadia constant K = 100 and a horizontal sight. What is the distance?",
+   "choices": [
+    "12 m",
+    "240 m",
+    "120 m",
+    "100 m"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Distance Measurement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$D = K s = 100(1.2) = 120\\ \\text{m}$$",
+   "explanation": "Horizontal stadia: D = K·s = 120 m."
+  },
+  {
+   "id": "surveying-066",
+   "topic": "Surveying",
+   "subtopic": "Slope distance to horizontal",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A slope distance of 150 m is measured along a line inclined 10° from horizontal. What is the horizontal distance?",
+   "choices": [
+    "26.0 m",
+    "152.3 m",
+    "150 m",
+    "147.7 m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Distance Measurement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$H = S\\cos\\theta = 150\\cos 10° = 147.7\\ \\text{m}$$",
+   "explanation": "H = S·cosθ = 147.7 m."
+  },
+  {
+   "id": "surveying-067",
+   "topic": "Surveying",
+   "subtopic": "DMS to decimal degrees",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Convert 40°30'00\" to decimal degrees.",
+   "choices": [
+    "40.500°",
+    "40.300°",
+    "40.050°",
+    "40.833°"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Coordinate Systems section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$40 + \\frac{30}{60} + \\frac{0}{3600} = 40.500°$$",
+   "explanation": "30 minutes = 0.5°, so 40.500°."
+  },
+  {
+   "id": "surveying-068",
+   "topic": "Surveying",
+   "subtopic": "Leveling arithmetic check",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "In a level circuit, the sum of backsights is 12.5 ft and the sum of foresights is 8.3 ft. What is the net elevation change from start to finish?",
+   "choices": [
+    "−4.2 ft",
+    "+4.2 ft",
+    "+20.8 ft",
+    "0 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Leveling section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\Delta\\text{elev} = \\sum BS - \\sum FS = 12.5 - 8.3 = +4.2\\ \\text{ft}$$",
+   "explanation": "Δelev = ΣBS − ΣFS = +4.2 ft (a rise)."
+  },
+  {
+   "id": "surveying-069",
+   "topic": "Surveying",
+   "subtopic": "Fill shrinkage (borrow)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A fill requires 1,000 compacted cubic yards. With a shrinkage of 15%, how many bank cubic yards must be excavated?",
+   "choices": [
+    "850 BCY",
+    "1,150 BCY",
+    "1,176 BCY",
+    "1,000 BCY"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork Volumes section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$BCY = \\frac{CCY}{1 - \\text{shrinkage}} = \\frac{1000}{0.85} = 1{,}176\\ \\text{BCY}$$",
+   "explanation": "Divide by (1 − shrinkage): 1,176 BCY."
+  },
+  {
+   "id": "surveying-070",
+   "topic": "Surveying",
+   "subtopic": "Curvature and refraction",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "What is the combined curvature-and-refraction correction for a sight distance of 2 km? (use h = 0.0675 K², K in km, h in m)",
+   "choices": [
+    "0.14 m",
+    "0.54 m",
+    "0.068 m",
+    "0.27 m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Leveling section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$h = 0.0675 K^2 = 0.0675(2)^2 = 0.27\\ \\text{m}$$",
+   "explanation": "h = 0.0675×K² = 0.27 m at 2 km."
+  },
+  {
+   "id": "surveying-071",
+   "topic": "Surveying",
+   "subtopic": "Conical stockpile volume",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A conical stockpile has a base radius of 5 m and a height of 6 m. What is its volume?",
+   "choices": [
+    "157 m³",
+    "471 m³",
+    "79 m³",
+    "314 m³"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earthwork Volumes section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$V = \\tfrac{1}{3}\\pi r^2 h = \\tfrac{1}{3}\\pi(5)^2(6) = 157\\ \\text{m}^3$$",
+   "explanation": "V = ⅓πr²h = 157 m³."
+  },
+  {
+   "id": "surveying-072",
+   "topic": "Surveying",
+   "subtopic": "Vertical curve tangent elevation",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "On an equal-tangent vertical curve, the PVC is at elevation 500.00 ft with an incoming grade of +2%. What is the tangent-line elevation 100 ft past the PVC?",
+   "choices": [
+    "498.00 ft",
+    "502.00 ft",
+    "500.02 ft",
+    "520.00 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Elev} = 500.00 + 0.02(100) = 502.00\\ \\text{ft}$$",
+   "explanation": "Along the +2% tangent: 500 + 2 = 502.00 ft."
+  },
+  {
+   "id": "water-110",
+   "topic": "Water Resources",
+   "subtopic": "Rational method peak flow",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "Using the rational method with C = 0.5, i = 3 in/hr, and A = 20 acres, what is the peak runoff?",
+   "choices": [
+    "30 cfs",
+    "60 cfs",
+    "7.2 cfs",
+    "120 cfs"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Rational Method section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = C i A = 0.5(3)(20) = 30\\ \\text{cfs}$$",
+   "explanation": "Q = CiA = 30 cfs (A in acres, i in in/hr)."
+  },
+  {
+   "id": "water-111",
+   "topic": "Water Resources",
+   "subtopic": "Darcy-Weisbach head loss",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "Water flows at 2 m/s through a 200 mm pipe, 100 m long, with a friction factor f = 0.02. What is the head loss?",
+   "choices": [
+    "4.08 m",
+    "2.04 m",
+    "1.02 m",
+    "10.2 m"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Head Loss section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$h_f = f\\frac{L}{D}\\frac{V^2}{2g} = 0.02\\frac{100}{0.2}\\frac{2^2}{19.62} = 2.04\\ \\text{m}$$",
+   "explanation": "hf = f(L/D)(V²/2g) = 2.04 m."
+  },
+  {
+   "id": "water-112",
+   "topic": "Water Resources",
+   "subtopic": "Suppressed rectangular weir",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A suppressed rectangular weir is 2 m long with a head of 0.30 m. Using Q = 1.84 L H^1.5 (SI), what is the discharge?",
+   "choices": [
+    "1.10 m³/s",
+    "0.33 m³/s",
+    "0.605 m³/s",
+    "0.30 m³/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Weir Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = 1.84 L H^{1.5} = 1.84(2)(0.30)^{1.5} = 0.605\\ \\text{m}^3/\\text{s}$$",
+   "explanation": "Q = 1.84·L·H^1.5 = 0.605 m³/s."
+  },
+  {
+   "id": "water-113",
+   "topic": "Water Resources",
+   "subtopic": "Pump power",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A pump delivers 0.05 m³/s against a total head of 20 m at 75% efficiency. What is the required input power? (γ = 9.81 kN/m³)",
+   "choices": [
+    "9.81 kW",
+    "17.4 kW",
+    "7.36 kW",
+    "13.1 kW"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Pump Power section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$P = \\frac{\\gamma Q H}{\\eta} = \\frac{9.81(0.05)(20)}{0.75} = 13.1\\ \\text{kW}$$",
+   "explanation": "P = γQH/η = 13.1 kW."
+  },
+  {
+   "id": "water-114",
+   "topic": "Water Resources",
+   "subtopic": "Well specific capacity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A well pumps 500 gpm with a drawdown of 25 ft. What is its specific capacity?",
+   "choices": [
+    "20 gpm/ft",
+    "12.5 gpm/ft",
+    "525 gpm/ft",
+    "0.05 gpm/ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Groundwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Specific capacity} = \\frac{Q}{s} = \\frac{500}{25} = 20\\ \\text{gpm/ft}$$",
+   "explanation": "Q/s = 20 gpm/ft."
+  },
+  {
+   "id": "water-115",
+   "topic": "Water Resources",
+   "subtopic": "Seepage (pore) velocity",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A soil has k = 1×10⁻³ m/s, hydraulic gradient 0.02, and porosity 0.30. What is the seepage (pore) velocity?",
+   "choices": [
+    "2.0×10⁻⁵ m/s",
+    "6.67×10⁻⁵ m/s",
+    "2.0×10⁻³ m/s",
+    "6.67×10⁻³ m/s"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Groundwater section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$v_s = \\frac{ki}{n} = \\frac{(1\\times10^{-3})(0.02)}{0.30} = 6.67\\times10^{-5}\\ \\text{m/s}$$",
+   "explanation": "vs = ki/n = 6.67×10⁻⁵ m/s (faster than Darcy velocity)."
+  },
+  {
+   "id": "water-116",
+   "topic": "Water Resources",
+   "subtopic": "Sedimentation overflow rate",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A sedimentation basin has a surface area of 50 m² and treats 0.1 m³/s. What is the overflow rate?",
+   "choices": [
+    "0.005 m/s",
+    "0.0004 m/s",
+    "0.002 m/s",
+    "0.02 m/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Sedimentation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$v_o = \\frac{Q}{A_s} = \\frac{0.1}{50} = 0.002\\ \\text{m/s}$$",
+   "explanation": "Overflow rate vo = Q/As = 0.002 m/s."
+  },
+  {
+   "id": "water-117",
+   "topic": "Water Resources",
+   "subtopic": "BOD exertion",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A wastewater has an ultimate BOD of 300 mg/L and a rate constant k = 0.23/day (base e). What is the BOD exerted after 5 days?",
+   "choices": [
+    "95 mg/L",
+    "300 mg/L",
+    "150 mg/L",
+    "205 mg/L"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the BOD section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$BOD_t = L_0(1 - e^{-kt}) = 300(1 - e^{-0.23(5)}) = 300(0.683) = 205\\ \\text{mg/L}$$",
+   "explanation": "BOD5 = L0(1−e^(−kt)) = 205 mg/L."
+  },
+  {
+   "id": "water-118",
+   "topic": "Water Resources",
+   "subtopic": "Ultimate BOD from BOD5",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A sample has BOD5 = 200 mg/L with a rate constant k = 0.23/day (base e). What is the ultimate BOD?",
+   "choices": [
+    "293 mg/L",
+    "137 mg/L",
+    "200 mg/L",
+    "870 mg/L"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the BOD section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$L_0 = \\frac{BOD_5}{1 - e^{-k(5)}} = \\frac{200}{0.683} = 293\\ \\text{mg/L}$$",
+   "explanation": "L0 = BOD5/(1−e^(−kt)) = 293 mg/L."
+  },
+  {
+   "id": "water-119",
+   "topic": "Water Resources",
+   "subtopic": "Chlorine contact (CT)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A chlorine residual of 2 mg/L is maintained for a contact time of 30 minutes. What is the CT value?",
+   "choices": [
+    "15 mg·min/L",
+    "60 mg·min/L",
+    "32 mg·min/L",
+    "600 mg·min/L"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Disinfection section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$CT = C \\times t = 2(30) = 60\\ \\text{mg·min/L}$$",
+   "explanation": "CT = concentration × time = 60 mg·min/L."
+  },
+  {
+   "id": "water-120",
+   "topic": "Water Resources",
+   "subtopic": "Population projection (geometric)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A town of 50,000 grows geometrically at 2% per year. What is the projected population in 10 years?",
+   "choices": [
+    "60,000",
+    "61,000",
+    "60,950",
+    "72,190"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Population Projection section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$P_n = P_0(1+r)^n = 50{,}000(1.02)^{10} = 60{,}950$$",
+   "explanation": "Geometric growth: 50,000(1.02)^10 ≈ 60,950."
+  },
+  {
+   "id": "water-121",
+   "topic": "Water Resources",
+   "subtopic": "Froude number and flow regime",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "Water flows at 3 m/s at a depth of 1 m in a wide rectangular channel. What is the Froude number?",
+   "choices": [
+    "9.58",
+    "0.306",
+    "1.53",
+    "0.958"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Fr = \\frac{V}{\\sqrt{g y}} = \\frac{3}{\\sqrt{9.81(1)}} = 0.958$$\n\nFr < 1, so the flow is subcritical.",
+   "explanation": "Fr = V/√(gy) = 0.958 (subcritical)."
+  },
+  {
+   "id": "materials-061",
+   "topic": "Materials",
+   "subtopic": "Water-cement ratio",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A concrete mix uses 300 lb of water and 600 lb of cement. What is the water-cement ratio?",
+   "choices": [
+    "0.50",
+    "2.00",
+    "0.30",
+    "1.80"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Concrete Mix Design section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$w/c = \\frac{\\text{water}}{\\text{cement}} = \\frac{300}{600} = 0.50$$",
+   "explanation": "w/c = water/cement = 0.50."
+  },
+  {
+   "id": "materials-062",
+   "topic": "Materials",
+   "subtopic": "Asphalt air voids",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A compacted asphalt specimen has a bulk specific gravity Gmb = 2.40 and a theoretical maximum specific gravity Gmm = 2.50. What is the air void content?",
+   "choices": [
+    "2.5%",
+    "4.0%",
+    "10.0%",
+    "96.0%"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Asphalt Mix Design section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$V_a = 100\\frac{G_{mm} - G_{mb}}{G_{mm}} = 100\\frac{2.50 - 2.40}{2.50} = 4.0\\%$$",
+   "explanation": "Va = 100(Gmm−Gmb)/Gmm = 4.0%."
+  },
+  {
+   "id": "materials-063",
+   "topic": "Materials",
+   "subtopic": "Percent elongation (ductility)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A tensile specimen with a 2.0 in gauge length fractures at a final length of 2.5 in. What is the percent elongation?",
+   "choices": [
+    "20%",
+    "50%",
+    "25%",
+    "125%"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Mechanical Properties section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\%\\text{EL} = \\frac{L_f - L_0}{L_0}(100) = \\frac{0.5}{2.0}(100) = 25\\%$$",
+   "explanation": "%EL = ΔL/L0 = 25%."
+  },
+  {
+   "id": "materials-064",
+   "topic": "Materials",
+   "subtopic": "Modulus of resilience",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A steel has a yield strength of 50 ksi and E = 29,000 ksi. What is its modulus of resilience?",
+   "choices": [
+    "0.0862 ksi",
+    "0.0216 ksi",
+    "1.72 ksi",
+    "0.0431 ksi"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Mechanical Properties section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$U_r = \\frac{\\sigma_y^2}{2E} = \\frac{50^2}{2(29{,}000)} = 0.0431\\ \\text{ksi (in·kip/in}^3)$$",
+   "explanation": "Ur = σy²/2E = 0.0431 ksi."
+  },
+  {
+   "id": "materials-065",
+   "topic": "Materials",
+   "subtopic": "True strain",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A specimen stretches from a 2.0 in gauge length to 2.5 in. What is the true strain?",
+   "choices": [
+    "0.223",
+    "0.250",
+    "0.200",
+    "0.405"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Mechanical Properties section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\varepsilon_t = \\ln\\frac{L_f}{L_0} = \\ln\\frac{2.5}{2.0} = \\ln 1.25 = 0.223$$",
+   "explanation": "True strain = ln(Lf/L0) = 0.223 (less than engineering strain 0.25)."
+  },
+  {
+   "id": "materials-066",
+   "topic": "Materials",
+   "subtopic": "Composite modulus (rule of mixtures)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A composite has 40% fiber (Ef = 70 GPa) and 60% matrix (Em = 3 GPa) by volume. What is the longitudinal modulus (rule of mixtures)?",
+   "choices": [
+    "36.5 GPa",
+    "29.8 GPa",
+    "42.0 GPa",
+    "5.0 GPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Composite Materials section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$E_c = E_f V_f + E_m V_m = 70(0.40) + 3(0.60) = 28 + 1.8 = 29.8\\ \\text{GPa}$$",
+   "explanation": "Ec = EfVf + EmVm = 29.8 GPa."
   }
  ]
 }
