@@ -19038,6 +19038,333 @@
    "solution": "Refer to Residual in the Engineering Probability and Statistics section of the FE Reference Handbook (v10.6), printed page 70 (PDF page 76).\n\nThe handbook gives \\(e_i = y_i - \\hat y_i\\). Here \\(\\hat y = 1.5 + 2.0(3) = 7.5\\), so \\(e = 8.0 - 7.5 = 0.5\\).",
    "subtopic": "Regression residual",
    "topic": "Statistics and Probability"
+  },
+  {
+   "id": "construction-048",
+   "topic": "Construction Engineering",
+   "subtopic": "Total float",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "An activity has an early start (ES) of day 4 and a duration of 6 days. Its late finish (LF) is day 15. What is the activity's total float?",
+   "choices": [
+    "5 days",
+    "0 days",
+    "1 day",
+    "11 days"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTotal float is the slack between an activity's early and late schedule:\n\n$$TF = LS - ES = LF - EF$$\n\n$$\\begin{aligned} ES &= 4 \\\\ \\text{Duration} &= 6 \\\\ EF &= ES + \\text{Dur} = 10 \\\\ LF &= 15 \\end{aligned}$$\n\n$$TF = LF - EF = 15 - 10 = 5\\ \\text{days}$$",
+   "explanation": "Total float = LF − EF. Using LF − ES (11) forgets the duration; 0 would only hold for a critical-path activity."
+  },
+  {
+   "id": "construction-049",
+   "topic": "Construction Engineering",
+   "subtopic": "Free float",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "Activity B has an early finish (EF) of day 12. Its only successor, activity C, has an early start (ES) of day 15. What is the free float of activity B?",
+   "choices": [
+    "0 days",
+    "3 days",
+    "12 days",
+    "27 days"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFree float is the delay available before the earliest successor is affected:\n\n$$FF = ES_{\\text{successor}} - EF_{\\text{activity}}$$\n\n$$FF = 15 - 12 = 3\\ \\text{days}$$",
+   "explanation": "Free float uses the successor's early start minus this activity's early finish. It never exceeds total float."
+  },
+  {
+   "id": "construction-050",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (cost variance)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "On a project, the planned value (PV) is $40,000, the earned value (EV) is $35,000, and the actual cost (AC) is $42,000. What is the cost variance (CV)?",
+   "choices": [
+    "−$5,000",
+    "+$7,000",
+    "−$7,000",
+    "+$2,000"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCost variance compares work performed against what it cost:\n\n$$CV = EV - AC$$\n\n$$CV = 35{,}000 - 42{,}000 = -\\$7{,}000$$\n\nA negative CV means the work is over budget.",
+   "explanation": "CV = EV − AC. −$5,000 is the schedule variance (EV − PV); a positive sign reverses the over-budget meaning."
+  },
+  {
+   "id": "construction-051",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (cost performance index)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A project has an earned value (EV) of $35,000 and an actual cost (AC) of $42,000. What is the cost performance index (CPI)?",
+   "choices": [
+    "1.20",
+    "0.88",
+    "1.00",
+    "0.83"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost performance index is earned value per dollar spent:\n\n$$CPI = \\frac{EV}{AC} = \\frac{35{,}000}{42{,}000} = 0.83$$\n\nCPI < 1 indicates a cost overrun.",
+   "explanation": "CPI = EV/AC = 0.83. 1.20 inverts the ratio; 0.88 would be the SPI if PV were $40,000."
+  },
+  {
+   "id": "construction-052",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (estimate at completion)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A project has a budget at completion (BAC) of $250,000. To date the earned value (EV) is $50,000 and the actual cost (AC) is $60,000. Assuming current cost performance continues, what is the estimate at completion (EAC)?",
+   "choices": [
+    "$300,000",
+    "$260,000",
+    "$240,000",
+    "$208,333"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWith performance assumed to continue, EAC scales the budget by the cost performance index:\n\n$$CPI = \\frac{EV}{AC} = \\frac{50{,}000}{60{,}000} = 0.8333$$\n\n$$EAC = \\frac{BAC}{CPI} = \\frac{250{,}000}{0.8333} = \\$300{,}000$$",
+   "explanation": "EAC = BAC/CPI. $260,000 wrongly adds the $10,000 overrun once; $208,333 multiplies by CPI instead of dividing."
+  },
+  {
+   "id": "construction-053",
+   "topic": "Construction Engineering",
+   "subtopic": "Project crashing (cost slope)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An activity has a normal duration of 10 days at a cost of $8,000, and can be crashed to 7 days at a cost of $12,500. What is the crash cost slope?",
+   "choices": [
+    "$4,500/day",
+    "$1,500/day",
+    "$643/day",
+    "$1,250/day"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost slope is the added cost per day of time saved:\n\n$$\\text{Slope} = \\frac{\\text{Crash cost} - \\text{Normal cost}}{\\text{Normal time} - \\text{Crash time}}$$\n\n$$\\text{Slope} = \\frac{12{,}500 - 8{,}000}{10 - 7} = \\frac{4{,}500}{3} = \\$1{,}500/\\text{day}$$",
+   "explanation": "Slope = Δcost / Δtime. $4,500 is the total added cost, not per day; $643 divides by 7 instead of 3."
+  },
+  {
+   "id": "construction-054",
+   "topic": "Construction Engineering",
+   "subtopic": "OSHA incidence rate",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A contractor recorded 5 OSHA-recordable injuries over a period in which employees worked a total of 250,000 hours. What is the recordable incidence rate?",
+   "choices": [
+    "2.0",
+    "8.0",
+    "4.0",
+    "0.04"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe OSHA incidence rate is normalized to 100 full-time workers (200,000 hours):\n\n$$IR = \\frac{(\\text{cases})(200{,}000)}{\\text{total hours worked}}$$\n\n$$IR = \\frac{(5)(200{,}000)}{250{,}000} = 4.0$$",
+   "explanation": "The 200,000-hour base represents 100 workers × 2,000 hr/yr. Using 100,000 gives 2.0; 500,000 gives 8.0."
+  },
+  {
+   "id": "construction-055",
+   "topic": "Construction Engineering",
+   "subtopic": "Truck fleet sizing",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "An excavator loads a haul truck in 5 minutes. Each truck's travel cycle (haul, dump, return, and spot) takes 20 minutes, excluding loading. How many trucks are needed to keep the excavator working continuously?",
+   "choices": [
+    "4 trucks",
+    "6 trucks",
+    "20 trucks",
+    "5 trucks"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe number of trucks to balance the excavator is the full truck cycle divided by the loading time:\n\n$$\\text{Truck cycle} = \\text{load} + \\text{travel} = 5 + 20 = 25\\ \\text{min}$$\n\n$$N = \\frac{\\text{truck cycle}}{\\text{loading time}} = \\frac{25}{5} = 5\\ \\text{trucks}$$",
+   "explanation": "Include the loading time in the cycle (25 min, not 20). Using 20/5 = 4 leaves the loader idle part of each cycle."
+  },
+  {
+   "id": "construction-056",
+   "topic": "Construction Engineering",
+   "subtopic": "Equipment production",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A loader with a 3 LCY bucket has a cycle time of 30 seconds and operates at an efficiency of 50 working minutes per hour. What is its hourly production?",
+   "choices": [
+    "300 LCY/hr",
+    "360 LCY/hr",
+    "180 LCY/hr",
+    "150 LCY/hr"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nProduction is bucket load times the number of cycles in the effective hour:\n\n$$\\text{Cycles/hr} = \\frac{(50\\ \\text{min})(60\\ \\text{s/min})}{30\\ \\text{s}} = 100$$\n\n$$\\text{Production} = (100)(3) = 300\\ \\text{LCY/hr}$$",
+   "explanation": "Apply the 50-min efficiency hour. Using a full 60-min hour overstates output to 360 LCY/hr."
+  },
+  {
+   "id": "construction-057",
+   "topic": "Construction Engineering",
+   "subtopic": "OSHA fall protection",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Under OSHA 1926 (construction), at what height above a lower level is fall protection generally required at an unprotected edge?",
+   "choices": [
+    "4 ft",
+    "6 ft",
+    "10 ft",
+    "15 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Under OSHA 29 CFR 1926.501, fall protection is generally required in construction when a worker is exposed to a fall of 6 feet or more to a lower level.\n\nThe other heights are real OSHA triggers for different situations: 4 ft is the general-industry trigger (1910), 10 ft applies to scaffolds, and 15 ft is a steel-erection provision.",
+   "explanation": "The construction (1926) general trigger is 6 ft. 4 ft is general industry; 10 ft scaffolds; 15 ft steel erection.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-058",
+   "topic": "Construction Engineering",
+   "subtopic": "Excavation protective systems",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Per OSHA, a protective system (sloping, shoring, or shielding) is required for an excavation when it reaches what depth, unless it is made entirely in stable rock?",
+   "choices": [
+    "4 ft",
+    "6 ft",
+    "5 ft",
+    "8 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Under OSHA 29 CFR 1926.652, a protective system is required for excavations 5 feet or more in depth, unless the excavation is made entirely in stable rock.\n\nExcavations deeper than 20 ft require a protective system designed by a registered professional engineer.",
+   "explanation": "The 5-ft threshold triggers a protective system; 20 ft is the depth that requires an engineered design.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-059",
+   "topic": "Construction Engineering",
+   "subtopic": "Project delivery methods",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Under which project delivery method does the owner hold a single contract covering both the design and the construction of the project?",
+   "choices": [
+    "Design-bid-build",
+    "Construction manager at risk (with separate designer)",
+    "Multiple prime contracts",
+    "Design-build"
+   ],
+   "answerIndex": 3,
+   "solution": "In design-build, the owner executes one contract with a single entity responsible for both design and construction, giving a single point of responsibility.\n\nIn design-bid-build the owner holds separate contracts with the designer and the contractor. CM-at-risk adds a construction manager but the designer is still under a separate owner contract. Multiple-prime splits construction into several owner-held contracts.",
+   "explanation": "Design-build = one contract for design + construction. Design-bid-build keeps them separate.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-060",
+   "topic": "Construction Engineering",
+   "subtopic": "Contract types",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "For a project where the work items are known but the exact quantities are uncertain (e.g., earthwork), which contract type is most appropriate?",
+   "choices": [
+    "Unit-price contract",
+    "Lump-sum contract",
+    "Cost-plus-fixed-fee contract",
+    "Guaranteed maximum price contract"
+   ],
+   "answerIndex": 0,
+   "solution": "A unit-price contract pays a fixed price per unit of each work item, so the final cost adjusts to the quantities actually measured in the field — ideal when item types are known but quantities are uncertain.\n\nLump-sum suits well-defined scope with firm quantities; cost-plus suits poorly defined scope; a GMP caps the owner's exposure under a cost-reimbursable arrangement.",
+   "explanation": "Unit-price fits known items with uncertain quantities. Lump-sum needs firm quantities to price accurately.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-061",
+   "topic": "Construction Engineering",
+   "subtopic": "Progress payments and retainage",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A contractor completes $200,000 of work in the current pay period. The contract specifies 10% retainage. What is the current progress payment to the contractor?",
+   "choices": [
+    "$200,000",
+    "$180,000",
+    "$220,000",
+    "$20,000"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nRetainage is withheld from the amount earned:\n\n$$\\text{Payment} = \\text{earned} \\times (1 - \\text{retainage})$$\n\n$$\\text{Payment} = 200{,}000 \\times (1 - 0.10) = \\$180{,}000$$\n\nThe withheld $20,000 is released later, typically at substantial completion.",
+   "explanation": "Withhold 10%: pay $180,000. $20,000 is the amount retained, not the payment."
+  },
+  {
+   "id": "construction-062",
+   "topic": "Construction Engineering",
+   "subtopic": "Quantity takeoff",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A continuous concrete footing is 60 ft long, 2 ft wide, and 1.5 ft deep. What is the concrete quantity in cubic yards?",
+   "choices": [
+    "180 CY",
+    "20 CY",
+    "6.67 CY",
+    "13.3 CY"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompute the volume and convert to cubic yards (27 ft³ per CY):\n\n$$V = L \\times W \\times D = 60 \\times 2 \\times 1.5 = 180\\ \\text{ft}^3$$\n\n$$V = \\frac{180}{27} = 6.67\\ \\text{CY}$$",
+   "explanation": "Divide cubic feet by 27. 180 is the volume in ft³ (forgetting the conversion)."
+  },
+  {
+   "id": "construction-063",
+   "topic": "Construction Engineering",
+   "subtopic": "Earthwork shrinkage",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A fill requires 10,000 CY of compacted soil. The borrow material has a shrinkage of 20%. How many bank cubic yards (BCY) must be excavated?",
+   "choices": [
+    "8,000 BCY",
+    "12,000 BCY",
+    "10,000 BCY",
+    "12,500 BCY"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nShrinkage means compacted volume is less than bank volume:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\n$$BCY = \\frac{CCY}{1 - \\text{shrinkage}} = \\frac{10{,}000}{1 - 0.20} = 12{,}500\\ \\text{BCY}$$",
+   "explanation": "Divide by (1 − shrinkage). Multiplying by 0.80 gives 8,000, the wrong direction."
+  },
+  {
+   "id": "construction-064",
+   "topic": "Construction Engineering",
+   "subtopic": "Drawing scale",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "On a site plan drawn at a scale of 1 in = 40 ft, a property line measures 3.5 in. What is its actual length?",
+   "choices": [
+    "140 ft",
+    "11.4 ft",
+    "40 ft",
+    "114 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nMultiply the measured length by the scale factor:\n\n$$L = 3.5\\ \\text{in} \\times 40\\ \\text{ft/in} = 140\\ \\text{ft}$$",
+   "explanation": "Multiply inches by ft-per-inch. Dividing (3.5/40) gives 11.4 ft."
+  },
+  {
+   "id": "construction-065",
+   "topic": "Construction Engineering",
+   "subtopic": "Stationing",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A roadway alignment runs from station 12+50 to station 27+00. What is the distance between these two stations?",
+   "choices": [
+    "1,500 ft",
+    "1,450 ft",
+    "14.5 ft",
+    "145 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nA station equals 100 ft, so convert each station and subtract:\n\n$$12{+}50 = 1{,}250\\ \\text{ft}, \\qquad 27{+}00 = 2{,}700\\ \\text{ft}$$\n\n$$\\Delta = 2{,}700 - 1{,}250 = 1{,}450\\ \\text{ft}$$",
+   "explanation": "Each station is 100 ft; subtract the two. 1,500 ignores the +50 offset."
+  },
+  {
+   "id": "construction-066",
+   "topic": "Construction Engineering",
+   "subtopic": "Profile grade",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A storm sewer invert drops from elevation 100.00 ft at station 0+00 to elevation 98.50 ft at station 3+00. What is the pipe slope?",
+   "choices": [
+    "1.50%",
+    "0.05%",
+    "0.50%",
+    "5.0%"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSlope is the elevation change over the horizontal run (300 ft between the stations):\n\n$$S = \\frac{\\Delta \\text{elev}}{\\Delta \\text{distance}} = \\frac{100.00 - 98.50}{300} = \\frac{1.50}{300} = 0.005 = 0.50\\%$$",
+   "explanation": "Divide the 1.50-ft drop by the 300-ft run. 1.50% forgets to divide by distance in hundreds of ft."
   }
  ]
 }
