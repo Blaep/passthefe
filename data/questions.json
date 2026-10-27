@@ -20935,6 +20935,1037 @@
    "answerIndex": 3,
    "solution": "Refer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nVon Mises stress for plane stress:\n\n$$\\sigma_v = \\sqrt{\\sigma_1^2 - \\sigma_1\\sigma_2 + \\sigma_2^2} = \\sqrt{100^2 - (100)(50) + 50^2} = \\sqrt{7500} = 86.6\\ \\text{MPa}$$",
    "explanation": "σ_v = √(σ₁² − σ₁σ₂ + σ₂²) = 86.6 MPa, not the simple sum or difference."
+  },
+  {
+   "id": "construction-067",
+   "topic": "Construction Engineering",
+   "subtopic": "CPM early finish",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "An activity has an early start (ES) of day 4 and a duration of 6 days. What is its early finish (EF)?",
+   "choices": [
+    "10",
+    "9",
+    "2",
+    "6"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe early finish is the early start plus the duration:\n\n$$EF = ES + \\text{Duration} = 4 + 6 = 10$$",
+   "explanation": "EF = ES + duration = 10."
+  },
+  {
+   "id": "construction-068",
+   "topic": "Construction Engineering",
+   "subtopic": "CPM late start",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "An activity has a late finish (LF) of day 20 and a duration of 4 days. What is its late start (LS)?",
+   "choices": [
+    "24",
+    "16",
+    "4",
+    "20"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe late start is the late finish minus the duration:\n\n$$LS = LF - \\text{Duration} = 20 - 4 = 16$$",
+   "explanation": "LS = LF − duration = 16."
+  },
+  {
+   "id": "construction-069",
+   "topic": "Construction Engineering",
+   "subtopic": "Total float",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "An activity has ES = 5, duration = 3, and LF = 12. What is its total float?",
+   "choices": [
+    "0 days",
+    "7 days",
+    "4 days",
+    "1 day"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompute EF, then total float:\n\n$$EF = 5 + 3 = 8,\\quad TF = LF - EF = 12 - 8 = 4\\ \\text{days}$$",
+   "explanation": "TF = LF − EF = 4 days."
+  },
+  {
+   "id": "construction-070",
+   "topic": "Construction Engineering",
+   "subtopic": "Free float",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "An activity has an early finish of day 8. Its earliest successor has an early start of day 11. What is the free float?",
+   "choices": [
+    "0 days",
+    "11 days",
+    "8 days",
+    "3 days"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFree float is the successor's early start minus this activity's early finish:\n\n$$FF = ES_{succ} - EF = 11 - 8 = 3\\ \\text{days}$$",
+   "explanation": "FF = 11 − 8 = 3 days."
+  },
+  {
+   "id": "construction-071",
+   "topic": "Construction Engineering",
+   "subtopic": "Critical path duration",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "In the network shown, activity A (3 days) precedes both B (5 days) and C (6 days), and both B and C precede D (4 days). What is the critical path duration?",
+   "choices": [
+    "13 days",
+    "12 days",
+    "10 days",
+    "18 days"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompare the two paths A-B-D and A-C-D:\n\n$$A\\text{-}B\\text{-}D = 3+5+4 = 12,\\quad A\\text{-}C\\text{-}D = 3+6+4 = 13$$\n\nThe critical path is the longest: 13 days.",
+   "explanation": "A-C-D (13 days) is the longest path, so it is critical.",
+   "diagram": "diagrams/construction-071.svg"
+  },
+  {
+   "id": "construction-072",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (schedule variance)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A project has PV = $50,000, EV = $45,000, and AC = $48,000. What is the schedule variance (SV)?",
+   "choices": [
+    "−$3,000",
+    "−$5,000",
+    "+$5,000",
+    "−$8,000"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSchedule variance compares work performed with work planned:\n\n$$SV = EV - PV = 45{,}000 - 50{,}000 = -\\$5{,}000$$",
+   "explanation": "SV = EV − PV = −$5,000 (behind schedule)."
+  },
+  {
+   "id": "construction-073",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (schedule performance index)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A project has EV = $45,000 and PV = $50,000. What is the schedule performance index (SPI)?",
+   "choices": [
+    "0.94",
+    "1.11",
+    "0.90",
+    "0.80"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$SPI = \\frac{EV}{PV} = \\frac{45{,}000}{50{,}000} = 0.90$$\n\nSPI < 1 indicates the project is behind schedule.",
+   "explanation": "SPI = EV/PV = 0.90."
+  },
+  {
+   "id": "construction-074",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (variance at completion)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A project has a budget at completion (BAC) of $400,000 and an estimate at completion (EAC) of $450,000. What is the variance at completion (VAC)?",
+   "choices": [
+    "+$50,000",
+    "−$100,000",
+    "$0",
+    "−$50,000"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$VAC = BAC - EAC = 400{,}000 - 450{,}000 = -\\$50{,}000$$\n\nA negative VAC means a projected overrun.",
+   "explanation": "VAC = BAC − EAC = −$50,000."
+  },
+  {
+   "id": "construction-075",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned value (estimate to complete)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A project has an estimate at completion (EAC) of $450,000 and actual cost to date (AC) of $200,000. What is the estimate to complete (ETC)?",
+   "choices": [
+    "$250,000",
+    "$450,000",
+    "$200,000",
+    "$650,000"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$ETC = EAC - AC = 450{,}000 - 200{,}000 = \\$250{,}000$$",
+   "explanation": "ETC = EAC − AC = $250,000 (remaining cost)."
+  },
+  {
+   "id": "construction-076",
+   "topic": "Construction Engineering",
+   "subtopic": "Project crashing (cost slope)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An activity can be shortened from a normal duration of 12 days ($20,000) to a crash duration of 8 days ($32,000). What is the crash cost slope?",
+   "choices": [
+    "$12,000/day",
+    "$3,000/day",
+    "$1,500/day",
+    "$4,000/day"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Slope} = \\frac{32{,}000 - 20{,}000}{12 - 8} = \\frac{12{,}000}{4} = \\$3{,}000/\\text{day}$$",
+   "explanation": "Cost slope = Δcost/Δtime = $3,000/day."
+  },
+  {
+   "id": "construction-077",
+   "topic": "Construction Engineering",
+   "subtopic": "Schedule compression strategy",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "To shorten a project's duration at least additional cost, which activity should be crashed first?",
+   "choices": [
+    "Any non-critical activity with float",
+    "The activity with the longest duration",
+    "The critical-path activity with the lowest cost slope",
+    "The most expensive activity"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCrashing only helps if it shortens the critical path, and the cheapest time savings come from the critical activity with the smallest cost slope (lowest added cost per day saved).",
+   "explanation": "Crash the critical activity with the lowest cost slope first.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-078",
+   "topic": "Construction Engineering",
+   "subtopic": "Scraper production",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A scraper hauls 20 LCY per cycle with a cycle time of 5 minutes, operating 50 minutes per hour. What is its hourly production?",
+   "choices": [
+    "240 LCY/hr",
+    "100 LCY/hr",
+    "400 LCY/hr",
+    "200 LCY/hr"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCycles per effective hour × load:\n\n$$\\text{Cycles/hr} = \\frac{50}{5} = 10,\\quad Q = 10(20) = 200\\ \\text{LCY/hr}$$",
+   "explanation": "Use the 50-min hour: 10 cycles × 20 LCY = 200 LCY/hr."
+  },
+  {
+   "id": "construction-079",
+   "topic": "Construction Engineering",
+   "subtopic": "Excavator production",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An excavator has a 1.5 LCY bucket, a 20-second cycle time, and operates 50 minutes per hour. What is its hourly production?",
+   "choices": [
+    "225 LCY/hr",
+    "270 LCY/hr",
+    "112 LCY/hr",
+    "150 LCY/hr"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Cycles/hr} = \\frac{50(60)}{20} = 150,\\quad Q = 150(1.5) = 225\\ \\text{LCY/hr}$$",
+   "explanation": "150 cycles/hr × 1.5 LCY = 225 LCY/hr."
+  },
+  {
+   "id": "construction-080",
+   "topic": "Construction Engineering",
+   "subtopic": "Compaction coverage",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A roller 2 m wide travels at 4 km/h, needs 4 passes, and works at 75% efficiency. What compacted area does it cover per hour?",
+   "choices": [
+    "6,000 m²/hr",
+    "1,500 m²/hr",
+    "750 m²/hr",
+    "3,000 m²/hr"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$A = \\frac{W \\cdot S \\cdot 1000 \\cdot E}{\\text{passes}} = \\frac{2(4)(1000)(0.75)}{4} = 1{,}500\\ \\text{m}^2/\\text{hr}$$",
+   "explanation": "Divide the swept area by the number of passes: 1,500 m²/hr."
+  },
+  {
+   "id": "construction-081",
+   "topic": "Construction Engineering",
+   "subtopic": "Concrete placement rate",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A crew places 2 CY of concrete every 10 minutes. What is the placement rate per hour?",
+   "choices": [
+    "2 CY/hr",
+    "120 CY/hr",
+    "12 CY/hr",
+    "6 CY/hr"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Rate} = 2\\ \\text{CY} \\times \\frac{60}{10} = 12\\ \\text{CY/hr}$$",
+   "explanation": "2 CY every 10 min = 12 CY/hr."
+  },
+  {
+   "id": "construction-082",
+   "topic": "Construction Engineering",
+   "subtopic": "OSHA recordable incidence rate",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A contractor had 3 OSHA-recordable injuries over 150,000 employee-hours. What is the recordable incidence rate?",
+   "choices": [
+    "2.0",
+    "6.0",
+    "0.04",
+    "4.0"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Incidence Variable Values section in the Safety chapter of the FE Reference Handbook (v10.6).\n\n$$IR = \\frac{(\\text{cases})(200{,}000)}{\\text{hours}} = \\frac{3(200{,}000)}{150{,}000} = 4.0$$",
+   "explanation": "IR normalizes to 200,000 hours (100 workers): 4.0."
+  },
+  {
+   "id": "construction-083",
+   "topic": "Construction Engineering",
+   "subtopic": "Scaffold fall protection",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Per OSHA, at what height above a lower level is fall protection required for workers on a scaffold?",
+   "choices": [
+    "10 ft",
+    "6 ft",
+    "4 ft",
+    "15 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Under OSHA 29 CFR 1926.451, fall protection is required for workers on scaffolds more than 10 feet above a lower level.\n\nUnder OSHA 1926.451, scaffold fall protection is required above 10 ft (distinct from the 6-ft general construction trigger).",
+   "explanation": "Scaffolds: 10 ft (1926.451). General construction is 6 ft.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-084",
+   "topic": "Construction Engineering",
+   "subtopic": "Labor cost from productivity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "An activity requires 0.5 worker-hours per unit for 200 units, at a labor rate of $40 per worker-hour. What is the labor cost?",
+   "choices": [
+    "$2,000",
+    "$4,000",
+    "$8,000",
+    "$100"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Cost} = (0.5)(200)(40) = \\$4{,}000$$",
+   "explanation": "0.5 wh/unit × 200 units × $40/wh = $4,000."
+  },
+  {
+   "id": "construction-085",
+   "topic": "Construction Engineering",
+   "subtopic": "Truck fleet balancing",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A haul truck has a total cycle time of 30 minutes and is loaded in 6 minutes. How many trucks keep the loader working continuously?",
+   "choices": [
+    "4 trucks",
+    "6 trucks",
+    "5 trucks",
+    "30 trucks"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$N = \\frac{\\text{cycle time}}{\\text{load time}} = \\frac{30}{6} = 5\\ \\text{trucks}$$",
+   "explanation": "N = cycle/load = 5 trucks."
+  },
+  {
+   "id": "construction-086",
+   "topic": "Construction Engineering",
+   "subtopic": "Guaranteed maximum price",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "Under a CM-at-risk contract with a guaranteed maximum price (GMP), who absorbs costs that exceed the GMP?",
+   "choices": [
+    "The owner",
+    "The designer",
+    "The subcontractors only",
+    "The construction manager"
+   ],
+   "answerIndex": 3,
+   "solution": "Under a construction-manager-at-risk arrangement, the CM commits to a guaranteed maximum price (GMP); costs above the GMP are the CM's responsibility, and savings below it are often shared with the owner.\n\nThe CM guarantees the maximum price, so overruns above the GMP are borne by the CM, not the owner.",
+   "explanation": "Costs above the GMP are the CM's risk.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-087",
+   "topic": "Construction Engineering",
+   "subtopic": "Lump-sum contract",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A lump-sum contract is most appropriate for which type of project?",
+   "choices": [
+    "Work with a well-defined scope and firm quantities",
+    "Work with highly uncertain quantities",
+    "Emergency work with undefined scope",
+    "Research with unknown methods"
+   ],
+   "answerIndex": 0,
+   "solution": "A lump-sum (stipulated-sum) contract is best suited to work with a well-defined scope and firm quantities, letting the contractor price the entire job for a single fixed amount.\n\nLump-sum pricing requires a well-defined scope so the contractor can price the whole job accurately.",
+   "explanation": "Lump-sum fits well-defined scope; uncertain scope suits unit-price or cost-plus.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-088",
+   "topic": "Construction Engineering",
+   "subtopic": "Performance bond",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "What does a performance bond primarily guarantee to the owner?",
+   "choices": [
+    "Payment to subcontractors and suppliers",
+    "Completion of the work per the contract",
+    "The lowest possible bid price",
+    "A fixed project schedule"
+   ],
+   "answerIndex": 1,
+   "solution": "A performance bond is a surety instrument that guarantees the contractor will complete the project in accordance with the contract terms; if the contractor defaults, the surety ensures completion.\n\nA performance bond guarantees contract completion; a payment bond is what protects subcontractors and suppliers.",
+   "explanation": "Performance bond = completion guarantee; payment bond = payment to subs/suppliers.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-089",
+   "topic": "Construction Engineering",
+   "subtopic": "Shop drawings (submittals)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "Detailed fabrication drawings a contractor submits for the engineer's review before fabrication are called:",
+   "choices": [
+    "As-built drawings",
+    "Contract documents",
+    "Shop drawings",
+    "Record drawings"
+   ],
+   "answerIndex": 2,
+   "solution": "Shop drawings are contractor-prepared submittals (detailed fabrication/installation drawings) that the design professional reviews for conformance with the design intent before fabrication proceeds.\n\nShop drawings are reviewed before fabrication; as-builts/record drawings document final conditions.",
+   "explanation": "Shop drawings are submitted for review prior to fabrication.",
+   "conceptual": true
+  },
+  {
+   "id": "construction-090",
+   "topic": "Construction Engineering",
+   "subtopic": "Rebar quantity takeoff",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A footing requires 200 linear feet of reinforcing bar weighing 1.50 lb/ft. What is the total weight of steel?",
+   "choices": [
+    "200 lb",
+    "450 lb",
+    "133 lb",
+    "300 lb"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$W = (\\text{length})(\\text{unit weight}) = 200(1.50) = 300\\ \\text{lb}$$",
+   "explanation": "200 ft × 1.50 lb/ft = 300 lb."
+  },
+  {
+   "id": "construction-091",
+   "topic": "Construction Engineering",
+   "subtopic": "Formwork contact area",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A concrete wall is 20 ft long and 8 ft tall, formed on both faces. What is the formwork contact area?",
+   "choices": [
+    "320 SF",
+    "160 SF",
+    "640 SF",
+    "28 SF"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$A = 2(\\text{length})(\\text{height}) = 2(20)(8) = 320\\ \\text{SF}$$",
+   "explanation": "Both faces: 2 × 20 × 8 = 320 SF."
+  },
+  {
+   "id": "construction-092",
+   "topic": "Construction Engineering",
+   "subtopic": "Earthwork swell",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A soil has a swell of 25%. If 1,000 bank cubic yards (BCY) are excavated, how many loose cubic yards (LCY) result?",
+   "choices": [
+    "800 LCY",
+    "1,250 LCY",
+    "1,000 LCY",
+    "750 LCY"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$LCY = BCY(1 + \\text{swell}) = 1000(1.25) = 1{,}250\\ \\text{LCY}$$",
+   "explanation": "Swell increases volume: 1,000 × 1.25 = 1,250 LCY."
+  },
+  {
+   "id": "construction-093",
+   "topic": "Construction Engineering",
+   "subtopic": "Unit-cost estimate with markup",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A concrete item is 500 CY at a unit cost of $120/CY. With a 15% markup, what is the bid price for the item?",
+   "choices": [
+    "$60,000",
+    "$75,000",
+    "$69,000",
+    "$9,000"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Direct} = 500(120) = \\$60{,}000,\\quad \\text{Bid} = 60{,}000(1.15) = \\$69{,}000$$",
+   "explanation": "Apply the 15% markup to the $60,000 direct cost: $69,000."
+  },
+  {
+   "id": "construction-094",
+   "topic": "Construction Engineering",
+   "subtopic": "Drawing scale",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "On a plan at a scale of 1 in = 30 ft, a distance measures 4.5 in. What is the actual length?",
+   "choices": [
+    "6.67 ft",
+    "30 ft",
+    "120 ft",
+    "135 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$L = 4.5\\ \\text{in} \\times 30\\ \\text{ft/in} = 135\\ \\text{ft}$$",
+   "explanation": "Multiply by the scale factor: 135 ft."
+  },
+  {
+   "id": "construction-095",
+   "topic": "Construction Engineering",
+   "subtopic": "Stationing distance",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "What is the distance between station 5+00 and station 18+50?",
+   "choices": [
+    "1,350 ft",
+    "1,850 ft",
+    "13.5 ft",
+    "135 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\Delta = 1850 - 500 = 1{,}350\\ \\text{ft}$$",
+   "explanation": "Each station = 100 ft; 1850 − 500 = 1,350 ft."
+  },
+  {
+   "id": "construction-096",
+   "topic": "Construction Engineering",
+   "subtopic": "Cut depth from a profile",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "At a station, the existing ground elevation is 102.5 ft and the proposed grade is 99.0 ft. What is the cut depth?",
+   "choices": [
+    "1.5 ft",
+    "3.5 ft",
+    "201.5 ft",
+    "4.0 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Cut} = \\text{existing} - \\text{proposed} = 102.5 - 99.0 = 3.5\\ \\text{ft}$$",
+   "explanation": "Existing higher than proposed means 3.5 ft of cut."
+  },
+  {
+   "id": "construction-097",
+   "topic": "Construction Engineering",
+   "subtopic": "Grade between two points",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A pipe invert falls 2.0 ft over a horizontal run of 400 ft. What is the grade?",
+   "choices": [
+    "2.0%",
+    "0.05%",
+    "0.50%",
+    "5.0%"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$S = \\frac{\\Delta \\text{elev}}{\\text{run}} = \\frac{2.0}{400} = 0.005 = 0.50\\%$$",
+   "explanation": "Grade = rise/run = 0.50%."
+  },
+  {
+   "id": "structural-094",
+   "topic": "Structural Engineering",
+   "subtopic": "Bolt shear capacity (single shear)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A bolted lap splice uses three bolts in single shear. Each bolt has a nominal shear strength Fnv = 54 ksi and area Ab = 0.44 in². What is the LRFD design shear strength of the connection?",
+   "choices": [
+    "53.5 kip",
+    "107 kip",
+    "17.8 kip",
+    "71.3 kip"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nLRFD bolt shear (φ = 0.75), three bolts in single shear:\n\n$$\\phi R_n = \\phi F_{nv} A_b \\times n = 0.75(54)(0.44)(3) = 53.5\\ \\text{kip}$$",
+   "explanation": "Single shear × 3 bolts = 53.5 kip. Double shear would double it to 107 kip.",
+   "diagram": "diagrams/structural-094.svg"
+  },
+  {
+   "id": "structural-095",
+   "topic": "Structural Engineering",
+   "subtopic": "RC tied column axial capacity",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A square tied column is 16 in × 16 in (Ag = 256 in²) with four bars totaling Ast = 4.0 in², f'c = 4 ksi, and fy = 60 ksi. What is the LRFD design axial strength φPn?",
+   "choices": [
+    "877 kip",
+    "570 kip",
+    "1097 kip",
+    "712 kip"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a tied column, φ = 0.65 and the 0.80 maximum-axial factor applies:\n\n$$P_n = 0.85 f'_c (A_g - A_{st}) + f_y A_{st} = 0.85(4)(252) + 60(4) = 1096.8\\ \\text{kip}$$\n\n$$\\phi P_n = 0.65(0.80)(1096.8) = 570\\ \\text{kip}$$",
+   "explanation": "Apply both 0.80 and φ = 0.65 to the nominal squash load. Omitting them overstates capacity.",
+   "diagram": "diagrams/structural-095.svg"
+  },
+  {
+   "id": "structural-096",
+   "topic": "Structural Engineering",
+   "subtopic": "Beam reactions (two point loads)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A simply supported beam spans 10 m and carries a 20 kN load 3 m from A and a 30 kN load 7 m from A. What is the reaction at A?",
+   "choices": [
+    "27 kN",
+    "25 kN",
+    "23 kN",
+    "50 kN"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSum moments about B:\n\n$$R_A(10) = 20(7) + 30(3) = 140 + 90 = 230 \\Rightarrow R_A = 23\\ \\text{kN}$$",
+   "explanation": "R_A = 23 kN, R_B = 27 kN (the heavier load is nearer B).",
+   "diagram": "diagrams/structural-096.svg"
+  },
+  {
+   "id": "structural-097",
+   "topic": "Structural Engineering",
+   "subtopic": "Bolt bearing strength",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A 3/4 in bolt bears on a 1/2 in thick plate with Fu = 58 ksi (deformation a consideration, factor 2.4). What is the LRFD design bearing strength at the bolt hole?",
+   "choices": [
+    "52.2 kip",
+    "29.4 kip",
+    "26.1 kip",
+    "39.2 kip"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nLRFD bearing (φ = 0.75):\n\n$$\\phi R_n = 0.75(2.4\\, d\\, t\\, F_u) = 0.75(2.4)(0.75)(0.5)(58) = 39.2\\ \\text{kip}$$",
+   "explanation": "φ·2.4·d·t·Fu = 39.2 kip. 52.2 kip omits φ."
+  },
+  {
+   "id": "structural-098",
+   "topic": "Structural Engineering",
+   "subtopic": "Tension member rupture",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A steel tension member has an effective net area Ae = 4.0 in² and Fu = 65 ksi. What is the LRFD design strength for the rupture limit state?",
+   "choices": [
+    "195 kip",
+    "260 kip",
+    "156 kip",
+    "173 kip"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nRupture uses φ = 0.75 on the effective net area:\n\n$$\\phi P_n = 0.75 F_u A_e = 0.75(65)(4.0) = 195\\ \\text{kip}$$",
+   "explanation": "φ = 0.75 for rupture: 195 kip. 260 kip drops φ."
+  },
+  {
+   "id": "structural-099",
+   "topic": "Structural Engineering",
+   "subtopic": "Fillet weld strength",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A 1/4 in fillet weld, 10 in long, uses E70 electrodes (FEXX = 70 ksi). What is the LRFD design strength of the weld?",
+   "choices": [
+    "74.2 kip",
+    "55.7 kip",
+    "37.1 kip",
+    "42.0 kip"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWeld strength on the effective throat (0.707w), φ = 0.75:\n\n$$\\phi R_n = 0.75(0.6 F_{EXX})(0.707 w)(L) = 0.75(42)(0.1768)(10) = 55.7\\ \\text{kip}$$",
+   "explanation": "Use the 0.707w throat and φ = 0.75: 55.7 kip. 74.2 kip omits φ."
+  },
+  {
+   "id": "structural-100",
+   "topic": "Structural Engineering",
+   "subtopic": "Steel beam ASD allowable moment",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A compact, fully braced steel beam has Zx = 54 in³ and Fy = 50 ksi. Using ASD (Ω = 1.67), what is the allowable flexural strength?",
+   "choices": [
+    "225 kip·ft",
+    "161 kip·ft",
+    "135 kip·ft",
+    "112 kip·ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nASD allowable moment:\n\n$$M_n = F_y Z_x = 50(54) = 2700\\ \\text{kip·in};\\quad \\frac{M_n}{\\Omega} = \\frac{2700}{1.67} = 1617\\ \\text{kip·in} = 135\\ \\text{kip·ft}$$",
+   "explanation": "Divide Mp by Ω = 1.67, then convert: 135 kip·ft. 225 kip·ft is the nominal Mp."
+  },
+  {
+   "id": "structural-101",
+   "topic": "Structural Engineering",
+   "subtopic": "Column slenderness limit",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "For a steel column with Fy = 36 ksi and E = 29,000 ksi, what is the slenderness limit 4.71√(E/Fy) that separates inelastic from elastic buckling?",
+   "choices": [
+    "113.4",
+    "126.1",
+    "150.0",
+    "133.7"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$4.71\\sqrt{\\frac{E}{F_y}} = 4.71\\sqrt{\\frac{29{,}000}{36}} = 4.71(28.38) = 133.7$$",
+   "explanation": "For Fy = 36 ksi the limit is 133.7 (it is 113.4 for Fy = 50 ksi)."
+  },
+  {
+   "id": "structural-102",
+   "topic": "Structural Engineering",
+   "subtopic": "Plastic shape factor",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "What is the shape factor (ratio of plastic to elastic section modulus, Z/S) for a solid rectangular cross-section?",
+   "choices": [
+    "1.50",
+    "1.00",
+    "1.70",
+    "1.12"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a rectangle, Z = bh²/4 and S = bh²/6:\n\n$$\\text{shape factor} = \\frac{Z}{S} = \\frac{bh^2/4}{bh^2/6} = 1.5$$",
+   "explanation": "Rectangle shape factor = 1.5; a typical wide-flange is about 1.1–1.12."
+  },
+  {
+   "id": "structural-103",
+   "topic": "Structural Engineering",
+   "subtopic": "Whitney stress block depth",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A reinforced-concrete beam has As = 2.0 in², fy = 60 ksi, f'c = 4 ksi, and b = 10 in. What is the depth of the equivalent (Whitney) stress block, a?",
+   "choices": [
+    "2.00 in",
+    "3.53 in",
+    "7.06 in",
+    "1.76 in"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$a = \\frac{A_s f_y}{0.85 f'_c b} = \\frac{2.0(60)}{0.85(4)(10)} = \\frac{120}{34} = 3.53\\ \\text{in}$$",
+   "explanation": "a = As·fy/(0.85 f'c b) = 3.53 in."
+  },
+  {
+   "id": "structural-104",
+   "topic": "Structural Engineering",
+   "subtopic": "Minimum flexural reinforcement",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A beam has b = 12 in, d = 20 in, f'c = 4,000 psi, and fy = 60,000 psi. What is the minimum flexural reinforcement As,min?",
+   "choices": [
+    "0.63 in²",
+    "1.20 in²",
+    "0.80 in²",
+    "0.40 in²"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nAs,min is the larger of 3√(f'c)/fy and 200/fy, times b·d:\n\n$$\\frac{200}{f_y} = \\frac{200}{60{,}000} = 0.00333\\ \\text{(governs)};\\quad A_{s,min} = 0.00333(12)(20) = 0.80\\ \\text{in}^2$$",
+   "explanation": "200/fy governs here: As,min = 0.80 in²."
+  },
+  {
+   "id": "structural-105",
+   "topic": "Structural Engineering",
+   "subtopic": "Strength reduction factor (tension-controlled)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "Per ACI 318, what is the strength reduction factor φ for a tension-controlled flexural member?",
+   "choices": [
+    "0.75",
+    "0.65",
+    "1.00",
+    "0.90"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a tension-controlled section (net tensile strain ≥ 0.005), ACI 318 uses φ = 0.90. Compression-controlled tied members use 0.65, and shear/torsion use 0.75.",
+   "explanation": "Tension-controlled φ = 0.90; tied compression members 0.65; shear 0.75.",
+   "conceptual": true
+  },
+  {
+   "id": "structural-106",
+   "topic": "Structural Engineering",
+   "subtopic": "One-way slab minimum thickness",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "Per ACI minimum-thickness tables, a simply supported one-way slab spanning 12 ft (normal-weight concrete, Grade 60) needs a minimum thickness of L/20. What is the minimum thickness?",
+   "choices": [
+    "7.2 in",
+    "4.8 in",
+    "6.5 in",
+    "14.4 in"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$h_{min} = \\frac{L}{20} = \\frac{12(12)}{20} = \\frac{144}{20} = 7.2\\ \\text{in}$$",
+   "explanation": "L/20 with L in inches: 144/20 = 7.2 in."
+  },
+  {
+   "id": "structural-107",
+   "topic": "Structural Engineering",
+   "subtopic": "Concrete modulus of elasticity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "For normal-weight concrete with f'c = 4,000 psi, what is the modulus of elasticity using Ec = 57,000√(f'c)?",
+   "choices": [
+    "3,120 ksi",
+    "3,600 ksi",
+    "7,200 ksi",
+    "228 ksi"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$E_c = 57{,}000\\sqrt{f'_c} = 57{,}000\\sqrt{4000} = 3{,}605{,}000\\ \\text{psi} \\approx 3{,}600\\ \\text{ksi}$$",
+   "explanation": "Ec = 57,000√f'c ≈ 3,600 ksi (f'c in psi)."
+  },
+  {
+   "id": "structural-108",
+   "topic": "Structural Engineering",
+   "subtopic": "Cantilever maximum moment (uniform load)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A cantilever beam 10 ft long carries a uniform load of 3 kip/ft over its full length. What is the maximum bending moment?",
+   "choices": [
+    "75 kip·ft",
+    "300 kip·ft",
+    "150 kip·ft",
+    "37.5 kip·ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Beams section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$M_{max} = \\frac{w L^2}{2} = \\frac{3(10)^2}{2} = 150\\ \\text{kip·ft}$$",
+   "explanation": "Cantilever UDL: M = wL²/2 at the fixed end = 150 kip·ft."
+  },
+  {
+   "id": "structural-109",
+   "topic": "Structural Engineering",
+   "subtopic": "Beam maximum moment (off-center load)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A simply supported beam 10 m long carries a single 40 kN point load 4 m from the left support. What is the maximum bending moment?",
+   "choices": [
+    "100 kN·m",
+    "160 kN·m",
+    "48 kN·m",
+    "96 kN·m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$R_A = \\frac{P b}{L} = \\frac{40(6)}{10} = 24\\ \\text{kN};\\quad M_{max} = R_A a = 24(4) = 96\\ \\text{kN·m}$$",
+   "explanation": "Max moment under the load = R_A·a = 96 kN·m."
+  },
+  {
+   "id": "structural-110",
+   "topic": "Structural Engineering",
+   "subtopic": "Continuous beam indeterminacy",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A continuous beam rests on four supports (one pin and three rollers) with no internal hinges. What is its degree of static indeterminacy?",
+   "choices": [
+    "2",
+    "0",
+    "1",
+    "3"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nReactions r = 2 (pin) + 3(1) (rollers) = 5; equations = 3:\n\n$$DSI = r - 3 = 5 - 3 = 2$$",
+   "explanation": "Five reactions minus three equations = 2nd-degree indeterminate."
+  },
+  {
+   "id": "structural-111",
+   "topic": "Structural Engineering",
+   "subtopic": "Rigid frame indeterminacy",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A single-bay, single-story rigid frame has two fixed column bases and rigid beam-column joints (no internal hinges). What is its degree of static indeterminacy?",
+   "choices": [
+    "2",
+    "3",
+    "1",
+    "6"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTwo fixed bases give r = 6 reaction components; with three equilibrium equations:\n\n$$DSI = r - 3 = 6 - 3 = 3$$",
+   "explanation": "Six reactions minus three equations = 3rd-degree indeterminate."
+  },
+  {
+   "id": "structural-112",
+   "topic": "Structural Engineering",
+   "subtopic": "Flat-roof snow load",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A flat roof has a ground snow load pg = 40 psf, with Ce = 1.0, Ct = 1.0, and Is = 1.0. What is the flat-roof snow load pf = 0.7·Ce·Ct·Is·pg?",
+   "choices": [
+    "40 psf",
+    "20 psf",
+    "28 psf",
+    "56 psf"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$p_f = 0.7 C_e C_t I_s p_g = 0.7(1.0)(1.0)(1.0)(40) = 28\\ \\text{psf}$$",
+   "explanation": "pf = 0.7·pg = 28 psf with all factors 1.0."
+  },
+  {
+   "id": "structural-113",
+   "topic": "Structural Engineering",
+   "subtopic": "Wind velocity pressure",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "Compute the velocity pressure qz = 0.00256·Kz·Kzt·Kd·V² for V = 115 mph, Kz = 0.85, Kzt = 1.0, and Kd = 0.85.",
+   "choices": [
+    "33.9 psf",
+    "28.8 psf",
+    "20.8 psf",
+    "24.5 psf"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q_z = 0.00256(0.85)(1.0)(0.85)(115)^2 = 0.00256(0.7225)(13{,}225) = 24.5\\ \\text{psf}$$",
+   "explanation": "Apply all factors to 0.00256V²: 24.5 psf."
+  },
+  {
+   "id": "structural-114",
+   "topic": "Structural Engineering",
+   "subtopic": "Live load reduction",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A member has an unreduced live load L0 = 50 psf, KLL = 4, and a tributary area AT = 400 ft². Using L = L0(0.25 + 15/√(KLL·AT)), what is the reduced live load?",
+   "choices": [
+    "31.3 psf",
+    "12.5 psf",
+    "37.5 psf",
+    "50 psf"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$L = 50\\left(0.25 + \\frac{15}{\\sqrt{4(400)}}\\right) = 50\\left(0.25 + \\frac{15}{40}\\right) = 50(0.625) = 31.3\\ \\text{psf}$$",
+   "explanation": "Reduced to 31.3 psf; reduction cannot go below 0.5·L0 for this case."
+  },
+  {
+   "id": "structural-115",
+   "topic": "Structural Engineering",
+   "subtopic": "ASD load combination",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A member carries a dead load of 20 kip and a live load of 30 kip (no other loads). Using ASD, what is the controlling required strength?",
+   "choices": [
+    "42 kip",
+    "50 kip",
+    "35 kip",
+    "60 kip"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design Loads section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe governing ASD gravity combination is D + L:\n\n$$D + L = 20 + 30 = 50\\ \\text{kip}$$\n\n(LRFD's 1.2D + 1.6L = 72 kip is a factored value, not ASD.)",
+   "explanation": "ASD uses unfactored D + L = 50 kip."
+  },
+  {
+   "id": "structural-116",
+   "topic": "Structural Engineering",
+   "subtopic": "Cantilever deflection (uniform load)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A cantilever 3 m long carries a uniform load of 5 kN/m. With E = 200 GPa and I = 50×10⁶ mm⁴, what is the tip deflection?",
+   "choices": [
+    "2.53 mm",
+    "10.1 mm",
+    "5.06 mm",
+    "1.69 mm"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n$$\\delta = \\frac{w L^4}{8 E I};\\ EI = (200\\times10^9)(50\\times10^{-6}) = 1.0\\times10^7\\ \\text{N·m}^2$$\n\n$$\\delta = \\frac{5000(3)^4}{8(1.0\\times10^7)} = 0.00506\\ \\text{m} = 5.06\\ \\text{mm}$$",
+   "explanation": "Cantilever UDL: δ = wL⁴/8EI = 5.06 mm."
+  },
+  {
+   "id": "structural-117",
+   "topic": "Structural Engineering",
+   "subtopic": "Simply supported beam deflection (uniform load)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A simply supported beam 6 m long carries a uniform load of 8 kN/m. With E = 200 GPa and I = 80×10⁶ mm⁴, what is the maximum deflection?",
+   "choices": [
+    "4.22 mm",
+    "33.8 mm",
+    "2.11 mm",
+    "8.44 mm"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n$$\\delta = \\frac{5 w L^4}{384 E I};\\ EI = 1.6\\times10^7\\ \\text{N·m}^2$$\n\n$$\\delta = \\frac{5(8000)(6)^4}{384(1.6\\times10^7)} = 0.00844\\ \\text{m} = 8.44\\ \\text{mm}$$",
+   "explanation": "Simple span UDL: δ = 5wL⁴/384EI = 8.44 mm."
+  },
+  {
+   "id": "structural-118",
+   "topic": "Structural Engineering",
+   "subtopic": "Euler buckling (fixed-fixed)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A fixed-fixed column (K = 0.5) is 5 m long with E = 200 GPa and I = 5×10⁶ mm⁴. What is the Euler critical load?",
+   "choices": [
+    "1,579 kN",
+    "395 kN",
+    "790 kN",
+    "6,316 kN"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\n$$P_{cr} = \\frac{\\pi^2 EI}{(KL)^2};\\ KL = 0.5(5) = 2.5\\ \\text{m},\\ EI = 1.0\\times10^6\\ \\text{N·m}^2$$\n\n$$P_{cr} = \\frac{\\pi^2 (1.0\\times10^6)}{(2.5)^2} = 1{,}579\\ \\text{kN}$$",
+   "explanation": "Fixed-fixed K = 0.5 gives 4× the pinned load (395 kN)."
+  },
+  {
+   "id": "structural-119",
+   "topic": "Structural Engineering",
+   "subtopic": "Fixed-end moment (off-center load)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A fixed-fixed beam 10 m long carries a 30 kN point load 4 m from end A (6 m from end B). What is the fixed-end moment at A?",
+   "choices": [
+    "28.8 kN·m",
+    "43.2 kN·m",
+    "75 kN·m",
+    "37.5 kN·m"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$M_{AB} = \\frac{P a b^2}{L^2} = \\frac{30(4)(6)^2}{10^2} = \\frac{30(4)(36)}{100} = 43.2\\ \\text{kN·m}$$",
+   "explanation": "FEM at A = Pab²/L² = 43.2 kN·m; at B it is Pa²b/L² = 28.8 kN·m."
+  },
+  {
+   "id": "structural-120",
+   "topic": "Structural Engineering",
+   "subtopic": "Plastic moment capacity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A steel section has a plastic section modulus Z = 60 in³ and Fy = 50 ksi. What is the plastic moment Mp?",
+   "choices": [
+    "225 kip·ft",
+    "300 kip·ft",
+    "250 kip·ft",
+    "150 kip·ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$M_p = F_y Z = 50(60) = 3000\\ \\text{kip·in} = 250\\ \\text{kip·ft}$$",
+   "explanation": "Mp = Fy·Z = 3000 kip·in = 250 kip·ft."
+  },
+  {
+   "id": "structural-121",
+   "topic": "Structural Engineering",
+   "subtopic": "Base plate bearing on concrete",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A column base plate 12 in × 12 in bears on concrete with f'c = 4 ksi (A1 = A2). Using φPp = φ(0.85 f'c A1) with φ = 0.65, what is the design bearing strength?",
+   "choices": [
+    "490 kip",
+    "212 kip",
+    "408 kip",
+    "318 kip"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design of Reinforced Concrete Components (ACI 318-14) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\phi P_p = 0.65(0.85 f'_c A_1) = 0.65(0.85)(4)(144) = 318\\ \\text{kip}$$",
+   "explanation": "φ(0.85 f'c A1) = 318 kip; 490 kip omits φ."
+  },
+  {
+   "id": "structural-122",
+   "topic": "Structural Engineering",
+   "subtopic": "Steel beam design shear strength",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A steel I-beam web has an area Aw = 5.0 in² and Fy = 50 ksi (web shear coefficient Cv = 1.0). Using LRFD (φv = 0.90), what is the design shear strength?",
+   "choices": [
+    "135 kip",
+    "150 kip",
+    "90 kip",
+    "180 kip"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\phi_v V_n = \\phi_v (0.6 F_y A_w C_v) = 0.90(0.6)(50)(5.0)(1.0) = 135\\ \\text{kip}$$",
+   "explanation": "φ·0.6·Fy·Aw = 135 kip. 150 kip omits φ."
   }
  ]
 }
