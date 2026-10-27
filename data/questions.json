@@ -19053,7 +19053,7 @@
     "11 days"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTotal float is the slack between an activity's early and late schedule:\n\n$$TF = LS - ES = LF - EF$$\n\n$$\\begin{aligned} ES &= 4 \\\\ \\text{Duration} &= 6 \\\\ EF &= ES + \\text{Dur} = 10 \\\\ LF &= 15 \\end{aligned}$$\n\n$$TF = LF - EF = 15 - 10 = 5\\ \\text{days}$$",
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTotal float is the slack between an activity's early and late schedule:\n\n$$TF = LS - ES = LF - EF$$\n\n$$\\begin{aligned} ES &= 4 \\\\ \\text{Duration} &= 6 \\\\ EF &= ES + \\text{Dur} = 10 \\\\ LF &= 15 \\end{aligned}$$\n\n$$TF = LF - EF = 15 - 10 = 5\\ \\text{days}$$",
    "explanation": "Total float = LF − EF. Using LF − ES (11) forgets the duration; 0 would only hold for a critical-path activity."
   },
   {
@@ -19070,7 +19070,7 @@
     "27 days"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFree float is the delay available before the earliest successor is affected:\n\n$$FF = ES_{\\text{successor}} - EF_{\\text{activity}}$$\n\n$$FF = 15 - 12 = 3\\ \\text{days}$$",
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFree float is the delay available before the earliest successor is affected:\n\n$$FF = ES_{\\text{successor}} - EF_{\\text{activity}}$$\n\n$$FF = 15 - 12 = 3\\ \\text{days}$$",
    "explanation": "Free float uses the successor's early start minus this activity's early finish. It never exceeds total float."
   },
   {
@@ -19087,7 +19087,7 @@
     "+$2,000"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCost variance compares work performed against what it cost:\n\n$$CV = EV - AC$$\n\n$$CV = 35{,}000 - 42{,}000 = -\\$7{,}000$$\n\nA negative CV means the work is over budget.",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCost variance compares work performed against what it cost:\n\n$$CV = EV - AC$$\n\n$$CV = 35{,}000 - 42{,}000 = -\\$7{,}000$$\n\nA negative CV means the work is over budget.",
    "explanation": "CV = EV − AC. −$5,000 is the schedule variance (EV − PV); a positive sign reverses the over-budget meaning."
   },
   {
@@ -19104,7 +19104,7 @@
     "0.83"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost performance index is earned value per dollar spent:\n\n$$CPI = \\frac{EV}{AC} = \\frac{35{,}000}{42{,}000} = 0.83$$\n\nCPI < 1 indicates a cost overrun.",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost performance index is earned value per dollar spent:\n\n$$CPI = \\frac{EV}{AC} = \\frac{35{,}000}{42{,}000} = 0.83$$\n\nCPI < 1 indicates a cost overrun.",
    "explanation": "CPI = EV/AC = 0.83. 1.20 inverts the ratio; 0.88 would be the SPI if PV were $40,000."
   },
   {
@@ -19121,7 +19121,7 @@
     "$208,333"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWith performance assumed to continue, EAC scales the budget by the cost performance index:\n\n$$CPI = \\frac{EV}{AC} = \\frac{50{,}000}{60{,}000} = 0.8333$$\n\n$$EAC = \\frac{BAC}{CPI} = \\frac{250{,}000}{0.8333} = \\$300{,}000$$",
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWith performance assumed to continue, EAC scales the budget by the cost performance index:\n\n$$CPI = \\frac{EV}{AC} = \\frac{50{,}000}{60{,}000} = 0.8333$$\n\n$$EAC = \\frac{BAC}{CPI} = \\frac{250{,}000}{0.8333} = \\$300{,}000$$",
    "explanation": "EAC = BAC/CPI. $260,000 wrongly adds the $10,000 overrun once; $208,333 multiplies by CPI instead of dividing."
   },
   {
@@ -19138,7 +19138,7 @@
     "$1,250/day"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost slope is the added cost per day of time saved:\n\n$$\\text{Slope} = \\frac{\\text{Crash cost} - \\text{Normal cost}}{\\text{Normal time} - \\text{Crash time}}$$\n\n$$\\text{Slope} = \\frac{12{,}500 - 8{,}000}{10 - 7} = \\frac{4{,}500}{3} = \\$1{,}500/\\text{day}$$",
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe cost slope is the added cost per day of time saved:\n\n$$\\text{Slope} = \\frac{\\text{Crash cost} - \\text{Normal cost}}{\\text{Normal time} - \\text{Crash time}}$$\n\n$$\\text{Slope} = \\frac{12{,}500 - 8{,}000}{10 - 7} = \\frac{4{,}500}{3} = \\$1{,}500/\\text{day}$$",
    "explanation": "Slope = Δcost / Δtime. $4,500 is the total added cost, not per day; $643 divides by 7 instead of 3."
   },
   {
@@ -19155,7 +19155,7 @@
     "0.04"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe OSHA incidence rate is normalized to 100 full-time workers (200,000 hours):\n\n$$IR = \\frac{(\\text{cases})(200{,}000)}{\\text{total hours worked}}$$\n\n$$IR = \\frac{(5)(200{,}000)}{250{,}000} = 4.0$$",
+   "solution": "Refer to the Incidence Variable Values section in the Safety chapter of the FE Reference Handbook (v10.6).\n\nThe OSHA incidence rate is normalized to 100 full-time workers (200,000 hours):\n\n$$IR = \\frac{(\\text{cases})(200{,}000)}{\\text{total hours worked}}$$\n\n$$IR = \\frac{(5)(200{,}000)}{250{,}000} = 4.0$$",
    "explanation": "The 200,000-hour base represents 100 workers × 2,000 hr/yr. Using 100,000 gives 2.0; 500,000 gives 8.0."
   },
   {
@@ -19312,7 +19312,7 @@
     "12,500 BCY"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nShrinkage means compacted volume is less than bank volume:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\n$$BCY = \\frac{CCY}{1 - \\text{shrinkage}} = \\frac{10{,}000}{1 - 0.20} = 12{,}500\\ \\text{BCY}$$",
+   "solution": "Refer to the Earthwork formulas section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nShrinkage means compacted volume is less than bank volume:\n\n$$CCY = BCY \\times (1 - \\text{shrinkage})$$\n\n$$BCY = \\frac{CCY}{1 - \\text{shrinkage}} = \\frac{10{,}000}{1 - 0.20} = 12{,}500\\ \\text{BCY}$$",
    "explanation": "Divide by (1 − shrinkage). Multiplying by 0.80 gives 8,000, the wrong direction."
   },
   {
@@ -19380,7 +19380,7 @@
     "20 kN·m"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nFind the left reaction by moments about the right support, then the moment under the load:\n\n$$R_A = \\frac{P\\,b}{L} = \\frac{20(5)}{8} = 12.5\\ \\text{kN}$$\n\nThe maximum moment is under the load:\n\n$$M_{max} = R_A \\cdot a = 12.5 \\times 3 = 37.5\\ \\text{kN·m}$$",
+   "solution": "Refer to the Beams section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFind the left reaction by moments about the right support, then the moment under the load:\n\n$$R_A = \\frac{P\\,b}{L} = \\frac{20(5)}{8} = 12.5\\ \\text{kN}$$\n\nThe maximum moment is under the load:\n\n$$M_{max} = R_A \\cdot a = 12.5 \\times 3 = 37.5\\ \\text{kN·m}$$",
    "explanation": "For a single point load the maximum moment is R_A·a. 60 would be PL/8×... using midspan PL/4; the load is not at midspan.",
    "diagram": "diagrams/structural-075.svg"
   },
@@ -19398,7 +19398,7 @@
     "11.5 kN"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nVertical equilibrium at the joint — only the diagonal has a vertical component to resist the 10 kN:\n\n$$\\sum F_y = 0: \\quad F_d \\sin 30^\\circ = 10$$\n\n$$F_d = \\frac{10}{\\sin 30^\\circ} = \\frac{10}{0.5} = 20\\ \\text{kN}$$",
+   "solution": "Refer to the Plane Truss: Method of Joints section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nVertical equilibrium at the joint — only the diagonal has a vertical component to resist the 10 kN:\n\n$$\\sum F_y = 0: \\quad F_d \\sin 30^\\circ = 10$$\n\n$$F_d = \\frac{10}{\\sin 30^\\circ} = \\frac{10}{0.5} = 20\\ \\text{kN}$$",
    "explanation": "Only the diagonal carries vertical load, so F_d = 10/sin30° = 20 kN. 17.3 kN uses cos30° (the horizontal component).",
    "diagram": "diagrams/structural-076.svg"
   },
@@ -19416,7 +19416,7 @@
     "10 kN"
    ],
    "answerIndex": 2,
-   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSum moments about B to find R_A (the load at C is 2 m past B):\n\n$$\\sum M_B = 0: \\quad R_A(6) + 10(2) = 0 \\Rightarrow R_A = -3.33\\ \\text{kN}$$\n\nThe negative sign means R_A acts downward (uplift); its magnitude is 3.33 kN.",
+   "solution": "Refer to the Beams section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSum moments about B to find R_A (the load at C is 2 m past B):\n\n$$\\sum M_B = 0: \\quad R_A(6) + 10(2) = 0 \\Rightarrow R_A = -3.33\\ \\text{kN}$$\n\nThe negative sign means R_A acts downward (uplift); its magnitude is 3.33 kN.",
    "explanation": "The overhang load causes uplift at A: |R_A| = 10(2)/6 = 3.33 kN. 13.33 kN is the reaction at B.",
    "diagram": "diagrams/structural-077.svg"
   },
@@ -19434,7 +19434,7 @@
     "4.5 mm"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nTip deflection of a cantilever with an end point load:\n\n$$\\Delta = \\frac{PL^3}{3EI}$$\n\n$$\\begin{aligned} P &= 5{,}000\\ \\text{N}, \\quad L = 3\\ \\text{m} \\\\ EI &= (200\\times10^9)(50\\times10^{-6}) = 1.0\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{5{,}000(3)^3}{3(1.0\\times10^7)} = 0.0045\\ \\text{m} = 4.5\\ \\text{mm}$$",
+   "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nTip deflection of a cantilever with an end point load:\n\n$$\\Delta = \\frac{PL^3}{3EI}$$\n\n$$\\begin{aligned} P &= 5{,}000\\ \\text{N}, \\quad L = 3\\ \\text{m} \\\\ EI &= (200\\times10^9)(50\\times10^{-6}) = 1.0\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{5{,}000(3)^3}{3(1.0\\times10^7)} = 0.0045\\ \\text{m} = 4.5\\ \\text{mm}$$",
    "explanation": "Use PL³/3EI for a cantilever. 13.5 mm drops the factor of 3 (PL³/EI).",
    "diagram": "diagrams/structural-078.svg"
   },
@@ -19452,7 +19452,7 @@
     "1.69 mm"
    ],
    "answerIndex": 0,
-   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMidspan deflection for a central point load on a simple span:\n\n$$\\Delta = \\frac{PL^3}{48EI}$$\n\n$$\\begin{aligned} P &= 30{,}000\\ \\text{N}, \\quad L = 6\\ \\text{m} \\\\ EI &= (200\\times10^9)(80\\times10^{-6}) = 1.6\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{30{,}000(6)^3}{48(1.6\\times10^7)} = 0.00844\\ \\text{m} = 8.44\\ \\text{mm}$$",
+   "solution": "Refer to the Deflection of Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMidspan deflection for a central point load on a simple span:\n\n$$\\Delta = \\frac{PL^3}{48EI}$$\n\n$$\\begin{aligned} P &= 30{,}000\\ \\text{N}, \\quad L = 6\\ \\text{m} \\\\ EI &= (200\\times10^9)(80\\times10^{-6}) = 1.6\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{30{,}000(6)^3}{48(1.6\\times10^7)} = 0.00844\\ \\text{m} = 8.44\\ \\text{mm}$$",
    "explanation": "Central point load uses PL³/48EI. 33.75 mm uses /12EI (a cantilever-type factor).",
    "diagram": "diagrams/structural-079.svg"
   },
@@ -19470,7 +19470,7 @@
     "197 kN"
    ],
    "answerIndex": 1,
-   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nEuler buckling load with K = 1.0 (pinned-pinned):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2}$$\n\n$$\\begin{aligned} EI &= (200\\times10^9)(10\\times10^{-6}) = 2.0\\times10^6\\ \\text{N·m}^2 \\\\ P_{cr} &= \\frac{\\pi^2 (2.0\\times10^6)}{(5)^2} = 790{,}000\\ \\text{N} = 790\\ \\text{kN} \\end{aligned}$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nEuler buckling load with K = 1.0 (pinned-pinned):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2}$$\n\n$$\\begin{aligned} EI &= (200\\times10^9)(10\\times10^{-6}) = 2.0\\times10^6\\ \\text{N·m}^2 \\\\ P_{cr} &= \\frac{\\pi^2 (2.0\\times10^6)}{(5)^2} = 790{,}000\\ \\text{N} = 790\\ \\text{kN} \\end{aligned}$$",
    "explanation": "K = 1 for pinned ends. 395 kN would use K = √2 effect wrongly; 1,579 kN doubles it."
   },
   {
@@ -19505,7 +19505,7 @@
     "4.05×10⁶ mm⁴"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nSolve the Euler equation for I (K = 1.0):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2} \\Rightarrow I = \\frac{P_{cr} L^2}{\\pi^2 E}$$\n\n$$I = \\frac{(500{,}000)(4)^2}{\\pi^2 (200\\times10^9)} = 4.05\\times10^{-6}\\ \\text{m}^4 = 4.05\\times10^{6}\\ \\text{mm}^4$$",
+   "solution": "Refer to the Columns section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nSolve the Euler equation for I (K = 1.0):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2} \\Rightarrow I = \\frac{P_{cr} L^2}{\\pi^2 E}$$\n\n$$I = \\frac{(500{,}000)(4)^2}{\\pi^2 (200\\times10^9)} = 4.05\\times10^{-6}\\ \\text{m}^4 = 4.05\\times10^{6}\\ \\text{mm}^4$$",
    "explanation": "Rearrange Euler for I. 2.03×10⁶ halves L² (uses L = 2 m); 8.11×10⁶ doubles it."
   },
   {
@@ -19574,7 +19574,7 @@
     "80 kN·m"
    ],
    "answerIndex": 3,
-   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a fixed-fixed beam under a full-span uniform load, the support (negative) moment is:\n\n$$M = \\frac{wL^2}{12} = \\frac{15(8)^2}{12} = \\frac{960}{12} = 80\\ \\text{kN·m}$$\n\nThe midspan moment for this case is wL²/24 = 40 kN·m.",
+   "solution": "Refer to the Beams section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a fixed-fixed beam under a full-span uniform load, the support (negative) moment is:\n\n$$M = \\frac{wL^2}{12} = \\frac{15(8)^2}{12} = \\frac{960}{12} = 80\\ \\text{kN·m}$$\n\nThe midspan moment for this case is wL²/24 = 40 kN·m.",
    "explanation": "Support moment is wL²/12 = 80. 40 is the midspan moment (wL²/24); 120 is the simple-span wL²/8."
   },
   {
@@ -19697,6 +19697,334 @@
    "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nConcrete shear with λ = 1.0, then φ = 0.75:\n\n$$V_c = 2\\lambda\\sqrt{f'_c}\\,b_w d = 2(1)\\sqrt{4000}(12)(20) = 30{,}358\\ \\text{lb}$$\n\n$$\\phi V_c = 0.75(30{,}358) = 22{,}800\\ \\text{lb} = 22.8\\ \\text{kip}$$",
    "explanation": "Apply φ = 0.75 to V_c. 30.4 kip is the unfactored V_c; 45.5 kip uses φ = 1.5 wrongly.",
    "diagram": "diagrams/structural-093.svg"
+  },
+  {
+   "id": "transportation-083",
+   "topic": "Transportation Engineering",
+   "subtopic": "Vertical curve (PVC elevation)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An equal-tangent crest vertical curve 600 ft long joins a +4% grade to a −2% grade. The PVI is at station 30+00 at elevation 500.00 ft. What is the elevation of the PVC?",
+   "choices": [
+    "488.00 ft",
+    "512.00 ft",
+    "494.00 ft",
+    "506.00 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe PVC is half the curve length before the PVI, along the incoming grade:\n\n$$\\text{Elev}_{PVC} = \\text{Elev}_{PVI} - g_1\\left(\\tfrac{L}{2}\\right)$$\n\n$$= 500.00 - 0.04(300) = 488.00\\ \\text{ft}$$",
+   "explanation": "Back up L/2 = 300 ft along +4%: 500 − 12 = 488.00 ft. Adding instead gives 512.00 (that is toward the PVT direction).",
+   "diagram": "diagrams/transportation-083.svg"
+  },
+  {
+   "id": "transportation-084",
+   "topic": "Transportation Engineering",
+   "subtopic": "Vertical curve (minimum length)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A crest vertical curve must provide a rate of vertical curvature K = 44 ft per percent. The grades are +3% and −3%. What is the minimum curve length?",
+   "choices": [
+    "44 ft",
+    "264 ft",
+    "132 ft",
+    "150 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nMinimum length from the rate of vertical curvature and the total grade change A:\n\n$$A = |g_1 - g_2| = |3 - (-3)| = 6\\%$$\n\n$$L = K A = 44 \\times 6 = 264\\ \\text{ft}$$",
+   "explanation": "L = K·A with A = 6%. Using A = 3% (one grade) gives 132 ft."
+  },
+  {
+   "id": "transportation-085",
+   "topic": "Transportation Engineering",
+   "subtopic": "Vertical curve (tangent offset at PVI)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An equal-tangent vertical curve 600 ft long joins a +4% grade to a −2% grade. What is the vertical offset between the tangent and the curve at the PVI?",
+   "choices": [
+    "9.0 ft",
+    "2.25 ft",
+    "4.5 ft",
+    "36 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe offset from the tangent to the curve at the PVI (the midpoint) is:\n\n$$e = \\frac{A L}{8}$$\n\nwith A as a decimal grade change, A = |0.04 − (−0.02)| = 0.06:\n\n$$e = \\frac{0.06(600)}{8} = 4.5\\ \\text{ft}$$",
+   "explanation": "Mid-curve offset e = AL/8 = 4.5 ft. Using AL/4 doubles it to 9.0 ft."
+  },
+  {
+   "id": "transportation-086",
+   "topic": "Transportation Engineering",
+   "subtopic": "Horizontal curve (length of curve)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A horizontal circular curve has a radius of 500 ft and a deflection (central) angle of 30°. What is the length of the curve?",
+   "choices": [
+    "150.0 ft",
+    "523.6 ft",
+    "288.0 ft",
+    "261.8 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nArc length for a central angle Δ:\n\n$$L = \\frac{\\pi R \\Delta}{180} = \\frac{\\pi (500)(30)}{180} = 261.8\\ \\text{ft}$$",
+   "explanation": "L = πRΔ/180 = 261.8 ft. 523.6 ft uses Δ = 60°; 150 ft drops the π (uses RΔ/100).",
+   "diagram": "diagrams/transportation-086.svg"
+  },
+  {
+   "id": "transportation-087",
+   "topic": "Transportation Engineering",
+   "subtopic": "Horizontal curve (tangent distance)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A horizontal circular curve has a radius of 500 ft and a deflection angle of 30°. What is the tangent distance T (from PC or PT to the PI)?",
+   "choices": [
+    "134.0 ft",
+    "268.0 ft",
+    "67.0 ft",
+    "150.0 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTangent distance for a circular curve:\n\n$$T = R\\tan\\!\\left(\\tfrac{\\Delta}{2}\\right) = 500\\tan(15^\\circ) = 500(0.2679) = 134.0\\ \\text{ft}$$",
+   "explanation": "T = R·tan(Δ/2) = 134 ft. Using tan(Δ) = tan30° gives 289; halving gives 67.",
+   "diagram": "diagrams/transportation-087.svg"
+  },
+  {
+   "id": "transportation-088",
+   "topic": "Transportation Engineering",
+   "subtopic": "Horizontal curve (middle ordinate)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A horizontal circular curve has a radius of 500 ft and a deflection angle of 30°. What is the middle ordinate M?",
+   "choices": [
+    "34.0 ft",
+    "17.0 ft",
+    "8.5 ft",
+    "67.0 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nMiddle ordinate for a circular curve:\n\n$$M = R\\left[1 - \\cos\\!\\left(\\tfrac{\\Delta}{2}\\right)\\right] = 500\\,[1 - \\cos 15^\\circ] = 500(0.03407) = 17.0\\ \\text{ft}$$",
+   "explanation": "M = R(1 − cos(Δ/2)) = 17.0 ft. Using cos(Δ) overstates it.",
+   "diagram": "diagrams/transportation-088.svg"
+  },
+  {
+   "id": "transportation-089",
+   "topic": "Transportation Engineering",
+   "subtopic": "Degree of curve (arc definition)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "Using the arc definition, what is the degree of curve for a horizontal curve with a radius of 500 ft?",
+   "choices": [
+    "5.73°",
+    "22.92°",
+    "11.46°",
+    "100°"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nArc-definition degree of curve (100-ft arc):\n\n$$D = \\frac{5729.58}{R} = \\frac{5729.58}{500} = 11.46^\\circ$$",
+   "explanation": "D = 5729.58/R = 11.46°. 5.73° would use 2863; 22.9° halves the radius."
+  },
+  {
+   "id": "transportation-090",
+   "topic": "Transportation Engineering",
+   "subtopic": "Stopping sight distance (level)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A roadway has a design speed of 60 mph. Using a perception-reaction time of 2.5 s and a deceleration rate of 11.2 ft/s² on a level grade, what is the stopping sight distance?",
+   "choices": [
+    "345 ft",
+    "221 ft",
+    "611 ft",
+    "566 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Stopping Sight Distance section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSSD is the sum of the reaction distance and the braking distance:\n\n$$SSD = 1.47 V t + \\frac{1.075 V^2}{a}$$\n\n$$= 1.47(60)(2.5) + \\frac{1.075(60)^2}{11.2} = 220.5 + 345.5 = 566\\ \\text{ft}$$",
+   "explanation": "Add reaction (220.5 ft) and braking (345.5 ft) = 566 ft. 345 ft omits the reaction distance."
+  },
+  {
+   "id": "transportation-091",
+   "topic": "Transportation Engineering",
+   "subtopic": "Minimum radius (superelevation and friction)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A horizontal curve is designed for 60 mph with a maximum superelevation e = 0.08 and a side-friction factor f = 0.12. What is the minimum radius?",
+   "choices": [
+    "1,200 ft",
+    "900 ft",
+    "1,500 ft",
+    "600 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Horizontal Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nMinimum radius from the point-mass curve equation:\n\n$$R_{min} = \\frac{V^2}{15(e + f)} = \\frac{60^2}{15(0.08 + 0.12)} = \\frac{3600}{3.0} = 1{,}200\\ \\text{ft}$$",
+   "explanation": "R = V²/[15(e+f)] = 1,200 ft. Using only f or only e in the denominator changes the result.",
+   "diagram": "diagrams/transportation-091.svg"
+  },
+  {
+   "id": "transportation-092",
+   "topic": "Transportation Engineering",
+   "subtopic": "Traffic density from flow and speed",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A freeway lane carries a flow rate of 1,800 veh/h at an average speed of 45 mph. What is the traffic density?",
+   "choices": [
+    "45 veh/mi",
+    "40 veh/mi",
+    "81,000 veh/mi",
+    "20 veh/mi"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Traffic Flow Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe fundamental relationship q = k·u gives:\n\n$$k = \\frac{q}{u} = \\frac{1800}{45} = 40\\ \\text{veh/mi}$$",
+   "explanation": "Density k = q/u = 40 veh/mi. Multiplying q·u instead gives 81,000."
+  },
+  {
+   "id": "transportation-093",
+   "topic": "Transportation Engineering",
+   "subtopic": "Space mean speed from flow and density",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "On a highway segment the flow is 1,500 veh/h and the density is 25 veh/mi. What is the space mean speed?",
+   "choices": [
+    "37,500 mph",
+    "50 mph",
+    "60 mph",
+    "0.017 mph"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Traffic Flow Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFrom q = k·u:\n\n$$u = \\frac{q}{k} = \\frac{1500}{25} = 60\\ \\text{mph}$$",
+   "explanation": "u = q/k = 60 mph. Multiplying gives 37,500."
+  },
+  {
+   "id": "transportation-094",
+   "topic": "Transportation Engineering",
+   "subtopic": "Peak hour factor",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "An approach carries 2,000 vehicles in the peak hour, with 600 vehicles in the busiest 15-minute period. What is the peak hour factor (PHF)?",
+   "choices": [
+    "0.75",
+    "1.00",
+    "0.60",
+    "0.833"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Level of Service (LOS) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe peak hour factor relates hourly volume to the peak 15-minute rate:\n\n$$PHF = \\frac{V}{4 \\times V_{15}} = \\frac{2000}{4(600)} = \\frac{2000}{2400} = 0.833$$",
+   "explanation": "PHF = V / (4·V15) = 0.833. A PHF of 1.0 would mean perfectly uniform flow."
+  },
+  {
+   "id": "transportation-095",
+   "topic": "Transportation Engineering",
+   "subtopic": "Yellow change interval",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "For an approach with a speed of 45 mph, a perception-reaction time of 1.0 s, and a deceleration of 10 ft/s² (level grade), what is the yellow change interval?",
+   "choices": [
+    "4.3 s",
+    "3.3 s",
+    "5.6 s",
+    "2.0 s"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nYellow change interval (ITE), on a level grade:\n\n$$y = t + \\frac{1.47 V}{2a + 64.4 g} = 1.0 + \\frac{1.47(45)}{2(10)} = 1.0 + 3.31 = 4.3\\ \\text{s}$$",
+   "explanation": "Reaction (1.0 s) plus motion time (3.31 s) = 4.3 s. 3.3 s omits the reaction time."
+  },
+  {
+   "id": "transportation-096",
+   "topic": "Transportation Engineering",
+   "subtopic": "All-red clearance interval",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An intersection is 60 ft wide and the design vehicle is 20 ft long. For an approach speed of 30 mph, what is the all-red clearance interval?",
+   "choices": [
+    "2.5 s",
+    "1.8 s",
+    "1.2 s",
+    "3.6 s"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Traffic Signal Timing section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nAll-red time clears the intersection plus the vehicle length:\n\n$$r = \\frac{W + L}{1.47 V} = \\frac{60 + 20}{1.47(30)} = \\frac{80}{44.1} = 1.8\\ \\text{s}$$",
+   "explanation": "Include the vehicle length: (W+L)/(1.47V) = 1.8 s. Using only W gives 1.36 s."
+  },
+  {
+   "id": "transportation-097",
+   "topic": "Transportation Engineering",
+   "subtopic": "Signalized movement capacity",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A signalized movement has a saturation flow rate of 1,800 veh/h, an effective green of 30 s, and a cycle length of 90 s. What is the movement capacity?",
+   "choices": [
+    "1,800 veh/h",
+    "540 veh/h",
+    "600 veh/h",
+    "1,200 veh/h"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Level of Service (LOS) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCapacity is the saturation flow scaled by the green ratio:\n\n$$c = s\\left(\\frac{g}{C}\\right) = 1800\\left(\\frac{30}{90}\\right) = 600\\ \\text{veh/h}$$",
+   "explanation": "c = s·(g/C) = 600 veh/h. Using the full saturation flow (1,800) ignores the green ratio."
+  },
+  {
+   "id": "transportation-098",
+   "topic": "Transportation Engineering",
+   "subtopic": "Traffic growth (design-year AADT)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "The current AADT on a roadway is 12,000 veh/day. Assuming 3% annual compound growth, what is the AADT 10 years from now?",
+   "choices": [
+    "15,600 veh/day",
+    "13,600 veh/day",
+    "24,000 veh/day",
+    "16,100 veh/day"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Traffic Forecasting section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompound annual growth:\n\n$$AADT_n = AADT_0 (1 + r)^n = 12{,}000(1.03)^{10} = 12{,}000(1.344) = 16{,}100\\ \\text{veh/day}$$",
+   "explanation": "Compound: 12,000(1.03)^10 ≈ 16,100. Simple 3%/yr growth (1.30×) would give 15,600."
+  },
+  {
+   "id": "transportation-099",
+   "topic": "Transportation Engineering",
+   "subtopic": "Trip generation (rate method)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A proposed development has 250 dwelling units. Using an average trip generation rate of 9.57 daily trips per unit, what is the estimated daily trip generation?",
+   "choices": [
+    "2,393 trips/day",
+    "239 trips/day",
+    "2,600 trips/day",
+    "261 trips/day"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Trip Generation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nTrips equal the number of units times the average rate:\n\n$$T = (\\text{units})(\\text{rate}) = 250 \\times 9.57 = 2{,}393\\ \\text{trips/day}$$",
+   "explanation": "250 × 9.57 = 2,393 trips/day. 239 misplaces the decimal."
+  },
+  {
+   "id": "transportation-100",
+   "topic": "Transportation Engineering",
+   "subtopic": "Directional design hourly volume",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A highway has an AADT of 20,000 veh/day. The K-factor is 0.10 and the directional distribution D is 0.60. What is the directional design hourly volume (DDHV)?",
+   "choices": [
+    "2,000 veh/h",
+    "1,200 veh/h",
+    "720 veh/h",
+    "12,000 veh/h"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Traffic Forecasting section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe DDHV applies the hour and direction factors to the AADT:\n\n$$DDHV = AADT \\times K \\times D = 20{,}000(0.10)(0.60) = 1{,}200\\ \\text{veh/h}$$",
+   "explanation": "DDHV = AADT·K·D = 1,200 veh/h. Omitting D (0.60) gives 2,000 veh/h (both directions)."
+  },
+  {
+   "id": "transportation-101",
+   "topic": "Transportation Engineering",
+   "subtopic": "Design-lane ESAL accumulation",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A design lane carries 500 equivalent axles per day, each with a load equivalency factor of 2.3. What is the daily ESAL on the design lane?",
+   "choices": [
+    "500 ESAL/day",
+    "217 ESAL/day",
+    "1,150 ESAL/day",
+    "2.3 ESAL/day"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Pavement Design section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nESAL is the number of axles times the load equivalency factor:\n\n$$ESAL = (\\text{axles})(LEF) = 500 \\times 2.3 = 1{,}150\\ \\text{ESAL/day}$$",
+   "explanation": "ESAL = axles × LEF = 1,150. Dividing by the LEF (217) inverts the relationship."
   }
  ]
 }
