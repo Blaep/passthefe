@@ -19365,6 +19365,338 @@
    "answerIndex": 2,
    "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSlope is the elevation change over the horizontal run (300 ft between the stations):\n\n$$S = \\frac{\\Delta \\text{elev}}{\\Delta \\text{distance}} = \\frac{100.00 - 98.50}{300} = \\frac{1.50}{300} = 0.005 = 0.50\\%$$",
    "explanation": "Divide the 1.50-ft drop by the 300-ft run. 1.50% forgets to divide by distance in hundreds of ft."
+  },
+  {
+   "id": "structural-075",
+   "topic": "Structural Engineering",
+   "subtopic": "Beam maximum moment (point load)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A simply supported beam spans 8 m and carries a single 20 kN point load located 3 m from the left support. What is the maximum bending moment in the beam?",
+   "choices": [
+    "37.5 kN·m",
+    "60 kN·m",
+    "42.5 kN·m",
+    "20 kN·m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nFind the left reaction by moments about the right support, then the moment under the load:\n\n$$R_A = \\frac{P\\,b}{L} = \\frac{20(5)}{8} = 12.5\\ \\text{kN}$$\n\nThe maximum moment is under the load:\n\n$$M_{max} = R_A \\cdot a = 12.5 \\times 3 = 37.5\\ \\text{kN·m}$$",
+   "explanation": "For a single point load the maximum moment is R_A·a. 60 would be PL/8×... using midspan PL/4; the load is not at midspan.",
+   "diagram": "diagrams/structural-075.svg"
+  },
+  {
+   "id": "structural-076",
+   "topic": "Structural Engineering",
+   "subtopic": "Method of joints",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "At a truss joint, a horizontal member and a single diagonal member (inclined 30° above horizontal) meet, and a 10 kN load hangs vertically from the joint. What is the axial force in the diagonal member?",
+   "choices": [
+    "10 kN",
+    "20 kN",
+    "17.3 kN",
+    "11.5 kN"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nVertical equilibrium at the joint — only the diagonal has a vertical component to resist the 10 kN:\n\n$$\\sum F_y = 0: \\quad F_d \\sin 30^\\circ = 10$$\n\n$$F_d = \\frac{10}{\\sin 30^\\circ} = \\frac{10}{0.5} = 20\\ \\text{kN}$$",
+   "explanation": "Only the diagonal carries vertical load, so F_d = 10/sin30° = 20 kN. 17.3 kN uses cos30° (the horizontal component).",
+   "diagram": "diagrams/structural-076.svg"
+  },
+  {
+   "id": "structural-077",
+   "topic": "Structural Engineering",
+   "subtopic": "Beam with overhang (reaction)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A beam is supported at A (x = 0) and B (x = 6 m) with a 2 m overhang beyond B to a free end C (x = 8 m). A 10 kN point load acts at C. What is the magnitude of the vertical reaction at A?",
+   "choices": [
+    "13.33 kN",
+    "6.67 kN",
+    "3.33 kN",
+    "10 kN"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nSum moments about B to find R_A (the load at C is 2 m past B):\n\n$$\\sum M_B = 0: \\quad R_A(6) + 10(2) = 0 \\Rightarrow R_A = -3.33\\ \\text{kN}$$\n\nThe negative sign means R_A acts downward (uplift); its magnitude is 3.33 kN.",
+   "explanation": "The overhang load causes uplift at A: |R_A| = 10(2)/6 = 3.33 kN. 13.33 kN is the reaction at B.",
+   "diagram": "diagrams/structural-077.svg"
+  },
+  {
+   "id": "structural-078",
+   "topic": "Structural Engineering",
+   "subtopic": "Cantilever tip deflection",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A cantilever beam 3 m long carries a 5 kN point load at its free tip. E = 200 GPa and I = 50×10⁶ mm⁴. What is the tip deflection?",
+   "choices": [
+    "13.5 mm",
+    "1.5 mm",
+    "2.25 mm",
+    "4.5 mm"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nTip deflection of a cantilever with an end point load:\n\n$$\\Delta = \\frac{PL^3}{3EI}$$\n\n$$\\begin{aligned} P &= 5{,}000\\ \\text{N}, \\quad L = 3\\ \\text{m} \\\\ EI &= (200\\times10^9)(50\\times10^{-6}) = 1.0\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{5{,}000(3)^3}{3(1.0\\times10^7)} = 0.0045\\ \\text{m} = 4.5\\ \\text{mm}$$",
+   "explanation": "Use PL³/3EI for a cantilever. 13.5 mm drops the factor of 3 (PL³/EI).",
+   "diagram": "diagrams/structural-078.svg"
+  },
+  {
+   "id": "structural-079",
+   "topic": "Structural Engineering",
+   "subtopic": "Simply supported central point load deflection",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A simply supported beam 6 m long carries a 30 kN point load at midspan. E = 200 GPa and I = 80×10⁶ mm⁴. What is the maximum deflection?",
+   "choices": [
+    "8.44 mm",
+    "33.75 mm",
+    "4.22 mm",
+    "1.69 mm"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMidspan deflection for a central point load on a simple span:\n\n$$\\Delta = \\frac{PL^3}{48EI}$$\n\n$$\\begin{aligned} P &= 30{,}000\\ \\text{N}, \\quad L = 6\\ \\text{m} \\\\ EI &= (200\\times10^9)(80\\times10^{-6}) = 1.6\\times10^7\\ \\text{N·m}^2 \\end{aligned}$$\n\n$$\\Delta = \\frac{30{,}000(6)^3}{48(1.6\\times10^7)} = 0.00844\\ \\text{m} = 8.44\\ \\text{mm}$$",
+   "explanation": "Central point load uses PL³/48EI. 33.75 mm uses /12EI (a cantilever-type factor).",
+   "diagram": "diagrams/structural-079.svg"
+  },
+  {
+   "id": "structural-080",
+   "topic": "Structural Engineering",
+   "subtopic": "Euler buckling load (pinned-pinned)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A pinned-pinned column is 5 m long with E = 200 GPa and I = 10×10⁶ mm⁴. What is the Euler critical buckling load?",
+   "choices": [
+    "395 kN",
+    "790 kN",
+    "1,579 kN",
+    "197 kN"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nEuler buckling load with K = 1.0 (pinned-pinned):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2}$$\n\n$$\\begin{aligned} EI &= (200\\times10^9)(10\\times10^{-6}) = 2.0\\times10^6\\ \\text{N·m}^2 \\\\ P_{cr} &= \\frac{\\pi^2 (2.0\\times10^6)}{(5)^2} = 790{,}000\\ \\text{N} = 790\\ \\text{kN} \\end{aligned}$$",
+   "explanation": "K = 1 for pinned ends. 395 kN would use K = √2 effect wrongly; 1,579 kN doubles it."
+  },
+  {
+   "id": "structural-081",
+   "topic": "Structural Engineering",
+   "subtopic": "Effective length factor (fixed-free)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "What is the theoretical effective length factor K for a column that is fixed at its base and free at the top (a flagpole-type column)?",
+   "choices": [
+    "0.5",
+    "0.7",
+    "2.0",
+    "1.0"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a column fixed at the base and free (and free to translate) at the top, the theoretical effective length factor is K = 2.0. The column buckles in a shape equivalent to half of a pinned-pinned column of twice the length.\n\nThe other values correspond to different boundary conditions: K = 0.5 (fixed-fixed, no sway), K = 0.7 (fixed-pinned), K = 1.0 (pinned-pinned).",
+   "explanation": "Fixed-free gives the theoretical K = 2.0. 0.5 is fixed-fixed; 0.7 is fixed-pinned; 1.0 is pinned-pinned.",
+   "conceptual": true
+  },
+  {
+   "id": "structural-082",
+   "topic": "Structural Engineering",
+   "subtopic": "Required moment of inertia for Euler load",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A pinned-pinned column 4 m long (E = 200 GPa) must carry an Euler critical load of 500 kN. What is the minimum required moment of inertia?",
+   "choices": [
+    "2.03×10⁶ mm⁴",
+    "8.11×10⁶ mm⁴",
+    "1.01×10⁶ mm⁴",
+    "4.05×10⁶ mm⁴"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nSolve the Euler equation for I (K = 1.0):\n\n$$P_{cr} = \\frac{\\pi^2 EI}{L^2} \\Rightarrow I = \\frac{P_{cr} L^2}{\\pi^2 E}$$\n\n$$I = \\frac{(500{,}000)(4)^2}{\\pi^2 (200\\times10^9)} = 4.05\\times10^{-6}\\ \\text{m}^4 = 4.05\\times10^{6}\\ \\text{mm}^4$$",
+   "explanation": "Rearrange Euler for I. 2.03×10⁶ halves L² (uses L = 2 m); 8.11×10⁶ doubles it."
+  },
+  {
+   "id": "structural-083",
+   "topic": "Structural Engineering",
+   "subtopic": "Truss static indeterminacy",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A plane truss has 14 members, 3 reaction components, and 8 joints. What is its degree of static indeterminacy?",
+   "choices": [
+    "1",
+    "0",
+    "2",
+    "3"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a plane truss, the degree of static indeterminacy is:\n\n$$DSI = (m + r) - 2j$$\n\n$$DSI = (14 + 3) - 2(8) = 17 - 16 = 1$$\n\nSince DSI = 1 > 0, the truss is statically indeterminate to the first degree.",
+   "explanation": "Plane truss: DSI = m + r − 2j = 1. DSI = 0 would be statically determinate."
+  },
+  {
+   "id": "structural-084",
+   "topic": "Structural Engineering",
+   "subtopic": "Plane frame indeterminacy with internal hinge",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A single-bay portal frame has both column bases fixed (6 reaction components total) and contains one internal hinge in the beam. The frame has no closed loops. What is its degree of static indeterminacy?",
+   "choices": [
+    "3",
+    "2",
+    "1",
+    "4"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nWith no closed loop, use external indeterminacy reduced by the released conditions:\n\n$$DSI = r - 3 - c$$\n\nwhere r = 6 reactions and c = 1 condition equation from the internal hinge:\n\n$$DSI = 6 - 3 - 1 = 2$$",
+   "explanation": "Two fixed bases give 6 reactions (indeterminate to 3); the internal hinge releases one condition, so DSI = 2.",
+   "diagram": "diagrams/structural-084.svg"
+  },
+  {
+   "id": "structural-085",
+   "topic": "Structural Engineering",
+   "subtopic": "Truss determinacy classification",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A plane truss has 21 members, 3 reaction components, and 12 joints. Classify the truss.",
+   "choices": [
+    "Indeterminate to the 1st degree",
+    "Indeterminate to the 2nd degree",
+    "Statically determinate",
+    "Unstable"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompare (m + r) with 2j:\n\n$$m + r = 21 + 3 = 24, \\qquad 2j = 2(12) = 24$$\n\nSince (m + r) = 2j and the truss is properly arranged, it is statically determinate (DSI = 0).",
+   "explanation": "m + r = 2j gives DSI = 0, statically determinate. The count alone cannot prove stability, but with proper geometry it is determinate."
+  },
+  {
+   "id": "structural-086",
+   "topic": "Structural Engineering",
+   "subtopic": "Fixed-fixed beam support moment",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A beam fixed at both ends spans 8 m and carries a uniformly distributed load of 15 kN/m. What is the magnitude of the bending moment at each support?",
+   "choices": [
+    "40 kN·m",
+    "120 kN·m",
+    "60 kN·m",
+    "80 kN·m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Structural Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFor a fixed-fixed beam under a full-span uniform load, the support (negative) moment is:\n\n$$M = \\frac{wL^2}{12} = \\frac{15(8)^2}{12} = \\frac{960}{12} = 80\\ \\text{kN·m}$$\n\nThe midspan moment for this case is wL²/24 = 40 kN·m.",
+   "explanation": "Support moment is wL²/12 = 80. 40 is the midspan moment (wL²/24); 120 is the simple-span wL²/8."
+  },
+  {
+   "id": "structural-087",
+   "topic": "Structural Engineering",
+   "subtopic": "Tributary area factored load (LRFD)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "An interior floor beam has a tributary width of 3 m. The floor dead load is 4.0 kPa and the live load is 5.0 kPa. What is the LRFD factored line load on the beam (use 1.2D + 1.6L)?",
+   "choices": [
+    "38.4 kN/m",
+    "27.0 kN/m",
+    "24.0 kN/m",
+    "42.6 kN/m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFactor the area loads, then multiply by the tributary width:\n\n$$w_u = (1.2D + 1.6L)\\,(\\text{trib width})$$\n\n$$w_u = [1.2(4.0) + 1.6(5.0)](3) = (4.8 + 8.0)(3) = 12.8 \\times 3 = 38.4\\ \\text{kN/m}$$",
+   "explanation": "Factor loads then apply trib width: (1.2×4 + 1.6×5)×3 = 38.4 kN/m. 27.0 uses unfactored (4+5)×3."
+  },
+  {
+   "id": "structural-088",
+   "topic": "Structural Engineering",
+   "subtopic": "LRFD controlling load combination",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A column carries a dead load of 20 kip and a live load of 15 kip (no other loads). Using LRFD, what is the controlling factored axial load?",
+   "choices": [
+    "28 kip",
+    "48 kip",
+    "35 kip",
+    "56 kip"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCheck the governing LRFD combinations:\n\n$$1.4D = 1.4(20) = 28\\ \\text{kip}$$\n\n$$1.2D + 1.6L = 1.2(20) + 1.6(15) = 24 + 24 = 48\\ \\text{kip}$$\n\nThe larger value controls: P_u = 48 kip.",
+   "explanation": "1.2D + 1.6L = 48 governs over 1.4D = 28. 35 kip is the unfactored D + L."
+  },
+  {
+   "id": "structural-089",
+   "topic": "Structural Engineering",
+   "subtopic": "Steel tension member (yielding)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A steel tension member has a gross area A_g = 5.0 in² and F_y = 50 ksi. What is the LRFD design tensile strength for the yielding limit state?",
+   "choices": [
+    "250 kip",
+    "180 kip",
+    "225 kip",
+    "200 kip"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nYielding on the gross section (φ = 0.90):\n\n$$\\phi_t P_n = \\phi_t F_y A_g = 0.90(50)(5.0) = 225\\ \\text{kip}$$",
+   "explanation": "Yielding uses φ = 0.90 on F_y·A_g = 225 kip. 250 kip omits the φ factor."
+  },
+  {
+   "id": "structural-090",
+   "topic": "Structural Engineering",
+   "subtopic": "Steel beam design flexural strength (compact)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A compact, fully braced steel beam has a plastic section modulus Z_x = 60 in³ and F_y = 50 ksi. What is the LRFD design flexural strength?",
+   "choices": [
+    "250 kip·ft",
+    "203 kip·ft",
+    "150 kip·ft",
+    "225 kip·ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nFully braced and compact, so the limit state is yielding (M_n = M_p), with φ_b = 0.90:\n\n$$\\phi_b M_n = \\phi_b F_y Z_x = 0.90(50)(60) = 2{,}700\\ \\text{kip·in}$$\n\n$$\\phi_b M_n = 2{,}700 / 12 = 225\\ \\text{kip·ft}$$",
+   "explanation": "M_p = F_y Z_x, then φ = 0.90 and convert to kip·ft: 225. 250 omits φ; 203 uses S_x-type (0.9FyS)."
+  },
+  {
+   "id": "structural-091",
+   "topic": "Structural Engineering",
+   "subtopic": "Steel column flexural buckling (elastic range)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A steel column has KL/r = 150, A_g = 10.0 in², F_y = 50 ksi, and E = 29,000 ksi. What is the LRFD design compressive strength φ_c P_n?",
+   "choices": [
+    "100 kip",
+    "114 kip",
+    "127 kip",
+    "82 kip"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nCompare slenderness with the limit 4.71√(E/F_y) = 113.4. Since KL/r = 150 > 113.4, elastic buckling governs:\n\n$$F_e = \\frac{\\pi^2 E}{(KL/r)^2} = \\frac{\\pi^2 (29{,}000)}{150^2} = 12.72\\ \\text{ksi}$$\n\n$$F_{cr} = 0.877 F_e = 0.877(12.72) = 11.16\\ \\text{ksi}$$\n\n$$\\phi_c P_n = 0.90 F_{cr} A_g = 0.90(11.16)(10.0) = 100\\ \\text{kip}$$",
+   "explanation": "KL/r = 150 > 113.4, so F_cr = 0.877F_e (elastic). 114 kip skips the 0.877 factor; 82 kip mis-takes φ."
+  },
+  {
+   "id": "structural-092",
+   "topic": "Structural Engineering",
+   "subtopic": "RC beam design flexural strength",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A singly reinforced concrete beam has b = 12 in, d = 20 in, A_s = 3.0 in², f'_c = 4 ksi, and f_y = 60 ksi. Assuming it is tension-controlled, what is φM_n?",
+   "choices": [
+    "270 kip·ft",
+    "240 kip·ft",
+    "225 kip·ft",
+    "300 kip·ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nDepth of the equivalent stress block, then nominal moment with φ = 0.90:\n\n$$a = \\frac{A_s f_y}{0.85 f'_c b} = \\frac{3.0(60)}{0.85(4)(12)} = 4.41\\ \\text{in}$$\n\n$$M_n = A_s f_y\\left(d - \\tfrac{a}{2}\\right) = 3.0(60)(20 - 2.21) = 3{,}203\\ \\text{kip·in}$$\n\n$$\\phi M_n = 0.90(3{,}203)/12 = 240\\ \\text{kip·ft}$$",
+   "explanation": "Find a, then φA_s f_y(d − a/2)/12 = 240. 270 omits φ; 300 ignores the a/2 lever-arm reduction.",
+   "diagram": "diagrams/structural-092.svg"
+  },
+  {
+   "id": "structural-093",
+   "topic": "Structural Engineering",
+   "subtopic": "RC concrete shear strength",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A reinforced concrete beam has b_w = 12 in, d = 20 in, and f'_c = 4,000 psi (normal-weight). Using V_c = 2λ√(f'_c) b_w d, what is the design shear strength φV_c?",
+   "choices": [
+    "30.4 kip",
+    "45.5 kip",
+    "22.8 kip",
+    "15.2 kip"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Design of Reinforced Concrete Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nConcrete shear with λ = 1.0, then φ = 0.75:\n\n$$V_c = 2\\lambda\\sqrt{f'_c}\\,b_w d = 2(1)\\sqrt{4000}(12)(20) = 30{,}358\\ \\text{lb}$$\n\n$$\\phi V_c = 0.75(30{,}358) = 22{,}800\\ \\text{lb} = 22.8\\ \\text{kip}$$",
+   "explanation": "Apply φ = 0.75 to V_c. 30.4 kip is the unfactored V_c; 45.5 kip uses φ = 1.5 wrongly.",
+   "diagram": "diagrams/structural-093.svg"
   }
  ]
 }
