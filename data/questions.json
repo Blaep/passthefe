@@ -20473,6 +20473,468 @@
    "answerIndex": 0,
    "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nFor an isotropic material:\n\n$$G = \\frac{E}{2(1+\\nu)} = \\frac{200}{2(1.25)} = 80\\ \\text{GPa}$$",
    "explanation": "G = E/[2(1+ν)] = 80 GPa. Using ν = 0 gives 100 GPa."
+  },
+  {
+   "id": "statics-078",
+   "topic": "Statics",
+   "subtopic": "Pulley system (cable tension)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A 800 N weight hangs from a single movable (frictionless) pulley supported by two parallel rope segments. What is the tension in the rope?",
+   "choices": [
+    "400 N",
+    "800 N",
+    "1600 N",
+    "200 N"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nTwo rope segments share the load equally on a frictionless movable pulley:\n\n$$2T = W \\Rightarrow T = \\frac{800}{2} = 400\\ \\text{N}$$",
+   "explanation": "Two supporting segments halve the load: T = W/2 = 400 N."
+  },
+  {
+   "id": "statics-079",
+   "topic": "Statics",
+   "subtopic": "Lever (moment equilibrium)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A lever is pinned at a fulcrum. A 200 N load acts 0.5 m from the fulcrum on one side. What force applied 1.5 m from the fulcrum on the other side will balance it?",
+   "choices": [
+    "600 N",
+    "66.7 N",
+    "200 N",
+    "100 N"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nMoment balance about the fulcrum:\n\n$$F(1.5) = 200(0.5) \\Rightarrow F = \\frac{100}{1.5} = 66.7\\ \\text{N}$$",
+   "explanation": "Balance moments: F = 200(0.5)/1.5 = 66.7 N."
+  },
+  {
+   "id": "statics-080",
+   "topic": "Statics",
+   "subtopic": "Cantilever with triangular load (fixed-end moment)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A cantilever 4 m long carries a triangular distributed load that is zero at the fixed end and increases to 9 kN/m at the free end. What is the reaction moment at the fixed support?",
+   "choices": [
+    "24 kN·m",
+    "72 kN·m",
+    "48 kN·m",
+    "36 kN·m"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nResultant R = ½(9)(4) = 18 kN acts at 2/3 of the span from the zero (fixed) end, x = 2.667 m:\n\n$$M = R \\cdot x = 18(2.667) = 48\\ \\text{kN·m}$$",
+   "explanation": "Triangular resultant 18 kN acts at 2L/3 from the small end: M = 48 kN·m."
+  },
+  {
+   "id": "statics-081",
+   "topic": "Statics",
+   "subtopic": "Zero-force members",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "At an unloaded truss joint, two collinear members and one non-collinear member meet, with no external load or support reaction applied. Which member carries zero force?",
+   "choices": [
+    "Both collinear members",
+    "All three members",
+    "None of the members",
+    "The non-collinear member"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Plane Truss: Method of Joints section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nAt a joint with two collinear members and one other, with no external load, equilibrium perpendicular to the collinear pair requires the non-collinear member to carry zero force; the two collinear members carry equal force.",
+   "explanation": "The lone non-collinear member is the zero-force member; the collinear pair transmits equal force.",
+   "conceptual": true
+  },
+  {
+   "id": "statics-082",
+   "topic": "Statics",
+   "subtopic": "Belt friction (capstan equation)",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A rope is wrapped 180° (half a turn) around a fixed drum with a friction coefficient of 0.30. A 100 N tension is held on the slack side. What is the maximum tension on the tight side before slipping?",
+   "choices": [
+    "257 N",
+    "100 N",
+    "197 N",
+    "154 N"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nCapstan (belt friction) equation with β = π radians:\n\n$$T_2 = T_1 e^{\\mu\\beta} = 100\\,e^{0.30\\pi} = 100(2.566) = 257\\ \\text{N}$$",
+   "explanation": "T2 = T1·e^(μβ) = 257 N. Forgetting to apply e^(μβ) leaves 100 N."
+  },
+  {
+   "id": "statics-083",
+   "topic": "Statics",
+   "subtopic": "Tipping versus slipping",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A 500 N block (base width 0.4 m, μ = 0.5) is pushed by a horizontal force applied at a height of 0.6 m. At what force, and in what mode, does motion begin?",
+   "choices": [
+    "Slips at 250 N",
+    "Tips at 167 N",
+    "Tips at 250 N",
+    "Slips at 167 N"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nSlipping needs P = μW = 0.5(500) = 250 N. Tipping about the front edge needs:\n\n$$P\\,h = W\\tfrac{b}{2} \\Rightarrow P = \\frac{500(0.2)}{0.6} = 167\\ \\text{N}$$\n\nSince 167 N < 250 N, the block tips first.",
+   "explanation": "Tipping (167 N) occurs before slipping (250 N), so the block tips.",
+   "diagram": "diagrams/statics-083.svg"
+  },
+  {
+   "id": "statics-084",
+   "topic": "Statics",
+   "subtopic": "Resultant of three concurrent forces",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "Three equal 50 N forces act at a single point, directed at 0°, 120°, and 240°. What is the magnitude of the resultant?",
+   "choices": [
+    "50 N",
+    "150 N",
+    "0 N",
+    "86.6 N"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Resultant (Two Dimensions) section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nThree equal forces spaced 120° apart are symmetric; their vector sum cancels:\n\n$$\\sum F_x = 50(\\cos0 + \\cos120 + \\cos240) = 0,\\quad \\sum F_y = 0$$\n\n$$R = 0\\ \\text{N}$$",
+   "explanation": "Equal forces at 120° spacing sum to zero by symmetry."
+  },
+  {
+   "id": "statics-085",
+   "topic": "Statics",
+   "subtopic": "Couple moment",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "Two equal and opposite parallel forces of 100 N are separated by a perpendicular distance of 0.3 m. What is the moment of the couple?",
+   "choices": [
+    "300 N·m",
+    "15 N·m",
+    "0 N·m",
+    "30 N·m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Systems of Forces section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nA couple's moment is force times separation, independent of reference point:\n\n$$M = F d = 100(0.3) = 30\\ \\text{N·m}$$",
+   "explanation": "Couple M = F·d = 30 N·m, the same about any point."
+  },
+  {
+   "id": "statics-086",
+   "topic": "Statics",
+   "subtopic": "Equivalent force-couple system",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A 200 N force acts at a point 0.5 m from point O. When this force is moved to act at O, what couple moment must be added to keep the system equivalent?",
+   "choices": [
+    "100 N·m",
+    "200 N·m",
+    "400 N·m",
+    "50 N·m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Systems of Forces section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nMoving a force to a new point requires adding a couple equal to the moment of the original force about that point:\n\n$$M = F d = 200(0.5) = 100\\ \\text{N·m}$$",
+   "explanation": "The added couple equals the force's moment about O: 100 N·m."
+  },
+  {
+   "id": "statics-087",
+   "topic": "Statics",
+   "subtopic": "Centroid of a semicircular area",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A semicircular area has a radius of 60 mm. How far is its centroid from the flat (diameter) edge?",
+   "choices": [
+    "38.2 mm",
+    "25.5 mm",
+    "60.0 mm",
+    "12.7 mm"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Centroids of Masses, Areas, Lengths, and Volumes section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nCentroid of a semicircle from the flat edge:\n\n$$\\bar{y} = \\frac{4R}{3\\pi} = \\frac{4(60)}{3\\pi} = 25.5\\ \\text{mm}$$",
+   "explanation": "ȳ = 4R/3π = 25.5 mm. 4R/3 (without π) gives 80 mm."
+  },
+  {
+   "id": "statics-088",
+   "topic": "Statics",
+   "subtopic": "Radius of gyration",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A rectangular area is 60 mm wide and 120 mm deep. What is its radius of gyration about the horizontal centroidal axis?",
+   "choices": [
+    "60.0 mm",
+    "17.3 mm",
+    "34.6 mm",
+    "120 mm"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Moment of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nRadius of gyration r = √(I/A), with I = bh³/12 and A = bh:\n\n$$r = \\sqrt{\\frac{bh^3/12}{bh}} = \\frac{h}{\\sqrt{12}} = \\frac{120}{3.464} = 34.6\\ \\text{mm}$$",
+   "explanation": "For a rectangle, r = h/√12 = 34.6 mm about the centroidal axis."
+  },
+  {
+   "id": "statics-089",
+   "topic": "Statics",
+   "subtopic": "Polar moment of inertia (circle)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "What is the polar moment of inertia of a solid circular cross-section 40 mm in diameter?",
+   "choices": [
+    "1.26×10⁵ mm⁴",
+    "5.03×10⁵ mm⁴",
+    "6.28×10⁴ mm⁴",
+    "2.51×10⁵ mm⁴"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Moment of Inertia section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nPolar moment of inertia of a solid circle:\n\n$$J = \\frac{\\pi d^4}{32} = \\frac{\\pi(40)^4}{32} = 2.51\\times10^5\\ \\text{mm}^4$$",
+   "explanation": "J = πd⁴/32 = 2.51×10⁵ mm⁴. πd⁴/64 (1.26×10⁵) is the rectangular-axis I."
+  },
+  {
+   "id": "statics-090",
+   "topic": "Statics",
+   "subtopic": "Bar supported by an inclined cable",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A horizontal bar is pinned to a wall at A and is 2 m long. A cable at the free end B runs up to the wall at 30° above horizontal, and a 400 N load hangs at B. What is the tension in the cable?",
+   "choices": [
+    "800 N",
+    "400 N",
+    "462 N",
+    "1600 N"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nTake moments about the pin A (only the cable's vertical component and the load create moments):\n\n$$\\sum M_A = 0:\\ (T\\sin30^\\circ)(2) = 400(2)$$\n\n$$T\\sin30^\\circ = 400 \\Rightarrow T = \\frac{400}{0.5} = 800\\ \\text{N}$$",
+   "explanation": "Moment balance about A: T·sin30°·L = W·L, so T = 800 N.",
+   "diagram": "diagrams/statics-090.svg"
+  },
+  {
+   "id": "statics-091",
+   "topic": "Statics",
+   "subtopic": "Friction on a horizontal surface",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A 600 N crate rests on a level floor with a static friction coefficient of 0.40. What horizontal force is required to start it sliding?",
+   "choices": [
+    "600 N",
+    "240 N",
+    "150 N",
+    "264 N"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Friction section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nMaximum static friction on a level surface:\n\n$$F = \\mu_s N = \\mu_s W = 0.40(600) = 240\\ \\text{N}$$",
+   "explanation": "F = μW = 240 N on a level surface (N = W)."
+  },
+  {
+   "id": "statics-092",
+   "topic": "Statics",
+   "subtopic": "Beam with an applied moment",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A simply supported beam 6 m long has a concentrated moment of 60 kN·m applied at midspan (no other loads). What is the magnitude of each support reaction?",
+   "choices": [
+    "60 kN",
+    "5 kN",
+    "10 kN",
+    "360 kN"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Equilibrium Requirements section in the Statics chapter of the FE Reference Handbook (v10.6).\n\nAn applied moment is resisted by a reaction couple over the span:\n\n$$R = \\frac{M_0}{L} = \\frac{60}{6} = 10\\ \\text{kN}$$\n\nThe reactions are equal and opposite (one up, one down).",
+   "explanation": "Reactions form a couple: R = M0/L = 10 kN, up at one support and down at the other."
+  },
+  {
+   "id": "mechmat-072",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Transverse shear stress in a beam",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A rectangular beam 100 mm wide by 200 mm deep carries a transverse shear force of 50 kN. What is the maximum transverse shear stress?",
+   "choices": [
+    "3.75 MPa",
+    "2.50 MPa",
+    "7.50 MPa",
+    "1.88 MPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMaximum transverse shear stress in a rectangle is 1.5 times the average:\n\n$$\\tau_{max} = \\frac{3V}{2A} = \\frac{3(50{,}000)}{2(100\\times200)} = 3.75\\ \\text{MPa}$$",
+   "explanation": "τ_max = 1.5·V/A for a rectangle = 3.75 MPa. The average V/A is 2.5 MPa."
+  },
+  {
+   "id": "mechmat-073",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Bearing stress",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A 20 mm diameter bolt passes through a 10 mm thick plate and transmits 80 kN. What is the bearing stress between the bolt and the plate?",
+   "choices": [
+    "255 MPa",
+    "400 MPa",
+    "200 MPa",
+    "800 MPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nBearing stress uses the projected contact area (diameter × thickness):\n\n$$\\sigma_b = \\frac{P}{d\\,t} = \\frac{80{,}000}{20(10)} = 400\\ \\text{MPa}$$",
+   "explanation": "Bearing uses projected area d·t = 200 mm²: σ = 400 MPa. Using πd²/4 (circular) gives 255 MPa."
+  },
+  {
+   "id": "mechmat-074",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Free thermal elongation",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "An unrestrained aluminum bar 3 m long is heated 50°C. With α = 23×10⁻⁶/°C, what is its elongation?",
+   "choices": [
+    "1.73 mm",
+    "6.90 mm",
+    "3.45 mm",
+    "0.69 mm"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Thermal Deformations section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nFree thermal elongation:\n\n$$\\delta = \\alpha\\,\\Delta T\\,L = (23\\times10^{-6})(50)(3000) = 3.45\\ \\text{mm}$$",
+   "explanation": "δ = αΔT·L = 3.45 mm. No stress develops because the bar is unrestrained."
+  },
+  {
+   "id": "mechmat-075",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Stepped bar axial deformation",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A bar carries a constant 20 kN axial load through two 1 m segments in series: segment 1 has A = 400 mm² and segment 2 has A = 200 mm² (E = 200 GPa for both). What is the total elongation?",
+   "choices": [
+    "0.50 mm",
+    "0.25 mm",
+    "1.50 mm",
+    "0.75 mm"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nSum the elongation of each segment:\n\n$$\\delta = \\frac{PL_1}{A_1E} + \\frac{PL_2}{A_2E} = \\frac{20{,}000(1000)}{400(200{,}000)} + \\frac{20{,}000(1000)}{200(200{,}000)}$$\n\n$$= 0.25 + 0.50 = 0.75\\ \\text{mm}$$",
+   "explanation": "Add segment elongations (0.25 + 0.50): 0.75 mm. The thinner segment deforms more."
+  },
+  {
+   "id": "mechmat-076",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Hollow shaft torsional shear stress",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A hollow shaft (outer diameter 60 mm, inner diameter 40 mm) transmits a torque of 3 kN·m. What is the maximum torsional shear stress?",
+   "choices": [
+    "88.1 MPa",
+    "44.0 MPa",
+    "120 MPa",
+    "70.0 MPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Torsion section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nWith J = π(d_o⁴ − d_i⁴)/32 = 1.02×10⁶ mm⁴ and c = 30 mm:\n\n$$\\tau = \\frac{T c}{J} = \\frac{(3\\times10^6)(30)}{1.02\\times10^6} = 88.1\\ \\text{MPa}$$",
+   "explanation": "Use the hollow J = π(d_o⁴−d_i⁴)/32. Treating it as solid understates the stress."
+  },
+  {
+   "id": "mechmat-077",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Normal stress on an inclined plane",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A bar is under uniaxial stress σx = 100 MPa (σy = 0, τxy = 0). What is the normal stress on a plane whose normal is oriented 30° from the x-axis?",
+   "choices": [
+    "25 MPa",
+    "75 MPa",
+    "50 MPa",
+    "86.6 MPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nTransformation of a uniaxial stress onto an inclined plane:\n\n$$\\sigma_n = \\sigma_x\\cos^2\\theta = 100\\cos^2 30^\\circ = 100(0.75) = 75\\ \\text{MPa}$$",
+   "explanation": "σ_n = σx·cos²θ = 75 MPa. Using sin²θ gives 25 MPa."
+  },
+  {
+   "id": "mechmat-078",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Bending stress from section modulus",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A rectangular beam 100 mm wide by 200 mm deep carries a bending moment of 30 kN·m. Using the section modulus, what is the maximum bending stress?",
+   "choices": [
+    "30 MPa",
+    "60 MPa",
+    "45 MPa",
+    "22.5 MPa"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nSection modulus S = bh²/6 = 100(200)²/6 = 6.67×10⁵ mm³:\n\n$$\\sigma = \\frac{M}{S} = \\frac{30\\times10^6}{6.67\\times10^5} = 45\\ \\text{MPa}$$",
+   "explanation": "σ = M/S with S = bh²/6 = 45 MPa."
+  },
+  {
+   "id": "mechmat-079",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Longitudinal stress in a cylinder",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A thin-walled cylindrical pressure vessel has an internal pressure of 4 MPa, an inner radius of 400 mm, and a wall thickness of 8 mm. What is the longitudinal (axial) stress?",
+   "choices": [
+    "200 MPa",
+    "50 MPa",
+    "25 MPa",
+    "100 MPa"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nLongitudinal stress is half the hoop stress:\n\n$$\\sigma_{long} = \\frac{p r}{2t} = \\frac{4(400)}{2(8)} = 100\\ \\text{MPa}$$",
+   "explanation": "σ_long = pr/2t = 100 MPa; the hoop stress pr/t = 200 MPa is twice as large."
+  },
+  {
+   "id": "mechmat-080",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Spherical pressure vessel stress",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A thin-walled spherical pressure vessel has an internal pressure of 5 MPa, an inner radius of 300 mm, and a wall thickness of 6 mm. What is the wall stress?",
+   "choices": [
+    "125 MPa",
+    "250 MPa",
+    "62.5 MPa",
+    "75 MPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMembrane stress in a thin-walled sphere (equal in all directions):\n\n$$\\sigma = \\frac{p r}{2t} = \\frac{5(300)}{2(6)} = 125\\ \\text{MPa}$$",
+   "explanation": "Sphere wall stress = pr/2t = 125 MPa, identical in every direction."
+  },
+  {
+   "id": "mechmat-081",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Axial strain from stress",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A steel bar carries an axial stress of 150 MPa. With E = 200 GPa, what is the axial strain?",
+   "choices": [
+    "1.5×10⁻³",
+    "7.5×10⁻⁴",
+    "3.75×10⁻⁴",
+    "7.5×10⁻³"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nHooke's law in one dimension:\n\n$$\\varepsilon = \\frac{\\sigma}{E} = \\frac{150}{200{,}000} = 7.5\\times10^{-4}$$",
+   "explanation": "ε = σ/E = 7.5×10⁻⁴ (stress and E in the same units, MPa)."
+  },
+  {
+   "id": "mechmat-082",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Maximum shear force",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A simply supported beam carries a 40 kN point load at midspan. What is the maximum shear force in the beam?",
+   "choices": [
+    "40 kN",
+    "10 kN",
+    "20 kN",
+    "80 kN"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nFor a central point load, each reaction is P/2 and the shear is constant up to the load:\n\n$$V_{max} = \\frac{P}{2} = \\frac{40}{2} = 20\\ \\text{kN}$$",
+   "explanation": "Each reaction (and the shear) is P/2 = 20 kN for a midspan load."
+  },
+  {
+   "id": "mechmat-083",
+   "topic": "Mechanics of Materials",
+   "subtopic": "Von Mises effective stress",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "At a point, the principal stresses are σ₁ = 100 MPa and σ₂ = 50 MPa (plane stress, σ₃ = 0). What is the von Mises effective stress?",
+   "choices": [
+    "150 MPa",
+    "50 MPa",
+    "132 MPa",
+    "86.6 MPa"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Principal Stresses section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nVon Mises stress for plane stress:\n\n$$\\sigma_v = \\sqrt{\\sigma_1^2 - \\sigma_1\\sigma_2 + \\sigma_2^2} = \\sqrt{100^2 - (100)(50) + 50^2} = \\sqrt{7500} = 86.6\\ \\text{MPa}$$",
+   "explanation": "σ_v = √(σ₁² − σ₁σ₂ + σ₂²) = 86.6 MPa, not the simple sum or difference."
   }
  ]
 }
