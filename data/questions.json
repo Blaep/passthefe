@@ -22392,7 +22392,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\sigma' = (17)(3) + (20-9.81)(2) = 51 + 20.4 = 71.4\\ \\text{kPa}$$",
-   "explanation": "Add dry overburden plus submerged weight below the water table: 71.4 kPa."
+   "explanation": "Add dry overburden plus submerged weight below the water table: 71.4 kPa.",
+   "diagram": "diagrams/geotech-102.svg"
   },
   {
    "id": "geotech-103",
@@ -22443,7 +22444,8 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$P_a = \\tfrac{1}{2} K_a \\gamma H^2 = \\tfrac{1}{2}(0.333)(18)(5)^2 = 75\\ \\text{kN/m}$$",
-   "explanation": "Pa = ½KaγH² = 75 kN/m, acting at H/3 above the base."
+   "explanation": "Pa = ½KaγH² = 75 kN/m, acting at H/3 above the base.",
+   "diagram": "diagrams/geotech-105.svg"
   },
   {
    "id": "geotech-106",
@@ -22647,7 +22649,8 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Area Computations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$A = d\\left[\\frac{y_0+y_n}{2} + \\sum y_{mid}\\right] = 10\\left[0 + (5+8+6)\\right] = 190\\ \\text{m}^2$$",
-   "explanation": "Trapezoidal rule: 10[(0+0)/2 + 19] = 190 m²."
+   "explanation": "Trapezoidal rule: 10[(0+0)/2 + 19] = 190 m².",
+   "diagram": "diagrams/surveying-059.svg"
   },
   {
    "id": "surveying-060",
@@ -23599,7 +23602,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$R = \\frac{A}{P} = \\frac{4(1.5)}{4 + 2(1.5)} = \\frac{6}{7} = 0.857\\ \\text{m}$$",
-   "explanation": "R = A/P = 6/7 = 0.857 m."
+   "explanation": "R = A/P = 6/7 = 0.857 m.",
+   "diagram": "diagrams/water-122.svg"
   },
   {
    "id": "water-123",
@@ -23616,7 +23620,8 @@
    ],
    "answerIndex": 3,
    "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$E = y + \\frac{V^2}{2g} = 1.0 + \\frac{2^2}{19.62} = 1.20\\ \\text{m}$$",
-   "explanation": "E = y + V²/2g = 1.20 m."
+   "explanation": "E = y + V²/2g = 1.20 m.",
+   "diagram": "diagrams/water-123.svg"
   },
   {
    "id": "water-124",
@@ -23633,7 +23638,8 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$y_2 = \\frac{y_1}{2}\\left(\\sqrt{1 + 8Fr_1^2} - 1\\right) = \\frac{0.5}{2}\\left(\\sqrt{73} - 1\\right) = 0.25(7.544) = 1.89\\ \\text{m}$$",
-   "explanation": "Sequent depth from the momentum (conjugate-depth) relation: 1.89 m."
+   "explanation": "Sequent depth from the momentum (conjugate-depth) relation: 1.89 m.",
+   "diagram": "diagrams/water-124.svg"
   },
   {
    "id": "water-125",
@@ -23735,7 +23741,8 @@
    ],
    "answerIndex": 2,
    "solution": "Refer to the Weir Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = 1.38 H^{2.5} = 1.38(0.3)^{2.5} = 1.38(0.0493) = 0.068\\ \\text{m}^3/\\text{s}$$",
-   "explanation": "90° V-notch: Q = 1.38·H^2.5 = 0.068 m³/s."
+   "explanation": "90° V-notch: Q = 1.38·H^2.5 = 0.068 m³/s.",
+   "diagram": "diagrams/water-130.svg"
   },
   {
    "id": "water-131",
