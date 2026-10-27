@@ -23175,6 +23175,601 @@
    "answerIndex": 1,
    "solution": "Refer to the Composite Materials section in the Materials Science and Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$E_c = E_f V_f + E_m V_m = 70(0.40) + 3(0.60) = 28 + 1.8 = 29.8\\ \\text{GPa}$$",
    "explanation": "Ec = EfVf + EmVm = 29.8 GPa."
+  },
+  {
+   "id": "geotech-117",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Boussinesq stress increase",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A 100 kN point load is applied at the ground surface. Using Boussinesq theory, what is the vertical stress increase directly beneath the load at a depth of 2 m?",
+   "choices": [
+    "23.9 kPa",
+    "7.96 kPa",
+    "11.9 kPa",
+    "25.0 kPa"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Stress Distribution section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nDirectly below a point load (r = 0):\n\n$$\\Delta\\sigma_z = \\frac{3Q}{2\\pi z^2} = \\frac{3(100)}{2\\pi(2)^2} = 11.9\\ \\text{kPa}$$",
+   "explanation": "Δσz = 3Q/(2πz²) = 11.9 kPa directly under the load."
+  },
+  {
+   "id": "geotech-118",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Seepage force per unit volume",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "Water seeps upward through soil with a hydraulic gradient of 0.3. What is the seepage force per unit volume? (γw = 9.81 kN/m³)",
+   "choices": [
+    "9.81 kN/m³",
+    "0.03 kN/m³",
+    "32.7 kN/m³",
+    "2.94 kN/m³"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$j = i\\gamma_w = 0.3(9.81) = 2.94\\ \\text{kN/m}^3$$",
+   "explanation": "Seepage force per volume = i·γw = 2.94 kN/m³."
+  },
+  {
+   "id": "geotech-119",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Falling-head permeability",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "In a falling-head test, the standpipe area is 1 cm², sample length 10 cm, sample area 50 cm². The head falls from 100 cm to 40 cm in 120 s. What is the permeability?",
+   "choices": [
+    "1.53×10⁻³ cm/s",
+    "3.05×10⁻³ cm/s",
+    "7.64×10⁻⁴ cm/s",
+    "1.67×10⁻³ cm/s"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Permeability (Darcy's Law) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$k = \\frac{aL}{At}\\ln\\frac{h_1}{h_2} = \\frac{(1)(10)}{(50)(120)}\\ln\\frac{100}{40} = (0.001667)(0.916) = 1.53\\times10^{-3}\\ \\text{cm/s}$$",
+   "explanation": "Falling-head: k = (aL/At)·ln(h1/h2) = 1.53×10⁻³ cm/s."
+  },
+  {
+   "id": "geotech-120",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Pile skin friction capacity",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A 0.4 m diameter pile, 10 m long, is in clay with cohesion 50 kPa and adhesion factor α = 0.5. What is the skin-friction capacity?",
+   "choices": [
+    "628 kN",
+    "314 kN",
+    "157 kN",
+    "251 kN"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Deep Foundations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q_s = \\alpha c (\\pi D L) = 0.5(50)(\\pi)(0.4)(10) = 0.5(50)(12.57) = 314\\ \\text{kN}$$",
+   "explanation": "Qs = α·c·(surface area) = 314 kN."
+  },
+  {
+   "id": "geotech-121",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Pile end bearing in clay",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A 0.4 m diameter pile tip is in clay with cohesion 50 kPa. Using Nc = 9, what is the end-bearing capacity?",
+   "choices": [
+    "113 kN",
+    "28.3 kN",
+    "56.5 kN",
+    "90.0 kN"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Deep Foundations section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q_p = N_c c A_p = 9(50)\\left(\\frac{\\pi(0.4)^2}{4}\\right) = 9(50)(0.1257) = 56.5\\ \\text{kN}$$",
+   "explanation": "Qp = Nc·c·(tip area) = 56.5 kN."
+  },
+  {
+   "id": "geotech-122",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Retaining wall sliding factor of safety",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A retaining wall weighs 200 kN/m, the base friction coefficient is 0.5, and the active thrust is 75 kN/m. What is the factor of safety against sliding?",
+   "choices": [
+    "2.67",
+    "0.75",
+    "1.00",
+    "1.33"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$FS = \\frac{\\mu W}{P_a} = \\frac{0.5(200)}{75} = \\frac{100}{75} = 1.33$$",
+   "explanation": "FS_sliding = resisting/driving = 1.33."
+  },
+  {
+   "id": "geotech-123",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Surcharge lateral pressure",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A uniform surcharge of 20 kPa acts behind a wall retaining soil with Ka = 0.33. What additional horizontal pressure does the surcharge cause?",
+   "choices": [
+    "6.6 kPa",
+    "20 kPa",
+    "60.6 kPa",
+    "3.3 kPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Lateral Earth Pressure section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\Delta\\sigma_h = K_a q = 0.33(20) = 6.6\\ \\text{kPa}$$",
+   "explanation": "Surcharge adds Ka·q = 6.6 kPa uniformly."
+  },
+  {
+   "id": "geotech-124",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Cohesion from unconfined compression",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A saturated clay has an unconfined compressive strength of 120 kPa. What is its undrained shear strength (cohesion)?",
+   "choices": [
+    "120 kPa",
+    "60 kPa",
+    "240 kPa",
+    "30 kPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Shear Strength section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$c_u = \\frac{q_u}{2} = \\frac{120}{2} = 60\\ \\text{kPa}$$",
+   "explanation": "cu = qu/2 = 60 kPa."
+  },
+  {
+   "id": "geotech-125",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Overconsolidation ratio",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A clay has a preconsolidation stress of 300 kPa and a current effective overburden stress of 150 kPa. What is the overconsolidation ratio?",
+   "choices": [
+    "0.5",
+    "450",
+    "2.0",
+    "150"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Consolidation Settlement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$OCR = \\frac{\\sigma'_c}{\\sigma'_0} = \\frac{300}{150} = 2.0$$",
+   "explanation": "OCR = σ'c/σ'0 = 2.0 (overconsolidated)."
+  },
+  {
+   "id": "geotech-126",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "SPT energy correction",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A standard penetration test gives N = 20 blows with a hammer energy ratio of 45%. What is the corrected N60?",
+   "choices": [
+    "20",
+    "27",
+    "12",
+    "15"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Field Tests section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$N_{60} = N\\frac{ER}{60} = 20\\frac{45}{60} = 15$$",
+   "explanation": "N60 normalizes to 60% energy: 15."
+  },
+  {
+   "id": "geotech-127",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Elastic (immediate) settlement",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A flexible footing applies 150 kPa over a 2 m width on soil with E = 20,000 kPa, ν = 0.3, and influence factor I = 1.0. What is the immediate settlement?",
+   "choices": [
+    "13.7 mm",
+    "15.0 mm",
+    "6.8 mm",
+    "27.3 mm"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Consolidation Settlement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$S_e = \\frac{qB(1-\\nu^2)I}{E} = \\frac{150(2)(1-0.09)(1.0)}{20{,}000} = 0.0137\\ \\text{m} = 13.7\\ \\text{mm}$$",
+   "explanation": "Se = qB(1−ν²)I/E = 13.7 mm."
+  },
+  {
+   "id": "geotech-128",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Friction angle from direct shear",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A drained direct shear test on sand gives a shear stress at failure of 58 kPa under a normal stress of 100 kPa. What is the effective friction angle?",
+   "choices": [
+    "58.0°",
+    "30.1°",
+    "20.1°",
+    "45.0°"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Shear Strength section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\phi' = \\tan^{-1}\\!\\left(\\frac{\\tau}{\\sigma'}\\right) = \\tan^{-1}\\!\\left(\\frac{58}{100}\\right) = 30.1°$$",
+   "explanation": "For c = 0: φ' = tan⁻¹(τ/σ') = 30.1°."
+  },
+  {
+   "id": "geotech-129",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Flow net seepage",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "Beneath a dam, a flow net has 4 flow channels and 12 equipotential drops under a head of 6 m. With k = 1×10⁻⁵ m/s, what is the seepage per unit length?",
+   "choices": [
+    "6.0×10⁻⁵ m³/s",
+    "1.8×10⁻⁴ m³/s",
+    "2.0×10⁻⁵ m³/s",
+    "5.0×10⁻⁶ m³/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Permeability (Darcy's Law) section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$q = k H \\frac{N_f}{N_d} = (1\\times10^{-5})(6)\\frac{4}{12} = 2.0\\times10^{-5}\\ \\text{m}^3/\\text{s per m}$$",
+   "explanation": "q = kH(Nf/Nd) = 2.0×10⁻⁵ m³/s per meter."
+  },
+  {
+   "id": "geotech-130",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Relative compaction",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A field dry unit weight of 17.5 kN/m³ is achieved where the maximum (Proctor) dry unit weight is 18.5 kN/m³. What is the relative compaction?",
+   "choices": [
+    "105.7%",
+    "100%",
+    "90.0%",
+    "94.6%"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Compaction section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$RC = \\frac{\\gamma_{d,field}}{\\gamma_{d,max}} = \\frac{17.5}{18.5} = 94.6\\%$$",
+   "explanation": "RC = field/max dry unit weight = 94.6%."
+  },
+  {
+   "id": "geotech-131",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Coefficient of uniformity",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A soil gradation gives D60 = 0.6 mm and D10 = 0.1 mm. What is the coefficient of uniformity?",
+   "choices": [
+    "6.0",
+    "0.17",
+    "0.5",
+    "3.0"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Index Properties section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$C_u = \\frac{D_{60}}{D_{10}} = \\frac{0.6}{0.1} = 6.0$$",
+   "explanation": "Cu = D60/D10 = 6.0 (well-graded if Cu is high)."
+  },
+  {
+   "id": "geotech-132",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Total vertical stress (layered)",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 90,
+   "question": "A profile has 2 m of soil at 17 kN/m³ over 3 m of soil at 19 kN/m³. What is the total vertical stress at 5 m depth?",
+   "choices": [
+    "95 kPa",
+    "91 kPa",
+    "85 kPa",
+    "180 kPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Effective Stress section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\sigma = \\sum \\gamma h = 17(2) + 19(3) = 34 + 57 = 91\\ \\text{kPa}$$",
+   "explanation": "Sum γ·h for each layer: 91 kPa."
+  },
+  {
+   "id": "surveying-073",
+   "topic": "Surveying",
+   "subtopic": "Error of a sum",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A level line has 9 setups, each with a random error of ±0.01 ft. What is the expected error of the total elevation difference?",
+   "choices": [
+    "±0.09 ft",
+    "±0.01 ft",
+    "±0.03 ft",
+    "±0.003 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Error Propagation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nRandom errors accumulate as the square root of the number of measurements:\n\n$$E = \\sigma\\sqrt{n} = 0.01\\sqrt{9} = 0.03\\ \\text{ft}$$",
+   "explanation": "Error of a sum = σ√n = ±0.03 ft."
+  },
+  {
+   "id": "surveying-074",
+   "topic": "Surveying",
+   "subtopic": "Interior angle sum",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "What is the sum of the interior angles of a closed five-sided (pentagon) traverse?",
+   "choices": [
+    "360°",
+    "720°",
+    "900°",
+    "540°"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Angles and Directions section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\sum = (n-2)(180°) = (5-2)(180°) = 540°$$",
+   "explanation": "Interior angles sum to (n−2)·180° = 540°."
+  },
+  {
+   "id": "surveying-075",
+   "topic": "Surveying",
+   "subtopic": "Angular misclosure adjustment",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A five-angle closed traverse has an angular misclosure of 20\". If distributed equally, what correction is applied to each angle?",
+   "choices": [
+    "4\"",
+    "20\"",
+    "5\"",
+    "2\""
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Angles and Directions section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Correction} = \\frac{\\text{misclosure}}{n} = \\frac{20\"}{5} = 4\"\\ \\text{per angle}$$",
+   "explanation": "Distribute equally: 20\"/5 = 4\" each."
+  },
+  {
+   "id": "surveying-076",
+   "topic": "Surveying",
+   "subtopic": "Taping temperature correction",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A 100 ft steel tape is used at 30°F above its standard temperature (α = 6.45×10⁻⁶/°F). What is the temperature correction?",
+   "choices": [
+    "0.0065 ft",
+    "0.0194 ft",
+    "0.194 ft",
+    "0.00065 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Distance Measurement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$C_T = \\alpha(T - T_s)L = (6.45\\times10^{-6})(30)(100) = 0.0194\\ \\text{ft}$$",
+   "explanation": "CT = α·ΔT·L = 0.0194 ft (tape longer, so add)."
+  },
+  {
+   "id": "surveying-077",
+   "topic": "Surveying",
+   "subtopic": "Percent grade",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A road rises 3 ft over a horizontal distance of 100 ft. What is the grade?",
+   "choices": [
+    "0.3%",
+    "30%",
+    "3%",
+    "0.03%"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Leveling section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Grade} = \\frac{\\text{rise}}{\\text{run}} = \\frac{3}{100} = 3\\%$$",
+   "explanation": "Grade = rise/run = 3%."
+  },
+  {
+   "id": "surveying-078",
+   "topic": "Surveying",
+   "subtopic": "Azimuth from deflection angle",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "The forward azimuth of line AB is 120°. At B, the route deflects 30° to the right. What is the forward azimuth of line BC?",
+   "choices": [
+    "90°",
+    "300°",
+    "210°",
+    "150°"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Angles and Directions section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nA deflection angle to the right adds to the forward azimuth:\n\n$$Az_{BC} = Az_{AB} + 30° = 120° + 30° = 150°$$",
+   "explanation": "Right deflection adds: 120° + 30° = 150°."
+  },
+  {
+   "id": "surveying-079",
+   "topic": "Surveying",
+   "subtopic": "Horizontal distance from zenith angle",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A total station measures a slope distance of 200 m at a zenith angle of 85°. What is the horizontal distance?",
+   "choices": [
+    "199.2 m",
+    "17.4 m",
+    "200.0 m",
+    "99.6 m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Distance Measurement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$H = S\\sin(\\text{zenith}) = 200\\sin 85° = 199.2\\ \\text{m}$$",
+   "explanation": "H = S·sin(zenith angle) = 199.2 m."
+  },
+  {
+   "id": "surveying-080",
+   "topic": "Surveying",
+   "subtopic": "Latitude of a course",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 90,
+   "question": "A course has an azimuth of 200° and a length of 150 ft. What is its latitude?",
+   "choices": [
+    "+141 ft",
+    "−141 ft",
+    "−51.3 ft",
+    "+51.3 ft"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Latitudes and Departures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Lat} = L\\cos(Az) = 150\\cos 200° = -141\\ \\text{ft}$$",
+   "explanation": "Latitude = L·cos(Az) = −141 ft (southerly)."
+  },
+  {
+   "id": "water-122",
+   "topic": "Water Resources",
+   "subtopic": "Hydraulic radius",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A rectangular channel 4 m wide flows 1.5 m deep. What is the hydraulic radius?",
+   "choices": [
+    "1.50 m",
+    "0.375 m",
+    "0.857 m",
+    "6.00 m"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$R = \\frac{A}{P} = \\frac{4(1.5)}{4 + 2(1.5)} = \\frac{6}{7} = 0.857\\ \\text{m}$$",
+   "explanation": "R = A/P = 6/7 = 0.857 m."
+  },
+  {
+   "id": "water-123",
+   "topic": "Water Resources",
+   "subtopic": "Specific energy",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "Water flows at 2 m/s at a depth of 1.0 m in an open channel. What is the specific energy?",
+   "choices": [
+    "3.00 m",
+    "1.00 m",
+    "0.20 m",
+    "1.20 m"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$E = y + \\frac{V^2}{2g} = 1.0 + \\frac{2^2}{19.62} = 1.20\\ \\text{m}$$",
+   "explanation": "E = y + V²/2g = 1.20 m."
+  },
+  {
+   "id": "water-124",
+   "topic": "Water Resources",
+   "subtopic": "Hydraulic jump sequent depth",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A hydraulic jump has an upstream depth of 0.5 m and an upstream Froude number of 3.0. What is the downstream (sequent) depth?",
+   "choices": [
+    "1.89 m",
+    "4.24 m",
+    "1.50 m",
+    "0.13 m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Open Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$y_2 = \\frac{y_1}{2}\\left(\\sqrt{1 + 8Fr_1^2} - 1\\right) = \\frac{0.5}{2}\\left(\\sqrt{73} - 1\\right) = 0.25(7.544) = 1.89\\ \\text{m}$$",
+   "explanation": "Sequent depth from the momentum (conjugate-depth) relation: 1.89 m."
+  },
+  {
+   "id": "water-125",
+   "topic": "Water Resources",
+   "subtopic": "Travel time",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "Overland flow travels 300 m at an average velocity of 1.5 m/s. What is the travel time?",
+   "choices": [
+    "200 min",
+    "3.33 min",
+    "450 min",
+    "0.33 min"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Hydrology section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$t = \\frac{L}{V} = \\frac{300}{1.5} = 200\\ \\text{s} = 3.33\\ \\text{min}$$",
+   "explanation": "t = L/V = 200 s = 3.33 min."
+  },
+  {
+   "id": "water-126",
+   "topic": "Water Resources",
+   "subtopic": "Stokes' law settling velocity",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A particle 0.01 mm in diameter has a density difference of 1,650 kg/m³ relative to water (μ = 1×10⁻³ Pa·s). What is its Stokes settling velocity?",
+   "choices": [
+    "1.8×10⁻⁴ m/s",
+    "4.5×10⁻⁵ m/s",
+    "9.0×10⁻⁵ m/s",
+    "9.0×10⁻³ m/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Sedimentation section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$v_s = \\frac{g(\\rho_s - \\rho)d^2}{18\\mu} = \\frac{9.81(1650)(1\\times10^{-5})^2}{18(1\\times10^{-3})} = 9.0\\times10^{-5}\\ \\text{m/s}$$",
+   "explanation": "Stokes' law: vs = gΔρd²/18μ = 9.0×10⁻⁵ m/s."
+  },
+  {
+   "id": "water-127",
+   "topic": "Water Resources",
+   "subtopic": "Initial dissolved oxygen deficit",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 75,
+   "question": "A stream has a dissolved oxygen saturation of 9.1 mg/L and an actual dissolved oxygen of 6.0 mg/L. What is the oxygen deficit?",
+   "choices": [
+    "15.1 mg/L",
+    "6.0 mg/L",
+    "1.5 mg/L",
+    "3.1 mg/L"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$D = DO_{sat} - DO = 9.1 - 6.0 = 3.1\\ \\text{mg/L}$$",
+   "explanation": "Deficit D = DOsat − DO = 3.1 mg/L."
+  },
+  {
+   "id": "water-128",
+   "topic": "Water Resources",
+   "subtopic": "Total hardness as CaCO3",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "A water contains 40 mg/L of Ca²⁺ and 10 mg/L of Mg²⁺. Using factors 2.5 (Ca) and 4.1 (Mg), what is the total hardness as CaCO3?",
+   "choices": [
+    "141 mg/L",
+    "100 mg/L",
+    "50 mg/L",
+    "205 mg/L"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Water Quality section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$TH = 40(2.5) + 10(4.1) = 100 + 41 = 141\\ \\text{mg/L as CaCO}_3$$",
+   "explanation": "TH = Σ(ion × CaCO3 factor) = 141 mg/L."
+  },
+  {
+   "id": "water-129",
+   "topic": "Water Resources",
+   "subtopic": "Chlorine dose",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "A water requires a chlorine residual of 0.5 mg/L and has a chlorine demand of 2.5 mg/L. What is the required chlorine dose?",
+   "choices": [
+    "2.0 mg/L",
+    "3.0 mg/L",
+    "2.5 mg/L",
+    "0.5 mg/L"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Disinfection section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\text{Dose} = \\text{demand} + \\text{residual} = 2.5 + 0.5 = 3.0\\ \\text{mg/L}$$",
+   "explanation": "Dose = demand + residual = 3.0 mg/L."
+  },
+  {
+   "id": "water-130",
+   "topic": "Water Resources",
+   "subtopic": "90-degree V-notch weir",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 150,
+   "question": "A 90° V-notch weir has a head of 0.3 m. Using Q = 1.38 H^2.5 (SI), what is the discharge?",
+   "choices": [
+    "0.136 m³/s",
+    "0.414 m³/s",
+    "0.068 m³/s",
+    "0.023 m³/s"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Weir Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = 1.38 H^{2.5} = 1.38(0.3)^{2.5} = 1.38(0.0493) = 0.068\\ \\text{m}^3/\\text{s}$$",
+   "explanation": "90° V-notch: Q = 1.38·H^2.5 = 0.068 m³/s."
+  },
+  {
+   "id": "water-131",
+   "topic": "Water Resources",
+   "subtopic": "Reynolds number in a pipe",
+   "difficulty": "medium",
+   "estimatedTimeSeconds": 120,
+   "question": "Water (ν = 1×10⁻⁶ m²/s) flows at 2 m/s through a 100 mm pipe. What is the Reynolds number?",
+   "choices": [
+    "20,000",
+    "2,000,000",
+    "2,000",
+    "200,000"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Pipe Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Re = \\frac{V D}{\\nu} = \\frac{2(0.1)}{1\\times10^{-6}} = 2.0\\times10^{5}$$",
+   "explanation": "Re = VD/ν = 200,000 (turbulent)."
+  },
+  {
+   "id": "water-132",
+   "topic": "Water Resources",
+   "subtopic": "Hydrostatic pressure at depth",
+   "difficulty": "easy",
+   "estimatedTimeSeconds": 60,
+   "question": "What is the gauge pressure at a depth of 5 m in water? (γ = 9.81 kN/m³)",
+   "choices": [
+    "49.1 kPa",
+    "9.81 kPa",
+    "98.1 kPa",
+    "24.5 kPa"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Hydrostatics section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$p = \\gamma h = 9.81(5) = 49.1\\ \\text{kPa}$$",
+   "explanation": "p = γh = 49.1 kPa."
   }
  ]
 }
