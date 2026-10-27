@@ -21966,6 +21966,314 @@
    "answerIndex": 0,
    "solution": "Refer to the Design of Steel Components section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$\\phi_v V_n = \\phi_v (0.6 F_y A_w C_v) = 0.90(0.6)(50)(5.0)(1.0) = 135\\ \\text{kip}$$",
    "explanation": "φ·0.6·Fy·Aw = 135 kip. 150 kip omits φ."
+  },
+  {
+   "id": "surveying-055",
+   "topic": "Surveying",
+   "subtopic": "Area by coordinates",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A closed four-sided traverse has corners A(0, 0), B(300, 0), C(350, 200), and D(50, 250), with coordinates in feet. What is the enclosed area in acres?",
+   "choices": [
+    "1.58 ac",
+    "3.16 ac",
+    "0.79 ac",
+    "2.00 ac"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Area by Coordinates section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nApply the coordinate (shoelace) rule, then convert (43,560 ft²/acre):\n\n$$2A = \\left|\\sum (x_i y_{i+1} - x_{i+1} y_i)\\right| = |60{,}000 + 77{,}500| = 137{,}500$$\n\n$$A = 68{,}750\\ \\text{ft}^2 = \\frac{68{,}750}{43{,}560} = 1.58\\ \\text{acres}$$",
+   "explanation": "Shoelace gives 68,750 ft²; divide by 43,560 for acres = 1.58.",
+   "diagram": "diagrams/surveying-055.svg"
+  },
+  {
+   "id": "surveying-056",
+   "topic": "Surveying",
+   "subtopic": "Traverse precision",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "A closed traverse of total length 1,200 ft has a latitude misclosure of +0.12 ft and a departure misclosure of −0.16 ft. Expressed as 1:X, what is the precision (X, rounded)?",
+   "choices": [
+    "1200",
+    "6000",
+    "3000",
+    "12000"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Latitudes and Departures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nLinear misclosure, then precision:\n\n$$e = \\sqrt{0.12^2 + 0.16^2} = \\sqrt{0.04} = 0.20\\ \\text{ft}$$\n\n$$\\text{Precision} = \\frac{1200}{0.20} = 6000 \\Rightarrow 1{:}6000$$",
+   "explanation": "Misclosure 0.20 ft over 1,200 ft gives 1:6000."
+  },
+  {
+   "id": "surveying-057",
+   "topic": "Surveying",
+   "subtopic": "Differential leveling",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "Differential leveling starts at BM elevation 100.00 ft. Readings (ft): BS 4.20 at BM; FS 6.50 to TP1; BS 5.10 at TP1; FS 3.40 to point P. What is the elevation of P?",
+   "choices": [
+    "100.60 ft",
+    "97.70 ft",
+    "99.40 ft",
+    "102.80 ft"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Leveling section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nHeight of instrument then turning points:\n\n$$HI_1 = 100.00 + 4.20 = 104.20;\\ TP1 = 104.20 - 6.50 = 97.70$$\n\n$$HI_2 = 97.70 + 5.10 = 102.80;\\ P = 102.80 - 3.40 = 99.40\\ \\text{ft}$$",
+   "explanation": "Add backsights to get HI, subtract foresights: P = 99.40 ft."
+  },
+  {
+   "id": "surveying-058",
+   "topic": "Surveying",
+   "subtopic": "Compass-rule adjustment",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "In a closed traverse (perimeter 1,200 ft) with a departure misclosure of +0.16 ft, what is the compass-rule correction to the departure of a 300 ft course?",
+   "choices": [
+    "−0.16 ft",
+    "−0.12 ft",
+    "+0.04 ft",
+    "−0.04 ft"
+   ],
+   "answerIndex": 3,
+   "solution": "Refer to the Latitudes and Departures section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe compass (Bowditch) rule distributes the misclosure in proportion to course length:\n\n$$C = -(\\text{dep misclosure})\\frac{\\text{course}}{\\text{perimeter}} = -(0.16)\\frac{300}{1200} = -0.04\\ \\text{ft}$$",
+   "explanation": "Correction is opposite the misclosure, scaled by length: −0.04 ft."
+  },
+  {
+   "id": "construction-098",
+   "topic": "Construction Engineering",
+   "subtopic": "Earned-value forecasting",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A project has BAC = $500,000 and is 40% complete. PV to date is $220,000 and AC is $190,000. Assuming current cost performance continues, what is the estimate at completion (EAC)?",
+   "choices": [
+    "$475,000",
+    "$500,000",
+    "$510,000",
+    "$463,000"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Earned-Value Analysis section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nEarned value first, then CPI, then EAC:\n\n$$EV = 0.40(500{,}000) = 200{,}000;\\quad CPI = \\frac{EV}{AC} = \\frac{200{,}000}{190{,}000} = 1.053$$\n\n$$EAC = \\frac{BAC}{CPI} = \\frac{500{,}000}{1.053} = \\$475{,}000$$",
+   "explanation": "EV = %complete×BAC = 200k; EAC = BAC/CPI = $475k (ahead on cost, so below budget)."
+  },
+  {
+   "id": "construction-099",
+   "topic": "Construction Engineering",
+   "subtopic": "CPM total float (network)",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "In the network shown, A (4 d) precedes B (6 d), C (8 d), and D (3 d); all of B, C, D precede E (5 d). What is the total float of activity B?",
+   "choices": [
+    "0 days",
+    "2 days",
+    "4 days",
+    "17 days"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the CPM Precedence Relationships section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nThe critical path runs through the longest parallel branch (C):\n\n$$\\text{Critical: } A\\text{-}C\\text{-}E = 4+8+5 = 17\\ \\text{d}$$\n\n$$\\text{Path through B: } A\\text{-}B\\text{-}E = 4+6+5 = 15\\ \\text{d};\\quad TF_B = 17 - 15 = 2\\ \\text{d}$$",
+   "explanation": "B's branch is 2 days shorter than the critical C branch, so its total float is 2 days.",
+   "diagram": "diagrams/construction-099.svg"
+  },
+  {
+   "id": "construction-100",
+   "topic": "Construction Engineering",
+   "subtopic": "Unit cost of production",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A dozer produces 300 LCY per hour and its combined owning-and-operating cost is $180 per hour. What is the unit cost of production?",
+   "choices": [
+    "$1.67/LCY",
+    "$54,000/LCY",
+    "$0.60/LCY",
+    "$0.006/LCY"
+   ],
+   "answerIndex": 2,
+   "solution": "Refer to the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nUnit cost is hourly cost divided by hourly production:\n\n$$\\text{Unit cost} = \\frac{\\$180/\\text{hr}}{300\\ \\text{LCY/hr}} = \\$0.60/\\text{LCY}$$",
+   "explanation": "$180/hr ÷ 300 LCY/hr = $0.60/LCY. Inverting gives 1.67 (LCY per dollar)."
+  },
+  {
+   "id": "materials-059",
+   "topic": "Materials",
+   "subtopic": "Stress-strain-elongation chain",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A steel bar (E = 29,000 ksi, yield 60 ksi) 10 in long carries a stress of 50 ksi. What is its elongation?",
+   "choices": [
+    "0.0172 in",
+    "0.00345 in",
+    "0.0345 in",
+    "0.000595 in"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Uniaxial Loading and Deformation section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nBelow yield, use Hooke's law for strain then elongation:\n\n$$\\varepsilon = \\frac{\\sigma}{E} = \\frac{50}{29{,}000} = 0.001724;\\quad \\delta = \\varepsilon L = 0.001724(10) = 0.0172\\ \\text{in}$$",
+   "explanation": "ε = σ/E = 0.001724, then δ = εL = 0.0172 in (elastic since 50 < 60 ksi)."
+  },
+  {
+   "id": "materials-060",
+   "topic": "Materials",
+   "subtopic": "Thermal gap closure then stress",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A steel rod (E = 200 GPa, α = 12×10⁻⁶/°C) sits between rigid walls with a 0.5 mm gap over its 1,000 mm length. After the gap closes, the rod is heated an additional 20°C. What stress develops?",
+   "choices": [
+    "96 MPa",
+    "48 MPa",
+    "100 MPa",
+    "24 MPa"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Thermal Deformations section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nOnly the heating beyond gap closure produces stress (the gap-closing expansion is free):\n\n$$\\sigma = E\\alpha\\,\\Delta T_{extra} = (200\\times10^3)(12\\times10^{-6})(20) = 48\\ \\text{MPa (compressive)}$$",
+   "explanation": "The 0.5 mm free expansion closes the gap; only the extra 20°C is restrained: 48 MPa."
+  },
+  {
+   "id": "math-092",
+   "topic": "Mathematics",
+   "subtopic": "Eigenvalues of a 2x2 matrix",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "What is the larger eigenvalue of the matrix [[4, 1], [2, 3]]?",
+   "choices": [
+    "5",
+    "2",
+    "7",
+    "10"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Eigenvalues and Eigenvectors section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\nSolve det(A − λI) = 0:\n\n$$\\lambda^2 - (\\text{tr})\\lambda + \\det = \\lambda^2 - 7\\lambda + 10 = 0 \\Rightarrow \\lambda = 5,\\ 2$$",
+   "explanation": "Trace 7, determinant 10 give λ = 5 and 2; the larger is 5."
+  },
+  {
+   "id": "math-093",
+   "topic": "Mathematics",
+   "subtopic": "Newton-Raphson iteration",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "Using Newton-Raphson to solve x² − 10 = 0 starting from x₀ = 3, what is the first iterate x₁?",
+   "choices": [
+    "3.333",
+    "3.167",
+    "3.000",
+    "2.833"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Numerical Methods section in the Mathematics chapter of the FE Reference Handbook (v10.6).\n\n$$x_1 = x_0 - \\frac{f(x_0)}{f'(x_0)} = 3 - \\frac{3^2 - 10}{2(3)} = 3 - \\frac{-1}{6} = 3.167$$",
+   "explanation": "x₁ = 3 − (−1/6) = 3.167, converging toward √10 ≈ 3.162."
+  },
+  {
+   "id": "stats-069",
+   "topic": "Statistics and Probability",
+   "subtopic": "Bayes' theorem",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A disease affects 1% of a population. A test is 95% sensitive and 90% specific. If a person tests positive, what is the probability they actually have the disease?",
+   "choices": [
+    "8.8%",
+    "95%",
+    "50%",
+    "1%"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Bayes' Theorem section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\nBayes' theorem with false positives from the 99% healthy:\n\n$$P(D|+) = \\frac{(0.95)(0.01)}{(0.95)(0.01) + (0.10)(0.99)} = \\frac{0.0095}{0.1085} = 0.088 = 8.8\\%$$",
+   "explanation": "Despite a positive result, the low prevalence makes P(disease) only 8.8%."
+  },
+  {
+   "id": "stats-070",
+   "topic": "Statistics and Probability",
+   "subtopic": "Confidence interval margin",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 150,
+   "question": "A sample of n = 16 has a known population standard deviation σ = 8. For a 95% confidence interval on the mean (z = 1.96), what is the margin of error?",
+   "choices": [
+    "1.96",
+    "3.92",
+    "15.68",
+    "0.98"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Confidence Intervals section in the Engineering Probability and Statistics chapter of the FE Reference Handbook (v10.6).\n\n$$E = z\\frac{\\sigma}{\\sqrt{n}} = 1.96\\frac{8}{\\sqrt{16}} = 1.96(2) = 3.92$$",
+   "explanation": "Margin = z·σ/√n = 1.96×2 = 3.92."
+  },
+  {
+   "id": "water-108",
+   "topic": "Water Resources",
+   "subtopic": "Manning open-channel flow",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 200,
+   "question": "A rectangular channel 3 m wide flows 1.5 m deep with Manning n = 0.013 on a slope of 0.001. What is the discharge (SI, use Q = (1/n)AR^(2/3)S^(1/2))?",
+   "choices": [
+    "9.0 m³/s",
+    "2.0 m³/s",
+    "13.5 m³/s",
+    "4.5 m³/s"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Open-Channel Flow section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nGeometry, then Manning:\n\n$$A = 3(1.5) = 4.5\\ \\text{m}^2;\\ P = 3 + 2(1.5) = 6\\ \\text{m};\\ R = 0.75\\ \\text{m}$$\n\n$$V = \\tfrac{1}{0.013}(0.75)^{2/3}(0.001)^{1/2} = 2.01\\ \\text{m/s};\\ Q = VA = 9.0\\ \\text{m}^3/\\text{s}$$",
+   "explanation": "R = 0.75 m, V ≈ 2.01 m/s, Q = VA ≈ 9.0 m³/s."
+  },
+  {
+   "id": "water-109",
+   "topic": "Water Resources",
+   "subtopic": "Orifice discharge",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "Water discharges through a sharp-edged orifice of area 0.05 m² under a head of 3 m, with a discharge coefficient Cd = 0.60. What is the flow rate (Q = Cd·A·√(2gh))?",
+   "choices": [
+    "0.38 m³/s",
+    "0.23 m³/s",
+    "0.03 m³/s",
+    "0.46 m³/s"
+   ],
+   "answerIndex": 1,
+   "solution": "Refer to the Orifices section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$Q = C_d A\\sqrt{2gh} = 0.60(0.05)\\sqrt{2(9.81)(3)} = 0.03(7.67) = 0.23\\ \\text{m}^3/\\text{s}$$",
+   "explanation": "√(2gh) = 7.67 m/s; Q = Cd·A·√(2gh) = 0.23 m³/s."
+  },
+  {
+   "id": "geotech-095",
+   "topic": "Geotechnical Engineering",
+   "subtopic": "Primary consolidation settlement",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 220,
+   "question": "A normally consolidated clay layer 3 m thick has Cc = 0.30 and e₀ = 0.80. The effective stress increases from 100 kPa to 200 kPa. What is the primary consolidation settlement?",
+   "choices": [
+    "150 mm",
+    "301 mm",
+    "75 mm",
+    "500 mm"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Consolidation Settlement section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\n$$S_c = \\frac{C_c}{1+e_0}\\,H\\,\\log\\frac{\\sigma_0'+\\Delta\\sigma}{\\sigma_0'} = \\frac{0.30}{1.80}(3000)\\log\\frac{200}{100}$$\n\n$$= 0.1667(3000)(0.301) = 150\\ \\text{mm}$$",
+   "explanation": "log(200/100) = 0.301; Sc = 0.1667×3000×0.301 = 150 mm."
+  },
+  {
+   "id": "transportation-102",
+   "topic": "Transportation Engineering",
+   "subtopic": "Crest curve length for SSD",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 220,
+   "question": "A crest vertical curve joins a +3% grade to a −2% grade and must provide a stopping sight distance of 600 ft. Assuming S < L (use L = A·S²/2158), what is the required curve length?",
+   "choices": [
+    "834 ft",
+    "760 ft",
+    "417 ft",
+    "1,000 ft"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Vertical Curves section in the Civil Engineering chapter of the FE Reference Handbook (v10.6).\n\nGrade change A = |3 − (−2)| = 5. Assume S < L:\n\n$$L = \\frac{A S^2}{2158} = \\frac{5(600)^2}{2158} = \\frac{1{,}800{,}000}{2158} = 834\\ \\text{ft}$$\n\nSince 834 ft > 600 ft, the S < L assumption is valid.",
+   "explanation": "L = AS²/2158 = 834 ft; verify S < L (834 > 600), so the assumption holds."
+  },
+  {
+   "id": "fluid-076",
+   "topic": "Fluid Mechanics",
+   "subtopic": "Continuity and velocity head",
+   "difficulty": "hard",
+   "estimatedTimeSeconds": 180,
+   "question": "Water flows at 0.02 m³/s through a 100 mm diameter pipe. What is the velocity head (V²/2g)?",
+   "choices": [
+    "0.33 m",
+    "0.66 m",
+    "0.13 m",
+    "2.55 m"
+   ],
+   "answerIndex": 0,
+   "solution": "Refer to the Continuity Equation section in the Fluid Mechanics chapter of the FE Reference Handbook (v10.6).\n\nVelocity from continuity, then velocity head:\n\n$$V = \\frac{Q}{A} = \\frac{0.02}{\\pi(0.05)^2} = 2.55\\ \\text{m/s};\\quad \\frac{V^2}{2g} = \\frac{2.55^2}{2(9.81)} = 0.33\\ \\text{m}$$",
+   "explanation": "A = 7.85×10⁻³ m², V = 2.55 m/s, velocity head = 0.33 m."
   }
  ]
 }
