@@ -131,14 +131,18 @@
       if (el) el.textContent = qs.length > 0 ? qs.length : "–";
       var rEl = document.getElementById("stat-readiness");
       if (rEl) {
+        var rCard = rEl.closest(".stat");
         var nAtt = store.get("attempts", []).length;
         if (nAtt) {
           var rp = readiness().pct;
           rEl.textContent = rp + "%";
           rEl.className = readinessClass(rp);
+          if (rCard) rCard.classList.remove("hidden");
         } else {
-          rEl.textContent = "–";
-          rEl.className = "";
+          // No practice history yet — a lone "–" reads as broken to a
+          // first-time visitor, so hide the card until there's data.
+          if (rCard) rCard.classList.add("hidden");
+          else { rEl.textContent = "–"; rEl.className = ""; }
         }
       }
       var chEl = document.getElementById("stat-chapters");
@@ -5000,7 +5004,33 @@
       ins.setAttribute("data-ad-format", "auto");
       ins.setAttribute("data-full-width-responsive", "true");
       slot.appendChild(ins);
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+      // Collapse the slot whenever AdSense returns no ad. Without this the
+      // empty <ins> reserves a tall responsive block and leaves a big gap
+      // (e.g. on the home page, between the stats and the footer).
+      var collapse = function () { slot.style.display = "none"; };
+      var obs = new MutationObserver(function () {
+        if (ins.getAttribute("data-ad-status") === "unfilled") {
+          collapse();
+          obs.disconnect();
+        }
+      });
+      obs.observe(ins, { attributes: true, attributeFilter: ["data-ad-status"] });
+      // Fallback: if adsbygoogle.js is blocked or never responds, the <ins>
+      // never gets a status — collapse it once it's clear nothing rendered.
+      setTimeout(function () {
+        var status = ins.getAttribute("data-ad-status");
+        if (status === "unfilled" || (!status && ins.offsetHeight === 0)) {
+          collapse();
+          obs.disconnect();
+        }
+      }, 3000);
+
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        collapse();
+      }
     });
   })();
 
