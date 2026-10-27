@@ -28,7 +28,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="PassTheFE">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=2">
   <!-- KaTeX for typeset math in solutions (same look as handbook equations) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
@@ -47,7 +47,13 @@
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="#/">PassThe<span>FE</span></a>
-      <nav>
+      <button class="nav-toggle" id="nav-toggle" type="button"
+              aria-label="Menu" aria-controls="site-nav" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav id="site-nav">
         <a href="#/practice">Practice</a>
         <a href="#/mastery">Mastery</a>
         <a href="#/exam">Exam Sim</a>
@@ -336,6 +342,6 @@
   <script src="js/generators_construction.js?v=1"></script>
   <script src="js/generators_dynamics.js?v=2"></script>
   <script src="js/generators_surveying.js?v=1"></script>
-  <script src="js/app.js?v=50"></script>
+  <script src="js/app.js?v=51"></script>
 </body>
 </html>

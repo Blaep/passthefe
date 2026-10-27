@@ -43,6 +43,37 @@ body {
 }
 .site-header nav a:hover { color: var(--primary); }
 
+/* Hamburger menu button — hidden on desktop, shown at narrow widths. */
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 42px; height: 38px; padding: 0 9px; box-sizing: border-box;
+  background: var(--bg-soft); border: 1px solid #e0e3ec; border-radius: 8px;
+  cursor: pointer;
+}
+.nav-toggle-bar {
+  display: block; width: 100%; height: 2px; border-radius: 2px;
+  background: var(--text); transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Below 760px the 8 nav links no longer fit on one row, so collapse them
+   into a tap-to-open dropdown that drops full-width under the header. */
+@media (max-width: 760px) {
+  .nav-toggle { display: inline-flex; }
+  .site-header .wrap { flex-wrap: wrap; }
+  .site-header nav {
+    display: none; flex-direction: column;
+    flex-basis: 100%; width: 100%; margin-top: 10px;
+  }
+  .site-header nav.open { display: flex; }
+  .site-header nav.open a {
+    margin-left: 0; padding: 12px 2px; font-size: 1rem;
+    border-top: 1px solid #eef0f5;
+  }
+}
+
 main { padding: 48px 0 64px; }
 h1 { font-size: 2.4rem; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
 h2 { font-size: 1.6rem; margin-bottom: 12px; }

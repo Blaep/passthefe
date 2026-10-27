@@ -4983,7 +4983,31 @@
 
   window.addEventListener("hashchange", route);
   hbInitGlobal(); // handbook side panel: global toggle + citation deep-links
+  initNavToggle(); // mobile hamburger menu
   document.addEventListener("DOMContentLoaded", route);
+
+  // Collapsible header nav for narrow screens. The links stay in normal
+  // flow; this just toggles a class that CSS turns into a dropdown.
+  function initNavToggle() {
+    var btn = document.getElementById("nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (!btn || !nav) return;
+    function setOpen(open) {
+      nav.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    btn.addEventListener("click", function () {
+      setOpen(!nav.classList.contains("open"));
+    });
+    // Choosing a destination (or the handbook toggle) closes the menu —
+    // hash navigation swaps the view in place, so nothing else would.
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
 
   // ---- AdSense -----------------------------------------------------------
   // The adsbygoogle.js script tag lives in <head> (also serves as site
