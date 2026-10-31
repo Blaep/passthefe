@@ -57,7 +57,8 @@
    "subtopic": "Hydrostatic pressure",
    "topic": "Fluid Mechanics",
    "videoUrl": "https://www.youtube.com/watch?v=-j2NaQUSwRI",
-   "videoTitle": "Estimate the pressure needed to raise a column of water to the same height as a 35-m-tall oak tree."
+   "videoTitle": "Estimate the pressure needed to raise a column of water to the same height as a 35-m-tall oak tree.",
+   "diagram": "diagrams/fluid-001.svg"
   },
   {
    "answerIndex": 0,
@@ -1443,7 +1444,8 @@
    "subtopic": "Buoyancy",
    "topic": "Fluid Mechanics",
    "videoUrl": "https://www.youtube.com/watch?v=HQ5CBZqlnzE",
-   "videoTitle": "Buoyant Force and Archimedes' Principle"
+   "videoTitle": "Buoyant Force and Archimedes' Principle",
+   "diagram": "diagrams/fluid-005.svg"
   },
   {
    "answerIndex": 3,
@@ -14462,7 +14464,8 @@
    "question": "A typical floor beam supports a tributary area of 600 ft² and the unreduced floor live load is 50 psf. Using the handbook live load reduction model for a member supporting one floor, what is the reduced live load?",
    "solution": "Refer to Live Load Reduction (page 278 for the model, page 279 for the \\(K_{LL}\\) values) in the Civil Engineering: Structural Engineering section of the FE Reference Handbook (v10.6), printed page 279 (PDF page 285).\n\nFor a typical beam \\(K_{LL} = 2\\).\n\n$$\\begin{aligned}L &= L_o\\left(0.25 + \\frac{15}{\\sqrt{K_{LL}A_T}}\\right) \\\\ &= 50\\left(0.25 + \\frac{15}{\\sqrt{2(600)}}\\right) \\\\ &= 34.2\\ \\text{psf}\\end{aligned}$$",
    "subtopic": "Live load reduction, beam",
-   "topic": "Structural Engineering"
+   "topic": "Structural Engineering",
+   "diagram": "diagrams/structural-052.svg"
   },
   {
    "answerIndex": 1,
@@ -15437,7 +15440,8 @@
    "question": "A T-shaped area is split into two rectangles: area 48 in² with centroid 3 in. above the base, and area 36 in² with centroid 12 in. above the base. How far above the base is the centroid of the whole area?",
    "solution": "Refer to the centroid of area definitions (discrete sum) in the Statics section of the FE Reference Handbook (v10.6), printed page 96 (PDF page 102).\n\n$$\\begin{aligned}\\bar y &= \\frac{\\sum y_na_n}{\\sum a_n} \\\\ &= \\frac{48(3) + 36(12)}{48+36} \\\\ &= 6.86\\ \\text{in.}\\end{aligned}$$",
    "subtopic": "Composite area centroid",
-   "topic": "Statics"
+   "topic": "Statics",
+   "diagram": "diagrams/statics-043.svg"
   },
   {
    "answerIndex": 1,
@@ -16762,7 +16766,8 @@
    "question": "A composite section is made of a 48 in.² flange whose centroid is 3 in. above the base and a 36 in.² web whose centroid is 12 in. above the base. How far above the base is the centroid of the whole section?",
    "solution": "Refer to Centroid of Area in the Statics section of the FE Reference Handbook (v10.6), printed page 96 (PDF page 102).\n\nThe handbook gives \\(y_{ac} = \\sum y_na_n/A\\):\n\n$$\\begin{aligned}y_{ac} &= \\frac{48(3) + 36(12)}{48+36} \\\\ &= \\frac{576}{84} \\\\ &= 6.86\\ \\text{in.}\\end{aligned}$$",
    "subtopic": "Centroid of a composite area",
-   "topic": "Statics"
+   "topic": "Statics",
+   "diagram": "diagrams/statics-046.svg"
   },
   {
    "answerIndex": 3,
@@ -17126,7 +17131,8 @@
    "question": "A built-up beam carries V = 18 kips with Q = 40 in.³ for the connected part and I = 300 in.⁴. What shear flow must the connectors carry per inch of length?",
    "solution": "Refer to Stresses in Beams (transverse shear flow) in the Mechanics of Materials section of the FE Reference Handbook (v10.6), printed page 136 (PDF page 142).\n\nThe handbook gives \\(q = VQ/I\\):\n\n$$q = \\frac{18(40)}{300} = 2.40\\ \\text{kip/in.}$$",
    "subtopic": "Shear flow in a built-up section",
-   "topic": "Mechanics of Materials"
+   "topic": "Mechanics of Materials",
+   "diagram": "diagrams/mechmat-056.svg"
   },
   {
    "answerIndex": 0,
@@ -17606,7 +17612,8 @@
    "question": "A pitot tube measures a pressure difference P0 - Ps of 0.8 kPa in a stream of air with density 1.2 kg/m³ (Mach number below 0.3). What is the velocity?",
    "solution": "Refer to Pitot Tubes in the Fluid Mechanics section of the FE Reference Handbook (v10.6), printed page 200 (PDF page 206).\n\nThe handbook gives \\(v = \\sqrt{(2/\\rho)(P_0-P_s)}\\), valid for a compressible fluid when Ma \\(\\le\\) 0.3:\n\n$$v = \\sqrt{\\frac{2(800)}{1.2}} = 36.5\\ \\text{m/s}$$",
    "subtopic": "Pitot tube velocity, SI",
-   "topic": "Fluid Mechanics"
+   "topic": "Fluid Mechanics",
+   "diagram": "diagrams/fluid-067.svg"
   },
   {
    "answerIndex": 2,
@@ -20355,7 +20362,8 @@
    ],
    "answerIndex": 1,
    "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nHoop stress in a thin-walled cylinder:\n\n$$\\sigma_h = \\frac{p r}{t} = \\frac{(2)(500)}{10} = 100\\ \\text{MPa}$$",
-   "explanation": "σ_hoop = pr/t = 100 MPa. The longitudinal stress pr/2t = 50 MPa is half as large."
+   "explanation": "σ_hoop = pr/t = 100 MPa. The longitudinal stress pr/2t = 50 MPa is half as large.",
+   "diagram": "diagrams/mechmat-064.svg"
   },
   {
    "id": "mechmat-065",
@@ -20753,7 +20761,8 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Stresses in Beams section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMaximum transverse shear stress in a rectangle is 1.5 times the average:\n\n$$\\tau_{max} = \\frac{3V}{2A} = \\frac{3(50{,}000)}{2(100\\times200)} = 3.75\\ \\text{MPa}$$",
-   "explanation": "τ_max = 1.5·V/A for a rectangle = 3.75 MPa. The average V/A is 2.5 MPa."
+   "explanation": "τ_max = 1.5·V/A for a rectangle = 3.75 MPa. The average V/A is 2.5 MPa.",
+   "diagram": "diagrams/mechmat-072.svg"
   },
   {
    "id": "mechmat-073",
@@ -20891,7 +20900,8 @@
    ],
    "answerIndex": 0,
    "solution": "Refer to the Cylindrical Pressure Vessel section in the Mechanics of Materials chapter of the FE Reference Handbook (v10.6).\n\nMembrane stress in a thin-walled sphere (equal in all directions):\n\n$$\\sigma = \\frac{p r}{2t} = \\frac{5(300)}{2(6)} = 125\\ \\text{MPa}$$",
-   "explanation": "Sphere wall stress = pr/2t = 125 MPa, identical in every direction."
+   "explanation": "Sphere wall stress = pr/2t = 125 MPa, identical in every direction.",
+   "diagram": "diagrams/mechmat-080.svg"
   },
   {
    "id": "mechmat-081",
