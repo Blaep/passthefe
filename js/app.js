@@ -129,6 +129,18 @@
     loadQuestions(function (qs) {
       var el = document.getElementById("stat-questions");
       if (el) el.textContent = qs.length > 0 ? qs.length : "–";
+      // Diagram and video counts are computed from the bank so they never go
+      // stale as questions are added.
+      var dEl = document.getElementById("stat-diagrams");
+      if (dEl) {
+        var nD = qs.filter(function (q) { return q.diagram; }).length;
+        if (nD > 0) dEl.textContent = nD;
+      }
+      var vEl = document.getElementById("stat-videos");
+      if (vEl) {
+        var nV = qs.filter(function (q) { return q.videoUrl; }).length;
+        if (nV > 0) vEl.textContent = nV;
+      }
       var rEl = document.getElementById("stat-readiness");
       if (rEl) {
         var rCard = rEl.closest(".stat");
