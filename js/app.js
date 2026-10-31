@@ -2529,6 +2529,15 @@
     { topic: "Construction Engineering", w: 8 }
   ];
 
+  // Exam-value weight per topic (its share of scored items). Used to steer
+  // adaptive practice toward topics that are both weak AND worth the most
+  // points, not just weak. Unknown topics default to the mean (~6).
+  var BP_W = null;
+  function blueprintWeight(topic) {
+    if (!BP_W) { BP_W = {}; BLUEPRINT.forEach(function (b) { BP_W[b.topic] = b.w; }); }
+    return BP_W[topic] || 6;
+  }
+
   // Adaptive mastery: recency-weighted accuracy with exponential decay.
   // Each attempt's weight decays by 0.9 per older attempt, giving an
   // effective window of ~10 attempts — matching the app's existing
@@ -2648,12 +2657,15 @@
     return html;
   }
 
-  // Adaptive session builder: sample n questions weighted toward the
-  // lowest-mastery topics, preferring questions never seen (then the
-  // least-recently-seen). Topic pick uses (101 - mastery)^2 weighting —
-  // a 0% topic is ~85x likelier than a 90% one, but strong topics still
-  // surface occasionally. With no attempts every topic sits at the neutral
-  // 50, so new users get an even rotation across topics.
+  // Adaptive session builder: sample n questions weighted toward topics that
+  // are both weak AND high-value, preferring questions never seen (then the
+  // least-recently-seen). Topic pick uses blueprintWeight * (101 - mastery)^2
+  // — the squared mastery gap favors weak topics (a 0% topic is ~85x likelier
+  // than a 90% one), and the blueprint factor then favors the areas worth the
+  // most exam points (e.g. a weak 10-point area beats an equally weak 4-point
+  // one). Mastery already reflects difficulty and the forgetting curve, so
+  // stale topics resurface on their own. With no attempts every topic sits at
+  // the neutral 50, so the sampler leans on exam value for a sensible start.
   function buildAdaptiveSession(qs, n) {
     var m = adaptiveMastery();
     var byTopic = {};
@@ -2668,7 +2680,7 @@
       var total = 0;
       var entries = TOPICS.map(function (t) {
         var mt = typeof byTopic[t] === "number" ? byTopic[t] : ADAPT_PRIOR_PCT;
-        var wgt = Math.pow(101 - mt, 2);
+        var wgt = blueprintWeight(t) * Math.pow(101 - mt, 2);
         total += wgt;
         return { topic: t, wgt: wgt };
       });
@@ -2740,10 +2752,21 @@
     });
   }
 
+  // The topics this session will lean on, ranked by impact = exam value ×
+  // mastery gap (the same signal the sampler uses, linear for display).
+  function adaptiveFocusTopics(k) {
+    return adaptiveMastery().map(function (x) {
+      return { topic: x.topic, score: blueprintWeight(x.topic) * (101 - x.mastery) };
+    }).sort(function (a, b) { return b.score - a.score; }).slice(0, k || 3);
+  }
+
   function renderAdaptivePanel() {
     var el = document.getElementById("adaptive-panel");
     if (!el) return;
-    el.innerHTML = readinessHtml(readiness(), false);
+    var focus = adaptiveFocusTopics(3).map(function (f) { return escapeHtml(f.topic); });
+    var note = '<p class="disclaimer" style="margin-top:8px">This session targets your highest-impact gaps ' +
+      '(weak topics worth the most exam points): <strong>' + focus.join(", ") + "</strong>.</p>";
+    el.innerHTML = readinessHtml(readiness(), false) + note;
   }
 
   // Mastery movement shown after an adaptive session: per-topic before ->
