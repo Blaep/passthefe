@@ -2199,7 +2199,8 @@
     return out;
   }
 
-  // Mastery = accuracy × confidence (confidence fills at ~10 attempts per topic).
+  // Mastery = the unified recency- and difficulty-weighted estimate
+  // (masteryFromAttempts). Levels below are its bands.
   function masteryLevel(m, n) {
     if (!n) return "Not started";
     if (m >= 85) return "Mastered";
@@ -2214,7 +2215,7 @@
       var ts = attempts.filter(function (a) { return a.topic === t; });
       var n = ts.length;
       var pct = n ? Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n) : 0;
-      var mastery = n ? Math.round(pct * Math.min(1, n / 10)) : 0;
+      var mastery = n ? masteryFromAttempts(ts) : 0;
       return { topic: t, n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
     });
   }
@@ -2245,7 +2246,8 @@
   }
 
   // Per-subtopic stats keyed by code: { n, pct, mastery, level }.
-  // Same accuracy x confidence formula as topic mastery (~10 attempts fills it).
+  // Mastery uses the same unified recency/difficulty-weighted estimate as the
+  // readiness score and topic meters (masteryFromAttempts).
   function subtopicStats() {
     var attempts = store.get("attempts", []);
     var map = (MASTERY && MASTERY.map) || {};
@@ -2259,7 +2261,7 @@
     Object.keys(byCode).forEach(function (c) {
       var ts = byCode[c], n = ts.length;
       var pct = Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n);
-      var mastery = Math.round(pct * Math.min(1, n / 10));
+      var mastery = masteryFromAttempts(ts);
       out[c] = { n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
     });
     return out;
@@ -2277,6 +2279,7 @@
 
   function renderMastery() {
     var body = document.getElementById("mastery-body");
+    loadQuestions(function () { // bank needed for difficulty-weighted mastery
     loadMastery(function (M) {
       if (!M) {
         body.innerHTML = '<div class="card"><p>Could not load the mastery map. Check your connection and try again.</p></div>';
@@ -2320,7 +2323,7 @@
       var banner = '<div class="card"><h3>Overall subsection mastery</h3>' +
         '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">' + overall +
         "% across " + grandN + " official subsections · " + withQ +
-        " have bank questions · meters fill with accuracy and practice (about 10 answered questions per subsection for full confidence).</p>" +
+        " have bank questions · meters weight recent answers and harder questions more, and start near 50% until you've practiced.</p>" +
         '<div class="topic-row"><span class="topic-name"><strong>All subsections</strong></span>' +
         '<span class="bar"><span class="fill ' + (grandSum ? scoreClass(overall) : "") +
         '" style="width:' + overall + '%"></span></span>' +
@@ -2330,6 +2333,7 @@
       body.querySelectorAll("[data-mquiz]").forEach(function (btn) {
         btn.addEventListener("click", function () { startMasteryQuiz(btn.dataset.mquiz); });
       });
+    });
     });
   }
 
@@ -2501,6 +2505,42 @@
   // recent accuracy.
   var ADAPT_DECAY = 0.9, ADAPT_PRIOR_W = 5, ADAPT_PRIOR_PCT = 50;
 
+  // Difficulty weighting: a hard question answered correctly is much stronger
+  // evidence of skill than an easy one, so each attempt's weight is scaled by
+  // its difficulty. This keeps the estimate from being inflated by acing the
+  // easy pool, and a subsection tested only on easy questions stays near the
+  // prior until harder ones are attempted. Difficulty joins by qid through the
+  // bank (same as the subtopic map), so nothing extra is logged; an unknown
+  // or not-yet-loaded difficulty falls back to medium (1.0).
+  var DIFF_W = { easy: 0.5, medium: 1.0, hard: 1.6 };
+  var QDIFF = null;
+  function diffWeight(qid) {
+    if (!QDIFF && QUESTIONS.length) {
+      QDIFF = {};
+      QUESTIONS.forEach(function (q) { QDIFF[q.id] = q.difficulty; });
+    }
+    if (!QDIFF) return 1.0;
+    return DIFF_W[QDIFF[skillKey(qid)]] || 1.0;
+  }
+
+  // The one mastery estimate used everywhere (readiness score, topic meters,
+  // and NCEES subsection meters). It combines three things: recency decay so
+  // newer answers count more, difficulty weighting (above), and a Bayesian
+  // prior so a handful of attempts doesn't swing the score. With no attempts
+  // it returns the prior (50). As attempts accumulate the prior washes out and
+  // the estimate converges on recent, difficulty-weighted accuracy.
+  function masteryFromAttempts(attempts) {
+    var wSum = 0, wCorrect = 0, recency = 1; // newest attempt weighs most
+    for (var i = attempts.length - 1; i >= 0; i--) {
+      var w = recency * diffWeight(attempts[i].qid);
+      wSum += w;
+      if (attempts[i].correct) wCorrect += w;
+      recency *= ADAPT_DECAY;
+    }
+    return Math.round(100 *
+      (wCorrect + ADAPT_PRIOR_W * ADAPT_PRIOR_PCT / 100) / (wSum + ADAPT_PRIOR_W));
+  }
+
   function adaptiveMastery() {
     var attempts = store.get("attempts", []);
     var byTopic = {};
@@ -2509,15 +2549,7 @@
     });
     return TOPICS.map(function (t) {
       var ts = byTopic[t] || [];
-      var wSum = 0, wCorrect = 0, w = 1; // newest attempt weighs 1
-      for (var i = ts.length - 1; i >= 0; i--) {
-        wSum += w;
-        if (ts[i].correct) wCorrect += w;
-        w *= ADAPT_DECAY;
-      }
-      var mastery = Math.round(100 *
-        (wCorrect + ADAPT_PRIOR_W * ADAPT_PRIOR_PCT / 100) / (wSum + ADAPT_PRIOR_W));
-      return { topic: t, mastery: mastery, n: ts.length };
+      return { topic: t, mastery: masteryFromAttempts(ts), n: ts.length };
     });
   }
 
