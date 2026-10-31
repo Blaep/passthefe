@@ -2200,13 +2200,34 @@
   }
 
   // Mastery = the unified recency- and difficulty-weighted estimate
-  // (masteryFromAttempts). Levels below are its bands.
-  function masteryLevel(m, n) {
+  // (masteryFromAttempts). Levels are its bands, gated by coverage so a high
+  // score on a thin slice of the pool can't read "Mastered": distinct = the
+  // distinct bank questions actually seen, available = the pool size.
+  function masteryLevel(m, n, distinct, available) {
     if (!n) return "Not started";
-    if (m >= 85) return "Mastered";
-    if (m >= 70) return "Proficient";
-    if (m >= 40) return "Building";
-    return "Learning";
+    var coverage = available ? distinct / available : 1;
+    var level = m >= 85 ? "Mastered" : m >= 70 ? "Proficient" : m >= 40 ? "Building" : "Learning";
+    // Require real breadth before claiming the top levels.
+    if (level === "Mastered" && (coverage < 0.5 || distinct < 8)) level = "Proficient";
+    if (level === "Proficient" && distinct < 3) level = "Building";
+    return level;
+  }
+
+  // Distinct bank questions attempted (variants merge on skillKey) — the
+  // coverage numerator alongside the pool size.
+  function countDistinct(attempts) {
+    var seen = {};
+    attempts.forEach(function (a) { seen[skillKey(a.qid)] = 1; });
+    return Object.keys(seen).length;
+  }
+
+  var TOPIC_AVAIL = null;
+  function topicAvailable(topic) {
+    if (!TOPIC_AVAIL && QUESTIONS.length) {
+      TOPIC_AVAIL = {};
+      QUESTIONS.forEach(function (q) { TOPIC_AVAIL[q.topic] = (TOPIC_AVAIL[q.topic] || 0) + 1; });
+    }
+    return (TOPIC_AVAIL && TOPIC_AVAIL[topic]) || 0;
   }
 
   function topicMastery() {
@@ -2214,9 +2235,11 @@
     return TOPICS.map(function (t) {
       var ts = attempts.filter(function (a) { return a.topic === t; });
       var n = ts.length;
+      var distinct = countDistinct(ts);
+      var available = topicAvailable(t);
       var pct = n ? Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n) : 0;
       var mastery = n ? masteryFromAttempts(ts) : 0;
-      return { topic: t, n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
+      return { topic: t, n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available) };
     });
   }
 
@@ -2260,9 +2283,11 @@
     var out = {};
     Object.keys(byCode).forEach(function (c) {
       var ts = byCode[c], n = ts.length;
+      var distinct = countDistinct(ts);
+      var available = ((MASTERY && MASTERY.byCode[c]) || []).length;
       var pct = Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n);
       var mastery = masteryFromAttempts(ts);
-      out[c] = { n: n, pct: pct, mastery: mastery, level: masteryLevel(mastery, n) };
+      out[c] = { n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available) };
     });
     return out;
   }
@@ -2305,7 +2330,7 @@
           subsHtml += '<div class="topic-row mastery-sub">' +
             '<span class="topic-name"><strong>' + escapeHtml(st.code) + '</strong> ' +
             escapeHtml(st.label) + ' <small>(' + nQ + "Q" +
-            (s.n ? " · " + s.n + " tried · " + s.pct + "%" : "") + ")</small></span>" +
+            (s.n ? " · " + s.distinct + " of " + nQ + " seen · " + s.pct + "%" : "") + ")</small></span>" +
             '<span class="bar"><span class="fill ' + cls + '" style="width:' + s.mastery + '%"></span></span>' +
             '<span class="mastery-level ' + cls + '">' + s.level + "</span>" +
             quizBtn + "</div>";
@@ -2323,7 +2348,7 @@
       var banner = '<div class="card"><h3>Overall subsection mastery</h3>' +
         '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">' + overall +
         "% across " + grandN + " official subsections · " + withQ +
-        " have bank questions · meters weight recent answers and harder questions more, and start near 50% until you've practiced.</p>" +
+        " have bank questions · meters weight recent answers and harder questions more; 'Mastered' also requires seeing at least half the questions in a subsection.</p>" +
         '<div class="topic-row"><span class="topic-name"><strong>All subsections</strong></span>' +
         '<span class="bar"><span class="fill ' + (grandSum ? scoreClass(overall) : "") +
         '" style="width:' + overall + '%"></span></span>' +
@@ -4030,10 +4055,10 @@
       var overall = Math.round(mastery.reduce(function (a, m) { return a + m.mastery; }, 0) / mastery.length);
       html += '<div class="card"><h3>Topic Mastery</h3>';
       html += '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Overall mastery ' + overall +
-        "% — meters fill with accuracy and practice (about 10 answered questions per topic for full confidence).</p>";
+        "% — meters weight recent answers and harder questions more; 'Mastered' also requires seeing at least half the topic's questions.</p>";
       mastery.forEach(function (m) {
         var cls = m.n ? scoreClass(m.mastery) : "";
-        var sub = m.n ? m.n + " · " + m.pct + "%" : "0";
+        var sub = m.n ? m.distinct + " of " + m.available + " seen · " + m.pct + "%" : "0";
         html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(m.topic) +
           " <small>(" + sub + ")</small></span>" +
           '<span class="bar"><span class="fill ' + cls +
