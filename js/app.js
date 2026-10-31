@@ -2221,6 +2221,16 @@
     return Object.keys(seen).length;
   }
 
+  // Days since the most recent attempt in a set (null if none). Used to flag
+  // stale topics for review once the forgetting curve has pulled them down.
+  function daysSinceLast(attempts) {
+    var last = 0;
+    for (var i = 0; i < attempts.length; i++) {
+      if (attempts[i].ts && attempts[i].ts > last) last = attempts[i].ts;
+    }
+    return last ? Math.floor((Date.now() - last) / DAY_MS) : null;
+  }
+
   var TOPIC_AVAIL = null;
   function topicAvailable(topic) {
     if (!TOPIC_AVAIL && QUESTIONS.length) {
@@ -2239,7 +2249,7 @@
       var available = topicAvailable(t);
       var pct = n ? Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n) : 0;
       var mastery = n ? masteryFromAttempts(ts) : 0;
-      return { topic: t, n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available) };
+      return { topic: t, n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available), days: daysSinceLast(ts) };
     });
   }
 
@@ -2287,7 +2297,7 @@
       var available = ((MASTERY && MASTERY.byCode[c]) || []).length;
       var pct = Math.round(100 * ts.filter(function (a) { return a.correct; }).length / n);
       var mastery = masteryFromAttempts(ts);
-      out[c] = { n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available) };
+      out[c] = { n: n, distinct: distinct, available: available, pct: pct, mastery: mastery, level: masteryLevel(mastery, n, distinct, available), days: daysSinceLast(ts) };
     });
     return out;
   }
@@ -2330,7 +2340,8 @@
           subsHtml += '<div class="topic-row mastery-sub">' +
             '<span class="topic-name"><strong>' + escapeHtml(st.code) + '</strong> ' +
             escapeHtml(st.label) + ' <small>(' + nQ + "Q" +
-            (s.n ? " · " + s.distinct + " of " + nQ + " seen · " + s.pct + "%" : "") + ")</small></span>" +
+            (s.n ? " · " + s.distinct + " of " + nQ + " seen · " + s.pct + "%" +
+              (s.days !== null && s.days >= FORGET_HALFLIFE_DAYS ? " · review" : "") : "") + ")</small></span>" +
             '<span class="bar"><span class="fill ' + cls + '" style="width:' + s.mastery + '%"></span></span>' +
             '<span class="mastery-level ' + cls + '">' + s.level + "</span>" +
             quizBtn + "</div>";
@@ -2348,7 +2359,7 @@
       var banner = '<div class="card"><h3>Overall subsection mastery</h3>' +
         '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">' + overall +
         "% across " + grandN + " official subsections · " + withQ +
-        " have bank questions · meters weight recent answers and harder questions more; 'Mastered' also requires seeing at least half the questions in a subsection.</p>" +
+        " have bank questions · meters weight recent answers and harder questions more, fade if you stop practicing (flagged 'review'), and need at least half a subsection seen for 'Mastered'.</p>" +
         '<div class="topic-row"><span class="topic-name"><strong>All subsections</strong></span>' +
         '<span class="bar"><span class="fill ' + (grandSum ? scoreClass(overall) : "") +
         '" style="width:' + overall + '%"></span></span>' +
@@ -2548,16 +2559,29 @@
     return DIFF_W[QDIFF[skillKey(qid)]] || 1.0;
   }
 
+  // Forgetting curve: knowledge fades with calendar time, so each attempt's
+  // weight also decays with its age. The half-life is 30 days — an answer
+  // from a month ago counts half as much as a fresh one. Because the prior
+  // stays fixed, a topic you aced but haven't touched in months drifts back
+  // toward 50% ("uncertain again"), which both keeps the estimate honest and
+  // flags stale topics for review. Active practice resets it.
+  var FORGET_HALFLIFE_DAYS = 30, DAY_MS = 86400000;
+  function timeWeight(ts, now) {
+    if (!ts) return 1; // undated (legacy) attempts: treat as current
+    var ageDays = Math.max(0, (now - ts) / DAY_MS);
+    return Math.pow(0.5, ageDays / FORGET_HALFLIFE_DAYS);
+  }
+
   // The one mastery estimate used everywhere (readiness score, topic meters,
-  // and NCEES subsection meters). It combines three things: recency decay so
-  // newer answers count more, difficulty weighting (above), and a Bayesian
-  // prior so a handful of attempts doesn't swing the score. With no attempts
-  // it returns the prior (50). As attempts accumulate the prior washes out and
-  // the estimate converges on recent, difficulty-weighted accuracy.
-  function masteryFromAttempts(attempts) {
+  // and NCEES subsection meters). It combines four things: order-recency so
+  // newer answers count more, difficulty weighting (above), time decay (the
+  // forgetting curve, above), and a Bayesian prior so a handful of attempts
+  // doesn't swing the score. With no attempts it returns the prior (50).
+  function masteryFromAttempts(attempts, now) {
+    now = now || Date.now();
     var wSum = 0, wCorrect = 0, recency = 1; // newest attempt weighs most
     for (var i = attempts.length - 1; i >= 0; i--) {
-      var w = recency * diffWeight(attempts[i].qid);
+      var w = recency * diffWeight(attempts[i].qid) * timeWeight(attempts[i].ts, now);
       wSum += w;
       if (attempts[i].correct) wCorrect += w;
       recency *= ADAPT_DECAY;
@@ -2581,7 +2605,7 @@
   // Readiness: per-topic adaptive mastery weighted by the NCEES blueprint
   // weights. An estimate built from practice history — never a prediction
   // of the exam result (that disclaimer travels with every display).
-  var READINESS_NOTE = "Based on your practice so far — not a prediction of your exam result.";
+  var READINESS_NOTE = "Based on your practice so far — not a prediction of your exam result. Topics you haven't practiced recently fade toward 50%, so keep reviewing.";
   function readiness() {
     var m = adaptiveMastery();
     var byTopic = {};
@@ -4055,10 +4079,11 @@
       var overall = Math.round(mastery.reduce(function (a, m) { return a + m.mastery; }, 0) / mastery.length);
       html += '<div class="card"><h3>Topic Mastery</h3>';
       html += '<p class="disclaimer" style="margin-top:-4px;margin-bottom:14px">Overall mastery ' + overall +
-        "% — meters weight recent answers and harder questions more; 'Mastered' also requires seeing at least half the topic's questions.</p>";
+        "% — meters weight recent answers and harder questions more, fade if you stop practicing (flagged 'review'), and need at least half a topic seen for 'Mastered'.</p>";
       mastery.forEach(function (m) {
         var cls = m.n ? scoreClass(m.mastery) : "";
-        var sub = m.n ? m.distinct + " of " + m.available + " seen · " + m.pct + "%" : "0";
+        var sub = m.n ? m.distinct + " of " + m.available + " seen · " + m.pct + "%" +
+          (m.days !== null && m.days >= FORGET_HALFLIFE_DAYS ? " · review" : "") : "0";
         html += '<div class="topic-row"><span class="topic-name">' + escapeHtml(m.topic) +
           " <small>(" + sub + ")</small></span>" +
           '<span class="bar"><span class="fill ' + cls +
