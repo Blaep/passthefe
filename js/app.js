@@ -1074,6 +1074,30 @@
       '" loading="lazy">';
   }
 
+  // Diagram resilience: a lazy-loaded diagram that fails on a flaky
+  // connection must not leave a broken-image icon for the whole session.
+  // Retry the asset once (cache-busted), then swap in a plain-text note so
+  // the question stays usable. Image error events don't bubble, so this
+  // listener runs in the capture phase.
+  document.addEventListener("error", function (e) {
+    var img = e.target;
+    if (!img || img.tagName !== "IMG" || !img.classList.contains("q-diagram")) return;
+    var src = img.getAttribute("src") || "";
+    // data:/blob: diagrams are self-contained payloads, not network assets:
+    // a failure is a bad payload, so never retry them and never append
+    // query junk to their URLs.
+    var retriable = !/^(data|blob):/i.test(src);
+    if (retriable && !img.dataset.retried) {
+      img.dataset.retried = "1";
+      img.src = src + (src.indexOf("?") >= 0 ? "&" : "?") + "retry=1";
+      return;
+    }
+    var note = document.createElement("div");
+    note.className = "q-diagram-missing";
+    note.textContent = "The diagram didn't load. Reload the page to try again.";
+    img.replaceWith(note);
+  }, true);
+
   // Difficulty pill for the clean quiz header (easy/medium/hard).
   function diffBadge(d) {
     var k = (d || "").toLowerCase();
