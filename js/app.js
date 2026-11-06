@@ -31,7 +31,7 @@
   var QUESTIONS = [];
   function loadQuestions(cb) {
     if (QUESTIONS.length) { cb(QUESTIONS); return; }
-    fetch("data/questions.json?v=11")
+    fetch("data/questions.json?v=12")
       .then(function (r) { return r.json(); })
       .then(function (d) { QUESTIONS = d.questions || []; cb(QUESTIONS); })
       .catch(function () { cb([]); });
@@ -1334,6 +1334,12 @@
       diffBadge(q.difficulty) + "</div>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
+    // Practice-only hint (Exam Sim renders its own screen and has none).
+    if (hintFor(q)) {
+      html += '<div class="quiz-hint-row"><button type="button" id="quiz-hint-btn" class="btn hint-btn">' +
+        "💡 Hint</button></div>" +
+        '<div class="hint-box" id="quiz-hint" style="display:none"></div>';
+    }
     html += '<ul class="choices" id="quiz-choices">';
     var order = shuffle(q.choices.map(function (c, i) { return i; }));
     order.forEach(function (i, pos) {
@@ -1358,7 +1364,10 @@
     }
     html += "</div>";
     box.innerHTML = html;
+    box.dataset.hint = "0";
     hbRestore(false);
+    var hintBtn = document.getElementById("quiz-hint-btn");
+    if (hintBtn) hintBtn.addEventListener("click", function () { showNextHint(q); });
     document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { selectQuizChoice(li, parseInt(li.dataset.i, 10)); });
@@ -1385,6 +1394,7 @@
     // recorded time frozen on the chip. Otherwise start the question timer.
     var prev = quiz.answers.length ? quiz.answers[quiz.answers.length - 1] : null;
     if (prev && prev.qid === q.id && typeof prev.chosen === "number") {
+      if (prev.hinted) box.dataset.hint = "1";
       revealAnswer(q, prev.chosen, prev.correct);
       stopQuizTimer();
       var qEl = document.getElementById("qt-q");
@@ -1420,10 +1430,44 @@
     var qEl = document.getElementById("qt-q");
     if (qEl) qEl.textContent = fmtSecs(secs); // freeze the chip at answer time
     if (ok) quiz.correct++;
-    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: i, secs: secs });
-    logAttempt(q, ok);
+    var hinted = +(box.dataset.hint || 0) > 0;
+    quiz.answers.push({ qid: q.id, topic: q.topic, correct: ok, chosen: i, secs: secs, hinted: hinted });
+    logAttempt(q, ok, hinted);
     revealAnswer(q, i, ok);
     saveProgress();
+  }
+
+  // ---- practice hints -------------------------------------------------------
+  // Each question carries a precomputed two-tier hint (data/questions.json
+  // "hint"): where = the concept and handbook section to look in, formula =
+  // the governing equation in symbols only. Neither reveals the answer — they
+  // teach the real exam skill of finding the right handbook relation.
+  // Randomized variants reuse their bank question's hint via skillKey.
+  function hintFor(q) {
+    if (q.hint) return q.hint;
+    var base = findQuestion(skillKey(q.id));
+    return base && base.hint ? base.hint : null;
+  }
+
+  function showNextHint(q) {
+    var box = document.getElementById("quiz-run");
+    if (!box || box.dataset.answered) return;
+    var h = hintFor(q);
+    var panel = document.getElementById("quiz-hint");
+    var btn = document.getElementById("quiz-hint-btn");
+    if (!h || !panel || !btn) return;
+    var level = +(box.dataset.hint || 0);
+    if (level === 0) {
+      panel.innerHTML = '<p class="hint-where"><strong>Hint:</strong> ' + escapeHtml(h.where) + "</p>";
+      panel.style.display = "block";
+      box.dataset.hint = "1";
+      if (h.formula) btn.textContent = "💡 Show key equation";
+      else btn.style.display = "none";
+    } else if (level === 1 && h.formula) {
+      panel.innerHTML += '<p class="hint-eq-head">Key equation:</p>' + renderRich("$$" + h.formula + "$$");
+      box.dataset.hint = "2";
+      btn.style.display = "none";
+    }
   }
 
   function videoLinkHtml(q) {
@@ -1439,6 +1483,9 @@
     box.dataset.selected = "";
     var cf = document.getElementById("quiz-confirm");
     if (cf) cf.style.display = "none";
+    var hb = document.getElementById("quiz-hint-btn");
+    if (hb) hb.style.display = "none";
+    var usedHint = +(box.dataset.hint || 0) > 0;
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.classList.remove("sel");
       var liI = parseInt(li.dataset.i, 10);
@@ -1455,6 +1502,7 @@
     });
     var sol = document.getElementById("quiz-solution");
     sol.innerHTML = "<strong>" + (ok ? "Correct." : "Not quite.") + "</strong>" +
+      (ok && usedHint ? '<p class="hint-used">You used a hint, so this counts a little less toward your mastery.</p>' : "") +
       '<p class="explain-head">Explanation</p>' +
       '<div class="explain-body">' + linkifyCitations(renderRich(q.solution)) + "</div>" +
       (q.explanation ? '<div class="explain-body">' + renderRich(q.explanation) + "</div>" : "") +
@@ -1464,10 +1512,12 @@
     document.getElementById("quiz-next").style.display = "";
   }
 
-  function logAttempt(q, ok) {
+  function logAttempt(q, ok, hinted) {
     if (quiz && quiz.portable) return; // the other device never writes the tracker
     var attempts = store.get("attempts", []);
-    attempts.push({ qid: q.id, topic: q.topic, correct: ok, ts: Date.now() });
+    var rec = { qid: q.id, topic: q.topic, correct: ok, ts: Date.now() };
+    if (hinted) rec.hinted = 1;
+    attempts.push(rec);
     store.set("attempts", attempts.slice(-2000)); // keep it bounded
     bumpStreak();
   }
@@ -2611,6 +2661,7 @@
   // toward 50% ("uncertain again"), which both keeps the estimate honest and
   // flags stale topics for review. Active practice resets it.
   var FORGET_HALFLIFE_DAYS = 30, DAY_MS = 86400000;
+  var HINT_CORRECT_W = 0.5;
   function timeWeight(ts, now) {
     if (!ts) return 1; // undated (legacy) attempts: treat as current
     var ageDays = Math.max(0, (now - ts) / DAY_MS);
@@ -2627,6 +2678,10 @@
     var wSum = 0, wCorrect = 0, recency = 1; // newest attempt weighs most
     for (var i = attempts.length - 1; i >= 0; i--) {
       var w = recency * diffWeight(attempts[i].qid) * timeWeight(attempts[i].ts, now);
+      // A correct answer reached with a practice hint is weaker evidence of
+      // mastery than an unaided one, so it counts half. (A wrong answer even
+      // with a hint is still full evidence of a gap.)
+      if (attempts[i].hinted && attempts[i].correct) w *= HINT_CORRECT_W;
       wSum += w;
       if (attempts[i].correct) wCorrect += w;
       recency *= ADAPT_DECAY;
@@ -3107,6 +3162,12 @@
       diffBadge(q.difficulty) + "</div>";
     html += '<p class="question-text">' + inlineMath(q.question) + "</p>";
     html += diagramHtml(q);
+    // Practice-only hint (Exam Sim renders its own screen and has none).
+    if (hintFor(q)) {
+      html += '<div class="quiz-hint-row"><button type="button" id="quiz-hint-btn" class="btn hint-btn">' +
+        "💡 Hint</button></div>" +
+        '<div class="hint-box" id="quiz-hint" style="display:none"></div>';
+    }
     html += '<ul class="choices" id="quiz-choices">';
     var order = shuffle(q.choices.map(function (c, i) { return i; }));
     order.forEach(function (i, pos) {
@@ -3124,7 +3185,10 @@
       '<button id="quiz-finish" class="btn text">Finish &amp; results</button></div>';
     html += "</div></div>";
     box.innerHTML = html;
+    box.dataset.hint = "0";
     hbRestore(false);
+    var hintBtn = document.getElementById("quiz-hint-btn");
+    if (hintBtn) hintBtn.addEventListener("click", function () { showNextHint(q); });
     document.getElementById("quiz-back").addEventListener("click", quizGoBack);
     box.querySelectorAll("#quiz-choices li").forEach(function (li) {
       li.addEventListener("click", function () { selectQuizChoice(li, parseInt(li.dataset.i, 10)); });
