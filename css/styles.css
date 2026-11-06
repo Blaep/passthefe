@@ -25,6 +25,10 @@ body {
   overscroll-behavior-x: none;
 }
 
+/* Form controls don't inherit the page font by default, which left every
+   button, select and input in the browser's fallback face (Arial). */
+button, input, select, textarea { font-family: inherit; }
+
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
 
 .site-header {
@@ -124,6 +128,20 @@ h2 { font-size: 1.6rem; margin-bottom: 12px; }
 .view.hidden { display: none; }
 
 .site-footer { border-top: 1px solid #e8eaf0; padding: 24px 0; color: var(--text-2); font-size: 0.9rem; }
+/* Home "what's inside" cards */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 0 0 28px; }
+.feature {
+  display: flex; flex-direction: column; padding: 20px; border: 1px solid #e8eaf0;
+  border-radius: var(--radius); background: var(--card); color: var(--text); text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.feature:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.feature h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.feature p { color: var(--text-2); font-size: 0.92rem; line-height: 1.5; flex: 1; }
+.feature .go { color: var(--primary); font-weight: 600; font-size: 0.88rem; margin-top: 12px; }
+
+.site-footer a { color: var(--text-2); text-underline-offset: 3px; }
+.site-footer a:hover { color: var(--primary); }
 
 .question-text { font-weight: 600; margin-bottom: 16px; }
 .question-text, .solution, .solution-text, .study-item .answer-line {
@@ -207,13 +225,23 @@ details.mastery-area summary { display: flex; align-items: center; gap: 12px; pa
 details.mastery-area summary::-webkit-details-marker { display: none; }
 details.mastery-area summary::before { content: "›"; font-weight: 800; color: var(--text-2); transition: transform 0.15s; }
 details.mastery-area[open] summary::before { transform: rotate(90deg); }
+/* Mastery areas are also .card, which adds its own trailing chevron. */
+details.card.mastery-area summary::after { content: none; }
 details.mastery-area summary .topic-name { flex: 0 1 260px; }
 details.mastery-area .mastery-sub { padding: 4px 18px 4px 30px; }
 details.mastery-area .mastery-sub .topic-name { flex: 0 1 300px; font-weight: 400; font-size: 0.88rem; }
 details.mastery-area .mastery-sub .topic-name strong { font-weight: 700; }
 details.mastery-area .mastery-sub .drill-btn { flex: 0 0 auto; }
+/* On phones a single row can't fit name + meter + level, so the name takes
+   its own line and the meter/level/button sit beneath it. */
 @media (max-width: 640px) {
-  details.mastery-area summary .topic-name, details.mastery-area .mastery-sub .topic-name { flex-basis: 150px; font-size: 0.8rem; }
+  .topic-row { flex-wrap: wrap; row-gap: 6px; }
+  .topic-row .topic-name { flex: 1 1 100%; }
+  details.mastery-area summary { flex-wrap: wrap; row-gap: 8px; }
+  details.mastery-area summary .topic-name { flex: 1 1 calc(100% - 24px); font-size: 0.92rem; }
+  details.mastery-area summary .bar { margin-left: 22px; }
+  details.mastery-area .mastery-sub { padding-left: 18px; }
+  details.mastery-area .mastery-sub .topic-name { flex: 1 1 100%; font-size: 0.85rem; }
 }
 .topic-pct { flex: 0 0 48px; text-align: right; font-weight: 700; }
 .mastery-level { flex: 0 0 92px; text-align: right; font-weight: 700; font-size: 0.8rem; color: var(--text-2); }
@@ -238,6 +266,19 @@ details.mastery-area .mastery-sub .drill-btn { flex: 0 0 auto; }
   background: #fff; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-2);
 }
 .chip.selected { border-color: var(--primary); color: var(--primary); background: #eef2ff; }
+/* On phones the 15 topic chips wrapped into ~10 rows and filled the whole
+   first screen; scroll them sideways in one row instead, with an edge fade
+   hinting there's more. */
+@media (max-width: 640px) {
+  .chip-row {
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; margin-right: -20px; padding-right: 28px; padding-bottom: 2px;
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+    mask-image: linear-gradient(to right, #000 88%, transparent);
+  }
+  .chip-row::-webkit-scrollbar { display: none; }
+  .chip { flex: 0 0 auto; white-space: nowrap; }
+}
 .formula-card h3 { margin: 4px 0 10px; }
 .formula-topic { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-2); }
 .formula-expr {
@@ -627,7 +668,7 @@ span.bad { color: var(--error); font-weight: 700; }
 .quiz-nav-sub { display: flex; gap: 10px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
 
 /* ---- Exams list (Sep 2026) ---- */
-.exams-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 6px; }
+.exams-title { font-size: 1.6rem; font-weight: 700; margin: 0 0 6px; } /* match other page titles */
 #exam-setup .lede { margin-bottom: 18px; }
 .exam-card {
   background: #fff; border-radius: 14px; padding: 20px;
