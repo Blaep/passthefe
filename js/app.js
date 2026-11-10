@@ -1343,7 +1343,7 @@
     html += '<ul class="choices" id="quiz-choices">';
     var order = shuffle(q.choices.map(function (c, i) { return i; }));
     order.forEach(function (i, pos) {
-      html += '<li data-i="' + i + '"><span class="choice-letter">' + letters[pos] +
+      html += '<li data-i="' + i + '" tabindex="0" role="button"><span class="choice-letter">' + letters[pos] +
         '</span><span class="choice-text">' + inlineMath(q.choices[i]) + "</span></li>";
     });
     html += "</ul>";
@@ -1491,11 +1491,11 @@
       var liI = parseInt(li.dataset.i, 10);
       var letter = li.querySelector(".choice-letter");
       if (liI === q.answerIndex) {
-        li.style.background = "#e9f9ee";
+        li.style.background = "var(--ok-bg)";
         if (letter) { letter.style.borderColor = "#34C759"; letter.style.background = "#34C759"; letter.style.color = "#fff"; }
       }
       else if (liI === chosenI) {
-        li.style.background = "#fdeceb";
+        li.style.background = "var(--bad-bg)";
         if (letter) { letter.style.borderColor = "#FF3B30"; letter.style.background = "#FF3B30"; letter.style.color = "#fff"; }
       }
       li.style.cursor = "default";
@@ -3171,7 +3171,7 @@
     html += '<ul class="choices" id="quiz-choices">';
     var order = shuffle(q.choices.map(function (c, i) { return i; }));
     order.forEach(function (i, pos) {
-      html += '<li data-i="' + i + '"><span class="choice-letter">' + letters[pos] +
+      html += '<li data-i="' + i + '" tabindex="0" role="button"><span class="choice-letter">' + letters[pos] +
         '</span><span class="choice-text">' + inlineMath(q.choices[i]) + "</span></li>";
     });
     html += "</ul>";
@@ -3820,7 +3820,7 @@
     html += '<ul class="choices" id="exam-choices">';
     q.choices.forEach(function (c, i) {
       var cls = (exam.chosen[q.id] === i) ? ' class="sel"' : "";
-      html += "<li" + cls + ' data-i="' + i + '"><span class="choice-letter">' + letters[i] +
+      html += "<li" + cls + ' data-i="' + i + '" tabindex="0" role="button"><span class="choice-letter">' + letters[i] +
         '</span><span class="choice-text">' + inlineMath(c) + "</span></li>";
     });
     html += "</ul>";
@@ -4074,8 +4074,8 @@
           '<ul class="choices">';
         q.choices.forEach(function (c, ci) {
           var style = "";
-          if (ci === q.answerIndex) style = ' style="border-color:#34C759;background:#e9f9ee"';
-          else if (ci === chosen) style = ' style="border-color:#FF3B30;background:#fdeceb"';
+          if (ci === q.answerIndex) style = ' style="border-color:#34C759;background:var(--ok-bg)"';
+          else if (ci === chosen) style = ' style="border-color:#FF3B30;background:var(--bad-bg)"';
           dh += "<li" + style + ">" + inlineMath(c) + "</li>";
         });
         dh += "</ul>" +
@@ -5309,6 +5309,53 @@
         try { localStorage.setItem("pwaInstallDismissed", String(Date.now())); } catch (e) {}
         deferredPrompt = null;
       }).catch(function () {});
+    });
+  })();
+
+  // ---- keyboard answering ---------------------------------------------------
+  // A-D or 1-4 picks a choice, Enter/Space on a focused choice selects it,
+  // Enter elsewhere confirms or moves to the next question, H opens a hint.
+  // Works on whichever quiz screen is visible (practice, random, exam).
+  (function () {
+    function visible(el) { return !!(el && el.offsetParent !== null && el.style.display !== "none"); }
+    document.addEventListener("keydown", function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var t = e.target;
+      var tag = t && t.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (t && t.isContentEditable)) return;
+      var list = document.getElementById("quiz-choices");
+      if (!visible(list)) list = document.getElementById("exam-choices");
+      if (!visible(list)) return;
+      var items = list.querySelectorAll("li");
+      var run = document.getElementById("quiz-run");
+      var selectedAlready = e.key === "Enter" && t && t.classList &&
+        (t.classList.contains("sel") || (list.id === "quiz-choices" && run && run.dataset.answered));
+      if (t && t.parentNode === list && !selectedAlready && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        t.click();
+        return;
+      }
+      if (tag === "BUTTON" || tag === "A") return; // let focused controls act natively
+      var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      var pos = "abcd".indexOf(k);
+      if (pos < 0) pos = "1234".indexOf(k);
+      if (pos >= 0 && pos < items.length) {
+        e.preventDefault();
+        items[pos].click();
+        var again = document.querySelectorAll("#" + list.id + " li")[pos]; // exam re-renders
+        if (again) again.focus();
+        return;
+      }
+      if (k === "Enter") {
+        var btn = document.getElementById("quiz-confirm");
+        if (!visible(btn)) btn = document.getElementById("quiz-next");
+        if (visible(btn)) { e.preventDefault(); btn.click(); }
+        return;
+      }
+      if (k === "h") {
+        var hb = document.getElementById("quiz-hint-btn");
+        if (visible(hb)) { e.preventDefault(); hb.click(); }
+      }
     });
   })();
 })();
